@@ -8,7 +8,7 @@ Mobile-First Idle-RPG als PWA für eine Guild-Wars-2-Gilde (nicht-kommerzielles 
 - Mobile first: max-width 440px, Touch-Ziele ≥ 44 × 44 px, keine Hover-Funktionen, Safe-Areas beachten.
 - Alle Zahlen und Formeln gehören in `js/config.js`, nicht in die Logik.
 - Helden-`id`s in `HEROES` nie ändern (Spielstände hängen daran).
-- Nach jeder Änderung an App-Dateien `CACHE_VERSION` in `sw.js` erhöhen. Neue Dateien in `APP_FILES` eintragen.
+- Nach jeder Änderung an App-Dateien die Version erhöhen: `GAME.VERSION` in `js/config.js` und `CACHE_VERSION` in `sw.js` (immer dieselbe Nummer, z. B. `0.6.1` / `'aetherbastion-0.6.1'`). Patch für Fixes, Minor für neue Funktionen. Neue Dateien in `APP_FILES` eintragen.
 - Änderungen am Save-Format: `GAME.SAVE_VERSION` erhöhen und eine Migration in `MIGRATIONS` (`js/state.js`) ergänzen.
 
 ## Architektur
@@ -35,7 +35,7 @@ Der Spielstand ist ein einziges Objekt. Bei Import/Reset wird es per `replaceSta
 - Jeder Push auf `main` veröffentlicht das Spiel per `.github/workflows/pages.yml` auf GitHub Pages.
 - Auf die Website kommen nur `index.html`, `manifest.json`, `sw.js`, Icons, `css/` und `js/`. Doku und `dev-data/` bleiben draußen.
 - Neue Dateien im Hauptordner müssen im Workflow (`cp`-Zeile) ergänzt werden.
-- Der Workflow setzt `GAME.BUILD` (Lauf-Nr. · Commit) und hängt `-b<Nr.>` an `CACHE_VERSION`. Unten unter der Navigation steht `v<GAME.VERSION> · Build …`, lokal „Build lokal“. `GAME.VERSION` bei größeren Updates von Hand erhöhen.
+- Der Workflow setzt `GAME.BUILD` (Lauf-Nr. · Commit) und hängt `-b<Nr.>` an `CACHE_VERSION`. Unten unter der Navigation steht `v<GAME.VERSION> · Build …`, lokal „Build lokal“. `GAME.VERSION` steigt mit jeder Änderung (siehe Harte Regeln).
 
 ## Bekannte offene Punkte / Ideen
 - Zonen 1–2 sind ausgearbeitet (Caudecus’ Anwesen). Bosse der Zonen 3–10 sind GW2-typisch, aber ohne Quellenprüfung; schwere Stufen dort sind „Verderbte“ Varianten.

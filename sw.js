@@ -1,9 +1,10 @@
 // =====================================================================
 //  Service Worker – Cache-first für alle App-Dateien.
-//  👉 Nach jeder Änderung an den App-Dateien CACHE_VERSION erhöhen,
-//     sonst bekommen installierte Clients die neuen Dateien nicht.
+//  👉 Nach jeder Änderung an den App-Dateien CACHE_VERSION erhöhen – immer
+//     gleich GAME.VERSION in js/config.js –, sonst bekommen installierte
+//     Clients die neuen Dateien nicht.
 // =====================================================================
-const CACHE_VERSION = 'aetherbastion-v13';
+const CACHE_VERSION = 'aetherbastion-0.6.0'; // = GAME.VERSION in js/config.js
 const APP_FILES = [
   './',
   './index.html',
