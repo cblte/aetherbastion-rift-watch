@@ -479,6 +479,7 @@ textarea {
 #tabs button span { font-size: 22px; line-height: 1; filter: grayscale(.7); transition: filter .2s; }
 #tabs button.active { color: var(--text); background: var(--panel); }
 #tabs button.active span { filter: none; }
+#build-info { grid-column: 1 / -1; text-align: center; font-size: 10px; line-height: 14px; color: var(--muted); opacity: .7; font-variant-numeric: tabular-nums; }
 
 /* ---------- Modal ------------------------------------------------- */
 #modal-root[hidden] { display: none; }

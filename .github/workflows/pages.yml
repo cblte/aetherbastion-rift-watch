@@ -35,6 +35,16 @@ jobs:
           touch _site/.nojekyll
           find _site -type f | sort
 
+      # Build-Nummer ins Spiel schreiben (unten unter der Navigation sichtbar).
+      # Der Cache-Name bekommt die Nummer auch, damit jeder Deploy frische Dateien lädt.
+      - name: Build-Nummer setzen
+        run: |
+          BUILD="${{ github.run_number }} · ${GITHUB_SHA::7}"
+          sed -i "s|BUILD: 'lokal'|BUILD: '${BUILD}'|" _site/js/config.js
+          sed -i "s|const CACHE_VERSION = '\([^']*\)';|const CACHE_VERSION = '\1-b${{ github.run_number }}';|" _site/sw.js
+          grep -n "BUILD:" _site/js/config.js
+          grep -n "CACHE_VERSION =" _site/sw.js
+
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

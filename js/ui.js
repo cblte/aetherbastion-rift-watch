@@ -68,6 +68,7 @@ export function initUI(state, h) {
   document.addEventListener('pointerup', up, true);
   document.addEventListener('pointercancel', up, true);
 
+  $('#build-info').textContent = versionText();
   app.addEventListener('click', onClick);
   setupSwipe();
   render();
@@ -121,6 +122,8 @@ function renderQuest() {
     <div class="quest-body"><span class="quest-icon">${step.icon}</span><p>${text}</p></div>
     <button class="btn primary block" data-action="${step.action}">${step.btn}</button>`);
 }
+
+const versionText = () => `v${GAME.VERSION} · Build ${GAME.BUILD}`;
 
 // Aufträge nach dem Onboarding
 const rewardText = (r) => Object.entries(r).map(([k, v]) => `+${fmt(v)} ${CURRENCIES[k].icon}`).join(' ');
@@ -448,7 +451,7 @@ function renderSettings() {
     <div class="card">
       <button class="btn danger block" data-action="reset">Spielstand zurücksetzen</button>
     </div>
-    <p class="muted small center">${GAME.title} · Spielstand v${S.version}<br>Nicht-kommerzielles Fanprojekt. Guild Wars 2 ist eine Marke von ArenaNet/NCSOFT; dieses Projekt ist nicht mit ihnen verbunden.</p>`);
+    <p class="muted small center">${GAME.title} · ${versionText()} · Spielstand v${S.version}<br>Nicht-kommerzielles Fanprojekt. Guild Wars 2 ist eine Marke von ArenaNet/NCSOFT; dieses Projekt ist nicht mit ihnen verbunden.</p>`);
 }
 
 // ---------- Trupps -----------------------------------------------------

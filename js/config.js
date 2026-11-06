@@ -5,6 +5,8 @@
 
 export const GAME = {
   title: 'Aetherbastion: Rift Watch',
+  VERSION: '0.5.0',                  // Spielversion, von Hand erhöhen
+  BUILD: 'lokal',                    // ersetzt der Pages-Workflow durch „Nr. · Commit“
   SAVE_KEY: 'aetherbastion_save_v1',
   SAVE_VERSION: 4,
   TICK_MS: 1000,                     // feste Kampf-Ticks
