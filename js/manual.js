@@ -87,12 +87,13 @@ export function manualChapters() {
     { icon: '⚒️', title: 'Waffen & Proviant', html: `
       ${list([
         `Der <b>Laden</b> der Charr-Schmiede hat ${SHOP.offers} Angebote und füllt sich alle ${min(SHOP.restockMs)} Minuten neu.`,
-        `Boss-Beute und Käufe landen in der <b>Waffenkammer</b>. Dort rüstest du aus oder verkaufst (${pct(SHOP.sellFactor)} des Preises).`,
+        `Boss-Beute und Käufe landen in der <b>Waffenkammer</b> (Reiter ⚒️ Schmiede) – Beute auch schon, bevor die Schmiede steht. Dort rüstest du aus oder verkaufst (${pct(SHOP.sellFactor)} des Preises).`,
+        'Oben rechts öffnet <b>🎒</b> das <b>Inventar</b>: Waffenkammer, ausgerüstete Waffen und Proviant an einem Ort. Ausrüsten geht dort oder im Helden-Fenster.',
         'Jeder Held trägt eine Waffenart: Heiler einen Fokus, sonst nach Klasse.',
       ])}
       <p>${Object.values(WEAPON_TYPES).map(t => `${t.icon} ${t.name}`).join(' · ')}</p>
       ${table(['Güte', 'Bonus'], Object.entries(WEAPON_GRADES).map(([g, w]) => [`★${g} ${w.name}`, `+${pct(w.atk)} ATK, +${pct(w.hp)} HP`]))}
-      <p><b>🍞 Proviant</b> gibt einem Helden sofort EXP – ideal für frisch Rekrutierte, die hinterherhinken.</p>` },
+      <p><b>🍞 Proviant</b> gibt einem Helden sofort EXP – ideal für frisch Rekrutierte, die hinterherhinken. Verfüttern im Inventar oder im Helden-Fenster.</p>` },
 
     { icon: '🔬', title: 'Forschung', html: `
       <p>Im <b>Asura-Labor</b> erforschst du mit 🧪 Forschungspunkten dauerhafte Verbesserungen in drei Bäumen:</p>

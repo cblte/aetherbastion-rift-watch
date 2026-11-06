@@ -130,7 +130,8 @@ Mit **🧪 Forschungspunkten** erforschst du dauerhafte Verbesserungen in drei B
 ## ⚒️ Charr-Schmiede – Waffen
 
 - Der **Laden** bietet 3 Waffen an und füllt sich alle 30 Minuten neu. „Ware auffrischen“ kostet 100 Gold und verdoppelt sich jedes Mal, bis der Laden sich von selbst erneuert.
-- Gekaufte Waffen und Boss-Beute landen in der **Waffenkammer**. Dort rüstest du sie aus oder verkaufst sie (25 % des Preises).
+- Gekaufte Waffen und Boss-Beute landen in der **Waffenkammer** (Reiter ⚒️ Schmiede). Boss-Beute kommt auch schon, bevor die Schmiede gebaut ist. Dort rüstest du sie aus oder verkaufst sie (25 % des Preises).
+- **🎒 Inventar** (Knopf oben rechts in der Kopfzeile): Waffenkammer, ausgerüstete Waffen und Proviant an einem Ort. Ausrüsten und Verfüttern geht dort oder im Helden-Fenster.
 - Jeder Held trägt eine **Waffenart**: Heiler einen **Fokus**, sonst nach Klasse.
 
 | Waffenart | Träger |
