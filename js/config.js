@@ -5,7 +5,7 @@
 
 export const GAME = {
   title: 'Aetherbastion: Rift Watch',
-  VERSION: '0.8.0',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
+  VERSION: '0.9.0',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
   BUILD: 'lokal',                    // ersetzt der Pages-Workflow durch „Nr. · Commit“
   SAVE_KEY: 'aetherbastion_save_v1',
   SAVE_VERSION: 5,
@@ -306,3 +306,7 @@ export const MYSTIC = {
   loot:  { name: 'Glücksbringer',      icon: '🍀', per: 0.10, unit: '% Gold & Scherben', sign: '+', costs: [5, 12, 26, 52, 100] },
 };
 export const MYSTIC_ORDER = ['atk', 'hp', 'regen', 'loot'];
+
+// Neu-Würfeln (Waffenladen, Rekruten): Der verdoppelte Preis für „erneuern“ lässt sich
+// mit 💠 Mystischen Münzen wieder auf den Startpreis setzen.
+export const REROLL_RESET_COINS = 2;

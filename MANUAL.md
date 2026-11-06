@@ -27,7 +27,7 @@ Danach geht es im selben **Auftrags-Banner** nahtlos weiter (Auftrag 5 bis 24). 
 | 🪙 | Gold | Siege, Gildenkasse, Helden ab Lv. 10 | Gebäude, Rekruten, Zelte, Boss-Herausforderungen, Waffen, Belebung |
 | 🔮 | Ätherscherben | Siege (5 %), jeder Boss | Riss-Portal |
 | 🧪 | Forschungspunkte | Boss-Siege, Level-Ups, Helden ab Lv. 20 alle 10 Min. | Forschung im Asura-Labor, seltene Waffen |
-| 💠 | Mystische Münzen | Ruhestand | Mystische Schmiede |
+| 💠 | Mystische Münzen | Ruhestand | Mystische Schmiede, Würfel-Preis zurücksetzen |
 | 🍞 | Proviant (Güte 1–6) | Boss-Siege, Level-Ups | EXP für einen Helden |
 | 🍎 🎟️ | Früchte, Arena-Tickets | Level-Ups, Bosse | Funktion folgt |
 
@@ -129,7 +129,7 @@ Mit **🧪 Forschungspunkten** erforschst du dauerhafte Verbesserungen in drei B
 
 ## ⚒️ Charr-Schmiede – Waffen
 
-- Der **Laden** bietet 3 Waffen an und füllt sich alle 30 Minuten neu. „Ware auffrischen“ kostet 100 Gold und verdoppelt sich jedes Mal, bis der Laden sich von selbst erneuert.
+- Der **Laden** bietet 3 Waffen an und füllt sich alle 30 Minuten neu. „Ware auffrischen“ kostet 100 Gold und verdoppelt sich jedes Mal, bis der Laden sich von selbst erneuert. Mit **2 💠 Mystischen Münzen** setzt du den Preis sofort zurück auf 100.
 - Gekaufte Waffen und Boss-Beute landen in der **Waffenkammer** (Reiter ⚒️ Schmiede). Boss-Beute kommt auch schon, bevor die Schmiede gebaut ist. Dort rüstest du sie aus oder verkaufst sie (25 % des Preises).
 - **🎒 Inventar** (Knopf oben rechts in der Kopfzeile): Waffenkammer, ausgerüstete Waffen und Proviant an einem Ort. Ausrüsten und Verfüttern geht dort oder im Helden-Fenster.
 - Jeder Held trägt eine **Waffenart**: Heiler einen **Fokus**, sonst nach Klasse.
@@ -162,7 +162,7 @@ Im Reiter **🛡️ Trupps → Rekrutieren** stehen wechselnde **Angebote**. Wie
 | ab Stufe 3 | 4 | 25 Min. |
 | ab Stufe 5 | 6 | 20 Min. |
 
-- **Liste erneuern** kostet 100 Gold und verdoppelt sich mit jedem Versuch (100, 200, 400 …). Kommt der Nachschub von selbst, fängt der Preis wieder bei 100 an.
+- **Liste erneuern** kostet 100 Gold und verdoppelt sich mit jedem Versuch (100, 200, 400 …). Kommt der Nachschub von selbst, fängt der Preis wieder bei 100 an. Mit **2 💠 Mystischen Münzen** kannst du ihn sofort zurücksetzen.
 - Nach einem Ausbau der Gildenhalle kommen die zusätzlichen Plätze sofort dazu.
 - Jeder Rekrut hat eine **Seltenheit**. Sie bestimmt den Preis und einen Bonus auf LP und ATK:
 

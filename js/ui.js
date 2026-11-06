@@ -8,7 +8,7 @@ import {
   GAME, CURRENCIES, ROLES, CLASSES, HEROES, HERO_BY_ID, ZONES, COMBAT, F, BUILDINGS, BUILDING_ORDER,
   TENTS, TENT_SIZE, MYSTIC, MYSTIC_ORDER, ONBOARDING, RETIRE_MIN_LEVEL, LEVEL_CAP_MAX, FEATURES,
   RESEARCH, RESEARCH_ORDER, TIER_LAB, WEAPON_BY_ID, WEAPON_GRADES, WEAPON_TYPES, RATIONS, NORMAL_STAGES,
-  TOTAL_NORMAL, CYCLE_MS, QUESTS as MAIN_QUESTS, RECRUIT,
+  TOTAL_NORMAL, CYCLE_MS, QUESTS as MAIN_QUESTS, RECRUIT, REROLL_RESET_COINS,
 } from './config.js';
 import { currentQuest, questProgress, questNumber, claimQuest } from './quests.js';
 import { manualChapters } from './manual.js';
@@ -25,7 +25,7 @@ import {
 import {
   researchInfo, doResearch, startBuild, refreshShop, refreshCost, buyWeapon, sellWeapon, sellPrice,
   equipWeapon, unequipWeapon, fitsHero, feedRation,
-  recruitTier, recruitRefreshCost, refreshRecruits, recruitCost, hireRecruit,
+  recruitTier, recruitRefreshCost, refreshRecruits, recruitCost, hireRecruit, resetRerollCost,
 } from './progress.js';
 import { runOffline } from './offline.js';
 
@@ -553,7 +553,13 @@ function recruitHtml() {
   return `
     <div class="card small">Neue Rekruten in <b>${clock(S.recruits.nextRestockMs - S.lastTickMs)}</b> · ${t.slots} Plätze, alle ${t.restockMin} Min.${next ? `<br><span class="muted">Gildenhalle Stufe ${next.hall}: ${next.slots} Plätze, alle ${next.restockMin} Min.</span>` : ''}${blocked ? '<br>Zuerst die Quest abschließen.' : ''}</div>
     ${offers}
-    <button class="btn block" data-action="recruit-refresh" ${S.gold >= rc ? '' : 'disabled'}>Liste erneuern · 🪙 ${fmt(rc)}</button>`;
+    ${rerollRow(`<button class="btn" data-action="recruit-refresh" ${S.gold >= rc ? '' : 'disabled'}>Liste erneuern<small>🪙 ${fmt(rc)}</small></button>`, 'recruits', S.recruits.refreshes)}`;
+}
+
+// Erneuern-Knopf; nach dem ersten Erneuern daneben „Preis zurücksetzen“ für 💠
+function rerollRow(refreshBtn, which, refreshes) {
+  if (refreshes < 1) return `<div class="btn-row">${refreshBtn}</div>`;
+  return `<div class="btn-row">${refreshBtn}<button class="btn" data-action="reroll-reset" data-which="${which}" ${S.coins >= REROLL_RESET_COINS ? '' : 'disabled'}>Preis zurücksetzen<small>💠 ${REROLL_RESET_COINS}</small></button></div>`;
 }
 
 // ---------- Asura-Labor ------------------------------------------------
@@ -646,7 +652,7 @@ function renderForge() {
     setHTML($('#weapons'), `
       <div class="card small">Laden: neue Ware in <b>${clock(S.shop.nextRestockMs - S.lastTickMs)}</b>. Schmiede Stufe ${S.buildings.forge} führt Waffen bis ${effectText('forge', S.buildings.forge, true)}.</div>
       ${offers}
-      <button class="btn block" data-action="shop-refresh" ${S.gold >= refreshCost(S) ? '' : 'disabled'}>Ware auffrischen · 🪙 ${fmt(refreshCost(S))}</button>
+      ${rerollRow(`<button class="btn" data-action="shop-refresh" ${S.gold >= refreshCost(S) ? '' : 'disabled'}>Ware auffrischen<small>🪙 ${fmt(refreshCost(S))}</small></button>`, 'shop', S.shop.refreshes)}
       ${armory}`);
   }
 
@@ -1054,6 +1060,7 @@ function onClick(e) {
       break;
     case 'recruit': recruit(num(d.slot)); break;
     case 'recruit-refresh': if (refreshRecruits(S)) changed('Neue Rekruten!'); break;
+    case 'reroll-reset': if (resetRerollCost(S, d.which)) changed('💠 Preis zurückgesetzt'); else toast('Nicht genug Mystische Münzen.'); break;
     case 'retire': {
       const h = getHero(S, num(d.uid));
       if (!h) break;

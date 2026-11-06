@@ -5,7 +5,7 @@
 // =====================================================================
 import {
   BUILDINGS, ZONES, TENTS, TENT_SIZE, COMBAT, GAME, NORMAL_STAGES, TOTAL_NORMAL, FEATURES,
-  RETIRE_MIN_LEVEL, LEVEL_CAP_MAX, CYCLE_MS, WEAPON_TYPES, WEAPON_GRADES, SHOP, QUESTS, RECRUIT,
+  RETIRE_MIN_LEVEL, LEVEL_CAP_MAX, CYCLE_MS, WEAPON_TYPES, WEAPON_GRADES, SHOP, QUESTS, RECRUIT, REROLL_RESET_COINS,
 } from './config.js';
 
 const pct = (x) => `${Math.round(x * 100)} %`;
@@ -36,7 +36,7 @@ export function manualChapters() {
         ['🪙 Gold', 'Siege, Gildenkasse, Helden ab Lv. 10', 'Gebäude, Rekruten, Zelte, Bosse, Waffen, Beleben'],
         ['🔮 Ätherscherben', `Siege (${pct(COMBAT.SHARD_CHANCE)}), jeder Boss`, 'Riss-Portal'],
         ['🧪 Forschungspunkte', 'Bosse, Level-Ups, Helden ab Lv. 20', 'Asura-Labor, seltene Waffen'],
-        ['💠 Mystische Münzen', 'Ruhestand', 'Mystische Schmiede'],
+        ['💠 Mystische Münzen', 'Ruhestand', 'Mystische Schmiede, Würfel-Preis zurücksetzen'],
         ['🍞 Proviant', 'Bosse, Level-Ups', 'EXP für einen Helden'],
       ])}
       <p><b>Gildenkasse:</b> Alle ${min(CYCLE_MS)} Minuten zahlt die Gildenhalle Gold aus. Helden ab Lv. 10 verdienen Gold, ab Lv. 20 auch Forschungspunkte – sogar in der Reserve.</p>` },
@@ -52,7 +52,7 @@ export function manualChapters() {
       <p>Jedes <b>Zelt</b> ist ein Trupp mit ${TENT_SIZE} Plätzen. Es gibt bis zu ${TENTS.length} Zelte; Zelt 2–${TENTS.length} öffnen ab Gildenhalle ${tentHalls}. Weitere Helden warten in der <b>Reserve</b>. Gute Aufstellung: <b>Tank + Heiler + Schaden</b>.</p>
       <p>Neue Helden wirbst du unter <b>🛡️ Trupps → Rekrutieren</b> an. Dort stehen wechselnde Angebote – mehr und schneller mit besserer Gildenhalle:</p>
       ${table(['Gildenhalle', 'Angebote', 'Neue alle'], RECRUIT.tiers.map(t => [`ab ${t.hall}`, t.slots, `${t.restockMin} Min.`]))}
-      <p>„Liste erneuern“ kostet ${RECRUIT.refreshBase} 🪙 und verdoppelt sich mit jedem Versuch; kommt der Nachschub von selbst, fängt der Preis wieder bei ${RECRUIT.refreshBase} an.</p>
+      <p>„Liste erneuern“ kostet ${RECRUIT.refreshBase} 🪙 und verdoppelt sich mit jedem Versuch; kommt der Nachschub von selbst, fängt der Preis wieder bei ${RECRUIT.refreshBase} an. Mit 💠 ${REROLL_RESET_COINS} Mystischen Münzen setzt du ihn sofort zurück.</p>
       <p>Jeder Rekrut hat eine <b>Seltenheit</b>. Sie bestimmt Preis und Bonus auf LP und ATK. Kostenlose Helden aus den Aufträgen sind „Fein“.</p>
       ${table(['Seltenheit', 'Preis', 'Bonus'], Object.entries(RECRUIT.rarities).map(([r, x]) => [`<span style="color:${WEAPON_GRADES[r].color}">◆ ${WEAPON_GRADES[r].name}</span>`, `🪙 ${x.cost.toLocaleString('de-DE')}`, x.bonus ? `+${pct(x.bonus)}` : '–']))}` },
 
@@ -91,6 +91,7 @@ export function manualChapters() {
     { icon: '⚒️', title: 'Waffen & Proviant', html: `
       ${list([
         `Der <b>Laden</b> der Charr-Schmiede hat ${SHOP.offers} Angebote und füllt sich alle ${min(SHOP.restockMs)} Minuten neu.`,
+        `„Ware auffrischen“ verdoppelt seinen Preis bis zum nächsten Nachschub – oder bis du ihn mit 💠 ${REROLL_RESET_COINS} Mystischen Münzen zurücksetzt.`,
         `Boss-Beute und Käufe landen in der <b>Waffenkammer</b> (Reiter ⚒️ Schmiede) – Beute auch schon, bevor die Schmiede steht. Dort rüstest du aus oder verkaufst (${pct(SHOP.sellFactor)} des Preises).`,
         'Oben rechts öffnet <b>🎒</b> das <b>Inventar</b>: Waffenkammer, ausgerüstete Waffen und Proviant an einem Ort. Ausrüsten geht dort oder im Helden-Fenster.',
         'Jeder Held trägt eine Waffenart: Heiler einen Fokus, sonst nach Klasse.',
