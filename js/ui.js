@@ -107,7 +107,7 @@ const QUESTS = [
   { icon: '🏛️', text: 'Errichte die <b>Gildenhalle</b> – das Herz eures Lagers.', btn: 'Errichten (kostenlos)', action: 'ob-hall' },
   { icon: '⛺', text: 'Schlage das <b>Zeltlager</b> auf. Hier wohnen deine Helden, und es bestimmt ihr Level-Cap (Lv. 10).', btn: 'Aufschlagen (kostenlos)', action: 'ob-camp' },
   { icon: '🛡️', text: () => `Rekrutiere deinen ersten Helden für Zelt 1: <b>${esc(HERO_BY_ID[ONBOARDING.tank].name)}</b>, ${CLASSES[HERO_BY_ID[ONBOARDING.tank].cls].name} (Tank).`, btn: 'Rekrutieren (kostenlos)', action: 'ob-recruit' },
-  { icon: '🌀', text: () => `Zwei Rekruten melden sich: <b>${esc(HERO_BY_ID[ONBOARDING.healer].name)}</b> (Heiler) und <b>${esc(HERO_BY_ID[ONBOARDING.dps].name)}</b> (Schaden). Nimm sie in Zelt 1 auf und aktiviere das <b>Riss-Portal</b>.`, btn: 'Aufnehmen & Portal aktivieren', action: 'ob-finish' },
+  { icon: '🌀', text: () => `Aktiviere das <b>Riss-Portal</b>. <b>${esc(HERO_BY_ID[ONBOARDING.tank].name)}</b> hält zunächst allein Wacht am Riss – Verstärkung folgt.`, btn: 'Portal aktivieren', action: 'ob-finish' },
 ];
 
 function renderQuest() {
@@ -133,13 +133,15 @@ function renderMainQuest(q) {
   q.hidden = false;
   const { have, need } = questProgress(S, quest);
   const done = have >= need;
-  const btn = done
-    ? `<button class="btn primary block" data-action="quest-claim">Belohnung abholen · ${rewardText(quest.reward)}</button>`
+  const btn = quest.goal.type === 'freeHero' && !done
+    ? `<button class="btn primary block" data-action="quest-hero">${esc(HERO_BY_ID[quest.goal.hero].name)} aufnehmen (kostenlos)</button>`
+    : done
+    ? `<button class="btn primary block" data-action="quest-claim">${Object.keys(quest.reward).length ? `Belohnung abholen · ${rewardText(quest.reward)}` : 'Weiter'}</button>`
     : quest.tab && quest.tab !== tab ? `<button class="btn block" data-action="tab" data-tab="${quest.tab}">Hingehen</button>` : '';
   setHTML(q, `
     <div class="quest-step">Auftrag ${questNumber(quest)}/${MAIN_QUESTS.length}${done ? ' · erfüllt ✓' : ''}</div>
     <div class="quest-body"><span class="quest-icon">${quest.icon}</span><p><b>${esc(quest.title)}</b><br>${esc(quest.text)}</p></div>
-    <div class="quest-progress"><span style="width:${Math.round(have / need * 100)}%"></span><small>${fmt(have)}/${fmt(need)} · ${rewardText(quest.reward)}</small></div>
+    ${quest.goal.type === 'freeHero' ? '' : `<div class="quest-progress"><span style="width:${Math.round(have / need * 100)}%"></span><small>${fmt(have)}/${fmt(need)} · ${rewardText(quest.reward)}</small></div>`}
     ${btn}`);
 }
 
@@ -884,13 +886,20 @@ function onClick(e) {
     }
     case 'ob-finish': {
       if (S.onboarding !== 4) break;
-      const hl = createHero(S, ONBOARDING.healer);
-      const dp = createHero(S, ONBOARDING.dps);
-      S.squads[0].slots[1] = hl.uid; S.squads[0].slots[2] = dp.uid;
       S.buildings.portal = 1; S.onboarding = 5; S.selectedSquad = 0; viewZone = 1; tab = 'portal';
       S.squads[0].status = 'fighting'; spawnMonster(S, S.squads[0]);
       addLog(S, '🌀 Das Riss-Portal flackert auf – über dem Königintal öffnet sich der erste Riss!', null, 'boss');
       changed('Der erste Kampf beginnt! Unten wählst du Stufe und Boss.'); break;
+    }
+    case 'quest-hero': {
+      const quest = currentQuest(S);
+      if (!quest || quest.goal.type !== 'freeHero' || isOwned(S, quest.goal.hero)) break;
+      const h = createHero(S, quest.goal.hero);
+      const sq = S.squads[0], free = sq.slots.indexOf(null);
+      if (free >= 0) sq.slots[free] = h.uid; // sonst Reserve
+      claimQuest(S);
+      addLog(S, `🛡️ ${HERO_BY_ID[h.heroId].name} tritt der Wacht bei!`, null, 'info');
+      changed(`${esc(HERO_BY_ID[h.heroId].name)} tritt der Wacht bei!`); break;
     }
     case 'quest-claim': {
       const q = claimQuest(S);

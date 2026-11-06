@@ -94,14 +94,21 @@ export const ONBOARDING = { tank: 'h01', healer: 'h07', dps: 'h13' };
 //  eigene Texte). Der Spielstand merkt sich erledigte `id`s:
 //  👉 ids nie ändern; neue Aufträge dürfen überall eingefügt werden.
 //  goal.type: stage (zone, stage) · heroLevel (level) · building (key, level)
+//             freeHero (hero) – Held wird über den Auftrag kostenlos aufgenommen
 //             weapon · research (n Stufen gesamt) · ration (n gefüttert)
 //             tents (n Zelte) · squadFull (squad = Zelt-Index 0–3)
 //  tab: Reiter, zu dem „Hingehen“ führt
 // ---------------------------------------------------------------------
 export const QUESTS = [
+  { id: 'healer', icon: '✚', title: 'Verstärkung: Heilung', tab: 'portal',
+    text: 'Verstärkung mit Heilkräften meldet sich am Lager. Mit Heilung hält der Trupp länger durch.',
+    goal: { type: 'freeHero', hero: ONBOARDING.healer }, reward: {} },
   { id: 'boss1', icon: '👑', title: 'Die Tür-Wache', tab: 'portal',
     text: 'Vor Beetletun hält eine Tür-Wache den Riss offen. Fordere sie heraus.',
     goal: { type: 'stage', zone: 1, stage: 1 }, reward: { gold: 100 } },
+  { id: 'dps', icon: '⚔️', title: 'Verstärkung: Schaden', tab: 'portal',
+    text: 'Nach dem ersten Sieg will sich jemand mit Feuerkraft anschließen. Damit ist Zelt 1 voll besetzt.',
+    goal: { type: 'freeHero', hero: ONBOARDING.dps }, reward: {} },
   { id: 'lv5', icon: '⬆️', title: 'Erste Erfahrung', tab: 'squads',
     text: 'Lass deine Helden an den Schergen wachsen, bis einer Lv. 5 erreicht.',
     goal: { type: 'heroLevel', level: 5 }, reward: { gold: 150 } },

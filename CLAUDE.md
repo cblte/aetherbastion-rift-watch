@@ -44,7 +44,7 @@ Der Spielstand ist ein einziges Objekt. Bei Import/Reset wird es per `replaceSta
 - Pixel-Art fehlt noch (Sprite-Tags sind vorbereitet).
 
 ## Geplant (bereits entschieden)
-- Questreihe: 18 Aufträge bis Zone 3 sind drin. Später ergänzen: Ruhestand (Mystische Schmiede), Skills, Beförderungen.
+- Questreihe: 20 Aufträge bis Zone 3 sind drin (inkl. Heiler und Schaden als kostenlose Rekruten). Später ergänzen: Ruhestand (Mystische Schmiede), Skills, Beförderungen.
 - Skill-System für Helden (kommt später).
 - Beförderungen / Sterne-Stufen für Helden (kommt später).
 - Dekorationen: nicht geplant.

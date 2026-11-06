@@ -13,6 +13,7 @@ export function questProgress(state, q) {
       case 'stage': return state.progress?.[g.zone] || 0;
       case 'heroLevel': return Math.max(0, ...(state.heroes || []).map(h => h.level));
       case 'building': return state.buildings?.[g.key] || 0;
+      case 'freeHero': return (state.heroes || []).some(h => h.heroId === g.hero) ? 1 : 0;
       case 'weapon': return (state.heroes || []).some(h => h.weapon) ? 1 : 0;
       case 'research': return Object.values(state.research || {}).reduce((n, v) => n + v, 0);
       case 'ration': return state.stats?.rationsFed || 0;
