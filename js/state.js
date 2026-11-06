@@ -6,6 +6,7 @@ import {
   ROLES, RESEARCH, FEATURES, NORMAL_STAGES, TOTAL_NORMAL, HERO_LEVELS, CYCLE_MS, PORTAL_SHARDS,
   WEAPON_BY_ID, WEAPON_GRADES, WEAPON_FOR,
 } from './config.js';
+import { markFulfilledQuests } from './quests.js';
 
 export function createNewState(now = Date.now()) {
   return {
@@ -22,6 +23,7 @@ export function createNewState(now = Date.now()) {
     fruit: 0,              // CQHT-Früchte (noch ohne Funktion)
     tickets: 0,            // Arena-Tickets (noch ohne Funktion)
     onboarding: 0,         // 0..4 = Quest-Schritte, 5 = fertig
+    questsDone: [],        // ids abgeholter Aufträge (QUESTS in config.js)
     buildings: { hall: 0, camp: 0, portal: 0, kitchen: 0, lab: 0, forge: 0 },
     construction: null,    // { key, to, doneAt } – es wird immer nur eines gebaut
     tentsUnlocked: 1,
@@ -38,7 +40,7 @@ export function createNewState(now = Date.now()) {
     selectedSquad: 0,
     log: [],
     monsterSeq: 1,
-    stats: { kills: 0, bosses: 0, retired: 0 },
+    stats: { kills: 0, bosses: 0, retired: 0, rationsFed: 0 },
   };
 }
 
@@ -90,6 +92,11 @@ const MIGRATIONS = {
     // Onboarding: Zeltlager (jetzt Quest 2) kommt vor dem ersten Helden (jetzt Quest 3).
     // Alter Schritt 3 = Held schon da, Zeltlager fehlt → Zeltlager aufschlagen, weiter mit Quest 4.
     if (s.onboarding === 3) { s.buildings.camp = Math.max(1, s.buildings.camp || 0); s.onboarding = 4; }
+    return s;
+  },
+  // v3 → v4: Aufträge nach dem Onboarding. Schon Erfülltes gilt als erledigt (ohne Belohnung).
+  3: (s) => {
+    s.questsDone = markFulfilledQuests(s);
     return s;
   },
 };

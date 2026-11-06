@@ -3,7 +3,7 @@
 //  👉 Nach jeder Änderung an den App-Dateien CACHE_VERSION erhöhen,
 //     sonst bekommen installierte Clients die neuen Dateien nicht.
 // =====================================================================
-const CACHE_VERSION = 'aetherbastion-v6';
+const CACHE_VERSION = 'aetherbastion-v7';
 const APP_FILES = [
   './',
   './index.html',
@@ -13,6 +13,7 @@ const APP_FILES = [
   './js/combat.js',
   './js/offline.js',
   './js/progress.js',
+  './js/quests.js',
   './js/data/stages.js',
   './js/data/buildings.js',
   './js/data/heroLevels.js',
@@ -29,7 +30,8 @@ const APP_FILES = [
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_VERSION)
-      .then((cache) => cache.addAll(APP_FILES))
+      // cache: 'reload' umgeht den HTTP-Cache, sonst landen evtl. alte Dateien im neuen Cache
+      .then((cache) => cache.addAll(APP_FILES.map((url) => new Request(url, { cache: 'reload' }))))
       .then(() => self.skipWaiting()),
   );
 });

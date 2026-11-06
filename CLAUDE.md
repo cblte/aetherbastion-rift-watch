@@ -17,6 +17,7 @@ Mobile-First Idle-RPG als PWA für eine Guild-Wars-2-Gilde (nicht-kommerzielles 
 - `state.js`: Spielstand, Save/Load/Migration (`localStorage['aetherbastion_save_v1']`, aktuell Save-Version 2), abgeleitete Werte (`heroStats` inkl. Waffe/Forschung/DEF, `levelCap`, `isStageAvailable` …)
 - `combat.js`: 1-s-Tick pro Trupp. Squad-`mode` ist `'farm'` (Schergen der Stufe) oder `'boss'` (Herausforderung, 60 s Zeitlimit). Ein Boss-Sieg setzt `state.progress[zone]`. Dazu Belohnungen (`applyKillRewards`), Tauschen und Beleben.
 - `progress.js`: Bauen mit Bauzeit (`state.construction`, immer nur ein Auftrag), Charr-Schmiede (Laden `state.shop`, Waffenkammer `state.armory`, `hero.weapon` = Waffen-ID), Proviant, Asura-Labor (`state.research`)
+- `quests.js`: Aufträge nach dem Onboarding (Daten: `QUESTS` in `config.js`). Erledigte `id`s in `state.questsDone`; ohne Import aus `state.js` (wird von der Migration genutzt)
 - `offline.js`: `runOffline()`, deterministisch Sieg für Sieg (nur Schergen) mit Effizienz-Faktor, max. 8 h (+ Forschung), keine Tode; zahlt Gildenkasse-Zyklen, schließt Bauaufträge ab
 - `ui.js`: HTML-String-Rendering mit Diff (`setHTML`), Event-Delegation über `data-action`, kein Re-Render solange ein Finger aufliegt
 - `main.js`: Schleife misst echte Zeit seit `lastTickMs`. Lücken ≤ 30 s → Ticks, größere → `runOffline()`. Ab 60 s erscheint der Bericht.
@@ -42,7 +43,7 @@ Der Spielstand ist ein einziges Objekt. Bei Import/Reset wird es per `replaceSta
 - Pixel-Art fehlt noch (Sprite-Tags sind vorbereitet).
 
 ## Geplant (bereits entschieden)
-- Questreihe nach dem Onboarding erweitern (Vorbild: CQHT-Tutorial; nur Reihenfolge übernehmen, eigene Texte).
+- Questreihe: 18 Aufträge bis Zone 3 sind drin. Später ergänzen: Ruhestand (Mystische Schmiede), Skills, Beförderungen.
 - Skill-System für Helden (kommt später).
 - Beförderungen / Sterne-Stufen für Helden (kommt später).
 - Dekorationen: nicht geplant.

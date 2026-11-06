@@ -6,7 +6,7 @@
 export const GAME = {
   title: 'Aetherbastion: Rift Watch',
   SAVE_KEY: 'aetherbastion_save_v1',
-  SAVE_VERSION: 3,
+  SAVE_VERSION: 4,
   TICK_MS: 1000,                     // feste Kampf-Ticks
   LOOP_MS: 250,                      // wie oft die Spielschleife nachsieht
   AUTOSAVE_MS: 10_000,
@@ -86,6 +86,72 @@ export const HERO_BY_ID = Object.fromEntries(HEROES.map(h => [h.id, h]));
 
 // Onboarding-Startaufstellung für Zelt 1: Tank, Heiler, Schadensausteiler
 export const ONBOARDING = { tank: 'h01', healer: 'h07', dps: 'h13' };
+
+// ---------------------------------------------------------------------
+//  AUFTRÄGE nach dem Onboarding (Reihenfolge nach dem CQHT-Tutorial,
+//  eigene Texte). Der Spielstand merkt sich erledigte `id`s:
+//  👉 ids nie ändern; neue Aufträge dürfen überall eingefügt werden.
+//  goal.type: stage (zone, stage) · heroLevel (level) · building (key, level)
+//             weapon · research (n Stufen gesamt) · ration (n gefüttert)
+//             tents (n Zelte) · squadFull (squad = Zelt-Index 0–3)
+//  tab: Reiter, zu dem „Hingehen“ führt
+// ---------------------------------------------------------------------
+export const QUESTS = [
+  { id: 'boss1', icon: '👑', title: 'Die Tür-Wache', tab: 'portal',
+    text: 'Vor Beetletun hält eine Tür-Wache den Riss offen. Fordere sie heraus.',
+    goal: { type: 'stage', zone: 1, stage: 1 }, reward: { gold: 100 } },
+  { id: 'lv5', icon: '⬆️', title: 'Erste Erfahrung', tab: 'squads',
+    text: 'Lass deine Helden an den Schergen wachsen, bis einer Lv. 5 erreicht.',
+    goal: { type: 'heroLevel', level: 5 }, reward: { gold: 150 } },
+  { id: 'stage3', icon: '⚔️', title: 'Tiefer ins Königintal', tab: 'portal',
+    text: 'Besiege den Boss von Stufe 3 im Königintal.',
+    goal: { type: 'stage', zone: 1, stage: 3 }, reward: { gold: 200, shards: 1 } },
+  { id: 'hall2', icon: '🏛️', title: 'Eine größere Halle', tab: 'camp',
+    text: 'Baue die Gildenhalle auf Stufe 2 aus. Die Gildenkasse zahlt dann mehr.',
+    goal: { type: 'building', key: 'hall', level: 2 }, reward: { gold: 300 } },
+  { id: 'kitchen', icon: '🍲', title: 'Warme Mahlzeiten', tab: 'camp',
+    text: 'Errichte die Feldküche. Satte Helden lernen schneller.',
+    goal: { type: 'building', key: 'kitchen', level: 1 }, reward: { gold: 200 } },
+  { id: 'weapon', icon: '🗡️', title: 'Bewaffnet', tab: 'squads',
+    text: 'Bosse lassen Waffen fallen. Rüste einen Helden mit einer Waffe aus.',
+    goal: { type: 'weapon' }, reward: { shards: 2 } },
+  { id: 'zone1', icon: '🏆', title: 'Das Königintal ist frei', tab: 'portal',
+    text: 'Besiege alle fünf Bosse im Königintal.',
+    goal: { type: 'stage', zone: 1, stage: 5 }, reward: { gold: 500, rp: 3 } },
+  { id: 'lab', icon: '🔬', title: 'Asura-Know-how', tab: 'camp',
+    text: 'Baue das Asura-Labor. Mit 🧪 Forschungspunkten werden deine Helden stärker.',
+    goal: { type: 'building', key: 'lab', level: 1 }, reward: { rp: 3 } },
+  { id: 'research1', icon: '🧪', title: 'Erste Forschung', tab: 'lab',
+    text: 'Erforsche im Asura-Labor eine beliebige Stufe.',
+    goal: { type: 'research', n: 1 }, reward: { gold: 400 } },
+  { id: 'lv10', icon: '⬆️', title: 'Erfahrene Wacht', tab: 'squads',
+    text: 'Bring einen Helden auf Lv. 10.',
+    goal: { type: 'heroLevel', level: 10 }, reward: { shards: 2 } },
+  { id: 'camp2', icon: '⛺', title: 'Mehr Platz im Lager', tab: 'camp',
+    text: 'Baue das Zeltlager auf Stufe 2 aus. Das Level-Cap steigt auf 20.',
+    goal: { type: 'building', key: 'camp', level: 2 }, reward: { gold: 800 } },
+  { id: 'ration', icon: '🍞', title: 'Proviant verteilen', tab: 'squads',
+    text: 'Füttere einen Helden mit Proviant aus den Boss-Beuten.',
+    goal: { type: 'ration', n: 1 }, reward: { rp: 3 } },
+  { id: 'forge', icon: '⚒️', title: 'Charr-Stahl', tab: 'camp',
+    text: 'Errichte die Charr-Schmiede mit Waffenladen und Waffenkammer.',
+    goal: { type: 'building', key: 'forge', level: 1 }, reward: { shards: 2 } },
+  { id: 'portal2', icon: '🌀', title: 'Der Riss weitet sich', tab: 'portal',
+    text: 'Baue das Riss-Portal auf Stufe 2 aus. Dafür brauchst du 🔮 Ätherscherben.',
+    goal: { type: 'building', key: 'portal', level: 2 }, reward: { gold: 1_000 } },
+  { id: 'zone2', icon: '🏆', title: 'Caudecus’ Anwesen', tab: 'portal',
+    text: 'Befreie Caudecus’ Anwesen und besiege den Prototyp-Golem.',
+    goal: { type: 'stage', zone: 2, stage: 5 }, reward: { gold: 1_500, rp: 5 } },
+  { id: 'tent2', icon: '⛺', title: 'Ein zweiter Trupp', tab: 'squads',
+    text: 'Schlage Zelt 2 auf (ab Gildenhalle Stufe 3).',
+    goal: { type: 'tents', n: 2 }, reward: { shards: 5 } },
+  { id: 'squad2', icon: '🛡️', title: 'Volle Besetzung', tab: 'squads',
+    text: 'Besetze Zelt 2 mit drei Helden. Achte auf Tank, Heiler und Schaden.',
+    goal: { type: 'squadFull', squad: 1 }, reward: { gold: 2_000 } },
+  { id: 'zone3', icon: '🏆', title: 'Wanderer-Hügel', tab: 'portal',
+    text: 'Treibe die Söhne des Svanir aus den Wanderer-Hügeln.',
+    goal: { type: 'stage', zone: 3, stage: 5 }, reward: { gold: 3_000, rp: 10 } },
+];
 
 // ---------------------------------------------------------------------
 //  KAMPF

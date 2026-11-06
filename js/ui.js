@@ -8,8 +8,9 @@ import {
   GAME, CURRENCIES, ROLES, CLASSES, HEROES, HERO_BY_ID, ZONES, COMBAT, F, BUILDINGS, BUILDING_ORDER,
   TENTS, TENT_SIZE, MYSTIC, MYSTIC_ORDER, ONBOARDING, RETIRE_MIN_LEVEL, LEVEL_CAP_MAX, FEATURES,
   RESEARCH, RESEARCH_ORDER, TIER_LAB, WEAPON_BY_ID, WEAPON_GRADES, WEAPON_TYPES, RATIONS, NORMAL_STAGES,
-  TOTAL_NORMAL, CYCLE_MS,
+  TOTAL_NORMAL, CYCLE_MS, QUESTS as MAIN_QUESTS,
 } from './config.js';
+import { currentQuest, questProgress, questNumber, claimQuest } from './quests.js';
 import {
   createNewState, exportSave, importSave, replaceState, getHero, heroStats, levelCap,
   activeHeroCount, reserveHeroes, isOwned, nextRecruitCost, isZoneAvailable, isStageAvailable, stageBeaten,
@@ -112,13 +113,31 @@ function renderQuest() {
   const q = $('#quest');
   $('#start-overlay').hidden = S.onboarding !== 0;
   const step = QUESTS[S.onboarding];
-  if (!step) { q.hidden = true; setHTML(q, ''); return; }
+  if (!step) { renderMainQuest(q); return; }
   q.hidden = false;
   const text = typeof step.text === 'function' ? step.text() : step.text;
   setHTML(q, `
     <div class="quest-step">Quest ${S.onboarding}/4</div>
     <div class="quest-body"><span class="quest-icon">${step.icon}</span><p>${text}</p></div>
     <button class="btn primary block" data-action="${step.action}">${step.btn}</button>`);
+}
+
+// Aufträge nach dem Onboarding
+const rewardText = (r) => Object.entries(r).map(([k, v]) => `+${fmt(v)} ${CURRENCIES[k].icon}`).join(' ');
+function renderMainQuest(q) {
+  const quest = currentQuest(S);
+  if (!quest) { q.hidden = true; setHTML(q, ''); return; }
+  q.hidden = false;
+  const { have, need } = questProgress(S, quest);
+  const done = have >= need;
+  const btn = done
+    ? `<button class="btn primary block" data-action="quest-claim">Belohnung abholen · ${rewardText(quest.reward)}</button>`
+    : quest.tab && quest.tab !== tab ? `<button class="btn block" data-action="tab" data-tab="${quest.tab}">Hingehen</button>` : '';
+  setHTML(q, `
+    <div class="quest-step">Auftrag ${questNumber(quest)}/${MAIN_QUESTS.length}${done ? ' · erfüllt ✓' : ''}</div>
+    <div class="quest-body"><span class="quest-icon">${quest.icon}</span><p><b>${esc(quest.title)}</b><br>${esc(quest.text)}</p></div>
+    <div class="quest-progress"><span style="width:${Math.round(have / need * 100)}%"></span><small>${fmt(have)}/${fmt(need)} · ${rewardText(quest.reward)}</small></div>
+    ${btn}`);
 }
 
 // ---------- Ansichten -------------------------------------------------
@@ -869,6 +888,14 @@ function onClick(e) {
       S.squads[0].status = 'fighting'; spawnMonster(S, S.squads[0]);
       addLog(S, '🌀 Das Riss-Portal flackert auf – über dem Königintal öffnet sich der erste Riss!', null, 'boss');
       changed('Der erste Kampf beginnt! Unten wählst du Stufe und Boss.'); break;
+    }
+    case 'quest-claim': {
+      const q = claimQuest(S);
+      if (q) {
+        addLog(S, `📜 Auftrag erfüllt: ${q.title} · ${rewardText(q.reward)}`, null, 'info');
+        changed(`📜 ${esc(q.title)} erfüllt! ${rewardText(q.reward)}`);
+      }
+      break;
     }
 
     // Portal

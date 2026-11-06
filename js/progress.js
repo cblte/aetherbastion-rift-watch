@@ -136,6 +136,7 @@ export function feedRation(state, uid, g) {
   const h = getHero(state, uid);
   if (!h || state.rations[g] < 1) return false;
   state.rations[g] -= 1;
+  state.stats.rationsFed = (state.stats.rationsFed || 0) + 1;
   gainExp(state, h, RATIONS[g].exp);
   return true;
 }

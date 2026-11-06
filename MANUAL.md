@@ -12,6 +12,14 @@ Quest-Banner führen dich durch den Start:
 4. **Ersten Helden rekrutieren**, einen Wächter als Tank für Zelt 1 (kostenlos)
 5. **Zwei Rekruten aufnehmen** (Heiler + Schadensausteiler) und das **Riss-Portal aktivieren**. Der erste Kampf beginnt.
 
+### Aufträge
+
+Danach übernimmt ein **Auftrags-Banner** oben die Führung. 18 Aufträge zeigen dir nacheinander alle Systeme: Bosse, Leveln, Gebäude, Waffen, Forschung, Proviant, das Riss-Portal und den zweiten Trupp, bis die Wanderer-Hügel befreit sind.
+
+- Der Balken zeigt den Fortschritt, **„Hingehen“** springt zum passenden Reiter.
+- Ist ein Auftrag erfüllt, holst du die **Belohnung** (Gold, Ätherscherben oder Forschungspunkte) mit einem Tipp ab. Erst dann kommt der nächste.
+- Hast du ein Ziel schon früher erreicht, ist der Auftrag sofort erfüllt.
+
 ## Währungen & Vorräte
 
 | | Was | Woher | Wofür |
