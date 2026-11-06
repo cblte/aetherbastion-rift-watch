@@ -29,6 +29,11 @@ Der Spielstand ist ein einziges Objekt. Bei Import/Reset wird es per `replaceSta
 - Im Spiel: ✨ Schmiede → „15 Min. Offline simulieren“
 - Bei DevTools-Tests: Service Worker „Update on reload“ aktivieren, sonst kommen alte Dateien aus dem Cache
 
+## Deploy
+- Jeder Push auf `main` veröffentlicht das Spiel per `.github/workflows/pages.yml` auf GitHub Pages.
+- Auf die Website kommen nur `index.html`, `manifest.json`, `sw.js`, Icons, `css/` und `js/`. Doku und `dev-data/` bleiben draußen.
+- Neue Dateien im Hauptordner müssen im Workflow (`cp`-Zeile) ergänzt werden.
+
 ## Bekannte offene Punkte / Ideen
 - Kryta ist ausgearbeitet (Caudecus’ Anwesen). Bosse der Zonen 2–5 sind GW2-typisch, aber ohne Quellenprüfung; schwere Stufen dort sind „Verderbte“ Varianten.
 - Noch ohne Funktion: Früchte, Arena-Tickets, Erschöpfung (CQHT Fatigue), Waffen-Modifikation (CQHT Forge), `js/data/specials.js` (Küchen-Prüfung, Kryptis-Seelenfeste).
