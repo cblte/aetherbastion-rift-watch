@@ -46,7 +46,8 @@ export function createNewState(now = Date.now()) {
 
 function createSquad() {
   // mode: 'farm' = Schergen der Stufe, 'boss' = Boss-Herausforderung läuft
-  return { zone: 1, stage: 1, mode: 'farm', bossTicks: 0, status: 'idle', monster: null, slots: Array(TENT_SIZE).fill(null) };
+  // bossReadyAt: ab wann wieder herausgefordert werden darf (ms); autoBoss: nach der Pause automatisch erneut
+  return { zone: 1, stage: 1, mode: 'farm', bossTicks: 0, bossReadyAt: 0, autoBoss: false, status: 'idle', monster: null, slots: Array(TENT_SIZE).fill(null) };
 }
 
 // ---------------------------------------------------------------------

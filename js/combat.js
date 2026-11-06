@@ -109,14 +109,26 @@ export function applyKillRewards(state, squadIdx, tmpl, heroes, factor = 1, dete
   return { gold, exp, shards, levelUps, rp, weapons, rations };
 }
 
+// Herausforderung beendet (Sieg, Zeit abgelaufen, Rückzug, Abbruch) → zurück zu den Schergen, Abklingzeit startet.
+// Bei einer Niederlage oder einem Abbruch wird das automatische Wiederholen ausgeschaltet.
+function endBoss(state, i, failed) {
+  const sq = state.squads[i];
+  sq.mode = 'farm';
+  sq.bossTicks = 0;
+  sq.bossReadyAt = state.lastTickMs + COMBAT.BOSS_COOLDOWN * 1000;
+  if (failed && sq.autoBoss) {
+    sq.autoBoss = false;
+    addLog(state, '🔁 Automatische Herausforderung gestoppt.', i, 'info');
+  }
+}
+
 // Boss besiegt → Fortschritt speichern. Rückgabe: true beim ersten Sieg
 export function recordBossWin(state, squadIdx) {
   const sq = state.squads[squadIdx];
   state.stats.bosses += 1;
   const first = !stageBeaten(state, sq.zone, sq.stage);
   if (first) state.progress[sq.zone] = sq.stage;
-  sq.mode = 'farm';
-  sq.bossTicks = 0;
+  endBoss(state, squadIdx, false);
   return first;
 }
 
@@ -168,6 +180,11 @@ function tickSquad(state, i, now, ev) {
   const alive = members.filter(h => !h.woundedUntil);
   if (!alive.length) { startRetreat(state, i); return; }
 
+  // Automatisch erneut herausfordern, sobald die Pause vorbei ist und das Gold reicht
+  if (sq.autoBoss && sq.mode === 'farm' && canChallengeBoss(state, i) && state.gold >= bossCost(state, i)) {
+    challengeBoss(state, i);
+  }
+
   const mon = sq.monster;
 
   // Zeitlimit für Boss-Herausforderungen
@@ -175,7 +192,7 @@ function tickSquad(state, i, now, ev) {
     sq.bossTicks += 1;
     if (sq.bossTicks > COMBAT.BOSS_TIME_LIMIT) {
       addLog(state, `⌛ ${mon.name} hält stand – Zeit abgelaufen. Zurück zu den Schergen.`, i, 'bad');
-      sq.mode = 'farm'; sq.bossTicks = 0;
+      endBoss(state, i, true);
       spawnMonster(state, sq);
       return;
     }
@@ -252,6 +269,7 @@ function tickSquad(state, i, now, ev) {
 function startRetreat(state, i) {
   const sq = state.squads[i];
   const wasBoss = sq.mode === 'boss';
+  if (wasBoss) endBoss(state, i, true);
   sq.status = 'retreat';
   sq.mode = 'farm';
   sq.bossTicks = 0;
@@ -281,7 +299,19 @@ export const bossCost = (state, i) => stageOf(state.squads[i].zone, state.squads
 export function canChallengeBoss(state, i) {
   const sq = state.squads[i];
   return i < state.tentsUnlocked && sq.status === 'fighting' && sq.mode === 'farm'
+    && state.lastTickMs >= (sq.bossReadyAt || 0)
     && squadMembers(state, sq).some(h => !h.woundedUntil);
+}
+
+// Restliche Abklingzeit in ms (0 = bereit)
+export const bossCooldownLeft = (state, i) => Math.max(0, (state.squads[i].bossReadyAt || 0) - state.lastTickMs);
+
+export function toggleAutoBoss(state, i) {
+  const sq = state.squads[i];
+  if (!sq || i >= state.tentsUnlocked) return false;
+  sq.autoBoss = !sq.autoBoss;
+  addLog(state, sq.autoBoss ? '🔁 Herausforderung wird automatisch wiederholt.' : '🔁 Automatische Herausforderung aus.', i, 'info');
+  return true;
 }
 
 // Kostet Gold (CQHT „cost“)
@@ -301,8 +331,7 @@ export function challengeBoss(state, i) {
 export function abortBoss(state, i) {
   const sq = state.squads[i];
   if (sq.mode !== 'boss') return false;
-  sq.mode = 'farm';
-  sq.bossTicks = 0;
+  endBoss(state, i, true);
   spawnMonster(state, sq);
   addLog(state, 'Herausforderung abgebrochen.', i, 'info');
   return true;

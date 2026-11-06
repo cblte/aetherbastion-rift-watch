@@ -5,7 +5,7 @@
 
 export const GAME = {
   title: 'Aetherbastion: Rift Watch',
-  VERSION: '0.9.0',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
+  VERSION: '0.10.0',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
   BUILD: 'lokal',                    // ersetzt der Pages-Workflow durch „Nr. · Commit“
   SAVE_KEY: 'aetherbastion_save_v1',
   SAVE_VERSION: 5,
@@ -171,6 +171,7 @@ export const COMBAT = {
   BOSS_HP_MULT: 4,         // … und hat zusätzlich ×4 LP
   BOSS_ATK_MULT: 1.3,
   BOSS_TIME_LIMIT: 90,     // Sekunden; danach gilt die Herausforderung als gescheitert
+  BOSS_COOLDOWN: 90,       // Sekunden Pause nach jeder Herausforderung (Sieg, Niederlage, Abbruch)
   BOSS_GOLD_MULT: 10,
   BOSS_EXP_MULT: 6,
   BOSS_SHARDS_PER_ZONE: 1, // Boss droppt garantiert Zone × diesen Wert (×3 auf schweren Stufen)

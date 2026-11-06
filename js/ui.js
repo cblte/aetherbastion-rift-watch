@@ -20,7 +20,7 @@ import {
 } from './state.js';
 import {
   squadMembers, spawnMonster, setStage, reviveHero, assignHero, teamProfile, fmt, stageOf,
-  challengeBoss, canChallengeBoss, abortBoss, bossCost,
+  challengeBoss, canChallengeBoss, abortBoss, bossCost, bossCooldownLeft, toggleAutoBoss,
 } from './combat.js';
 import {
   researchInfo, doResearch, startBuild, refreshShop, refreshCost, buyWeapon, sellWeapon, sellPrice,
@@ -283,18 +283,23 @@ function renderPortal() {
     const beaten = stageBeaten(S, sq.zone, sq.stage);
     if (sq.mode === 'boss') {
       bossBar = `<div class="card boss-card active">
-        <div><b>👑 ${esc(st.boss.name)}</b><div class="muted small">Herausforderung läuft – besiegen in ${COMBAT.BOSS_TIME_LIMIT} s.</div></div>
+        <div><b>👑 ${esc(st.boss.name)}</b><div class="muted small">Herausforderung läuft – noch ${Math.max(0, COMBAT.BOSS_TIME_LIMIT - sq.bossTicks)} s.${sq.autoBoss ? '<br>🔁 Wird danach automatisch wiederholt.' : ''}</div></div>
         <button class="btn" data-action="boss-abort">Abbrechen</button></div>`;
     } else {
       const can = canChallengeBoss(S, i);
       const cost = bossCost(S, i);
+      const cd = bossCooldownLeft(S, i);
       const r = st.rewards;
       const nextTxt = sq.stage === NORMAL_STAGES ? 'die nächste Zone' : sq.stage < ZONES[sq.zone - 1].stages.length ? `Stufe ${sq.stage + 1}` : '';
       bossBar = `<div class="card boss-card ${beaten ? '' : 'fresh'}">
         <div><b>👑 ${esc(st.boss.name)}</b> <span class="lv">Lv. ${st.level}</span>
           <div class="muted small">${beaten ? 'Schon besiegt – lohnt sich erneut.' : nextTxt ? `Sieg öffnet ${nextTxt}.` : 'Letzte Stufe.'}</div>
           <div class="reward-line">🧪 ${range(r.rp)} · ⚒️ ${r.weapons} Waffe${r.weapons > 1 ? 'n' : ''} · 🍞 ${r.rations}${r.tickets[1] ? ` · 🎟️ ${range(r.tickets)}` : ''}</div></div>
-        <button class="btn ${beaten ? '' : 'primary'}" data-action="boss" ${can && S.gold >= cost ? '' : 'disabled'}>Herausfordern<small>🪙 ${fmt(cost)}</small></button></div>`;
+        <div class="btn-col tight">
+          <button class="btn ${beaten ? '' : 'primary'}" data-action="boss" ${can && S.gold >= cost ? '' : 'disabled'}>Herausfordern<small>${cd ? `⏳ ${clock(cd)}` : `🪙 ${fmt(cost)}`}</small></button>
+          <button class="btn ${sq.autoBoss ? 'primary' : ''}" data-action="boss-auto" aria-pressed="${sq.autoBoss}">🔁 Auto ${sq.autoBoss ? 'an' : 'aus'}</button>
+        </div></div>
+        ${sq.autoBoss && !cd && S.gold < cost ? '<div class="muted small">🔁 Wartet auf genug Gold.</div>' : ''}`;
     }
   }
   setHTML($('#boss-bar'), bossBar);
@@ -306,7 +311,7 @@ function renderPortal() {
         <b>🔒 ${k + 1}</b><small>GH ${TENTS[k].hall}</small></button>`;
     }
     const n = q.slots.filter(u => u != null).length;
-    const status = !n ? '💤 leer' : q.status === 'retreat' ? '🏕️ Rückzug' : q.mode === 'boss' ? '👑 Boss' : q.status === 'fighting' ? '⚔️ Kampf' : '⏸️';
+    const status = (!n ? '💤 leer' : q.status === 'retreat' ? '🏕️ Rückzug' : q.mode === 'boss' ? '👑 Boss' : q.status === 'fighting' ? '⚔️ Kampf' : '⏸️') + (n && q.autoBoss ? ' 🔁' : '');
     return `<button class="sq-card ${k === i ? 'sel' : ''}" data-action="select-squad" data-squad="${k}">
       <b>⛺ ${k + 1}</b><small>${ZONES[q.zone - 1].short}</small><small>Stufe ${q.stage}</small><small>${status}</small></button>`;
   }).join(''));
@@ -1023,10 +1028,11 @@ function onClick(e) {
     case 'boss': {
       const r = challengeBoss(S, S.selectedSquad);
       if (r === true) changed();
-      else toast(r === 'gold' ? 'Nicht genug Gold für die Herausforderung.' : 'Gerade nicht möglich – der Trupp muss kämpfen.');
+      else toast(r === 'gold' ? 'Nicht genug Gold für die Herausforderung.' : bossCooldownLeft(S, S.selectedSquad) ? 'Der Trupp verschnauft noch.' : 'Gerade nicht möglich – der Trupp muss kämpfen.');
       break;
     }
     case 'boss-abort': if (abortBoss(S, S.selectedSquad)) changed(); break;
+    case 'boss-auto': if (toggleAutoBoss(S, S.selectedSquad)) changed(); break;
 
     // Gebäude
     case 'build': build(d.key); break;
