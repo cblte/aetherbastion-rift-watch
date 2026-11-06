@@ -83,6 +83,7 @@ export function render() {
   renderHud();
   renderQuest();
   renderView();
+  if (modalRefresh) modalRefresh(); // offenes Helden-/Zelt-Modal live aktualisieren
   for (const b of document.querySelectorAll('#tabs [data-tab]')) {
     b.classList.toggle('active', b.dataset.tab === tab);
     b.setAttribute('aria-selected', b.dataset.tab === tab);
@@ -663,11 +664,18 @@ function openEquipPicker(idx) {
 // ---------------------------------------------------------------------
 //  Modals & Toasts
 // ---------------------------------------------------------------------
-let modalRefresh = null; // Funktion, die das offene Modal neu aufbaut
+let modalRefresh = null; // Funktion, die das offene Modal neu aufbaut (läuft auch bei jedem render())
 
+// Das Modal-Gerüst bleibt stehen; der Inhalt wird per Diff gesetzt. So kann ein offenes
+// Modal live mitlaufen, ohne zu flackern oder die Scroll-Position zu verlieren.
 function openModal(html, refresh = null) {
   const root = $('#modal-root');
-  root.innerHTML = `<div class="modal-backdrop" data-action="modal-bg"><div class="modal" role="dialog" aria-modal="true">${html}</div></div>`;
+  let box = root.hidden ? null : root.querySelector('.modal');
+  if (!box) {
+    root.innerHTML = '<div class="modal-backdrop" data-action="modal-bg"><div class="modal" role="dialog" aria-modal="true"></div></div>';
+    box = root.querySelector('.modal');
+  }
+  setHTML(box, html);
   root.hidden = false;
   modalRefresh = refresh;
 }
@@ -765,7 +773,7 @@ function openSlotModal(i, slot) {
 
 function openHeroModal(uid) {
   const h = getHero(S, uid);
-  if (!h) return;
+  if (!h) { closeModal(); return; }
   const free = [];
   S.squads.slice(0, S.tentsUnlocked).forEach((sq, i) => sq.slots.forEach((u, slot) => { if (u == null) free.push({ i, slot }); }));
   openModal(`
