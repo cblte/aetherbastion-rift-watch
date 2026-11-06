@@ -11,7 +11,7 @@
 // =====================================================================
 import { ZONES, HERO_BY_ID, CYCLE_MS } from './config.js';
 import { heroStats, addLog, offlineMaxMs, payCycle } from './state.js';
-import { checkConstruction, checkShop } from './progress.js';
+import { checkConstruction, checkShop, checkRecruits } from './progress.js';
 import { squadMembers, teamProfile, monsterTemplate, applyKillRewards, spawnMonster, fmt } from './combat.js';
 
 const MAX_STEPS = 200_000; // Sicherheitsnetz
@@ -33,6 +33,7 @@ export function runOffline(state, elapsedMs) {
   const start = state.lastTickMs;
   report.built = checkConstruction(state, start + elapsedMs);
   checkShop(state, start + elapsedMs);
+  checkRecruits(state, start + elapsedMs);
   report.cycles = 0; report.cycleGold = 0;
   while (state.nextCycleMs <= start + cappedMs) {
     const c = payCycle(state);

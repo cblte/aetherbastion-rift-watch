@@ -5,9 +5,11 @@
 // =====================================================================
 import {
   BUILDINGS, RESEARCH, TIER_LAB, F, WEAPONS, WEAPON_BY_ID, WEAPON_GRADES, SHOP, DROP_GRADES, RATIONS,
+  HEROES, HERO_BY_ID, RECRUIT, QUESTS, ONBOARDING,
 } from './config.js';
 import {
   getHero, heroStats, pay, researchLevel, addLog, buildingCost, buildLock, weaponType, gainExp,
+  isOwned, createHero,
 } from './state.js';
 
 // ---------- Bauen ----------------------------------------------------
@@ -129,6 +131,83 @@ export function dropWeapons(state, tier, hard, count) {
     got.push(w);
   }
   return got;
+}
+
+// ---------- Gildenhalle: Rekrutierung --------------------------------
+// Aktuelle Angebots-Stufe nach Gildenhalle (null = noch keine Rekrutierung)
+export function recruitTier(state) {
+  let t = null;
+  for (const x of RECRUIT.tiers) if (state.buildings.hall >= x.hall) t = x;
+  return t;
+}
+
+// Helden, die (noch) nicht angeboten werden: schon im Lager, schon in der Liste,
+// oder als kostenloser Rekrut fürs Onboarding bzw. einen offenen Auftrag vorgesehen.
+function recruitPool(state) {
+  const done = new Set(state.questsDone || []);
+  const reserved = new Set([ONBOARDING.tank,
+    ...QUESTS.filter(q => q.goal.type === 'freeHero' && !done.has(q.id)).map(q => q.goal.hero)]);
+  const offered = new Set(state.recruits.offers.map(o => o.heroId));
+  return HEROES.filter(d => !isOwned(state, d.id) && !offered.has(d.id) && !reserved.has(d.id));
+}
+
+function rollRarity(rnd = Math.random) {
+  const pool = Object.entries(RECRUIT.rarities).map(([r, x]) => ({ r: Number(r), weight: x.weight }));
+  return pickWeighted(pool, rnd).r;
+}
+
+function addRecruitOffers(state, n) {
+  for (let i = 0; i < n; i++) {
+    const pool = recruitPool(state);
+    if (!pool.length) return;
+    const d = pool[Math.floor(Math.random() * pool.length)];
+    state.recruits.offers.push({ heroId: d.id, rarity: rollRarity() });
+  }
+}
+
+export function restockRecruits(state, now, manual = false) {
+  const t = recruitTier(state);
+  if (!t) return;
+  state.recruits.offers = [];
+  addRecruitOffers(state, t.slots);
+  state.recruits.slots = t.slots;
+  if (!manual) {
+    state.recruits.refreshes = 0;
+    state.recruits.nextRestockMs = now + t.restockMin * 60_000;
+  }
+}
+
+// Läuft jeden Tick: Nachschub nach Timer; nach einem Gildenhallen-Ausbau kommen die neuen Plätze sofort dazu.
+export function checkRecruits(state, now) {
+  const t = recruitTier(state);
+  if (!t) return false;
+  if (now >= state.recruits.nextRestockMs) { restockRecruits(state, now); return true; }
+  if (t.slots > state.recruits.slots) {
+    addRecruitOffers(state, t.slots - state.recruits.slots);
+    state.recruits.slots = t.slots;
+    return true;
+  }
+  return false;
+}
+
+export const recruitRefreshCost = (state) => RECRUIT.refreshBase * Math.pow(2, state.recruits.refreshes);
+
+export function refreshRecruits(state) {
+  if (!recruitTier(state) || !pay(state, { gold: recruitRefreshCost(state) })) return false;
+  state.recruits.refreshes += 1;
+  restockRecruits(state, state.lastTickMs, true);
+  return true;
+}
+
+export const recruitCost = (rarity) => RECRUIT.rarities[rarity].cost;
+
+// Angebot anwerben → neuer Held (oder null). Das Angebot verschwindet aus der Liste.
+export function hireRecruit(state, slot) {
+  const o = state.recruits.offers[slot];
+  if (!o || !HERO_BY_ID[o.heroId] || isOwned(state, o.heroId)) return null;
+  if (!pay(state, { gold: recruitCost(o.rarity) })) return null;
+  state.recruits.offers.splice(slot, 1);
+  return createHero(state, o.heroId, o.rarity);
 }
 
 // ---------- Proviant (CQHT Bread) --------------------------------------

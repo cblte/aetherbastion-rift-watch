@@ -42,4 +42,4 @@ Die Tabellen in `js/data/` stammen aus Crusaders Quest: Hero Town (CQHT, Communi
 - **Proviant-EXP** (40 bis 15.000 je Güte) und die Proviant-Güte je Kapitel (`tier`, Teil 2 eine Güte höher) sind eigene Werte.
 - **Kampfwerte:** Die Monsterstärke ergibt sich aus dem Stufen-Level (`COMBAT.LEVEL_DIFF`). Auf Lv.-60-Stufen steigt sie zusätzlich mit den CQHT-Kosten.
 - **Namen:** Bosse von Königintal und Anwesen aus dem Dungeon „Caudecus’ Anwesen“. Die Bosse der anderen Zonen sind GW2-typisch, aber nicht einzeln geprüft. Waffennamen sind freie deutsche Umdichtungen.
-- **Noch nicht im Spiel:** Erschöpfung (Fatigue), Früchte, Arena, Waffen-Modifikation, Helden-Güten bei der Rekrutierung, Sonderinhalte aus `specials.js`.
+- **Noch nicht im Spiel:** Erschöpfung (Fatigue), Früchte, Arena, Waffen-Modifikation, Sonderinhalte aus `specials.js`.

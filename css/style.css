@@ -81,6 +81,8 @@ textarea { user-select: text; -webkit-user-select: text; }
 .chip.coins b { color: var(--aether-2); }
 .chip.rp b { color: #9ff0b8; }
 .chip[hidden] { display: none; }
+.card.recruit { border-left: 3px solid var(--r, var(--line)); }
+.rar { font-weight: 600; }
 /* 🎒 Inventar-Knopf: sieht aus wie ein Chip, Tippfläche wird auf 44 px erweitert */
 .chip.inv { position: relative; color: inherit; font: inherit; font-size: 12px; cursor: pointer; border-color: var(--aether); }
 .chip.inv::after { content: ''; position: absolute; inset: -6px -2px; }

@@ -8,13 +8,13 @@ import {
   GAME, CURRENCIES, ROLES, CLASSES, HEROES, HERO_BY_ID, ZONES, COMBAT, F, BUILDINGS, BUILDING_ORDER,
   TENTS, TENT_SIZE, MYSTIC, MYSTIC_ORDER, ONBOARDING, RETIRE_MIN_LEVEL, LEVEL_CAP_MAX, FEATURES,
   RESEARCH, RESEARCH_ORDER, TIER_LAB, WEAPON_BY_ID, WEAPON_GRADES, WEAPON_TYPES, RATIONS, NORMAL_STAGES,
-  TOTAL_NORMAL, CYCLE_MS, QUESTS as MAIN_QUESTS,
+  TOTAL_NORMAL, CYCLE_MS, QUESTS as MAIN_QUESTS, RECRUIT,
 } from './config.js';
 import { currentQuest, questProgress, questNumber, claimQuest } from './quests.js';
 import { manualChapters } from './manual.js';
 import {
   createNewState, exportSave, importSave, replaceState, getHero, heroStats, levelCap,
-  activeHeroCount, reserveHeroes, isOwned, nextRecruitCost, isZoneAvailable, isStageAvailable, stageBeaten,
+  activeHeroCount, reserveHeroes, isOwned, rarityBonus, isZoneAvailable, isStageAvailable, stageBeaten,
   stageLock, buildingCost, buildLock, canAfford, pay, createHero, addLog, squadOf, buildingUnlocked,
   featureUnlocked, normalCleared, hallGold, weaponType,
 } from './state.js';
@@ -25,6 +25,7 @@ import {
 import {
   researchInfo, doResearch, startBuild, refreshShop, refreshCost, buyWeapon, sellWeapon, sellPrice,
   equipWeapon, unequipWeapon, fitsHero, feedRation,
+  recruitTier, recruitRefreshCost, refreshRecruits, recruitCost, hireRecruit,
 } from './progress.js';
 import { runOffline } from './offline.js';
 
@@ -473,7 +474,7 @@ function heroMini(h, opts = {}) {
     ${sprite(CLASSES[def.cls].sprite, 'mini-sprite')}
     <div class="hm-body">
       <div class="hm-name"><b>${esc(def.name)}</b> <span class="lv">Lv. ${h.level}</span>${h.weapon ? ` <span class="wpn" style="color:${WEAPON_GRADES[WEAPON_BY_ID[h.weapon].grade].color}">★${WEAPON_BY_ID[h.weapon].grade}</span>` : ''}</div>
-      <div class="hm-sub">${ROLES[def.role].icon} ${ROLES[def.role].name} · ${CLASSES[def.cls].name}</div>
+      <div class="hm-sub"><span style="color:${WEAPON_GRADES[h.rarity].color}">◆</span> ${ROLES[def.role].icon} ${ROLES[def.role].name} · ${CLASSES[def.cls].name}</div>
       ${opts.bars === false ? '' : hpBar(h.hp, hs.maxHp, 'hero-hp')}
       ${wounded ? `<div class="hm-wound">💢 Verwundet · ${clock(h.woundedUntil - S.lastTickMs)}</div>` : ''}
     </div>
@@ -521,22 +522,38 @@ function renderSquads() {
     ? res.map(h => `<button class="card hero-row" data-action="hero" data-uid="${h.uid}">${heroMini(h)}<span class="chev">›</span></button>`).join('')
     : '<div class="card muted small">Keine Helden in Reserve. Neue Rekruten landen hier, sobald alle Zelte voll sind.</div>');
 
-  const cost = nextRecruitCost(S);
-  const open = HEROES.filter(d => !isOwned(S, d.id));
+  setHTML($('#recruit'), recruitHtml());
+}
+
+// Seltenheit eines Helden: Name und Farbe wie bei den Waffen-Güten
+const rarityTag = (r) => `<span class="rar" style="color:${WEAPON_GRADES[r].color}">◆ ${WEAPON_GRADES[r].name}</span>`;
+
+function recruitHtml() {
+  const t = recruitTier(S);
+  if (!t) return '<div class="card muted small">Die Gildenhalle wird noch errichtet.</div>';
   const blocked = S.onboarding < 5;
-  setHTML($('#recruit'), `
-    <div class="card small">Nächster Rekrut kostet <b>🪙 ${fmt(cost)}</b>. Jeder weitere wird teurer (×2,2).${blocked ? ' <br>Zuerst die Quest abschließen.' : ''}</div>
-    ${open.length ? open.map(d => `
-      <div class="card recruit" style="--c:${CLASSES[d.cls].color}">
+  const next = RECRUIT.tiers.find(x => x.hall > S.buildings.hall);
+  const offers = S.recruits.offers.map((o, k) => {
+    const d = HERO_BY_ID[o.heroId];
+    const cost = recruitCost(o.rarity);
+    const m = 1 + rarityBonus(o.rarity);
+    return `<div class="card recruit" style="--c:${CLASSES[d.cls].color};--r:${WEAPON_GRADES[o.rarity].color}">
         ${sprite(CLASSES[d.cls].sprite, 'mini-sprite')}
         <div class="hm-body">
           <div class="hm-name"><b>${esc(d.name)}</b></div>
+          <div class="hm-sub">${rarityTag(o.rarity)}</div>
           <div class="hm-title">„${esc(d.title)}“</div>
           <div class="hm-sub">${ROLES[d.role].icon} ${ROLES[d.role].name} · ${CLASSES[d.cls].name}${d.buff ? ` · ${d.buff === 'macht' ? 'Macht' : 'Eile'}` : ''}</div>
-          <div class="hm-sub">❤ ${d.baseHp} · ⚔️ ${d.baseAtk}${d.crit ? ` · Krit ${Math.round(d.crit * 100)} %` : ''}</div>
+          <div class="hm-sub">❤ ${fmt(d.baseHp * m)} · ⚔️ ${fmt(d.baseAtk * m)}${d.crit ? ` · Krit ${Math.round(d.crit * 100)} %` : ''}</div>
         </div>
-        <button class="btn primary" data-action="recruit" data-hero="${d.id}" ${blocked || S.gold < cost ? 'disabled' : ''}>Anwerben</button>
-      </div>`).join('') : '<div class="card muted small">Alle Helden des Katalogs sind bereits im Lager.</div>'}`);
+        <button class="btn primary" data-action="recruit" data-slot="${k}" ${blocked || S.gold < cost ? 'disabled' : ''}>Anwerben<small>🪙 ${fmt(cost)}</small></button>
+      </div>`;
+  }).join('') || '<div class="card muted small">Keine Angebote mehr. Neue Rekruten kommen bald.</div>';
+  const rc = recruitRefreshCost(S);
+  return `
+    <div class="card small">Neue Rekruten in <b>${clock(S.recruits.nextRestockMs - S.lastTickMs)}</b> · ${t.slots} Plätze, alle ${t.restockMin} Min.${next ? `<br><span class="muted">Gildenhalle Stufe ${next.hall}: ${next.slots} Plätze, alle ${next.restockMin} Min.</span>` : ''}${blocked ? '<br>Zuerst die Quest abschließen.' : ''}</div>
+    ${offers}
+    <button class="btn block" data-action="recruit-refresh" ${S.gold >= rc ? '' : 'disabled'}>Liste erneuern · 🪙 ${fmt(rc)}</button>`;
 }
 
 // ---------- Asura-Labor ------------------------------------------------
@@ -765,6 +782,7 @@ function heroDetailHtml(h) {
       <div>
         <div class="hm-name"><b>${esc(d.name)}</b> <span class="lv">Lv. ${h.level}/${levelCap(S)}</span></div>
         <div class="hm-title">„${esc(d.title)}“ · ${esc(d.account || '')}</div>
+        <div class="hm-sub">${rarityTag(h.rarity)}${rarityBonus(h.rarity) ? ` · +${Math.round(rarityBonus(h.rarity) * 100)} % LP/ATK` : ''}</div>
         <div class="hm-sub">${ROLES[d.role].icon} ${ROLES[d.role].name} · ${CLASSES[d.cls].name}${d.buff ? ` · ${d.buff === 'macht' ? 'Macht (+ATK)' : 'Eile (Tempo)'}` : ''}</div>
       </div>
     </div>
@@ -1034,7 +1052,8 @@ function onClick(e) {
       if (reviveHero(S, num(d.uid))) { closeModal(); changed('⚡ Wiederbelebt!'); }
       else toast('Nicht genug Gold.');
       break;
-    case 'recruit': recruit(d.hero); break;
+    case 'recruit': recruit(num(d.slot)); break;
+    case 'recruit-refresh': if (refreshRecruits(S)) changed('Neue Rekruten!'); break;
     case 'retire': {
       const h = getHero(S, num(d.uid));
       if (!h) break;
@@ -1156,11 +1175,11 @@ function build(key) {
   changed(r === 'started' ? `🔨 ${b.name} wird gebaut …` : unlocked.length ? `${b.name} Stufe ${next}! Neu: ${unlocked.join(', ')}` : `${b.name} Stufe ${next}!`);
 }
 
-function recruit(heroId) {
-  if (S.onboarding < 5 || isOwned(S, heroId) || !HERO_BY_ID[heroId]) return;
-  if (!pay(S, { gold: nextRecruitCost(S) })) { toast('Nicht genug Gold.'); return; }
-  S.heroesPaid += 1;
-  const h = createHero(S, heroId);
+function recruit(slot) {
+  if (S.onboarding < 5) return;
+  const h = hireRecruit(S, slot);
+  if (!h) { toast('Nicht genug Gold.'); return; }
+  const heroId = h.heroId;
   let placed = '';
   outer: for (let i = 0; i < S.tentsUnlocked; i++) {
     for (let slot = 0; slot < TENT_SIZE; slot++) {

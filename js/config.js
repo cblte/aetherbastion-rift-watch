@@ -5,10 +5,10 @@
 
 export const GAME = {
   title: 'Aetherbastion: Rift Watch',
-  VERSION: '0.7.0',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
+  VERSION: '0.8.0',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
   BUILD: 'lokal',                    // ersetzt der Pages-Workflow durch „Nr. · Commit“
   SAVE_KEY: 'aetherbastion_save_v1',
-  SAVE_VERSION: 4,
+  SAVE_VERSION: 5,
   TICK_MS: 1000,                     // feste Kampf-Ticks
   LOOP_MS: 250,                      // wie oft die Spielschleife nachsieht
   AUTOSAVE_MS: 10_000,
@@ -214,12 +214,36 @@ export const F = {
   // EXP-Kurve aus data/heroLevels.js (CQHT „Total XP“)
   expToNext: (level) => level >= MAX_HERO_LEVEL ? Infinity
     : HERO_LEVELS[level].totalExp - HERO_LEVELS[level - 1].totalExp,
-  recruitCost: (n) => Math.round(100 * Math.pow(2.2, n - 1)), // n = n-ter gekaufter Held
   retireCoins: (level) => Math.floor((level * level) / 100),
   reviveCost: (level) => Math.round(15 * Math.pow(level, 1.5)),
   researchCost: (base, toLevel) => Math.round(base * Math.pow(toLevel, 1.6)),
 };
 export const LEVEL_CAP_MAX = MAX_HERO_LEVEL; // 60
+
+// ---------------------------------------------------------------------
+//  REKRUTIERUNG (Gildenhalle) – wechselnde Angebote wie im Waffenladen
+//  tiers: ab Gildenhallen-Stufe `hall` gibt es `slots` Angebote, neue alle `restockMin` Minuten.
+//  refreshBase: „Liste erneuern“ kostet 100 🪙 und verdoppelt sich je Versuch;
+//  beim automatischen Nachschub wird der Preis zurückgesetzt.
+//  rarities: Seltenheit (Namen/Farben wie WEAPON_GRADES 2–6) → Preis, Würfel-Gewicht,
+//  Bonus auf LP und ATK. Kostenlose Helden (Onboarding, Aufträge) sind „Fein“.
+// ---------------------------------------------------------------------
+export const RECRUIT = {
+  tiers: [
+    { hall: 1, slots: 2, restockMin: 30 },
+    { hall: 3, slots: 4, restockMin: 25 },
+    { hall: 5, slots: 6, restockMin: 20 },
+  ],
+  refreshBase: 100,
+  rarities: {
+    2: { cost: 100,    weight: 45, bonus: 0 },     // Fein
+    3: { cost: 500,    weight: 30, bonus: 0.10 },  // Meisterwerk
+    4: { cost: 2_500,  weight: 15, bonus: 0.20 },  // Selten
+    5: { cost: 5_000,  weight: 7,  bonus: 0.35 },  // Exotisch
+    6: { cost: 10_000, weight: 3,  bonus: 0.50 },  // Aufgestiegen
+  },
+  freeRarity: 2,
+};
 export const RETIRE_MIN_LEVEL = 20;
 
 // ---------------------------------------------------------------------

@@ -4,7 +4,7 @@
 import {
   GAME, HERO_BY_ID, BUILDINGS, MYSTIC, F, COMBAT, ZONES, TENTS, TENT_SIZE, LEVEL_CAP_MAX,
   ROLES, RESEARCH, FEATURES, NORMAL_STAGES, TOTAL_NORMAL, HERO_LEVELS, CYCLE_MS, PORTAL_SHARDS,
-  WEAPON_BY_ID, WEAPON_GRADES, WEAPON_FOR,
+  WEAPON_BY_ID, WEAPON_GRADES, WEAPON_FOR, RECRUIT,
 } from './config.js';
 import { markFulfilledQuests } from './quests.js';
 
@@ -29,9 +29,9 @@ export function createNewState(now = Date.now()) {
     tentsUnlocked: 1,
     heroes: [],            // { uid, heroId, level, exp, hp, woundedUntil, weapon (Waffen-ID|null) }
     nextUid: 1,
-    heroesPaid: 0,         // Anzahl gekaufter (nicht kostenloser) Helden
     armory: [],            // Waffen-IDs in der Waffenkammer (nicht ausgerüstet)
     shop: { offers: [], nextRestockMs: 0, refreshes: 0 },
+    recruits: { offers: [], nextRestockMs: 0, refreshes: 0, slots: 0 }, // offers: [{ heroId, rarity }]
     squads: [0, 1, 2, 3].map(createSquad),
     progress: {},          // Zone → höchste besiegte Stufe (Boss)
     research: {},          // Forschungsknoten → Stufe
@@ -99,6 +99,12 @@ const MIGRATIONS = {
     s.questsDone = markFulfilledQuests(s);
     return s;
   },
+  // v4 → v5: Rekrutierung mit Angeboten und Seltenheit. Vorhandene Helden sind „Fein“.
+  4: (s) => {
+    for (const h of s.heroes || []) h.rarity = RECRUIT.freeRarity;
+    delete s.heroesPaid;
+    return s;
+  },
 };
 
 // Alte Stufe (Zone 1–5, Stufe 1–15) → neue Zone/Stufe nach der Aufteilung
@@ -147,10 +153,12 @@ function sanitize(s) {
   }
   for (const h of s.heroes) {
     if (!WEAPON_BY_ID[h.weapon]) h.weapon = null;
+    if (!RECRUIT.rarities[h.rarity]) h.rarity = RECRUIT.freeRarity;
     h.level = Math.min(h.level, LEVEL_CAP_MAX);
   }
   s.armory = (s.armory || []).filter(w => WEAPON_BY_ID[w]);
   s.shop.offers = (s.shop.offers || []).filter(w => WEAPON_BY_ID[w]);
+  s.recruits.offers = (s.recruits.offers || []).filter(o => o && HERO_BY_ID[o.heroId] && RECRUIT.rarities[o.rarity]);
   while (s.rations.length < 6) s.rations.push(0);
   s.log = (s.log || []).slice(0, GAME.LOG_SIZE);
   return s;
@@ -232,13 +240,16 @@ export const weaponType  = (hero) => {
 };
 export { LEVEL_CAP_MAX };
 
+export const rarityBonus = (r) => (RECRUIT.rarities[r] || RECRUIT.rarities[RECRUIT.freeRarity]).bonus;
+
 export function heroStats(state, hero) {
   const def = heroDef(hero);
   const w = hero.weapon ? WEAPON_GRADES[WEAPON_BY_ID[hero.weapon].grade] : { atk: 0, hp: 0 };
+  const rar = 1 + rarityBonus(hero.rarity);
   return {
     def,
-    atk: F.heroAtk(def.baseAtk, hero.level, 1 + w.atk, prestigeAtk(state) * (1 + rv(state, 'atk'))),
-    maxHp: F.heroHp(def.baseHp, hero.level, (1 + w.hp) * prestigeHp(state) * (1 + rv(state, 'hp'))),
+    atk: F.heroAtk(def.baseAtk, hero.level, 1 + w.atk, rar * prestigeAtk(state) * (1 + rv(state, 'atk'))),
+    maxHp: F.heroHp(def.baseHp, hero.level, rar * (1 + w.hp) * prestigeHp(state) * (1 + rv(state, 'hp'))),
     crit: Math.min(1, (def.crit || 0) + rv(state, 'crit')),
     critMult: COMBAT.CRIT_MULT + rv(state, 'critdmg'),
     defense: Math.min(COMBAT.DEF_CAP, ROLES[def.role].def + rv(state, 'def')),
@@ -252,7 +263,6 @@ export const reserveHeroes = (state) => state.heroes.filter(h => squadOf(state, 
 export const activeHeroCount = (state) =>
   state.squads.slice(0, state.tentsUnlocked).reduce((n, sq) => n + sq.slots.filter(u => u != null).length, 0);
 export const isOwned = (state, heroId) => state.heroes.some(h => h.heroId === heroId);
-export const nextRecruitCost = (state) => F.recruitCost(state.heroesPaid + 1);
 
 // ---------- Stufen-Fortschritt ----------------------------------------
 export const normalCleared = (state) =>
@@ -312,8 +322,8 @@ export function pay(state, cost) {
   return true;
 }
 
-export function createHero(state, heroId) {
-  const hero = { uid: state.nextUid++, heroId, level: 1, exp: 0, hp: 0, woundedUntil: 0, weapon: null };
+export function createHero(state, heroId, rarity = RECRUIT.freeRarity) {
+  const hero = { uid: state.nextUid++, heroId, rarity, level: 1, exp: 0, hp: 0, woundedUntil: 0, weapon: null };
   state.heroes.push(hero);
   hero.hp = heroStats(state, hero).maxHp;
   return hero;

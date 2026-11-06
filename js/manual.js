@@ -5,7 +5,7 @@
 // =====================================================================
 import {
   BUILDINGS, ZONES, TENTS, TENT_SIZE, COMBAT, GAME, NORMAL_STAGES, TOTAL_NORMAL, FEATURES,
-  RETIRE_MIN_LEVEL, LEVEL_CAP_MAX, CYCLE_MS, WEAPON_TYPES, WEAPON_GRADES, SHOP, QUESTS,
+  RETIRE_MIN_LEVEL, LEVEL_CAP_MAX, CYCLE_MS, WEAPON_TYPES, WEAPON_GRADES, SHOP, QUESTS, RECRUIT,
 } from './config.js';
 
 const pct = (x) => `${Math.round(x * 100)} %`;
@@ -50,7 +50,11 @@ export function manualChapters() {
       ])}
       <p>Monster greifen den vordersten lebenden Helden an: Tank → Schaden → Unterstützer → Heiler. Helden steigen bis <b>Lv. ${LEVEL_CAP_MAX}</b>; das Zeltlager bestimmt das Level-Cap (${caps}).</p>
       <p>Jedes <b>Zelt</b> ist ein Trupp mit ${TENT_SIZE} Plätzen. Es gibt bis zu ${TENTS.length} Zelte; Zelt 2–${TENTS.length} öffnen ab Gildenhalle ${tentHalls}. Weitere Helden warten in der <b>Reserve</b>. Gute Aufstellung: <b>Tank + Heiler + Schaden</b>.</p>
-      <p>Neue Helden wirbst du unter <b>🛡️ Trupps → Rekrutieren</b> an. Der Preis steigt mit jedem gekauften Helden.</p>` },
+      <p>Neue Helden wirbst du unter <b>🛡️ Trupps → Rekrutieren</b> an. Dort stehen wechselnde Angebote – mehr und schneller mit besserer Gildenhalle:</p>
+      ${table(['Gildenhalle', 'Angebote', 'Neue alle'], RECRUIT.tiers.map(t => [`ab ${t.hall}`, t.slots, `${t.restockMin} Min.`]))}
+      <p>„Liste erneuern“ kostet ${RECRUIT.refreshBase} 🪙 und verdoppelt sich mit jedem Versuch; kommt der Nachschub von selbst, fängt der Preis wieder bei ${RECRUIT.refreshBase} an.</p>
+      <p>Jeder Rekrut hat eine <b>Seltenheit</b>. Sie bestimmt Preis und Bonus auf LP und ATK. Kostenlose Helden aus den Aufträgen sind „Fein“.</p>
+      ${table(['Seltenheit', 'Preis', 'Bonus'], Object.entries(RECRUIT.rarities).map(([r, x]) => [`<span style="color:${WEAPON_GRADES[r].color}">◆ ${WEAPON_GRADES[r].name}</span>`, `🪙 ${x.cost.toLocaleString('de-DE')}`, x.bonus ? `+${pct(x.bonus)}` : '–']))}` },
 
     { icon: '👑', title: 'Kampf & Bosse', html: `
       ${list([

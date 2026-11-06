@@ -8,7 +8,7 @@ import {
   getHero, heroStats, regenMs, goldMult, shardMult, kitchenMult, healMult, tempoBonus, gainExp, addLog,
   isStageAvailable, squadOf, stageBeaten, payCycle,
 } from './state.js';
-import { checkConstruction, checkShop, dropWeapons } from './progress.js';
+import { checkConstruction, checkShop, checkRecruits, dropWeapons } from './progress.js';
 
 // ---------- Hilfen ---------------------------------------------------
 export function squadMembers(state, squad) {
@@ -128,6 +128,7 @@ export function tick(state) {
 
   ev.built = checkConstruction(state, now);
   checkShop(state, now);
+  checkRecruits(state, now);
   if (now >= state.nextCycleMs) {
     ev.cycle = payCycle(state);
     state.nextCycleMs += CYCLE_MS;

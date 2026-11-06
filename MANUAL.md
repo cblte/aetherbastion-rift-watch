@@ -154,7 +154,29 @@ Mit **🧪 Forschungspunkten** erforschst du dauerhafte Verbesserungen in drei B
 
 ## Rekrutieren
 
-Im Reiter **🛡️ Trupps → Rekrutieren** wirbst du neue Helden an. Jeder Held des Katalogs kann nur einmal gleichzeitig im Lager sein. Der Preis steigt mit jedem gekauften Helden (×2,2). Neue Helden landen automatisch im ersten freien Zeltplatz, sonst in der Reserve.
+Im Reiter **🛡️ Trupps → Rekrutieren** stehen wechselnde **Angebote**. Wie viele es gibt und wie oft neue kommen, hängt von der Gildenhalle ab:
+
+| Gildenhalle | Angebote | Neue Rekruten alle |
+| --- | --- | --- |
+| ab Stufe 1 | 2 | 30 Min. |
+| ab Stufe 3 | 4 | 25 Min. |
+| ab Stufe 5 | 6 | 20 Min. |
+
+- **Liste erneuern** kostet 100 Gold und verdoppelt sich mit jedem Versuch (100, 200, 400 …). Kommt der Nachschub von selbst, fängt der Preis wieder bei 100 an.
+- Nach einem Ausbau der Gildenhalle kommen die zusätzlichen Plätze sofort dazu.
+- Jeder Rekrut hat eine **Seltenheit**. Sie bestimmt den Preis und einen Bonus auf LP und ATK:
+
+| Seltenheit | Preis | Bonus LP/ATK | Häufigkeit |
+| --- | --- | --- | --- |
+| ◆ Fein | 100 | – | 45 % |
+| ◆ Meisterwerk | 500 | +10 % | 30 % |
+| ◆ Selten | 2.500 | +20 % | 15 % |
+| ◆ Exotisch | 5.000 | +35 % | 7 % |
+| ◆ Aufgestiegen | 10.000 | +50 % | 3 % |
+
+- Jedes Gildenmitglied kann nur einmal gleichzeitig im Lager sein; Mitglieder im Lager tauchen nicht im Angebot auf.
+- Die kostenlosen Helden aus Onboarding und Aufträgen (Tank, Heiler, Schaden) sind „Fein“ und kommen nicht ins Angebot.
+- Neue Helden landen automatisch im ersten freien Zeltplatz, sonst in der Reserve.
 
 ## Ruhestand & Mystische Schmiede (Prestige)
 
