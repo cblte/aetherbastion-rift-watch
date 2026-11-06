@@ -87,6 +87,9 @@ const MIGRATIONS = {
       const n = splitStage(sq.zone, sq.stage) || { zone: 1, stage: 1 };
       sq.zone = n.zone; sq.stage = n.stage;
     }
+    // Onboarding: Zeltlager (jetzt Quest 2) kommt vor dem ersten Helden (jetzt Quest 3).
+    // Alter Schritt 3 = Held schon da, Zeltlager fehlt → Zeltlager aufschlagen, weiter mit Quest 4.
+    if (s.onboarding === 3) { s.buildings.camp = Math.max(1, s.buildings.camp || 0); s.onboarding = 4; }
     return s;
   },
 };

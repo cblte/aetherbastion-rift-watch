@@ -8,8 +8,8 @@ Quest-Banner führen dich durch den Start:
 
 1. **Gildenlager gründen**
 2. **Gildenhalle errichten** (kostenlos)
-3. **Ersten Helden rekrutieren**, einen Wächter als Tank (kostenlos)
-4. **Zeltlager aufschlagen** (kostenlos, Level-Cap Lv. 10)
+3. **Zeltlager aufschlagen** (kostenlos, Level-Cap Lv. 10)
+4. **Ersten Helden rekrutieren**, einen Wächter als Tank für Zelt 1 (kostenlos)
 5. **Zwei Rekruten aufnehmen** (Heiler + Schadensausteiler) und das **Riss-Portal aktivieren**. Der erste Kampf beginnt.
 
 ## Währungen & Vorräte

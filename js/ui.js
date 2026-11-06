@@ -103,8 +103,8 @@ function renderHud() {
 const QUESTS = [
   null,
   { icon: '🏛️', text: 'Errichte die <b>Gildenhalle</b> – das Herz eures Lagers.', btn: 'Errichten (kostenlos)', action: 'ob-hall' },
-  { icon: '🛡️', text: () => `Rekrutiere deinen ersten Helden: <b>${esc(HERO_BY_ID[ONBOARDING.tank].name)}</b>, ${CLASSES[HERO_BY_ID[ONBOARDING.tank].cls].name} (Tank).`, btn: 'Rekrutieren (kostenlos)', action: 'ob-recruit' },
-  { icon: '⛺', text: 'Schlage das <b>Zeltlager</b> auf. Es bestimmt das Level-Cap deiner Helden (Lv. 10).', btn: 'Aufschlagen (kostenlos)', action: 'ob-camp' },
+  { icon: '⛺', text: 'Schlage das <b>Zeltlager</b> auf. Hier wohnen deine Helden, und es bestimmt ihr Level-Cap (Lv. 10).', btn: 'Aufschlagen (kostenlos)', action: 'ob-camp' },
+  { icon: '🛡️', text: () => `Rekrutiere deinen ersten Helden für Zelt 1: <b>${esc(HERO_BY_ID[ONBOARDING.tank].name)}</b>, ${CLASSES[HERO_BY_ID[ONBOARDING.tank].cls].name} (Tank).`, btn: 'Rekrutieren (kostenlos)', action: 'ob-recruit' },
   { icon: '🌀', text: () => `Zwei Rekruten melden sich: <b>${esc(HERO_BY_ID[ONBOARDING.healer].name)}</b> (Heiler) und <b>${esc(HERO_BY_ID[ONBOARDING.dps].name)}</b> (Schaden). Nimm sie in Zelt 1 auf und aktiviere das <b>Riss-Portal</b>.`, btn: 'Aufnehmen & Portal aktivieren', action: 'ob-finish' },
 ];
 
@@ -850,16 +850,16 @@ function onClick(e) {
       if (S.onboarding !== 1) break;
       S.buildings.hall = 1; S.onboarding = 2; tab = 'camp';
       addLog(S, '🏛️ Die Gildenhalle steht.', null, 'info'); changed('Gildenhalle errichtet!'); break;
-    case 'ob-recruit': {
+    case 'ob-camp':
       if (S.onboarding !== 2) break;
+      S.buildings.camp = 1; S.onboarding = 3; tab = 'camp';
+      changed('Zeltlager aufgeschlagen – Level-Cap 10.'); break;
+    case 'ob-recruit': {
+      if (S.onboarding !== 3) break;
       const h = createHero(S, ONBOARDING.tank);
-      S.squads[0].slots[0] = h.uid; S.onboarding = 3; tab = 'squads';
+      S.squads[0].slots[0] = h.uid; S.onboarding = 4; tab = 'squads';
       changed(`${esc(HERO_BY_ID[h.heroId].name)} tritt der Wacht bei!`); break;
     }
-    case 'ob-camp':
-      if (S.onboarding !== 3) break;
-      S.buildings.camp = 1; S.onboarding = 4; tab = 'camp';
-      changed('Zeltlager aufgeschlagen – Level-Cap 10.'); break;
     case 'ob-finish': {
       if (S.onboarding !== 4) break;
       const hl = createHero(S, ONBOARDING.healer);
