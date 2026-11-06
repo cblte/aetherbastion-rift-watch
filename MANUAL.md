@@ -49,7 +49,7 @@ Helden steigen bis **Lv. 60** auf. Jede neue Stufe bringt eine Belohnung: Forsch
 ## Kampf: Stufen, Schergen und Bosse
 
 - Jeder Trupp kämpft **unabhängig** in einer Riss-Zone, eine Aktion pro Sekunde.
-- Jede Zone hat **10 normale Stufen**, dazu **4 schwere** ☠️ und **1 legendäre** ⭐. Jede Stufe hat einen **Boss** 👑, zwei Arten von **Schergen** und ein empfohlenes **Heldenlevel**.
+- Jede Zone hat **5 normale Stufen** und **2 schwere** ☠️, jede zweite Zone zusätzlich **1 legendäre** ⭐. Jede Stufe hat einen **Boss** 👑, zwei Arten von **Schergen** und ein empfohlenes **Heldenlevel**.
 - Dein Trupp **farmt die Schergen** der gewählten Stufe. Das bringt Gold, EXP und ab und zu Ätherscherben.
 - Wenn du meinst, dass dein Trupp stark genug ist, tippst du auf **„Herausfordern“**. Das kostet etwas Gold. Dann hat der Trupp **90 Sekunden**, um den Boss zu besiegen.
   - **Sieg:** Forschungspunkte, Waffen, Proviant, Ätherscherben. Beim ersten Sieg wird die nächste Stufe frei.
@@ -64,28 +64,33 @@ Helden steigen bis **Lv. 60** auf. Jede neue Stufe bringt eine Belohnung: Forsch
 
 | # | Zone | Benötigt | Bosse (normal) |
 |---|---|---|---|
-| 1 | Kryta | Riss-Portal 1 | Tür-Wache, Separatisten-Leutnant, Hauptmann DeLana, Wahlen, Prototyp-Golem |
-| 2 | Zittergipfel | Riss-Portal 2 + Kryta befreit | Svanir-Schamane, Grawl-Oberschamane, Svanir-Häuptling, Eisbrut-Koloss, Klaue Jormags |
-| 3 | Kristallwüste | Riss-Portal 3 + Zittergipfel befreit | Erweckter Hauptmann, Erweckter Pharao, Wüsten-Hydra, Gebrandmarkter Koloss, Riesiger Sandwurm |
-| 4 | Maguuma-Dschungel | Riss-Portal 4 + Wüste befreit | Raptor-Rudelführer, Chak-Gerent, Mordrem-Teragriff, Mordrem-Wächter, Mordrem-Rankenzorn |
-| 5 | Die Nebel | Riss-Portal 5 + Dschungel befreit | Phantom-Fürst, Kryptis-Verschlinger, Kryptis-Risshüter, Kryptis-Kriegsherr, Kryptis-Risstyrann |
+| 1 | Königintal | Riss-Portal 1 | Tür-Wache, Separatisten-Leutnant |
+| 2 | Caudecus’ Anwesen | Riss-Portal 1 + Königintal befreit | Hauptmann DeLana, Wahlen, Prototyp-Golem |
+| 3 | Wanderer-Hügel | Riss-Portal 2 + Anwesen befreit | Svanir-Schamane, Grawl-Oberschamane |
+| 4 | Zittergipfel | Riss-Portal 2 + Wanderer-Hügel befreit | Svanir-Häuptling, Eisbrut-Koloss, Klaue Jormags |
+| 5 | Elon-Flusslande | Riss-Portal 3 + Zittergipfel befreit | Erweckter Hauptmann, Erweckter Pharao |
+| 6 | Kristallwüste | Riss-Portal 3 + Elon befreit | Wüsten-Hydra, Gebrandmarkter Koloss, Riesiger Sandwurm |
+| 7 | Maguuma-Dschungel | Riss-Portal 4 + Wüste befreit | Raptor-Rudelführer, Chak-Gerent |
+| 8 | Silberwüste | Riss-Portal 4 + Dschungel befreit | Mordrem-Teragriff, Mordrem-Wächter, Mordrem-Rankenzorn |
+| 9 | Rand der Nebel | Riss-Portal 5 + Silberwüste befreit | Phantom-Fürst, Kryptis-Verschlinger |
+| 10 | Die Nebel | Riss-Portal 5 + Nebelrand befreit | Kryptis-Risshüter, Kryptis-Kriegsherr, Kryptis-Risstyrann |
 
 Die ersten Bosse einer Zone tauchen auf mehreren Stufen auf, jedes Mal stärker (wie in Hero Town).
 
-### Kryta – Caudecus’ Anwesen
+### Königintal und Caudecus’ Anwesen
 
-| Stufe | Lv. | Boss | Schergen |
-|---|---|---|---|
-| 1–3 | 3–6 | Tür-Wache | Banditen-Beutelschneider, Banditen-Schläger |
-| 4–5 | 8–10 | Separatisten-Leutnant | Separatisten-Bomber, Separatisten-Feldwebel |
-| 6–7 | 12–14 | Hauptmann DeLana | Separatisten-Kämpfer, Separatisten-Scharfschütze |
-| 8–9 | 16–18 | Wahlen | Banditen-Vollstrecker, Banditen-Kanonier |
-| 10 | 20 | Prototyp-Golem | Defekter Wachgolem, Kryptis-Splitter |
-| ☠️ 11 | 60 | Delilah | Banditen-Bomber, Banditen-Brandstifter |
-| ☠️ 12 | 60 | Treffsicherer Seamus | Banditen-Scharfschütze, Banditen-Fallensteller |
-| ☠️ 13 | 60 | Frost | Banditen-Raketengeschütz, Kryptis-Plünderer |
-| ☠️ 14 | 60 | Jagdhund | Abgerichteter Wachhund, Kryptis-Peiniger |
-| ⭐ 15 | 60 | Kryptis-Golem | Kryptis-Wachgolem, Kryptis-Splitter |
+| Zone | Stufe | Lv. | Boss | Schergen |
+|---|---|---|---|---|
+| Königintal | 1–3 | 3–6 | Tür-Wache | Banditen-Beutelschneider, Banditen-Schläger |
+| Königintal | 4–5 | 8–10 | Separatisten-Leutnant | Separatisten-Bomber, Separatisten-Feldwebel |
+| Königintal | ☠️ 6 | 60 | Delilah | Banditen-Bomber, Banditen-Brandstifter |
+| Königintal | ☠️ 7 | 60 | Treffsicherer Seamus | Banditen-Scharfschütze, Banditen-Fallensteller |
+| Anwesen | 1–2 | 12–14 | Hauptmann DeLana | Separatisten-Kämpfer, Separatisten-Scharfschütze |
+| Anwesen | 3–4 | 16–18 | Wahlen | Banditen-Vollstrecker, Banditen-Kanonier |
+| Anwesen | 5 | 20 | Prototyp-Golem | Defekter Wachgolem, Kryptis-Splitter |
+| Anwesen | ☠️ 6 | 60 | Frost | Banditen-Raketengeschütz, Kryptis-Plünderer |
+| Anwesen | ☠️ 7 | 60 | Jagdhund | Abgerichteter Wachhund, Kryptis-Peiniger |
+| Anwesen | ⭐ 8 | 60 | Kryptis-Golem | Kryptis-Wachgolem, Kryptis-Splitter |
 
 Im **🌀 Portal** wählst du oben den Trupp (Pfeile, Trupp-Karten antippen oder in der Arena wischen). Darunter wählst du Zone und Stufe.
 
@@ -97,7 +102,7 @@ Gebaut wird immer **nur ein Gebäude gleichzeitig**, und höhere Stufen brauchen
 |---|---|---|
 | 🏛️ Gildenhalle | 1–9 | Gildenkasse alle 10 Min., schaltet Gebäudestufen frei. Braucht 3 / 9 / 21 / 29 / 31 / 40 / 50 / 50 besiegte Stufen. |
 | ⛺ Zeltlager | 1–7 | Level-Cap: 10 / 20 / 30 / 40 / 50 / 55 / 60 |
-| 🌀 Riss-Portal | 1–5 | Öffnet die Zonen 1–5. Kostet Gold + Ätherscherben. |
+| 🌀 Riss-Portal | 1–5 | Jede Stufe öffnet zwei weitere Zonen (bis Zone 10). Kostet Gold + Ätherscherben. |
 | 🍲 Feldküche | 1–10 | +5 % EXP pro Stufe |
 | 🔬 Asura-Labor | 1–10 | Forschung; Stufe 3 und 5 öffnen tiefere Forschung |
 | ⚒️ Charr-Schmiede | 1–3 | Waffenladen und Waffenkammer. Stufe 2 und 3 bringen bessere Ware. Ab Gildenhalle 2. |

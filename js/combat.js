@@ -3,7 +3,7 @@
 //  Ein Trupp farmt die Schergen einer Stufe. Den Boss der Stufe fordert
 //  der Spieler selbst heraus; ein Sieg schaltet die nächste Stufe frei.
 // =====================================================================
-import { GAME, ZONES, COMBAT, ROLES, F, HERO_BY_ID, TENT_SIZE, CYCLE_MS, RATIONS } from './config.js';
+import { GAME, ZONES, COMBAT, ROLES, F, HERO_BY_ID, TENT_SIZE, CYCLE_MS, RATIONS, NORMAL_STAGES } from './config.js';
 import {
   getHero, heroStats, regenMs, goldMult, shardMult, kitchenMult, healMult, tempoBonus, gainExp, addLog,
   isStageAvailable, squadOf, stageBeaten, payCycle,
@@ -75,7 +75,8 @@ export function applyKillRewards(state, squadIdx, tmpl, heroes, factor = 1, dete
   const exp = F.expPerKill(tmpl.d) * (tmpl.boss ? COMBAT.BOSS_EXP_MULT : 1) * kitchenMult(state) * factor;
   const chance = COMBAT.SHARD_CHANCE * shardMult(state);
   const st = stageOf(sq.zone, sq.stage);
-  const bossShards = tmpl.boss ? sq.zone * COMBAT.BOSS_SHARDS_PER_ZONE * (st.hard ? 3 : 1) : 0;
+  const zone = ZONES[sq.zone - 1];
+  const bossShards = tmpl.boss ? zone.tier * COMBAT.BOSS_SHARDS_PER_ZONE * (st.hard ? 3 : 1) : 0;
   let shards = 0;
   if (deterministic) {
     state.shardFrac += (chance + bossShards) * factor;
@@ -99,8 +100,8 @@ export function applyKillRewards(state, squadIdx, tmpl, heroes, factor = 1, dete
     const r = st.rewards;
     rp = r.rp[0] + Math.floor(Math.random() * (r.rp[1] - r.rp[0] + 1));
     state.rp += rp;
-    weapons = dropWeapons(state, sq.zone, !!st.hard, r.weapons);
-    const g = Math.min(RATIONS.length, st.hard ? 6 : sq.zone + (sq.stage > 5 ? 1 : 0)) - 1;
+    weapons = dropWeapons(state, zone.tier, !!st.hard, r.weapons);
+    const g = Math.min(RATIONS.length, st.hard ? 6 : zone.tier + (zone.part === 2 ? 1 : 0)) - 1;
     rations = r.rations;
     state.rations[g] += rations;
     state.tickets += r.tickets[0] + Math.floor(Math.random() * (r.tickets[1] - r.tickets[0] + 1));
@@ -216,7 +217,7 @@ function tickSquad(state, i, now, ev) {
       addLog(state, `👑 ${mon.name} besiegt! +${fmt(r.gold)}🪙 +${r.shards}🔮 +${r.rp}🧪${r.weapons.length ? ` · ⚒️ ${r.weapons.map(w => w.name).join(', ')}` : ''}`, i, 'boss');
       if (first) {
         const zone = ZONES[sq.zone - 1];
-        addLog(state, sq.stage === 10
+        addLog(state, sq.stage === NORMAL_STAGES
           ? `🏆 ${zone.name} ist befreit – die nächste Region kann geöffnet werden.`
           : sq.stage < zone.stages.length ? `🔓 ${zone.name} Stufe ${sq.stage + 1} ist freigeschaltet.` : `🏆 ${zone.name}: alle Stufen gemeistert!`, i, 'boss');
       }

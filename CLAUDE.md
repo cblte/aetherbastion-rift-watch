@@ -35,9 +35,9 @@ Der Spielstand ist ein einziges Objekt. Bei Import/Reset wird es per `replaceSta
 - Neue Dateien im Hauptordner müssen im Workflow (`cp`-Zeile) ergänzt werden.
 
 ## Bekannte offene Punkte / Ideen
-- Kryta ist ausgearbeitet (Caudecus’ Anwesen). Bosse der Zonen 2–5 sind GW2-typisch, aber ohne Quellenprüfung; schwere Stufen dort sind „Verderbte“ Varianten.
+- Zonen 1–2 sind ausgearbeitet (Caudecus’ Anwesen). Bosse der Zonen 3–10 sind GW2-typisch, aber ohne Quellenprüfung; schwere Stufen dort sind „Verderbte“ Varianten.
 - Noch ohne Funktion: Früchte, Arena-Tickets, Erschöpfung (CQHT Fatigue), Waffen-Modifikation (CQHT Forge), `js/data/specials.js` (Küchen-Prüfung, Kryptis-Seelenfeste).
-- Balancing Spätspiel (Zone 5, schwer, legendär) ist offen: `F.monsterHp`, `F.monsterAtk`, `COMBAT.LEVEL_DIFF`.
+- Balancing Spätspiel (Zonen 9–10, schwer, legendär) ist offen: `F.monsterHp`, `F.monsterAtk`, `COMBAT.LEVEL_DIFF`.
 - Live-Kampf: Ein zu schwacher Trupp verdient nichts. Offline: Er bekommt den Effizienz-Anteil.
 - Pixel-Art fehlt noch (Sprite-Tags sind vorbereitet).
 
@@ -46,4 +46,3 @@ Der Spielstand ist ein einziges Objekt. Bei Import/Reset wird es per `replaceSta
 - Skill-System für Helden (kommt später).
 - Beförderungen / Sterne-Stufen für Helden (kommt später).
 - Dekorationen: nicht geplant.
-- Zonen: das System bleibt, eine Erweiterung auf 10 Zonen ist im Gespräch.

@@ -10,7 +10,7 @@ Mobile-First Idle-RPG als Progressive Web App. Vanilla HTML, CSS und JavaScript 
 index.html            App-Gerüst (Kopfzeile, Quest-Banner, Ansicht, Navigation)
 css/style.css         Dark-Mode-UI, Platzhalter-Sprites, Safe-Areas
 js/config.js          Zahlen & Formeln, Helden-Katalog, Rollen, Forschung, Prestige; bindet js/data/ ein
-js/data/stages.js     Riss-Zonen: 5 × (10 normal + 4 schwer + 1 legendär), Bosse, Schergen, Level, Kosten, Belohnungen
+js/data/stages.js     Riss-Zonen: 10 × (5 normal + 2 schwer, jede zweite + 1 legendär), Bosse, Schergen, Level, Kosten, Belohnungen
 js/data/buildings.js  Gebäude-Tabellen je Stufe: Kosten, Bauzeit, Voraussetzungen, Gildenkasse, Level-Cap
 js/data/heroLevels.js Helden-Stufen 1–60: EXP-Kurve, Einkommen je Zyklus, Level-Up-Belohnungen
 js/data/weapons.js    84 Waffen der Charr-Schmiede, Waffenarten, Güten, Laden-Regeln
@@ -78,7 +78,7 @@ Die Tabellen in `js/data/` stammen aus Crusaders Quest: Hero Town und sind auf G
 
 ### Balancing
 
-Formeln stehen im Objekt `F` in `js/config.js`, Kampfkonstanten in `COMBAT`. Die Schwierigkeit einer Stufe ist `level × COMBAT.LEVEL_DIFF` (auf Lv.-60-Stufen steigt sie mit den Kosten weiter). Monster wachsen mit `F.monsterHp`/`F.monsterAtk`. Kryta ist wie Kapitel 1 in Hero Town schnell durch (etwa 20 Minuten). Das Spätspiel (Zone 5, schwer) ist noch nicht durchbalanciert.
+Formeln stehen im Objekt `F` in `js/config.js`, Kampfkonstanten in `COMBAT`. Die Schwierigkeit einer Stufe ist `level × COMBAT.LEVEL_DIFF` (auf Lv.-60-Stufen steigt sie mit den Kosten weiter). Monster wachsen mit `F.monsterHp`/`F.monsterAtk`. Königintal und Caudecus’ Anwesen (= Kapitel 1 in Hero Town) sind schnell durch (etwa 20 Minuten). Das Spätspiel (Zonen 9–10, schwer) ist noch nicht durchbalanciert.
 
 ### Pixel-Art einsetzen
 

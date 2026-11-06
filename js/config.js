@@ -6,7 +6,7 @@
 export const GAME = {
   title: 'Aetherbastion: Rift Watch',
   SAVE_KEY: 'aetherbastion_save_v1',
-  SAVE_VERSION: 2,
+  SAVE_VERSION: 3,
   TICK_MS: 1000,                     // feste Kampf-Ticks
   LOOP_MS: 250,                      // wie oft die Spielschleife nachsieht
   AUTOSAVE_MS: 10_000,
@@ -112,7 +112,7 @@ export const COMBAT = {
 };
 
 // Riss-Zonen aus data/stages.js; Schwierigkeit je Stufe berechnen.
-// Bis Lv. 59 zählt das Level, auf Lv.-60-Stufen (Zone 5, schwer, legendär)
+// Bis Lv. 59 zählt das Level, auf Lv.-60-Stufen (Zonen 8–10, schwer, legendär)
 // steigt die Schwierigkeit mit den CQHT-Kosten weiter.
 export const ZONES = ZONE_DATA.map(z => ({
   ...z,

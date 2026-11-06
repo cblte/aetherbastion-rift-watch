@@ -242,7 +242,7 @@ function renderPortal() {
       <div class="arena-title"><b>⛺ Zelt ${i + 1}</b><small>${locked ? 'gesperrt' : `${esc(stageLabel(sq))}${sq.mode === 'boss' ? ' · 👑 Boss' : ''}`}</small></div>
       <button class="icon-btn" data-action="squad-step" data-dir="1" aria-label="Nächster Trupp">›</button>
     </div>
-    <div class="stage zone-${sq.zone}">${stage}</div>
+    <div class="stage zone-${ZONES[sq.zone - 1].tier}">${stage}</div>
     <div class="arena-heroes">${heroes}</div>`);
 
   // Boss-Leiste
@@ -304,7 +304,7 @@ function renderPortal() {
       const beaten = stageBeaten(S, z.id, n);
       const cur = !locked && sq.zone === z.id && sq.stage === n;
       const tag = stg.legend ? '⭐' : stg.hard ? '☠️' : '';
-      const head = n === NORMAL_STAGES + 1 ? `<h4 class="hard-head">☠️ Schwer & ⭐ Legendär</h4>` : '';
+      const head = n === NORMAL_STAGES + 1 ? `<h4 class="hard-head">${z.stages.some(s => s.legend) ? '☠️ Schwer & ⭐ Legendär' : '☠️ Schwer'}</h4>` : '';
       return `${head}<button class="stage-row ${cur ? 'sel' : ''} ${avail ? '' : 'locked'} ${stg.hard ? 'hard' : ''}" data-action="stage" data-zone="${z.id}" data-stage="${n}" ${avail && !locked ? '' : 'disabled'}>
         <span class="zone-num">${n > NORMAL_STAGES ? tag : n}</span>
         <span class="zone-txt">
@@ -334,7 +334,7 @@ function effectText(key, lvl, short = false) {
     case 'kitchen': return `+${Math.round(lvl * BUILDINGS.kitchen.bonusPerLevel * 100)} %${short ? '' : ' EXP'}`;
     case 'lab': return `${short ? '' : 'Forschung bis '}Stufe ${lvl >= TIER_LAB[3] ? 'III' : lvl >= TIER_LAB[2] ? 'II' : lvl ? 'I' : '–'}`;
     case 'forge': return lvl ? `${short ? '' : 'Laden: Waffen bis '}${WEAPON_GRADES[[0, 3, 5, 6][lvl]].name}` : 'Noch nicht gebaut';
-    case 'portal': return lvl ? `${short ? '' : 'Zonen bis '}${ZONES[lvl - 1].name}` : 'Inaktiv';
+    case 'portal': return lvl ? `${short ? '' : 'Zonen bis '}${ZONES.filter(z => z.portal <= lvl).at(-1).name}` : 'Inaktiv';
     default: return '';
   }
 }
@@ -867,7 +867,7 @@ function onClick(e) {
       S.squads[0].slots[1] = hl.uid; S.squads[0].slots[2] = dp.uid;
       S.buildings.portal = 1; S.onboarding = 5; S.selectedSquad = 0; viewZone = 1; tab = 'portal';
       S.squads[0].status = 'fighting'; spawnMonster(S, S.squads[0]);
-      addLog(S, '🌀 Das Riss-Portal flackert auf – über Caudecus’ Anwesen öffnet sich der erste Riss!', null, 'boss');
+      addLog(S, '🌀 Das Riss-Portal flackert auf – über dem Königintal öffnet sich der erste Riss!', null, 'boss');
       changed('Der erste Kampf beginnt! Unten wählst du Stufe und Boss.'); break;
     }
 

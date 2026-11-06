@@ -118,9 +118,9 @@ export function unequipWeapon(state, uid) {
   return true;
 }
 
-// Boss-Drop: Güte nach Zone (schwer/legendär: höchste Güten)
-export function dropWeapons(state, zoneId, hard, count) {
-  const [lo, hi] = hard ? DROP_GRADES.hard : DROP_GRADES[zoneId];
+// Boss-Drop: Güte nach Zonen-tier (schwer/legendär: höchste Güten)
+export function dropWeapons(state, tier, hard, count) {
+  const [lo, hi] = hard ? DROP_GRADES.hard : DROP_GRADES[tier];
   const pool = WEAPONS.filter(w => w.grade >= lo && w.grade <= hi);
   const got = [];
   for (let i = 0; i < count; i++) {

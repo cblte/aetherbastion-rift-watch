@@ -54,7 +54,8 @@ const MIGRATIONS = {
   // v1 → v2: Wellen werden zu Stufen; neue Gebäude, Waffen, Forschung, CQHT-Daten
   1: (s) => {
     s.progress = {};
-    for (const z of Object.keys(s.zonesCleared || {})) if (ZONES[Number(z) - 1]) s.progress[z] = NORMAL_STAGES;
+    // Bezieht sich noch auf die 5 alten Zonen mit je 10 normalen Stufen (v2 → v3 teilt sie auf)
+    for (const z of Object.keys(s.zonesCleared || {})) if (Number(z) >= 1 && Number(z) <= 5) s.progress[z] = 10;
     delete s.zonesCleared;
     for (const sq of s.squads || []) {
       delete sq.wave;
@@ -72,7 +73,33 @@ const MIGRATIONS = {
     };
     return s;
   },
+  // v2 → v3: 5 Zonen (10 normal + 4 schwer + 1 legendär) werden zu 10 Zonen
+  2: (s) => {
+    const progress = {};
+    for (const [z, p] of Object.entries(s.progress || {})) {
+      for (let st = 1; st <= Math.min(p, 15); st++) {
+        const n = splitStage(Number(z), st);
+        if (n) progress[n.zone] = Math.max(progress[n.zone] || 0, n.stage);
+      }
+    }
+    s.progress = progress;
+    for (const sq of s.squads || []) {
+      const n = splitStage(sq.zone, sq.stage) || { zone: 1, stage: 1 };
+      sq.zone = n.zone; sq.stage = n.stage;
+    }
+    return s;
+  },
 };
+
+// Alte Stufe (Zone 1–5, Stufe 1–15) → neue Zone/Stufe nach der Aufteilung
+export function splitStage(zone, stage) {
+  if (!(zone >= 1 && zone <= 5 && stage >= 1 && stage <= 15)) return null;
+  const a = 2 * zone - 1, b = 2 * zone;
+  if (stage <= 5) return { zone: a, stage };
+  if (stage <= 10) return { zone: b, stage: stage - 5 };
+  if (stage <= 12) return { zone: a, stage: stage - 5 };  // schwer 1–2 → Teil 1, Stufe 6–7
+  return { zone: b, stage: stage - 7 };                  // schwer 3–4, legendär → Teil 2, Stufe 6–8
+}
 
 export function migrate(raw) {
   let s = raw;
@@ -220,7 +247,8 @@ export const nextRecruitCost = (state) => F.recruitCost(state.heroesPaid + 1);
 // ---------- Stufen-Fortschritt ----------------------------------------
 export const normalCleared = (state) =>
   ZONES.reduce((n, z) => n + Math.min(state.progress[z.id] || 0, NORMAL_STAGES), 0);
-const hardDone = (state) => ZONES.every(z => (state.progress[z.id] || 0) >= z.stages.length - 1);
+// Alle schweren Stufen besiegt? (Stufen-Reihenfolge je Zone: normal, schwer, legendär)
+const hardDone = (state) => ZONES.every(z => (state.progress[z.id] || 0) >= z.stages.filter(st => !st.legend).length);
 
 export function isZoneAvailable(state, zoneId) {
   const z = ZONES[zoneId - 1];

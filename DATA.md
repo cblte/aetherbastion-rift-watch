@@ -17,9 +17,9 @@ Die Tabellen in `js/data/` stammen aus Crusaders Quest: Hero Town (CQHT, Communi
 | Honor | 🧪 Forschungspunkte | überall |
 | Bread G1–G6 | 🍞 Proviant Güte 1–6 | `specials.js` (`RATIONS`) |
 | Fruit, Arena Ticket | 🍎 Früchte, 🎟️ Arena-Tickets (noch ohne Funktion) | – |
-| Normal-Kapitel 1–5 | Riss-Zonen Kryta, Zittergipfel, Kristallwüste, Maguuma-Dschungel, Die Nebel | `stages.js` |
-| Hard X-1 bis X-4 | ☠️ Schwere Stufen 11–14 der Zone | `stages.js` |
-| L-1 bis L-5 | ⭐ Legendäre Stufe 15 der Zone | `stages.js` |
+| Normal-Kapitel 1–5 | je zwei Riss-Zonen (`tier` = Kapitel): Königintal + Caudecus’ Anwesen, Wanderer-Hügel + Zittergipfel, Elon-Flusslande + Kristallwüste, Maguuma-Dschungel + Silberwüste, Rand der Nebel + Die Nebel. X-1..5 → Zone Teil 1, X-6..10 → Teil 2 | `stages.js` |
+| Hard X-1 bis X-4 | ☠️ Schwere Stufen 6–7 (X-1/2 in Teil 1, X-3/4 in Teil 2) | `stages.js` |
+| L-1 bis L-5 | ⭐ Legendäre Stufe 8 in Teil 2 | `stages.js` |
 | Fercrow (Bäckerei-Bosse) | Prüfung der Feldküche (vorbereitet) | `specials.js` |
 | Fortress of Souls / Soltar | Kryptis-Seelenfeste / Seelenfürst (vorbereitet) | `specials.js` |
 | Crystal Powder/Shard/Crystal | Nebelkristall-Staub/-Splitter/Nebelkristall (vorbereitet) | `specials.js` |
@@ -38,8 +38,8 @@ Die Tabellen in `js/data/` stammen aus Crusaders Quest: Hero Town (CQHT, Communi
 - **Level-Cap je Zeltlager-Stufe:** 10 / 20 / 30 / 40 / 50 / 55 / 60. Die CQHT-Tabelle nennt nur das Maximum Lv. 60. In CQHT gilt das Cap pro Zelt, hier für alle Helden.
 - **Charr-Schmiede** erst ab Gildenhalle 2 (CQHT: sofort), weil sie nicht von Anfang an da sein soll.
 - **Riss-Portal** kostet zusätzlich Ätherscherben (5 / 15 / 40 / 100), damit die Scherben einen Zweck behalten.
-- **Waffenwerte** (+ATK/+HP je Güte) und die Güte von Boss-Drops je Zone sind eigene Werte. CQHT-Waffen haben feste Werte und Zusatz-Statzeilen, die Daten dazu fehlen.
-- **Proviant-EXP** (40 bis 15.000 je Güte) und die Proviant-Güte je Zone sind eigene Werte.
+- **Waffenwerte** (+ATK/+HP je Güte) und die Güte von Boss-Drops je Kapitel (`tier`) sind eigene Werte. CQHT-Waffen haben feste Werte und Zusatz-Statzeilen, die Daten dazu fehlen.
+- **Proviant-EXP** (40 bis 15.000 je Güte) und die Proviant-Güte je Kapitel (`tier`, Teil 2 eine Güte höher) sind eigene Werte.
 - **Kampfwerte:** Die Monsterstärke ergibt sich aus dem Stufen-Level (`COMBAT.LEVEL_DIFF`). Auf Lv.-60-Stufen steigt sie zusätzlich mit den CQHT-Kosten.
-- **Namen:** Kryta-Bosse aus dem Dungeon „Caudecus’ Anwesen“. Die Bosse der anderen Zonen sind GW2-typisch, aber nicht einzeln geprüft. Waffennamen sind freie deutsche Umdichtungen.
+- **Namen:** Bosse von Königintal und Anwesen aus dem Dungeon „Caudecus’ Anwesen“. Die Bosse der anderen Zonen sind GW2-typisch, aber nicht einzeln geprüft. Waffennamen sind freie deutsche Umdichtungen.
 - **Noch nicht im Spiel:** Erschöpfung (Fatigue), Früchte, Arena, Waffen-Modifikation, Helden-Güten bei der Rekrutierung, Sonderinhalte aus `specials.js`.

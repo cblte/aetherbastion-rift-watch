@@ -126,5 +126,5 @@ export const WEAPON_BY_ID = Object.fromEntries(WEAPONS.map(w => [w.id, w]));
 // Laden der Charr-Schmiede (CQHT: 3 Angebote, alle 30 Min. neu, Auffrischen 100 Gold, verdoppelt sich)
 export const SHOP = { offers: 3, restockMs: 30 * 60 * 1000, refreshBase: 100, sellFactor: 0.25 };
 
-// Welche Güte bei Boss-Drops fällt, je Zone (Normal) bzw. schwer/legendär
+// Welche Güte bei Boss-Drops fällt, je Zonen-tier (CQHT-Kapitel 1–5) bzw. schwer/legendär
 export const DROP_GRADES = { 1: [1, 2], 2: [2, 3], 3: [3, 4], 4: [4, 5], 5: [5, 6], hard: [5, 6] };
