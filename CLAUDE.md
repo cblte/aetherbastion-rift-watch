@@ -40,3 +40,10 @@ Der Spielstand ist ein einziges Objekt. Bei Import/Reset wird es per `replaceSta
 - Balancing Spätspiel (Zone 5, schwer, legendär) ist offen: `F.monsterHp`, `F.monsterAtk`, `COMBAT.LEVEL_DIFF`.
 - Live-Kampf: Ein zu schwacher Trupp verdient nichts. Offline: Er bekommt den Effizienz-Anteil.
 - Pixel-Art fehlt noch (Sprite-Tags sind vorbereitet).
+
+## Geplant (bereits entschieden)
+- Questreihe nach dem Onboarding erweitern (Vorbild: CQHT-Tutorial; nur Reihenfolge übernehmen, eigene Texte).
+- Skill-System für Helden (kommt später).
+- Beförderungen / Sterne-Stufen für Helden (kommt später).
+- Dekorationen: nicht geplant.
+- Zonen: das System bleibt, eine Erweiterung auf 10 Zonen ist im Gespräch.
