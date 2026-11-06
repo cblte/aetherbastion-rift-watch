@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0c0e16">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="Aetherbastion: Rift Watch – Idle-RPG-Fanprojekt einer Guild-Wars-2-Gilde.">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Aetherbastion">
+  <title>Aetherbastion: Rift Watch</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="app">
+    <header id="hud" aria-label="Ressourcen">
+      <span class="chip gold" title="Gold">🪙 <b id="hud-gold">0</b></span>
+      <span class="chip shards" title="Ätherscherben">🔮 <b id="hud-shards">0</b></span>
+      <span class="chip coins" title="Mystische Münzen">💠 <b id="hud-coins">0</b></span>
+      <span class="chip" title="Level-Cap">⛺ <b id="hud-cap">10/80</b></span>
+      <span class="chip" title="Aktive Helden">🛡️ <b id="hud-heroes">0/12</b></span>
+    </header>
+
+    <section id="quest" class="quest" hidden></section>
+
+    <main id="view"></main>
+
+    <nav id="tabs" role="tablist">
+      <button data-action="tab" data-tab="portal" role="tab"><span>🌀</span>Portal</button>
+      <button data-action="tab" data-tab="camp" role="tab"><span>🏛️</span>Gildenlager</button>
+      <button data-action="tab" data-tab="squads" role="tab"><span>🛡️</span>Trupps</button>
+      <button data-action="tab" data-tab="forge" role="tab"><span>✨</span>Schmiede</button>
+    </nav>
+
+    <div id="start-overlay" class="start-overlay" hidden>
+      <div class="start-card">
+        <div class="start-rift" aria-hidden="true"></div>
+        <h1>Aetherbastion<small>Rift Watch</small></h1>
+        <p>Aus den Nebeln reißen Kryptis-Risse auf. Eure Gilde errichtet ein Lager an ihrem Rand – und hält Wacht.</p>
+        <button class="btn primary block big" data-action="ob-start">Gildenlager gründen</button>
+        <p class="muted small">Nicht-kommerzielles Fanprojekt · nicht mit ArenaNet verbunden</p>
+      </div>
+    </div>
+
+    <div id="modal-root" hidden></div>
+    <div id="toast" role="status" aria-live="polite"></div>
+  </div>
+  <noscript>Dieses Spiel benötigt JavaScript.</noscript>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

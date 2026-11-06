@@ -1,0 +1,427 @@
+
+Town Hall
+Max Lv.9 · 6-tile
+A resting place for recruiting heroes and for heroes not participating in battle.
+
+A place to pray to the Goddess and post hero recruitment notices. The solemn atmosphere vanishes within 3 seconds once quest assignments begin.
+
+ID: TOWNHALL
+Lv	Gold / cycle	Upgrade cost	Build time	Unlock stage
+1	100	-	-	-
+2	250	200	1m	3
+3	350	1.000	1m 30s	9
+4	450	2.000	2m 30s	21
+5	600	10.000	4m	29
+6	750	20.000	10m	31
+7	800	200.000	25m	40
+8	1000	800.000	30m	50
+9	-	1.500.000	35m	50
+Effects
+Kingdom Fund (/10min)
+Max recruit hero grade
+How recruiting works
+The Town Hall is where you recruit heroes. Each candidate shows a Spec., the category of the main Trait it brings (ATK, DEF, Explore, or Balanced). Explore Spec. heroes carry the town and Orchard traits (Gold, EXP, tree growth), so recruit them if you want gardeners. The cost scales with the grade of the traits rolled, and you can refresh to re-roll the offers.
+
+++++++++++++++++++++++++++++++++++++++++
+
+
+Tent
+Max Lv.7 · 4-tile
+Deploy up to 3 heroes to form a party and join battles.
+
+Heroes need sleep too. The fact that snoring differs by race is something only those who've stayed here know.
+
+ID: BARRACK
+Lv	Upgrade cost	Build time	Town Hall Lv.
+1	500	-	-
+2	500	20s	Lv. 2
+3	2.000	1m	Lv. 3
+4	5.000	2m	Lv. 3
+5	8.000	3m 20s	Lv. 4
+6	15.000	5m	Lv. 5
+7	20.000	8m	Lv. 6
+Effects
+Block spawn rate (sec)
+Raises the max level of heroes stationed in the tent (up to the Lv.60 cap)
+How Tents work
+Heroes deploy from Tents, and each Tent fields up to 3 heroes. As a hero fights it builds up Fatigue, and once tired it pulls back to the Tent to rest before rejoining the battle. Run more Tents to keep more heroes active at once. See Blocks & Chains for how combat works.
+
+
++++++++++++++++++++++++++++++++++++++++++
+
+
+Portal
+Max Lv.5 · 3-tile
+A portal that summons monsters.
+
+A gate where monsters pour out. Dangerous? For heroes, it's just the daily commute.
+
+ID: PORTAL
+Lv	Upgrade cost	Build time	Town Hall Lv.
+1	600	-	-
+2	400	30s	Lv. 2
+3	1.500	1m	Lv. 2
+4	3.000	2m	Lv. 3
+5	25.000	5m	Lv. 4
+Effects
+Max monster summon count
+Monster summon rate (sec)
+How the Portal works
+The Portal is where monsters spawn for your heroes to farm. You can set up to 3 monster types at once; each costs a small amount to summon and drops rewards (Gold, EXP bread, weapons, Arena Tickets). Browse every monster and its drops on the Monsters page.
+
+Summonable monsters
+1
+
+Green Slime
+
+2
+
+Dirty Slime
+
+3
+
+Goblin Warrior
+
+4
+
+Goblin Archer
+
+5
+
+Werewolf
+
+6
+
+Ent
+
+7
+
+Sandman
+
+8
+
+Mudman
+
+9
+
+Mummy
+
+10
+
+Old Mummy
+
+11
+
+Black Lizardman
+
+12
+
+Anubis
+
+13
+
+Green Anglerfish
+
+14
+
+Sea Anglerfish
+
+15
+
+Red Starfish
+
+16
+
+Pink Starfish
+
+17
+
+Blue Jellyfish
+
+18
+
+Mermaid Wizard
+
+19
+
+Lava Squishy
+
+20
+
+Ash Squishy
+
+21
+
+Flame Spirit
+
+22
+
+Evil Flame Spirit
+
+23
+
+Elite Lizardman
+
+24
+
+Ifrit
+
+25
+
+Combat Mech
+
+26
+
+Cannon Mech
+
+27
+
+Repair Bot
+
+28
+
+Improved Repair Bot
+
+29
+
+Gatling Droid
+
+30
+
+Pyro Droid
+
+31
+
+Orange Slime
+
+32
+
+Goblin Fighter
+
+33
+
+Cursed Werewolf
+
+34
+
+Cursed Ent
+
+35
+
+Elite Sandman
+
+36
+
+Sturdy Mummy
+
+37
+
+Cursed Desert Lizardman
+
+38
+
+Cursed Anubis
+
+39
+
+Red Angler
+
+40
+
+Cursed Redstar
+
+41
+
+Corrupted Jellyfish
+
+42
+
+Mermaid Witch
+
+43
+
+Cursed Lava Sludge
+
+44
+
+Cursed Fire Spirit
+
+45
+
+Cursed Elite Lizardman
+
+46
+
+Cursed Ifrit
+
+47
+
+Cursed Combat Mech
+
+48
+
+Cursed Repair Bot
+
+49
+
+Cursed Gatling Droid
+
+50
+
+Cursed Pyro Droid
+
+Fortress of Souls monsters
+Soul-Stolen monsters are summoned from a separate Fortress of Souls tab at the top of the Portal's summon menu. To unlock it, build the Sanctuary of Souls and research Aura of the Lord of Souls at the Skill Lab; the tab then appears, and toggling it on swaps the roster below into the Portal. These corrupted mobs cost Gold to summon like any other, but instead of the usual loot they drop Crystal Powder, Crystal Shard and Crystal, the Soulbound material used for Transcendent weapons. They share the same crystals as the Soltar raid, so the Portal is a steady alternative to the raid.
+
+26
+
+Soul-Stolen Slime
+
+27
+
+Soul-Stolen Goblin
+
+28
+
+Soul-Stolen Werewolf
+
+29
+
+Soul-Stolen Ent
+
+30
+
+Soul-Stolen Sandman
+
+31
+
+Soul-Stolen Mummy
+
+32
+
+Soul-Stolen Lizardman
+
+33
+
+Soul-Stolen Anubis
+
+34
+
+Soul-Stolen Anglerfish
+
+35
+
+Soul-Stolen Redstar
+
+36
+
+Soul-Stolen Jellyfish
+
+37
+
+Soul-Stolen Mermaid Wizard
+
+38
+
+Soul-Stolen Squishy
+
+39
+
+Soul-Stolen Flame Spirit
+
+40
+
+Soul-Stolen Elite Lizardman
+
+41
+
+Soul-Stolen Ifrit
+
+42
+
+Soul-Bound Combat Mech
+
+43
+
+Soul-Bound Repair Bot
+
+44
+
+Soul-Bound Gatling Droid
+
+45
+
+Soul-Bound Pyro Droid
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+Skill Lab
+Max Lv.10 · 4-tile
+Spend Honor to develop heroes and the town.
+
+Grancian swordsmanship, Pumpkin City's magic theory, martial arts from the Eastern Three Kingdoms—no matter where the knowledge started, here it belongs to everyone.
+
+ID: INSTITUTE
+Lv	Upgrade cost	Build time	Town Hall Lv.
+1	250	-	-
+2	500	30s	Lv. 2
+3	1.000	1m	Lv. 3
+4	2.500	2m	Lv. 4
+5	5.000	6m	Lv. 5
+6	50.000	15m	Lv. 6
+7	100.000	20m	Lv. 7
+8	250.000	25m	Lv. 7
+9	500.000	30m	Lv. 8
+10	1.000.000	35m	Lv. 9
+Effects
+Research level
+How the Skill Lab works
+The Skill Lab researches permanent upgrades for your heroes and town, paid with Honor. You can queue up to 5 researches at once. Browse the full upgrade tree on the Skill Research page.
+
+
+++++++++++++++++++++++++++++++++++++
+
+
+Smithy
+Max Lv.3 · 4-tile
+Purchase and modify weapons.
+
+Grancian steel, Ness alloys, Norsguard black iron—metals from across the continent become a single weapon atop this forge.
+
+ID: SMITHY
+Lv	Upgrade cost	Build time	Town Hall Lv.
+1	200	-	-
+2	2.500	1m	Lv. 3
+3	10.000	5m	Lv. 6
+Effects
+Forge efficiency increase
+How the Smithy works
+Like the Bakery, it runs a Shop with the same system, but it sells weapons: up to 3 random weapons that restock automatically every 30 minutes, with a manual refresh for 100 Gold that doubles each time (resetting on the next automatic restock, and never resetting the 30-minute timer). See the Shops page for the full pool.
+Its second button, Modify, opens the Forge, where you spend Gold to add bonus stat lines to a weapon. See the Forge page for the full pool of stat lines, slot counts, and forge costs.
+Soulbound Weapon
+Crafted and enhanced at the Smithy (its Soulbound Weapon button) from Iron and Soulbound crystals (from the Fortress of Souls raid or the Arena shop), plus a Gem cost (10 / 25 / 50 by grade) and Gold. Bound to its hero; not forged like an ordinary weapon or found as a drop.
+
+++++++++++++++++++++++++++++++++++++++
+
+
+
+Sanctuary of Souls
+Max Lv.1 · 6-tile
+Build a Sanctuary leading to the Fortress of Souls to challenge Soltar.
+
+When the seal grew unstable and Soltar awoke once more, it was built on the outskirts of Hero Town under Archon's guidance, for a hero band that could not march to the fortress at the far edge of Valencia every time. Rebuilt with stones carried from the collapsed Valencia memorial hall, the building is new yet still bears its old scars.
+
+ID: SOULFORTRESS
+Lv	Upgrade cost	Build time	Unlock stage
+1	1.000	-	-
+How the Fortress of Souls works
+Opens the Fortress of Souls raid: a three-phase battle against Soltar that rewards Soulbound materials (Crystal Powder, Crystal Shard, and Crystal).
+Those crystals, together with Iron, are spent at the Smithy to craft and enhance Soulbound Weapons for Advanced Heroes.
+Soltar / Fortress of Souls: where the crystals drop
+
+
++++++++++++++++++++++++++++++++++++++++++++++
+
+
