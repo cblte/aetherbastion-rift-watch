@@ -441,7 +441,7 @@ function renderCamp() {
 
 function renderSettings() {
   setHTML($('#settings'), `
-    <button class="btn block" data-action="manual">📖 Handbuch</button>
+    <div class="card"><button class="btn block" data-action="manual">📖 Handbuch</button></div>
     <div class="card setting">
       <span>📳 Vibration bei Level-Ups</span>
       <button class="toggle ${S.settings.vibrate ? 'on' : ''}" data-action="toggle-vibrate" role="switch" aria-checked="${S.settings.vibrate}"><i></i></button>
