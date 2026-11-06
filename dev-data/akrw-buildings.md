@@ -4,6 +4,33 @@
 
 Gebaut wird immer **nur ein Gebäude gleichzeitig**. Kosten in 🪙 Gold.
 
+## Übersicht: alle Ausbaukosten
+
+Alles, was mit der jeweiligen Gildenhallen-Stufe baubar wird (Halle selbst, Gebäudestufen, neue Zelte), mit Summe und laufender Gesamtsumme. Das Riss-Portal kostet zusätzlich 🔮 Ätherscherben (5 / 15 / 40 / 100 für Stufe 2–5).
+
+| Gildenhalle | Neu baubar (Kosten) | Summe | Gesamt |
+| --- | --- | --- | --- |
+| 1 | ⛺ Zeltlager 1 (500), 🌀 Riss-Portal 1 (600), 🔬 Asura-Labor 1 (250) | 1.350 | 1.350 |
+| 2 | 🏛️ Halle 2 (200), ⛺ Zeltlager 2 (500), 🌀 Riss-Portal 2 (400), 🌀 Riss-Portal 3 (1.500), 🍲 Feldküche 1 (140), 🍲 Feldküche 2 (230), 🔬 Asura-Labor 2 (500), ⚒️ Charr-Schmiede 1 (200) | 3.670 | 5.020 |
+| 3 | 🏛️ Halle 3 (1.000), ⛺ Zeltlager 3 (2.000), ⛺ Zeltlager 4 (5.000), 🌀 Riss-Portal 4 (3.000), 🍲 Feldküche 3 (360), 🔬 Asura-Labor 3 (1.000), ⚒️ Charr-Schmiede 2 (2.500), ⛺ Zelt 2 (1.500) | 16.360 | 21.380 |
+| 4 | 🏛️ Halle 4 (2.000), ⛺ Zeltlager 5 (8.000), 🌀 Riss-Portal 5 (25.000), 🍲 Feldküche 4 (900), 🔬 Asura-Labor 4 (2.500) | 38.400 | 59.780 |
+| 5 | 🏛️ Halle 5 (10.000), ⛺ Zeltlager 6 (15.000), 🍲 Feldküche 5 (3.000), 🔬 Asura-Labor 5 (5.000) | 33.000 | 92.780 |
+| 6 | 🏛️ Halle 6 (20.000), ⛺ Zeltlager 7 (20.000), 🍲 Feldküche 6 (9.000), 🔬 Asura-Labor 6 (50.000), ⚒️ Charr-Schmiede 3 (10.000), ⛺ Zelt 3 (40.000) | 149.000 | 241.780 |
+| 7 | 🏛️ Halle 7 (200.000), 🍲 Feldküche 7 (40.000), 🔬 Asura-Labor 7 (100.000), 🔬 Asura-Labor 8 (250.000) | 590.000 | 831.780 |
+| 8 | 🏛️ Halle 8 (800.000), 🍲 Feldküche 8 (150.000), 🔬 Asura-Labor 9 (500.000) | 1.450.000 | 2.281.780 |
+| 9 | 🏛️ Halle 9 (1.500.000), 🍲 Feldküche 9 (400.000), 🍲 Feldküche 10 (900.000), 🔬 Asura-Labor 10 (1.000.000), ⛺ Zelt 4 (900.000) | 4.700.000 | 6.981.780 |
+
+| Gebäude | Stufen | Alle Stufen zusammen |
+| --- | --- | --- |
+| 🏛️ Gildenhalle | 9 | 2.533.200 |
+| ⛺ Zeltlager | 7 | 51.000 |
+| 🌀 Riss-Portal | 5 | 30.500 |
+| 🍲 Feldküche | 10 | 1.503.630 |
+| 🔬 Asura-Labor | 10 | 1.909.250 |
+| ⚒️ Charr-Schmiede | 3 | 12.700 |
+| ⛺ Zelte 2–4 | 3 | 941.500 |
+| **Alles** |  | **6.981.780** |
+
 ## 🏛️ Gildenhalle
 
 *CQHT: Town Hall · max. Stufe 9*

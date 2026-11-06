@@ -9,6 +9,7 @@ const { HERO_LEVELS } = await imp('js/data/heroLevels.js');
 const { WEAPONS, WEAPON_TYPES, WEAPON_GRADES, SHOP, DROP_GRADES, WEAPON_FOR } = await imp('js/data/weapons.js');
 const { ZONE_DATA, NORMAL_STAGES } = await imp('js/data/stages.js');
 const { KITCHEN_TRIAL, SOUL_FORTRESS, RATIONS } = await imp('js/data/specials.js');
+const { TENTS, PORTAL_SHARDS } = await imp('js/config.js');
 
 const de = (n) => n == null ? '–' : Number(n).toLocaleString('de-DE');
 const time = (s) => !s ? '–' : [Math.floor(s / 60) && `${Math.floor(s / 60)} Min.`, s % 60 && `${s % 60} s`].filter(Boolean).join(' ');
@@ -36,6 +37,32 @@ const note = '> Interne Entwicklungs-Referenz für **Aetherbastion: Rift Watch**
     forge: `Waffenladen mit ${SHOP.offers} Angeboten, alle ${SHOP.restockMs / 60_000} Minuten neu; „Ware auffrischen“ kostet ${SHOP.refreshBase} Gold und verdoppelt sich bis zum nächsten Auffüllen. Dazu die Waffenkammer (Ausrüsten, Verkaufen zu ${SHOP.sellFactor * 100} %). Höhere Stufen bringen bessere Ware. *Geplant:* Waffen-Modifikation (CQHT Forge).`,
   };
   let s = `# Gebäude – Aetherbastion: Rift Watch\n\n${note}\n\nGebaut wird immer **nur ein Gebäude gleichzeitig**. Kosten in 🪙 Gold.\n`;
+
+  // Übersicht: alle Ausbauten nach Gildenhallen-Stufe, mit Summen
+  {
+    const maxHall = b.hall.levels.length;
+    const rows = [];
+    let total = 0;
+    for (let H = 1; H <= maxHall; H++) {
+      const items = [];
+      if (H > 1) items.push({ txt: `${b.hall.icon} Halle ${H}`, cost: b.hall.levels[H - 1].cost });
+      for (const key of BUILDING_ORDER) {
+        if (key === 'hall') continue;
+        b[key].levels.forEach((l, i) => { if (l.hall === H) items.push({ txt: `${b[key].icon} ${b[key].name} ${i + 1}`, cost: l.cost }); });
+      }
+      TENTS.forEach((t, i) => { if (i > 0 && t.hall === H) items.push({ txt: `⛺ Zelt ${i + 1}`, cost: t.gold }); });
+      const sum = items.reduce((n, x) => n + x.cost, 0);
+      total += sum;
+      rows.push([H, items.map(x => `${x.txt} (${de(x.cost)})`).join(', '), de(sum), de(total)]);
+    }
+    s += `\n## Übersicht: alle Ausbaukosten\n\nAlles, was mit der jeweiligen Gildenhallen-Stufe baubar wird (Halle selbst, Gebäudestufen, neue Zelte), mit Summe und laufender Gesamtsumme. Das Riss-Portal kostet zusätzlich 🔮 Ätherscherben (${PORTAL_SHARDS.slice(1).map(de).join(' / ')} für Stufe 2–5).\n\n`;
+    s += tbl(['Gildenhalle', 'Neu baubar (Kosten)', 'Summe', 'Gesamt'], rows);
+    s += `\n\n${tbl(['Gebäude', 'Stufen', 'Alle Stufen zusammen'], [
+      ...BUILDING_ORDER.map(key => [`${b[key].icon} ${b[key].name}`, b[key].levels.length, de(b[key].levels.reduce((n, l) => n + l.cost, 0))]),
+      ['⛺ Zelte 2–4', TENTS.length - 1, de(TENTS.reduce((n, t) => n + t.gold, 0))],
+      ['**Alles**', '', `**${de(total + BUILDING_ORDER.reduce((n, k) => n + b[k].levels.filter(l => k !== 'hall' && !l.hall).reduce((m, l) => m + l.cost, 0), 0))}**`],
+    ])}\n`;
+  }
   for (const key of BUILDING_ORDER) {
     const d = b[key];
     s += `\n## ${d.icon} ${d.name}\n\n*CQHT: ${d.src} · max. Stufe ${d.levels.length}${d.unlockHall ? ` · ab Gildenhalle ${d.unlockHall}` : ''}*\n\n${d.desc}\n\n> ${lore[key]}\n\n`;
