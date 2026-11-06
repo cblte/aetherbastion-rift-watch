@@ -11,6 +11,7 @@ import {
   TOTAL_NORMAL, CYCLE_MS, QUESTS as MAIN_QUESTS,
 } from './config.js';
 import { currentQuest, questProgress, questNumber, claimQuest } from './quests.js';
+import { manualChapters } from './manual.js';
 import {
   createNewState, exportSave, importSave, replaceState, getHero, heroStats, levelCap,
   activeHeroCount, reserveHeroes, isOwned, nextRecruitCost, isZoneAvailable, isStageAvailable, stageBeaten,
@@ -440,6 +441,7 @@ function renderCamp() {
 
 function renderSettings() {
   setHTML($('#settings'), `
+    <button class="btn block" data-action="manual">📖 Handbuch</button>
     <div class="card setting">
       <span>📳 Vibration bei Level-Ups</span>
       <button class="toggle ${S.settings.vibrate ? 'on' : ''}" data-action="toggle-vibrate" role="switch" aria-checked="${S.settings.vibrate}"><i></i></button>
@@ -784,6 +786,15 @@ function openHeroModal(uid) {
   () => openHeroModal(uid));
 }
 
+function openManual() {
+  openModal(`
+    <div class="modal-head"><h3>📖 Handbuch</h3><button class="icon-btn" data-action="modal-close" aria-label="Schließen">✕</button></div>
+    <div class="manual">${manualChapters().map(c => `
+      <details class="manual-ch"><summary><span>${c.icon}</span>${c.title}</summary><div class="manual-body">${c.html}</div></details>`).join('')}
+    </div>
+    <p class="muted small center">${versionText()}</p>`);
+}
+
 function confirmModal(title, text, action, data = {}, danger = true) {
   const attrs = Object.entries(data).map(([k, v]) => `data-${k}="${esc(v)}"`).join(' ');
   openModal(`
@@ -1021,6 +1032,7 @@ function onClick(e) {
     }
 
     // Einstellungen
+    case 'manual': openManual(); break;
     case 'toggle-vibrate': S.settings.vibrate = !S.settings.vibrate; changed(); break;
     case 'export':
       openModal(`<h3>💾 Export</h3><p class="small muted">Diesen Code sicher aufbewahren. Er enthält den kompletten Spielstand.</p>

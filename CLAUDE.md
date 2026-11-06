@@ -18,6 +18,7 @@ Mobile-First Idle-RPG als PWA für eine Guild-Wars-2-Gilde (nicht-kommerzielles 
 - `combat.js`: 1-s-Tick pro Trupp. Squad-`mode` ist `'farm'` (Schergen der Stufe) oder `'boss'` (Herausforderung, 60 s Zeitlimit). Ein Boss-Sieg setzt `state.progress[zone]`. Dazu Belohnungen (`applyKillRewards`), Tauschen und Beleben.
 - `progress.js`: Bauen mit Bauzeit (`state.construction`, immer nur ein Auftrag), Charr-Schmiede (Laden `state.shop`, Waffenkammer `state.armory`, `hero.weapon` = Waffen-ID), Proviant, Asura-Labor (`state.research`)
 - `quests.js`: Aufträge nach dem Onboarding (Daten: `QUESTS` in `config.js`). Erledigte `id`s in `state.questsDone`; ohne Import aus `state.js` (wird von der Migration genutzt)
+- `manual.js`: 📖 Handbuch (Einstellungen). Kurzfassung von `MANUAL.md` – bei Spieländerungen beide pflegen
 - `offline.js`: `runOffline()`, deterministisch Sieg für Sieg (nur Schergen) mit Effizienz-Faktor, max. 8 h (+ Forschung), keine Tode; zahlt Gildenkasse-Zyklen, schließt Bauaufträge ab
 - `ui.js`: HTML-String-Rendering mit Diff (`setHTML`), Event-Delegation über `data-action`, kein Re-Render solange ein Finger aufliegt. Modals mit `refresh`-Funktion laufen bei jedem `render()` live mit
 - `main.js`: Schleife misst echte Zeit seit `lastTickMs`. Lücken ≤ 30 s → Ticks, größere → `runOffline()`. Ab 60 s erscheint der Bericht.

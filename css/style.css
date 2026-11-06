@@ -461,6 +461,25 @@ textarea {
   resize: vertical; word-break: break-all;
 }
 
+/* ---------- Handbuch ---------------------------------------------- */
+.manual { display: flex; flex-direction: column; gap: 6px; }
+.manual-ch { border: 1px solid var(--line); border-radius: 12px; background: var(--panel); }
+.manual-ch summary {
+  min-height: 44px; padding: 0 12px; display: flex; align-items: center; gap: 10px;
+  font-weight: 700; cursor: pointer; list-style: none;
+}
+.manual-ch summary::-webkit-details-marker { display: none; }
+.manual-ch summary::after { content: '▸'; margin-left: auto; color: var(--muted); transition: transform .2s; }
+.manual-ch[open] summary::after { transform: rotate(90deg); }
+.manual-ch summary span { font-size: 18px; width: 22px; text-align: center; }
+.manual-body { padding: 0 12px 12px; font-size: 14px; line-height: 1.45; }
+.manual-body p { margin: 8px 0; }
+.manual-body ul { margin: 8px 0; padding-left: 18px; }
+.manual-body li { margin: 4px 0; }
+.m-table { width: 100%; border-collapse: collapse; font-size: 12.5px; margin: 8px 0; }
+.m-table th, .m-table td { text-align: left; padding: 5px 6px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.m-table th { color: var(--muted); font-weight: 600; }
+
 /* ---------- Navigation -------------------------------------------- */
 #tabs {
   display: grid; grid-template-columns: repeat(5, 1fr);

@@ -19,6 +19,7 @@ js/state.js           Spielstand, Speichern/Laden, Export/Import, Migration, abg
 js/combat.js          Tick-Kampf (1 s) pro Trupp, Schergen, Boss-Herausforderung, Gildenkasse
 js/progress.js        Bauen mit Bauzeit, Waffenladen/-kammer, Proviant, Forschung
 js/quests.js          Aufträge nach dem Onboarding: Fortschritt, Abholen, Migration
+js/manual.js          📖 Handbuch im Spiel (Kurzfassung von MANUAL.md, Zahlen aus config.js)
 js/offline.js         Deterministische Offline-Berechnung (Sieg für Sieg, ohne Ticks)
 js/ui.js              Rendering, Navigation, Modals, Aktionen, Wischgeste
 js/main.js            Start, Spielschleife, Autosave, Service-Worker-Registrierung

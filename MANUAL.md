@@ -168,6 +168,7 @@ Schließt du die App, farmen deine Trupps die Schergen ihrer Stufe weiter, **bis
 
 ## Einstellungen (🏛️ Lager, ganz unten)
 
+- **📖 Handbuch:** Kurzfassung dieser Anleitung im Spiel
 - **Vibration** bei Level-Ups an/aus
 - **Spielstand exportieren/importieren** als Code, z. B. für einen Gerätewechsel
 - **Zurücksetzen** (mit Bestätigung, vorher exportieren!)
