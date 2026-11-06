@@ -110,6 +110,10 @@ const QUESTS = [
   { icon: '🌀', text: () => `Aktiviere das <b>Riss-Portal</b>. <b>${esc(HERO_BY_ID[ONBOARDING.tank].name)}</b> hält zunächst allein Wacht am Riss – Verstärkung folgt.`, btn: 'Portal aktivieren', action: 'ob-finish' },
 ];
 
+// Onboarding und Aufträge zählen durchgehend: Auftrag 1–4 = Onboarding, danach QUESTS aus config.js
+const OB_STEPS = QUESTS.length - 1;
+const questTotal = () => OB_STEPS + MAIN_QUESTS.length;
+
 function renderQuest() {
   const q = $('#quest');
   $('#start-overlay').hidden = S.onboarding !== 0;
@@ -118,7 +122,7 @@ function renderQuest() {
   q.hidden = false;
   const text = typeof step.text === 'function' ? step.text() : step.text;
   setHTML(q, `
-    <div class="quest-step">Quest ${S.onboarding}/4</div>
+    <div class="quest-step">Auftrag ${S.onboarding}/${questTotal()}</div>
     <div class="quest-body"><span class="quest-icon">${step.icon}</span><p>${text}</p></div>
     <button class="btn primary block" data-action="${step.action}">${step.btn}</button>`);
 }
@@ -139,7 +143,7 @@ function renderMainQuest(q) {
     ? `<button class="btn primary block" data-action="quest-claim">${Object.keys(quest.reward).length ? `Belohnung abholen · ${rewardText(quest.reward)}` : 'Weiter'}</button>`
     : quest.tab && quest.tab !== tab ? `<button class="btn block" data-action="tab" data-tab="${quest.tab}">Hingehen</button>` : '';
   setHTML(q, `
-    <div class="quest-step">Auftrag ${questNumber(quest)}/${MAIN_QUESTS.length}${done ? ' · erfüllt ✓' : ''}</div>
+    <div class="quest-step">Auftrag ${OB_STEPS + questNumber(quest)}/${questTotal()}${done ? ' · erfüllt ✓' : ''}</div>
     <div class="quest-body"><span class="quest-icon">${quest.icon}</span><p><b>${esc(quest.title)}</b><br>${esc(quest.text)}</p></div>
     ${quest.goal.type === 'freeHero' ? '' : `<div class="quest-progress"><span style="width:${Math.round(have / need * 100)}%"></span><small>${fmt(have)}/${fmt(need)} · ${rewardText(quest.reward)}</small></div>`}
     ${btn}`);

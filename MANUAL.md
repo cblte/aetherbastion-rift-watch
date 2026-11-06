@@ -14,7 +14,7 @@ Quest-Banner führen dich durch den Start:
 
 ### Aufträge
 
-Danach übernimmt ein **Auftrags-Banner** oben die Führung. 20 Aufträge zeigen dir nacheinander alle Systeme: neue Rekruten, Bosse, Leveln, Gebäude, Waffen, Forschung, Proviant, das Riss-Portal und den zweiten Trupp, bis die Wanderer-Hügel befreit sind.
+Danach geht es im selben **Auftrags-Banner** nahtlos weiter (Auftrag 5 bis 24). Die Aufträge zeigen dir nacheinander alle Systeme: neue Rekruten, Bosse, Leveln, Gebäude, Waffen, Forschung, Proviant, das Riss-Portal und den zweiten Trupp, bis die Wanderer-Hügel befreit sind.
 
 - Der Balken zeigt den Fortschritt, **„Hingehen“** springt zum passenden Reiter.
 - Ist ein Auftrag erfüllt, holst du die **Belohnung** (Gold, Ätherscherben oder Forschungspunkte) mit einem Tipp ab. Erst dann kommt der nächste.
