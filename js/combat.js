@@ -1,10 +1,14 @@
 // =====================================================================
-//  Tick-Kampf: jeder Trupp kämpft unabhängig in seiner Riss-Zone
+//  Tick-Kampf: jeder Trupp kämpft unabhängig in seiner Riss-Zone.
+//  Ein Trupp farmt die Schergen einer Stufe. Den Boss der Stufe fordert
+//  der Spieler selbst heraus; ein Sieg schaltet die nächste Stufe frei.
 // =====================================================================
-import { GAME, ZONES, COMBAT, ROLES, F, HERO_BY_ID, TENT_SIZE } from './config.js';
+import { GAME, ZONES, COMBAT, ROLES, F, HERO_BY_ID, TENT_SIZE, CYCLE_MS, RATIONS } from './config.js';
 import {
-  getHero, heroStats, regenMs, lootMult, kitchenMult, gainExp, addLog, isZoneAvailable, squadOf,
+  getHero, heroStats, regenMs, goldMult, shardMult, kitchenMult, healMult, tempoBonus, gainExp, addLog,
+  isStageAvailable, squadOf, stageBeaten, payCycle,
 } from './state.js';
+import { checkConstruction, checkShop, dropWeapons } from './progress.js';
 
 // ---------- Hilfen ---------------------------------------------------
 export function squadMembers(state, squad) {
@@ -17,11 +21,13 @@ export function frontOrder(state, squad, heroes) {
     squad.slots.indexOf(a.uid) - squad.slots.indexOf(b.uid));
 }
 
-export function monsterTemplate(zoneId, wave) {
-  const zone = ZONES[zoneId - 1];
-  const boss = wave > COMBAT.WAVES_PER_ZONE;
-  const d = F.difficulty(zoneId, Math.min(wave, COMBAT.WAVES_PER_ZONE));
-  const mob = boss ? zone.boss : zone.mobs[(wave - 1) % zone.mobs.length];
+export const stageOf = (zoneId, stage) => ZONES[zoneId - 1].stages[stage - 1];
+
+// variant: wechselt zwischen den beiden Schergen-Typen
+export function monsterTemplate(zoneId, stage, boss = false, variant = 0) {
+  const st = stageOf(zoneId, stage);
+  const d = st.d + (boss ? COMBAT.BOSS_DIFF_BONUS : 0);
+  const mob = boss ? st.boss : st.minions[variant % st.minions.length];
   return {
     name: mob.name, sprite: mob.sprite, boss, d,
     maxHp: F.monsterHp(d) * (boss ? COMBAT.BOSS_HP_MULT : 1),
@@ -30,13 +36,14 @@ export function monsterTemplate(zoneId, wave) {
 }
 
 export function spawnMonster(state, squad) {
-  const t = monsterTemplate(squad.zone, squad.wave);
-  squad.monster = { ...t, id: state.monsterSeq++, hp: t.maxHp };
+  const seq = state.monsterSeq++;
+  const t = monsterTemplate(squad.zone, squad.stage, squad.mode === 'boss', seq);
+  squad.monster = { ...t, id: seq, hp: t.maxHp };
 }
 
 // Erwartungswerte eines Trupps – genutzt vom Offline-Modul und für Anzeigen
-export function teamProfile(state, heroes) {
-  let might = 0, eile = 0;
+export function teamProfile(state, heroes, squad = null) {
+  let might = 0, eile = tempoBonus(state);
   for (const h of heroes) {
     const d = HERO_BY_ID[h.heroId];
     if (d.role === 'support') d.buff === 'eile' ? (eile += COMBAT.EILE_BONUS) : (might += COMBAT.MIGHT_BONUS);
@@ -48,31 +55,34 @@ export function teamProfile(state, heroes) {
     hpPool += st.maxHp;
     const a = st.atk * atkMult;
     if (st.def.role === 'healer') {
-      heal += a * COMBAT.HEAL_MULT;
+      heal += a * COMBAT.HEAL_MULT * healMult(state);
       dps += a * COMBAT.HEALER_ATK_FACTOR * tempo;
     } else {
       const f = st.def.role === 'support' ? COMBAT.SUPPORT_ATK_FACTOR : 1;
-      dps += a * f * (1 + st.crit * (COMBAT.CRIT_MULT - 1)) * tempo;
+      dps += a * f * (1 + st.crit * (st.critMult - 1)) * tempo;
     }
   }
-  return { dps, heal, hpPool, atkMult, tempo, might, eile };
+  const front = squad && heroes.length ? frontOrder(state, squad, heroes)[0] : heroes[0];
+  const frontDef = front ? heroStats(state, front).defense : 0;
+  return { dps, heal, hpPool, atkMult, tempo, might, eile, frontDef };
 }
 
-// ---------- Belohnungen & Wellenfortschritt (live + offline) --------
+// ---------- Belohnungen (live + offline) -----------------------------
 // factor: Anteil der Belohnung (Offline-Effizienz). deterministic: Scherben als Erwartungswert.
 export function applyKillRewards(state, squadIdx, tmpl, heroes, factor = 1, deterministic = false) {
   const sq = state.squads[squadIdx];
-  const loot = lootMult(state);
-  const gold = F.goldPerKill(tmpl.d) * (tmpl.boss ? COMBAT.BOSS_GOLD_MULT : 1) * loot * factor;
+  const gold = F.goldPerKill(tmpl.d) * (tmpl.boss ? COMBAT.BOSS_GOLD_MULT : 1) * goldMult(state) * factor;
   const exp = F.expPerKill(tmpl.d) * (tmpl.boss ? COMBAT.BOSS_EXP_MULT : 1) * kitchenMult(state) * factor;
+  const chance = COMBAT.SHARD_CHANCE * shardMult(state);
+  const st = stageOf(sq.zone, sq.stage);
+  const bossShards = tmpl.boss ? sq.zone * COMBAT.BOSS_SHARDS_PER_ZONE * (st.hard ? 3 : 1) : 0;
   let shards = 0;
-  const bossShards = tmpl.boss ? sq.zone * COMBAT.BOSS_SHARDS_PER_ZONE : 0;
   if (deterministic) {
-    state.shardFrac += (COMBAT.SHARD_CHANCE * loot + bossShards) * factor;
+    state.shardFrac += (chance + bossShards) * factor;
     shards = Math.floor(state.shardFrac);
     state.shardFrac -= shards;
   } else {
-    if (Math.random() < COMBAT.SHARD_CHANCE * loot) shards += 1;
+    if (Math.random() < chance) shards += 1;
     shards += bossShards;
   }
   state.gold += gold;
@@ -83,28 +93,45 @@ export function applyKillRewards(state, squadIdx, tmpl, heroes, factor = 1, dete
     const from = h.level;
     if (gainExp(state, h, exp) > 0) levelUps.push({ uid: h.uid, from, to: h.level });
   }
-  return { gold, exp, shards, levelUps };
+  // Stufen-Belohnung des Bosses (aus den CQHT-Daten)
+  let rp = 0, weapons = [], rations = 0;
+  if (tmpl.boss) {
+    const r = st.rewards;
+    rp = r.rp[0] + Math.floor(Math.random() * (r.rp[1] - r.rp[0] + 1));
+    state.rp += rp;
+    weapons = dropWeapons(state, sq.zone, !!st.hard, r.weapons);
+    const g = Math.min(RATIONS.length, st.hard ? 6 : sq.zone + (sq.stage > 5 ? 1 : 0)) - 1;
+    rations = r.rations;
+    state.rations[g] += rations;
+    state.tickets += r.tickets[0] + Math.floor(Math.random() * (r.tickets[1] - r.tickets[0] + 1));
+  }
+  return { gold, exp, shards, levelUps, rp, weapons, rations };
 }
 
-// Rückgabe: true, wenn ein Boss besiegt wurde
-export function advanceWave(state, squadIdx, wasBoss) {
+// Boss besiegt → Fortschritt speichern. Rückgabe: true beim ersten Sieg
+export function recordBossWin(state, squadIdx) {
   const sq = state.squads[squadIdx];
-  if (wasBoss) {
-    const first = !state.zonesCleared[sq.zone];
-    state.zonesCleared[sq.zone] = true;
-    state.stats.bosses += 1;
-    sq.wave = 1;
-    return first;
-  }
-  sq.wave += 1;
-  return false;
+  state.stats.bosses += 1;
+  const first = !stageBeaten(state, sq.zone, sq.stage);
+  if (first) state.progress[sq.zone] = sq.stage;
+  sq.mode = 'farm';
+  sq.bossTicks = 0;
+  return first;
 }
 
 // ---------- Tick ----------------------------------------------------
 export function tick(state) {
   state.lastTickMs += GAME.TICK_MS;
   const now = state.lastTickMs;
-  const ev = { hits: [], levelUps: [], kills: [] };
+  const ev = { hits: [], levelUps: [], kills: [], bossWins: [], built: null, cycle: null };
+
+  ev.built = checkConstruction(state, now);
+  checkShop(state, now);
+  if (now >= state.nextCycleMs) {
+    ev.cycle = payCycle(state);
+    state.nextCycleMs += CYCLE_MS;
+    addLog(state, `💰 Gildenkasse: +${fmt(ev.cycle.gold)}🪙${ev.cycle.rp ? ` +${ev.cycle.rp}🧪` : ''}`, null, 'info');
+  }
 
   for (const h of state.heroes) {
     const inSquad = squadOf(state, h.uid) !== -1;
@@ -125,7 +152,7 @@ function tickSquad(state, i, now, ev) {
     sq.status = 'idle'; return;
   }
   const members = squadMembers(state, sq);
-  if (!members.length) { sq.status = 'idle'; sq.monster = null; return; }
+  if (!members.length) { sq.status = 'idle'; sq.monster = null; sq.mode = 'farm'; return; }
 
   if (sq.status === 'retreat') {
     if (members.some(h => h.woundedUntil)) return;
@@ -140,7 +167,19 @@ function tickSquad(state, i, now, ev) {
   if (!alive.length) { startRetreat(state, i); return; }
 
   const mon = sq.monster;
-  const prof = teamProfile(state, alive);
+
+  // Zeitlimit für Boss-Herausforderungen
+  if (mon.boss) {
+    sq.bossTicks += 1;
+    if (sq.bossTicks > COMBAT.BOSS_TIME_LIMIT) {
+      addLog(state, `⌛ ${mon.name} hält stand – Zeit abgelaufen. Zurück zu den Schergen.`, i, 'bad');
+      sq.mode = 'farm'; sq.bossTicks = 0;
+      spawnMonster(state, sq);
+      return;
+    }
+  }
+
+  const prof = teamProfile(state, alive, sq);
 
   // Helden handeln
   let dmg = 0, crit = false;
@@ -152,14 +191,15 @@ function tickSquad(state, i, now, ev) {
         .map(x => ({ x, max: heroStats(state, x).maxHp }))
         .filter(o => o.x.hp < o.max)
         .sort((p, q) => p.x.hp / p.max - q.x.hp / q.max)[0];
-      if (target) target.x.hp = Math.min(target.max, target.x.hp + a * COMBAT.HEAL_MULT);
+      if (target) target.x.hp = Math.min(target.max, target.x.hp + a * COMBAT.HEAL_MULT * healMult(state));
       dmg += a * COMBAT.HEALER_ATK_FACTOR;
     } else {
       const f = st.def.role === 'support' ? COMBAT.SUPPORT_ATK_FACTOR : 1;
-      const hits = 1 + (Math.random() < prof.tempo - 1 ? 1 : 0);
+      const extra = prof.tempo - 1;
+      const hits = 1 + Math.floor(extra) + (Math.random() < extra % 1 ? 1 : 0);
       for (let k = 0; k < hits; k++) {
         let x = a * f;
-        if (Math.random() < st.crit) { x *= COMBAT.CRIT_MULT; crit = true; }
+        if (Math.random() < st.crit) { x *= st.critMult; crit = true; }
         dmg += x;
       }
     }
@@ -169,12 +209,17 @@ function tickSquad(state, i, now, ev) {
 
   if (mon.hp <= 0) {
     const r = applyKillRewards(state, i, mon, alive, 1, false);
-    const firstClear = advanceWave(state, i, mon.boss);
     ev.kills.push({ squad: i, boss: mon.boss });
-    const zoneName = ZONES[sq.zone - 1].name;
     if (mon.boss) {
-      addLog(state, `👑 ${mon.name} besiegt! +${fmt(r.gold)}🪙 +${r.shards}🔮`, i, 'boss');
-      if (firstClear) addLog(state, `${zoneName} ist befreit – die nächste Region kann geöffnet werden.`, i, 'boss');
+      const first = recordBossWin(state, i);
+      ev.bossWins.push({ squad: i, first, zone: sq.zone, stage: sq.stage });
+      addLog(state, `👑 ${mon.name} besiegt! +${fmt(r.gold)}🪙 +${r.shards}🔮 +${r.rp}🧪${r.weapons.length ? ` · ⚒️ ${r.weapons.map(w => w.name).join(', ')}` : ''}`, i, 'boss');
+      if (first) {
+        const zone = ZONES[sq.zone - 1];
+        addLog(state, sq.stage === 10
+          ? `🏆 ${zone.name} ist befreit – die nächste Region kann geöffnet werden.`
+          : sq.stage < zone.stages.length ? `🔓 ${zone.name} Stufe ${sq.stage + 1} ist freigeschaltet.` : `🏆 ${zone.name}: alle Stufen gemeistert!`, i, 'boss');
+      }
     } else {
       addLog(state, `${mon.name} besiegt · +${fmt(r.gold)}🪙${r.shards ? ` +${r.shards}🔮` : ''}`, i);
     }
@@ -185,7 +230,7 @@ function tickSquad(state, i, now, ev) {
     }
     for (const h of alive) {
       const max = heroStats(state, h).maxHp;
-      h.hp = Math.min(max, h.hp + max * COMBAT.WAVE_HEAL);
+      h.hp = Math.min(max, h.hp + max * COMBAT.KILL_HEAL);
     }
     spawnMonster(state, sq);
     return;
@@ -193,7 +238,7 @@ function tickSquad(state, i, now, ev) {
 
   // Monster greift den vordersten lebenden Helden an
   const target = frontOrder(state, sq, alive)[0];
-  target.hp -= mon.atk;
+  target.hp -= mon.atk * (1 - heroStats(state, target).defense);
   if (target.hp <= 0) {
     target.hp = 0;
     target.woundedUntil = now + regenMs(state);
@@ -204,21 +249,60 @@ function tickSquad(state, i, now, ev) {
 
 function startRetreat(state, i) {
   const sq = state.squads[i];
+  const wasBoss = sq.mode === 'boss';
   sq.status = 'retreat';
-  sq.wave = 1;
+  sq.mode = 'farm';
+  sq.bossTicks = 0;
   sq.monster = null;
-  addLog(state, '🏕️ Alle Helden gefallen – Rückzug ins Lager, Welle zurückgesetzt.', i, 'bad');
+  addLog(state, wasBoss
+    ? '🏕️ Der Boss war zu stark – Rückzug ins Lager.'
+    : '🏕️ Alle Helden gefallen – Rückzug ins Lager.', i, 'bad');
 }
 
 // ---------- Aktionen ------------------------------------------------
-export function setZone(state, i, zone) {
+export function setStage(state, i, zone, stage) {
   const sq = state.squads[i];
-  if (!isZoneAvailable(state, zone) || sq.zone === zone) return false;
+  if (!isStageAvailable(state, zone, stage)) return false;
+  if (sq.zone === zone && sq.stage === stage) return false;
   sq.zone = zone;
-  sq.wave = 1;
+  sq.stage = stage;
+  sq.mode = 'farm';
+  sq.bossTicks = 0;
   sq.monster = null;
   if (sq.status === 'fighting') spawnMonster(state, sq);
-  addLog(state, `Trupp zieht nach ${ZONES[zone - 1].name}.`, i, 'info');
+  addLog(state, `Trupp zieht nach ${ZONES[zone - 1].name}, Stufe ${stage}.`, i, 'info');
+  return true;
+}
+
+export const bossCost = (state, i) => stageOf(state.squads[i].zone, state.squads[i].stage).cost;
+
+export function canChallengeBoss(state, i) {
+  const sq = state.squads[i];
+  return i < state.tentsUnlocked && sq.status === 'fighting' && sq.mode === 'farm'
+    && squadMembers(state, sq).some(h => !h.woundedUntil);
+}
+
+// Kostet Gold (CQHT „cost“)
+export function challengeBoss(state, i) {
+  if (!canChallengeBoss(state, i)) return false;
+  const cost = bossCost(state, i);
+  if (state.gold < cost) return 'gold';
+  state.gold -= cost;
+  const sq = state.squads[i];
+  sq.mode = 'boss';
+  sq.bossTicks = 0;
+  spawnMonster(state, sq);
+  addLog(state, `👑 Herausforderung: ${sq.monster.name}!`, i, 'boss');
+  return true;
+}
+
+export function abortBoss(state, i) {
+  const sq = state.squads[i];
+  if (sq.mode !== 'boss') return false;
+  sq.mode = 'farm';
+  sq.bossTicks = 0;
+  spawnMonster(state, sq);
+  addLog(state, 'Herausforderung abgebrochen.', i, 'info');
   return true;
 }
 
@@ -246,7 +330,7 @@ export function assignHero(state, squadIdx, slot, uid) {
     if (from !== -1) state.squads[from].slots[state.squads[from].slots.indexOf(uid)] = null;
   }
   sq.slots[slot] = uid;
-  if (!sq.slots.some(u => u != null)) { sq.status = 'idle'; sq.monster = null; }
+  if (!sq.slots.some(u => u != null)) { sq.status = 'idle'; sq.monster = null; sq.mode = 'farm'; }
   return true;
 }
 

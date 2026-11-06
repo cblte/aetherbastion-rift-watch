@@ -53,8 +53,8 @@ textarea { user-select: text; -webkit-user-select: text; }
 /* ---------- Kopfzeile --------------------------------------------- */
 #hud {
   display: flex;
-  gap: 6px;
-  padding: calc(env(safe-area-inset-top) + 8px) 10px 8px;
+  gap: 4px;
+  padding: calc(env(safe-area-inset-top) + 8px) 6px 8px;
   padding-left: max(10px, env(safe-area-inset-left));
   padding-right: max(10px, env(safe-area-inset-right));
   background: rgba(12, 14, 22, .9);
@@ -64,20 +64,23 @@ textarea { user-select: text; -webkit-user-select: text; }
 }
 #hud::-webkit-scrollbar { display: none; }
 .chip {
-  flex: 1 0 auto;
-  display: flex; align-items: center; justify-content: center; gap: 4px;
+  flex: 1 1 auto;
+  display: flex; align-items: center; justify-content: center; gap: 3px;
   min-height: 32px;
-  padding: 2px 8px;
+  padding: 2px 4px;
   border-radius: 999px;
   background: var(--panel);
   border: 1px solid var(--line);
-  font-size: 13px;
+  font-size: 12px;
+  letter-spacing: -.01em;
   white-space: nowrap;
 }
 .chip b { font-variant-numeric: tabular-nums; font-weight: 650; }
 .chip.gold b { color: var(--gold); }
 .chip.shards b { color: #c6a8ff; }
 .chip.coins b { color: var(--aether-2); }
+.chip.rp b { color: #9ff0b8; }
+.chip[hidden] { display: none; }
 
 /* ---------- Quest-Banner ------------------------------------------ */
 .quest {
@@ -307,6 +310,65 @@ h4 { margin: 16px 0 8px; font-size: 14px; color: var(--muted); }
 .zone-txt small { color: var(--muted); font-size: 12px; }
 .zone-flag { color: var(--good); font-weight: 800; }
 
+/* ---------- Boss & Stufen ----------------------------------------- */
+.boss-card { display: flex; gap: 10px; align-items: center; justify-content: space-between; margin-top: 8px; }
+.boss-card.fresh { border-color: color-mix(in srgb, var(--gold) 55%, var(--line)); box-shadow: 0 0 16px rgba(242, 193, 78, .12); }
+.boss-card.active { border-color: var(--gold); background: color-mix(in srgb, var(--gold) 8%, var(--panel)); }
+.boss-card .btn { flex: none; }
+.boss-timer { font-size: 12px; color: var(--gold); margin-top: 3px; font-variant-numeric: tabular-nums; }
+.zone-tabs { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; margin-bottom: 8px; }
+.zone-tab {
+  min-height: 50px; padding: 4px 2px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  border-radius: 10px; border: 1px solid var(--line); background: var(--panel); cursor: pointer;
+}
+.zone-tab b { font-family: var(--serif); }
+.zone-tab small { font-size: 10.5px; color: var(--muted); white-space: nowrap; }
+.zone-tab.sel { border-color: var(--aether-2); background: color-mix(in srgb, var(--aether-2) 12%, var(--panel)); }
+.zone-tab.locked { opacity: .5; }
+.stages { display: flex; flex-direction: column; gap: 6px; }
+.stage-row {
+  display: flex; align-items: center; gap: 10px;
+  min-height: 56px; padding: 8px 12px;
+  border-radius: 12px; border: 1px solid var(--line); background: var(--panel);
+  text-align: left; cursor: pointer;
+}
+.stage-row.sel { border-color: var(--aether-2); background: color-mix(in srgb, var(--aether-2) 10%, var(--panel)); }
+.stage-row.locked, .stage-row:disabled { opacity: .5; cursor: default; }
+.stage-row small.info { color: #a99fd9; font-style: italic; }
+.lore { margin: 0 4px 8px; font-style: italic; }
+.locked-card { display: flex; gap: 12px; align-items: center; opacity: .85; }
+.locked-b { opacity: .55; }
+.b-unlock { font-size: 12px; color: var(--aether-2); margin-top: 4px; }
+
+/* ---------- Labor & Schmiede --------------------------------------- */
+.lab-head b { font-size: 18px; color: #9ff0b8; }
+.tree-title { font-size: 16px; margin: 16px 4px 8px; }
+.node { display: flex; gap: 10px; align-items: center; }
+.node.tier-2 { margin-left: 12px; width: calc(100% - 12px); }
+.node.tier-3 { margin-left: 24px; width: calc(100% - 24px); }
+.node.blocked { opacity: .6; }
+.weapon-row { display: grid; grid-template-columns: 1fr auto; gap: 6px 10px; align-items: center; }
+.weapon-row .w-info { grid-column: 1; }
+.weapon-row .b-act { grid-row: 1 / span 2; grid-column: 2; }
+.wpn { font-size: 12px; font-weight: 700; }
+#tabs button.locked span { opacity: .45; }
+
+/* ---------- CQHT-Ergänzungen -------------------------------------- */
+.reward-line { font-size: 12px; color: #c8c3ff; margin-top: 3px; }
+.hard-head { margin: 14px 4px 6px; color: #ff9c9c; }
+.stage-row.hard { border-color: #4a2a3a; }
+.build-timer { min-width: 96px; text-align: center; font-variant-numeric: tabular-nums; font-size: 13px; }
+.build-timer .bar { margin-top: 4px; }
+.building-now { border-color: var(--aether-2); }
+.stock-row { display: flex; flex-wrap: wrap; gap: 4px 12px; margin: 6px 0; }
+.cycle b { color: var(--gold); }
+.weapon-offer { display: flex; gap: 10px; align-items: center; justify-content: space-between; }
+.weapon-offer .w-info { flex: 1; min-width: 0; }
+.btn-col.tight { margin-top: 0; gap: 4px; }
+.btn-col.tight .btn { min-width: 96px; }
+.sub-title { font-size: 13px; color: var(--muted); margin-top: 6px; }
+
 /* ---------- Chronik ------------------------------------------------ */
 .chronicle { list-style: none; margin: 0; padding: 0; font-size: 13px; }
 .log { display: flex; gap: 8px; padding: 6px 4px; border-bottom: 1px solid #1d2236; }
@@ -394,13 +456,14 @@ textarea {
 
 /* ---------- Navigation -------------------------------------------- */
 #tabs {
-  display: grid; grid-template-columns: repeat(4, 1fr);
+  display: grid; grid-template-columns: repeat(5, 1fr);
   border-top: 1px solid var(--line);
   background: rgba(12, 14, 22, .96);
   padding: 4px max(4px, env(safe-area-inset-right)) calc(4px + env(safe-area-inset-bottom)) max(4px, env(safe-area-inset-left));
 }
 #tabs button {
   min-height: 56px;
+  min-width: 0;
   border: 0; background: transparent; border-radius: 12px;
   color: var(--muted); font-size: 11px; font-weight: 600;
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;

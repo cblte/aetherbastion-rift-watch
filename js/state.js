@@ -3,6 +3,8 @@
 // =====================================================================
 import {
   GAME, HERO_BY_ID, BUILDINGS, MYSTIC, F, COMBAT, ZONES, TENTS, TENT_SIZE, LEVEL_CAP_MAX,
+  ROLES, RESEARCH, FEATURES, NORMAL_STAGES, TOTAL_NORMAL, HERO_LEVELS, CYCLE_MS, PORTAL_SHARDS,
+  WEAPON_BY_ID, WEAPON_GRADES, WEAPON_FOR,
 } from './config.js';
 
 export function createNewState(now = Date.now()) {
@@ -10,18 +12,27 @@ export function createNewState(now = Date.now()) {
     version: GAME.SAVE_VERSION,
     createdAt: now,
     lastTickMs: now,
+    nextCycleMs: now + CYCLE_MS, // nächste Auszahlung der Gildenkasse
     gold: 0,
     shards: 0,
     shardFrac: 0,          // Bruchteile für deterministische Offline-Scherben
     coins: 0,
+    rp: 0,                 // 🧪 Forschungspunkte (CQHT: Honor)
+    rations: [0, 0, 0, 0, 0, 0], // Proviant Güte 1–6 (CQHT: Bread)
+    fruit: 0,              // CQHT-Früchte (noch ohne Funktion)
+    tickets: 0,            // Arena-Tickets (noch ohne Funktion)
     onboarding: 0,         // 0..4 = Quest-Schritte, 5 = fertig
-    buildings: { hall: 0, camp: 0, kitchen: 0, forge: 0, portal: 0 },
+    buildings: { hall: 0, camp: 0, portal: 0, kitchen: 0, lab: 0, forge: 0 },
+    construction: null,    // { key, to, doneAt } – es wird immer nur eines gebaut
     tentsUnlocked: 1,
-    heroes: [],            // { uid, heroId, level, exp, hp, woundedUntil }
+    heroes: [],            // { uid, heroId, level, exp, hp, woundedUntil, weapon (Waffen-ID|null) }
     nextUid: 1,
     heroesPaid: 0,         // Anzahl gekaufter (nicht kostenloser) Helden
+    armory: [],            // Waffen-IDs in der Waffenkammer (nicht ausgerüstet)
+    shop: { offers: [], nextRestockMs: 0, refreshes: 0 },
     squads: [0, 1, 2, 3].map(createSquad),
-    zonesCleared: {},
+    progress: {},          // Zone → höchste besiegte Stufe (Boss)
+    research: {},          // Forschungsknoten → Stufe
     mystic: { atk: 0, hp: 0, regen: 0, loot: 0 },
     settings: { vibrate: true },
     selectedSquad: 0,
@@ -32,15 +43,36 @@ export function createNewState(now = Date.now()) {
 }
 
 function createSquad() {
-  return { zone: 1, wave: 1, status: 'idle', monster: null, slots: Array(TENT_SIZE).fill(null) };
+  // mode: 'farm' = Schergen der Stufe, 'boss' = Boss-Herausforderung läuft
+  return { zone: 1, stage: 1, mode: 'farm', bossTicks: 0, status: 'idle', monster: null, slots: Array(TENT_SIZE).fill(null) };
 }
 
 // ---------------------------------------------------------------------
 //  Migration: für jede alte Version eine Funktion version → version+1
-//  Beispiel für später:
-//    1: (s) => { s.neuesFeld = 0; return s; },
 // ---------------------------------------------------------------------
-const MIGRATIONS = {};
+const MIGRATIONS = {
+  // v1 → v2: Wellen werden zu Stufen; neue Gebäude, Waffen, Forschung, CQHT-Daten
+  1: (s) => {
+    s.progress = {};
+    for (const z of Object.keys(s.zonesCleared || {})) if (ZONES[Number(z) - 1]) s.progress[z] = NORMAL_STAGES;
+    delete s.zonesCleared;
+    for (const sq of s.squads || []) {
+      delete sq.wave;
+      sq.stage = 1; sq.mode = 'farm'; sq.bossTicks = 0; sq.monster = null;
+      if (sq.status === 'fighting') sq.status = 'idle';
+    }
+    for (const h of s.heroes || []) h.weapon = null;
+    const b = s.buildings || {};
+    s.buildings = {
+      hall: Math.min(b.hall || 0, BUILDINGS.hall.max),
+      camp: Math.min(b.camp || 0, BUILDINGS.camp.max),
+      portal: Math.min(b.portal || 0, BUILDINGS.portal.max),
+      kitchen: b.kitchen || 0, lab: 0,
+      forge: 0, // alte Schmiede (+ATK) entfällt; die Charr-Schmiede ist neu
+    };
+    return s;
+  },
+};
 
 export function migrate(raw) {
   let s = raw;
@@ -58,7 +90,7 @@ export function migrate(raw) {
 
 function fillDefaults(target, defaults) {
   for (const [k, v] of Object.entries(defaults)) {
-    if (target[k] === undefined || target[k] === null && v !== null) target[k] = structuredClone(v);
+    if (target[k] === undefined || (target[k] === null && v !== null)) target[k] = structuredClone(v);
     else if (isPlainObject(v) && isPlainObject(target[k])) fillDefaults(target[k], v);
   }
   return target;
@@ -67,13 +99,22 @@ const isPlainObject = (o) => o && typeof o === 'object' && !Array.isArray(o);
 
 function sanitize(s) {
   while (s.squads.length < TENTS.length) s.squads.push(createSquad());
+  s.heroes = s.heroes.filter(h => HERO_BY_ID[h.heroId]);
   const uids = new Set(s.heroes.map(h => h.uid));
   const seen = new Set();
-  s.heroes = s.heroes.filter(h => HERO_BY_ID[h.heroId]);
   for (const sq of s.squads) {
     fillDefaults(sq, createSquad());
     sq.slots = sq.slots.slice(0, TENT_SIZE).map(u => (u != null && uids.has(u) && !seen.has(u) ? (seen.add(u), u) : null));
+    if (!ZONES[sq.zone - 1]) sq.zone = 1;
+    sq.stage = Math.max(1, Math.min(sq.stage, ZONES[sq.zone - 1].stages.length));
   }
+  for (const h of s.heroes) {
+    if (!WEAPON_BY_ID[h.weapon]) h.weapon = null;
+    h.level = Math.min(h.level, LEVEL_CAP_MAX);
+  }
+  s.armory = (s.armory || []).filter(w => WEAPON_BY_ID[w]);
+  s.shop.offers = (s.shop.offers || []).filter(w => WEAPON_BY_ID[w]);
+  while (s.rations.length < 6) s.rations.push(0);
   s.log = (s.log || []).slice(0, GAME.LOG_SIZE);
   return s;
 }
@@ -127,22 +168,43 @@ export function replaceState(target, source) {
 export const getHero = (state, uid) => state.heroes.find(h => h.uid === uid) || null;
 export const heroDef = (hero) => HERO_BY_ID[hero.heroId];
 
-export const forgeMult   = (s) => 1 + BUILDINGS.forge.bonusPerLevel * s.buildings.forge;
-export const kitchenMult = (s) => 1 + BUILDINGS.kitchen.bonusPerLevel * s.buildings.kitchen;
+// Forschung: Wert eines Knotens (Stufe × Wirkung)
+export function researchLevel(s, key) { return s.research?.[key] || 0; }
+export function researchNode(key) {
+  for (const tree of Object.values(RESEARCH)) if (tree.nodes[key]) return tree.nodes[key];
+  return null;
+}
+export const rv = (s, key) => researchLevel(s, key) * (researchNode(key)?.per || 0);
+
+export const kitchenMult = (s) => (1 + BUILDINGS.kitchen.bonusPerLevel * s.buildings.kitchen) * (1 + rv(s, 'exp'));
 export const prestigeAtk = (s) => 1 + MYSTIC.atk.per * s.mystic.atk;
 export const prestigeHp  = (s) => 1 + MYSTIC.hp.per * s.mystic.hp;
-export const lootMult    = (s) => 1 + MYSTIC.loot.per * s.mystic.loot;
-export const regenMs     = (s) => Math.round(COMBAT.WOUND_MS * (1 - MYSTIC.regen.per * s.mystic.regen));
-export const levelCap    = (s) => F.levelCap(s.buildings.camp);
+export const goldMult    = (s) => (1 + MYSTIC.loot.per * s.mystic.loot) * (1 + rv(s, 'gold'));
+export const shardMult   = (s) => (1 + MYSTIC.loot.per * s.mystic.loot) * (1 + rv(s, 'shards'));
+export const regenMs     = (s) => Math.round(COMBAT.WOUND_MS * (1 - MYSTIC.regen.per * s.mystic.regen) * (1 - rv(s, 'regen')));
+export const offlineMaxMs = (s) => GAME.OFFLINE_MAX_MS + rv(s, 'offline') * 60_000;
+export const healMult    = (s) => 1 + rv(s, 'heal');
+export const tempoBonus  = (s) => rv(s, 'speed');
+export const levelCap    = (s) => s.buildings.camp ? BUILDINGS.camp.levels[s.buildings.camp - 1].cap : 10;
+export const hallGold    = (s) => s.buildings.hall ? BUILDINGS.hall.levels[s.buildings.hall - 1].gold : 0;
+export const buildingUnlocked = (s, key) => s.buildings.hall >= BUILDINGS[key].unlockHall;
+export const featureUnlocked  = (s, key) => s.buildings.hall >= FEATURES[key].unlockHall;
+export const weaponType  = (hero) => {
+  const d = heroDef(hero);
+  return d.role === 'healer' ? WEAPON_FOR.healer : WEAPON_FOR[d.cls];
+};
 export { LEVEL_CAP_MAX };
 
 export function heroStats(state, hero) {
   const def = heroDef(hero);
+  const w = hero.weapon ? WEAPON_GRADES[WEAPON_BY_ID[hero.weapon].grade] : { atk: 0, hp: 0 };
   return {
     def,
-    atk: F.heroAtk(def.baseAtk, hero.level, forgeMult(state), prestigeAtk(state)),
-    maxHp: F.heroHp(def.baseHp, hero.level, prestigeHp(state)),
-    crit: def.crit || 0,
+    atk: F.heroAtk(def.baseAtk, hero.level, 1 + w.atk, prestigeAtk(state) * (1 + rv(state, 'atk'))),
+    maxHp: F.heroHp(def.baseHp, hero.level, (1 + w.hp) * prestigeHp(state) * (1 + rv(state, 'hp'))),
+    crit: Math.min(1, (def.crit || 0) + rv(state, 'crit')),
+    critMult: COMBAT.CRIT_MULT + rv(state, 'critdmg'),
+    defense: Math.min(COMBAT.DEF_CAP, ROLES[def.role].def + rv(state, 'def')),
   };
 }
 
@@ -155,18 +217,54 @@ export const activeHeroCount = (state) =>
 export const isOwned = (state, heroId) => state.heroes.some(h => h.heroId === heroId);
 export const nextRecruitCost = (state) => F.recruitCost(state.heroesPaid + 1);
 
+// ---------- Stufen-Fortschritt ----------------------------------------
+export const normalCleared = (state) =>
+  ZONES.reduce((n, z) => n + Math.min(state.progress[z.id] || 0, NORMAL_STAGES), 0);
+const hardDone = (state) => ZONES.every(z => (state.progress[z.id] || 0) >= z.stages.length - 1);
+
 export function isZoneAvailable(state, zoneId) {
   const z = ZONES[zoneId - 1];
   if (!z) return false;
   if (state.buildings.portal < z.portal) return false;
-  return zoneId === 1 || !!state.zonesCleared[zoneId - 1];
+  return zoneId === 1 || (state.progress[zoneId - 1] || 0) >= NORMAL_STAGES;
+}
+// Warum ist eine Stufe gesperrt? '' = verfügbar
+export function stageLock(state, zoneId, stage) {
+  const z = ZONES[zoneId - 1];
+  if (!isZoneAvailable(state, zoneId)) return 'Zone gesperrt';
+  if (stage > (state.progress[zoneId] || 0) + 1) return `Besiege zuerst den Boss von Stufe ${stage - 1}`;
+  const st = z.stages[stage - 1];
+  if (st.hard && normalCleared(state) < TOTAL_NORMAL) return `Schwer: erst alle ${TOTAL_NORMAL} normalen Stufen besiegen`;
+  if (st.legend && !hardDone(state)) return 'Legendär: erst alle schweren Stufen besiegen';
+  return '';
+}
+export const isStageAvailable = (state, zoneId, stage) =>
+  stage >= 1 && stage <= (ZONES[zoneId - 1]?.stages.length || 0) && !stageLock(state, zoneId, stage);
+export const stageBeaten = (state, zoneId, stage) => (state.progress[zoneId] || 0) >= stage;
+
+// ---------- Gebäude ---------------------------------------------------
+export function buildingCost(key, targetLevel) {
+  const lvl = BUILDINGS[key].levels[targetLevel - 1];
+  const cost = { gold: lvl.cost };
+  if (key === 'portal') {
+    const sh = PORTAL_SHARDS[targetLevel - 1];
+    if (sh) cost.shards = sh;
+  }
+  return cost;
 }
 
-export function buildingCost(key, targetLevel) {
-  const base = BUILDINGS[key].cost;
-  const out = {};
-  for (const [cur, v] of Object.entries(base)) out[cur] = F.buildCost(v, targetLevel);
-  return out;
+// Warum kann die nächste Stufe nicht gebaut werden? '' = möglich
+export function buildLock(state, key) {
+  const b = BUILDINGS[key];
+  const next = state.buildings[key] + 1;
+  if (next > b.max) return 'Maximal';
+  if (!buildingUnlocked(state, key)) return `Ab Gildenhalle Stufe ${b.unlockHall}`;
+  const lvl = b.levels[next - 1];
+  if (key === 'hall') {
+    if (normalCleared(state) < lvl.stage) return `Benötigt ${lvl.stage} besiegte Stufen (${normalCleared(state)}/${lvl.stage})`;
+  } else if (state.buildings.hall < lvl.hall) return `Benötigt Gildenhalle Stufe ${lvl.hall}`;
+  if (state.construction) return 'Es wird gerade etwas anderes gebaut';
+  return '';
 }
 
 export const canAfford = (state, cost) => Object.entries(cost).every(([cur, v]) => state[cur] >= v);
@@ -177,14 +275,14 @@ export function pay(state, cost) {
 }
 
 export function createHero(state, heroId) {
-  const def = HERO_BY_ID[heroId];
-  const hero = { uid: state.nextUid++, heroId, level: 1, exp: 0, hp: 0, woundedUntil: 0 };
+  const hero = { uid: state.nextUid++, heroId, level: 1, exp: 0, hp: 0, woundedUntil: 0, weapon: null };
   state.heroes.push(hero);
   hero.hp = heroStats(state, hero).maxHp;
   return hero;
 }
 
-// Gibt die Anzahl gewonnener Stufen zurück
+// Gibt die Anzahl gewonnener Stufen zurück. Jede neue Stufe bringt die
+// CQHT-„Return Reward“: 🧪, Proviant und Früchte.
 export function gainExp(state, hero, amount) {
   const cap = levelCap(state);
   if (hero.level >= cap) { hero.exp = 0; return 0; }
@@ -195,10 +293,27 @@ export function gainExp(state, hero, amount) {
     const oldMax = heroStats(state, hero).maxHp;
     hero.level += 1;
     gained += 1;
+    const r = HERO_LEVELS[hero.level - 1].reward;
+    state.rp += r.rp;
+    r.rations.forEach((n, g) => { state.rations[g] += n; });
+    state.fruit += r.fruit;
     if (!hero.woundedUntil) hero.hp += heroStats(state, hero).maxHp - oldMax;
   }
   if (hero.level >= cap) hero.exp = 0;
   return gained;
+}
+
+// Gildenkasse + Helden-Einkommen für einen 10-Min.-Zyklus (CQHT „/cycle“)
+export function payCycle(state) {
+  let gold = hallGold(state), rp = 0;
+  for (const h of state.heroes) {
+    const row = HERO_LEVELS[h.level - 1];
+    gold += row.goldCycle;
+    rp += row.rpCycle;
+  }
+  state.gold += gold;
+  state.rp += rp;
+  return { gold, rp };
 }
 
 export function addLog(state, msg, squad = null, kind = '') {

@@ -3,7 +3,7 @@
 //  👉 Nach jeder Änderung an den App-Dateien CACHE_VERSION erhöhen,
 //     sonst bekommen installierte Clients die neuen Dateien nicht.
 // =====================================================================
-const CACHE_VERSION = 'aetherbastion-v1';
+const CACHE_VERSION = 'aetherbastion-v2';
 const APP_FILES = [
   './',
   './index.html',
@@ -12,6 +12,12 @@ const APP_FILES = [
   './js/state.js',
   './js/combat.js',
   './js/offline.js',
+  './js/progress.js',
+  './js/data/stages.js',
+  './js/data/buildings.js',
+  './js/data/heroLevels.js',
+  './js/data/weapons.js',
+  './js/data/specials.js',
   './js/ui.js',
   './js/main.js',
   './manifest.json',

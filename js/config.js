@@ -6,7 +6,7 @@
 export const GAME = {
   title: 'Aetherbastion: Rift Watch',
   SAVE_KEY: 'aetherbastion_save_v1',
-  SAVE_VERSION: 1,
+  SAVE_VERSION: 2,
   TICK_MS: 1000,                     // feste Kampf-Ticks
   LOOP_MS: 250,                      // wie oft die Spielschleife nachsieht
   AUTOSAVE_MS: 10_000,
@@ -17,18 +17,27 @@ export const GAME = {
   LOG_SIZE: 20,
 };
 
+import { ZONE_DATA, NORMAL_STAGES } from './data/stages.js';
+import { BUILDING_DATA, BUILDING_ORDER, CYCLE_MS } from './data/buildings.js';
+import { HERO_LEVELS, MAX_HERO_LEVEL } from './data/heroLevels.js';
+export { NORMAL_STAGES, BUILDING_ORDER, CYCLE_MS, HERO_LEVELS };
+export { WEAPONS, WEAPON_BY_ID, WEAPON_TYPES, WEAPON_FOR, WEAPON_GRADES, SHOP, DROP_GRADES } from './data/weapons.js';
+export { RATIONS } from './data/specials.js';
+
 export const CURRENCIES = {
   gold:   { icon: '🪙', name: 'Gold' },
   shards: { icon: '🔮', name: 'Ätherscherben' },
   coins:  { icon: '💠', name: 'Mystische Münzen' },
+  rp:     { icon: '🧪', name: 'Forschungspunkte' },
 };
 
 // order: kleinere Zahl = steht weiter vorn (wird zuerst angegriffen)
 export const ROLES = {
-  tank:    { name: 'Tank',              icon: '🛡️', order: 0 },
-  dps:     { name: 'Schadensausteiler', icon: '⚔️', order: 1 },
-  support: { name: 'Unterstützer',      icon: '📯', order: 2 },
-  healer:  { name: 'Heiler',            icon: '✚',  order: 3 },
+  // def = Grund-Schadensreduktion der Rolle (0.25 = −25 % erlittener Schaden)
+  tank:    { name: 'Tank',              icon: '🛡️', order: 0, def: 0.25 },
+  dps:     { name: 'Schadensausteiler', icon: '⚔️', order: 1, def: 0.05 },
+  support: { name: 'Unterstützer',      icon: '📯', order: 2, def: 0.10 },
+  healer:  { name: 'Heiler',            icon: '✚',  order: 3, def: 0.08 },
 };
 
 export const CLASSES = {
@@ -79,106 +88,76 @@ export const HERO_BY_ID = Object.fromEntries(HEROES.map(h => [h.id, h]));
 export const ONBOARDING = { tank: 'h01', healer: 'h07', dps: 'h13' };
 
 // ---------------------------------------------------------------------
-//  ZONEN (Riss-Regionen) – je 10 Wellen, dann Boss
-//  portal: benötigte Riss-Portal-Stufe. Zusätzlich muss der Boss der
-//  vorherigen Zone einmal besiegt worden sein.
-// ---------------------------------------------------------------------
-export const ZONES = [
-  { id: 1, name: 'Kryta', short: 'Kryta', portal: 1, mobs: [
-      { name: 'Banditen-Plünderer', sprite: 'MOB_BANDIT' },
-      { name: 'Zentauren-Späher',   sprite: 'MOB_ZENTAUR' },
-      { name: 'Sumpf-Skale',        sprite: 'MOB_SKALE' },
-      { name: 'Kryptis-Splitter',   sprite: 'MOB_KRYPTIS_SPLITTER' },
-    ], boss: { name: 'Zentauren-Kriegsherr', sprite: 'BOSS_ZENTAUR_KRIEGSHERR' } },
-  { id: 2, name: 'Zittergipfel', short: 'Zitterg.', portal: 2, mobs: [
-      { name: 'Eiswolf',            sprite: 'MOB_EISWOLF' },
-      { name: 'Sohn des Svanir',    sprite: 'MOB_SVANIR' },
-      { name: 'Grawl-Schamane',     sprite: 'MOB_GRAWL' },
-      { name: 'Kryptis-Frostjäger', sprite: 'MOB_KRYPTIS_FROST' },
-    ], boss: { name: 'Eisbrut-Koloss', sprite: 'BOSS_EISBRUT' } },
-  { id: 3, name: 'Kristallwüste', short: 'Wüste', portal: 3, mobs: [
-      { name: 'Erweckter Soldat',   sprite: 'MOB_ERWECKTER' },
-      { name: 'Sandhai',            sprite: 'MOB_SANDHAI' },
-      { name: 'Wüsten-Hydra',       sprite: 'MOB_HYDRA' },
-      { name: 'Kryptis-Plünderer',  sprite: 'MOB_KRYPTIS_PLUENDERER' },
-    ], boss: { name: 'Erweckter Champion', sprite: 'BOSS_ERWECKTER_CHAMPION' } },
-  { id: 4, name: 'Maguuma-Dschungel', short: 'Maguuma', portal: 4, mobs: [
-      { name: 'Mordrem-Ranke',      sprite: 'MOB_MORDREM_RANKE' },
-      { name: 'Mordrem-Wolf',       sprite: 'MOB_MORDREM_WOLF' },
-      { name: 'Dschungel-Raptor',   sprite: 'MOB_RAPTOR' },
-      { name: 'Kryptis-Lauerer',    sprite: 'MOB_KRYPTIS_LAUERER' },
-    ], boss: { name: 'Mordrem-Teragriff', sprite: 'BOSS_TERAGRIFF' } },
-  { id: 5, name: 'Die Nebel', short: 'Nebel', portal: 5, mobs: [
-      { name: 'Nebel-Phantom',      sprite: 'MOB_NEBELPHANTOM' },
-      { name: 'Kryptis-Dämon',      sprite: 'MOB_KRYPTIS_DAEMON' },
-      { name: 'Kryptis-Peiniger',   sprite: 'MOB_KRYPTIS_PEINIGER' },
-      { name: 'Kryptis-Verschlinger', sprite: 'MOB_KRYPTIS_VERSCHLINGER' },
-    ], boss: { name: 'Kryptis-Risstyrann', sprite: 'BOSS_KRYPTIS_TYRANN' } },
-];
-
-// ---------------------------------------------------------------------
 //  KAMPF
 // ---------------------------------------------------------------------
 export const COMBAT = {
-  WAVES_PER_ZONE: 10,      // Welle 11 = Boss
-  BOSS_HP_MULT: 4,
+  LEVEL_DIFF: 0.8,         // Schwierigkeit d = Stufen-Level × 0,8 (CQHT „Lv.“)
+  BOSS_DIFF_BONUS: 1,      // Boss rechnet mit Schwierigkeit + 1 …
+  BOSS_HP_MULT: 4,         // … und hat zusätzlich ×4 LP
   BOSS_ATK_MULT: 1.3,
-  BOSS_GOLD_MULT: 8,
-  BOSS_EXP_MULT: 5,
-  BOSS_SHARDS_PER_ZONE: 1, // Boss droppt garantiert Zone × diesen Wert
+  BOSS_TIME_LIMIT: 90,     // Sekunden; danach gilt die Herausforderung als gescheitert
+  BOSS_GOLD_MULT: 10,
+  BOSS_EXP_MULT: 6,
+  BOSS_SHARDS_PER_ZONE: 1, // Boss droppt garantiert Zone × diesen Wert (×3 auf schweren Stufen)
   WOUND_MS: 90_000,        // Regeneration nach 0 LP
-  WAVE_HEAL: 0.10,         // Heilung zwischen zwei Wellen (Anteil max. LP)
+  KILL_HEAL: 0.10,         // Heilung nach jedem Sieg (Anteil max. LP)
   CRIT_MULT: 2,
   HEAL_MULT: 1.8,          // Heilung = ATK × HEAL_MULT
   HEALER_ATK_FACTOR: 0.4,  // Heiler greifen nebenbei schwach an
   SUPPORT_ATK_FACTOR: 0.7,
   MIGHT_BONUS: 0.12,       // Macht: +12 % Team-ATK je Unterstützer
   EILE_BONUS: 0.15,        // Eile: +15 % Chance auf Zusatzangriff je Unterstützer
+  DEF_CAP: 0.75,           // max. Schadensreduktion
   SHARD_CHANCE: 0.05,
 };
+
+// Riss-Zonen aus data/stages.js; Schwierigkeit je Stufe berechnen.
+// Bis Lv. 59 zählt das Level, auf Lv.-60-Stufen (Zone 5, schwer, legendär)
+// steigt die Schwierigkeit mit den CQHT-Kosten weiter.
+export const ZONES = ZONE_DATA.map(z => ({
+  ...z,
+  stages: z.stages.map((st, i) => ({
+    ...st,
+    index: i + 1,
+    d: st.level < 60 ? st.level * COMBAT.LEVEL_DIFF : 60 * COMBAT.LEVEL_DIFF + (st.cost - 1000) / 500,
+  })),
+}));
+export const TOTAL_NORMAL = ZONES.length * NORMAL_STAGES;
 
 // ---------------------------------------------------------------------
 //  FORMELN
 // ---------------------------------------------------------------------
 export const F = {
-  heroAtk: (baseAtk, level, forgeMult = 1, prestigeMult = 1) =>
-    baseAtk * (1 + 0.08 * (level - 1)) * forgeMult * prestigeMult,
-  heroHp: (baseHp, level, prestigeMult = 1) =>
-    baseHp * (1 + 0.10 * (level - 1)) * prestigeMult,
-  difficulty: (zone, wave) => (zone - 1) * 10 + wave,
-  monsterHp: (d) => 60 * Math.pow(1.18, d),
-  monsterAtk: (d) => 6 * Math.pow(1.15, d),
-  goldPerKill: (d) => 5 * Math.pow(1.14, d),
-  expPerKill: (d) => 8 * Math.pow(1.15, d),
-  expToNext: (level) => 50 * Math.pow(1.12, level),
+  heroAtk: (baseAtk, level, gearMult = 1, bonusMult = 1) =>
+    baseAtk * (1 + 0.08 * (level - 1)) * gearMult * bonusMult,
+  heroHp: (baseHp, level, bonusMult = 1) =>
+    baseHp * (1 + 0.10 * (level - 1)) * bonusMult,
+  monsterHp: (d) => 60 * Math.pow(1.10, d),
+  monsterAtk: (d) => 6 * Math.pow(1.085, d),
+  goldPerKill: (d) => 5 * Math.pow(1.12, d),
+  expPerKill: (d) => 8 * Math.pow(1.13, d),
+  // EXP-Kurve aus data/heroLevels.js (CQHT „Total XP“)
+  expToNext: (level) => level >= MAX_HERO_LEVEL ? Infinity
+    : HERO_LEVELS[level].totalExp - HERO_LEVELS[level - 1].totalExp,
   recruitCost: (n) => Math.round(100 * Math.pow(2.2, n - 1)), // n = n-ter gekaufter Held
-  buildCost: (base, level) => Math.round(base * Math.pow(1.6, level - 1)), // level = Zielstufe
   retireCoins: (level) => Math.floor((level * level) / 100),
   reviveCost: (level) => Math.round(15 * Math.pow(level, 1.5)),
-  levelCap: (campLevel) => Math.max(1, campLevel) * 10,
+  researchCost: (base, toLevel) => Math.round(base * Math.pow(toLevel, 1.6)),
 };
-export const LEVEL_CAP_MAX = 80;
+export const LEVEL_CAP_MAX = MAX_HERO_LEVEL; // 60
 export const RETIRE_MIN_LEVEL = 20;
 
 // ---------------------------------------------------------------------
-//  GEBÄUDE
-//  cost: Basiswerte, Kosten = basis × 1.6^(Zielstufe − 1)
-//  Regel: Kein Gebäude darf über der Gildenhallen-Stufe liegen
-//  (Zeltlager-Stufe L+1 braucht Gildenhalle ≥ L+1).
+//  GEBÄUDE (Tabellen in data/buildings.js)
+//  Ätherscherben für das Riss-Portal sind eine eigene Ergänzung.
 // ---------------------------------------------------------------------
-export const BUILDINGS = {
-  hall:    { name: 'Gildenhalle',  icon: '🏛️', max: 10, cost: { gold: 250 },
-             desc: 'Hauptgebäude. Begrenzt alle anderen Gebäude, schaltet Zelte frei.' },
-  camp:    { name: 'Zeltlager',    icon: '⛺', max: 8,  cost: { gold: 180 },
-             desc: 'Level-Cap aller Helden = Stufe × 10.' },
-  kitchen: { name: 'Feldküche',    icon: '🍲', max: 10, cost: { gold: 140 }, bonusPerLevel: 0.05,
-             desc: '+5 % EXP pro Stufe.' },
-  forge:   { name: 'Schmiede',     icon: '⚒️', max: 10, cost: { gold: 160 }, bonusPerLevel: 0.05,
-             desc: '+5 % ATK pro Stufe.' },
-  portal:  { name: 'Riss-Portal',  icon: '🌀', max: 5,  cost: { gold: 400, shards: 4 },
-             desc: 'Stufe bestimmt die verfügbaren Riss-Zonen.' },
+export const PORTAL_SHARDS = [0, 5, 15, 40, 100]; // je Zielstufe 1–5
+export const BUILDINGS = Object.fromEntries(Object.entries(BUILDING_DATA).map(([k, b]) => [k, { ...b, max: b.levels.length }]));
+
+// Freischaltungen nach Gildenhallen-Stufe (wird im Gildenlager angezeigt)
+export const FEATURES = {
+  mystic: { name: 'Mystische Schmiede (Ruhestand)', unlockHall: 5 },
 };
-export const BUILDING_ORDER = ['hall', 'camp', 'kitchen', 'forge', 'portal'];
 
 // Zelte (= Trupps). Zelt 1 ab Start.
 export const TENTS = [
@@ -188,6 +167,35 @@ export const TENTS = [
   { hall: 9, gold: 900_000 },
 ];
 export const TENT_SIZE = 3;
+
+// ---------------------------------------------------------------------
+//  ASURA-LABOR – Forschungsbäume (bezahlt mit 🧪, CQHT: Honor)
+//  tier: Stufe im Baum; benötigt Asura-Labor ≥ TIER_LAB[tier]
+//  req:  [Knoten, Mindeststufe] – Voraussetzung im selben Baum
+//  per:  Wirkung je Stufe; base: Grundkosten in 🧪
+// ---------------------------------------------------------------------
+export const TIER_LAB = { 1: 1, 2: 3, 3: 5 };
+export const RESEARCH = {
+  offense: { name: 'Offensive', icon: '⚔️', nodes: {
+    atk:     { name: 'Kalibrierte Klingen',   tier: 1, max: 5, per: 0.04, unit: '% ATK',            base: 10 },
+    speed:   { name: 'Chrono-Beschleuniger',  tier: 2, max: 5, per: 0.05, unit: '% Angriffstempo',  base: 25, req: ['atk', 2] },
+    crit:    { name: 'Präzisionsoptik',       tier: 2, max: 5, per: 0.02, unit: '% Krit-Chance',    base: 25, req: ['atk', 2] },
+    critdmg: { name: 'Überladungskristall',   tier: 3, max: 5, per: 0.10, unit: '% Krit-Schaden',   base: 60, req: ['crit', 3] },
+  } },
+  defense: { name: 'Defensive', icon: '🛡️', nodes: {
+    hp:      { name: 'Verstärkte Panzerung',  tier: 1, max: 5, per: 0.05, unit: '% HP',             base: 10 },
+    def:     { name: 'Schutzfeld-Generator',  tier: 2, max: 5, per: 0.03, unit: '% DEF (Schadensreduktion)', base: 25, req: ['hp', 2] },
+    heal:    { name: 'Heilmatrix',            tier: 2, max: 5, per: 0.08, unit: '% Heilung',        base: 25, req: ['hp', 2] },
+    regen:   { name: 'Regenerations-Kapsel',  tier: 3, max: 5, per: 0.08, unit: '% Regenerationszeit', base: 60, req: ['heal', 3], sign: '−' },
+  } },
+  logistics: { name: 'Logistik', icon: '📦', nodes: {
+    gold:    { name: 'Goldwandler',           tier: 1, max: 5, per: 0.05, unit: '% Gold',           base: 10 },
+    exp:     { name: 'Wissensspeicher',       tier: 2, max: 5, per: 0.05, unit: '% EXP',            base: 25, req: ['gold', 2] },
+    shards:  { name: 'Ätherresonator',        tier: 2, max: 5, per: 0.10, unit: '% Scherben-Chance', base: 25, req: ['gold', 2] },
+    offline: { name: 'Stasis-Feld',           tier: 3, max: 4, per: 30,   unit: ' Min. Offline-Zeit', base: 60, req: ['exp', 3], flat: true },
+  } },
+};
+export const RESEARCH_ORDER = ['offense', 'defense', 'logistics'];
 
 // ---------------------------------------------------------------------
 //  MYSTISCHE SCHMIEDE (Prestige) – je 5 Stufen
