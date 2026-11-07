@@ -5,7 +5,7 @@
 // =====================================================================
 import {
   BUILDINGS, ZONES, ROLES, TENTS, TENT_SIZE, COMBAT, GAME, NORMAL_STAGES, TOTAL_NORMAL, FEATURES,
-  RETIRE_MIN_LEVEL, LEVEL_CAP_MAX, ARMORY_SLOTS, RATION_SLOTS, RATION_DROP, CYCLE_MS, WEAPON_TYPES, WEAPON_GRADES, SHOP, QUESTS, RECRUIT, REROLL_RESET_CLOVER,
+  RETIRE_MIN_LEVEL, LEVEL_CAP_MAX, ARMORY_SLOTS, RATION_SLOTS, RATION_DROP, RETIRE_HOME, CYCLE_MS, WEAPON_TYPES, WEAPON_GRADES, SHOP, QUESTS, RECRUIT, REROLL_RESET_CLOVER,
 } from './config.js';
 
 const pct = (x) => `${Math.round(x * 100)} %`;
@@ -132,7 +132,9 @@ export function manualChapters() {
         'Sie hinterlassen <b>🍀 Mystischen Klee</b> – je höher das Level, desto mehr. Ihre Waffe kommt in die Waffenkammer.',
         'Klee gibt es nur für EXP aus dem <b>Kampf</b>: Er richtet sich nach dem Level, das der Held ohne 🍞 Proviant hätte.',
         'In der <b>Mystischen Schmiede</b> kaufst du damit dauerhafte Boni für alle Trupps.',
-        'Ein Held im Ruhestand kann später neu rekrutiert werden und beginnt wieder bei Lv. 1.',
+        'Ein Held im Ruhestand kann später neu rekrutiert werden und beginnt wieder bei Lv. 1 – auch mehrfach im Ruhestand.',
+        `Im <b>🏡 Ruhestand</b> zahlen sie mit der Gildenkasse alle ${min(CYCLE_MS)} Min. 🟡 Gold und 📜 Forschungsnotizen, je nach (Kampf-)Level – auch offline.`,
+        `Es gibt ${RETIRE_HOME.baseSlots} Plätze, mit der Forschung „Archiv der Veteranen“ bis ${RETIRE_HOME.baseSlots + 90}. Sind alle voll, geht der Schwächste; ist keiner schwächer, gibt es nur den Klee.`,
       ])}` },
 
     { icon: '🌙', title: 'Offline & Spielstand', html: `

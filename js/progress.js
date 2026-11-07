@@ -277,6 +277,7 @@ export function researchInfo(state, treeKey, nodeKey) {
   let reason = '';
   if (lvl >= node.max) reason = 'Maximal';
   else if (state.buildings.lab < TIER_LAB[node.tier]) reason = `Asura-Labor Stufe ${TIER_LAB[node.tier]}`;
+  else if (node.labSteps && state.buildings.lab < node.labSteps[lvl]) reason = `Asura-Labor Stufe ${node.labSteps[lvl]}`;
   else if (node.req && researchLevel(state, node.req[0]) < node.req[1]) {
     reason = `${RESEARCH[treeKey].nodes[node.req[0]].name} Stufe ${node.req[1]}`;
   }

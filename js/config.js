@@ -5,10 +5,10 @@
 
 export const GAME = {
   title: 'Aetherbastion: Rift Watch',
-  VERSION: '0.26.0',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
+  VERSION: '0.27.0',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
   BUILD: 'lokal',                    // ersetzt der Pages-Workflow durch „Nr. · Commit“
   SAVE_KEY: 'aetherbastion_save_v1',
-  SAVE_VERSION: 8,
+  SAVE_VERSION: 9,
   TICK_MS: 1000,                     // feste Kampf-Ticks
   LOOP_MS: 250,                      // wie oft die Spielschleife nachsieht
   AUTOSAVE_MS: 10_000,
@@ -269,6 +269,10 @@ export const RECRUIT = {
   freeRarity: 2,
 };
 export const RETIRE_MIN_LEVEL = 20;
+// #022: Helden im Ruhestand zahlen je Zyklus (CYCLE_MS) 🟡 und 📜 nach goldCycle/rpCycle ihres Levels
+// (js/data/heroLevels.js, CQHT). Plätze: baseSlots + Forschung „Archiv der Veteranen“.
+// Voll → der schwächste geht, wenn der neue stärker ist; sonst nur 🍀 und kein Platz.
+export const RETIRE_HOME = { baseSlots: 10 };
 
 // ---------------------------------------------------------------------
 //  GEBÄUDE (Tabellen in data/buildings.js)
@@ -313,7 +317,8 @@ export const TENT_SIZE = 3;
 //  req:  [Knoten, Mindeststufe] – Voraussetzung im selben Baum
 //  per:  Wirkung je Stufe; base: Grundkosten in 📜
 // ---------------------------------------------------------------------
-export const TIER_LAB = { 1: 1, 2: 3, 3: 5 };
+export const TIER_LAB = { 1: 1, 2: 3, 3: 5, 4: 6 };
+// labSteps: Labor-Stufe, die jede einzelne Stufe des Knotens braucht (statt nur TIER_LAB)
 export const RESEARCH = {
   offense: { name: 'Offensive', icon: '⚔️', nodes: {
     atk:     { name: 'Kalibrierte Klingen',   tier: 1, max: 5, per: 0.04, unit: '% ATK',            base: 10 },
@@ -332,6 +337,9 @@ export const RESEARCH = {
     exp:     { name: 'Wissensspeicher',       tier: 2, max: 5, per: 0.05, unit: '% EXP',            base: 25, req: ['gold', 2] },
     shards:  { name: 'Ätherresonator',        tier: 2, max: 5, per: 0.10, unit: '% Scherben-Chance', base: 25, req: ['gold', 2] },
     offline: { name: 'Stasis-Feld',           tier: 3, max: 4, per: 30,   unit: ' Min. Offline-Zeit', base: 60, req: ['exp', 3], flat: true },
+    // #022: mehr Plätze im Ruhestand (Start RETIRE_HOME.baseSlots, +10 je Stufe bis 100)
+    archive: { name: 'Archiv der Veteranen',  tier: 4, max: 9, per: 10,   unit: ' Plätze im Ruhestand', base: 100, req: ['offline', 1], flat: true,
+               labSteps: [6, 6, 7, 7, 8, 8, 9, 9, 10] },
   } },
 };
 export const RESEARCH_ORDER = ['offense', 'defense', 'logistics'];

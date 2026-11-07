@@ -4,7 +4,7 @@
 import {
   GAME, HERO_BY_ID, BUILDINGS, MYSTIC, F, COMBAT, ZONES, TENTS, TENT_SIZE, LEVEL_CAP_MAX,
   ROLES, RESEARCH, FEATURES, NORMAL_STAGES, TOTAL_NORMAL, HERO_LEVELS, CYCLE_MS, PORTAL_SHARDS,
-  WEAPON_BY_ID, WEAPON_GRADES, WEAPON_FOR, RECRUIT, ARMORY_SLOTS, RATION_SLOTS,
+  WEAPON_BY_ID, WEAPON_GRADES, WEAPON_FOR, RECRUIT, ARMORY_SLOTS, RATION_SLOTS, RETIRE_HOME,
 } from './config.js';
 import { markFulfilledQuests } from './quests.js';
 
@@ -36,6 +36,7 @@ export function createNewState(now = Date.now()) {
     progress: {},          // Zone → höchste besiegte Stufe (Boss)
     research: {},          // Forschungsknoten → Stufe
     mystic: { atk: 0, hp: 0, regen: 0, loot: 0 },
+    retired: [],           // #022: Helden im Ruhestand { heroId, level, rarity } → passives Einkommen
     settings: { vibrate: true },
     selectedSquad: 0,
     log: [],
@@ -124,6 +125,11 @@ const MIGRATIONS = {
   // v7 → v8: Helden merken sich ihre Proviant-EXP (#046). Alte Helden starten mit 0.
   7: (s) => {
     for (const h of s.heroes || []) h.fedExp = h.fedExp || 0;
+    return s;
+  },
+  // v8 → v9: Ruhestand mit Plätzen und passivem Einkommen (#022). Bisherige Ruheständler sind weg.
+  8: (s) => {
+    s.retired = Array.isArray(s.retired) ? s.retired : [];
     return s;
   },
   // v4 → v5: Rekrutierung mit Angeboten und Seltenheit. Vorhandene Helden sind „Fein“.
@@ -404,10 +410,41 @@ export function gainExp(state, hero, amount) {
 
 // Gildenkasse für einen 10-Min.-Zyklus: nur das Gold der Gildenhalle.
 // Helden haben kein passives Einkommen (goldCycle/rpCycle in heroLevels.js bleiben ungenutzt, siehe #022).
+// Ruhestand (#022)
+export const retireSlots = (s) => RETIRE_HOME.baseSlots + rv(s, 'archive');
+export function retireIncome(s) {
+  let gold = 0, rp = 0;
+  for (const r of s.retired || []) {
+    const L = HERO_LEVELS[Math.max(1, Math.min(HERO_LEVELS.length, r.level)) - 1];
+    gold += L.goldCycle; rp += L.rpCycle;
+  }
+  return { gold, rp };
+}
+// Platz im Ruhestand für ein Level: { ok, replace } (replace = Index des schwächsten, der geht)
+export function retirePlace(s, level) {
+  const list = s.retired || [];
+  if (list.length < retireSlots(s)) return { ok: true, replace: -1 };
+  let w = -1;
+  list.forEach((r, i) => { if (w === -1 || r.level < list[w].level) w = i; });
+  return w !== -1 && list[w].level < level ? { ok: true, replace: w } : { ok: false, replace: -1 };
+}
+// Held in den Ruhestand eintragen (nach Kampf-Level). Rückgabe: { placed, gone } (gone = verdrängter Eintrag)
+export function addRetired(s, hero, level) {
+  const p = retirePlace(s, level);
+  if (!p.ok) return { placed: false, gone: null };
+  const entry = { heroId: hero.heroId, level, rarity: hero.rarity };
+  let gone = null;
+  if (p.replace >= 0) [gone] = s.retired.splice(p.replace, 1, entry);
+  else s.retired.push(entry);
+  return { placed: true, gone };
+}
+
 export function payCycle(state) {
   const gold = hallGold(state);
-  state.gold += gold;
-  return { gold };
+  const inc = retireIncome(state);
+  state.gold += gold + inc.gold;
+  state.rp += inc.rp;
+  return { gold: gold + inc.gold, rp: inc.rp, retireGold: inc.gold };
 }
 
 export function addLog(state, msg, squad = null, kind = '') {

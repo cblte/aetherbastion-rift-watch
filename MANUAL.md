@@ -139,13 +139,13 @@ Die Karte der Gildenhalle zeigt, was die nächste Stufe freischaltet. Die Mystis
 
 ## 🔬 Asura-Labor – Forschung
 
-Mit **📜 Forschungsnotizen** erforschst du dauerhafte Verbesserungen in drei Bäumen. Jeder Knoten hat bis zu 5 Stufen. Tiefere Knoten brauchen einen Vorgänger und eine höhere Laborstufe (Stufe II ab Labor 3, Stufe III ab Labor 5).
+Mit **📜 Forschungsnotizen** erforschst du dauerhafte Verbesserungen in drei Bäumen. Jeder Knoten hat bis zu 5 Stufen. Tiefere Knoten brauchen einen Vorgänger und eine höhere Laborstufe (Stufe II ab Labor 3, Stufe III ab Labor 5, Stufe IV ab Labor 6).
 
 | Baum | Knoten |
 |---|---|
 | ⚔️ Offensive | Kalibrierte Klingen (+ATK) → Chrono-Beschleuniger (+Angriffstempo), Präzisionsoptik (+Krit-Chance) → Überladungskristall (+Krit-Schaden) |
 | 🛡️ Defensive | Verstärkte Panzerung (+HP) → Schutzfeld-Generator (+DEF), Heilmatrix (+Heilung) → Regenerations-Kapsel (−Regenerationszeit) |
-| 📦 Logistik | Goldwandler (+Gold) → Wissensspeicher (+EXP), Ätherresonator (+Scherben) → Stasis-Feld (+Offline-Zeit) |
+| 📦 Logistik | Goldwandler (+Gold) → Wissensspeicher (+EXP), Ätherresonator (+Scherben) → Stasis-Feld (+Offline-Zeit) → Archiv der Veteranen (+10 Plätze im Ruhestand je Stufe, Labor 6–10) |
 
 ## ⚒️ Charr-Schmiede – Waffen
 
@@ -218,7 +218,9 @@ Wie oft welche Seltenheit kommt, hängt von der **Gildenhalle** ab. Die aktuelle
 - Die Mystische Schmiede öffnet sich ab **Gildenhalle 5**.
 - Helden ab **Lv. 20** können in den **Ruhestand** gehen. Sie verlassen das Lager und hinterlassen **🍀 Mystischen Klee** = Level² ÷ 100 (Lv. 20 = 4, Lv. 60 = 36). Ihre Waffe kommt zurück in die Waffenkammer.
 - Klee gibt es nur für EXP aus dem **Kampf**. EXP aus 🍞 Proviant zählt nicht: Der Klee richtet sich nach dem **Kampf-Level**, also dem Level, das der Held nur mit Kampf-EXP hätte. Ein Held, der nur mit Proviant gelevelt wurde, bringt 0 🍀; Füttern nimmt aber auch keinen Klee weg.
-- Ein Held im Ruhestand kann später erneut rekrutiert werden und beginnt wieder bei Lv. 1.
+- Ein Held im Ruhestand kann später erneut rekrutiert werden und beginnt wieder bei Lv. 1. Derselbe Held darf mehrmals im Ruhestand sein.
+- **🏡 Ruhestand:** Helden im Ruhestand zahlen mit der Gildenkasse alle 10 Min. 🟡 Gold und 📜 Forschungsnotizen nach ihrem Kampf-Level (Lv. 20 = 17 🟡 / 1 📜, Lv. 40 = 46 🟡 / 2 📜, Lv. 60 = 75 🟡 / 3 📜), auch offline.
+- Es gibt **10 Plätze**. Die Forschung **Archiv der Veteranen** (Logistik, Stufe IV, Asura-Labor 6–10) bringt +10 je Stufe, bis 100. Sind alle Plätze voll, geht der schwächste Held; ist keiner schwächer als der neue, gibt es nur den Klee.
 - In der **✨ Mystischen Schmiede** gibt es dauerhafte Boni mit je 5 Stufen: mehr Trupp-ATK, mehr HP, kürzere Regeneration, mehr Gold und Scherben.
 
 ## Offline-Fortschritt

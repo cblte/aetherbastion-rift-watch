@@ -12,6 +12,15 @@ Format:
 
 ---
 
+## v0.27.0
+
+### #022 Ruhestand mit passivem Einkommen (Spielsystem)
+- Helden im Ruhestand stehen in `state.retired` ({ heroId, level, rarity }) und zahlen mit der Gildenkasse je Zyklus (10 Min.) 🟡 und 📜 nach `goldCycle`/`rpCycle` ihres Kampf-Levels (`heroLevels.js`, CQHT), auch offline.
+- Plätze: `RETIRE_HOME.baseSlots` = 10, neuer Forschungsknoten „Archiv der Veteranen“ (Logistik, Stufe IV, +10 je Stufe bis 100, Stufen an Labor 6–10 gekoppelt über `labSteps`).
+- Voll: Der schwächste Held geht, wenn der neue stärker ist; sonst nur 🍀. Derselbe Held darf mehrfach im Ruhestand sein. 🍀 beim Ruhestand bleibt.
+- Anzeige: Karte „🏡 Ruhestand“ in der Mystischen Schmiede, Gildenkasse im Lager und im Offline-Bericht mit Ruhestand-Einkommen, Bestätigungsdialog zeigt Einkommen und wer weicht.
+- Save-Version 9 (Migration 8 → 9: leere Liste). Handbuch ergänzt.
+
 ## v0.26.0
 
 ### #046 Mystische Schmiede zu leicht: Rekrutieren, füttern, Ruhestand (Balancing)

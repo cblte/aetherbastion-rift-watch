@@ -22,7 +22,7 @@ export function runOffline(state, elapsedMs) {
   const seconds = Math.floor(cappedMs / 1000);
   const report = {
     elapsedMs, cappedMs, maxMs, capped: elapsedMs > maxMs,
-    squads: [], rp: 0, built: null, cycles: 0, cycleGold: 0, totals: { gold: 0, shards: 0, kills: 0, levelUps: 0 },
+    squads: [], rp: 0, built: null, cycles: 0, cycleGold: 0, cycleRp: 0, totals: { gold: 0, shards: 0, kills: 0, levelUps: 0 },
   };
 
   const rpBefore = state.rp;
@@ -34,10 +34,10 @@ export function runOffline(state, elapsedMs) {
   report.built = checkConstruction(state, start + elapsedMs);
   checkShop(state, start + elapsedMs);
   checkRecruits(state, start + elapsedMs);
-  report.cycles = 0; report.cycleGold = 0;
+  report.cycles = 0; report.cycleGold = 0; report.cycleRp = 0;
   while (state.nextCycleMs <= start + cappedMs) {
     const c = payCycle(state);
-    report.cycles += 1; report.cycleGold += c.gold;
+    report.cycles += 1; report.cycleGold += c.gold; report.cycleRp += c.rp;
     state.nextCycleMs += CYCLE_MS;
   }
   if (state.nextCycleMs <= start + elapsedMs) {

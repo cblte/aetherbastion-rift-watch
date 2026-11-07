@@ -7,7 +7,7 @@
 import {
   GAME, CURRENCIES, ROLES, CLASSES, HEROES, HERO_BY_ID, ZONES, COMBAT, F, BUILDINGS, BUILDING_ORDER,
   TENTS, TENT_SIZE, MYSTIC, MYSTIC_ORDER, ONBOARDING, RETIRE_MIN_LEVEL, LEVEL_CAP_MAX, FEATURES,
-  RESEARCH, RESEARCH_ORDER, TIER_LAB, WEAPON_BY_ID, WEAPON_GRADES, WEAPON_TYPES, RATIONS, NORMAL_STAGES,
+  RESEARCH, RESEARCH_ORDER, TIER_LAB, HERO_LEVELS, WEAPON_BY_ID, WEAPON_GRADES, WEAPON_TYPES, RATIONS, NORMAL_STAGES,
   TOTAL_NORMAL, CYCLE_MS, QUESTS as MAIN_QUESTS, RECRUIT, REROLL_RESET_CLOVER, ARMORY_SLOTS, ARMORY_CLEANUP_DEFAULT, UI, RATION_DROP,
 } from './config.js';
 import { currentQuest, questProgress, questNumber, claimQuest, questDone } from './quests.js';
@@ -16,7 +16,7 @@ import {
   createNewState, exportSave, importSave, replaceState, getHero, heroStats, levelCap,
   activeHeroCount, reserveHeroes, isOwned, rarityBonus, isZoneAvailable, isStageAvailable, stageBeaten,
   stageLock, buildingCost, buildLock, canAfford, pay, createHero, addLog, squadOf, buildingUnlocked,
-  featureUnlocked, normalCleared, hallGold, weaponType, armorySlots, armoryFree, rationSlots, heroRetire,
+  featureUnlocked, normalCleared, hallGold, weaponType, armorySlots, armoryFree, rationSlots, retireSlots, retireIncome, retirePlace, addRetired, heroRetire,
 } from './state.js';
 import {
   squadMembers, spawnMonster, setStage, reviveHero, assignHero, teamProfile, heroOutput, fmt, stageOf,
@@ -426,7 +426,7 @@ function effectText(key, lvl, short = false) {
     case 'hall': return lvl ? `${short ? '' : 'Gildenkasse '}${fmt(L.gold)} 🟡/10 Min.` : 'Noch nicht errichtet';
     case 'camp': return `${short ? '' : 'Level-Cap '}Lv. ${lvl ? L.cap : 10}`;
     case 'kitchen': return `+${Math.round(lvl * BUILDINGS.kitchen.bonusPerLevel * 100)} %${short ? '' : ' EXP'}`;
-    case 'lab': return `${short ? '' : 'Forschung bis '}Stufe ${lvl >= TIER_LAB[3] ? 'III' : lvl >= TIER_LAB[2] ? 'II' : lvl ? 'I' : '–'}`;
+    case 'lab': return `${short ? '' : 'Forschung bis '}Stufe ${lvl >= TIER_LAB[4] ? 'IV' : lvl >= TIER_LAB[3] ? 'III' : lvl >= TIER_LAB[2] ? 'II' : lvl ? 'I' : '–'}`;
     case 'forge': return lvl ? `${short ? '' : 'Laden: Waffen bis '}${WEAPON_GRADES[[0, 3, 5, 6][lvl]].name}` : 'Noch nicht gebaut';
     case 'portal': return lvl ? `${short ? '' : 'Zonen bis '}${ZONES.filter(z => z.portal <= lvl).at(-1).name}` : 'Inaktiv';
     default: return '';
@@ -504,7 +504,7 @@ function renderCamp() {
     <span>⚔️ Siege <b>${fmt(S.stats.kills)}</b></span>
     <span>👑 Stufen <b>${normalCleared(S)}/${TOTAL_NORMAL}</b></span>
     <span>🌅 Ruhestand <b>${S.stats.retired}</b></span></div>
-    <div class="card small cycle">💰 Gildenkasse in <b>${clock(next)}</b>: +${fmt(hallGold(S))} 🟡</div>`);
+    <div class="card small cycle">💰 Gildenkasse in <b>${clock(next)}</b>: +${fmt(hallGold(S) + retireIncome(S).gold)} 🟡${retireIncome(S).rp ? ` +${fmt(retireIncome(S).rp)} 📜` : ''}</div>`);
   setHTML($('#buildings'), BUILDING_ORDER.map(buildingCard).join(''));
 }
 
@@ -685,7 +685,7 @@ function renderLab() {
   setHTML($('#lab'), `
     <div class="card lab-head">
       <div><b>📜 ${fmt(S.rp)}</b> Forschungsnotizen</div>
-      <div class="muted small">Stufe II ab Labor ${TIER_LAB[2]}, III ab Labor ${TIER_LAB[3]}.</div>
+      <div class="muted small">Stufe II ab Labor ${TIER_LAB[2]}, III ab Labor ${TIER_LAB[3]}, IV ab Labor ${TIER_LAB[4]}.</div>
     </div>
     ${RESEARCH_ORDER.map(tk => {
       const tree = RESEARCH[tk];
@@ -696,7 +696,7 @@ function renderLab() {
         const maxed = info.lvl >= n.max;
         return `<div class="card node tier-${n.tier} ${info.reason && !maxed ? 'blocked' : ''}">
           <div class="b-body">
-            <div class="b-title"><b>${n.name}</b><span class="lv">${'I'.repeat(n.tier)}</span></div>
+            <div class="b-title"><b>${n.name}</b><span class="lv">${['', 'I', 'II', 'III', 'IV', 'V'][n.tier]}</span></div>
             ${pips(info.lvl, n.max)}
             <div class="b-eff">${researchEffect(n, info.lvl)}${maxed ? '' : ` <span class="arrow">→</span> ${researchEffect(n, info.to)}`}</div>
             ${info.reason && !maxed ? `<div class="b-note">🔒 ${info.reason}</div>` : ''}
@@ -848,6 +848,7 @@ function renderForge() {
   }
   setHTML($('#mystic'), `
     <div class="card small">Ruhestand ab Lv. ${RETIRE_MIN_LEVEL} bringt 🍀. Die Boni hier sind dauerhaft.</div>
+    ${retireHomeCard()}
     ${MYSTIC_ORDER.map(k => {
       const m = MYSTIC[k];
       const lvl = S.mystic[k];
@@ -1113,7 +1114,7 @@ export function showOfflineReport(report, { debug = false } = {}) {
     <h3>🌙 Offline-Rissbericht</h3>
     <p class="muted small">${debug ? 'Simuliert: ' : 'Abwesend: '}${fmtDuration(report.elapsedMs)}${report.capped ? ` · gewertet max. ${fmtDuration(report.maxMs)}` : ''}</p>
     <div class="card report-total"><span>🟡 +${fmt(t.gold)}</span><span>🔮 +${t.shards}</span>${report.rp >= 1 ? `<span>📜 +${fmt(report.rp)}</span>` : ''}<span>⬆️ ${t.levelUps}</span></div>
-    ${report.cycles ? `<p class="small">💰 Gildenkasse: ${report.cycles}× ausgezahlt, +${fmt(report.cycleGold)} 🟡</p>` : ''}
+    ${report.cycles ? `<p class="small">💰 Gildenkasse: ${report.cycles}× ausgezahlt, +${fmt(report.cycleGold)} 🟡${report.cycleRp ? ` +${fmt(report.cycleRp)} 📜 (Ruhestand)` : ''}</p>` : ''}
     ${report.built ? `<p class="small">🔨 ${BUILDINGS[report.built.key].name} Stufe ${report.built.to} ist fertig.</p>` : ''}
     ${squads || '<p class="muted">Keine Trupps im Einsatz.</p>'}
     <p class="muted small">Offline farmen die Trupps nur Schergen. Bosse forderst du live heraus.</p>
@@ -1275,7 +1276,7 @@ function onClick(e) {
     case 'retire': {
       const h = getHero(S, num(d.uid));
       if (!h) break;
-      confirmModal('🌅 Ruhestand', `${esc(HERO_BY_ID[h.heroId].name)} (Lv. ${h.level}) verlässt das Lager und hinterlässt <b>🍀 ${heroRetire(h).clover}</b> Mystischen Klee.${heroRetire(h).combatLevel < h.level ? ` Proviant-EXP zählt nicht: Klee nach dem Kampf-Level ${heroRetire(h).combatLevel} statt Lv. ${h.level} (voll wären 🍀 ${heroRetire(h).full}).` : ''} Die Waffe kommt in die Waffenkammer; der Held kann später neu rekrutiert werden (ab Lv. 1).`, 'retire-confirm', { uid: h.uid });
+      confirmModal('🌅 Ruhestand', `${esc(HERO_BY_ID[h.heroId].name)} (Lv. ${h.level}) verlässt das Lager und hinterlässt <b>🍀 ${heroRetire(h).clover}</b> Mystischen Klee.${heroRetire(h).combatLevel < h.level ? ` Proviant-EXP zählt nicht: Klee nach dem Kampf-Level ${heroRetire(h).combatLevel} statt Lv. ${h.level} (voll wären 🍀 ${heroRetire(h).full}).` : ''} ${retireConfirmText(h)} Die Waffe kommt in die Waffenkammer; der Held kann später neu rekrutiert werden (ab Lv. 1).`, 'retire-confirm', { uid: h.uid });
       break;
     }
     case 'retire-confirm': retire(num(d.uid)); break;
@@ -1434,6 +1435,27 @@ function recruit(slot) {
   changed(`${esc(HERO_BY_ID[heroId].name)} angeworben${placed || ' (Reserve)'}!`);
 }
 
+// #022: Was der Ruhestand an Platz und Einkommen bringt (nach Kampf-Level)
+function retireConfirmText(h) {
+  const lv = heroRetire(h).combatLevel;
+  const L = HERO_LEVELS[lv - 1];
+  const p = retirePlace(S, lv);
+  if (!p.ok) return `<br>Alle ${retireSlots(S)} Plätze im Ruhestand sind mit stärkeren Helden belegt: <b>kein passives Einkommen</b>.`;
+  const gone = p.replace >= 0 ? S.retired[p.replace] : null;
+  return `<br>Im Ruhestand zahlt er alle 10 Min. <b>+${L.goldCycle} 🟡 +${L.rpCycle} 📜</b> (Lv. ${lv}).${gone ? ` Dafür geht ${esc(HERO_BY_ID[gone.heroId]?.name || 'ein Veteran')} (Lv. ${gone.level}).` : ''}`;
+}
+
+function retireHomeCard() {
+  const inc = retireIncome(S);
+  const list = [...S.retired].sort((a, b) => b.level - a.level);
+  return `<div class="card">
+    <div class="b-title"><b>🏡 Ruhestand</b><span class="lv">${S.retired.length}/${retireSlots(S)}</span></div>
+    <div class="small">Alle 10 Min.: <b>+${fmt(inc.gold)} 🟡 +${fmt(inc.rp)} 📜</b></div>
+    <div class="muted small">Je höher das Level, desto mehr. Sind alle Plätze voll, geht der Schwächste. Mehr Plätze: Forschung „${RESEARCH.logistics.nodes.archive.name}“.</div>
+    ${list.length ? `<div class="muted small">${list.map(r => `${esc(HERO_BY_ID[r.heroId]?.name || '?')} Lv. ${r.level}`).join(' · ')}</div>` : ''}
+  </div>`;
+}
+
 function retire(uid) {
   const h = getHero(S, uid);
   if (!h || h.level < RETIRE_MIN_LEVEL || !featureUnlocked(S, 'mystic')) return;
@@ -1443,12 +1465,17 @@ function retire(uid) {
     sq.slots[sq.slots.indexOf(uid)] = null;
     if (!sq.slots.some(u => u != null)) { sq.status = 'idle'; sq.monster = null; sq.mode = 'farm'; }
   }
-  const clover = heroRetire(h).clover;
+  const hr = heroRetire(h);
+  const clover = hr.clover;
   S.clover += clover;
+  const home = addRetired(S, h, hr.combatLevel);
   if (h.weapon) S.armory.push(h.weapon);
   S.heroes = S.heroes.filter(x => x.uid !== uid);
   S.stats.retired += 1;
-  addLog(S, `🌅 ${HERO_BY_ID[h.heroId].name} geht in den Ruhestand (+${clover} 🍀).`, null, 'info');
+  const name = HERO_BY_ID[h.heroId].name;
+  const homeTxt = !home.placed ? ' Kein Platz im Ruhestand – er zieht weiter.'
+    : home.gone ? ` ${HERO_BY_ID[home.gone.heroId]?.name || 'Ein Veteran'} (Lv. ${home.gone.level}) macht ihm Platz.` : '';
+  addLog(S, `🌅 ${name} geht in den Ruhestand (+${clover} 🍀).${homeTxt}`, null, 'info');
   closeModal();
   changed(`+🍀 ${clover} Mystischer Klee`);
 }
