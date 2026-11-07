@@ -88,7 +88,7 @@ Stufe bestimmt die verfügbaren Riss-Zonen.
 | 3 | 3.000 | 2 Min. | 3 |
 | 4 | 25.000 | 5 Min. | 4 |
 
-**So funktioniert es:** Jede Stufe öffnet ein neues Portal mit weiteren Riss-Zonen (Stufe 1 = Kryta, Caledon & Zittergipfel, Zonen 1–3 · Stufe 2 = Metrica, Aschfurt & Anwesen, Zonen 4–6 · Stufe 3 = Ascalon & Harathi, Zonen 7–8 · Stufe 4 = Küste & Sümpfe von Orr, Zonen 9–10). Kostet zusätzlich 🔮 Ätherscherben. Statt einzelner Monster wie in CQHT wählt jeder Trupp eine Stufe und farmt deren Schergen.
+**So funktioniert es:** Jede Stufe öffnet ein neues Portal mit weiteren Riss-Zonen (Stufe 1 = Kryta, Caledon & Zittergipfel, Zonen 1–3 · Stufe 2 = Metrica, Aschfurt & Anwesen, Zonen 4–6 · Stufe 3 = Löwenstein & Meerenge, Zonen 7–8 · Stufe 4 = Orr, Zonen 9–10). Kostet zusätzlich 🔮 Ätherscherben. Statt einzelner Monster wie in CQHT wählt jeder Trupp eine Stufe und farmt deren Schergen.
 
 ## 🍲 Feldküche
 

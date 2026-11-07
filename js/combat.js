@@ -21,6 +21,13 @@ export function frontOrder(state, squad, heroes) {
     squad.slots.indexOf(a.uid) - squad.slots.indexOf(b.uid));
 }
 
+// Anteil jedes Helden am Monsterschaden (Summe 1), nach ROLES[…].aggro
+export function damageShares(heroes) {
+  const w = heroes.map(h => ROLES[HERO_BY_ID[h.heroId].role].aggro);
+  const sum = w.reduce((a, b) => a + b, 0) || 1;
+  return heroes.map((h, k) => ({ hero: h, share: w[k] / sum }));
+}
+
 export const stageOf = (zoneId, stage) => ZONES[zoneId - 1].stages[stage - 1];
 
 // variant: wechselt zwischen den beiden Schergen-Typen
@@ -62,9 +69,9 @@ export function teamProfile(state, heroes, squad = null) {
       dps += a * f * (1 + st.crit * (st.critMult - 1)) * tempo;
     }
   }
-  const front = squad && heroes.length ? frontOrder(state, squad, heroes)[0] : heroes[0];
-  const frontDef = front ? heroStats(state, front).defense : 0;
-  return { dps, heal, hpPool, atkMult, tempo, might, eile, frontDef };
+  // DEF des Trupps, gewichtet wie der Monsterschaden verteilt wird
+  const teamDef = damageShares(heroes).reduce((a, o) => a + o.share * heroStats(state, o.hero).defense, 0);
+  return { dps, heal, hpPool, atkMult, tempo, might, eile, teamDef };
 }
 
 // Was ein einzelner Held pro Sekunde tut (ohne Trupp-Buffs) – für Anzeigen
@@ -107,18 +114,18 @@ export function applyKillRewards(state, squadIdx, tmpl, heroes, factor = 1, dete
     if (gainExp(state, h, exp) > 0) levelUps.push({ uid: h.uid, from, to: h.level });
   }
   // Stufen-Belohnung des Bosses (aus den CQHT-Daten)
-  let rp = 0, weapons = [], rations = 0;
+  let rp = 0, weapons = [], lostWeapons = 0, rations = 0;
   if (tmpl.boss) {
     const r = st.rewards;
     rp = r.rp[0] + Math.floor(Math.random() * (r.rp[1] - r.rp[0] + 1));
     state.rp += rp;
-    weapons = dropWeapons(state, zone.tier, !!st.hard, r.weapons);
+    ({ got: weapons, lost: lostWeapons } = dropWeapons(state, zone.tier, !!st.hard, r.weapons));
     const g = Math.min(RATIONS.length, st.hard ? 6 : zone.tier + (zone.part === 2 ? 1 : 0)) - 1;
     rations = r.rations;
     state.rations[g] += rations;
     state.tickets += r.tickets[0] + Math.floor(Math.random() * (r.tickets[1] - r.tickets[0] + 1));
   }
-  return { gold, exp, shards, levelUps, rp, weapons, rations };
+  return { gold, exp, shards, levelUps, rp, weapons, lostWeapons, rations };
 }
 
 // Herausforderung beendet (Sieg, Zeit abgelaufen, Rückzug, Abbruch) → zurück zu den Schergen, Abklingzeit startet.
@@ -245,6 +252,7 @@ function tickSquad(state, i, now, ev) {
       const first = recordBossWin(state, i);
       ev.bossWins.push({ squad: i, first, zone: sq.zone, stage: sq.stage });
       addLog(state, `👑 ${mon.name} besiegt! +${fmt(r.gold)}🟡 +${r.shards}🔮 +${r.rp}📜${r.weapons.length ? ` · ⚒️ ${r.weapons.map(w => w.name).join(', ')}` : ''}`, i, 'boss');
+      if (r.lostWeapons) addLog(state, `🗄️ Waffenkammer voll – ${r.lostWeapons === 1 ? 'eine Waffe bleibt' : `${r.lostWeapons} Waffen bleiben`} liegen. Räum im 🎒 Inventar auf.`, i, 'bad');
       if (first) {
         const zone = ZONES[sq.zone - 1];
         addLog(state, sq.stage === NORMAL_STAGES
@@ -267,15 +275,16 @@ function tickSquad(state, i, now, ev) {
     return;
   }
 
-  // Monster greift den vordersten lebenden Helden an
-  const target = frontOrder(state, sq, alive)[0];
-  target.hp -= mon.atk * (1 - heroStats(state, target).defense);
-  if (target.hp <= 0) {
-    target.hp = 0;
-    target.woundedUntil = now + regenMs(state);
-    addLog(state, `💢 ${HERO_BY_ID[target.heroId].name} ist verwundet.`, i, 'bad');
-    if (members.every(h => h.woundedUntil)) startRetreat(state, i);
+  // Monster trifft alle fitten Helden, aufgeteilt nach Rolle (ROLES[…].aggro)
+  for (const { hero, share } of damageShares(frontOrder(state, sq, alive))) {
+    hero.hp -= mon.atk * share * (1 - heroStats(state, hero).defense);
+    if (hero.hp <= 0) {
+      hero.hp = 0;
+      hero.woundedUntil = now + regenMs(state);
+      addLog(state, `💢 ${HERO_BY_ID[hero.heroId].name} ist verwundet.`, i, 'bad');
+    }
   }
+  if (members.every(h => h.woundedUntil)) startRetreat(state, i);
 }
 
 function startRetreat(state, i) {

@@ -45,7 +45,7 @@ Jeder Held hat eine Klasse aus Guild Wars 2 und eine **Rolle**. Die Rolle bestim
 - 📯 **Unterstützer:** Etwas Schaden plus Team-Buff: *Macht* (+12 % ATK) oder *Eile* (Chance auf Zusatzangriff).
 - ✚ **Heiler:** Heilt jede Sekunde den schwächsten Verbündeten und greift leicht an.
 
-Monster greifen immer den vordersten lebenden Helden an: Tank → Schaden → Unterstützer → Heiler.
+Monster treffen alle fitten Helden gleichzeitig: Der Tank bekommt den größten Anteil, der Heiler den kleinsten (Details unter „Eine Kampfsekunde“).
 
 Helden steigen bis **Lv. 60** auf. Jede neue Stufe bringt eine Belohnung: Forschungsnotizen, Proviant und manchmal Früchte.
 
@@ -75,7 +75,7 @@ Helden steigen bis **Lv. 60** auf. Jede neue Stufe bringt eine Belohnung: Forsch
 
 - ⚔️ Schadensausteiler und 🛡️ Tanks greifen mit voller ATK an, 📯 Unterstützer mit 70 %. Krit-Treffer machen doppelten Schaden.
 - ✚ Heiler heilen den Verbündeten mit den wenigsten LP (Anteil) um **ATK × 1,8** und greifen mit **40 % ATK** an, ohne Krit.
-- Danach schlägt das Monster den vordersten Helden. Seine DEF senkt den Schaden.
+- Danach schlägt das Monster zu und trifft **alle fitten Helden**: 🛡️ Tank 5 Teile, ⚔️ Schaden und 📯 Unterstützer je 3, ✚ Heiler 2 (Tank + Schaden + Heiler = 50 % / 30 % / 20 %). Die DEF jedes Helden senkt seinen Anteil. Wer auf 0 LP fällt, ist verwundet; erst wenn alle verwundet sind, zieht sich der Trupp zurück.
 - Nach jedem Sieg heilt der ganze Trupp 10 % seiner LP.
 - Im Helden-Fenster stehen **💥 Schaden** und **✚ Heilung** pro Sekunde (ohne Trupp-Boni). Unter jedem Zelt stehen Schaden, Heilung und LP des ganzen Trupps.
 
@@ -83,7 +83,7 @@ Helden steigen bis **Lv. 60** auf. Jede neue Stufe bringt eine Belohnung: Forsch
 
 ## Riss-Zonen
 
-Die Zonen 1–5 sind die Heimatgebiete der fünf Völker: Königintal (Menschen), Caledon-Wald (Sylvari), Wanderer-Hügel (Norn), Provinz Metrica (Asura) und Ebenen von Aschfurt (Charr). Danach führen alle Spuren zurück nach Caudecus’ Anwesen, und weiter geht es durch Ascalon, Harathi und Orr. Jede Stufe des **Riss-Portals** öffnet ein neues Portal mit mehreren Zonen; eine Zone wird frei, wenn die Portal-Stufe reicht und alle Bosse der vorigen Zone besiegt sind.
+Die Zonen 1–5 sind die Heimatgebiete der fünf Völker: Königintal (Menschen), Caledon-Wald (Sylvari), Wanderer-Hügel (Norn), Provinz Metrica (Asura) und Ebenen von Aschfurt (Charr). Danach führen alle Spuren zurück nach Caudecus’ Anwesen, und weiter geht es der persönlichen Geschichte nach: über Löwenstein und die Klaueninsel nach Orr, bis zur Fluchküste vor Arah. Jede Stufe des **Riss-Portals** öffnet ein neues Portal mit mehreren Zonen; eine Zone wird frei, wenn die Portal-Stufe reicht und alle Bosse der vorigen Zone besiegt sind.
 
 | # | Zone | Portal | Lv. | Bosse Stufe 1–5 (★ = Zonen-Endboss) |
 |---|---|---|---|---|
@@ -93,10 +93,10 @@ Die Zonen 1–5 sind die Heimatgebiete der fünf Völker: Königintal (Menschen)
 | 4 | Provinz Metrica | 2 · Metrica, Aschfurt & Anwesen | 31–40 | Champion Inquestur-Golem, Champion Skritt-Anführer, Champion Riesen-Moa, Inquestur-Versuchsleiterin, ★ Kolossaler Inquestur-Golem |
 | 5 | Ebenen von Aschfurt | 2 · Metrica, Aschfurt & Anwesen | 41–45 | Champion Verschlinger-Königin, Champion Skal-Alpha, Separatisten-Anführerin, Champion Ascalonischer Geisterhauptmann, ★ Flammenlegion-Kriegsherr |
 | 6 | Caudecus’ Anwesen | 2 · Metrica, Aschfurt & Anwesen | 46–50 | Separatisten-Belagerer, Königlicher Leibwächter Pete, Butler Michiels, Gepfefferte Bridgette, ★ Separatisten-Hauptmann DeLana |
-| 7 | Katakomben von Ascalon | 3 · Ascalon & Harathi | 51–55 | Höhlentroll, Kasha Schwarzblut, Ralena & Vassar, Geisterhafter Nekromant, ★ König Adelbern |
-| 8 | Harathi-Hinterland | 3 · Ascalon & Harathi | 56–60 | Harathi-Schlächter, Champion Modniir-Häuptling, Kolossaler Erdelementar, Seraphen-Verräter Valen, ★ Kriegsmeister Ulgoth |
-| 9 | Blutstrom-Küste | 4 · Küste & Sümpfe von Orr | 60 | Champion Krait-Priester, Champion Auferstandener Offizier, Dredge-Kriegsmaschine, Piratinnen-Admiralin, ★ Dreiköpfige Krait-Bestie |
-| 10 | Funkenschwärmersumpf | 4 · Küste & Sümpfe von Orr | 60 | Champion Auferstandener Priester, Champion Krait-Echse, Zhaff-Sumpfmonster, Hylek-Schamane Cuatl, ★ Tequatl der Sonnenlose |
+| 7 | Löwenstein & Klaueninsel | 3 · Löwenstein & Meerenge | 51–55 | Auferstandene Abscheulichkeit, Veteran Auferstandener Grobian, Admiral Feiste Bakkir, Morgus Lethe, ★ Faulschreck der Seuchenbringer |
+| 8 | Meerenge der Verwüstung | 3 · Löwenstein & Meerenge | 56–60 | Champion Auferstandener Krait-Nimross, Champion Auferstandener Megalodon, Auferstandener Zauberer, Champion Auferstandener Kapitän, ★ Auferstandener Priester des Balthasar |
+| 9 | Malchors Sprung | 4 · Orr | 60 | Auferstandene Brutmutter, Inquestur-Ornithologin, Golem Typ II YF-Gold, Champion Auferstandener Leutnant, ★ Verdorbene Hohepriesterin |
+| 10 | Fluchküste | 4 · Orr | 60 | Kapitän Gammelbart, Champion Auferstandener Gladiator, Champion Auferstandene Abscheulichkeit, Champion Auferstandener Hofwart, ★ Auferstandener Priester des Grenth |
 
 Jede normale Stufe hat einen eigenen Boss; auf Stufe 5 wartet der **Zonen-Endboss**.
 
@@ -110,12 +110,12 @@ Jede normale Stufe hat einen eigenen Boss; auf Stufe 5 wartet der **Zonen-Endbos
 | Provinz Metrica | Entfesseltes Experiment, Verderbt: Kolossaler Inquestur-Golem | Schatten: Kolossaler Inquestur-Golem |
 | Ebenen von Aschfurt | Flammenlegion-Schamane, Verderbt: Flammenlegion-Kriegsherr | – |
 | Caudecus’ Anwesen | Turmaine, Frost | Schatten: Separatisten-Hauptmann DeLana |
-| Katakomben von Ascalon | Meister-Nekromant, Verderbt: König Adelbern | – |
-| Harathi-Hinterland | Zentauren-Kriegsherr Kol, Verderbt: Kriegsmeister Ulgoth | Schatten: Kriegsmeister Ulgoth |
-| Blutstrom-Küste | Champion Kropf-Krake, Verderbt: Dreiköpfige Krait-Bestie | – |
-| Funkenschwärmersumpf | Megawurm, Verderbt: Tequatl der Sonnenlose | Schatten: Tequatl der Sonnenlose |
+| Löwenstein & Klaueninsel | Monströse Auferstandene Abscheulichkeit, Verderbt: Faulschreck der Seuchenbringer | – |
+| Meerenge der Verwüstung | Champion Auferstandener Riese, Verderbt: Auferstandener Priester des Balthasar | Schatten: Auferstandener Priester des Balthasar |
+| Malchors Sprung | Auferstandene Priesterin der Dwayna, Auge des Zhaitan | – |
+| Fluchküste | Auferstandener Priester der Melandru, Verderbt: Auferstandener Priester des Grenth | Schatten: Auferstandener Priester des Grenth |
 
-„Verderbt“ und „Schatten“ sind vom Riss verzerrte Formen des Zonen-Endbosses. Die Bosse außer Königintal und Anwesen sind GW2-typisch, aber nicht im Detail geprüft.
+„Verderbt“ und „Schatten“ sind vom Riss verzerrte Formen des Zonen-Endbosses. Die Bosse der Zonen 2–5 sind GW2-typisch, aber nicht im Detail geprüft. Die Zonen 7–10 folgen der DE-Wiki.
 
 Im **🌀 Portal** wählst du oben den Trupp (Pfeile, Trupp-Karten antippen oder in der Arena wischen). Darunter wählst du Zone und Stufe.
 
@@ -127,7 +127,7 @@ Gebaut wird immer **nur ein Gebäude gleichzeitig**, und höhere Stufen brauchen
 |---|---|---|
 | 🏛️ Gildenhalle | 1–9 | Gildenkasse alle 10 Min., schaltet Gebäudestufen frei. Braucht 3 / 9 / 21 / 29 / 31 / 40 / 50 / 50 besiegte Stufen. |
 | ⛺ Zeltlager | 1–7 | Level-Cap: 10 / 20 / 30 / 40 / 50 / 55 / 60 |
-| 🌀 Riss-Portal | 1–4 | Jede Stufe öffnet ein neues Portal: 1 = Kryta, Caledon & Zittergipfel (Zonen 1–3), 2 = Metrica, Aschfurt & Anwesen (4–6), 3 = Ascalon & Harathi (7–8), 4 = Küste & Sümpfe von Orr (9–10). Kostet Gold + Ätherscherben. |
+| 🌀 Riss-Portal | 1–4 | Jede Stufe öffnet ein neues Portal: 1 = Kryta, Caledon & Zittergipfel (Zonen 1–3), 2 = Metrica, Aschfurt & Anwesen (4–6), 3 = Löwenstein & Meerenge (7–8), 4 = Orr (9–10). Kostet Gold + Ätherscherben. |
 | 🍲 Feldküche | 1–10 | +5 % EXP pro Stufe |
 | 🔬 Asura-Labor | 1–10 | Forschung; Stufe 3 und 5 öffnen tiefere Forschung |
 | ⚒️ Charr-Schmiede | 1–3 | Waffenladen und Waffenkammer. Stufe 2 und 3 bringen bessere Ware. Ab Gildenhalle 2. |
@@ -148,6 +148,10 @@ Mit **📜 Forschungsnotizen** erforschst du dauerhafte Verbesserungen in drei B
 
 - Der **Laden** bietet 3 Waffen an und füllt sich alle 30 Minuten neu. „Ware auffrischen“ kostet 100 Gold und verdoppelt sich jedes Mal, bis der Laden sich von selbst erneuert. Mit **2 🍀 Mystischem Klee** setzt du den Preis sofort zurück auf 100.
 - Gekaufte Waffen und Boss-Beute landen in der **Waffenkammer** (Reiter 🎒 Inventar und ⚒️ Schmiede). Boss-Beute kommt auch schon, bevor die Schmiede gebaut ist. Dort rüstest du sie aus oder verkaufst sie (25 % des Preises).
+- Die Waffenkammer zeigt jede Waffe als **Kachel** mit Symbol, Güte (T1–T6) und Anzahl. Antippen öffnet die Details: Ausrüsten, eine verkaufen oder alle gleichen verkaufen. **▲** heißt: besser als die Waffe eines Helden.
+- **Platz:** Die Waffenkammer wächst mit der Gildenhalle: 20 / 25 / 30 / 40 / 50 / 60 / 70 / 85 / 100 Plätze. Ist sie voll, **bleibt Boss-Beute liegen** (Hinweis in der Chronik), der Laden verkauft nichts, und Ablegen geht nicht.
+- **🧹 Aufräumen** verkauft alle Waffen der gewählten Güten auf einmal (vorgewählt: T1–T3). Waffen mit ▲ und ausgerüstete Waffen bleiben immer.
+- In Zelten, Reserve und Auswahllisten steht unter jedem Helden seine Waffe (oder „ohne Waffe“).
 - **🎒 Inventar** (eigener Reiter in der unteren Leiste): Proviant, Früchte, Arena-Tickets, Waffenkammer und ausgerüstete Waffen an einem Ort. Ausrüsten und Verfüttern geht dort oder im Helden-Fenster.
 - Jeder Held trägt eine **Waffenart**: Heiler einen **Fokus**, sonst nach Klasse.
 

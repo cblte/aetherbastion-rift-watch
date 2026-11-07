@@ -4,8 +4,8 @@
 //  Rückgabe: [{ icon, title, html }] – wird in ui.js als Kapitel gezeigt.
 // =====================================================================
 import {
-  BUILDINGS, ZONES, TENTS, TENT_SIZE, COMBAT, GAME, NORMAL_STAGES, TOTAL_NORMAL, FEATURES,
-  RETIRE_MIN_LEVEL, LEVEL_CAP_MAX, CYCLE_MS, WEAPON_TYPES, WEAPON_GRADES, SHOP, QUESTS, RECRUIT, REROLL_RESET_CLOVER,
+  BUILDINGS, ZONES, ROLES, TENTS, TENT_SIZE, COMBAT, GAME, NORMAL_STAGES, TOTAL_NORMAL, FEATURES,
+  RETIRE_MIN_LEVEL, LEVEL_CAP_MAX, ARMORY_SLOTS, CYCLE_MS, WEAPON_TYPES, WEAPON_GRADES, SHOP, QUESTS, RECRUIT, REROLL_RESET_CLOVER,
 } from './config.js';
 
 const pct = (x) => `${Math.round(x * 100)} %`;
@@ -49,7 +49,7 @@ export function manualChapters() {
         '📯 <b>Unterstützer:</b> etwas Schaden plus Team-Buff (<i>Macht</i> = mehr ATK, <i>Eile</i> = Zusatzangriffe).',
         '✚ <b>Heiler:</b> heilt jede Sekunde den schwächsten Verbündeten.',
       ])}
-      <p>Monster greifen den vordersten lebenden Helden an: Tank → Schaden → Unterstützer → Heiler. Helden steigen bis <b>Lv. ${LEVEL_CAP_MAX}</b>; das Zeltlager bestimmt das Level-Cap (${caps}).</p>
+      <p>Monster treffen alle fitten Helden, den Tank am stärksten, den Heiler am wenigsten. Helden steigen bis <b>Lv. ${LEVEL_CAP_MAX}</b>; das Zeltlager bestimmt das Level-Cap (${caps}).</p>
       <p>Jedes <b>Zelt</b> ist ein Trupp mit ${TENT_SIZE} Plätzen. Es gibt bis zu ${TENTS.length} Zelte; Zelt 2–${TENTS.length} öffnen ab Gildenhalle ${tentHalls}. Weitere Helden warten in der <b>Reserve</b>. Gute Aufstellung: <b>Tank + Heiler + Schaden</b>.</p>
       <p>Neue Helden wirbst du unter <b>🛡️ Trupps → Rekrutieren</b> an. Dort stehen wechselnde Angebote – mehr und schneller mit besserer Gildenhalle:</p>
       ${table(['Gildenhalle', 'Angebote', 'Neue alle'], RECRUIT.tiers.map(t => [`ab ${t.hall}`, t.slots, `${t.restockMin} Min.`]))}
@@ -73,7 +73,7 @@ export function manualChapters() {
       ${list([
         `⚔️ Schaden und 🛡️ Tank greifen mit voller ATK an, 📯 Unterstützer mit ${pct(COMBAT.SUPPORT_ATK_FACTOR)}. Krit-Treffer machen ×${COMBAT.CRIT_MULT} Schaden.`,
         `✚ Heiler heilen den Verbündeten mit den wenigsten LP (Anteil) um ATK × ${String(COMBAT.HEAL_MULT).replace('.', ',')} und greifen mit ${pct(COMBAT.HEALER_ATK_FACTOR)} ATK an, ohne Krit.`,
-        'Danach schlägt das Monster den vordersten Helden. Seine DEF senkt den Schaden.',
+        `Danach trifft das Monster alle fitten Helden: 🛡️ Tank ${ROLES.tank.aggro} Teile, ⚔️ Schaden und 📯 Unterstützer je ${ROLES.dps.aggro}, ✚ Heiler ${ROLES.healer.aggro}. Die DEF jedes Helden senkt seinen Anteil.`,
         `Nach jedem Sieg heilt der ganze Trupp ${pct(COMBAT.KILL_HEAL)} seiner LP.`,
         'Die Werte siehst du im Helden-Fenster (💥 Schaden, ✚ Heilung) und für den ganzen Trupp unter jedem Zelt.',
       ])}
@@ -92,7 +92,7 @@ export function manualChapters() {
       ${table(['Gebäude', 'Wirkung'], [
         [`🏛️ ${BUILDINGS.hall.name}`, `Gildenkasse, schaltet alles andere frei. Braucht ${hallStages} besiegte Stufen.`],
         [`⛺ ${BUILDINGS.camp.name}`, `Level-Cap ${caps}`],
-        [`🌀 ${BUILDINGS.portal.name}`, 'Jede Stufe öffnet ein neues Portal: Kryta, Caledon & Zittergipfel · Metrica, Aschfurt & Anwesen · Ascalon & Harathi · Orr. Kostet Gold + 🔮.'],
+        [`🌀 ${BUILDINGS.portal.name}`, 'Jede Stufe öffnet ein neues Portal: Kryta, Caledon & Zittergipfel · Metrica, Aschfurt & Anwesen · Löwenstein & Meerenge · Orr. Kostet Gold + 🔮.'],
         [`🍲 ${BUILDINGS.kitchen.name}`, `+${pct(BUILDINGS.kitchen.bonusPerLevel)} EXP pro Stufe`],
         [`🔬 ${BUILDINGS.lab.name}`, 'Forschung; höhere Stufen öffnen tiefere Forschung'],
         [`⚒️ ${BUILDINGS.forge.name}`, 'Waffenladen und Waffenkammer'],
@@ -105,6 +105,8 @@ export function manualChapters() {
         `„Ware auffrischen“ verdoppelt seinen Preis bis zum nächsten Nachschub – oder bis du ihn mit 🍀 ${REROLL_RESET_CLOVER} Mystischem Klee zurücksetzt.`,
         `Boss-Beute und Käufe landen in der <b>Waffenkammer</b> (Reiter 🎒 Inventar und ⚒️ Schmiede) – Beute auch schon, bevor die Schmiede steht. Dort rüstest du aus oder verkaufst (${pct(SHOP.sellFactor)} des Preises).`,
         'Der Reiter <b>🎒 Inventar</b> zeigt Proviant, Waffenkammer und ausgerüstete Waffen an einem Ort. Ausrüsten geht dort oder im Helden-Fenster.',
+        'Waffen erscheinen als Kacheln (Güte T1–T6). Antippen: Ausrüsten oder Verkaufen. ▲ = besser als die Waffe eines Helden.',
+        `Die Waffenkammer wächst mit der Gildenhalle (${ARMORY_SLOTS[0]} bis ${ARMORY_SLOTS.at(-1)} Plätze). Ist sie voll, bleibt Boss-Beute liegen. <b>🧹 Aufräumen</b> verkauft ganze Güten auf einmal; ▲-Waffen bleiben.`,
         'Jeder Held trägt eine Waffenart: Heiler einen Fokus, sonst nach Klasse.',
       ])}
       <p>${Object.values(WEAPON_TYPES).map(t => `${t.icon} ${t.name}`).join(' · ')}</p>

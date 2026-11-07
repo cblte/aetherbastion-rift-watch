@@ -5004,12 +5004,11 @@
               "role": "scherge",
               "sprite": "MOB_INQUESTUR_GOLEM",
               "wiki": {
-                "status": "fehlt",
-                "suggestions": [
-                  "Inquestur",
-                  "Golem",
-                  "Haufen kristallinen Staubs"
-                ]
+                "status": "teilweise",
+                "title": "Golem",
+                "en": "Golem",
+                "via": "Golem",
+                "url": "https://wiki-de.guildwars2.com/wiki/Golem"
               },
               "cqht": {
                 "id": "MON_2_6",
@@ -10745,33 +10744,33 @@
     },
     {
       "id": 7,
-      "zone": "Katakomben von Ascalon",
+      "zone": "Löwenstein & Klaueninsel",
       "portal": 3,
-      "portalName": "Ascalon & Harathi",
+      "portalName": "Löwenstein & Meerenge",
       "source": "js/data/stages.js",
       "wiki": {
-        "status": "ok",
-        "title": "Katakomben von Ascalon",
-        "en": "Ascalonian Catacombs",
-        "via": "Katakomben von Ascalon",
-        "url": "https://wiki-de.guildwars2.com/wiki/Katakomben_von_Ascalon"
+        "status": "teilweise",
+        "title": "Klaueninsel",
+        "en": "Claw Island",
+        "via": "Klaueninsel",
+        "url": "https://wiki-de.guildwars2.com/wiki/Klaueninsel"
       },
       "stages": [
         {
           "nr": 1,
           "kind": "normal",
           "level": 51,
-          "info": "Katakomben",
+          "info": "Wall von Fort Unerschütterlich",
           "boss": {
-            "name": "Höhlentroll",
+            "name": "Auferstandene Abscheulichkeit",
             "role": "boss",
-            "sprite": "BOSS_HOEHLENTROLL",
+            "sprite": "BOSS_AUFERSTANDENE_ABSCHEULICHKEIT",
             "wiki": {
               "status": "ok",
-              "title": "Höhlentroll",
-              "en": "Cave Troll",
-              "via": "Höhlentroll",
-              "url": "https://wiki-de.guildwars2.com/wiki/H%C3%B6hlentroll"
+              "title": "Auferstandene Abscheulichkeit",
+              "en": "Risen Abomination",
+              "via": "Auferstandene Abscheulichkeit",
+              "url": "https://wiki-de.guildwars2.com/wiki/Auferstandene_Abscheulichkeit"
             },
             "cqht": {
               "id": "BOSS_4_1_1",
@@ -10801,16 +10800,15 @@
           },
           "minions": [
             {
-              "name": "Geister-Krieger",
+              "name": "Auferstandener Leibeigener",
               "role": "scherge",
-              "sprite": "MOB_GEISTER_KRIEGER",
+              "sprite": "MOB_AUFERSTANDENER_LEIBEIGENER",
               "wiki": {
-                "status": "fehlt",
-                "suggestions": [
-                  "Geist",
-                  "Ascalonischer Geist",
-                  "Waldläufer"
-                ]
+                "status": "ok",
+                "title": "Auferstandener Leibeigener",
+                "en": "Risen Thrall",
+                "via": "Auferstandener Leibeigener",
+                "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Leibeigener"
               },
               "cqht": {
                 "id": "MON_4_2",
@@ -10920,16 +10918,15 @@
               ]
             },
             {
-              "name": "Geister-Waldläufer",
+              "name": "Auferstandener Pirat",
               "role": "scherge",
-              "sprite": "MOB_GEISTER_WALDLAEUFER",
+              "sprite": "MOB_AUFERSTANDENER_PIRAT",
               "wiki": {
-                "status": "fehlt",
-                "suggestions": [
-                  "Waldläufer",
-                  "Geist",
-                  "Ascalonischer Geist"
-                ]
+                "status": "ok",
+                "title": "Auferstandener Pirat",
+                "en": "Risen Pirate",
+                "via": "Auferstandener Pirat",
+                "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Pirat"
               },
               "cqht": {
                 "id": "MON_4_3",
@@ -11044,17 +11041,17 @@
           "nr": 2,
           "kind": "normal",
           "level": 52,
-          "info": "Flammenlegion",
+          "info": "Löwenfackel",
           "boss": {
-            "name": "Kasha Schwarzblut",
+            "name": "Veteran Auferstandener Grobian",
             "role": "boss",
-            "sprite": "BOSS_KASHA_SCHWARZBLUT",
+            "sprite": "BOSS_VETERAN_AUFERSTANDENER_GROBIAN",
             "wiki": {
               "status": "ok",
-              "title": "Kasha Schwarzblut",
-              "en": "Kasha Blackblood",
-              "via": "Kasha Schwarzblut",
-              "url": "https://wiki-de.guildwars2.com/wiki/Kasha_Schwarzblut"
+              "title": "Veteran Auferstandener Grobian",
+              "en": "Veteran Risen Brute",
+              "via": "Veteran Auferstandener Grobian",
+              "url": "https://wiki-de.guildwars2.com/wiki/Veteran_Auferstandener_Grobian"
             },
             "cqht": {
               "id": "BOSS_4_1_2",
@@ -11084,12 +11081,15 @@
           },
           "minions": [
             {
-              "name": "Flammenlegion-Kultist",
+              "name": "Auferstandener Grobian",
               "role": "scherge",
-              "sprite": "MOB_FLAMMENLEGION_KULTIST",
+              "sprite": "MOB_AUFERSTANDENER_GROBIAN",
               "wiki": {
-                "status": "fehlt",
-                "suggestions": []
+                "status": "ok",
+                "title": "Auferstandener Grobian",
+                "en": "Risen Brute",
+                "via": "Auferstandener Grobian",
+                "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Grobian"
               },
               "cqht": {
                 "id": "MON_4_2",
@@ -11199,14 +11199,15 @@
               ]
             },
             {
-              "name": "Flammenlegion-Zerstörer",
+              "name": "Auferstandener Seuchenträger",
               "role": "scherge",
-              "sprite": "MOB_FLAMMENLEGION_ZERSTOERER",
+              "sprite": "MOB_AUFERSTANDENER_SEUCHENTRAEGER",
               "wiki": {
-                "status": "fehlt",
-                "suggestions": [
-                  "Meta-Event"
-                ]
+                "status": "ok",
+                "title": "Auferstandener Seuchenträger",
+                "en": "Risen Plague Carrier",
+                "via": "Auferstandener Seuchenträger",
+                "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Seuchentr%C3%A4ger"
               },
               "cqht": {
                 "id": "MON_4_3",
@@ -11321,18 +11322,17 @@
           "nr": 3,
           "kind": "normal",
           "level": 53,
-          "info": "Liebespaar",
+          "info": "Vergeltung",
           "boss": {
-            "name": "Ralena & Vassar",
+            "name": "Admiral Feiste Bakkir",
             "role": "boss",
-            "sprite": "BOSS_RALENA_VASSAR",
+            "sprite": "BOSS_ADMIRAL_FEISTE_BAKKIR",
             "wiki": {
-              "status": "fehlt",
-              "suggestions": [
-                "Gruft der Liebenden",
-                "Vassar",
-                "Katakomben von Ascalon (Story)"
-              ]
+              "status": "ok",
+              "title": "Admiral Feiste Bakkir",
+              "en": "Admiral Feiste Bakkir",
+              "via": "Admiral Feiste Bakkir",
+              "url": "https://wiki-de.guildwars2.com/wiki/Admiral_Feiste_Bakkir"
             },
             "cqht": {
               "id": "BOSS_4_1_3",
@@ -11362,16 +11362,14 @@
           },
           "minions": [
             {
-              "name": "Geister-Liebende",
+              "name": "Auferstandener Knappe",
               "role": "scherge",
-              "sprite": "MOB_GEISTER_LIEBENDE",
+              "sprite": "MOB_AUFERSTANDENER_KNAPPE",
               "wiki": {
-                "status": "fehlt",
-                "suggestions": [
-                  "Katakomben von Ascalon",
-                  "Katakomben von Ascalon (Story)",
-                  "Gruft der Liebenden"
-                ]
+                "status": "ok",
+                "title": "Auferstandener Knappe",
+                "via": "Auferstandener Knappe",
+                "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Knappe"
               },
               "cqht": {
                 "id": "MON_4_3",
@@ -11481,16 +11479,15 @@
               ]
             },
             {
-              "name": "Geister-Wächter",
+              "name": "Auferstandener Ritter",
               "role": "scherge",
-              "sprite": "MOB_GEISTER_WAECHTER",
+              "sprite": "MOB_AUFERSTANDENER_RITTER",
               "wiki": {
-                "status": "fehlt",
-                "suggestions": [
-                  "Waldläufer",
-                  "Dschinn",
-                  "Geistertal"
-                ]
+                "status": "ok",
+                "title": "Auferstandener Ritter",
+                "en": "Risen Knight",
+                "via": "Auferstandener Ritter",
+                "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Ritter"
               },
               "cqht": {
                 "id": "MON_4_4",
@@ -11605,17 +11602,17 @@
           "nr": 4,
           "kind": "normal",
           "level": 54,
+          "info": "Meer des Leids",
           "boss": {
-            "name": "Geisterhafter Nekromant",
+            "name": "Morgus Lethe",
             "role": "boss",
-            "sprite": "BOSS_GEISTERHAFTER_NEKROMANT",
+            "sprite": "BOSS_MORGUS_LETHE",
             "wiki": {
-              "status": "fehlt",
-              "suggestions": [
-                "Geist",
-                "Weißer Mantel",
-                "Kraftvoller Giftbeutel"
-              ]
+              "status": "ok",
+              "title": "Morgus Lethe",
+              "en": "Morgus Lethe",
+              "via": "Morgus Lethe",
+              "url": "https://wiki-de.guildwars2.com/wiki/Morgus_Lethe"
             },
             "cqht": {
               "id": "BOSS_4_2_1",
@@ -11645,16 +11642,15 @@
           },
           "minions": [
             {
-              "name": "Knochen-Diener",
+              "name": "Auferstandener Hai",
               "role": "scherge",
-              "sprite": "MOB_KNOCHEN_DIENER",
+              "sprite": "MOB_AUFERSTANDENER_HAI",
               "wiki": {
-                "status": "fehlt",
-                "suggestions": [
-                  "Eisbrut-Elementar",
-                  "Knochen-Spitzhacke",
-                  "Sammelwerkzeug"
-                ]
+                "status": "ok",
+                "title": "Auferstandener Hai",
+                "en": "Risen Shark",
+                "via": "Auferstandener Hai",
+                "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Hai"
               },
               "cqht": {
                 "id": "MON_4_4",
@@ -11764,16 +11760,15 @@
               ]
             },
             {
-              "name": "Geister-Nekromant",
+              "name": "Untoter Riesenhai",
               "role": "scherge",
-              "sprite": "MOB_GEISTER_NEKROMANT",
+              "sprite": "MOB_UNTOTER_RIESENHAI",
               "wiki": {
-                "status": "fehlt",
-                "suggestions": [
-                  "Geist",
-                  "Ascalonischer Geist",
-                  "Waldläufer"
-                ]
+                "status": "ok",
+                "title": "Untoter Riesenhai",
+                "en": "Giant Undead Shark",
+                "via": "Untoter Riesenhai",
+                "url": "https://wiki-de.guildwars2.com/wiki/Untoter_Riesenhai"
               },
               "cqht": {
                 "id": "MON_4_5",
@@ -11890,15 +11885,15 @@
           "level": 55,
           "info": "Zonen-Endboss",
           "boss": {
-            "name": "König Adelbern",
+            "name": "Faulschreck der Seuchenbringer",
             "role": "endboss",
-            "sprite": "BOSS_KOENIG_ADELBERN",
+            "sprite": "BOSS_FAULSCHRECK_DER_SEUCHENBRINGER",
             "wiki": {
               "status": "ok",
-              "title": "König Adelbern",
-              "en": "King Adelbern",
-              "via": "König Adelbern",
-              "url": "https://wiki-de.guildwars2.com/wiki/K%C3%B6nig_Adelbern"
+              "title": "Faulschreck der Seuchenbringer",
+              "en": "Blightghast the Plaguebringer",
+              "via": "Faulschreck der Seuchenbringer",
+              "url": "https://wiki-de.guildwars2.com/wiki/Faulschreck_der_Seuchenbringer"
             },
             "cqht": {
               "id": "BOSS_4_2_2",
@@ -11928,12 +11923,15 @@
           },
           "minions": [
             {
-              "name": "Ascalonischer Geisterritter",
+              "name": "Auferstandener Verderber",
               "role": "scherge",
-              "sprite": "MOB_ASCALONISCHER_GEISTERRITTER",
+              "sprite": "MOB_AUFERSTANDENER_VERDERBER",
               "wiki": {
-                "status": "fehlt",
-                "suggestions": []
+                "status": "ok",
+                "title": "Auferstandener Verderber",
+                "en": "Risen Corrupter",
+                "via": "Auferstandener Verderber",
+                "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Verderber"
               },
               "cqht": {
                 "id": "MON_4_5",
@@ -12043,16 +12041,15 @@
               ]
             },
             {
-              "name": "Geister-Elite",
+              "name": "Auferstandene Seuchenträgerin",
               "role": "scherge",
-              "sprite": "MOB_GEISTER_ELITE",
+              "sprite": "MOB_AUFERSTANDENE_SEUCHENTRAEGERIN",
               "wiki": {
-                "status": "fehlt",
-                "suggestions": [
-                  "Geist",
-                  "Ascalonischer Geist",
-                  "Geschmiedeter"
-                ]
+                "status": "ok",
+                "title": "Auferstandene Seuchenträgerin",
+                "en": "Risen Plague Carrier",
+                "via": "Auferstandene Seuchenträgerin",
+                "url": "https://wiki-de.guildwars2.com/wiki/Auferstandene_Seuchentr%C3%A4gerin"
               },
               "cqht": {
                 "id": "MON_4_6",
@@ -12169,16 +12166,15 @@
           "level": 60,
           "info": "Schwer",
           "boss": {
-            "name": "Meister-Nekromant",
+            "name": "Monströse Auferstandene Abscheulichkeit",
             "role": "boss",
-            "sprite": "BOSS_MEISTER_NEKROMANT",
+            "sprite": "BOSS_MONSTROESE_AUFERSTANDENE_ABSCHEULICHKEIT",
             "wiki": {
-              "status": "fehlt",
-              "suggestions": [
-                "Nekromant",
-                "Zustandsschaden",
-                "Klasse"
-              ]
+              "status": "ok",
+              "title": "Monströse Auferstandene Abscheulichkeit",
+              "en": "Hulking Risen Abomination",
+              "via": "Monströse Auferstandene Abscheulichkeit",
+              "url": "https://wiki-de.guildwars2.com/wiki/Monstr%C3%B6se_Auferstandene_Abscheulichkeit"
             },
             "cqht": {
               "id": "BOSS_H_4_1",
@@ -12208,16 +12204,15 @@
           },
           "minions": [
             {
-              "name": "Untoter Kanonier",
+              "name": "Auferstandene Abscheulichkeit",
               "role": "scherge",
-              "sprite": "MOB_UNTOTER_KANONIER",
+              "sprite": "MOB_AUFERSTANDENE_ABSCHEULICHKEIT",
               "wiki": {
-                "status": "fehlt",
-                "suggestions": [
-                  "Orden der Gerüchte",
-                  "Jackdaw-Riff",
-                  "Neustrand-Klippen"
-                ]
+                "status": "ok",
+                "title": "Auferstandene Abscheulichkeit",
+                "en": "Risen Abomination",
+                "via": "Auferstandene Abscheulichkeit",
+                "url": "https://wiki-de.guildwars2.com/wiki/Auferstandene_Abscheulichkeit"
               },
               "cqht": {
                 "id": "MON_H_4_1",
@@ -12326,16 +12321,14 @@
               ]
             },
             {
-              "name": "Knochen-Schrecken",
+              "name": "Auferstandener Verseuchter",
               "role": "scherge",
-              "sprite": "MOB_KNOCHEN_SCHRECKEN",
+              "sprite": "MOB_AUFERSTANDENER_VERSEUCHTER",
               "wiki": {
-                "status": "fehlt",
-                "suggestions": [
-                  "Stabilität",
-                  "Schnitter",
-                  "Sylvari"
-                ]
+                "status": "ok",
+                "title": "Auferstandener Verseuchter",
+                "via": "Auferstandener Verseuchter",
+                "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Verseuchter"
               },
               "cqht": {
                 "id": "MON_H_4_1",
@@ -12451,15 +12444,15 @@
           "level": 60,
           "info": "Schwer · vom Riss verderbt",
           "boss": {
-            "name": "Verderbt: König Adelbern",
+            "name": "Verderbt: Faulschreck der Seuchenbringer",
             "role": "boss",
-            "sprite": "BOSS_VERDERBT_KOENIG_ADELBERN",
+            "sprite": "BOSS_VERDERBT_FAULSCHRECK_DER_SEUCHENBRINGER",
             "wiki": {
               "status": "teilweise",
-              "title": "König Adelbern",
-              "en": "King Adelbern",
-              "via": "König Adelbern",
-              "url": "https://wiki-de.guildwars2.com/wiki/K%C3%B6nig_Adelbern"
+              "title": "Faulschreck der Seuchenbringer",
+              "en": "Blightghast the Plaguebringer",
+              "via": "Faulschreck der Seuchenbringer",
+              "url": "https://wiki-de.guildwars2.com/wiki/Faulschreck_der_Seuchenbringer"
             },
             "cqht": {
               "id": "BOSS_H_4_2",
@@ -12489,12 +12482,15 @@
           },
           "minions": [
             {
-              "name": "Ascalonischer Geisterritter",
+              "name": "Auferstandener Verderber",
               "role": "scherge",
-              "sprite": "MOB_ASCALONISCHER_GEISTERRITTER",
+              "sprite": "MOB_AUFERSTANDENER_VERDERBER",
               "wiki": {
-                "status": "fehlt",
-                "suggestions": []
+                "status": "ok",
+                "title": "Auferstandener Verderber",
+                "en": "Risen Corrupter",
+                "via": "Auferstandener Verderber",
+                "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Verderber"
               },
               "cqht": {
                 "id": "MON_H_4_2",
@@ -12726,16 +12722,16 @@
     },
     {
       "id": 8,
-      "zone": "Harathi-Hinterland",
+      "zone": "Meerenge der Verwüstung",
       "portal": 3,
-      "portalName": "Ascalon & Harathi",
+      "portalName": "Löwenstein & Meerenge",
       "source": "js/data/stages.js",
       "wiki": {
         "status": "ok",
-        "title": "Harathi-Hinterland",
-        "en": "Harathi Hinterlands",
-        "via": "Harathi-Hinterland",
-        "url": "https://wiki-de.guildwars2.com/wiki/Harathi-Hinterland"
+        "title": "Meerenge der Verwüstung",
+        "en": "Straits of Devastation",
+        "via": "Meerenge der Verwüstung",
+        "url": "https://wiki-de.guildwars2.com/wiki/Meerenge_der_Verw%C3%BCstung"
       },
       "stages": [
         {
@@ -12743,16 +12739,15 @@
           "kind": "normal",
           "level": 56,
           "boss": {
-            "name": "Harathi-Schlächter",
+            "name": "Champion Auferstandener Krait-Nimross",
             "role": "boss",
-            "sprite": "BOSS_HARATHI_SCHLAECHTER",
+            "sprite": "BOSS_CHAMPION_AUFERSTANDENER_KRAIT_NIMROSS",
             "wiki": {
-              "status": "fehlt",
-              "suggestions": [
-                "Rätsel",
-                "Gebiet",
-                "Meta-Event"
-              ]
+              "status": "ok",
+              "title": "Champion Auferstandener Krait-Nimross",
+              "en": "Champion Risen Krait Nimross",
+              "via": "Champion Auferstandener Krait-Nimross",
+              "url": "https://wiki-de.guildwars2.com/wiki/Champion_Auferstandener_Krait-Nimross"
             },
             "cqht": {
               "id": "BOSS_4_3_1",
@@ -12782,15 +12777,15 @@
           },
           "minions": [
             {
-              "name": "Harathi-Krieger",
+              "name": "Auferstandener Krait-Damoss",
               "role": "scherge",
-              "sprite": "MOB_HARATHI_KRIEGER",
+              "sprite": "MOB_AUFERSTANDENER_KRAIT_DAMOSS",
               "wiki": {
                 "status": "ok",
-                "title": "Harathi-Krieger",
-                "en": "Harathi Warrior",
-                "via": "Harathi-Krieger",
-                "url": "https://wiki-de.guildwars2.com/wiki/Harathi-Krieger"
+                "title": "Auferstandener Krait-Damoss",
+                "en": "Risen Krait Damoss",
+                "via": "Auferstandener Krait-Damoss",
+                "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Krait-Damoss"
               },
               "cqht": {
                 "id": "MON_4_6",
@@ -12900,14 +12895,15 @@
               ]
             },
             {
-              "name": "Harathi-Speerwerfer",
+              "name": "Auferstandener Krait-Hypnoss",
               "role": "scherge",
-              "sprite": "MOB_HARATHI_SPEERWERFER",
+              "sprite": "MOB_AUFERSTANDENER_KRAIT_HYPNOSS",
               "wiki": {
-                "status": "fehlt",
-                "suggestions": [
-                  "PvE-Belagerungswaffe"
-                ]
+                "status": "ok",
+                "title": "Auferstandener Krait-Hypnoss",
+                "en": "Risen Krait Hypnoss",
+                "via": "Auferstandener Krait-Hypnoss",
+                "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Krait-Hypnoss"
               },
               "cqht": {
                 "id": "MON_4_6",
@@ -13022,17 +13018,17 @@
           "nr": 2,
           "kind": "normal",
           "level": 57,
+          "info": "Fort der Dreifaltigkeit",
           "boss": {
-            "name": "Champion Modniir-Häuptling",
+            "name": "Champion Auferstandener Megalodon",
             "role": "boss",
-            "sprite": "BOSS_CHAMPION_MODNIIR_HAEUPTLING",
+            "sprite": "BOSS_CHAMPION_AUFERSTANDENER_MEGALODON",
             "wiki": {
-              "status": "fehlt",
-              "suggestions": [
-                "Liste der Waffensets",
-                "Zentaur",
-                "Champion"
-              ]
+              "status": "ok",
+              "title": "Champion Auferstandener Megalodon",
+              "en": "Champion Risen Megalodon",
+              "via": "Champion Auferstandener Megalodon",
+              "url": "https://wiki-de.guildwars2.com/wiki/Champion_Auferstandener_Megalodon"
             },
             "cqht": {
               "id": "BOSS_4_3_2",
@@ -13062,15 +13058,15 @@
           },
           "minions": [
             {
-              "name": "Modniir-Berserker",
+              "name": "Auferstandener Bullenhai",
               "role": "scherge",
-              "sprite": "MOB_MODNIIR_BERSERKER",
+              "sprite": "MOB_AUFERSTANDENER_BULLENHAI",
               "wiki": {
                 "status": "ok",
-                "title": "Modniir-Berserker",
-                "en": "Modniir Defender",
-                "via": "Modniir-Berserker",
-                "url": "https://wiki-de.guildwars2.com/wiki/Modniir-Berserker"
+                "title": "Auferstandener Bullenhai",
+                "en": "Risen Bull Shark",
+                "via": "Auferstandener Bullenhai",
+                "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Bullenhai"
               },
               "cqht": {
                 "id": "MON_4_6",
@@ -13180,16 +13176,15 @@
               ]
             },
             {
-              "name": "Modniir-Schamane",
+              "name": "Auferstandener Krebs",
               "role": "scherge",
-              "sprite": "MOB_MODNIIR_SCHAMANE",
+              "sprite": "MOB_AUFERSTANDENER_KREBS",
               "wiki": {
-                "status": "fehlt",
-                "suggestions": [
-                  "Miniatur",
-                  "Champion",
-                  "Welt-Boss"
-                ]
+                "status": "ok",
+                "title": "Auferstandener Krebs",
+                "en": "Risen Crab",
+                "via": "Auferstandener Krebs",
+                "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Krebs"
               },
               "cqht": {
                 "id": "MON_4_6",
@@ -13304,13 +13299,17 @@
           "nr": 3,
           "kind": "normal",
           "level": 58,
+          "info": "Turm des Wesirs",
           "boss": {
-            "name": "Kolossaler Erdelementar",
+            "name": "Auferstandener Zauberer",
             "role": "boss",
-            "sprite": "BOSS_KOLOSSALER_ERDELEMENTAR",
+            "sprite": "BOSS_AUFERSTANDENER_ZAUBERER",
             "wiki": {
-              "status": "fehlt",
-              "suggestions": []
+              "status": "ok",
+              "title": "Auferstandener Zauberer",
+              "en": "Risen Wizard",
+              "via": "Auferstandener Zauberer",
+              "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Zauberer"
             },
             "cqht": {
               "id": "BOSS_4_4_1",
@@ -13340,14 +13339,15 @@
           },
           "minions": [
             {
-              "name": "Erdelementar",
+              "name": "Auferstandener Akolyth",
               "role": "scherge",
-              "sprite": "MOB_ERDELEMENTAR",
+              "sprite": "MOB_AUFERSTANDENER_AKOLYTH",
               "wiki": {
-                "status": "erwähnt",
-                "title": "Instabiler Erdelementar",
-                "via": "Erdelementar",
-                "url": "https://wiki-de.guildwars2.com/wiki/Instabiler_Erdelementar"
+                "status": "ok",
+                "title": "Auferstandener Akolyth",
+                "en": "Risen Acolyte",
+                "via": "Auferstandener Akolyth",
+                "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Akolyth"
               },
               "cqht": {
                 "id": "MON_4_6",
@@ -13457,12 +13457,15 @@
               ]
             },
             {
-              "name": "Steinwüter",
+              "name": "Auferstandene Zauberin",
               "role": "scherge",
-              "sprite": "MOB_STEINWUETER",
+              "sprite": "MOB_AUFERSTANDENE_ZAUBERIN",
               "wiki": {
-                "status": "fehlt",
-                "suggestions": []
+                "status": "ok",
+                "title": "Auferstandene Zauberin",
+                "en": "Risen Wizard",
+                "via": "Auferstandene Zauberin",
+                "url": "https://wiki-de.guildwars2.com/wiki/Auferstandene_Zauberin"
               },
               "cqht": {
                 "id": "MON_4_6",
@@ -13577,15 +13580,17 @@
           "nr": 4,
           "kind": "normal",
           "level": 59,
+          "info": "Paradeplatz",
           "boss": {
-            "name": "Seraphen-Verräter Valen",
+            "name": "Champion Auferstandener Kapitän",
             "role": "boss",
-            "sprite": "BOSS_SERAPHEN_VERRAETER_VALEN",
+            "sprite": "BOSS_CHAMPION_AUFERSTANDENER_KAPITAEN",
             "wiki": {
-              "status": "fehlt",
-              "suggestions": [
-                "Biographie/Details"
-              ]
+              "status": "ok",
+              "title": "Champion Auferstandener Kapitän",
+              "en": "Champion Risen Captain",
+              "via": "Champion Auferstandener Kapitän",
+              "url": "https://wiki-de.guildwars2.com/wiki/Champion_Auferstandener_Kapit%C3%A4n"
             },
             "cqht": {
               "id": "BOSS_4_4_2",
@@ -13615,16 +13620,15 @@
           },
           "minions": [
             {
-              "name": "Abtrünniger Seraph",
+              "name": "Auferstandener Pirat",
               "role": "scherge",
-              "sprite": "MOB_ABTRUENNIGER_SERAPH",
+              "sprite": "MOB_AUFERSTANDENER_PIRAT",
               "wiki": {
-                "status": "fehlt",
-                "suggestions": [
-                  "Ebonfalke-Festung",
-                  "Die Wachsamen",
-                  "Ebon-Vorhut"
-                ]
+                "status": "ok",
+                "title": "Auferstandener Pirat",
+                "en": "Risen Pirate",
+                "via": "Auferstandener Pirat",
+                "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Pirat"
               },
               "cqht": {
                 "id": "MON_4_6",
@@ -13734,16 +13738,15 @@
               ]
             },
             {
-              "name": "Seraphen-Deserteur",
+              "name": "Auferstandener Kommandeur",
               "role": "scherge",
-              "sprite": "MOB_SERAPHEN_DESERTEUR",
+              "sprite": "MOB_AUFERSTANDENER_KOMMANDEUR",
               "wiki": {
-                "status": "fehlt",
-                "suggestions": [
-                  "Gezielte Verhandlung",
-                  "Reparateur",
-                  "Liste der Aufgaben"
-                ]
+                "status": "ok",
+                "title": "Auferstandener Kommandeur",
+                "en": "Risen Commander",
+                "via": "Auferstandener Kommandeur",
+                "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Kommandeur"
               },
               "cqht": {
                 "id": "MON_4_6",
@@ -13860,12 +13863,15 @@
           "level": 60,
           "info": "Zonen-Endboss",
           "boss": {
-            "name": "Kriegsmeister Ulgoth",
+            "name": "Auferstandener Priester des Balthasar",
             "role": "endboss",
-            "sprite": "BOSS_KRIEGSMEISTER_ULGOTH",
+            "sprite": "BOSS_AUFERSTANDENER_PRIESTER_DES_BALTHASAR",
             "wiki": {
-              "status": "fehlt",
-              "suggestions": []
+              "status": "ok",
+              "title": "Auferstandener Priester des Balthasar",
+              "en": "Risen Priest of Balthazar",
+              "via": "Auferstandener Priester des Balthasar",
+              "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Priester_des_Balthasar"
             },
             "cqht": {
               "id": "BOSS_4_5",
@@ -13895,12 +13901,14 @@
           },
           "minions": [
             {
-              "name": "Ulgoths Leibgarde",
+              "name": "Auferstandener Verwüster",
               "role": "scherge",
-              "sprite": "MOB_ULGOTHS_LEIBGARDE",
+              "sprite": "MOB_AUFERSTANDENER_VERWUESTER",
               "wiki": {
-                "status": "fehlt",
-                "suggestions": []
+                "status": "ok",
+                "title": "Auferstandener Verwüster",
+                "via": "Auferstandener Verwüster",
+                "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Verw%C3%BCster"
               },
               "cqht": {
                 "id": "MON_4_6",
@@ -14010,14 +14018,14 @@
               ]
             },
             {
-              "name": "Modniir-Kriegsherr",
+              "name": "Auferstandener Bewahrer",
               "role": "scherge",
-              "sprite": "MOB_MODNIIR_KRIEGSHERR",
+              "sprite": "MOB_AUFERSTANDENER_BEWAHRER",
               "wiki": {
-                "status": "fehlt",
-                "suggestions": [
-                  "Zeitachse"
-                ]
+                "status": "ok",
+                "title": "Auferstandener Bewahrer",
+                "via": "Auferstandener Bewahrer",
+                "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Bewahrer"
               },
               "cqht": {
                 "id": "MON_4_6",
@@ -14132,14 +14140,17 @@
           "nr": 6,
           "kind": "schwer",
           "level": 60,
-          "info": "Schwer",
+          "info": "Schwer · Tempel des Balthasar",
           "boss": {
-            "name": "Zentauren-Kriegsherr Kol",
+            "name": "Champion Auferstandener Riese",
             "role": "boss",
-            "sprite": "BOSS_ZENTAUREN_KRIEGSHERR_KOL",
+            "sprite": "BOSS_CHAMPION_AUFERSTANDENER_RIESE",
             "wiki": {
-              "status": "fehlt",
-              "suggestions": []
+              "status": "ok",
+              "title": "Champion Auferstandener Riese",
+              "en": "Champion Risen Giant",
+              "via": "Champion Auferstandener Riese",
+              "url": "https://wiki-de.guildwars2.com/wiki/Champion_Auferstandener_Riese"
             },
             "cqht": {
               "id": "BOSS_H_4_3",
@@ -14169,12 +14180,15 @@
           },
           "minions": [
             {
-              "name": "Zentauren-Lanzenreiter",
+              "name": "Auferstandener Unterwerfer",
               "role": "scherge",
-              "sprite": "MOB_ZENTAUREN_LANZENREITER",
+              "sprite": "MOB_AUFERSTANDENER_UNTERWERFER",
               "wiki": {
-                "status": "fehlt",
-                "suggestions": []
+                "status": "ok",
+                "title": "Auferstandener Unterwerfer",
+                "en": "Risen Subjugator",
+                "via": "Auferstandener Unterwerfer",
+                "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Unterwerfer"
               },
               "cqht": {
                 "id": "MON_H_4_3",
@@ -14283,12 +14297,15 @@
               ]
             },
             {
-              "name": "Zentauren-Kriegsschamane",
+              "name": "Auferstandenen-Luftabwehrgeschütz",
               "role": "scherge",
-              "sprite": "MOB_ZENTAUREN_KRIEGSSCHAMANE",
+              "sprite": "MOB_AUFERSTANDENEN_LUFTABWEHRGESCHUETZ",
               "wiki": {
-                "status": "fehlt",
-                "suggestions": []
+                "status": "ok",
+                "title": "Auferstandenen-Luftabwehrgeschütz",
+                "en": "Risen Anti-Air Cannon",
+                "via": "Auferstandenen-Luftabwehrgeschütz",
+                "url": "https://wiki-de.guildwars2.com/wiki/Auferstandenen-Luftabwehrgesch%C3%BCtz"
               },
               "cqht": {
                 "id": "MON_H_4_3",
@@ -14404,12 +14421,15 @@
           "level": 60,
           "info": "Schwer · vom Riss verderbt",
           "boss": {
-            "name": "Verderbt: Kriegsmeister Ulgoth",
+            "name": "Verderbt: Auferstandener Priester des Balthasar",
             "role": "boss",
-            "sprite": "BOSS_VERDERBT_KRIEGSMEISTER_ULGOTH",
+            "sprite": "BOSS_VERDERBT_AUFERSTANDENER_PRIESTER_DES_BALTHASAR",
             "wiki": {
-              "status": "fehlt",
-              "suggestions": []
+              "status": "teilweise",
+              "title": "Auferstandener Priester des Balthasar",
+              "en": "Risen Priest of Balthazar",
+              "via": "Auferstandener Priester des Balthasar",
+              "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Priester_des_Balthasar"
             },
             "cqht": {
               "id": "BOSS_H_4_4",
@@ -14439,12 +14459,14 @@
           },
           "minions": [
             {
-              "name": "Ulgoths Leibgarde",
+              "name": "Auferstandener Verwüster",
               "role": "scherge",
-              "sprite": "MOB_ULGOTHS_LEIBGARDE",
+              "sprite": "MOB_AUFERSTANDENER_VERWUESTER",
               "wiki": {
-                "status": "fehlt",
-                "suggestions": []
+                "status": "ok",
+                "title": "Auferstandener Verwüster",
+                "via": "Auferstandener Verwüster",
+                "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Verw%C3%BCster"
               },
               "cqht": {
                 "id": "MON_H_4_4",
@@ -14678,12 +14700,15 @@
           "level": 60,
           "info": "Legendär · Schattenform des Endbosses",
           "boss": {
-            "name": "Schatten: Kriegsmeister Ulgoth",
+            "name": "Schatten: Auferstandener Priester des Balthasar",
             "role": "boss",
-            "sprite": "BOSS_SCHATTEN_KRIEGSMEISTER_ULGOTH",
+            "sprite": "BOSS_SCHATTEN_AUFERSTANDENER_PRIESTER_DES_BALTHASAR",
             "wiki": {
-              "status": "fehlt",
-              "suggestions": []
+              "status": "teilweise",
+              "title": "Auferstandener Priester des Balthasar",
+              "en": "Risen Priest of Balthazar",
+              "via": "Auferstandener Priester des Balthasar",
+              "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Priester_des_Balthasar"
             },
             "cqht": {
               "id": "BOSS_H_L_4",
@@ -14830,33 +14855,32 @@
     },
     {
       "id": 9,
-      "zone": "Blutstrom-Küste",
+      "zone": "Malchors Sprung",
       "portal": 4,
-      "portalName": "Küste & Sümpfe von Orr",
+      "portalName": "Orr",
       "source": "js/data/stages.js",
       "wiki": {
         "status": "ok",
-        "title": "Blutstrom-Küste",
-        "en": "Bloodtide Coast",
-        "via": "Blutstrom-Küste",
-        "url": "https://wiki-de.guildwars2.com/wiki/Blutstrom-K%C3%BCste"
+        "title": "Malchors Sprung",
+        "en": "Malchor's Leap",
+        "via": "Malchors Sprung",
+        "url": "https://wiki-de.guildwars2.com/wiki/Malchors_Sprung"
       },
       "stages": [
         {
           "nr": 1,
           "kind": "normal",
           "level": 60,
+          "info": "Lindwurm-Eier",
           "boss": {
-            "name": "Champion Krait-Priester",
+            "name": "Auferstandene Brutmutter",
             "role": "boss",
-            "sprite": "BOSS_CHAMPION_KRAIT_PRIESTER",
+            "sprite": "BOSS_AUFERSTANDENE_BRUTMUTTER",
             "wiki": {
-              "status": "fehlt",
-              "suggestions": [
-                "Krait",
-                "Auferstandener",
-                "Champion"
-              ]
+              "status": "erwähnt",
+              "title": "Tötet die auferstandene Brutmutter (Malchors Sprung)",
+              "via": "Auferstandene Brutmutter",
+              "url": "https://wiki-de.guildwars2.com/wiki/T%C3%B6tet_die_auferstandene_Brutmutter_(Malchors_Sprung)"
             },
             "cqht": {
               "id": "BOSS_5_1_1",
@@ -14886,12 +14910,15 @@
           },
           "minions": [
             {
-              "name": "Krait-Zelot",
+              "name": "Auferstandenes Lindwurm-Junges",
               "role": "scherge",
-              "sprite": "MOB_KRAIT_ZELOT",
+              "sprite": "MOB_AUFERSTANDENES_LINDWURM_JUNGES",
               "wiki": {
-                "status": "fehlt",
-                "suggestions": []
+                "status": "ok",
+                "title": "Auferstandenes Lindwurm-Junges",
+                "en": "Risen Drake Hatchling",
+                "via": "Auferstandenes Lindwurm-Junges",
+                "url": "https://wiki-de.guildwars2.com/wiki/Auferstandenes_Lindwurm-Junges"
               },
               "cqht": {
                 "id": "MON_5_1",
@@ -14994,16 +15021,15 @@
               ]
             },
             {
-              "name": "Krait-Neophyt",
+              "name": "Auferstandener Lindwurm",
               "role": "scherge",
-              "sprite": "MOB_KRAIT_NEOPHYT",
+              "sprite": "MOB_AUFERSTANDENER_LINDWURM",
               "wiki": {
-                "status": "fehlt",
-                "suggestions": [
-                  "Barrakuda",
-                  "Kru-Leiter",
-                  "Waffengalerie/Fackel"
-                ]
+                "status": "ok",
+                "title": "Auferstandener Lindwurm",
+                "en": "Risen Drake",
+                "via": "Auferstandener Lindwurm",
+                "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Lindwurm"
               },
               "cqht": {
                 "id": "MON_5_2",
@@ -15117,17 +15143,16 @@
           "nr": 2,
           "kind": "normal",
           "level": 60,
+          "info": "Hühnerställe",
           "boss": {
-            "name": "Champion Auferstandener Offizier",
+            "name": "Inquestur-Ornithologin",
             "role": "boss",
-            "sprite": "BOSS_CHAMPION_AUFERSTANDENER_OFFIZIER",
+            "sprite": "BOSS_INQUESTUR_ORNITHOLOGIN",
             "wiki": {
-              "status": "fehlt",
-              "suggestions": [
-                "Champion",
-                "Miniatur",
-                "Elite"
-              ]
+              "status": "erwähnt",
+              "title": "Champion Inquestur-Ornithologin",
+              "via": "Inquestur-Ornithologin",
+              "url": "https://wiki-de.guildwars2.com/wiki/Champion_Inquestur-Ornithologin"
             },
             "cqht": {
               "id": "BOSS_5_1_2",
@@ -15157,16 +15182,14 @@
           },
           "minions": [
             {
-              "name": "Auferstandener Matrose",
+              "name": "Auferstandenes Huhn",
               "role": "scherge",
-              "sprite": "MOB_AUFERSTANDENER_MATROSE",
+              "sprite": "MOB_AUFERSTANDENES_HUHN",
               "wiki": {
-                "status": "fehlt",
-                "suggestions": [
-                  "Die traurige Geschichte der \"Raffgier\"",
-                  "Triumph oder Tod",
-                  "Die Quelle von Orr"
-                ]
+                "status": "ok",
+                "title": "Auferstandenes Huhn",
+                "via": "Auferstandenes Huhn",
+                "url": "https://wiki-de.guildwars2.com/wiki/Auferstandenes_Huhn"
               },
               "cqht": {
                 "id": "MON_5_1",
@@ -15269,12 +15292,15 @@
               ]
             },
             {
-              "name": "Auferstandener Grubenarbeiter",
+              "name": "Auferstandener Bauer",
               "role": "scherge",
-              "sprite": "MOB_AUFERSTANDENER_GRUBENARBEITER",
+              "sprite": "MOB_AUFERSTANDENER_BAUER",
               "wiki": {
-                "status": "fehlt",
-                "suggestions": []
+                "status": "ok",
+                "title": "Auferstandener Bauer",
+                "en": "Risen Farmer",
+                "via": "Auferstandener Bauer",
+                "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Bauer"
               },
               "cqht": {
                 "id": "MON_5_2",
@@ -15388,13 +15414,16 @@
           "nr": 3,
           "kind": "normal",
           "level": 60,
+          "info": "Omicron-Anlage",
           "boss": {
-            "name": "Dredge-Kriegsmaschine",
+            "name": "Golem Typ II YF-Gold",
             "role": "boss",
-            "sprite": "BOSS_DREDGE_KRIEGSMASCHINE",
+            "sprite": "BOSS_GOLEM_TYP_II_YF_GOLD",
             "wiki": {
-              "status": "fehlt",
-              "suggestions": []
+              "status": "erwähnt",
+              "title": "Besiegt den Golem Typ II YF-Gold, der im Gebiet sein Unwesen treibt",
+              "via": "Golem Typ II YF-Gold",
+              "url": "https://wiki-de.guildwars2.com/wiki/Besiegt_den_Golem_Typ_II_YF-Gold%2C_der_im_Gebiet_sein_Unwesen_treibt"
             },
             "cqht": {
               "id": "BOSS_5_1_3",
@@ -15424,12 +15453,14 @@
           },
           "minions": [
             {
-              "name": "Dredge-Schweißer",
+              "name": "Pyrit-Elementar",
               "role": "scherge",
-              "sprite": "MOB_DREDGE_SCHWEISSER",
+              "sprite": "MOB_PYRIT_ELEMENTAR",
               "wiki": {
-                "status": "fehlt",
-                "suggestions": []
+                "status": "ok",
+                "title": "Pyrit-Elementar",
+                "via": "Pyrit-Elementar",
+                "url": "https://wiki-de.guildwars2.com/wiki/Pyrit-Elementar"
               },
               "cqht": {
                 "id": "MON_5_1",
@@ -15532,12 +15563,15 @@
               ]
             },
             {
-              "name": "Dredge-Panzer",
+              "name": "Inquestur-Golem",
               "role": "scherge",
-              "sprite": "MOB_DREDGE_PANZER",
+              "sprite": "MOB_INQUESTUR_GOLEM",
               "wiki": {
-                "status": "fehlt",
-                "suggestions": []
+                "status": "teilweise",
+                "title": "Golem",
+                "en": "Golem",
+                "via": "Golem",
+                "url": "https://wiki-de.guildwars2.com/wiki/Golem"
               },
               "cqht": {
                 "id": "MON_5_2",
@@ -15651,13 +15685,16 @@
           "nr": 4,
           "kind": "normal",
           "level": 60,
+          "info": "Kathedrale der Zephyre",
           "boss": {
-            "name": "Piratinnen-Admiralin",
+            "name": "Champion Auferstandener Leutnant",
             "role": "boss",
-            "sprite": "BOSS_PIRATINNEN_ADMIRALIN",
+            "sprite": "BOSS_CHAMPION_AUFERSTANDENER_LEUTNANT",
             "wiki": {
-              "status": "fehlt",
-              "suggestions": []
+              "status": "ok",
+              "title": "Champion Auferstandener Leutnant",
+              "via": "Champion Auferstandener Leutnant",
+              "url": "https://wiki-de.guildwars2.com/wiki/Champion_Auferstandener_Leutnant"
             },
             "cqht": {
               "id": "BOSS_5_2_1",
@@ -15687,16 +15724,15 @@
           },
           "minions": [
             {
-              "name": "Piraten-Maat",
+              "name": "Auferstandener Edelmann",
               "role": "scherge",
-              "sprite": "MOB_PIRATEN_MAAT",
+              "sprite": "MOB_AUFERSTANDENER_EDELMANN",
               "wiki": {
-                "status": "fehlt",
-                "suggestions": [
-                  "Pirat",
-                  "Skritt",
-                  "Ätherklingen"
-                ]
+                "status": "ok",
+                "title": "Auferstandener Edelmann",
+                "en": "Risen Noble",
+                "via": "Auferstandener Edelmann",
+                "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Edelmann"
               },
               "cqht": {
                 "id": "MON_5_1",
@@ -15799,12 +15835,15 @@
               ]
             },
             {
-              "name": "Piraten-Harpunier",
+              "name": "Auferstandener Hofnarr",
               "role": "scherge",
-              "sprite": "MOB_PIRATEN_HARPUNIER",
+              "sprite": "MOB_AUFERSTANDENER_HOFNARR",
               "wiki": {
-                "status": "fehlt",
-                "suggestions": []
+                "status": "ok",
+                "title": "Auferstandener Hofnarr",
+                "en": "Risen Jester",
+                "via": "Auferstandener Hofnarr",
+                "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Hofnarr"
               },
               "cqht": {
                 "id": "MON_5_2",
@@ -15918,14 +15957,16 @@
           "nr": 5,
           "kind": "normal",
           "level": 60,
-          "info": "Zonen-Endboss",
+          "info": "Zonen-Endboss · Kathedrale des Ewigen Leuchtens",
           "boss": {
-            "name": "Dreiköpfige Krait-Bestie",
+            "name": "Verdorbene Hohepriesterin",
             "role": "endboss",
-            "sprite": "BOSS_DREIKOEPFIGE_KRAIT_BESTIE",
+            "sprite": "BOSS_VERDORBENE_HOHEPRIESTERIN",
             "wiki": {
-              "status": "fehlt",
-              "suggestions": []
+              "status": "erwähnt",
+              "title": "Tötet die Verdorbene Hohepriesterin",
+              "via": "Verdorbene Hohepriesterin",
+              "url": "https://wiki-de.guildwars2.com/wiki/T%C3%B6tet_die_Verdorbene_Hohepriesterin"
             },
             "cqht": {
               "id": "BOSS_5_2_2",
@@ -15955,12 +15996,15 @@
           },
           "minions": [
             {
-              "name": "Krait-Wyrmschlange",
+              "name": "Auferstandenes Gespenst",
               "role": "scherge",
-              "sprite": "MOB_KRAIT_WYRMSCHLANGE",
+              "sprite": "MOB_AUFERSTANDENES_GESPENST",
               "wiki": {
-                "status": "fehlt",
-                "suggestions": []
+                "status": "ok",
+                "title": "Auferstandenes Gespenst",
+                "en": "Risen Wraith",
+                "via": "Auferstandenes Gespenst",
+                "url": "https://wiki-de.guildwars2.com/wiki/Auferstandenes_Gespenst"
               },
               "cqht": {
                 "id": "MON_5_1",
@@ -16063,12 +16107,15 @@
               ]
             },
             {
-              "name": "Krait-Schreckensbrut",
+              "name": "Auferstandener Hylek",
               "role": "scherge",
-              "sprite": "MOB_KRAIT_SCHRECKENSBRUT",
+              "sprite": "MOB_AUFERSTANDENER_HYLEK",
               "wiki": {
-                "status": "fehlt",
-                "suggestions": []
+                "status": "ok",
+                "title": "Auferstandener Hylek",
+                "en": "Risen Hylek",
+                "via": "Auferstandener Hylek",
+                "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Hylek"
               },
               "cqht": {
                 "id": "MON_5_2",
@@ -16182,14 +16229,16 @@
           "nr": 6,
           "kind": "schwer",
           "level": 60,
-          "info": "Schwer",
+          "info": "Schwer · Kathedrale der Zephyre",
           "boss": {
-            "name": "Champion Kropf-Krake",
+            "name": "Auferstandene Priesterin der Dwayna",
             "role": "boss",
-            "sprite": "BOSS_CHAMPION_KROPF_KRAKE",
+            "sprite": "BOSS_AUFERSTANDENE_PRIESTERIN_DER_DWAYNA",
             "wiki": {
-              "status": "fehlt",
-              "suggestions": []
+              "status": "erwähnt",
+              "title": "Besiegt die auferstandene Priesterin der Dwayna",
+              "via": "Auferstandene Priesterin der Dwayna",
+              "url": "https://wiki-de.guildwars2.com/wiki/Besiegt_die_auferstandene_Priesterin_der_Dwayna"
             },
             "cqht": {
               "id": "BOSS_H_5_1",
@@ -16219,12 +16268,15 @@
           },
           "minions": [
             {
-              "name": "Riffkrake",
+              "name": "Auferstandene Akolythin",
               "role": "scherge",
-              "sprite": "MOB_RIFFKRAKE",
+              "sprite": "MOB_AUFERSTANDENE_AKOLYTHIN",
               "wiki": {
-                "status": "fehlt",
-                "suggestions": []
+                "status": "ok",
+                "title": "Auferstandene Akolythin",
+                "en": "Risen Acolyte",
+                "via": "Auferstandene Akolythin",
+                "url": "https://wiki-de.guildwars2.com/wiki/Auferstandene_Akolythin"
               },
               "cqht": {
                 "id": "MON_H_5_1",
@@ -16333,12 +16385,15 @@
               ]
             },
             {
-              "name": "Tiefsee-Lauerer",
+              "name": "Auferstandener Verweser",
               "role": "scherge",
-              "sprite": "MOB_TIEFSEE_LAUERER",
+              "sprite": "MOB_AUFERSTANDENER_VERWESER",
               "wiki": {
-                "status": "fehlt",
-                "suggestions": []
+                "status": "ok",
+                "title": "Auferstandener Verweser",
+                "en": "Risen Putrifier",
+                "via": "Auferstandener Verweser",
+                "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Verweser"
               },
               "cqht": {
                 "id": "MON_H_5_1",
@@ -16452,14 +16507,17 @@
           "nr": 7,
           "kind": "schwer",
           "level": 60,
-          "info": "Schwer · vom Riss verderbt",
+          "info": "Schwer · Königspassage",
           "boss": {
-            "name": "Verderbt: Dreiköpfige Krait-Bestie",
+            "name": "Auge des Zhaitan",
             "role": "boss",
-            "sprite": "BOSS_VERDERBT_DREIKOEPFIGE_KRAIT_BESTIE",
+            "sprite": "BOSS_AUGE_DES_ZHAITAN",
             "wiki": {
-              "status": "fehlt",
-              "suggestions": []
+              "status": "ok",
+              "title": "Auge des Zhaitan",
+              "en": "Eye of Zhaitan",
+              "via": "Auge des Zhaitan",
+              "url": "https://wiki-de.guildwars2.com/wiki/Auge_des_Zhaitan"
             },
             "cqht": {
               "id": "BOSS_H_5_2",
@@ -16489,12 +16547,15 @@
           },
           "minions": [
             {
-              "name": "Krait-Wyrmschlange",
+              "name": "Auferstandenes Gespenst",
               "role": "scherge",
-              "sprite": "MOB_KRAIT_WYRMSCHLANGE",
+              "sprite": "MOB_AUFERSTANDENES_GESPENST",
               "wiki": {
-                "status": "fehlt",
-                "suggestions": []
+                "status": "ok",
+                "title": "Auferstandenes Gespenst",
+                "en": "Risen Wraith",
+                "via": "Auferstandenes Gespenst",
+                "url": "https://wiki-de.guildwars2.com/wiki/Auferstandenes_Gespenst"
               },
               "cqht": {
                 "id": "MON_H_5_2",
@@ -16726,31 +16787,33 @@
     },
     {
       "id": 10,
-      "zone": "Funkenschwärmersumpf",
+      "zone": "Fluchküste",
       "portal": 4,
-      "portalName": "Küste & Sümpfe von Orr",
+      "portalName": "Orr",
       "source": "js/data/stages.js",
       "wiki": {
         "status": "ok",
-        "title": "Funkenschwärmersumpf",
-        "en": "Sparkfly Fen",
-        "via": "Funkenschwärmersumpf",
-        "url": "https://wiki-de.guildwars2.com/wiki/Funkenschw%C3%A4rmersumpf"
+        "title": "Fluchküste",
+        "en": "Cursed Shore",
+        "via": "Fluchküste",
+        "url": "https://wiki-de.guildwars2.com/wiki/Fluchk%C3%BCste"
       },
       "stages": [
         {
           "nr": 1,
           "kind": "normal",
           "level": 60,
+          "info": "Auferstandener Piratenkapitän",
           "boss": {
-            "name": "Champion Auferstandener Priester",
+            "name": "Kapitän Gammelbart",
             "role": "boss",
-            "sprite": "BOSS_CHAMPION_AUFERSTANDENER_PRIESTER",
+            "sprite": "BOSS_KAPITAEN_GAMMELBART",
             "wiki": {
-              "status": "erwähnt",
-              "title": "Auferstandener Priester des Balthasar (Miniatur)",
-              "via": "Auferstandener Priester",
-              "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Priester_des_Balthasar_(Miniatur)"
+              "status": "ok",
+              "title": "Kapitän Gammelbart",
+              "en": "Captain Rotbeard",
+              "via": "Kapitän Gammelbart",
+              "url": "https://wiki-de.guildwars2.com/wiki/Kapit%C3%A4n_Gammelbart"
             },
             "cqht": {
               "id": "BOSS_5_3_1",
@@ -16780,15 +16843,15 @@
           },
           "minions": [
             {
-              "name": "Auferstandener Akolyth",
+              "name": "Auferstandener Pirat",
               "role": "scherge",
-              "sprite": "MOB_AUFERSTANDENER_AKOLYTH",
+              "sprite": "MOB_AUFERSTANDENER_PIRAT",
               "wiki": {
                 "status": "ok",
-                "title": "Auferstandener Akolyth",
-                "en": "Risen Acolyte",
-                "via": "Auferstandener Akolyth",
-                "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Akolyth"
+                "title": "Auferstandener Pirat",
+                "en": "Risen Pirate",
+                "via": "Auferstandener Pirat",
+                "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Pirat"
               },
               "cqht": {
                 "id": "MON_5_1",
@@ -16891,12 +16954,15 @@
               ]
             },
             {
-              "name": "Auferstandener Schreckenswandler",
+              "name": "Auferstandener Fischer",
               "role": "scherge",
-              "sprite": "MOB_AUFERSTANDENER_SCHRECKENSWANDLER",
+              "sprite": "MOB_AUFERSTANDENER_FISCHER",
               "wiki": {
-                "status": "fehlt",
-                "suggestions": []
+                "status": "ok",
+                "title": "Auferstandener Fischer",
+                "en": "Risen Fisher",
+                "via": "Auferstandener Fischer",
+                "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Fischer"
               },
               "cqht": {
                 "id": "MON_5_2",
@@ -17010,13 +17076,17 @@
           "nr": 2,
           "kind": "normal",
           "level": 60,
+          "info": "Balthasars Arena",
           "boss": {
-            "name": "Champion Krait-Echse",
+            "name": "Champion Auferstandener Gladiator",
             "role": "boss",
-            "sprite": "BOSS_CHAMPION_KRAIT_ECHSE",
+            "sprite": "BOSS_CHAMPION_AUFERSTANDENER_GLADIATOR",
             "wiki": {
-              "status": "fehlt",
-              "suggestions": []
+              "status": "ok",
+              "title": "Champion Auferstandener Gladiator",
+              "en": "Champion Risen Gladiator",
+              "via": "Champion Auferstandener Gladiator",
+              "url": "https://wiki-de.guildwars2.com/wiki/Champion_Auferstandener_Gladiator"
             },
             "cqht": {
               "id": "BOSS_5_3_2",
@@ -17046,12 +17116,15 @@
           },
           "minions": [
             {
-              "name": "Krait-Echse",
+              "name": "Auferstandener Gorilla",
               "role": "scherge",
-              "sprite": "MOB_KRAIT_ECHSE",
+              "sprite": "MOB_AUFERSTANDENER_GORILLA",
               "wiki": {
-                "status": "fehlt",
-                "suggestions": []
+                "status": "ok",
+                "title": "Auferstandener Gorilla",
+                "en": "Risen Gorilla",
+                "via": "Auferstandener Gorilla",
+                "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Gorilla"
               },
               "cqht": {
                 "id": "MON_5_1",
@@ -17154,14 +17227,15 @@
               ]
             },
             {
-              "name": "Krait-Schlinger",
+              "name": "Orrianischer Gorilla",
               "role": "scherge",
-              "sprite": "MOB_KRAIT_SCHLINGER",
+              "sprite": "MOB_ORRIANISCHER_GORILLA",
               "wiki": {
-                "status": "fehlt",
-                "suggestions": [
-                  "Sibaha"
-                ]
+                "status": "ok",
+                "title": "Orrianischer Gorilla",
+                "en": "Orrian Gorilla",
+                "via": "Orrianischer Gorilla",
+                "url": "https://wiki-de.guildwars2.com/wiki/Orrianischer_Gorilla"
               },
               "cqht": {
                 "id": "MON_5_2",
@@ -17275,13 +17349,17 @@
           "nr": 3,
           "kind": "normal",
           "level": 60,
+          "info": "Kastell Schattenlieb",
           "boss": {
-            "name": "Zhaff-Sumpfmonster",
+            "name": "Champion Auferstandene Abscheulichkeit",
             "role": "boss",
-            "sprite": "BOSS_ZHAFF_SUMPFMONSTER",
+            "sprite": "BOSS_CHAMPION_AUFERSTANDENE_ABSCHEULICHKEIT",
             "wiki": {
-              "status": "fehlt",
-              "suggestions": []
+              "status": "ok",
+              "title": "Champion Auferstandene Abscheulichkeit",
+              "en": "Champion Risen Abomination",
+              "via": "Champion Auferstandene Abscheulichkeit",
+              "url": "https://wiki-de.guildwars2.com/wiki/Champion_Auferstandene_Abscheulichkeit"
             },
             "cqht": {
               "id": "BOSS_5_4_1",
@@ -17311,12 +17389,15 @@
           },
           "minions": [
             {
-              "name": "Sumpfschlurfer",
+              "name": "Orrianischer Grobian",
               "role": "scherge",
-              "sprite": "MOB_SUMPFSCHLURFER",
+              "sprite": "MOB_ORRIANISCHER_GROBIAN",
               "wiki": {
-                "status": "fehlt",
-                "suggestions": []
+                "status": "ok",
+                "title": "Orrianischer Grobian",
+                "en": "Orrian Brute",
+                "via": "Orrianischer Grobian",
+                "url": "https://wiki-de.guildwars2.com/wiki/Orrianischer_Grobian"
               },
               "cqht": {
                 "id": "MON_5_1",
@@ -17419,16 +17500,15 @@
               ]
             },
             {
-              "name": "Sumpf-Moskito",
+              "name": "Orrianischer Schlurfer",
               "role": "scherge",
-              "sprite": "MOB_SUMPF_MOSKITO",
+              "sprite": "MOB_ORRIANISCHER_SCHLURFER",
               "wiki": {
-                "status": "fehlt",
-                "suggestions": [
-                  "Bergsuhlensumpf",
-                  "Die Schlacht um den Bergsuhlensumpf",
-                  "Willoweg-Haine"
-                ]
+                "status": "ok",
+                "title": "Orrianischer Schlurfer",
+                "en": "Orrian Shambler",
+                "via": "Orrianischer Schlurfer",
+                "url": "https://wiki-de.guildwars2.com/wiki/Orrianischer_Schlurfer"
               },
               "cqht": {
                 "id": "MON_5_2",
@@ -17542,16 +17622,17 @@
           "nr": 4,
           "kind": "normal",
           "level": 60,
+          "info": "Wintertotengeläut-Insel",
           "boss": {
-            "name": "Hylek-Schamane Cuatl",
+            "name": "Champion Auferstandener Hofwart",
             "role": "boss",
-            "sprite": "BOSS_HYLEK_SCHAMANE_CUATL",
+            "sprite": "BOSS_CHAMPION_AUFERSTANDENER_HOFWART",
             "wiki": {
-              "status": "fehlt",
-              "suggestions": [
-                "Hylek",
-                "Heldenherausforderung"
-              ]
+              "status": "ok",
+              "title": "Champion Auferstandener Hofwart",
+              "en": "Champion Risen Groundskeeper",
+              "via": "Champion Auferstandener Hofwart",
+              "url": "https://wiki-de.guildwars2.com/wiki/Champion_Auferstandener_Hofwart"
             },
             "cqht": {
               "id": "BOSS_5_4_2",
@@ -17581,15 +17662,15 @@
           },
           "minions": [
             {
-              "name": "Hylek-Krieger",
+              "name": "Auferstandene Spinne",
               "role": "scherge",
-              "sprite": "MOB_HYLEK_KRIEGER",
+              "sprite": "MOB_AUFERSTANDENE_SPINNE",
               "wiki": {
                 "status": "ok",
-                "title": "Hylek-Krieger",
-                "en": "Hylek Warrior",
-                "via": "Hylek-Krieger",
-                "url": "https://wiki-de.guildwars2.com/wiki/Hylek-Krieger"
+                "title": "Auferstandene Spinne",
+                "en": "Risen Spider",
+                "via": "Auferstandene Spinne",
+                "url": "https://wiki-de.guildwars2.com/wiki/Auferstandene_Spinne"
               },
               "cqht": {
                 "id": "MON_5_1",
@@ -17692,12 +17773,15 @@
               ]
             },
             {
-              "name": "Hylek-Giftmischer",
+              "name": "Auferstandene Spinnenbrut",
               "role": "scherge",
-              "sprite": "MOB_HYLEK_GIFTMISCHER",
+              "sprite": "MOB_AUFERSTANDENE_SPINNENBRUT",
               "wiki": {
-                "status": "fehlt",
-                "suggestions": []
+                "status": "ok",
+                "title": "Auferstandene Spinnenbrut",
+                "en": "Risen Spider Hatchling",
+                "via": "Auferstandene Spinnenbrut",
+                "url": "https://wiki-de.guildwars2.com/wiki/Auferstandene_Spinnenbrut"
               },
               "cqht": {
                 "id": "MON_5_2",
@@ -17811,17 +17895,17 @@
           "nr": 5,
           "kind": "normal",
           "level": 60,
-          "info": "Zonen-Endboss",
+          "info": "Zonen-Endboss · Kathedrale der Stille",
           "boss": {
-            "name": "Tequatl der Sonnenlose",
+            "name": "Auferstandener Priester des Grenth",
             "role": "endboss",
-            "sprite": "BOSS_TEQUATL_DER_SONNENLOSE",
+            "sprite": "BOSS_AUFERSTANDENER_PRIESTER_DES_GRENTH",
             "wiki": {
-              "status": "ok",
-              "title": "Tequatl der Sonnenlose",
-              "en": "Tequatl the Sunless",
-              "via": "Tequatl der Sonnenlose",
-              "url": "https://wiki-de.guildwars2.com/wiki/Tequatl_der_Sonnenlose"
+              "status": "teilweise",
+              "title": "Hindert den Auferstandenen Priester des Grenth daran, die Kathedrale der Stille wieder einzunehmen",
+              "en": "Stop the Risen Priest of Grenth from retaking the Cathedral of Silence",
+              "via": "Hindert den Auferstandenen Priester des Grenth daran, die Kathedrale der Stille wieder einzunehmen",
+              "url": "https://wiki-de.guildwars2.com/wiki/Hindert_den_Auferstandenen_Priester_des_Grenth_daran%2C_die_Kathedrale_der_Stille_wieder_einzunehmen"
             },
             "cqht": {
               "id": "BOSS_5_5",
@@ -17851,12 +17935,15 @@
           },
           "minions": [
             {
-              "name": "Auferstandener Knochenmagier",
+              "name": "Orrianische Spektralwache",
               "role": "scherge",
-              "sprite": "MOB_AUFERSTANDENER_KNOCHENMAGIER",
+              "sprite": "MOB_ORRIANISCHE_SPEKTRALWACHE",
               "wiki": {
-                "status": "fehlt",
-                "suggestions": []
+                "status": "ok",
+                "title": "Orrianische Spektralwache",
+                "en": "Orrian Spectral Guard",
+                "via": "Orrianische Spektralwache",
+                "url": "https://wiki-de.guildwars2.com/wiki/Orrianische_Spektralwache"
               },
               "cqht": {
                 "id": "MON_5_1",
@@ -17959,16 +18046,15 @@
               ]
             },
             {
-              "name": "Tequatls Diener",
+              "name": "Auferstandener Verweser",
               "role": "scherge",
-              "sprite": "MOB_TEQUATLS_DIENER",
+              "sprite": "MOB_AUFERSTANDENER_VERWESER",
               "wiki": {
-                "status": "fehlt",
-                "suggestions": [
-                  "Funkenschwärmersumpf",
-                  "Auferstandener",
-                  "Alt-Drache"
-                ]
+                "status": "ok",
+                "title": "Auferstandener Verweser",
+                "en": "Risen Putrifier",
+                "via": "Auferstandener Verweser",
+                "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Verweser"
               },
               "cqht": {
                 "id": "MON_5_2",
@@ -18082,14 +18168,17 @@
           "nr": 6,
           "kind": "schwer",
           "level": 60,
-          "info": "Schwer",
+          "info": "Schwer · Tempel der Melandru",
           "boss": {
-            "name": "Megawurm",
+            "name": "Auferstandener Priester der Melandru",
             "role": "boss",
-            "sprite": "BOSS_MEGAWURM",
+            "sprite": "BOSS_AUFERSTANDENER_PRIESTER_DER_MELANDRU",
             "wiki": {
-              "status": "fehlt",
-              "suggestions": []
+              "status": "teilweise",
+              "title": "Vernichtet den Auferstandenen Priester der Melandru",
+              "en": "Destroy the Risen Priest of Melandru",
+              "via": "Vernichtet den Auferstandenen Priester der Melandru",
+              "url": "https://wiki-de.guildwars2.com/wiki/Vernichtet_den_Auferstandenen_Priester_der_Melandru"
             },
             "cqht": {
               "id": "BOSS_H_5_3",
@@ -18119,12 +18208,15 @@
           },
           "minions": [
             {
-              "name": "Wurmbrut",
+              "name": "Teer-Elementar",
               "role": "scherge",
-              "sprite": "MOB_WURMBRUT",
+              "sprite": "MOB_TEER_ELEMENTAR",
               "wiki": {
-                "status": "fehlt",
-                "suggestions": []
+                "status": "ok",
+                "title": "Teer-Elementar",
+                "en": "Tar Elemental",
+                "via": "Teer-Elementar",
+                "url": "https://wiki-de.guildwars2.com/wiki/Teer-Elementar"
               },
               "cqht": {
                 "id": "MON_H_5_3",
@@ -18232,12 +18324,15 @@
               ]
             },
             {
-              "name": "Sandwurm-Larve",
+              "name": "Orrianischer Spektralhammer",
               "role": "scherge",
-              "sprite": "MOB_SANDWURM_LARVE",
+              "sprite": "MOB_ORRIANISCHER_SPEKTRALHAMMER",
               "wiki": {
-                "status": "fehlt",
-                "suggestions": []
+                "status": "ok",
+                "title": "Orrianischer Spektralhammer",
+                "en": "Orrian Spectral Hammer",
+                "via": "Orrianischer Spektralhammer",
+                "url": "https://wiki-de.guildwars2.com/wiki/Orrianischer_Spektralhammer"
               },
               "cqht": {
                 "id": "MON_H_5_3",
@@ -18352,15 +18447,15 @@
           "level": 60,
           "info": "Schwer · vom Riss verderbt",
           "boss": {
-            "name": "Verderbt: Tequatl der Sonnenlose",
+            "name": "Verderbt: Auferstandener Priester des Grenth",
             "role": "boss",
-            "sprite": "BOSS_VERDERBT_TEQUATL_DER_SONNENLOSE",
+            "sprite": "BOSS_VERDERBT_AUFERSTANDENER_PRIESTER_DES_GRENTH",
             "wiki": {
               "status": "teilweise",
-              "title": "Tequatl der Sonnenlose",
-              "en": "Tequatl the Sunless",
-              "via": "Tequatl der Sonnenlose",
-              "url": "https://wiki-de.guildwars2.com/wiki/Tequatl_der_Sonnenlose"
+              "title": "Hindert den Auferstandenen Priester des Grenth daran, die Kathedrale der Stille wieder einzunehmen",
+              "en": "Stop the Risen Priest of Grenth from retaking the Cathedral of Silence",
+              "via": "Hindert den Auferstandenen Priester des Grenth daran, die Kathedrale der Stille wieder einzunehmen",
+              "url": "https://wiki-de.guildwars2.com/wiki/Hindert_den_Auferstandenen_Priester_des_Grenth_daran%2C_die_Kathedrale_der_Stille_wieder_einzunehmen"
             },
             "cqht": {
               "id": "BOSS_H_5_4",
@@ -18390,12 +18485,15 @@
           },
           "minions": [
             {
-              "name": "Auferstandener Knochenmagier",
+              "name": "Orrianische Spektralwache",
               "role": "scherge",
-              "sprite": "MOB_AUFERSTANDENER_KNOCHENMAGIER",
+              "sprite": "MOB_ORRIANISCHE_SPEKTRALWACHE",
               "wiki": {
-                "status": "fehlt",
-                "suggestions": []
+                "status": "ok",
+                "title": "Orrianische Spektralwache",
+                "en": "Orrian Spectral Guard",
+                "via": "Orrianische Spektralwache",
+                "url": "https://wiki-de.guildwars2.com/wiki/Orrianische_Spektralwache"
               },
               "cqht": {
                 "id": "MON_H_5_4",
@@ -18627,15 +18725,15 @@
           "level": 60,
           "info": "Legendär · Schattenform des Endbosses",
           "boss": {
-            "name": "Schatten: Tequatl der Sonnenlose",
+            "name": "Schatten: Auferstandener Priester des Grenth",
             "role": "boss",
-            "sprite": "BOSS_SCHATTEN_TEQUATL_DER_SONNENLOSE",
+            "sprite": "BOSS_SCHATTEN_AUFERSTANDENER_PRIESTER_DES_GRENTH",
             "wiki": {
               "status": "teilweise",
-              "title": "Tequatl der Sonnenlose",
-              "en": "Tequatl the Sunless",
-              "via": "Tequatl der Sonnenlose",
-              "url": "https://wiki-de.guildwars2.com/wiki/Tequatl_der_Sonnenlose"
+              "title": "Hindert den Auferstandenen Priester des Grenth daran, die Kathedrale der Stille wieder einzunehmen",
+              "en": "Stop the Risen Priest of Grenth from retaking the Cathedral of Silence",
+              "via": "Hindert den Auferstandenen Priester des Grenth daran, die Kathedrale der Stille wieder einzunehmen",
+              "url": "https://wiki-de.guildwars2.com/wiki/Hindert_den_Auferstandenen_Priester_des_Grenth_daran%2C_die_Kathedrale_der_Stille_wieder_einzunehmen"
             },
             "cqht": {
               "id": "BOSS_H_L_5",
@@ -21436,7 +21534,7 @@
       "id": 13,
       "zone": "Eisklamm-Sund",
       "portal": 6,
-      "portalName": "Hoher Norden & Vorstoß nach Orr",
+      "portalName": "Hoher Norden & Arah",
       "type": "Offene Welt",
       "lv": [
         66,
@@ -22799,7 +22897,7 @@
       "id": 14,
       "zone": "Umarmung der Betrübnis",
       "portal": 6,
-      "portalName": "Hoher Norden & Vorstoß nach Orr",
+      "portalName": "Hoher Norden & Arah",
       "type": "Verlies",
       "lv": [
         68,
@@ -24095,7 +24193,7 @@
       "id": 15,
       "zone": "Ruinen von Arah",
       "portal": 6,
-      "portalName": "Hoher Norden & Vorstoß nach Orr",
+      "portalName": "Hoher Norden & Arah",
       "type": "Verlies / epische Zone",
       "lv": [
         70,
@@ -24115,14 +24213,14 @@
           "kind": "normal",
           "level": 70,
           "boss": {
-            "name": "Auge des Zhaitan",
+            "name": "Mund des Zhaitan",
             "role": "boss",
             "wiki": {
               "status": "ok",
-              "title": "Auge des Zhaitan",
-              "en": "Eye of Zhaitan",
-              "via": "Auge des Zhaitan",
-              "url": "https://wiki-de.guildwars2.com/wiki/Auge_des_Zhaitan"
+              "title": "Mund des Zhaitan",
+              "en": "Mouth of Zhaitan",
+              "via": "Mund des Zhaitan",
+              "url": "https://wiki-de.guildwars2.com/wiki/Mund_des_Zhaitan"
             },
             "cqht": {
               "id": "BOSS_H_3_4",
@@ -24390,15 +24488,14 @@
           "kind": "normal",
           "level": 70,
           "boss": {
-            "name": "Maul des Zhaitan",
+            "name": "Hoheitliches Auge des Zhaitan",
             "role": "boss",
             "wiki": {
-              "status": "fehlt",
-              "suggestions": [
-                "Magie",
-                "Haus der Verwesung",
-                "Der Klang der Psi-Lanze"
-              ]
+              "status": "ok",
+              "title": "Hoheitliches Auge des Zhaitan",
+              "en": "Sovereign Eye of Zhaitan",
+              "via": "Hoheitliches Auge des Zhaitan",
+              "url": "https://wiki-de.guildwars2.com/wiki/Hoheitliches_Auge_des_Zhaitan"
             },
             "cqht": {
               "id": "BOSS_H_3_4",
@@ -24602,15 +24699,13 @@
           "kind": "normal",
           "level": 70,
           "boss": {
-            "name": "Hohepriester des Balthasar",
+            "name": "Champion Auferstandene Erzmagierin",
             "role": "boss",
             "wiki": {
-              "status": "fehlt",
-              "suggestions": [
-                "Die Ruinenstadt Arah/Forschung - Randall Graustein",
-                "Auferstandener",
-                "Eigenschaftenhandbuch"
-              ]
+              "status": "ok",
+              "title": "Champion Auferstandene Erzmagierin",
+              "via": "Champion Auferstandene Erzmagierin",
+              "url": "https://wiki-de.guildwars2.com/wiki/Champion_Auferstandene_Erzmagierin"
             },
             "cqht": {
               "id": "BOSS_H_4_1",
@@ -24753,15 +24848,14 @@
           "kind": "normal",
           "level": 70,
           "boss": {
-            "name": "Hohepriesterin der Dwayna",
+            "name": "Auferstandener Oberster Zauberer",
             "role": "boss",
             "wiki": {
-              "status": "fehlt",
-              "suggestions": [
-                "Die Ruinenstadt Arah/Forschung - Randall Graustein",
-                "Malchors Sprung",
-                "Spielupdate/20231106"
-              ]
+              "status": "ok",
+              "title": "Auferstandener Oberster Zauberer",
+              "en": "Risen High Wizard",
+              "via": "Auferstandener Oberster Zauberer",
+              "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Oberster_Zauberer"
             },
             "cqht": {
               "id": "BOSS_H_4_1",
@@ -25029,15 +25123,14 @@
           "kind": "normal",
           "level": 70,
           "boss": {
-            "name": "Hohepriester der Grenth",
+            "name": "Giganticus Lupicus",
             "role": "boss",
             "wiki": {
-              "status": "fehlt",
-              "suggestions": [
-                "Die Ruinenstadt Arah/Forschung - Randall Graustein",
-                "Auferstandener",
-                "Eigenschaftenhandbuch"
-              ]
+              "status": "ok",
+              "title": "Giganticus Lupicus",
+              "en": "Great Giant",
+              "via": "Giganticus Lupicus",
+              "url": "https://wiki-de.guildwars2.com/wiki/Giganticus_Lupicus"
             },
             "cqht": {
               "id": "BOSS_H_4_2",

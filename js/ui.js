@@ -8,7 +8,7 @@ import {
   GAME, CURRENCIES, ROLES, CLASSES, HEROES, HERO_BY_ID, ZONES, COMBAT, F, BUILDINGS, BUILDING_ORDER,
   TENTS, TENT_SIZE, MYSTIC, MYSTIC_ORDER, ONBOARDING, RETIRE_MIN_LEVEL, LEVEL_CAP_MAX, FEATURES,
   RESEARCH, RESEARCH_ORDER, TIER_LAB, WEAPON_BY_ID, WEAPON_GRADES, WEAPON_TYPES, RATIONS, NORMAL_STAGES,
-  TOTAL_NORMAL, CYCLE_MS, QUESTS as MAIN_QUESTS, RECRUIT, REROLL_RESET_CLOVER,
+  TOTAL_NORMAL, CYCLE_MS, QUESTS as MAIN_QUESTS, RECRUIT, REROLL_RESET_CLOVER, ARMORY_SLOTS, ARMORY_CLEANUP_DEFAULT,
 } from './config.js';
 import { currentQuest, questProgress, questNumber, claimQuest, questDone } from './quests.js';
 import { manualChapters } from './manual.js';
@@ -16,15 +16,15 @@ import {
   createNewState, exportSave, importSave, replaceState, getHero, heroStats, levelCap,
   activeHeroCount, reserveHeroes, isOwned, rarityBonus, isZoneAvailable, isStageAvailable, stageBeaten,
   stageLock, buildingCost, buildLock, canAfford, pay, createHero, addLog, squadOf, buildingUnlocked,
-  featureUnlocked, normalCleared, hallGold, weaponType,
+  featureUnlocked, normalCleared, hallGold, weaponType, armorySlots, armoryFree,
 } from './state.js';
 import {
   squadMembers, spawnMonster, setStage, reviveHero, assignHero, teamProfile, heroOutput, fmt, stageOf,
   challengeBoss, canChallengeBoss, abortBoss, bossCost, bossCooldownLeft, toggleAutoBoss,
 } from './combat.js';
 import {
-  researchInfo, doResearch, startBuild, refreshShop, refreshCost, buyWeapon, sellWeapon, sellPrice,
-  equipWeapon, unequipWeapon, fitsHero, feedRation,
+  researchInfo, doResearch, startBuild, refreshShop, refreshCost, buyWeapon, sellWeapon, sellWeapons, sellPrice,
+  upgradeIndices, equipWeapon, unequipWeapon, fitsHero, feedRation,
   recruitTier, recruitRefreshCost, refreshRecruits, recruitCost, hireRecruit, resetRerollCost, recruitOdds,
 } from './progress.js';
 import { runOffline } from './offline.js';
@@ -298,7 +298,7 @@ function renderPortal() {
       <button class="arena-hero ${wounded ? 'wounded' : ''}" style="--c:${WEAPON_GRADES[h.rarity].color}" data-action="slot" data-squad="${i}" data-slot="${slot}">
         ${sprite(CLASSES[def.cls].sprite, 'hero-sprite')}
         <div class="ah-name">${ROLES[def.role].icon} ${esc(def.name)}</div>
-        <div class="ah-lv">Lv. ${h.level}${h.weapon ? ` · ★${WEAPON_BY_ID[h.weapon].grade}` : ''}</div>
+        <div class="ah-lv">Lv. ${h.level}${h.weapon ? ` · T${WEAPON_BY_ID[h.weapon].grade}` : ''}</div>
         ${hpBar(h.hp, hs.maxHp, 'hero-hp')}
         ${hpBar(h.exp, F.expToNext(h.level), 'exp')}
         <div class="ah-status">${wounded ? `💢 ${clock(h.woundedUntil - S.lastTickMs)}` : sq.status === 'fighting' ? 'Kämpft' : 'Bereit'}</div>
@@ -429,6 +429,7 @@ function hallUnlocks(level) {
   }
   TENTS.forEach((t, i) => { if (i > 0 && t.hall === level) out.push(`⛺ Zelt ${i + 1}`); });
   for (const f of Object.values(FEATURES)) if (f.unlockHall === level) out.push(`✨ ${f.name}`);
+  if (level > 1 && ARMORY_SLOTS[level - 1] > ARMORY_SLOTS[level - 2]) out.push(`🗄️ Waffenkammer ${ARMORY_SLOTS[level - 1]} Plätze`);
   return out;
 }
 
@@ -531,12 +532,20 @@ function heroMini(h, opts = {}) {
   return `<div class="hero-mini ${wounded ? 'wounded' : ''}" style="--c:${WEAPON_GRADES[h.rarity].color}">
     ${sprite(CLASSES[def.cls].sprite, 'mini-sprite')}
     <div class="hm-body">
-      <div class="hm-name"><b>${esc(def.name)}</b> <span class="lv">Lv. ${h.level}</span>${h.weapon ? ` <span class="wpn" style="color:${WEAPON_GRADES[WEAPON_BY_ID[h.weapon].grade].color}">★${WEAPON_BY_ID[h.weapon].grade}</span>` : ''}</div>
+      <div class="hm-name"><b>${esc(def.name)}</b> <span class="lv">Lv. ${h.level}</span></div>
       <div class="hm-sub"><span style="color:${WEAPON_GRADES[h.rarity].color}">◆</span> ${ROLES[def.role].icon} ${ROLES[def.role].name} · ${CLASSES[def.cls].name}</div>
+      <div class="hm-wpn">${heroWeaponLine(h)}</div>
       ${opts.bars === false ? '' : hpBar(h.hp, hs.maxHp, 'hero-hp')}
       ${wounded ? `<div class="hm-wound">💢 Verwundet · ${clock(h.woundedUntil - S.lastTickMs)}</div>` : ''}
     </div>
   </div>`;
+}
+
+// #029: Welche Waffe trägt der Held? Symbol, Name in Güte-Farbe, Güte
+function heroWeaponLine(h) {
+  if (!h.weapon) return `<span class="muted">${WEAPON_TYPES[weaponType(h)].icon} ohne Waffe</span>`;
+  const w = WEAPON_BY_ID[h.weapon];
+  return `${WEAPON_TYPES[w.type].icon} <span style="color:${WEAPON_GRADES[w.grade].color}">${esc(w.name)}</span> <span class="lv">T${w.grade}</span>`;
 }
 
 function tentWarnings(sq) {
@@ -693,30 +702,110 @@ function weaponLabel(h) {
 function weaponName(wid) {
   const w = WEAPON_BY_ID[wid];
   const g = WEAPON_GRADES[w.grade];
-  return `${WEAPON_TYPES[w.type].icon} <span style="color:${g.color}">${esc(w.name)}</span> <span class="lv">★${w.grade}</span>`;
+  return `${WEAPON_TYPES[w.type].icon} <span style="color:${g.color}">${esc(w.name)}</span> <span class="lv">T${w.grade}</span>`;
 }
 const weaponBonus = (wid) => {
   const g = WEAPON_GRADES[WEAPON_BY_ID[wid].grade];
   return `+${Math.round(g.atk * 100)} % ATK · +${Math.round(g.hp * 100)} % HP`;
 };
 
-// Waffenkammer: ungenutzte Waffen, gleiche zusammengefasst. back='inv' → aus dem Inventar geöffnet
-function armoryCards(back = '') {
+// Waffenkammer (#030/#031): Raster aus Kacheln, gleiche Waffen zusammengefasst.
+// Antippen öffnet das Detail; darunter „Aufräumen“. back='inv' → aus dem Inventar geöffnet
+function armoryHead() {
+  const n = S.armory.length, max = armorySlots(S);
+  const cls = n >= max ? 'full' : n >= max * 0.9 ? 'near' : '';
+  return `<h3 class="tree-title">🗄️ Waffenkammer <span class="cap ${cls}">${n}/${max}</span></h3>
+    ${n >= max ? '<div class="card b-note">Voll: Boss-Beute bleibt liegen, der Laden verkauft nichts. Verkaufe Waffen oder baue die Gildenhalle aus.</div>' : ''}`;
+}
+
+function armoryGroups() {
   const groups = {};
   S.armory.forEach((wid, idx) => (groups[wid] = groups[wid] || []).push(idx));
+  return Object.entries(groups).sort((x, y) =>
+    WEAPON_BY_ID[y[0]].grade - WEAPON_BY_ID[x[0]].grade || WEAPON_BY_ID[x[0]].name.localeCompare(WEAPON_BY_ID[y[0]].name));
+}
+
+function armoryCards(back = '') {
+  if (!S.armory.length) return armoryHead() + '<div class="card muted small">Noch leer. Waffen gibt es von Bossen und im Laden.</div>';
+  const up = new Set([...upgradeIndices(S).keys()].map(k => S.armory[k]));
   const b = back ? ` data-back="${back}"` : '';
-  return Object.entries(groups)
-    .sort((x, y) => WEAPON_BY_ID[y[0]].grade - WEAPON_BY_ID[x[0]].grade)
-    .map(([wid, idxs]) => `<div class="card weapon-offer">
-      <div class="w-info"><div>${weaponName(wid)}${idxs.length > 1 ? ` <b>×${idxs.length}</b>` : ''}</div><div class="muted small">${WEAPON_TYPES[WEAPON_BY_ID[wid].type].name} · ${weaponBonus(wid)}</div></div>
-      <div class="b-act btn-col tight">
+  return armoryHead() + `<div class="w-grid">${armoryGroups().map(([wid, idxs]) => {
+    const w = WEAPON_BY_ID[wid];
+    return `<button class="w-tile" style="--c:${WEAPON_GRADES[w.grade].color}" data-action="weapon" data-wid="${wid}"${b} aria-label="${esc(w.name)}">
+      ${up.has(wid) ? '<span class="w-up">▲</span>' : ''}${idxs.length > 1 ? `<span class="w-n">×${idxs.length}</span>` : ''}
+      <span class="w-ico">${WEAPON_TYPES[w.type].icon}</span><span class="w-g">T${w.grade}</span></button>`;
+  }).join('')}</div>
+  ${up.size ? '<div class="muted small w-legend">▲ = besser als die Waffe eines Helden</div>' : ''}
+  <button class="btn block w-clean" data-action="cleanup"${b}>🧹 Aufräumen</button>`;
+}
+
+// Detail einer Waffe aus der Waffenkammer: Ausrüsten, Verkaufen
+function openWeaponDetail(wid, back = '') {
+  const b = back ? ` data-back="${back}"` : '';
+  const build = () => {
+    const idxs = S.armory.map((x, k) => (x === wid ? k : -1)).filter(k => k >= 0);
+    if (!idxs.length) return null;
+    const w = WEAPON_BY_ID[wid];
+    const ups = upgradeIndices(S);
+    const forHeroes = idxs.filter(k => ups.has(k)).map(k => esc(HERO_BY_ID[ups.get(k).heroId].name));
+    const price = sellPrice(wid);
+    return `
+      ${modalHead(`${WEAPON_TYPES[w.type].icon} ${esc(w.name)}`, back ? 'inventory' : '')}
+      <p><span style="color:${WEAPON_GRADES[w.grade].color}"><b>T${w.grade} ${WEAPON_GRADES[w.grade].name}</b></span> · ${WEAPON_TYPES[w.type].name}${idxs.length > 1 ? ` · <b>×${idxs.length}</b>` : ''}<br>
+        <span class="muted small">${weaponBonus(wid)}</span></p>
+      ${forHeroes.length ? `<p class="small">▲ Besser für: ${forHeroes.join(', ')}</p>` : ''}
+      <div class="btn-col">
         <button class="btn primary" data-action="equip-pick" data-idx="${idxs[0]}"${b}>Ausrüsten</button>
-        <button class="btn" data-action="sell" data-idx="${idxs[0]}"><small>Verkaufen 🟡 ${fmt(sellPrice(wid))}</small></button>
-      </div></div>`).join('') || '<div class="card muted small">Noch leer. Waffen gibt es von Bossen und im Laden.</div>';
+        <button class="btn" data-action="sell-wid" data-wid="${wid}" data-n="1"${b}>Verkaufen<small>🟡 ${fmt(price)}</small></button>
+        ${idxs.length > 1 ? `<button class="btn danger" data-action="sell-wid" data-wid="${wid}" data-n="${idxs.length}"${b}>Alle ${idxs.length} verkaufen<small>🟡 ${fmt(price * idxs.length)}</small></button>` : ''}
+      </div>`;
+  };
+  const refresh = () => {
+    const x = build();
+    if (x) openModal(x, refresh);
+    else if (back) openInventory();
+    else closeModal();
+  };
+  const html = build();
+  if (html) openModal(html, refresh);
+}
+
+// „Aufräumen“: alle Waffen der gewählten Güten verkaufen. Geschützt: ausgerüstete
+// (liegen nicht in der Kammer) und je Held die beste bessere Waffe (upgradeIndices)
+const cleanupGrades = new Set(ARMORY_CLEANUP_DEFAULT);
+function cleanupPlan() {
+  const keep = upgradeIndices(S);
+  const sell = [], kept = [];
+  S.armory.forEach((wid, k) => {
+    if (!cleanupGrades.has(WEAPON_BY_ID[wid].grade)) return;
+    (keep.has(k) ? kept : sell).push(k);
+  });
+  return { sell, kept, gold: sell.reduce((a, k) => a + sellPrice(S.armory[k]), 0) };
+}
+function openCleanup(back = '') {
+  const b = back ? ` data-back="${back}"` : '';
+  const build = () => {
+    const count = {};
+    for (const wid of S.armory) count[WEAPON_BY_ID[wid].grade] = (count[WEAPON_BY_ID[wid].grade] || 0) + 1;
+    const plan = cleanupPlan();
+    return `
+      ${modalHead('🧹 Aufräumen', back ? 'inventory' : '')}
+      <p class="small">Welche Güten sollen weg? Antippen wählt aus.</p>
+      <div class="grade-toggles">${Object.keys(WEAPON_GRADES).map(Number).map(g => {
+        const on = cleanupGrades.has(g) && count[g];
+        return `<button class="btn grade-toggle ${on ? 'on' : ''}" style="--c:${WEAPON_GRADES[g].color}" data-action="cleanup-grade" data-g="${g}" ${count[g] ? '' : 'disabled'}>
+          ${on ? '✓ ' : ''}T${g} ${WEAPON_GRADES[g].name}<small>${count[g] || 0} Stück</small></button>`;
+      }).join('')}</div>
+      ${plan.kept.length ? `<p class="muted small">🛡️ ${plan.kept.length} bleib${plan.kept.length > 1 ? 'en' : 't'}, weil besser für einen Helden (▲). Ausgerüstete Waffen sind nie dabei.</p>` : ''}
+      <button class="btn danger block big" data-action="cleanup-sell"${b} ${plan.sell.length ? '' : 'disabled'}>
+        ${plan.sell.length ? `${plan.sell.length} Waffe${plan.sell.length > 1 ? 'n' : ''} verkaufen<small>+🟡 ${fmt(plan.gold)}</small>` : 'Nichts ausgewählt'}</button>`;
+  };
+  const refresh = () => openModal(build(), refresh);
+  refresh();
 }
 
 function renderForge() {
-  const armory = `<h3 class="tree-title">🗄️ Waffenkammer (${S.armory.length})</h3>${armoryCards()}`;
+  const armory = armoryCards();
   if (S.buildings.forge < 1) {
     setHTML($('#weapons'), lockedCard('⚒️', 'Charr-Schmiede noch nicht gebaut',
       buildingUnlocked(S, 'forge')
@@ -728,8 +817,8 @@ function renderForge() {
       return `<div class="card weapon-offer">
         <div class="w-info"><div>${weaponName(wid)}</div><div class="muted small">${WEAPON_TYPES[w.type].name} · ${weaponBonus(wid)}</div></div>
         <div class="b-act btn-col tight">
-          <button class="btn primary" data-action="buy" data-slot="${k}" data-cur="gold" ${S.gold >= w.gold ? '' : 'disabled'}>Kaufen<small>🟡 ${fmt(w.gold)}</small></button>
-          ${w.rp != null ? `<button class="btn" data-action="buy" data-slot="${k}" data-cur="rp" ${S.rp >= w.rp ? '' : 'disabled'}><small>oder 📜 ${w.rp}</small></button>` : ''}
+          <button class="btn primary" data-action="buy" data-slot="${k}" data-cur="gold" ${S.gold >= w.gold && armoryFree(S) > 0 ? '' : 'disabled'}>Kaufen<small>🟡 ${fmt(w.gold)}</small></button>
+          ${w.rp != null ? `<button class="btn" data-action="buy" data-slot="${k}" data-cur="rp" ${S.rp >= w.rp && armoryFree(S) > 0 ? '' : 'disabled'}><small>oder 📜 ${w.rp}</small></button>` : ''}
         </div></div>`;
     }).join('') || '<div class="card muted small">Ausverkauft. Neue Ware kommt bald.</div>';
     setHTML($('#weapons'), `
@@ -779,7 +868,7 @@ function openEquipPicker(idx, back = '') {
     ${modalHead('Ausrüsten', back ? 'inventory' : '')}
     <p>${weaponName(wid)}<br><span class="muted small">${weaponBonus(wid)} · passt zu: ${WEAPON_TYPES[WEAPON_BY_ID[wid].type].name}-Trägern</span></p>
     ${heroes.length ? `<div class="pick-list">${heroes.map(h => `<button class="card hero-row" data-action="equip" data-uid="${h.uid}" data-idx="${idx}"${b}>
-      ${heroMini(h, { bars: false })}<span class="small">${h.weapon ? `ersetzt ★${WEAPON_BY_ID[h.weapon].grade}` : 'frei'}</span></button>`).join('')}</div>`
+      ${heroMini(h, { bars: false })}<span class="small">${h.weapon ? `ersetzt T${WEAPON_BY_ID[h.weapon].grade}` : 'frei'}</span></button>`).join('')}</div>`
       : '<p class="muted small">Kein Held kann diese Waffenart tragen.</p>'}`);
 }
 
@@ -797,7 +886,6 @@ function inventoryHtml() {
     <h3 class="tree-title">🍞 Proviant</h3>
     ${rations || '<div class="card muted small">Kein Proviant. Den gibt es von Bossen.</div>'}
     <div class="card muted small">🍎 Früchte <b>${S.fruit}</b> · 🎟️ Arena-Tickets <b>${S.tickets}</b> (Funktion folgt)</div>
-    <h3 class="tree-title">🗄️ Waffenkammer (${S.armory.length})</h3>
     ${armoryCards('inv')}
     ${equipped.length ? `<h3 class="tree-title">⚔️ Ausgerüstet (${equipped.length})</h3>
       ${equipped.map(h => `<div class="card weapon-offer">
@@ -877,7 +965,7 @@ function heroDetailHtml(h) {
   const out = heroOutput(S, h);
   const pct = (x) => `${Math.round(x * 100)} %`;
   const roleHint = {
-    tank: 'Steht vorn und fängt die Treffer ab.',
+    tank: 'Bekommt den größten Teil des Monsterschadens und hält ihn mit hoher DEF aus.',
     dps: 'Greift jede Sekunde an.',
     support: `Greift mit ${pct(COMBAT.SUPPORT_ATK_FACTOR)} ATK an und stärkt den Trupp.`,
     healer: `Heilt jede Sekunde den schwächsten Verbündeten und greift mit ${pct(COMBAT.HEALER_ATK_FACTOR)} ATK an (ohne Krit).`,
@@ -1176,7 +1264,7 @@ function onClick(e) {
     // Schmiede & Labor
     case 'buy':
       if (buyWeapon(S, num(d.slot), d.cur)) changed('⚒️ Gekauft – liegt in der Waffenkammer.');
-      else toast('Nicht genug Ressourcen.');
+      else toast(armoryFree(S) < 1 ? '🗄️ Waffenkammer voll – erst aufräumen.' : 'Nicht genug Ressourcen.');
       break;
     case 'shop-refresh': if (refreshShop(S)) changed('Neue Ware!'); break;
     case 'sell': {
@@ -1185,6 +1273,30 @@ function onClick(e) {
       break;
     }
     case 'equip-pick': openEquipPicker(num(d.idx), d.back || ''); break;
+    case 'weapon': openWeaponDetail(d.wid, d.back || ''); break;
+    case 'sell-wid': {
+      const idxs = S.armory.map((x, k) => (x === d.wid ? k : -1)).filter(k => k >= 0).slice(0, num(d.n));
+      const r = sellWeapons(S, idxs);
+      if (r.count) { hooks.save?.(); toast(`Verkauft: ${r.count}× für 🟡 ${fmt(r.gold)}`); render(); }
+      break;
+    }
+    case 'cleanup': openCleanup(d.back || ''); break;
+    case 'cleanup-grade': {
+      const g = num(d.g);
+      if (cleanupGrades.has(g)) cleanupGrades.delete(g); else cleanupGrades.add(g);
+      if (modalRefresh) modalRefresh();
+      break;
+    }
+    case 'cleanup-sell': {
+      const r = sellWeapons(S, cleanupPlan().sell);
+      if (r.count) {
+        hooks.save?.();
+        toast(`🧹 ${r.count} Waffe${r.count > 1 ? 'n' : ''} verkauft · +🟡 ${fmt(r.gold)}`);
+        if (d.back === 'inv') openInventory(); else closeModal();
+        render();
+      }
+      break;
+    }
     case 'equip':
       if (equipWeapon(S, num(d.uid), num(d.idx))) {
         hooks.save?.(); toast('⚒️ Ausgerüstet!');
@@ -1198,6 +1310,7 @@ function onClick(e) {
     case 'feed-pick': openFeedPicker(num(d.g)); break;
     case 'unequip':
       if (unequipWeapon(S, num(d.uid))) { hooks.save?.(); if (modalRefresh) modalRefresh(); render(); }
+      else if (armoryFree(S) < 1) toast('🗄️ Waffenkammer voll – erst aufräumen.');
       break;
     case 'feed':
       if (feedRation(S, num(d.uid), num(d.g))) {

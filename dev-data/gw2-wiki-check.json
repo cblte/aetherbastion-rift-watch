@@ -3,13 +3,12 @@
     "status": "fehlt",
     "suggestions": []
   },
-  "Abtrünniger Seraph": {
-    "status": "fehlt",
-    "suggestions": [
-      "Ebonfalke-Festung",
-      "Die Wachsamen",
-      "Ebon-Vorhut"
-    ]
+  "Admiral Feiste Bakkir": {
+    "status": "ok",
+    "title": "Admiral Feiste Bakkir",
+    "en": "Admiral Feiste Bakkir",
+    "via": "Admiral Feiste Bakkir",
+    "url": "https://wiki-de.guildwars2.com/wiki/Admiral_Feiste_Bakkir"
   },
   "Albtraum-Ranke": {
     "status": "fehlt",
@@ -50,10 +49,6 @@
     "via": "Ascalonischer Geist",
     "url": "https://wiki-de.guildwars2.com/wiki/Ascalonischer_Geist"
   },
-  "Ascalonischer Geisterritter": {
-    "status": "fehlt",
-    "suggestions": []
-  },
   "Asura-Wachgolem": {
     "status": "fehlt",
     "suggestions": []
@@ -65,12 +60,66 @@
     "via": "Auferstandene Abscheulichkeit",
     "url": "https://wiki-de.guildwars2.com/wiki/Auferstandene_Abscheulichkeit"
   },
+  "Auferstandene Akolythin": {
+    "status": "ok",
+    "title": "Auferstandene Akolythin",
+    "en": "Risen Acolyte",
+    "via": "Auferstandene Akolythin",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandene_Akolythin"
+  },
+  "Auferstandene Brutmutter": {
+    "status": "erwähnt",
+    "title": "Tötet die auferstandene Brutmutter (Malchors Sprung)",
+    "via": "Auferstandene Brutmutter",
+    "url": "https://wiki-de.guildwars2.com/wiki/T%C3%B6tet_die_auferstandene_Brutmutter_(Malchors_Sprung)"
+  },
+  "Auferstandene Priesterin der Dwayna": {
+    "status": "erwähnt",
+    "title": "Besiegt die auferstandene Priesterin der Dwayna",
+    "via": "Auferstandene Priesterin der Dwayna",
+    "url": "https://wiki-de.guildwars2.com/wiki/Besiegt_die_auferstandene_Priesterin_der_Dwayna"
+  },
+  "Auferstandene Seuchenträgerin": {
+    "status": "ok",
+    "title": "Auferstandene Seuchenträgerin",
+    "en": "Risen Plague Carrier",
+    "via": "Auferstandene Seuchenträgerin",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandene_Seuchentr%C3%A4gerin"
+  },
+  "Auferstandene Spinne": {
+    "status": "ok",
+    "title": "Auferstandene Spinne",
+    "en": "Risen Spider",
+    "via": "Auferstandene Spinne",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandene_Spinne"
+  },
+  "Auferstandene Spinnenbrut": {
+    "status": "ok",
+    "title": "Auferstandene Spinnenbrut",
+    "en": "Risen Spider Hatchling",
+    "via": "Auferstandene Spinnenbrut",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandene_Spinnenbrut"
+  },
+  "Auferstandene Zauberin": {
+    "status": "ok",
+    "title": "Auferstandene Zauberin",
+    "en": "Risen Wizard",
+    "via": "Auferstandene Zauberin",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandene_Zauberin"
+  },
   "Auferstandene": {
     "status": "ok",
     "title": "Auferstandener",
     "en": "Risen",
     "via": "Auferstandene",
     "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener"
+  },
+  "Auferstandenen-Luftabwehrgeschütz": {
+    "status": "ok",
+    "title": "Auferstandenen-Luftabwehrgeschütz",
+    "en": "Risen Anti-Air Cannon",
+    "via": "Auferstandenen-Luftabwehrgeschütz",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandenen-Luftabwehrgesch%C3%BCtz"
   },
   "Auferstandener Akolyth": {
     "status": "ok",
@@ -79,25 +128,231 @@
     "via": "Auferstandener Akolyth",
     "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Akolyth"
   },
-  "Auferstandener Grubenarbeiter": {
-    "status": "fehlt",
-    "suggestions": []
+  "Auferstandener Bauer": {
+    "status": "ok",
+    "title": "Auferstandener Bauer",
+    "en": "Risen Farmer",
+    "via": "Auferstandener Bauer",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Bauer"
   },
-  "Auferstandener Knochenmagier": {
-    "status": "fehlt",
-    "suggestions": []
+  "Auferstandener Bewahrer": {
+    "status": "ok",
+    "title": "Auferstandener Bewahrer",
+    "via": "Auferstandener Bewahrer",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Bewahrer"
   },
-  "Auferstandener Matrose": {
-    "status": "fehlt",
-    "suggestions": [
-      "Die traurige Geschichte der \"Raffgier\"",
-      "Triumph oder Tod",
-      "Die Quelle von Orr"
-    ]
+  "Auferstandener Bullenhai": {
+    "status": "ok",
+    "title": "Auferstandener Bullenhai",
+    "en": "Risen Bull Shark",
+    "via": "Auferstandener Bullenhai",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Bullenhai"
   },
-  "Auferstandener Schreckenswandler": {
-    "status": "fehlt",
-    "suggestions": []
+  "Auferstandener Edelmann": {
+    "status": "ok",
+    "title": "Auferstandener Edelmann",
+    "en": "Risen Noble",
+    "via": "Auferstandener Edelmann",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Edelmann"
+  },
+  "Auferstandener Fischer": {
+    "status": "ok",
+    "title": "Auferstandener Fischer",
+    "en": "Risen Fisher",
+    "via": "Auferstandener Fischer",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Fischer"
+  },
+  "Auferstandener Gorilla": {
+    "status": "ok",
+    "title": "Auferstandener Gorilla",
+    "en": "Risen Gorilla",
+    "via": "Auferstandener Gorilla",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Gorilla"
+  },
+  "Auferstandener Grobian": {
+    "status": "ok",
+    "title": "Auferstandener Grobian",
+    "en": "Risen Brute",
+    "via": "Auferstandener Grobian",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Grobian"
+  },
+  "Auferstandener Hai": {
+    "status": "ok",
+    "title": "Auferstandener Hai",
+    "en": "Risen Shark",
+    "via": "Auferstandener Hai",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Hai"
+  },
+  "Auferstandener Hofnarr": {
+    "status": "ok",
+    "title": "Auferstandener Hofnarr",
+    "en": "Risen Jester",
+    "via": "Auferstandener Hofnarr",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Hofnarr"
+  },
+  "Auferstandener Hylek": {
+    "status": "ok",
+    "title": "Auferstandener Hylek",
+    "en": "Risen Hylek",
+    "via": "Auferstandener Hylek",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Hylek"
+  },
+  "Auferstandener Knappe": {
+    "status": "ok",
+    "title": "Auferstandener Knappe",
+    "via": "Auferstandener Knappe",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Knappe"
+  },
+  "Auferstandener Kommandeur": {
+    "status": "ok",
+    "title": "Auferstandener Kommandeur",
+    "en": "Risen Commander",
+    "via": "Auferstandener Kommandeur",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Kommandeur"
+  },
+  "Auferstandener Krait-Damoss": {
+    "status": "ok",
+    "title": "Auferstandener Krait-Damoss",
+    "en": "Risen Krait Damoss",
+    "via": "Auferstandener Krait-Damoss",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Krait-Damoss"
+  },
+  "Auferstandener Krait-Hypnoss": {
+    "status": "ok",
+    "title": "Auferstandener Krait-Hypnoss",
+    "en": "Risen Krait Hypnoss",
+    "via": "Auferstandener Krait-Hypnoss",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Krait-Hypnoss"
+  },
+  "Auferstandener Krebs": {
+    "status": "ok",
+    "title": "Auferstandener Krebs",
+    "en": "Risen Crab",
+    "via": "Auferstandener Krebs",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Krebs"
+  },
+  "Auferstandener Leibeigener": {
+    "status": "ok",
+    "title": "Auferstandener Leibeigener",
+    "en": "Risen Thrall",
+    "via": "Auferstandener Leibeigener",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Leibeigener"
+  },
+  "Auferstandener Lindwurm": {
+    "status": "ok",
+    "title": "Auferstandener Lindwurm",
+    "en": "Risen Drake",
+    "via": "Auferstandener Lindwurm",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Lindwurm"
+  },
+  "Auferstandener Oberster Zauberer": {
+    "status": "ok",
+    "title": "Auferstandener Oberster Zauberer",
+    "en": "Risen High Wizard",
+    "via": "Auferstandener Oberster Zauberer",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Oberster_Zauberer"
+  },
+  "Auferstandener Pirat": {
+    "status": "ok",
+    "title": "Auferstandener Pirat",
+    "en": "Risen Pirate",
+    "via": "Auferstandener Pirat",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Pirat"
+  },
+  "Auferstandener Priester der Melandru": {
+    "status": "teilweise",
+    "title": "Vernichtet den Auferstandenen Priester der Melandru",
+    "en": "Destroy the Risen Priest of Melandru",
+    "via": "Vernichtet den Auferstandenen Priester der Melandru",
+    "url": "https://wiki-de.guildwars2.com/wiki/Vernichtet_den_Auferstandenen_Priester_der_Melandru"
+  },
+  "Auferstandener Priester des Balthasar": {
+    "status": "ok",
+    "title": "Auferstandener Priester des Balthasar",
+    "en": "Risen Priest of Balthazar",
+    "via": "Auferstandener Priester des Balthasar",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Priester_des_Balthasar"
+  },
+  "Auferstandener Priester des Grenth": {
+    "status": "teilweise",
+    "title": "Hindert den Auferstandenen Priester des Grenth daran, die Kathedrale der Stille wieder einzunehmen",
+    "en": "Stop the Risen Priest of Grenth from retaking the Cathedral of Silence",
+    "via": "Hindert den Auferstandenen Priester des Grenth daran, die Kathedrale der Stille wieder einzunehmen",
+    "url": "https://wiki-de.guildwars2.com/wiki/Hindert_den_Auferstandenen_Priester_des_Grenth_daran%2C_die_Kathedrale_der_Stille_wieder_einzunehmen"
+  },
+  "Auferstandener Ritter": {
+    "status": "ok",
+    "title": "Auferstandener Ritter",
+    "en": "Risen Knight",
+    "via": "Auferstandener Ritter",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Ritter"
+  },
+  "Auferstandener Seuchenträger": {
+    "status": "ok",
+    "title": "Auferstandener Seuchenträger",
+    "en": "Risen Plague Carrier",
+    "via": "Auferstandener Seuchenträger",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Seuchentr%C3%A4ger"
+  },
+  "Auferstandener Unterwerfer": {
+    "status": "ok",
+    "title": "Auferstandener Unterwerfer",
+    "en": "Risen Subjugator",
+    "via": "Auferstandener Unterwerfer",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Unterwerfer"
+  },
+  "Auferstandener Verderber": {
+    "status": "ok",
+    "title": "Auferstandener Verderber",
+    "en": "Risen Corrupter",
+    "via": "Auferstandener Verderber",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Verderber"
+  },
+  "Auferstandener Verseuchter": {
+    "status": "ok",
+    "title": "Auferstandener Verseuchter",
+    "via": "Auferstandener Verseuchter",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Verseuchter"
+  },
+  "Auferstandener Verweser": {
+    "status": "ok",
+    "title": "Auferstandener Verweser",
+    "en": "Risen Putrifier",
+    "via": "Auferstandener Verweser",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Verweser"
+  },
+  "Auferstandener Verwüster": {
+    "status": "ok",
+    "title": "Auferstandener Verwüster",
+    "via": "Auferstandener Verwüster",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Verw%C3%BCster"
+  },
+  "Auferstandener Zauberer": {
+    "status": "ok",
+    "title": "Auferstandener Zauberer",
+    "en": "Risen Wizard",
+    "via": "Auferstandener Zauberer",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Zauberer"
+  },
+  "Auferstandenes Gespenst": {
+    "status": "ok",
+    "title": "Auferstandenes Gespenst",
+    "en": "Risen Wraith",
+    "via": "Auferstandenes Gespenst",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandenes_Gespenst"
+  },
+  "Auferstandenes Huhn": {
+    "status": "ok",
+    "title": "Auferstandenes Huhn",
+    "via": "Auferstandenes Huhn",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandenes_Huhn"
+  },
+  "Auferstandenes Lindwurm-Junges": {
+    "status": "ok",
+    "title": "Auferstandenes Lindwurm-Junges",
+    "en": "Risen Drake Hatchling",
+    "via": "Auferstandenes Lindwurm-Junges",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandenes_Lindwurm-Junges"
   },
   "Auge des Zhaitan": {
     "status": "ok",
@@ -170,13 +425,6 @@
     "status": "fehlt",
     "suggestions": []
   },
-  "Blutstrom-Küste": {
-    "status": "ok",
-    "title": "Blutstrom-Küste",
-    "en": "Bloodtide Coast",
-    "via": "Blutstrom-Küste",
-    "url": "https://wiki-de.guildwars2.com/wiki/Blutstrom-K%C3%BCste"
-  },
   "Butler Michiels": {
     "status": "fehlt",
     "suggestions": []
@@ -208,19 +456,66 @@
       "Permanenter Todesstoß des ascalonischen Anführers"
     ]
   },
-  "Champion Auferstandener Offizier": {
-    "status": "fehlt",
-    "suggestions": [
-      "Champion",
-      "Miniatur",
-      "Elite"
-    ]
+  "Champion Auferstandene Abscheulichkeit": {
+    "status": "ok",
+    "title": "Champion Auferstandene Abscheulichkeit",
+    "en": "Champion Risen Abomination",
+    "via": "Champion Auferstandene Abscheulichkeit",
+    "url": "https://wiki-de.guildwars2.com/wiki/Champion_Auferstandene_Abscheulichkeit"
   },
-  "Champion Auferstandener Priester": {
-    "status": "erwähnt",
-    "title": "Auferstandener Priester des Balthasar (Miniatur)",
-    "via": "Auferstandener Priester",
-    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Priester_des_Balthasar_(Miniatur)"
+  "Champion Auferstandene Erzmagierin": {
+    "status": "ok",
+    "title": "Champion Auferstandene Erzmagierin",
+    "via": "Champion Auferstandene Erzmagierin",
+    "url": "https://wiki-de.guildwars2.com/wiki/Champion_Auferstandene_Erzmagierin"
+  },
+  "Champion Auferstandener Gladiator": {
+    "status": "ok",
+    "title": "Champion Auferstandener Gladiator",
+    "en": "Champion Risen Gladiator",
+    "via": "Champion Auferstandener Gladiator",
+    "url": "https://wiki-de.guildwars2.com/wiki/Champion_Auferstandener_Gladiator"
+  },
+  "Champion Auferstandener Hofwart": {
+    "status": "ok",
+    "title": "Champion Auferstandener Hofwart",
+    "en": "Champion Risen Groundskeeper",
+    "via": "Champion Auferstandener Hofwart",
+    "url": "https://wiki-de.guildwars2.com/wiki/Champion_Auferstandener_Hofwart"
+  },
+  "Champion Auferstandener Kapitän": {
+    "status": "ok",
+    "title": "Champion Auferstandener Kapitän",
+    "en": "Champion Risen Captain",
+    "via": "Champion Auferstandener Kapitän",
+    "url": "https://wiki-de.guildwars2.com/wiki/Champion_Auferstandener_Kapit%C3%A4n"
+  },
+  "Champion Auferstandener Krait-Nimross": {
+    "status": "ok",
+    "title": "Champion Auferstandener Krait-Nimross",
+    "en": "Champion Risen Krait Nimross",
+    "via": "Champion Auferstandener Krait-Nimross",
+    "url": "https://wiki-de.guildwars2.com/wiki/Champion_Auferstandener_Krait-Nimross"
+  },
+  "Champion Auferstandener Leutnant": {
+    "status": "ok",
+    "title": "Champion Auferstandener Leutnant",
+    "via": "Champion Auferstandener Leutnant",
+    "url": "https://wiki-de.guildwars2.com/wiki/Champion_Auferstandener_Leutnant"
+  },
+  "Champion Auferstandener Megalodon": {
+    "status": "ok",
+    "title": "Champion Auferstandener Megalodon",
+    "en": "Champion Risen Megalodon",
+    "via": "Champion Auferstandener Megalodon",
+    "url": "https://wiki-de.guildwars2.com/wiki/Champion_Auferstandener_Megalodon"
+  },
+  "Champion Auferstandener Riese": {
+    "status": "ok",
+    "title": "Champion Auferstandener Riese",
+    "en": "Champion Risen Giant",
+    "via": "Champion Auferstandener Riese",
+    "url": "https://wiki-de.guildwars2.com/wiki/Champion_Auferstandener_Riese"
   },
   "Champion Banditen-Saboteur": {
     "status": "ok",
@@ -284,10 +579,6 @@
       "Haufen kristallinen Staubs"
     ]
   },
-  "Champion Krait-Echse": {
-    "status": "fehlt",
-    "suggestions": []
-  },
   "Champion Krait-Hexe": {
     "status": "ok",
     "title": "Champion Krait-Hexe",
@@ -302,32 +593,12 @@
       "Eisige Schritte"
     ]
   },
-  "Champion Krait-Priester": {
-    "status": "fehlt",
-    "suggestions": [
-      "Krait",
-      "Auferstandener",
-      "Champion"
-    ]
-  },
-  "Champion Kropf-Krake": {
-    "status": "fehlt",
-    "suggestions": []
-  },
   "Champion Minotauren-Bulle": {
     "status": "fehlt",
     "suggestions": [
       "Minotaurus",
       "Borealis-Wald",
       "Die Osenfold-Schneide"
-    ]
-  },
-  "Champion Modniir-Häuptling": {
-    "status": "fehlt",
-    "suggestions": [
-      "Liste der Waffensets",
-      "Zentaur",
-      "Champion"
     ]
   },
   "Champion Riesen-Moa": {
@@ -425,22 +696,6 @@
     "status": "fehlt",
     "suggestions": []
   },
-  "Dredge-Kriegsmaschine": {
-    "status": "fehlt",
-    "suggestions": []
-  },
-  "Dredge-Panzer": {
-    "status": "fehlt",
-    "suggestions": []
-  },
-  "Dredge-Schweißer": {
-    "status": "fehlt",
-    "suggestions": []
-  },
-  "Dreiköpfige Krait-Bestie": {
-    "status": "fehlt",
-    "suggestions": []
-  },
   "Ebenen von Aschfurt": {
     "status": "ok",
     "title": "Ebenen von Aschfurt",
@@ -523,12 +778,6 @@
       "Waffengalerie/Kriegshorn"
     ]
   },
-  "Erdelementar": {
-    "status": "erwähnt",
-    "title": "Instabiler Erdelementar",
-    "via": "Erdelementar",
-    "url": "https://wiki-de.guildwars2.com/wiki/Instabiler_Erdelementar"
-  },
   "Erweckte": {
     "status": "ok",
     "title": "Erweckter",
@@ -539,6 +788,13 @@
   "Evolvierter Flammen-Schamane": {
     "status": "fehlt",
     "suggestions": []
+  },
+  "Faulschreck der Seuchenbringer": {
+    "status": "ok",
+    "title": "Faulschreck der Seuchenbringer",
+    "en": "Blightghast the Plaguebringer",
+    "via": "Faulschreck der Seuchenbringer",
+    "url": "https://wiki-de.guildwars2.com/wiki/Faulschreck_der_Seuchenbringer"
   },
   "Feuerelementar": {
     "status": "fehlt",
@@ -590,6 +846,13 @@
       "Meta-Event"
     ]
   },
+  "Fluchküste": {
+    "status": "ok",
+    "title": "Fluchküste",
+    "en": "Cursed Shore",
+    "via": "Fluchküste",
+    "url": "https://wiki-de.guildwars2.com/wiki/Fluchk%C3%BCste"
+  },
   "Flügel-Schrecken": {
     "status": "fehlt",
     "suggestions": [
@@ -603,13 +866,6 @@
     "en": "Frost",
     "via": "Frost",
     "url": "https://wiki.guildwars2.com/wiki/Frost"
-  },
-  "Funkenschwärmersumpf": {
-    "status": "ok",
-    "title": "Funkenschwärmersumpf",
-    "en": "Sparkfly Fen",
-    "via": "Funkenschwärmersumpf",
-    "url": "https://wiki-de.guildwars2.com/wiki/Funkenschw%C3%A4rmersumpf"
   },
   "Gaheron Baelfire": {
     "status": "teilweise",
@@ -678,62 +934,6 @@
       "Ascalonischer Geist"
     ]
   },
-  "Geister-Elite": {
-    "status": "fehlt",
-    "suggestions": [
-      "Geist",
-      "Ascalonischer Geist",
-      "Geschmiedeter"
-    ]
-  },
-  "Geister-Krieger": {
-    "status": "fehlt",
-    "suggestions": [
-      "Geist",
-      "Ascalonischer Geist",
-      "Waldläufer"
-    ]
-  },
-  "Geister-Liebende": {
-    "status": "fehlt",
-    "suggestions": [
-      "Katakomben von Ascalon",
-      "Katakomben von Ascalon (Story)",
-      "Gruft der Liebenden"
-    ]
-  },
-  "Geister-Nekromant": {
-    "status": "fehlt",
-    "suggestions": [
-      "Geist",
-      "Ascalonischer Geist",
-      "Waldläufer"
-    ]
-  },
-  "Geister-Waldläufer": {
-    "status": "fehlt",
-    "suggestions": [
-      "Waldläufer",
-      "Geist",
-      "Ascalonischer Geist"
-    ]
-  },
-  "Geister-Wächter": {
-    "status": "fehlt",
-    "suggestions": [
-      "Waldläufer",
-      "Dschinn",
-      "Geistertal"
-    ]
-  },
-  "Geisterhafter Nekromant": {
-    "status": "fehlt",
-    "suggestions": [
-      "Geist",
-      "Weißer Mantel",
-      "Kraftvoller Giftbeutel"
-    ]
-  },
   "Geistertal": {
     "status": "ok",
     "title": "Geistertal",
@@ -762,6 +962,19 @@
     "en": "Forged",
     "via": "Geschmiedete",
     "url": "https://wiki-de.guildwars2.com/wiki/Geschmiedeter"
+  },
+  "Giganticus Lupicus": {
+    "status": "ok",
+    "title": "Giganticus Lupicus",
+    "en": "Great Giant",
+    "via": "Giganticus Lupicus",
+    "url": "https://wiki-de.guildwars2.com/wiki/Giganticus_Lupicus"
+  },
+  "Golem Typ II YF-Gold": {
+    "status": "erwähnt",
+    "title": "Besiegt den Golem Typ II YF-Gold, der im Gebiet sein Unwesen treibt",
+    "via": "Golem Typ II YF-Gold",
+    "url": "https://wiki-de.guildwars2.com/wiki/Besiegt_den_Golem_Typ_II_YF-Gold%2C_der_im_Gebiet_sein_Unwesen_treibt"
   },
   "Golems": {
     "status": "teilweise",
@@ -807,34 +1020,6 @@
       "Klippheim"
     ]
   },
-  "Harathi-Hinterland": {
-    "status": "ok",
-    "title": "Harathi-Hinterland",
-    "en": "Harathi Hinterlands",
-    "via": "Harathi-Hinterland",
-    "url": "https://wiki-de.guildwars2.com/wiki/Harathi-Hinterland"
-  },
-  "Harathi-Krieger": {
-    "status": "ok",
-    "title": "Harathi-Krieger",
-    "en": "Harathi Warrior",
-    "via": "Harathi-Krieger",
-    "url": "https://wiki-de.guildwars2.com/wiki/Harathi-Krieger"
-  },
-  "Harathi-Schlächter": {
-    "status": "fehlt",
-    "suggestions": [
-      "Rätsel",
-      "Gebiet",
-      "Meta-Event"
-    ]
-  },
-  "Harathi-Speerwerfer": {
-    "status": "fehlt",
-    "suggestions": [
-      "PvE-Belagerungswaffe"
-    ]
-  },
   "Herold von Balthasar": {
     "status": "fehlt",
     "suggestions": [
@@ -843,35 +1028,14 @@
       "Kleidungsset"
     ]
   },
-  "Hohepriester der Grenth": {
-    "status": "fehlt",
-    "suggestions": [
-      "Die Ruinenstadt Arah/Forschung - Randall Graustein",
-      "Auferstandener",
-      "Eigenschaftenhandbuch"
-    ]
-  },
-  "Hohepriester des Balthasar": {
-    "status": "fehlt",
-    "suggestions": [
-      "Die Ruinenstadt Arah/Forschung - Randall Graustein",
-      "Auferstandener",
-      "Eigenschaftenhandbuch"
-    ]
-  },
-  "Hohepriesterin der Dwayna": {
-    "status": "fehlt",
-    "suggestions": [
-      "Die Ruinenstadt Arah/Forschung - Randall Graustein",
-      "Malchors Sprung",
-      "Spielupdate/20231106"
-    ]
+  "Hoheitliches Auge des Zhaitan": {
+    "status": "ok",
+    "title": "Hoheitliches Auge des Zhaitan",
+    "en": "Sovereign Eye of Zhaitan",
+    "via": "Hoheitliches Auge des Zhaitan",
+    "url": "https://wiki-de.guildwars2.com/wiki/Hoheitliches_Auge_des_Zhaitan"
   },
   "Hylek-Blasrohrschütze": {
-    "status": "fehlt",
-    "suggestions": []
-  },
-  "Hylek-Giftmischer": {
     "status": "fehlt",
     "suggestions": []
   },
@@ -882,26 +1046,12 @@
     "via": "Hylek-Krieger",
     "url": "https://wiki-de.guildwars2.com/wiki/Hylek-Krieger"
   },
-  "Hylek-Schamane Cuatl": {
-    "status": "fehlt",
-    "suggestions": [
-      "Hylek",
-      "Heldenherausforderung"
-    ]
-  },
   "Höhlenspinne": {
     "status": "ok",
     "title": "Höhlenspinne",
     "en": "Cave Spider",
     "via": "Höhlenspinne",
     "url": "https://wiki-de.guildwars2.com/wiki/H%C3%B6hlenspinne"
-  },
-  "Höhlentroll": {
-    "status": "ok",
-    "title": "Höhlentroll",
-    "en": "Cave Troll",
-    "via": "Höhlentroll",
-    "url": "https://wiki-de.guildwars2.com/wiki/H%C3%B6hlentroll"
   },
   "Inquestur": {
     "status": "ok",
@@ -922,12 +1072,17 @@
     "suggestions": []
   },
   "Inquestur-Golem": {
-    "status": "fehlt",
-    "suggestions": [
-      "Inquestur",
-      "Golem",
-      "Haufen kristallinen Staubs"
-    ]
+    "status": "teilweise",
+    "title": "Golem",
+    "en": "Golem",
+    "via": "Golem",
+    "url": "https://wiki-de.guildwars2.com/wiki/Golem"
+  },
+  "Inquestur-Ornithologin": {
+    "status": "erwähnt",
+    "title": "Champion Inquestur-Ornithologin",
+    "via": "Inquestur-Ornithologin",
+    "url": "https://wiki-de.guildwars2.com/wiki/Champion_Inquestur-Ornithologin"
   },
   "Inquestur-Techniker": {
     "status": "ok",
@@ -964,19 +1119,12 @@
       "Caledon-Wald"
     ]
   },
-  "Kasha Schwarzblut": {
+  "Kapitän Gammelbart": {
     "status": "ok",
-    "title": "Kasha Schwarzblut",
-    "en": "Kasha Blackblood",
-    "via": "Kasha Schwarzblut",
-    "url": "https://wiki-de.guildwars2.com/wiki/Kasha_Schwarzblut"
-  },
-  "Katakomben von Ascalon": {
-    "status": "ok",
-    "title": "Katakomben von Ascalon",
-    "en": "Ascalonian Catacombs",
-    "via": "Katakomben von Ascalon",
-    "url": "https://wiki-de.guildwars2.com/wiki/Katakomben_von_Ascalon"
+    "title": "Kapitän Gammelbart",
+    "en": "Captain Rotbeard",
+    "via": "Kapitän Gammelbart",
+    "url": "https://wiki-de.guildwars2.com/wiki/Kapit%C3%A4n_Gammelbart"
   },
   "Kern-Spaltmonstrum": {
     "status": "fehlt",
@@ -989,27 +1137,7 @@
     "via": "Klaue von Jormag",
     "url": "https://wiki-de.guildwars2.com/wiki/Klaue_von_Jormag"
   },
-  "Knochen-Diener": {
-    "status": "fehlt",
-    "suggestions": [
-      "Eisbrut-Elementar",
-      "Knochen-Spitzhacke",
-      "Sammelwerkzeug"
-    ]
-  },
-  "Knochen-Schrecken": {
-    "status": "fehlt",
-    "suggestions": [
-      "Stabilität",
-      "Schnitter",
-      "Sylvari"
-    ]
-  },
   "Knochenmonstrum": {
-    "status": "fehlt",
-    "suggestions": []
-  },
-  "Kolossaler Erdelementar": {
     "status": "fehlt",
     "suggestions": []
   },
@@ -1021,10 +1149,6 @@
       "Chronik/Staffel 4 der Lebendigen Welt"
     ]
   },
-  "Krait-Echse": {
-    "status": "fehlt",
-    "suggestions": []
-  },
   "Krait-Mystiker": {
     "status": "fehlt",
     "suggestions": [
@@ -1032,24 +1156,6 @@
       "Die Bewegung der Welt",
       "Spielupdate/20131029"
     ]
-  },
-  "Krait-Neophyt": {
-    "status": "fehlt",
-    "suggestions": [
-      "Barrakuda",
-      "Kru-Leiter",
-      "Waffengalerie/Fackel"
-    ]
-  },
-  "Krait-Schlinger": {
-    "status": "fehlt",
-    "suggestions": [
-      "Sibaha"
-    ]
-  },
-  "Krait-Schreckensbrut": {
-    "status": "fehlt",
-    "suggestions": []
   },
   "Krait-Sklaventreiber": {
     "status": "fehlt",
@@ -1061,24 +1167,12 @@
     "status": "fehlt",
     "suggestions": []
   },
-  "Krait-Wyrmschlange": {
-    "status": "fehlt",
-    "suggestions": []
-  },
-  "Krait-Zelot": {
-    "status": "fehlt",
-    "suggestions": []
-  },
   "Kralkatorrik": {
     "status": "ok",
     "title": "Kralkatorrik",
     "en": "Kralkatorrik",
     "via": "Kralkatorrik",
     "url": "https://wiki-de.guildwars2.com/wiki/Kralkatorrik"
-  },
-  "Kriegsmeister Ulgoth": {
-    "status": "fehlt",
-    "suggestions": []
   },
   "Kristall-Drachenbrut": {
     "status": "fehlt",
@@ -1122,13 +1216,6 @@
       "Spielupdate/20230926"
     ]
   },
-  "König Adelbern": {
-    "status": "ok",
-    "title": "König Adelbern",
-    "en": "King Adelbern",
-    "via": "König Adelbern",
-    "url": "https://wiki-de.guildwars2.com/wiki/K%C3%B6nig_Adelbern"
-  },
   "Königintal": {
     "status": "ok",
     "title": "Königintal",
@@ -1158,9 +1245,23 @@
       "Spielupdate/20160726"
     ]
   },
+  "Löwenstein & Klaueninsel": {
+    "status": "teilweise",
+    "title": "Klaueninsel",
+    "en": "Claw Island",
+    "via": "Klaueninsel",
+    "url": "https://wiki-de.guildwars2.com/wiki/Klaueninsel"
+  },
   "Magister des Baelfire": {
     "status": "fehlt",
     "suggestions": []
+  },
+  "Malchors Sprung": {
+    "status": "ok",
+    "title": "Malchors Sprung",
+    "en": "Malchor's Leap",
+    "via": "Malchors Sprung",
+    "url": "https://wiki-de.guildwars2.com/wiki/Malchors_Sprung"
   },
   "Mark-I-Golem": {
     "status": "fehlt",
@@ -1186,25 +1287,12 @@
       "Tötet die Wyvern-Matriarchin"
     ]
   },
-  "Maul des Zhaitan": {
-    "status": "fehlt",
-    "suggestions": [
-      "Magie",
-      "Haus der Verwesung",
-      "Der Klang der Psi-Lanze"
-    ]
-  },
-  "Megawurm": {
-    "status": "fehlt",
-    "suggestions": []
-  },
-  "Meister-Nekromant": {
-    "status": "fehlt",
-    "suggestions": [
-      "Nekromant",
-      "Zustandsschaden",
-      "Klasse"
-    ]
+  "Meerenge der Verwüstung": {
+    "status": "ok",
+    "title": "Meerenge der Verwüstung",
+    "en": "Straits of Devastation",
+    "via": "Meerenge der Verwüstung",
+    "url": "https://wiki-de.guildwars2.com/wiki/Meerenge_der_Verw%C3%BCstung"
   },
   "Minotaurus": {
     "status": "ok",
@@ -1220,26 +1308,12 @@
     "via": "Moa",
     "url": "https://wiki-de.guildwars2.com/wiki/Moa"
   },
-  "Modniir-Berserker": {
+  "Monströse Auferstandene Abscheulichkeit": {
     "status": "ok",
-    "title": "Modniir-Berserker",
-    "en": "Modniir Defender",
-    "via": "Modniir-Berserker",
-    "url": "https://wiki-de.guildwars2.com/wiki/Modniir-Berserker"
-  },
-  "Modniir-Kriegsherr": {
-    "status": "fehlt",
-    "suggestions": [
-      "Zeitachse"
-    ]
-  },
-  "Modniir-Schamane": {
-    "status": "fehlt",
-    "suggestions": [
-      "Miniatur",
-      "Champion",
-      "Welt-Boss"
-    ]
+    "title": "Monströse Auferstandene Abscheulichkeit",
+    "en": "Hulking Risen Abomination",
+    "via": "Monströse Auferstandene Abscheulichkeit",
+    "url": "https://wiki-de.guildwars2.com/wiki/Monstr%C3%B6se_Auferstandene_Abscheulichkeit"
   },
   "Mordrem": {
     "status": "ok",
@@ -1295,12 +1369,61 @@
     "via": "Mordrem-Wolf",
     "url": "https://wiki-de.guildwars2.com/wiki/Mordrem-Wolf"
   },
+  "Morgus Lethe": {
+    "status": "ok",
+    "title": "Morgus Lethe",
+    "en": "Morgus Lethe",
+    "via": "Morgus Lethe",
+    "url": "https://wiki-de.guildwars2.com/wiki/Morgus_Lethe"
+  },
+  "Mund des Zhaitan": {
+    "status": "ok",
+    "title": "Mund des Zhaitan",
+    "en": "Mouth of Zhaitan",
+    "via": "Mund des Zhaitan",
+    "url": "https://wiki-de.guildwars2.com/wiki/Mund_des_Zhaitan"
+  },
   "Oger": {
     "status": "ok",
     "title": "Oger",
     "en": "Ogre",
     "via": "Oger",
     "url": "https://wiki-de.guildwars2.com/wiki/Oger"
+  },
+  "Orrianische Spektralwache": {
+    "status": "ok",
+    "title": "Orrianische Spektralwache",
+    "en": "Orrian Spectral Guard",
+    "via": "Orrianische Spektralwache",
+    "url": "https://wiki-de.guildwars2.com/wiki/Orrianische_Spektralwache"
+  },
+  "Orrianischer Gorilla": {
+    "status": "ok",
+    "title": "Orrianischer Gorilla",
+    "en": "Orrian Gorilla",
+    "via": "Orrianischer Gorilla",
+    "url": "https://wiki-de.guildwars2.com/wiki/Orrianischer_Gorilla"
+  },
+  "Orrianischer Grobian": {
+    "status": "ok",
+    "title": "Orrianischer Grobian",
+    "en": "Orrian Brute",
+    "via": "Orrianischer Grobian",
+    "url": "https://wiki-de.guildwars2.com/wiki/Orrianischer_Grobian"
+  },
+  "Orrianischer Schlurfer": {
+    "status": "ok",
+    "title": "Orrianischer Schlurfer",
+    "en": "Orrian Shambler",
+    "via": "Orrianischer Schlurfer",
+    "url": "https://wiki-de.guildwars2.com/wiki/Orrianischer_Schlurfer"
+  },
+  "Orrianischer Spektralhammer": {
+    "status": "ok",
+    "title": "Orrianischer Spektralhammer",
+    "en": "Orrian Spectral Hammer",
+    "via": "Orrianischer Spektralhammer",
+    "url": "https://wiki-de.guildwars2.com/wiki/Orrianischer_Spektralhammer"
   },
   "Patriarch der Wyvern": {
     "status": "fehlt",
@@ -1310,22 +1433,6 @@
       "Bezwingt das legendäre Kopfgeldziel (Legendäre Wyvern)"
     ]
   },
-  "Piraten-Harpunier": {
-    "status": "fehlt",
-    "suggestions": []
-  },
-  "Piraten-Maat": {
-    "status": "fehlt",
-    "suggestions": [
-      "Pirat",
-      "Skritt",
-      "Ätherklingen"
-    ]
-  },
-  "Piratinnen-Admiralin": {
-    "status": "fehlt",
-    "suggestions": []
-  },
   "Provinz Metrica": {
     "status": "ok",
     "title": "Provinz Metrica",
@@ -1333,13 +1440,11 @@
     "via": "Provinz Metrica",
     "url": "https://wiki-de.guildwars2.com/wiki/Provinz_Metrica"
   },
-  "Ralena & Vassar": {
-    "status": "fehlt",
-    "suggestions": [
-      "Gruft der Liebenden",
-      "Vassar",
-      "Katakomben von Ascalon (Story)"
-    ]
+  "Pyrit-Elementar": {
+    "status": "ok",
+    "title": "Pyrit-Elementar",
+    "via": "Pyrit-Elementar",
+    "url": "https://wiki-de.guildwars2.com/wiki/Pyrit-Elementar"
   },
   "Rankenwüter": {
     "status": "fehlt",
@@ -1359,10 +1464,6 @@
       "Düstere Ernte (Erfolg)",
       "Helft Dawkkurra, ihren Schmaus zuzubereiten"
     ]
-  },
-  "Riffkrake": {
-    "status": "fehlt",
-    "suggestions": []
   },
   "Riss-Funke": {
     "status": "fehlt",
@@ -1386,10 +1487,6 @@
     "via": "Sabetha die Saboteurin",
     "url": "https://wiki-de.guildwars2.com/wiki/Sabetha_die_Saboteurin"
   },
-  "Sandwurm-Larve": {
-    "status": "fehlt",
-    "suggestions": []
-  },
   "Schamanen-Vorbote des Jormag": {
     "status": "fehlt",
     "suggestions": [
@@ -1411,6 +1508,20 @@
       "Chronik/Staffel 2"
     ]
   },
+  "Schatten: Auferstandener Priester des Balthasar": {
+    "status": "teilweise",
+    "title": "Auferstandener Priester des Balthasar",
+    "en": "Risen Priest of Balthazar",
+    "via": "Auferstandener Priester des Balthasar",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Priester_des_Balthasar"
+  },
+  "Schatten: Auferstandener Priester des Grenth": {
+    "status": "teilweise",
+    "title": "Hindert den Auferstandenen Priester des Grenth daran, die Kathedrale der Stille wieder einzunehmen",
+    "en": "Stop the Risen Priest of Grenth from retaking the Cathedral of Silence",
+    "via": "Hindert den Auferstandenen Priester des Grenth daran, die Kathedrale der Stille wieder einzunehmen",
+    "url": "https://wiki-de.guildwars2.com/wiki/Hindert_den_Auferstandenen_Priester_des_Grenth_daran%2C_die_Kathedrale_der_Stille_wieder_einzunehmen"
+  },
   "Schatten: Kolossaler Inquestur-Golem": {
     "status": "fehlt",
     "suggestions": [
@@ -1419,10 +1530,6 @@
       "Chronik/Staffel 4 der Lebendigen Welt"
     ]
   },
-  "Schatten: Kriegsmeister Ulgoth": {
-    "status": "fehlt",
-    "suggestions": []
-  },
   "Schatten: Separatisten-Hauptmann DeLana": {
     "status": "fehlt",
     "suggestions": [
@@ -1430,13 +1537,6 @@
       "Verbogener Dietrich",
       "Beutel mit stibitzten Waren"
     ]
-  },
-  "Schatten: Tequatl der Sonnenlose": {
-    "status": "teilweise",
-    "title": "Tequatl der Sonnenlose",
-    "en": "Tequatl the Sunless",
-    "via": "Tequatl der Sonnenlose",
-    "url": "https://wiki-de.guildwars2.com/wiki/Tequatl_der_Sonnenlose"
   },
   "Schattenbrut": {
     "status": "fehlt",
@@ -1545,12 +1645,6 @@
       "Liste der Aufgaben"
     ]
   },
-  "Seraphen-Verräter Valen": {
-    "status": "fehlt",
-    "suggestions": [
-      "Biographie/Details"
-    ]
-  },
   "Silberwüste": {
     "status": "ok",
     "title": "Die Silberwüste",
@@ -1612,23 +1706,7 @@
       "Halvaunt-Schneefeld"
     ]
   },
-  "Steinwüter": {
-    "status": "fehlt",
-    "suggestions": []
-  },
-  "Sumpf-Moskito": {
-    "status": "fehlt",
-    "suggestions": [
-      "Bergsuhlensumpf",
-      "Die Schlacht um den Bergsuhlensumpf",
-      "Willoweg-Haine"
-    ]
-  },
   "Sumpfdrake": {
-    "status": "fehlt",
-    "suggestions": []
-  },
-  "Sumpfschlurfer": {
     "status": "fehlt",
     "suggestions": []
   },
@@ -1672,24 +1750,12 @@
     "status": "fehlt",
     "suggestions": []
   },
-  "Tequatl der Sonnenlose": {
+  "Teer-Elementar": {
     "status": "ok",
-    "title": "Tequatl der Sonnenlose",
-    "en": "Tequatl the Sunless",
-    "via": "Tequatl der Sonnenlose",
-    "url": "https://wiki-de.guildwars2.com/wiki/Tequatl_der_Sonnenlose"
-  },
-  "Tequatls Diener": {
-    "status": "fehlt",
-    "suggestions": [
-      "Funkenschwärmersumpf",
-      "Auferstandener",
-      "Alt-Drache"
-    ]
-  },
-  "Tiefsee-Lauerer": {
-    "status": "fehlt",
-    "suggestions": []
+    "title": "Teer-Elementar",
+    "en": "Tar Elemental",
+    "via": "Teer-Elementar",
+    "url": "https://wiki-de.guildwars2.com/wiki/Teer-Elementar"
   },
   "Turmaine": {
     "status": "nur-en",
@@ -1698,10 +1764,6 @@
     "url": "https://wiki.guildwars2.com/wiki/Turmaine"
   },
   "Turmwächter Karde": {
-    "status": "fehlt",
-    "suggestions": []
-  },
-  "Ulgoths Leibgarde": {
     "status": "fehlt",
     "suggestions": []
   },
@@ -1723,13 +1785,12 @@
     "via": "Untote",
     "url": "https://wiki-de.guildwars2.com/wiki/Untoter"
   },
-  "Untoter Kanonier": {
-    "status": "fehlt",
-    "suggestions": [
-      "Orden der Gerüchte",
-      "Jackdaw-Riff",
-      "Neustrand-Klippen"
-    ]
+  "Untoter Riesenhai": {
+    "status": "ok",
+    "title": "Untoter Riesenhai",
+    "en": "Giant Undead Shark",
+    "via": "Untoter Riesenhai",
+    "url": "https://wiki-de.guildwars2.com/wiki/Untoter_Riesenhai"
   },
   "Verderbt: Albtraumhof-Gräfin": {
     "status": "fehlt",
@@ -1739,9 +1800,26 @@
       "Chronik/Staffel 2"
     ]
   },
-  "Verderbt: Dreiköpfige Krait-Bestie": {
-    "status": "fehlt",
-    "suggestions": []
+  "Verderbt: Auferstandener Priester des Balthasar": {
+    "status": "teilweise",
+    "title": "Auferstandener Priester des Balthasar",
+    "en": "Risen Priest of Balthazar",
+    "via": "Auferstandener Priester des Balthasar",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Priester_des_Balthasar"
+  },
+  "Verderbt: Auferstandener Priester des Grenth": {
+    "status": "teilweise",
+    "title": "Hindert den Auferstandenen Priester des Grenth daran, die Kathedrale der Stille wieder einzunehmen",
+    "en": "Stop the Risen Priest of Grenth from retaking the Cathedral of Silence",
+    "via": "Hindert den Auferstandenen Priester des Grenth daran, die Kathedrale der Stille wieder einzunehmen",
+    "url": "https://wiki-de.guildwars2.com/wiki/Hindert_den_Auferstandenen_Priester_des_Grenth_daran%2C_die_Kathedrale_der_Stille_wieder_einzunehmen"
+  },
+  "Verderbt: Faulschreck der Seuchenbringer": {
+    "status": "teilweise",
+    "title": "Faulschreck der Seuchenbringer",
+    "en": "Blightghast the Plaguebringer",
+    "via": "Faulschreck der Seuchenbringer",
+    "url": "https://wiki-de.guildwars2.com/wiki/Faulschreck_der_Seuchenbringer"
   },
   "Verderbt: Flammenlegion-Kriegsherr": {
     "status": "fehlt",
@@ -1756,17 +1834,6 @@
       "Rollkäfer",
       "Chronik/Staffel 4 der Lebendigen Welt"
     ]
-  },
-  "Verderbt: Kriegsmeister Ulgoth": {
-    "status": "fehlt",
-    "suggestions": []
-  },
-  "Verderbt: König Adelbern": {
-    "status": "teilweise",
-    "title": "König Adelbern",
-    "en": "King Adelbern",
-    "via": "König Adelbern",
-    "url": "https://wiki-de.guildwars2.com/wiki/K%C3%B6nig_Adelbern"
   },
   "Verderbt: Schatten-Behemoth": {
     "status": "teilweise",
@@ -1783,19 +1850,18 @@
       "Eisbrut"
     ]
   },
-  "Verderbt: Tequatl der Sonnenlose": {
-    "status": "teilweise",
-    "title": "Tequatl der Sonnenlose",
-    "en": "Tequatl the Sunless",
-    "via": "Tequatl der Sonnenlose",
-    "url": "https://wiki-de.guildwars2.com/wiki/Tequatl_der_Sonnenlose"
-  },
   "Verderbter Baumgeist": {
     "status": "fehlt",
     "suggestions": [
       "Herz des Vulkans (Chronik)",
       "Der Erhalt des Gleichgewichts"
     ]
+  },
+  "Verdorbene Hohepriesterin": {
+    "status": "erwähnt",
+    "title": "Tötet die Verdorbene Hohepriesterin",
+    "via": "Verdorbene Hohepriesterin",
+    "url": "https://wiki-de.guildwars2.com/wiki/T%C3%B6tet_die_Verdorbene_Hohepriesterin"
   },
   "Verschlinger": {
     "status": "ok",
@@ -1836,6 +1902,13 @@
       "Versteckte Arkana"
     ]
   },
+  "Veteran Auferstandener Grobian": {
+    "status": "ok",
+    "title": "Veteran Auferstandener Grobian",
+    "en": "Veteran Risen Brute",
+    "via": "Veteran Auferstandener Grobian",
+    "url": "https://wiki-de.guildwars2.com/wiki/Veteran_Auferstandener_Grobian"
+  },
   "Vorarbeiter Spur": {
     "status": "fehlt",
     "suggestions": [
@@ -1874,32 +1947,12 @@
       "Banditenwinkel-Höhle"
     ]
   },
-  "Wurmbrut": {
-    "status": "fehlt",
-    "suggestions": []
-  },
   "Wyvern": {
     "status": "ok",
     "title": "Wyvern",
     "en": "Wyvern",
     "via": "Wyvern",
     "url": "https://wiki-de.guildwars2.com/wiki/Wyvern"
-  },
-  "Zentauren-Kriegsherr Kol": {
-    "status": "fehlt",
-    "suggestions": []
-  },
-  "Zentauren-Kriegsschamane": {
-    "status": "fehlt",
-    "suggestions": []
-  },
-  "Zentauren-Lanzenreiter": {
-    "status": "fehlt",
-    "suggestions": []
-  },
-  "Zhaff-Sumpfmonster": {
-    "status": "fehlt",
-    "suggestions": []
   },
   "Zhaitan": {
     "status": "ok",

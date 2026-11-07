@@ -12,10 +12,10 @@
 | 4 | Provinz Metrica | 2 | 2 (2. Hälfte) | 31–40 |
 | 5 | Ebenen von Aschfurt | 2 | 3 (1. Hälfte) | 41–45 |
 | 6 | Caudecus’ Anwesen | 2 | 3 (2. Hälfte) | 46–50 |
-| 7 | Katakomben von Ascalon | 3 | 4 (1. Hälfte) | 51–55 |
-| 8 | Harathi-Hinterland | 3 | 4 (2. Hälfte) | 56–60 |
-| 9 | Blutstrom-Küste | 4 | 5 (1. Hälfte) | 60 |
-| 10 | Funkenschwärmersumpf | 4 | 5 (2. Hälfte) | 60 |
+| 7 | Löwenstein & Klaueninsel | 3 | 4 (1. Hälfte) | 51–55 |
+| 8 | Meerenge der Verwüstung | 3 | 4 (2. Hälfte) | 56–60 |
+| 9 | Malchors Sprung | 4 | 5 (1. Hälfte) | 60 |
+| 10 | Fluchküste | 4 | 5 (2. Hälfte) | 60 |
 
 ## 1. Königintal
 
@@ -104,63 +104,63 @@
 | ☠️ 7 | Frost | Separatisten-Scharfschütze, Kryptis-Splitter | 60 | 3.400 | 21–33 | 2 | 8 | 1–3 | Hard 3-4 · Mighty Elite Shark Warrior |
 | ⭐ 8 | Schatten: Separatisten-Hauptmann DeLana | Kryptis-Plünderer, Kryptis-Peiniger | 60 | 5.000 | 60–71 | 4 | 11 | 1–5 | L-3 · Dark Kraken |
 
-## 7. Katakomben von Ascalon
+## 7. Löwenstein & Klaueninsel
 
-*Unter den Ruinen von Ascalon öffnet sich ein Riss in die Katakomben. Die Geister der alten Könige finden keine Ruhe.*
-
-| Stufe | Boss | Schergen | Lv. | Kosten | 📜 | ⚒️ | 🍞 | 🎟️ | CQHT |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | Höhlentroll | Geister-Krieger, Geister-Waldläufer | 51 | 400 | 2–4 | 1 | 1 | 1 | 4-1 · Hell Squishy |
-| 2 | Kasha Schwarzblut | Flammenlegion-Kultist, Flammenlegion-Zerstörer | 52 | 450 | 2–4 | 1 | 1 | 1 | 4-2 · Hell Squishy |
-| 3 | Ralena & Vassar | Geister-Liebende, Geister-Wächter | 53 | 500 | 2–4 | 1 | 1 | 1 | 4-3 · Hell Squishy |
-| 4 | Geisterhafter Nekromant | Knochen-Diener, Geister-Nekromant | 54 | 550 | 2–4 | 1 | 2 | 1 | 4-4 · Hellfire Spirit |
-| 5 | König Adelbern | Ascalonischer Geisterritter, Geister-Elite | 55 | 600 | 2–4 | 1 | 2 | 1 | 4-5 · Hellfire Spirit |
-| ☠️ 6 | Meister-Nekromant | Untoter Kanonier, Knochen-Schrecken | 60 | 3.600 | 22–33 | 2 | 8 | 1–3 | Hard 4-1 · Volcano Sludge |
-| ☠️ 7 | Verderbt: König Adelbern | Ascalonischer Geisterritter, Kryptis-Splitter | 60 | 3.800 | 23–35 | 2 | 8 | 1–3 | Hard 4-2 · Cursed Hellfire Spirit |
-
-## 8. Harathi-Hinterland
-
-*Im Harathi-Hinterland tobt der Zentaurenkrieg. Ulgoth sammelt seine Horden am Rand eines gewaltigen Risses.*
+*Nach dem Anwesen ruft der Pakt nach Löwenstein. Vor der Stadt öffnet sich ein Riss über dem Meer des Leids, und Zhaitans Totenschiffe halten auf die Klaueninsel zu.*
 
 | Stufe | Boss | Schergen | Lv. | Kosten | 📜 | ⚒️ | 🍞 | 🎟️ | CQHT |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | Harathi-Schlächter | Harathi-Krieger, Harathi-Speerwerfer | 56 | 650 | 2–4 | 1 | 2 | 1 | 4-6 · Stone Giant |
-| 2 | Champion Modniir-Häuptling | Modniir-Berserker, Modniir-Schamane | 57 | 700 | 2–4 | 1 | 2 | 1 | 4-7 · Stone Giant |
-| 3 | Kolossaler Erdelementar | Erdelementar, Steinwüter | 58 | 750 | 3–4 | 1 | 3 | 1 | 4-8 · Darkfire Giant |
-| 4 | Seraphen-Verräter Valen | Abtrünniger Seraph, Seraphen-Deserteur | 59 | 800 | 3–4 | 1 | 3 | 1 | 4-9 · Darkfire Giant |
-| 5 | Kriegsmeister Ulgoth | Ulgoths Leibgarde, Modniir-Kriegsherr | 60 | 1.000 | 3–4 | 1 | 3 | 1 | 4-10 · Dragon |
-| ☠️ 6 | Zentauren-Kriegsherr Kol | Zentauren-Lanzenreiter, Zentauren-Kriegsschamane | 60 | 4.000 | 25–38 | 3 | 9 | 1–3 | Hard 4-3 · Corrupted Rock Giant |
-| ☠️ 7 | Verderbt: Kriegsmeister Ulgoth | Ulgoths Leibgarde, Kryptis-Splitter | 60 | 4.200 | 26–40 | 3 | 9 | 1–3 | Hard 4-4 · Cursed Darkflame Giant |
-| ⭐ 8 | Schatten: Kriegsmeister Ulgoth | Kryptis-Plünderer, Kryptis-Peiniger | 60 | 5.000 | 65–76 | 5 | 12 | 1–5 | L-4 · Dark Dragon |
+| 1 | Auferstandene Abscheulichkeit | Auferstandener Leibeigener, Auferstandener Pirat | 51 | 400 | 2–4 | 1 | 1 | 1 | 4-1 · Hell Squishy |
+| 2 | Veteran Auferstandener Grobian | Auferstandener Grobian, Auferstandener Seuchenträger | 52 | 450 | 2–4 | 1 | 1 | 1 | 4-2 · Hell Squishy |
+| 3 | Admiral Feiste Bakkir | Auferstandener Knappe, Auferstandener Ritter | 53 | 500 | 2–4 | 1 | 1 | 1 | 4-3 · Hell Squishy |
+| 4 | Morgus Lethe | Auferstandener Hai, Untoter Riesenhai | 54 | 550 | 2–4 | 1 | 2 | 1 | 4-4 · Hellfire Spirit |
+| 5 | Faulschreck der Seuchenbringer | Auferstandener Verderber, Auferstandene Seuchenträgerin | 55 | 600 | 2–4 | 1 | 2 | 1 | 4-5 · Hellfire Spirit |
+| ☠️ 6 | Monströse Auferstandene Abscheulichkeit | Auferstandene Abscheulichkeit, Auferstandener Verseuchter | 60 | 3.600 | 22–33 | 2 | 8 | 1–3 | Hard 4-1 · Volcano Sludge |
+| ☠️ 7 | Verderbt: Faulschreck der Seuchenbringer | Auferstandener Verderber, Kryptis-Splitter | 60 | 3.800 | 23–35 | 2 | 8 | 1–3 | Hard 4-2 · Cursed Hellfire Spirit |
 
-## 9. Blutstrom-Küste
+## 8. Meerenge der Verwüstung
 
-*An der Blutstrom-Küste spült der Riss Auferstandene aus Orr an. Krait und Piraten kämpfen um jeden Strand.*
-
-| Stufe | Boss | Schergen | Lv. | Kosten | 📜 | ⚒️ | 🍞 | 🎟️ | CQHT |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | Champion Krait-Priester | Krait-Zelot, Krait-Neophyt | 60 | 1.200 | 4–5 | 1 | 4 | 1 | 5-1 · Pyro Droid DX |
-| 2 | Champion Auferstandener Offizier | Auferstandener Matrose, Auferstandener Grubenarbeiter | 60 | 1.400 | 4–5 | 1 | 4 | 1 | 5-2 · Pyro Droid DX |
-| 3 | Dredge-Kriegsmaschine | Dredge-Schweißer, Dredge-Panzer | 60 | 1.600 | 5–6 | 1 | 4 | 1 | 5-3 · Pyro Droid DX |
-| 4 | Piratinnen-Admiralin | Piraten-Maat, Piraten-Harpunier | 60 | 1.800 | 5–6 | 1 | 4 | 1 | 5-4 · Gatling Droid DX |
-| 5 | Dreiköpfige Krait-Bestie | Krait-Wyrmschlange, Krait-Schreckensbrut | 60 | 2.000 | 5–7 | 1 | 4 | 1 | 5-5 · Gatling Droid DX |
-| ☠️ 6 | Champion Kropf-Krake | Riffkrake, Tiefsee-Lauerer | 60 | 4.400 | 30–42 | 3 | 9 | 1–3 | Hard 5-1 · Cursed Pyro Droid DX |
-| ☠️ 7 | Verderbt: Dreiköpfige Krait-Bestie | Krait-Wyrmschlange, Kryptis-Splitter | 60 | 4.600 | 35–46 | 3 | 9 | 1–4 | Hard 5-2 · Cursed Gatling Droid DX |
-
-## 10. Funkenschwärmersumpf
-
-*Im Funkenschwärmersumpf brodelt Zhaitans Verderbnis. Aus dem Nebel über dem Wasser erhebt sich Tequatl der Sonnenlose.*
+*Vom Fort der Dreifaltigkeit aus setzt der Pakt nach Orr über. In der Meerenge der Verwüstung reißt der Riss den Meeresboden auf, und Auferstandene strömen zum Tempel des Balthasar.*
 
 | Stufe | Boss | Schergen | Lv. | Kosten | 📜 | ⚒️ | 🍞 | 🎟️ | CQHT |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | Champion Auferstandener Priester | Auferstandener Akolyth, Auferstandener Schreckenswandler | 60 | 2.200 | 6–7 | 1 | 5 | 1 | 5-6 · Titan Rocket |
-| 2 | Champion Krait-Echse | Krait-Echse, Krait-Schlinger | 60 | 2.400 | 6–8 | 1 | 5 | 1 | 5-7 · Titan Rocket |
-| 3 | Zhaff-Sumpfmonster | Sumpfschlurfer, Sumpf-Moskito | 60 | 2.600 | 6–8 | 1 | 5 | 1 | 5-8 · Titan Shield |
-| 4 | Hylek-Schamane Cuatl | Hylek-Krieger, Hylek-Giftmischer | 60 | 2.800 | 7–9 | 1 | 5 | 1 | 5-9 · Titan Shield |
-| 5 | Tequatl der Sonnenlose | Auferstandener Knochenmagier, Tequatls Diener | 60 | 3.000 | 7–9 | 1 | 5 | 1 | 5-10 · DioNemesis |
-| ☠️ 6 | Megawurm | Wurmbrut, Sandwurm-Larve | 60 | 4.800 | 40–51 | 3 | 10 | 1–4 | Hard 5-3 · Cursed Titan Rocket |
-| ☠️ 7 | Verderbt: Tequatl der Sonnenlose | Auferstandener Knochenmagier, Kryptis-Splitter | 60 | 5.000 | 45–55 | 3 | 10 | 1–5 | Hard 5-4 · Cursed Titan Shield |
-| ⭐ 8 | Schatten: Tequatl der Sonnenlose | Kryptis-Plünderer, Kryptis-Peiniger | 60 | 5.000 | 70–80 | 5 | 12 | 1–5 | L-5 · DioNemesis DX |
+| 1 | Champion Auferstandener Krait-Nimross | Auferstandener Krait-Damoss, Auferstandener Krait-Hypnoss | 56 | 650 | 2–4 | 1 | 2 | 1 | 4-6 · Stone Giant |
+| 2 | Champion Auferstandener Megalodon | Auferstandener Bullenhai, Auferstandener Krebs | 57 | 700 | 2–4 | 1 | 2 | 1 | 4-7 · Stone Giant |
+| 3 | Auferstandener Zauberer | Auferstandener Akolyth, Auferstandene Zauberin | 58 | 750 | 3–4 | 1 | 3 | 1 | 4-8 · Darkfire Giant |
+| 4 | Champion Auferstandener Kapitän | Auferstandener Pirat, Auferstandener Kommandeur | 59 | 800 | 3–4 | 1 | 3 | 1 | 4-9 · Darkfire Giant |
+| 5 | Auferstandener Priester des Balthasar | Auferstandener Verwüster, Auferstandener Bewahrer | 60 | 1.000 | 3–4 | 1 | 3 | 1 | 4-10 · Dragon |
+| ☠️ 6 | Champion Auferstandener Riese | Auferstandener Unterwerfer, Auferstandenen-Luftabwehrgeschütz | 60 | 4.000 | 25–38 | 3 | 9 | 1–3 | Hard 4-3 · Corrupted Rock Giant |
+| ☠️ 7 | Verderbt: Auferstandener Priester des Balthasar | Auferstandener Verwüster, Kryptis-Splitter | 60 | 4.200 | 26–40 | 3 | 9 | 1–3 | Hard 4-4 · Cursed Darkflame Giant |
+| ⭐ 8 | Schatten: Auferstandener Priester des Balthasar | Kryptis-Plünderer, Kryptis-Peiniger | 60 | 5.000 | 65–76 | 5 | 12 | 1–5 | L-4 · Dark Dragon |
+
+## 9. Malchors Sprung
+
+*In Malchors Sprung stehen die Kathedralen der Dwayna und der Lyssa. Der Riss nährt die Verderbnis in ihren Hallen, und die Inquestur zapft am Rand die Energie ab.*
+
+| Stufe | Boss | Schergen | Lv. | Kosten | 📜 | ⚒️ | 🍞 | 🎟️ | CQHT |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 | Auferstandene Brutmutter | Auferstandenes Lindwurm-Junges, Auferstandener Lindwurm | 60 | 1.200 | 4–5 | 1 | 4 | 1 | 5-1 · Pyro Droid DX |
+| 2 | Inquestur-Ornithologin | Auferstandenes Huhn, Auferstandener Bauer | 60 | 1.400 | 4–5 | 1 | 4 | 1 | 5-2 · Pyro Droid DX |
+| 3 | Golem Typ II YF-Gold | Pyrit-Elementar, Inquestur-Golem | 60 | 1.600 | 5–6 | 1 | 4 | 1 | 5-3 · Pyro Droid DX |
+| 4 | Champion Auferstandener Leutnant | Auferstandener Edelmann, Auferstandener Hofnarr | 60 | 1.800 | 5–6 | 1 | 4 | 1 | 5-4 · Gatling Droid DX |
+| 5 | Verdorbene Hohepriesterin | Auferstandenes Gespenst, Auferstandener Hylek | 60 | 2.000 | 5–7 | 1 | 4 | 1 | 5-5 · Gatling Droid DX |
+| ☠️ 6 | Auferstandene Priesterin der Dwayna | Auferstandene Akolythin, Auferstandener Verweser | 60 | 4.400 | 30–42 | 3 | 9 | 1–3 | Hard 5-1 · Cursed Pyro Droid DX |
+| ☠️ 7 | Auge des Zhaitan | Auferstandenes Gespenst, Kryptis-Splitter | 60 | 4.600 | 35–46 | 3 | 9 | 1–4 | Hard 5-2 · Cursed Gatling Droid DX |
+
+## 10. Fluchküste
+
+*An der Fluchküste endet der Weg durch Orr. Hinter den Tempeln der Melandru und des Grenth liegt Arah, und der Riss hier ist der größte, den die Gilde je gesehen hat.*
+
+| Stufe | Boss | Schergen | Lv. | Kosten | 📜 | ⚒️ | 🍞 | 🎟️ | CQHT |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 | Kapitän Gammelbart | Auferstandener Pirat, Auferstandener Fischer | 60 | 2.200 | 6–7 | 1 | 5 | 1 | 5-6 · Titan Rocket |
+| 2 | Champion Auferstandener Gladiator | Auferstandener Gorilla, Orrianischer Gorilla | 60 | 2.400 | 6–8 | 1 | 5 | 1 | 5-7 · Titan Rocket |
+| 3 | Champion Auferstandene Abscheulichkeit | Orrianischer Grobian, Orrianischer Schlurfer | 60 | 2.600 | 6–8 | 1 | 5 | 1 | 5-8 · Titan Shield |
+| 4 | Champion Auferstandener Hofwart | Auferstandene Spinne, Auferstandene Spinnenbrut | 60 | 2.800 | 7–9 | 1 | 5 | 1 | 5-9 · Titan Shield |
+| 5 | Auferstandener Priester des Grenth | Orrianische Spektralwache, Auferstandener Verweser | 60 | 3.000 | 7–9 | 1 | 5 | 1 | 5-10 · DioNemesis |
+| ☠️ 6 | Auferstandener Priester der Melandru | Teer-Elementar, Orrianischer Spektralhammer | 60 | 4.800 | 40–51 | 3 | 10 | 1–4 | Hard 5-3 · Cursed Titan Rocket |
+| ☠️ 7 | Verderbt: Auferstandener Priester des Grenth | Orrianische Spektralwache, Kryptis-Splitter | 60 | 5.000 | 45–55 | 3 | 10 | 1–5 | Hard 5-4 · Cursed Titan Shield |
+| ⭐ 8 | Schatten: Auferstandener Priester des Grenth | Kryptis-Plünderer, Kryptis-Peiniger | 60 | 5.000 | 70–80 | 5 | 12 | 1–5 | L-5 · DioNemesis DX |
 
 ## Sonderinhalte *(geplant)*
 

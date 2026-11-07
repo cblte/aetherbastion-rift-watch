@@ -45,7 +45,7 @@ export const BUILDING_DATA = {
   portal: {
     name: 'Riss-Portal', icon: '🌀', unlockHall: 1, src: 'Portal',
     desc: 'Stufe bestimmt die verfügbaren Riss-Zonen.',
-    // 4 Stufen = 4 Portale (Kryta, Caledon & Zittergipfel · Metrica, Aschfurt & Anwesen · Ascalon & Harathi · Orr).
+    // 4 Stufen = 4 Portale (Kryta, Caledon & Zittergipfel · Metrica, Aschfurt & Anwesen · Löwenstein & Meerenge · Orr).
     // CQHT hat 5; deren Stufe 2 (400 Gold, 30 s) entfällt. Weitere Stufen kommen mit neuen Zonen.
     levels: [
       { cost: 600,    time: 0,    hall: 1 },

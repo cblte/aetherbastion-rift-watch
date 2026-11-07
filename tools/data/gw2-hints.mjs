@@ -12,4 +12,9 @@ export const WIKI_HINTS = {
   'Talwächter': 'Tal-Wächter',
   'Gaheron Baelfire': 'Gaheron Baelfeuer',
   'Ruinen von Arah': 'Arah',
+  'Löwenstein & Klaueninsel': 'Klaueninsel',
+  'Inquestur-Golem': 'Golem',
+  // Orr-Tempel: Boss nur im Event-Titel genannt
+  'Auferstandener Priester der Melandru': 'Vernichtet den Auferstandenen Priester der Melandru',
+  'Auferstandener Priester des Grenth': 'Hindert den Auferstandenen Priester des Grenth daran, die Kathedrale der Stille wieder einzunehmen',
 };

@@ -67,7 +67,7 @@ export function runOffline(state, elapsedMs) {
       if (prof.dps <= 0) break;
       const ticks = Math.max(1, Math.ceil(mon.maxHp / prof.dps));
       if (ticks > t) break;
-      const incoming = mon.atk * (1 - prof.frontDef) * ticks;
+      const incoming = mon.atk * (1 - prof.teamDef) * ticks;
       const eff = Math.min(1, (prof.hpPool + prof.heal * ticks) / incoming);
       r.minEff = Math.min(r.minEff, eff);
       t -= ticks;

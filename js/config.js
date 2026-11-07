@@ -5,7 +5,7 @@
 
 export const GAME = {
   title: 'Aetherbastion: Rift Watch',
-  VERSION: '0.20.1',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
+  VERSION: '0.23.0',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
   BUILD: 'lokal',                    // ersetzt der Pages-Workflow durch „Nr. · Commit“
   SAVE_KEY: 'aetherbastion_save_v1',
   SAVE_VERSION: 7,
@@ -35,11 +35,14 @@ export const CURRENCIES = {
 
 // order: kleinere Zahl = steht weiter vorn (wird zuerst angegriffen)
 export const ROLES = {
-  // def = Grund-Schadensreduktion der Rolle (0.25 = −25 % erlittener Schaden)
-  tank:    { name: 'Tank',              icon: '🛡️', order: 0, def: 0.25 },
-  dps:     { name: 'Schadensausteiler', icon: '⚔️', order: 1, def: 0.05 },
-  support: { name: 'Unterstützer',      icon: '📯', order: 2, def: 0.10 },
-  healer:  { name: 'Heiler',            icon: '✚',  order: 3, def: 0.08 },
+  // def   = Grund-Schadensreduktion der Rolle (0.25 = −25 % erlittener Schaden)
+  // aggro = Gewicht beim Verteilen des Monsterschadens: Jeder Treffer wird auf
+  //         alle fitten Helden im Verhältnis ihrer Gewichte aufgeteilt
+  //         (Tank + Schaden + Heiler = 50 % / 30 % / 20 %).
+  tank:    { name: 'Tank',              icon: '🛡️', order: 0, def: 0.25, aggro: 5 },
+  dps:     { name: 'Schadensausteiler', icon: '⚔️', order: 1, def: 0.05, aggro: 3 },
+  support: { name: 'Unterstützer',      icon: '📯', order: 2, def: 0.10, aggro: 3 },
+  healer:  { name: 'Heiler',            icon: '✚',  order: 3, def: 0.08, aggro: 2 },
 };
 
 export const CLASSES = {
@@ -277,6 +280,12 @@ export const BUILDINGS = Object.fromEntries(Object.entries(BUILDING_DATA).map(([
 export const FEATURES = {
   mystic: { name: 'Mystische Schmiede (Ruhestand)', unlockHall: 5 },
 };
+
+// Waffenkammer: Plätze je Gildenhallen-Stufe (Index 0 = Stufe 1). Ist sie voll,
+// bleiben Boss-Drops liegen und der Laden verkauft nichts mehr. Aufräumen:
+// Standard-Auswahl der Güten (WEAPON_GRADES) im „Aufräumen“-Dialog.
+export const ARMORY_SLOTS = [20, 25, 30, 40, 50, 60, 70, 85, 100];
+export const ARMORY_CLEANUP_DEFAULT = [1, 2, 3];
 
 // Zelte (= Trupps). Zelt 1 ab Start.
 export const TENTS = [

@@ -9,7 +9,7 @@ import {
 } from './config.js';
 import {
   getHero, heroStats, pay, researchLevel, addLog, buildingCost, buildLock, weaponType, gainExp,
-  isOwned, createHero,
+  isOwned, createHero, armoryFree,
 } from './state.js';
 
 // ---------- Bauen ----------------------------------------------------
@@ -78,7 +78,7 @@ export function refreshShop(state) {
 export function buyWeapon(state, slot, currency = 'gold') {
   const wid = state.shop.offers[slot];
   const w = WEAPON_BY_ID[wid];
-  if (!w || w[currency] == null) return false;
+  if (!w || w[currency] == null || armoryFree(state) < 1) return false;
   if (!pay(state, { [currency]: w[currency] })) return false;
   state.shop.offers.splice(slot, 1);
   state.armory.push(wid);
@@ -94,6 +94,33 @@ export function sellWeapon(state, index) {
   state.armory.splice(index, 1);
   state.gold += sellPrice(wid);
   return true;
+}
+
+// Mehrere Waffen auf einmal verkaufen (Indizes in der Waffenkammer); gibt das Gold zurück
+export function sellWeapons(state, indices) {
+  const drop = new Set(indices.filter(k => state.armory[k]));
+  let gold = 0;
+  for (const k of drop) gold += sellPrice(state.armory[k]);
+  state.armory = state.armory.filter((_, k) => !drop.has(k));
+  state.gold += gold;
+  return { count: drop.size, gold };
+}
+
+// Waffen, die für einen Helden besser wären als seine jetzige (höhere Güte).
+// Je Held höchstens eine, die beste – diese schützt „Aufräumen“. Ergebnis: Index → Held
+export function upgradeIndices(state) {
+  const out = new Map();
+  const heroes = [...state.heroes].sort((a, b) => b.level - a.level);
+  for (const h of heroes) {
+    const cur = h.weapon ? WEAPON_BY_ID[h.weapon].grade : 0;
+    let best = -1;
+    state.armory.forEach((wid, k) => {
+      if (out.has(k) || !fitsHero(h, wid) || WEAPON_BY_ID[wid].grade <= cur) return;
+      if (best < 0 || WEAPON_BY_ID[wid].grade > WEAPON_BY_ID[state.armory[best]].grade) best = k;
+    });
+    if (best >= 0) out.set(best, h);
+  }
+  return out;
 }
 
 export const fitsHero = (hero, wid) => WEAPON_BY_ID[wid].type === weaponType(hero);
@@ -113,24 +140,27 @@ export function equipWeapon(state, uid, index) {
 
 export function unequipWeapon(state, uid) {
   const h = getHero(state, uid);
-  if (!h || !h.weapon) return false;
+  if (!h || !h.weapon || armoryFree(state) < 1) return false;
   state.armory.push(h.weapon);
   h.weapon = null;
   h.hp = Math.min(h.hp, heroStats(state, h).maxHp);
   return true;
 }
 
-// Boss-Drop: Güte nach Zonen-tier (schwer/legendär: höchste Güten)
+// Boss-Drop: Güte nach Zonen-tier (schwer/legendär: höchste Güten).
+// Ist die Waffenkammer voll, bleibt der Rest liegen (lost).
 export function dropWeapons(state, tier, hard, count) {
   const [lo, hi] = hard ? DROP_GRADES.hard : DROP_GRADES[tier];
   const pool = WEAPONS.filter(w => w.grade >= lo && w.grade <= hi);
   const got = [];
+  let lost = 0;
   for (let i = 0; i < count; i++) {
+    if (armoryFree(state) < 1) { lost += 1; continue; }
     const w = pickWeighted(pool);
     state.armory.push(w.id);
     got.push(w);
   }
-  return got;
+  return { got, lost };
 }
 
 // ---------- Gildenhalle: Rekrutierung --------------------------------

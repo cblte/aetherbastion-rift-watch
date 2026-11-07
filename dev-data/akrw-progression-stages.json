@@ -10,10 +10,10 @@
       "Provinz Metrica",
       "Ebenen von Aschfurt",
       "Caudecus’ Anwesen",
-      "Katakomben von Ascalon",
-      "Harathi-Hinterland",
-      "Blutstrom-Küste",
-      "Funkenschwärmersumpf"
+      "Löwenstein & Klaueninsel",
+      "Meerenge der Verwüstung",
+      "Malchors Sprung",
+      "Fluchküste"
     ]
   },
   "zones": [
@@ -1281,27 +1281,27 @@
     },
     {
       "id": 7,
-      "name": "Katakomben von Ascalon",
-      "short": "Katak.",
+      "name": "Löwenstein & Klaueninsel",
+      "short": "Klaue",
       "tier": 4,
       "part": 1,
       "portal": 3,
-      "lore": "Unter den Ruinen von Ascalon öffnet sich ein Riss in die Katakomben. Die Geister der alten Könige finden keine Ruhe.",
+      "lore": "Nach dem Anwesen ruft der Pakt nach Löwenstein. Vor der Stadt öffnet sich ein Riss über dem Meer des Leids, und Zhaitans Totenschiffe halten auf die Klaueninsel zu.",
       "stages": [
         {
           "stage": 1,
           "mode": "normal",
           "original_stage": "4-1",
           "original_name": "Hell Squishy",
-          "boss": "Höhlentroll",
-          "boss_sprite": "BOSS_HOEHLENTROLL",
+          "boss": "Auferstandene Abscheulichkeit",
+          "boss_sprite": "BOSS_AUFERSTANDENE_ABSCHEULICHKEIT",
           "minions": [
-            "Geister-Krieger",
-            "Geister-Waldläufer"
+            "Auferstandener Leibeigener",
+            "Auferstandener Pirat"
           ],
           "level": 51,
           "cost": 400,
-          "info": "Katakomben",
+          "info": "Wall von Fort Unerschütterlich",
           "rewards": {
             "research_points": [
               2,
@@ -1320,15 +1320,15 @@
           "mode": "normal",
           "original_stage": "4-2",
           "original_name": "Hell Squishy",
-          "boss": "Kasha Schwarzblut",
-          "boss_sprite": "BOSS_KASHA_SCHWARZBLUT",
+          "boss": "Veteran Auferstandener Grobian",
+          "boss_sprite": "BOSS_VETERAN_AUFERSTANDENER_GROBIAN",
           "minions": [
-            "Flammenlegion-Kultist",
-            "Flammenlegion-Zerstörer"
+            "Auferstandener Grobian",
+            "Auferstandener Seuchenträger"
           ],
           "level": 52,
           "cost": 450,
-          "info": "Flammenlegion",
+          "info": "Löwenfackel",
           "rewards": {
             "research_points": [
               2,
@@ -1347,15 +1347,15 @@
           "mode": "normal",
           "original_stage": "4-3",
           "original_name": "Hell Squishy",
-          "boss": "Ralena & Vassar",
-          "boss_sprite": "BOSS_RALENA_VASSAR",
+          "boss": "Admiral Feiste Bakkir",
+          "boss_sprite": "BOSS_ADMIRAL_FEISTE_BAKKIR",
           "minions": [
-            "Geister-Liebende",
-            "Geister-Wächter"
+            "Auferstandener Knappe",
+            "Auferstandener Ritter"
           ],
           "level": 53,
           "cost": 500,
-          "info": "Liebespaar",
+          "info": "Vergeltung",
           "rewards": {
             "research_points": [
               2,
@@ -1374,14 +1374,15 @@
           "mode": "normal",
           "original_stage": "4-4",
           "original_name": "Hellfire Spirit",
-          "boss": "Geisterhafter Nekromant",
-          "boss_sprite": "BOSS_GEISTERHAFTER_NEKROMANT",
+          "boss": "Morgus Lethe",
+          "boss_sprite": "BOSS_MORGUS_LETHE",
           "minions": [
-            "Knochen-Diener",
-            "Geister-Nekromant"
+            "Auferstandener Hai",
+            "Untoter Riesenhai"
           ],
           "level": 54,
           "cost": 550,
+          "info": "Meer des Leids",
           "rewards": {
             "research_points": [
               2,
@@ -1400,11 +1401,11 @@
           "mode": "normal",
           "original_stage": "4-5",
           "original_name": "Hellfire Spirit",
-          "boss": "König Adelbern",
-          "boss_sprite": "BOSS_KOENIG_ADELBERN",
+          "boss": "Faulschreck der Seuchenbringer",
+          "boss_sprite": "BOSS_FAULSCHRECK_DER_SEUCHENBRINGER",
           "minions": [
-            "Ascalonischer Geisterritter",
-            "Geister-Elite"
+            "Auferstandener Verderber",
+            "Auferstandene Seuchenträgerin"
           ],
           "level": 55,
           "cost": 600,
@@ -1427,11 +1428,11 @@
           "mode": "hard",
           "original_stage": "Hard 4-1",
           "original_name": "Volcano Sludge",
-          "boss": "Meister-Nekromant",
-          "boss_sprite": "BOSS_MEISTER_NEKROMANT",
+          "boss": "Monströse Auferstandene Abscheulichkeit",
+          "boss_sprite": "BOSS_MONSTROESE_AUFERSTANDENE_ABSCHEULICHKEIT",
           "minions": [
-            "Untoter Kanonier",
-            "Knochen-Schrecken"
+            "Auferstandene Abscheulichkeit",
+            "Auferstandener Verseuchter"
           ],
           "level": 60,
           "cost": 3600,
@@ -1454,10 +1455,10 @@
           "mode": "hard",
           "original_stage": "Hard 4-2",
           "original_name": "Cursed Hellfire Spirit",
-          "boss": "Verderbt: König Adelbern",
-          "boss_sprite": "BOSS_VERDERBT_KOENIG_ADELBERN",
+          "boss": "Verderbt: Faulschreck der Seuchenbringer",
+          "boss_sprite": "BOSS_VERDERBT_FAULSCHRECK_DER_SEUCHENBRINGER",
           "minions": [
-            "Ascalonischer Geisterritter",
+            "Auferstandener Verderber",
             "Kryptis-Splitter"
           ],
           "level": 60,
@@ -1480,23 +1481,23 @@
     },
     {
       "id": 8,
-      "name": "Harathi-Hinterland",
-      "short": "Harathi",
+      "name": "Meerenge der Verwüstung",
+      "short": "Meerenge",
       "tier": 4,
       "part": 2,
       "portal": 3,
-      "lore": "Im Harathi-Hinterland tobt der Zentaurenkrieg. Ulgoth sammelt seine Horden am Rand eines gewaltigen Risses.",
+      "lore": "Vom Fort der Dreifaltigkeit aus setzt der Pakt nach Orr über. In der Meerenge der Verwüstung reißt der Riss den Meeresboden auf, und Auferstandene strömen zum Tempel des Balthasar.",
       "stages": [
         {
           "stage": 1,
           "mode": "normal",
           "original_stage": "4-6",
           "original_name": "Stone Giant",
-          "boss": "Harathi-Schlächter",
-          "boss_sprite": "BOSS_HARATHI_SCHLAECHTER",
+          "boss": "Champion Auferstandener Krait-Nimross",
+          "boss_sprite": "BOSS_CHAMPION_AUFERSTANDENER_KRAIT_NIMROSS",
           "minions": [
-            "Harathi-Krieger",
-            "Harathi-Speerwerfer"
+            "Auferstandener Krait-Damoss",
+            "Auferstandener Krait-Hypnoss"
           ],
           "level": 56,
           "cost": 650,
@@ -1518,14 +1519,15 @@
           "mode": "normal",
           "original_stage": "4-7",
           "original_name": "Stone Giant",
-          "boss": "Champion Modniir-Häuptling",
-          "boss_sprite": "BOSS_CHAMPION_MODNIIR_HAEUPTLING",
+          "boss": "Champion Auferstandener Megalodon",
+          "boss_sprite": "BOSS_CHAMPION_AUFERSTANDENER_MEGALODON",
           "minions": [
-            "Modniir-Berserker",
-            "Modniir-Schamane"
+            "Auferstandener Bullenhai",
+            "Auferstandener Krebs"
           ],
           "level": 57,
           "cost": 700,
+          "info": "Fort der Dreifaltigkeit",
           "rewards": {
             "research_points": [
               2,
@@ -1544,14 +1546,15 @@
           "mode": "normal",
           "original_stage": "4-8",
           "original_name": "Darkfire Giant",
-          "boss": "Kolossaler Erdelementar",
-          "boss_sprite": "BOSS_KOLOSSALER_ERDELEMENTAR",
+          "boss": "Auferstandener Zauberer",
+          "boss_sprite": "BOSS_AUFERSTANDENER_ZAUBERER",
           "minions": [
-            "Erdelementar",
-            "Steinwüter"
+            "Auferstandener Akolyth",
+            "Auferstandene Zauberin"
           ],
           "level": 58,
           "cost": 750,
+          "info": "Turm des Wesirs",
           "rewards": {
             "research_points": [
               3,
@@ -1570,14 +1573,15 @@
           "mode": "normal",
           "original_stage": "4-9",
           "original_name": "Darkfire Giant",
-          "boss": "Seraphen-Verräter Valen",
-          "boss_sprite": "BOSS_SERAPHEN_VERRAETER_VALEN",
+          "boss": "Champion Auferstandener Kapitän",
+          "boss_sprite": "BOSS_CHAMPION_AUFERSTANDENER_KAPITAEN",
           "minions": [
-            "Abtrünniger Seraph",
-            "Seraphen-Deserteur"
+            "Auferstandener Pirat",
+            "Auferstandener Kommandeur"
           ],
           "level": 59,
           "cost": 800,
+          "info": "Paradeplatz",
           "rewards": {
             "research_points": [
               3,
@@ -1596,11 +1600,11 @@
           "mode": "normal",
           "original_stage": "4-10",
           "original_name": "Dragon",
-          "boss": "Kriegsmeister Ulgoth",
-          "boss_sprite": "BOSS_KRIEGSMEISTER_ULGOTH",
+          "boss": "Auferstandener Priester des Balthasar",
+          "boss_sprite": "BOSS_AUFERSTANDENER_PRIESTER_DES_BALTHASAR",
           "minions": [
-            "Ulgoths Leibgarde",
-            "Modniir-Kriegsherr"
+            "Auferstandener Verwüster",
+            "Auferstandener Bewahrer"
           ],
           "level": 60,
           "cost": 1000,
@@ -1623,15 +1627,15 @@
           "mode": "hard",
           "original_stage": "Hard 4-3",
           "original_name": "Corrupted Rock Giant",
-          "boss": "Zentauren-Kriegsherr Kol",
-          "boss_sprite": "BOSS_ZENTAUREN_KRIEGSHERR_KOL",
+          "boss": "Champion Auferstandener Riese",
+          "boss_sprite": "BOSS_CHAMPION_AUFERSTANDENER_RIESE",
           "minions": [
-            "Zentauren-Lanzenreiter",
-            "Zentauren-Kriegsschamane"
+            "Auferstandener Unterwerfer",
+            "Auferstandenen-Luftabwehrgeschütz"
           ],
           "level": 60,
           "cost": 4000,
-          "info": "Schwer",
+          "info": "Schwer · Tempel des Balthasar",
           "rewards": {
             "research_points": [
               25,
@@ -1650,10 +1654,10 @@
           "mode": "hard",
           "original_stage": "Hard 4-4",
           "original_name": "Cursed Darkflame Giant",
-          "boss": "Verderbt: Kriegsmeister Ulgoth",
-          "boss_sprite": "BOSS_VERDERBT_KRIEGSMEISTER_ULGOTH",
+          "boss": "Verderbt: Auferstandener Priester des Balthasar",
+          "boss_sprite": "BOSS_VERDERBT_AUFERSTANDENER_PRIESTER_DES_BALTHASAR",
           "minions": [
-            "Ulgoths Leibgarde",
+            "Auferstandener Verwüster",
             "Kryptis-Splitter"
           ],
           "level": 60,
@@ -1677,8 +1681,8 @@
           "mode": "legendary",
           "original_stage": "L-4",
           "original_name": "Dark Dragon",
-          "boss": "Schatten: Kriegsmeister Ulgoth",
-          "boss_sprite": "BOSS_SCHATTEN_KRIEGSMEISTER_ULGOTH",
+          "boss": "Schatten: Auferstandener Priester des Balthasar",
+          "boss_sprite": "BOSS_SCHATTEN_AUFERSTANDENER_PRIESTER_DES_BALTHASAR",
           "minions": [
             "Kryptis-Plünderer",
             "Kryptis-Peiniger"
@@ -1703,26 +1707,27 @@
     },
     {
       "id": 9,
-      "name": "Blutstrom-Küste",
-      "short": "Blutstrom",
+      "name": "Malchors Sprung",
+      "short": "Malchor",
       "tier": 5,
       "part": 1,
       "portal": 4,
-      "lore": "An der Blutstrom-Küste spült der Riss Auferstandene aus Orr an. Krait und Piraten kämpfen um jeden Strand.",
+      "lore": "In Malchors Sprung stehen die Kathedralen der Dwayna und der Lyssa. Der Riss nährt die Verderbnis in ihren Hallen, und die Inquestur zapft am Rand die Energie ab.",
       "stages": [
         {
           "stage": 1,
           "mode": "normal",
           "original_stage": "5-1",
           "original_name": "Pyro Droid DX",
-          "boss": "Champion Krait-Priester",
-          "boss_sprite": "BOSS_CHAMPION_KRAIT_PRIESTER",
+          "boss": "Auferstandene Brutmutter",
+          "boss_sprite": "BOSS_AUFERSTANDENE_BRUTMUTTER",
           "minions": [
-            "Krait-Zelot",
-            "Krait-Neophyt"
+            "Auferstandenes Lindwurm-Junges",
+            "Auferstandener Lindwurm"
           ],
           "level": 60,
           "cost": 1200,
+          "info": "Lindwurm-Eier",
           "rewards": {
             "research_points": [
               4,
@@ -1741,14 +1746,15 @@
           "mode": "normal",
           "original_stage": "5-2",
           "original_name": "Pyro Droid DX",
-          "boss": "Champion Auferstandener Offizier",
-          "boss_sprite": "BOSS_CHAMPION_AUFERSTANDENER_OFFIZIER",
+          "boss": "Inquestur-Ornithologin",
+          "boss_sprite": "BOSS_INQUESTUR_ORNITHOLOGIN",
           "minions": [
-            "Auferstandener Matrose",
-            "Auferstandener Grubenarbeiter"
+            "Auferstandenes Huhn",
+            "Auferstandener Bauer"
           ],
           "level": 60,
           "cost": 1400,
+          "info": "Hühnerställe",
           "rewards": {
             "research_points": [
               4,
@@ -1767,14 +1773,15 @@
           "mode": "normal",
           "original_stage": "5-3",
           "original_name": "Pyro Droid DX",
-          "boss": "Dredge-Kriegsmaschine",
-          "boss_sprite": "BOSS_DREDGE_KRIEGSMASCHINE",
+          "boss": "Golem Typ II YF-Gold",
+          "boss_sprite": "BOSS_GOLEM_TYP_II_YF_GOLD",
           "minions": [
-            "Dredge-Schweißer",
-            "Dredge-Panzer"
+            "Pyrit-Elementar",
+            "Inquestur-Golem"
           ],
           "level": 60,
           "cost": 1600,
+          "info": "Omicron-Anlage",
           "rewards": {
             "research_points": [
               5,
@@ -1793,14 +1800,15 @@
           "mode": "normal",
           "original_stage": "5-4",
           "original_name": "Gatling Droid DX",
-          "boss": "Piratinnen-Admiralin",
-          "boss_sprite": "BOSS_PIRATINNEN_ADMIRALIN",
+          "boss": "Champion Auferstandener Leutnant",
+          "boss_sprite": "BOSS_CHAMPION_AUFERSTANDENER_LEUTNANT",
           "minions": [
-            "Piraten-Maat",
-            "Piraten-Harpunier"
+            "Auferstandener Edelmann",
+            "Auferstandener Hofnarr"
           ],
           "level": 60,
           "cost": 1800,
+          "info": "Kathedrale der Zephyre",
           "rewards": {
             "research_points": [
               5,
@@ -1819,15 +1827,15 @@
           "mode": "normal",
           "original_stage": "5-5",
           "original_name": "Gatling Droid DX",
-          "boss": "Dreiköpfige Krait-Bestie",
-          "boss_sprite": "BOSS_DREIKOEPFIGE_KRAIT_BESTIE",
+          "boss": "Verdorbene Hohepriesterin",
+          "boss_sprite": "BOSS_VERDORBENE_HOHEPRIESTERIN",
           "minions": [
-            "Krait-Wyrmschlange",
-            "Krait-Schreckensbrut"
+            "Auferstandenes Gespenst",
+            "Auferstandener Hylek"
           ],
           "level": 60,
           "cost": 2000,
-          "info": "Zonen-Endboss",
+          "info": "Zonen-Endboss · Kathedrale des Ewigen Leuchtens",
           "rewards": {
             "research_points": [
               5,
@@ -1846,15 +1854,15 @@
           "mode": "hard",
           "original_stage": "Hard 5-1",
           "original_name": "Cursed Pyro Droid DX",
-          "boss": "Champion Kropf-Krake",
-          "boss_sprite": "BOSS_CHAMPION_KROPF_KRAKE",
+          "boss": "Auferstandene Priesterin der Dwayna",
+          "boss_sprite": "BOSS_AUFERSTANDENE_PRIESTERIN_DER_DWAYNA",
           "minions": [
-            "Riffkrake",
-            "Tiefsee-Lauerer"
+            "Auferstandene Akolythin",
+            "Auferstandener Verweser"
           ],
           "level": 60,
           "cost": 4400,
-          "info": "Schwer",
+          "info": "Schwer · Kathedrale der Zephyre",
           "rewards": {
             "research_points": [
               30,
@@ -1873,15 +1881,15 @@
           "mode": "hard",
           "original_stage": "Hard 5-2",
           "original_name": "Cursed Gatling Droid DX",
-          "boss": "Verderbt: Dreiköpfige Krait-Bestie",
-          "boss_sprite": "BOSS_VERDERBT_DREIKOEPFIGE_KRAIT_BESTIE",
+          "boss": "Auge des Zhaitan",
+          "boss_sprite": "BOSS_AUGE_DES_ZHAITAN",
           "minions": [
-            "Krait-Wyrmschlange",
+            "Auferstandenes Gespenst",
             "Kryptis-Splitter"
           ],
           "level": 60,
           "cost": 4600,
-          "info": "Schwer · vom Riss verderbt",
+          "info": "Schwer · Königspassage",
           "rewards": {
             "research_points": [
               35,
@@ -1899,26 +1907,27 @@
     },
     {
       "id": 10,
-      "name": "Funkenschwärmersumpf",
-      "short": "Sumpf",
+      "name": "Fluchküste",
+      "short": "Fluchk.",
       "tier": 5,
       "part": 2,
       "portal": 4,
-      "lore": "Im Funkenschwärmersumpf brodelt Zhaitans Verderbnis. Aus dem Nebel über dem Wasser erhebt sich Tequatl der Sonnenlose.",
+      "lore": "An der Fluchküste endet der Weg durch Orr. Hinter den Tempeln der Melandru und des Grenth liegt Arah, und der Riss hier ist der größte, den die Gilde je gesehen hat.",
       "stages": [
         {
           "stage": 1,
           "mode": "normal",
           "original_stage": "5-6",
           "original_name": "Titan Rocket",
-          "boss": "Champion Auferstandener Priester",
-          "boss_sprite": "BOSS_CHAMPION_AUFERSTANDENER_PRIESTER",
+          "boss": "Kapitän Gammelbart",
+          "boss_sprite": "BOSS_KAPITAEN_GAMMELBART",
           "minions": [
-            "Auferstandener Akolyth",
-            "Auferstandener Schreckenswandler"
+            "Auferstandener Pirat",
+            "Auferstandener Fischer"
           ],
           "level": 60,
           "cost": 2200,
+          "info": "Auferstandener Piratenkapitän",
           "rewards": {
             "research_points": [
               6,
@@ -1937,14 +1946,15 @@
           "mode": "normal",
           "original_stage": "5-7",
           "original_name": "Titan Rocket",
-          "boss": "Champion Krait-Echse",
-          "boss_sprite": "BOSS_CHAMPION_KRAIT_ECHSE",
+          "boss": "Champion Auferstandener Gladiator",
+          "boss_sprite": "BOSS_CHAMPION_AUFERSTANDENER_GLADIATOR",
           "minions": [
-            "Krait-Echse",
-            "Krait-Schlinger"
+            "Auferstandener Gorilla",
+            "Orrianischer Gorilla"
           ],
           "level": 60,
           "cost": 2400,
+          "info": "Balthasars Arena",
           "rewards": {
             "research_points": [
               6,
@@ -1963,14 +1973,15 @@
           "mode": "normal",
           "original_stage": "5-8",
           "original_name": "Titan Shield",
-          "boss": "Zhaff-Sumpfmonster",
-          "boss_sprite": "BOSS_ZHAFF_SUMPFMONSTER",
+          "boss": "Champion Auferstandene Abscheulichkeit",
+          "boss_sprite": "BOSS_CHAMPION_AUFERSTANDENE_ABSCHEULICHKEIT",
           "minions": [
-            "Sumpfschlurfer",
-            "Sumpf-Moskito"
+            "Orrianischer Grobian",
+            "Orrianischer Schlurfer"
           ],
           "level": 60,
           "cost": 2600,
+          "info": "Kastell Schattenlieb",
           "rewards": {
             "research_points": [
               6,
@@ -1989,14 +2000,15 @@
           "mode": "normal",
           "original_stage": "5-9",
           "original_name": "Titan Shield",
-          "boss": "Hylek-Schamane Cuatl",
-          "boss_sprite": "BOSS_HYLEK_SCHAMANE_CUATL",
+          "boss": "Champion Auferstandener Hofwart",
+          "boss_sprite": "BOSS_CHAMPION_AUFERSTANDENER_HOFWART",
           "minions": [
-            "Hylek-Krieger",
-            "Hylek-Giftmischer"
+            "Auferstandene Spinne",
+            "Auferstandene Spinnenbrut"
           ],
           "level": 60,
           "cost": 2800,
+          "info": "Wintertotengeläut-Insel",
           "rewards": {
             "research_points": [
               7,
@@ -2015,15 +2027,15 @@
           "mode": "normal",
           "original_stage": "5-10",
           "original_name": "DioNemesis",
-          "boss": "Tequatl der Sonnenlose",
-          "boss_sprite": "BOSS_TEQUATL_DER_SONNENLOSE",
+          "boss": "Auferstandener Priester des Grenth",
+          "boss_sprite": "BOSS_AUFERSTANDENER_PRIESTER_DES_GRENTH",
           "minions": [
-            "Auferstandener Knochenmagier",
-            "Tequatls Diener"
+            "Orrianische Spektralwache",
+            "Auferstandener Verweser"
           ],
           "level": 60,
           "cost": 3000,
-          "info": "Zonen-Endboss",
+          "info": "Zonen-Endboss · Kathedrale der Stille",
           "rewards": {
             "research_points": [
               7,
@@ -2042,15 +2054,15 @@
           "mode": "hard",
           "original_stage": "Hard 5-3",
           "original_name": "Cursed Titan Rocket",
-          "boss": "Megawurm",
-          "boss_sprite": "BOSS_MEGAWURM",
+          "boss": "Auferstandener Priester der Melandru",
+          "boss_sprite": "BOSS_AUFERSTANDENER_PRIESTER_DER_MELANDRU",
           "minions": [
-            "Wurmbrut",
-            "Sandwurm-Larve"
+            "Teer-Elementar",
+            "Orrianischer Spektralhammer"
           ],
           "level": 60,
           "cost": 4800,
-          "info": "Schwer",
+          "info": "Schwer · Tempel der Melandru",
           "rewards": {
             "research_points": [
               40,
@@ -2069,10 +2081,10 @@
           "mode": "hard",
           "original_stage": "Hard 5-4",
           "original_name": "Cursed Titan Shield",
-          "boss": "Verderbt: Tequatl der Sonnenlose",
-          "boss_sprite": "BOSS_VERDERBT_TEQUATL_DER_SONNENLOSE",
+          "boss": "Verderbt: Auferstandener Priester des Grenth",
+          "boss_sprite": "BOSS_VERDERBT_AUFERSTANDENER_PRIESTER_DES_GRENTH",
           "minions": [
-            "Auferstandener Knochenmagier",
+            "Orrianische Spektralwache",
             "Kryptis-Splitter"
           ],
           "level": 60,
@@ -2096,8 +2108,8 @@
           "mode": "legendary",
           "original_stage": "L-5",
           "original_name": "DioNemesis DX",
-          "boss": "Schatten: Tequatl der Sonnenlose",
-          "boss_sprite": "BOSS_SCHATTEN_TEQUATL_DER_SONNENLOSE",
+          "boss": "Schatten: Auferstandener Priester des Grenth",
+          "boss_sprite": "BOSS_SCHATTEN_AUFERSTANDENER_PRIESTER_DES_GRENTH",
           "minions": [
             "Kryptis-Plünderer",
             "Kryptis-Peiniger"

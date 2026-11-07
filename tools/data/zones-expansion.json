@@ -3,38 +3,62 @@
   "basePortals": {
     "1": "Kryta, Caledon & Zittergipfel",
     "2": "Metrica, Aschfurt & Anwesen",
-    "3": "Ascalon & Harathi",
-    "4": "Küste & Sümpfe von Orr"
+    "3": "Löwenstein & Meerenge",
+    "4": "Orr"
   },
   "expansions": [
     {
       "name": "Erweiterung 1",
-      "portals": [5, 6],
-      "lv": [61, 70]
+      "portals": [
+        5,
+        6
+      ],
+      "lv": [
+        61,
+        70
+      ]
     },
     {
       "name": "Erweiterung 2",
-      "portals": [7, 8],
-      "lv": [71, 80],
+      "portals": [
+        7,
+        8
+      ],
+      "lv": [
+        71,
+        80
+      ],
       "note": "Alternativ als **„Schwer+“**-Stufe statt eigener Erweiterung."
     }
   ],
   "portals": {
     "5": {
       "name": "Das Land der Charr",
-      "lv": [61, 65]
+      "lv": [
+        61,
+        65
+      ]
     },
     "6": {
-      "name": "Hoher Norden & Vorstoß nach Orr",
-      "lv": [66, 70]
+      "name": "Hoher Norden & Arah",
+      "lv": [
+        66,
+        70
+      ]
     },
     "7": {
       "name": "Maguuma-Dschungel",
-      "lv": [71, 75]
+      "lv": [
+        71,
+        75
+      ]
     },
     "8": {
       "name": "Wüste, Geistertal & Weltende",
-      "lv": [76, 80]
+      "lv": [
+        76,
+        80
+      ]
     }
   },
   "zones": [
@@ -43,7 +67,10 @@
       "name": "Eisensuperiorität",
       "portal": 5,
       "type": "Offene Welt",
-      "lv": [61, 63],
+      "lv": [
+        61,
+        63
+      ],
       "bosses": [
         "Gebrandmarkte Verschlinger-Königin",
         "Champion Brand-Goliath",
@@ -63,7 +90,10 @@
       "name": "Zitadelle der Flamme",
       "portal": 5,
       "type": "Verlies",
-      "lv": [64, 65],
+      "lv": [
+        64,
+        65
+      ],
       "bosses": [
         "Sklavenmeister",
         "Gaheron-Eiferer",
@@ -83,7 +113,10 @@
       "name": "Eisklamm-Sund",
       "portal": 6,
       "type": "Offene Welt",
-      "lv": [66, 67],
+      "lv": [
+        66,
+        67
+      ],
       "bosses": [
         "Champion Eisbrut-Kodan",
         "Dredge-Generaldirektor",
@@ -103,7 +136,10 @@
       "name": "Umarmung der Betrübnis",
       "portal": 6,
       "type": "Verlies",
-      "lv": [68, 69],
+      "lv": [
+        68,
+        69
+      ],
       "bosses": [
         "Vorarbeiter Spur",
         "Targa der Peiniger",
@@ -123,13 +159,16 @@
       "name": "Ruinen von Arah",
       "portal": 6,
       "type": "Verlies / epische Zone",
-      "lv": [70, 70],
+      "lv": [
+        70,
+        70
+      ],
       "bosses": [
-        "Auge des Zhaitan",
-        "Maul des Zhaitan",
-        "Hohepriester des Balthasar",
-        "Hohepriesterin der Dwayna",
-        "Hohepriester der Grenth"
+        "Mund des Zhaitan",
+        "Hoheitliches Auge des Zhaitan",
+        "Champion Auferstandene Erzmagierin",
+        "Auferstandener Oberster Zauberer",
+        "Giganticus Lupicus"
       ],
       "endboss": "Zhaitan",
       "minions": [
@@ -143,7 +182,10 @@
       "name": "Silberwüste",
       "portal": 7,
       "type": "Offene Welt",
-      "lv": [71, 73],
+      "lv": [
+        71,
+        73
+      ],
       "bosses": [
         "Mordrem-Hüllen-Champion",
         "Mordrem-Rankenbrecher",
@@ -163,7 +205,10 @@
       "name": "Grasgrüne Schwelle",
       "portal": 7,
       "type": "Offene Welt",
-      "lv": [74, 75],
+      "lv": [
+        74,
+        75
+      ],
       "bosses": [
         "Patriarch der Wyvern",
         "Axthauer-Champion",
@@ -183,7 +228,10 @@
       "name": "Geistertal",
       "portal": 8,
       "type": "Schlachtzug",
-      "lv": [76, 77],
+      "lv": [
+        76,
+        77
+      ],
       "bosses": [
         "Talwächter",
         "Gorseval der Facettenreiche",
@@ -203,7 +251,10 @@
       "name": "Kristalloase & Flusslande",
       "portal": 8,
       "type": "Offene Welt",
-      "lv": [78, 79],
+      "lv": [
+        78,
+        79
+      ],
       "bosses": [
         "Gebrandmarkte Hydra",
         "Choya-Piñata",
@@ -223,7 +274,10 @@
       "name": "Drachensturz (Die Nebel)",
       "portal": 8,
       "type": "Epische Zone",
-      "lv": [80, 80],
+      "lv": [
+        80,
+        80
+      ],
       "bosses": [
         "Ley-infundierter Zorn",
         "Befallenes Riss-Monstrum",
@@ -251,6 +305,8 @@
     "Englische Zusätze in Klammern entfernt (Shatterer, Vinewrath, Forsaken Thicket, Vale Guardian).",
     "„Blistering Mordrem Wolf“ → *Blasenwerfender Mordrem-Wolf*, „Stavemaster“ → *Stabmeister*, „Branded Aurene-Schatten“ → *Gebrandmarkter Aurene-Schatten*, „Canopic“ → *Kanopen*: eigene Übersetzungen, nicht mit dem deutschen Client abgeglichen.",
     "„Eisbrut-Kodann“ → *Eisbrut-Kodan* (die Kodan sind das Volk); „Champion Eisbrut-Kodan“ gibt es so in der DE-Wiki.",
-    "Alle übrigen Bosse ohne Quellenprüfung übernommen."
+    "Alle übrigen Bosse ohne Quellenprüfung übernommen.",
+    "Seit v0.21.0 liegt Orr (Meerenge, Malchors Sprung, Fluchküste) in den Zonen 8–10. Die Tempel-Priester sind dort Bosse, Arah bekommt dafür Mund und Hoheitliches Auge des Zhaitan, Erzmagierin, Obersten Zauberer und Giganticus Lupicus. Portal 6 heißt jetzt „Hoher Norden & Arah“.",
+    "Die alten Zonen 7–10 bis v0.20.1 (Katakomben von Ascalon, Harathi-Hinterland, Blutstrom-Küste, Funkenschwärmersumpf) sind nicht mehr im Spiel. Ihre Bosse und Schergen stehen in der Git-Historie von tools/gen-zones.mjs und können als Erweiterungs-Zonen zurückkommen."
   ]
 }

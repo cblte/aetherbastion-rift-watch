@@ -4,7 +4,7 @@
 
 **Zuordnung:** Zonen 1–10 exakt über die Stufe (`src` = CQHT-Boss; Schergen aus demselben CQHT-Kapitel). Zonen 11–20 nach Rang auf CQHT *Hard*, *Legendär*, Soltar bzw. *Hard*-/*Soul*-Monster. Werte (HP/ATK auf Lv. 1, DEF, Tempo) und Drops sind die der CQHT-Vorlage. Im Spiel rechnet `config.js` die Kampfwerte weiter aus dem Stufen-Level.
 
-**Wiki-Prüfung** (https://wiki-de.guildwars2.com, verschiedene Namen): Bosse ✅ 20 · 🟡 9 · 📄 3 · 🇬🇧 2 · ❌ 101 | Schergen ✅ 38 · 🟡 1 · 📄 3 · 🇬🇧 0 · ❌ 97
+**Wiki-Prüfung** (https://wiki-de.guildwars2.com, verschiedene Namen): Bosse ✅ 38 · 🟡 13 · 📄 7 · 🇬🇧 2 · ❌ 75 | Schergen ✅ 78 · 🟡 2 · 📄 2 · 🇬🇧 0 · ❌ 56
 ✅ Seite mit genau diesem Namen · 🟡 nur eine Variante gefunden (ohne „Champion“, Klammer oder „Verderbt:/Schatten:“, oder über die englische Wiki) · 📄 keine eigene Seite, aber in einem Seitentitel erwähnt (meist ein Event) · 🇬🇧 nur in der englischen Wiki · ❌ keine Seite – vermutlich kein echter GW2-Name oder im deutschen Spiel anders benannt. Schergen-Namen sind oft beschreibend erfunden (z. B. „Banditen-Bomber“); ❌ ist dort weniger schlimm als bei Bossen.
 
 ## Portal 1: Kryta, Caledon & Zittergipfel
@@ -106,7 +106,7 @@ Zone in der Wiki: ✅ [Provinz Metrica](https://wiki-de.guildwars2.com/wiki/Prov
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 · Lv. 31 | boss | Champion Inquestur-Golem | ❌ ähnlich: Inquestur, Golem, Haufen kristallinen Staubs | Basilisk (BOSS_2_3_1) | 29.100 | 269 | 105 | 1,5 |
 |  | scherge | Inquestur-Assistent | ✅ [Inquestur-Assistent](https://wiki-de.guildwars2.com/wiki/Inquestur-Assistent) (en: Inquest Assistant) | Anubis (MON_2_6) | 3.590 | 83 | 100 | 2,5 |
-|  | scherge | Inquestur-Golem | ❌ ähnlich: Inquestur, Golem, Haufen kristallinen Staubs | Anubis (MON_2_6) | 3.590 | 83 | 100 | 2,5 |
+|  | scherge | Inquestur-Golem | 🟡 [Golem](https://wiki-de.guildwars2.com/wiki/Golem) | Anubis (MON_2_6) | 3.590 | 83 | 100 | 2,5 |
 | 2 · Lv. 33 | boss | Champion Skritt-Anführer | ❌ ähnlich: Skritt, Ebonfalke-Festung, Champion | Basilisk (BOSS_2_3_2) | 34.100 | 276 | 110 | 1,5 |
 |  | scherge | Skritt-Bastler | ❌ ähnlich: Skritt, Skrittsburg-Zentrum, Bastler Fur'anchish | Anubis (MON_2_6) | 3.590 | 83 | 100 | 2,5 |
 |  | scherge | Skritt-Späher | ❌ ähnlich: Helft Zippti bei der Untersuchung der ungewöhnlich aggressiven Skritt, Befreit das Trainingsgebiet von Ungeziefer, Hanto-Handelsposten | Anubis (MON_2_6) | 3.590 | 83 | 100 | 2,5 |
@@ -188,125 +188,125 @@ Zone in der Wiki: ✅ [Caudecus' Anwesen](https://wiki-de.guildwars2.com/wiki/Ca
 |  | scherge | Kryptis-Plünderer | ❌ ähnlich: Antiker Knochen, Phiole mit kraftvollem Blut, Beherrschungspunkt | Soul-Stolen Jellyfish (MON_SOUL_3_3) | 428.090 | 352 | 255,5 | 2,5 |
 |  | scherge | Kryptis-Peiniger | ❌ ähnlich: Beherrschungspunkt | Soul-Stolen Mermaid Wizard (MON_SOUL_3_4) | 457.050 | 361 | 266 | 2,5 |
 
-## Portal 3: Ascalon & Harathi
+## Portal 3: Löwenstein & Meerenge
 
-### 7. Katakomben von Ascalon
+### 7. Löwenstein & Klaueninsel
 
-Zone in der Wiki: ✅ [Katakomben von Ascalon](https://wiki-de.guildwars2.com/wiki/Katakomben_von_Ascalon) (en: Ascalonian Catacombs)
+Zone in der Wiki: 🟡 [Klaueninsel](https://wiki-de.guildwars2.com/wiki/Klaueninsel) (en: Claw Island)
 
 | Stufe | Rolle | GW2-Name | Wiki | CQHT-Vorlage | HP Lv.1 | ATK Lv.1 | DEF | Tempo |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 · Lv. 51 | boss | Höhlentroll | ✅ [Höhlentroll](https://wiki-de.guildwars2.com/wiki/H%C3%B6hlentroll) (en: Cave Troll) | Hell Squishy (BOSS_4_1_1) | 178.230 | 578 | 190 | 1,5 |
-|  | scherge | Geister-Krieger | ❌ ähnlich: Geist, Ascalonischer Geist, Waldläufer | Ash Squishy (MON_4_2) | 10.380 | 146 | 166 | 2,5 |
-|  | scherge | Geister-Waldläufer | ❌ ähnlich: Waldläufer, Geist, Ascalonischer Geist | Flame Spirit (MON_4_3) | 13.910 | 149 | 172 | 2,5 |
-| 2 · Lv. 52 | boss | Kasha Schwarzblut | ✅ [Kasha Schwarzblut](https://wiki-de.guildwars2.com/wiki/Kasha_Schwarzblut) (en: Kasha Blackblood) | Hell Squishy (BOSS_4_1_2) | 201.560 | 587 | 177,5 | 1,5 |
-|  | scherge | Flammenlegion-Kultist | ❌ | Ash Squishy (MON_4_2) | 10.380 | 146 | 166 | 2,5 |
-|  | scherge | Flammenlegion-Zerstörer | ❌ ähnlich: Meta-Event | Flame Spirit (MON_4_3) | 13.910 | 149 | 172 | 2,5 |
-| 3 · Lv. 53 | boss | Ralena & Vassar | ❌ ähnlich: Gruft der Liebenden, Vassar, Katakomben von Ascalon (Story) | Hell Squishy (BOSS_4_1_3) | 223.940 | 596 | 180 | 1,5 |
-|  | scherge | Geister-Liebende | ❌ ähnlich: Katakomben von Ascalon, Katakomben von Ascalon (Story), Gruft der Liebenden | Flame Spirit (MON_4_3) | 13.910 | 149 | 172 | 2,5 |
-|  | scherge | Geister-Wächter | ❌ ähnlich: Waldläufer, Dschinn, Geistertal | Evil Flame Spirit (MON_4_4) | 14.010 | 147 | 175,5 | 2,5 |
-| 4 · Lv. 54 | boss | Geisterhafter Nekromant | ❌ ähnlich: Geist, Weißer Mantel, Kraftvoller Giftbeutel | Hellfire Spirit (BOSS_4_2_1) | 259.600 | 633 | 182,5 | 1,5 |
-|  | scherge | Knochen-Diener | ❌ ähnlich: Eisbrut-Elementar, Knochen-Spitzhacke, Sammelwerkzeug | Evil Flame Spirit (MON_4_4) | 14.010 | 147 | 175,5 | 2,5 |
-|  | scherge | Geister-Nekromant | ❌ ähnlich: Geist, Ascalonischer Geist, Waldläufer | Elite Lizardman (MON_4_5) | 16.630 | 158 | 179 | 2,5 |
-| 5 · Lv. 55 | endboss | König Adelbern | ✅ [König Adelbern](https://wiki-de.guildwars2.com/wiki/K%C3%B6nig_Adelbern) (en: King Adelbern) | Hellfire Spirit (BOSS_4_2_2) | 259.300 | 642 | 185 | 1,5 |
-|  | scherge | Ascalonischer Geisterritter | ❌ | Elite Lizardman (MON_4_5) | 16.630 | 158 | 179 | 2,5 |
-|  | scherge | Geister-Elite | ❌ ähnlich: Geist, Ascalonischer Geist, Geschmiedeter | Ifrit (MON_4_6) | 18.150 | 219 | 182,5 | 2,5 |
-| 6 ☠️ · Lv. 60 | boss | Meister-Nekromant | ❌ ähnlich: Nekromant, Zustandsschaden, Klasse | Volcano Sludge (BOSS_H_4_1) | 8.153.410 | 1.170 | 353 | 2,5 |
-|  | scherge | Untoter Kanonier | ❌ ähnlich: Orden der Gerüchte, Jackdaw-Riff, Neustrand-Klippen | Cursed Lava Sludge (MON_H_4_1) | 415.048 | 291 | 308 | 2,5 |
-|  | scherge | Knochen-Schrecken | ❌ ähnlich: Stabilität, Schnitter, Sylvari | Cursed Lava Sludge (MON_H_4_1) | 415.048 | 291 | 308 | 2,5 |
-| 7 ☠️ · Lv. 60 | boss | Verderbt: König Adelbern | 🟡 [König Adelbern](https://wiki-de.guildwars2.com/wiki/K%C3%B6nig_Adelbern) (en: King Adelbern) | Cursed Hellfire Spirit (BOSS_H_4_2) | 8.750.971 | 1.184 | 363 | 2,5 |
-|  | scherge | Ascalonischer Geisterritter | ❌ | Cursed Fire Spirit (MON_H_4_2) | 442.108 | 295 | 314 | 2,5 |
+| 1 · Lv. 51 | boss | Auferstandene Abscheulichkeit | ✅ [Auferstandene Abscheulichkeit](https://wiki-de.guildwars2.com/wiki/Auferstandene_Abscheulichkeit) (en: Risen Abomination) | Hell Squishy (BOSS_4_1_1) | 178.230 | 578 | 190 | 1,5 |
+|  | scherge | Auferstandener Leibeigener | ✅ [Auferstandener Leibeigener](https://wiki-de.guildwars2.com/wiki/Auferstandener_Leibeigener) (en: Risen Thrall) | Ash Squishy (MON_4_2) | 10.380 | 146 | 166 | 2,5 |
+|  | scherge | Auferstandener Pirat | ✅ [Auferstandener Pirat](https://wiki-de.guildwars2.com/wiki/Auferstandener_Pirat) (en: Risen Pirate) | Flame Spirit (MON_4_3) | 13.910 | 149 | 172 | 2,5 |
+| 2 · Lv. 52 | boss | Veteran Auferstandener Grobian | ✅ [Veteran Auferstandener Grobian](https://wiki-de.guildwars2.com/wiki/Veteran_Auferstandener_Grobian) (en: Veteran Risen Brute) | Hell Squishy (BOSS_4_1_2) | 201.560 | 587 | 177,5 | 1,5 |
+|  | scherge | Auferstandener Grobian | ✅ [Auferstandener Grobian](https://wiki-de.guildwars2.com/wiki/Auferstandener_Grobian) (en: Risen Brute) | Ash Squishy (MON_4_2) | 10.380 | 146 | 166 | 2,5 |
+|  | scherge | Auferstandener Seuchenträger | ✅ [Auferstandener Seuchenträger](https://wiki-de.guildwars2.com/wiki/Auferstandener_Seuchentr%C3%A4ger) (en: Risen Plague Carrier) | Flame Spirit (MON_4_3) | 13.910 | 149 | 172 | 2,5 |
+| 3 · Lv. 53 | boss | Admiral Feiste Bakkir | ✅ [Admiral Feiste Bakkir](https://wiki-de.guildwars2.com/wiki/Admiral_Feiste_Bakkir) | Hell Squishy (BOSS_4_1_3) | 223.940 | 596 | 180 | 1,5 |
+|  | scherge | Auferstandener Knappe | ✅ [Auferstandener Knappe](https://wiki-de.guildwars2.com/wiki/Auferstandener_Knappe) | Flame Spirit (MON_4_3) | 13.910 | 149 | 172 | 2,5 |
+|  | scherge | Auferstandener Ritter | ✅ [Auferstandener Ritter](https://wiki-de.guildwars2.com/wiki/Auferstandener_Ritter) (en: Risen Knight) | Evil Flame Spirit (MON_4_4) | 14.010 | 147 | 175,5 | 2,5 |
+| 4 · Lv. 54 | boss | Morgus Lethe | ✅ [Morgus Lethe](https://wiki-de.guildwars2.com/wiki/Morgus_Lethe) | Hellfire Spirit (BOSS_4_2_1) | 259.600 | 633 | 182,5 | 1,5 |
+|  | scherge | Auferstandener Hai | ✅ [Auferstandener Hai](https://wiki-de.guildwars2.com/wiki/Auferstandener_Hai) (en: Risen Shark) | Evil Flame Spirit (MON_4_4) | 14.010 | 147 | 175,5 | 2,5 |
+|  | scherge | Untoter Riesenhai | ✅ [Untoter Riesenhai](https://wiki-de.guildwars2.com/wiki/Untoter_Riesenhai) (en: Giant Undead Shark) | Elite Lizardman (MON_4_5) | 16.630 | 158 | 179 | 2,5 |
+| 5 · Lv. 55 | endboss | Faulschreck der Seuchenbringer | ✅ [Faulschreck der Seuchenbringer](https://wiki-de.guildwars2.com/wiki/Faulschreck_der_Seuchenbringer) (en: Blightghast the Plaguebringer) | Hellfire Spirit (BOSS_4_2_2) | 259.300 | 642 | 185 | 1,5 |
+|  | scherge | Auferstandener Verderber | ✅ [Auferstandener Verderber](https://wiki-de.guildwars2.com/wiki/Auferstandener_Verderber) (en: Risen Corrupter) | Elite Lizardman (MON_4_5) | 16.630 | 158 | 179 | 2,5 |
+|  | scherge | Auferstandene Seuchenträgerin | ✅ [Auferstandene Seuchenträgerin](https://wiki-de.guildwars2.com/wiki/Auferstandene_Seuchentr%C3%A4gerin) (en: Risen Plague Carrier) | Ifrit (MON_4_6) | 18.150 | 219 | 182,5 | 2,5 |
+| 6 ☠️ · Lv. 60 | boss | Monströse Auferstandene Abscheulichkeit | ✅ [Monströse Auferstandene Abscheulichkeit](https://wiki-de.guildwars2.com/wiki/Monstr%C3%B6se_Auferstandene_Abscheulichkeit) (en: Hulking Risen Abomination) | Volcano Sludge (BOSS_H_4_1) | 8.153.410 | 1.170 | 353 | 2,5 |
+|  | scherge | Auferstandene Abscheulichkeit | ✅ [Auferstandene Abscheulichkeit](https://wiki-de.guildwars2.com/wiki/Auferstandene_Abscheulichkeit) (en: Risen Abomination) | Cursed Lava Sludge (MON_H_4_1) | 415.048 | 291 | 308 | 2,5 |
+|  | scherge | Auferstandener Verseuchter | ✅ [Auferstandener Verseuchter](https://wiki-de.guildwars2.com/wiki/Auferstandener_Verseuchter) | Cursed Lava Sludge (MON_H_4_1) | 415.048 | 291 | 308 | 2,5 |
+| 7 ☠️ · Lv. 60 | boss | Verderbt: Faulschreck der Seuchenbringer | 🟡 [Faulschreck der Seuchenbringer](https://wiki-de.guildwars2.com/wiki/Faulschreck_der_Seuchenbringer) (en: Blightghast the Plaguebringer) | Cursed Hellfire Spirit (BOSS_H_4_2) | 8.750.971 | 1.184 | 363 | 2,5 |
+|  | scherge | Auferstandener Verderber | ✅ [Auferstandener Verderber](https://wiki-de.guildwars2.com/wiki/Auferstandener_Verderber) (en: Risen Corrupter) | Cursed Fire Spirit (MON_H_4_2) | 442.108 | 295 | 314 | 2,5 |
 |  | scherge | Kryptis-Splitter | ❌ ähnlich: Antiker Knochen, Veredelte Heimstatt-Faser, Spielupdate/20230926 | Cursed Fire Spirit (MON_H_4_2) | 442.108 | 295 | 314 | 2,5 |
 
-### 8. Harathi-Hinterland
+### 8. Meerenge der Verwüstung
 
-Zone in der Wiki: ✅ [Harathi-Hinterland](https://wiki-de.guildwars2.com/wiki/Harathi-Hinterland) (en: Harathi Hinterlands)
+Zone in der Wiki: ✅ [Meerenge der Verwüstung](https://wiki-de.guildwars2.com/wiki/Meerenge_der_Verw%C3%BCstung) (en: Straits of Devastation)
 
 | Stufe | Rolle | GW2-Name | Wiki | CQHT-Vorlage | HP Lv.1 | ATK Lv.1 | DEF | Tempo |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 · Lv. 56 | boss | Harathi-Schlächter | ❌ ähnlich: Rätsel, Gebiet, Meta-Event | Stone Giant (BOSS_4_3_1) | 276.260 | 736 | 187,5 | 1,5 |
-|  | scherge | Harathi-Krieger | ✅ [Harathi-Krieger](https://wiki-de.guildwars2.com/wiki/Harathi-Krieger) (en: Harathi Warrior) | Ifrit (MON_4_6) | 18.150 | 219 | 182,5 | 2,5 |
-|  | scherge | Harathi-Speerwerfer | ❌ ähnlich: PvE-Belagerungswaffe | Ifrit (MON_4_6) | 18.150 | 219 | 182,5 | 2,5 |
-| 2 · Lv. 57 | boss | Champion Modniir-Häuptling | ❌ ähnlich: Liste der Waffensets, Zentaur, Champion | Stone Giant (BOSS_4_3_2) | 310.810 | 747 | 190 | 1,5 |
-|  | scherge | Modniir-Berserker | ✅ [Modniir-Berserker](https://wiki-de.guildwars2.com/wiki/Modniir-Berserker) (en: Modniir Defender) | Ifrit (MON_4_6) | 18.150 | 219 | 182,5 | 2,5 |
-|  | scherge | Modniir-Schamane | ❌ ähnlich: Miniatur, Champion, Welt-Boss | Ifrit (MON_4_6) | 18.150 | 219 | 182,5 | 2,5 |
-| 3 · Lv. 58 | boss | Kolossaler Erdelementar | ❌ | Darkfire Giant (BOSS_4_4_1) | 316.100 | 758 | 192,5 | 1,5 |
-|  | scherge | Erdelementar | 📄 [Instabiler Erdelementar](https://wiki-de.guildwars2.com/wiki/Instabiler_Erdelementar) | Ifrit (MON_4_6) | 18.150 | 219 | 182,5 | 2,5 |
-|  | scherge | Steinwüter | ❌ | Ifrit (MON_4_6) | 18.150 | 219 | 182,5 | 2,5 |
-| 4 · Lv. 59 | boss | Seraphen-Verräter Valen | ❌ ähnlich: Biographie/Details | Darkfire Giant (BOSS_4_4_2) | 333.080 | 768 | 195 | 1,5 |
-|  | scherge | Abtrünniger Seraph | ❌ ähnlich: Ebonfalke-Festung, Die Wachsamen, Ebon-Vorhut | Ifrit (MON_4_6) | 18.150 | 219 | 182,5 | 2,5 |
-|  | scherge | Seraphen-Deserteur | ❌ ähnlich: Gezielte Verhandlung, Reparateur, Liste der Aufgaben | Ifrit (MON_4_6) | 18.150 | 219 | 182,5 | 2,5 |
-| 5 · Lv. 60 | endboss | Kriegsmeister Ulgoth | ❌ | Dragon (BOSS_4_5) | 385.120 | 996 | 222,5 | 1,5 |
-|  | scherge | Ulgoths Leibgarde | ❌ | Ifrit (MON_4_6) | 18.150 | 219 | 182,5 | 2,5 |
-|  | scherge | Modniir-Kriegsherr | ❌ ähnlich: Zeitachse | Ifrit (MON_4_6) | 18.150 | 219 | 182,5 | 2,5 |
-| 6 ☠️ · Lv. 60 | boss | Zentauren-Kriegsherr Kol | ❌ | Corrupted Rock Giant (BOSS_H_4_3) | 9.348.532 | 1.197 | 373 | 2,5 |
-|  | scherge | Zentauren-Lanzenreiter | ❌ | Cursed Elite Lizardman (MON_H_4_3) | 469.168 | 299 | 320 | 2,5 |
-|  | scherge | Zentauren-Kriegsschamane | ❌ | Cursed Elite Lizardman (MON_H_4_3) | 469.168 | 299 | 320 | 2,5 |
-| 7 ☠️ · Lv. 60 | boss | Verderbt: Kriegsmeister Ulgoth | ❌ | Cursed Darkflame Giant (BOSS_H_4_4) | 9.946.093 | 1.210 | 383 | 1 |
-|  | scherge | Ulgoths Leibgarde | ❌ | Cursed Ifrit (MON_H_4_4) | 496.229 | 303 | 327 | 2,5 |
+| 1 · Lv. 56 | boss | Champion Auferstandener Krait-Nimross | ✅ [Champion Auferstandener Krait-Nimross](https://wiki-de.guildwars2.com/wiki/Champion_Auferstandener_Krait-Nimross) (en: Champion Risen Krait Nimross) | Stone Giant (BOSS_4_3_1) | 276.260 | 736 | 187,5 | 1,5 |
+|  | scherge | Auferstandener Krait-Damoss | ✅ [Auferstandener Krait-Damoss](https://wiki-de.guildwars2.com/wiki/Auferstandener_Krait-Damoss) (en: Risen Krait Damoss) | Ifrit (MON_4_6) | 18.150 | 219 | 182,5 | 2,5 |
+|  | scherge | Auferstandener Krait-Hypnoss | ✅ [Auferstandener Krait-Hypnoss](https://wiki-de.guildwars2.com/wiki/Auferstandener_Krait-Hypnoss) (en: Risen Krait Hypnoss) | Ifrit (MON_4_6) | 18.150 | 219 | 182,5 | 2,5 |
+| 2 · Lv. 57 | boss | Champion Auferstandener Megalodon | ✅ [Champion Auferstandener Megalodon](https://wiki-de.guildwars2.com/wiki/Champion_Auferstandener_Megalodon) (en: Champion Risen Megalodon) | Stone Giant (BOSS_4_3_2) | 310.810 | 747 | 190 | 1,5 |
+|  | scherge | Auferstandener Bullenhai | ✅ [Auferstandener Bullenhai](https://wiki-de.guildwars2.com/wiki/Auferstandener_Bullenhai) (en: Risen Bull Shark) | Ifrit (MON_4_6) | 18.150 | 219 | 182,5 | 2,5 |
+|  | scherge | Auferstandener Krebs | ✅ [Auferstandener Krebs](https://wiki-de.guildwars2.com/wiki/Auferstandener_Krebs) (en: Risen Crab) | Ifrit (MON_4_6) | 18.150 | 219 | 182,5 | 2,5 |
+| 3 · Lv. 58 | boss | Auferstandener Zauberer | ✅ [Auferstandener Zauberer](https://wiki-de.guildwars2.com/wiki/Auferstandener_Zauberer) (en: Risen Wizard) | Darkfire Giant (BOSS_4_4_1) | 316.100 | 758 | 192,5 | 1,5 |
+|  | scherge | Auferstandener Akolyth | ✅ [Auferstandener Akolyth](https://wiki-de.guildwars2.com/wiki/Auferstandener_Akolyth) (en: Risen Acolyte) | Ifrit (MON_4_6) | 18.150 | 219 | 182,5 | 2,5 |
+|  | scherge | Auferstandene Zauberin | ✅ [Auferstandene Zauberin](https://wiki-de.guildwars2.com/wiki/Auferstandene_Zauberin) (en: Risen Wizard) | Ifrit (MON_4_6) | 18.150 | 219 | 182,5 | 2,5 |
+| 4 · Lv. 59 | boss | Champion Auferstandener Kapitän | ✅ [Champion Auferstandener Kapitän](https://wiki-de.guildwars2.com/wiki/Champion_Auferstandener_Kapit%C3%A4n) (en: Champion Risen Captain) | Darkfire Giant (BOSS_4_4_2) | 333.080 | 768 | 195 | 1,5 |
+|  | scherge | Auferstandener Pirat | ✅ [Auferstandener Pirat](https://wiki-de.guildwars2.com/wiki/Auferstandener_Pirat) (en: Risen Pirate) | Ifrit (MON_4_6) | 18.150 | 219 | 182,5 | 2,5 |
+|  | scherge | Auferstandener Kommandeur | ✅ [Auferstandener Kommandeur](https://wiki-de.guildwars2.com/wiki/Auferstandener_Kommandeur) (en: Risen Commander) | Ifrit (MON_4_6) | 18.150 | 219 | 182,5 | 2,5 |
+| 5 · Lv. 60 | endboss | Auferstandener Priester des Balthasar | ✅ [Auferstandener Priester des Balthasar](https://wiki-de.guildwars2.com/wiki/Auferstandener_Priester_des_Balthasar) (en: Risen Priest of Balthazar) | Dragon (BOSS_4_5) | 385.120 | 996 | 222,5 | 1,5 |
+|  | scherge | Auferstandener Verwüster | ✅ [Auferstandener Verwüster](https://wiki-de.guildwars2.com/wiki/Auferstandener_Verw%C3%BCster) | Ifrit (MON_4_6) | 18.150 | 219 | 182,5 | 2,5 |
+|  | scherge | Auferstandener Bewahrer | ✅ [Auferstandener Bewahrer](https://wiki-de.guildwars2.com/wiki/Auferstandener_Bewahrer) | Ifrit (MON_4_6) | 18.150 | 219 | 182,5 | 2,5 |
+| 6 ☠️ · Lv. 60 | boss | Champion Auferstandener Riese | ✅ [Champion Auferstandener Riese](https://wiki-de.guildwars2.com/wiki/Champion_Auferstandener_Riese) (en: Champion Risen Giant) | Corrupted Rock Giant (BOSS_H_4_3) | 9.348.532 | 1.197 | 373 | 2,5 |
+|  | scherge | Auferstandener Unterwerfer | ✅ [Auferstandener Unterwerfer](https://wiki-de.guildwars2.com/wiki/Auferstandener_Unterwerfer) (en: Risen Subjugator) | Cursed Elite Lizardman (MON_H_4_3) | 469.168 | 299 | 320 | 2,5 |
+|  | scherge | Auferstandenen-Luftabwehrgeschütz | ✅ [Auferstandenen-Luftabwehrgeschütz](https://wiki-de.guildwars2.com/wiki/Auferstandenen-Luftabwehrgesch%C3%BCtz) (en: Risen Anti-Air Cannon) | Cursed Elite Lizardman (MON_H_4_3) | 469.168 | 299 | 320 | 2,5 |
+| 7 ☠️ · Lv. 60 | boss | Verderbt: Auferstandener Priester des Balthasar | 🟡 [Auferstandener Priester des Balthasar](https://wiki-de.guildwars2.com/wiki/Auferstandener_Priester_des_Balthasar) (en: Risen Priest of Balthazar) | Cursed Darkflame Giant (BOSS_H_4_4) | 9.946.093 | 1.210 | 383 | 1 |
+|  | scherge | Auferstandener Verwüster | ✅ [Auferstandener Verwüster](https://wiki-de.guildwars2.com/wiki/Auferstandener_Verw%C3%BCster) | Cursed Ifrit (MON_H_4_4) | 496.229 | 303 | 327 | 2,5 |
 |  | scherge | Kryptis-Splitter | ❌ ähnlich: Antiker Knochen, Veredelte Heimstatt-Faser, Spielupdate/20230926 | Cursed Ifrit (MON_H_4_4) | 496.229 | 303 | 327 | 2,5 |
-| 8 ⭐ · Lv. 60 | boss | Schatten: Kriegsmeister Ulgoth | ❌ | Dark Dragon (BOSS_H_L_4) | 14.726.579 | 1.318 | 463 | 0,5 |
+| 8 ⭐ · Lv. 60 | boss | Schatten: Auferstandener Priester des Balthasar | 🟡 [Auferstandener Priester des Balthasar](https://wiki-de.guildwars2.com/wiki/Auferstandener_Priester_des_Balthasar) (en: Risen Priest of Balthazar) | Dark Dragon (BOSS_H_L_4) | 14.726.579 | 1.318 | 463 | 0,5 |
 |  | scherge | Kryptis-Plünderer | ❌ ähnlich: Antiker Knochen, Phiole mit kraftvollem Blut, Beherrschungspunkt | Soul-Stolen Elite Lizardman (MON_SOUL_4_3) | 543.940 | 388 | 298,5 | 2,5 |
 |  | scherge | Kryptis-Peiniger | ❌ ähnlich: Beherrschungspunkt | Soul-Stolen Ifrit (MON_SOUL_4_4) | 572.900 | 397 | 309,5 | 2,5 |
 
-## Portal 4: Küste & Sümpfe von Orr
+## Portal 4: Orr
 
-### 9. Blutstrom-Küste
+### 9. Malchors Sprung
 
-Zone in der Wiki: ✅ [Blutstrom-Küste](https://wiki-de.guildwars2.com/wiki/Blutstrom-K%C3%BCste) (en: Bloodtide Coast)
+Zone in der Wiki: ✅ [Malchors Sprung](https://wiki-de.guildwars2.com/wiki/Malchors_Sprung) (en: Malchor's Leap)
 
 | Stufe | Rolle | GW2-Name | Wiki | CQHT-Vorlage | HP Lv.1 | ATK Lv.1 | DEF | Tempo |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 · Lv. 60 | boss | Champion Krait-Priester | ❌ ähnlich: Krait, Auferstandener, Champion | Pyro Droid DX (BOSS_5_1_1) | 543.378 | 1.002 | 227,5 | 2,5 |
-|  | scherge | Krait-Zelot | ❌ | Combat Mech (MON_5_1) | 25.669 | 222 | 189 | 2,5 |
-|  | scherge | Krait-Neophyt | ❌ ähnlich: Barrakuda, Kru-Leiter, Waffengalerie/Fackel | Cannon Mech (MON_5_2) | 33.188 | 225 | 196 | 2,5 |
-| 2 · Lv. 60 | boss | Champion Auferstandener Offizier | ❌ ähnlich: Champion, Miniatur, Elite | Pyro Droid DX (BOSS_5_1_2) | 701.637 | 1.008 | 232,5 | 2,5 |
-|  | scherge | Auferstandener Matrose | ❌ ähnlich: Die traurige Geschichte der "Raffgier", Triumph oder Tod, Die Quelle von Orr | Combat Mech (MON_5_1) | 25.669 | 222 | 189 | 2,5 |
-|  | scherge | Auferstandener Grubenarbeiter | ❌ | Cannon Mech (MON_5_2) | 33.188 | 225 | 196 | 2,5 |
-| 3 · Lv. 60 | boss | Dredge-Kriegsmaschine | ❌ | Pyro Droid DX (BOSS_5_1_3) | 859.895 | 1.014 | 237,5 | 2,5 |
-|  | scherge | Dredge-Schweißer | ❌ | Combat Mech (MON_5_1) | 25.669 | 222 | 189 | 2,5 |
-|  | scherge | Dredge-Panzer | ❌ | Cannon Mech (MON_5_2) | 33.188 | 225 | 196 | 2,5 |
-| 4 · Lv. 60 | boss | Piratinnen-Admiralin | ❌ | Gatling Droid DX (BOSS_5_2_1) | 1.018.153 | 1.020 | 242,5 | 1 |
-|  | scherge | Piraten-Maat | ❌ ähnlich: Pirat, Skritt, Ätherklingen | Combat Mech (MON_5_1) | 25.669 | 222 | 189 | 2,5 |
-|  | scherge | Piraten-Harpunier | ❌ | Cannon Mech (MON_5_2) | 33.188 | 225 | 196 | 2,5 |
-| 5 · Lv. 60 | endboss | Dreiköpfige Krait-Bestie | ❌ | Gatling Droid DX (BOSS_5_2_2) | 1.176.411 | 1.026 | 247,5 | 2,5 |
-|  | scherge | Krait-Wyrmschlange | ❌ | Combat Mech (MON_5_1) | 25.669 | 222 | 189 | 2,5 |
-|  | scherge | Krait-Schreckensbrut | ❌ | Cannon Mech (MON_5_2) | 33.188 | 225 | 196 | 2,5 |
-| 6 ☠️ · Lv. 60 | boss | Champion Kropf-Krake | ❌ | Cursed Pyro Droid DX (BOSS_H_5_1) | 10.543.654 | 1.224 | 393 | 2,5 |
-|  | scherge | Riffkrake | ❌ | Cursed Combat Mech (MON_H_5_1) | 523.289 | 307 | 333 | 2,5 |
-|  | scherge | Tiefsee-Lauerer | ❌ | Cursed Combat Mech (MON_H_5_1) | 523.289 | 307 | 333 | 2,5 |
-| 7 ☠️ · Lv. 60 | boss | Verderbt: Dreiköpfige Krait-Bestie | ❌ | Cursed Gatling Droid DX (BOSS_H_5_2) | 11.141.214 | 1.237 | 403 | 2,5 |
-|  | scherge | Krait-Wyrmschlange | ❌ | Cursed Repair Bot (MON_H_5_2) | 550.349 | 312 | 340 | 2,5 |
+| 1 · Lv. 60 | boss | Auferstandene Brutmutter | 📄 [Tötet die auferstandene Brutmutter (Malchors Sprung)](https://wiki-de.guildwars2.com/wiki/T%C3%B6tet_die_auferstandene_Brutmutter_(Malchors_Sprung)) | Pyro Droid DX (BOSS_5_1_1) | 543.378 | 1.002 | 227,5 | 2,5 |
+|  | scherge | Auferstandenes Lindwurm-Junges | ✅ [Auferstandenes Lindwurm-Junges](https://wiki-de.guildwars2.com/wiki/Auferstandenes_Lindwurm-Junges) (en: Risen Drake Hatchling) | Combat Mech (MON_5_1) | 25.669 | 222 | 189 | 2,5 |
+|  | scherge | Auferstandener Lindwurm | ✅ [Auferstandener Lindwurm](https://wiki-de.guildwars2.com/wiki/Auferstandener_Lindwurm) (en: Risen Drake) | Cannon Mech (MON_5_2) | 33.188 | 225 | 196 | 2,5 |
+| 2 · Lv. 60 | boss | Inquestur-Ornithologin | 📄 [Champion Inquestur-Ornithologin](https://wiki-de.guildwars2.com/wiki/Champion_Inquestur-Ornithologin) | Pyro Droid DX (BOSS_5_1_2) | 701.637 | 1.008 | 232,5 | 2,5 |
+|  | scherge | Auferstandenes Huhn | ✅ [Auferstandenes Huhn](https://wiki-de.guildwars2.com/wiki/Auferstandenes_Huhn) | Combat Mech (MON_5_1) | 25.669 | 222 | 189 | 2,5 |
+|  | scherge | Auferstandener Bauer | ✅ [Auferstandener Bauer](https://wiki-de.guildwars2.com/wiki/Auferstandener_Bauer) (en: Risen Farmer) | Cannon Mech (MON_5_2) | 33.188 | 225 | 196 | 2,5 |
+| 3 · Lv. 60 | boss | Golem Typ II YF-Gold | 📄 [Besiegt den Golem Typ II YF-Gold, der im Gebiet sein Unwesen treibt](https://wiki-de.guildwars2.com/wiki/Besiegt_den_Golem_Typ_II_YF-Gold%2C_der_im_Gebiet_sein_Unwesen_treibt) | Pyro Droid DX (BOSS_5_1_3) | 859.895 | 1.014 | 237,5 | 2,5 |
+|  | scherge | Pyrit-Elementar | ✅ [Pyrit-Elementar](https://wiki-de.guildwars2.com/wiki/Pyrit-Elementar) | Combat Mech (MON_5_1) | 25.669 | 222 | 189 | 2,5 |
+|  | scherge | Inquestur-Golem | 🟡 [Golem](https://wiki-de.guildwars2.com/wiki/Golem) | Cannon Mech (MON_5_2) | 33.188 | 225 | 196 | 2,5 |
+| 4 · Lv. 60 | boss | Champion Auferstandener Leutnant | ✅ [Champion Auferstandener Leutnant](https://wiki-de.guildwars2.com/wiki/Champion_Auferstandener_Leutnant) | Gatling Droid DX (BOSS_5_2_1) | 1.018.153 | 1.020 | 242,5 | 1 |
+|  | scherge | Auferstandener Edelmann | ✅ [Auferstandener Edelmann](https://wiki-de.guildwars2.com/wiki/Auferstandener_Edelmann) (en: Risen Noble) | Combat Mech (MON_5_1) | 25.669 | 222 | 189 | 2,5 |
+|  | scherge | Auferstandener Hofnarr | ✅ [Auferstandener Hofnarr](https://wiki-de.guildwars2.com/wiki/Auferstandener_Hofnarr) (en: Risen Jester) | Cannon Mech (MON_5_2) | 33.188 | 225 | 196 | 2,5 |
+| 5 · Lv. 60 | endboss | Verdorbene Hohepriesterin | 📄 [Tötet die Verdorbene Hohepriesterin](https://wiki-de.guildwars2.com/wiki/T%C3%B6tet_die_Verdorbene_Hohepriesterin) | Gatling Droid DX (BOSS_5_2_2) | 1.176.411 | 1.026 | 247,5 | 2,5 |
+|  | scherge | Auferstandenes Gespenst | ✅ [Auferstandenes Gespenst](https://wiki-de.guildwars2.com/wiki/Auferstandenes_Gespenst) (en: Risen Wraith) | Combat Mech (MON_5_1) | 25.669 | 222 | 189 | 2,5 |
+|  | scherge | Auferstandener Hylek | ✅ [Auferstandener Hylek](https://wiki-de.guildwars2.com/wiki/Auferstandener_Hylek) (en: Risen Hylek) | Cannon Mech (MON_5_2) | 33.188 | 225 | 196 | 2,5 |
+| 6 ☠️ · Lv. 60 | boss | Auferstandene Priesterin der Dwayna | 📄 [Besiegt die auferstandene Priesterin der Dwayna](https://wiki-de.guildwars2.com/wiki/Besiegt_die_auferstandene_Priesterin_der_Dwayna) | Cursed Pyro Droid DX (BOSS_H_5_1) | 10.543.654 | 1.224 | 393 | 2,5 |
+|  | scherge | Auferstandene Akolythin | ✅ [Auferstandene Akolythin](https://wiki-de.guildwars2.com/wiki/Auferstandene_Akolythin) (en: Risen Acolyte) | Cursed Combat Mech (MON_H_5_1) | 523.289 | 307 | 333 | 2,5 |
+|  | scherge | Auferstandener Verweser | ✅ [Auferstandener Verweser](https://wiki-de.guildwars2.com/wiki/Auferstandener_Verweser) (en: Risen Putrifier) | Cursed Combat Mech (MON_H_5_1) | 523.289 | 307 | 333 | 2,5 |
+| 7 ☠️ · Lv. 60 | boss | Auge des Zhaitan | ✅ [Auge des Zhaitan](https://wiki-de.guildwars2.com/wiki/Auge_des_Zhaitan) (en: Eye of Zhaitan) | Cursed Gatling Droid DX (BOSS_H_5_2) | 11.141.214 | 1.237 | 403 | 2,5 |
+|  | scherge | Auferstandenes Gespenst | ✅ [Auferstandenes Gespenst](https://wiki-de.guildwars2.com/wiki/Auferstandenes_Gespenst) (en: Risen Wraith) | Cursed Repair Bot (MON_H_5_2) | 550.349 | 312 | 340 | 2,5 |
 |  | scherge | Kryptis-Splitter | ❌ ähnlich: Antiker Knochen, Veredelte Heimstatt-Faser, Spielupdate/20230926 | Cursed Repair Bot (MON_H_5_2) | 550.349 | 312 | 340 | 2,5 |
 
-### 10. Funkenschwärmersumpf
+### 10. Fluchküste
 
-Zone in der Wiki: ✅ [Funkenschwärmersumpf](https://wiki-de.guildwars2.com/wiki/Funkenschw%C3%A4rmersumpf) (en: Sparkfly Fen)
+Zone in der Wiki: ✅ [Fluchküste](https://wiki-de.guildwars2.com/wiki/Fluchk%C3%BCste) (en: Cursed Shore)
 
 | Stufe | Rolle | GW2-Name | Wiki | CQHT-Vorlage | HP Lv.1 | ATK Lv.1 | DEF | Tempo |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 · Lv. 60 | boss | Champion Auferstandener Priester | 📄 [Auferstandener Priester des Balthasar (Miniatur)](https://wiki-de.guildwars2.com/wiki/Auferstandener_Priester_des_Balthasar_(Miniatur)) | Titan Rocket (BOSS_5_3_1) | 1.334.670 | 1.032 | 252,5 | 2,5 |
-|  | scherge | Auferstandener Akolyth | ✅ [Auferstandener Akolyth](https://wiki-de.guildwars2.com/wiki/Auferstandener_Akolyth) (en: Risen Acolyte) | Combat Mech (MON_5_1) | 25.669 | 222 | 189 | 2,5 |
-|  | scherge | Auferstandener Schreckenswandler | ❌ | Cannon Mech (MON_5_2) | 33.188 | 225 | 196 | 2,5 |
-| 2 · Lv. 60 | boss | Champion Krait-Echse | ❌ | Titan Rocket (BOSS_5_3_2) | 1.492.928 | 1.038 | 257,5 | 2,5 |
-|  | scherge | Krait-Echse | ❌ | Combat Mech (MON_5_1) | 25.669 | 222 | 189 | 2,5 |
-|  | scherge | Krait-Schlinger | ❌ ähnlich: Sibaha | Cannon Mech (MON_5_2) | 33.188 | 225 | 196 | 2,5 |
-| 3 · Lv. 60 | boss | Zhaff-Sumpfmonster | ❌ | Titan Shield (BOSS_5_4_1) | 1.651.186 | 1.044 | 262,5 | 1 |
-|  | scherge | Sumpfschlurfer | ❌ | Combat Mech (MON_5_1) | 25.669 | 222 | 189 | 2,5 |
-|  | scherge | Sumpf-Moskito | ❌ ähnlich: Bergsuhlensumpf, Die Schlacht um den Bergsuhlensumpf, Willoweg-Haine | Cannon Mech (MON_5_2) | 33.188 | 225 | 196 | 2,5 |
-| 4 · Lv. 60 | boss | Hylek-Schamane Cuatl | ❌ ähnlich: Hylek, Heldenherausforderung | Titan Shield (BOSS_5_4_2) | 1.809.445 | 1.050 | 267,5 | 2,5 |
-|  | scherge | Hylek-Krieger | ✅ [Hylek-Krieger](https://wiki-de.guildwars2.com/wiki/Hylek-Krieger) (en: Hylek Warrior) | Combat Mech (MON_5_1) | 25.669 | 222 | 189 | 2,5 |
-|  | scherge | Hylek-Giftmischer | ❌ | Cannon Mech (MON_5_2) | 33.188 | 225 | 196 | 2,5 |
-| 5 · Lv. 60 | endboss | Tequatl der Sonnenlose | ✅ [Tequatl der Sonnenlose](https://wiki-de.guildwars2.com/wiki/Tequatl_der_Sonnenlose) (en: Tequatl the Sunless) | DioNemesis (BOSS_5_5) | 1.967.703 | 1.055 | 272,5 | 2,5 |
-|  | scherge | Auferstandener Knochenmagier | ❌ | Combat Mech (MON_5_1) | 25.669 | 222 | 189 | 2,5 |
-|  | scherge | Tequatls Diener | ❌ ähnlich: Funkenschwärmersumpf, Auferstandener, Alt-Drache | Cannon Mech (MON_5_2) | 33.188 | 225 | 196 | 2,5 |
-| 6 ☠️ · Lv. 60 | boss | Megawurm | ❌ | Cursed Titan Rocket (BOSS_H_5_3) | 11.738.775 | 1.251 | 413 | 2,5 |
-|  | scherge | Wurmbrut | ❌ | Cursed Gatling Droid (MON_H_5_3) | 577.410 | 316 | 346 | 2,5 |
-|  | scherge | Sandwurm-Larve | ❌ | Cursed Gatling Droid (MON_H_5_3) | 577.410 | 316 | 346 | 2,5 |
-| 7 ☠️ · Lv. 60 | boss | Verderbt: Tequatl der Sonnenlose | 🟡 [Tequatl der Sonnenlose](https://wiki-de.guildwars2.com/wiki/Tequatl_der_Sonnenlose) (en: Tequatl the Sunless) | Cursed Titan Shield (BOSS_H_5_4) | 12.336.336 | 1.264 | 423 | 1 |
-|  | scherge | Auferstandener Knochenmagier | ❌ | Cursed Pyro Droid (MON_H_5_4) | 604.470 | 320 | 352,5 | 2,5 |
+| 1 · Lv. 60 | boss | Kapitän Gammelbart | ✅ [Kapitän Gammelbart](https://wiki-de.guildwars2.com/wiki/Kapit%C3%A4n_Gammelbart) (en: Captain Rotbeard) | Titan Rocket (BOSS_5_3_1) | 1.334.670 | 1.032 | 252,5 | 2,5 |
+|  | scherge | Auferstandener Pirat | ✅ [Auferstandener Pirat](https://wiki-de.guildwars2.com/wiki/Auferstandener_Pirat) (en: Risen Pirate) | Combat Mech (MON_5_1) | 25.669 | 222 | 189 | 2,5 |
+|  | scherge | Auferstandener Fischer | ✅ [Auferstandener Fischer](https://wiki-de.guildwars2.com/wiki/Auferstandener_Fischer) (en: Risen Fisher) | Cannon Mech (MON_5_2) | 33.188 | 225 | 196 | 2,5 |
+| 2 · Lv. 60 | boss | Champion Auferstandener Gladiator | ✅ [Champion Auferstandener Gladiator](https://wiki-de.guildwars2.com/wiki/Champion_Auferstandener_Gladiator) (en: Champion Risen Gladiator) | Titan Rocket (BOSS_5_3_2) | 1.492.928 | 1.038 | 257,5 | 2,5 |
+|  | scherge | Auferstandener Gorilla | ✅ [Auferstandener Gorilla](https://wiki-de.guildwars2.com/wiki/Auferstandener_Gorilla) (en: Risen Gorilla) | Combat Mech (MON_5_1) | 25.669 | 222 | 189 | 2,5 |
+|  | scherge | Orrianischer Gorilla | ✅ [Orrianischer Gorilla](https://wiki-de.guildwars2.com/wiki/Orrianischer_Gorilla) (en: Orrian Gorilla) | Cannon Mech (MON_5_2) | 33.188 | 225 | 196 | 2,5 |
+| 3 · Lv. 60 | boss | Champion Auferstandene Abscheulichkeit | ✅ [Champion Auferstandene Abscheulichkeit](https://wiki-de.guildwars2.com/wiki/Champion_Auferstandene_Abscheulichkeit) (en: Champion Risen Abomination) | Titan Shield (BOSS_5_4_1) | 1.651.186 | 1.044 | 262,5 | 1 |
+|  | scherge | Orrianischer Grobian | ✅ [Orrianischer Grobian](https://wiki-de.guildwars2.com/wiki/Orrianischer_Grobian) (en: Orrian Brute) | Combat Mech (MON_5_1) | 25.669 | 222 | 189 | 2,5 |
+|  | scherge | Orrianischer Schlurfer | ✅ [Orrianischer Schlurfer](https://wiki-de.guildwars2.com/wiki/Orrianischer_Schlurfer) (en: Orrian Shambler) | Cannon Mech (MON_5_2) | 33.188 | 225 | 196 | 2,5 |
+| 4 · Lv. 60 | boss | Champion Auferstandener Hofwart | ✅ [Champion Auferstandener Hofwart](https://wiki-de.guildwars2.com/wiki/Champion_Auferstandener_Hofwart) (en: Champion Risen Groundskeeper) | Titan Shield (BOSS_5_4_2) | 1.809.445 | 1.050 | 267,5 | 2,5 |
+|  | scherge | Auferstandene Spinne | ✅ [Auferstandene Spinne](https://wiki-de.guildwars2.com/wiki/Auferstandene_Spinne) (en: Risen Spider) | Combat Mech (MON_5_1) | 25.669 | 222 | 189 | 2,5 |
+|  | scherge | Auferstandene Spinnenbrut | ✅ [Auferstandene Spinnenbrut](https://wiki-de.guildwars2.com/wiki/Auferstandene_Spinnenbrut) (en: Risen Spider Hatchling) | Cannon Mech (MON_5_2) | 33.188 | 225 | 196 | 2,5 |
+| 5 · Lv. 60 | endboss | Auferstandener Priester des Grenth | 🟡 [Hindert den Auferstandenen Priester des Grenth daran, die Kathedrale der Stille wieder einzunehmen](https://wiki-de.guildwars2.com/wiki/Hindert_den_Auferstandenen_Priester_des_Grenth_daran%2C_die_Kathedrale_der_Stille_wieder_einzunehmen) (en: Stop the Risen Priest of Grenth from retaking the Cathedral of Silence) | DioNemesis (BOSS_5_5) | 1.967.703 | 1.055 | 272,5 | 2,5 |
+|  | scherge | Orrianische Spektralwache | ✅ [Orrianische Spektralwache](https://wiki-de.guildwars2.com/wiki/Orrianische_Spektralwache) (en: Orrian Spectral Guard) | Combat Mech (MON_5_1) | 25.669 | 222 | 189 | 2,5 |
+|  | scherge | Auferstandener Verweser | ✅ [Auferstandener Verweser](https://wiki-de.guildwars2.com/wiki/Auferstandener_Verweser) (en: Risen Putrifier) | Cannon Mech (MON_5_2) | 33.188 | 225 | 196 | 2,5 |
+| 6 ☠️ · Lv. 60 | boss | Auferstandener Priester der Melandru | 🟡 [Vernichtet den Auferstandenen Priester der Melandru](https://wiki-de.guildwars2.com/wiki/Vernichtet_den_Auferstandenen_Priester_der_Melandru) (en: Destroy the Risen Priest of Melandru) | Cursed Titan Rocket (BOSS_H_5_3) | 11.738.775 | 1.251 | 413 | 2,5 |
+|  | scherge | Teer-Elementar | ✅ [Teer-Elementar](https://wiki-de.guildwars2.com/wiki/Teer-Elementar) (en: Tar Elemental) | Cursed Gatling Droid (MON_H_5_3) | 577.410 | 316 | 346 | 2,5 |
+|  | scherge | Orrianischer Spektralhammer | ✅ [Orrianischer Spektralhammer](https://wiki-de.guildwars2.com/wiki/Orrianischer_Spektralhammer) (en: Orrian Spectral Hammer) | Cursed Gatling Droid (MON_H_5_3) | 577.410 | 316 | 346 | 2,5 |
+| 7 ☠️ · Lv. 60 | boss | Verderbt: Auferstandener Priester des Grenth | 🟡 [Hindert den Auferstandenen Priester des Grenth daran, die Kathedrale der Stille wieder einzunehmen](https://wiki-de.guildwars2.com/wiki/Hindert_den_Auferstandenen_Priester_des_Grenth_daran%2C_die_Kathedrale_der_Stille_wieder_einzunehmen) (en: Stop the Risen Priest of Grenth from retaking the Cathedral of Silence) | Cursed Titan Shield (BOSS_H_5_4) | 12.336.336 | 1.264 | 423 | 1 |
+|  | scherge | Orrianische Spektralwache | ✅ [Orrianische Spektralwache](https://wiki-de.guildwars2.com/wiki/Orrianische_Spektralwache) (en: Orrian Spectral Guard) | Cursed Pyro Droid (MON_H_5_4) | 604.470 | 320 | 352,5 | 2,5 |
 |  | scherge | Kryptis-Splitter | ❌ ähnlich: Antiker Knochen, Veredelte Heimstatt-Faser, Spielupdate/20230926 | Cursed Pyro Droid (MON_H_5_4) | 604.470 | 320 | 352,5 | 2,5 |
-| 8 ⭐ · Lv. 60 | boss | Schatten: Tequatl der Sonnenlose | 🟡 [Tequatl der Sonnenlose](https://wiki-de.guildwars2.com/wiki/Tequatl_der_Sonnenlose) (en: Tequatl the Sunless) | DioNemesis DX (BOSS_H_L_5) | 15.324.140 | 1.331 | 472,5 | 0,5 |
+| 8 ⭐ · Lv. 60 | boss | Schatten: Auferstandener Priester des Grenth | 🟡 [Hindert den Auferstandenen Priester des Grenth daran, die Kathedrale der Stille wieder einzunehmen](https://wiki-de.guildwars2.com/wiki/Hindert_den_Auferstandenen_Priester_des_Grenth_daran%2C_die_Kathedrale_der_Stille_wieder_einzunehmen) (en: Stop the Risen Priest of Grenth from retaking the Cathedral of Silence) | DioNemesis DX (BOSS_H_L_5) | 15.324.140 | 1.331 | 472,5 | 0,5 |
 |  | scherge | Kryptis-Plünderer | ❌ ähnlich: Antiker Knochen, Phiole mit kraftvollem Blut, Beherrschungspunkt | Soul-Bound Gatling Droid (MON_SOUL_5_3) | 659.790 | 425 | 341,5 | 2,5 |
 |  | scherge | Kryptis-Peiniger | ❌ ähnlich: Beherrschungspunkt | Soul-Bound Pyro Droid (MON_SOUL_5_4) | 688.750 | 434 | 352,5 | 2,5 |
 
@@ -362,7 +362,7 @@ Zone in der Wiki: ❌ ähnlich: Schwarzklingen-See, Einen Spion für einen Spion
 |  | scherge | Feuerelementare | ❌ ähnlich: Tragt einen großen Stock, Besiegt den monströsen Teer-Elementar, Goldfelder | Elite Sandman (MON_H_2_1) | 198.565 | 257 | 256 | 2,5 |
 |  | scherge | Flammenlegion | 📄 [Flammenlegion-Rüstung (Schwer)](https://wiki-de.guildwars2.com/wiki/Flammenlegion-R%C3%BCstung_(Schwer)) | Soul-Stolen Ent (MON_SOUL_1_4) | 225.350 | 287 | 180 | 2,5 |
 
-## Portal 6: Hoher Norden & Vorstoß nach Orr (Entwurf)
+## Portal 6: Hoher Norden & Arah (Entwurf)
 
 ### 13. Eisklamm-Sund · Lv. 66–67 · Offene Welt
 
@@ -420,19 +420,19 @@ Zone in der Wiki: 🟡 [Die Ruinenstadt Arah](https://wiki-de.guildwars2.com/wik
 
 | Stufe | Rolle | GW2-Name | Wiki | CQHT-Vorlage | HP Lv.1 | ATK Lv.1 | DEF | Tempo |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 · Lv. 70 | boss | Auge des Zhaitan | ✅ [Auge des Zhaitan](https://wiki-de.guildwars2.com/wiki/Auge_des_Zhaitan) (en: Eye of Zhaitan) | Mighty Elite Shark Warrior (BOSS_H_3_4) | 7.555.850 | 1.157 | 343 | 1 |
+| 1 · Lv. 70 | boss | Mund des Zhaitan | ✅ [Mund des Zhaitan](https://wiki-de.guildwars2.com/wiki/Mund_des_Zhaitan) (en: Mouth of Zhaitan) | Mighty Elite Shark Warrior (BOSS_H_3_4) | 7.555.850 | 1.157 | 343 | 1 |
 |  | scherge | Auferstandene | ✅ [Auferstandener](https://wiki-de.guildwars2.com/wiki/Auferstandener) (en: Risen) | Cursed Redstar (MON_H_3_2) | 333.867 | 278 | 288 | 2,5 |
 |  | scherge | Auferstandene Abscheulichkeit | ✅ [Auferstandene Abscheulichkeit](https://wiki-de.guildwars2.com/wiki/Auferstandene_Abscheulichkeit) (en: Risen Abomination) | Cursed Redstar (MON_H_3_2) | 333.867 | 278 | 288 | 2,5 |
-| 2 · Lv. 70 | boss | Maul des Zhaitan | ❌ ähnlich: Magie, Haus der Verwesung, Der Klang der Psi-Lanze | Mighty Elite Shark Warrior (BOSS_H_3_4) | 7.555.850 | 1.157 | 343 | 1 |
+| 2 · Lv. 70 | boss | Hoheitliches Auge des Zhaitan | ✅ [Hoheitliches Auge des Zhaitan](https://wiki-de.guildwars2.com/wiki/Hoheitliches_Auge_des_Zhaitan) (en: Sovereign Eye of Zhaitan) | Mighty Elite Shark Warrior (BOSS_H_3_4) | 7.555.850 | 1.157 | 343 | 1 |
 |  | scherge | Auferstandene Abscheulichkeit | ✅ [Auferstandene Abscheulichkeit](https://wiki-de.guildwars2.com/wiki/Auferstandene_Abscheulichkeit) (en: Risen Abomination) | Cursed Redstar (MON_H_3_2) | 333.867 | 278 | 288 | 2,5 |
 |  | scherge | Knochenmonstrum | ❌ | Soul-Stolen Anubis (MON_SOUL_2_4) | 341.200 | 324 | 223 | 2,5 |
-| 3 · Lv. 70 | boss | Hohepriester des Balthasar | ❌ ähnlich: Die Ruinenstadt Arah/Forschung - Randall Graustein, Auferstandener, Eigenschaftenhandbuch | Volcano Sludge (BOSS_H_4_1) | 8.153.410 | 1.170 | 353 | 2,5 |
+| 3 · Lv. 70 | boss | Champion Auferstandene Erzmagierin | ✅ [Champion Auferstandene Erzmagierin](https://wiki-de.guildwars2.com/wiki/Champion_Auferstandene_Erzmagierin) | Volcano Sludge (BOSS_H_4_1) | 8.153.410 | 1.170 | 353 | 2,5 |
 |  | scherge | Knochenmonstrum | ❌ | Soul-Stolen Anubis (MON_SOUL_2_4) | 341.200 | 324 | 223 | 2,5 |
 |  | scherge | Auferstandene | ✅ [Auferstandener](https://wiki-de.guildwars2.com/wiki/Auferstandener) (en: Risen) | Soul-Stolen Anubis (MON_SOUL_2_4) | 341.200 | 324 | 223 | 2,5 |
-| 4 · Lv. 70 | boss | Hohepriesterin der Dwayna | ❌ ähnlich: Die Ruinenstadt Arah/Forschung - Randall Graustein, Malchors Sprung, Spielupdate/20231106 | Volcano Sludge (BOSS_H_4_1) | 8.153.410 | 1.170 | 353 | 2,5 |
+| 4 · Lv. 70 | boss | Auferstandener Oberster Zauberer | ✅ [Auferstandener Oberster Zauberer](https://wiki-de.guildwars2.com/wiki/Auferstandener_Oberster_Zauberer) (en: Risen High Wizard) | Volcano Sludge (BOSS_H_4_1) | 8.153.410 | 1.170 | 353 | 2,5 |
 |  | scherge | Auferstandene | ✅ [Auferstandener](https://wiki-de.guildwars2.com/wiki/Auferstandener) (en: Risen) | Corrupted Jellyfish (MON_H_3_3) | 360.927 | 282 | 295 | 2,5 |
 |  | scherge | Auferstandene Abscheulichkeit | ✅ [Auferstandene Abscheulichkeit](https://wiki-de.guildwars2.com/wiki/Auferstandene_Abscheulichkeit) (en: Risen Abomination) | Corrupted Jellyfish (MON_H_3_3) | 360.927 | 282 | 295 | 2,5 |
-| 5 · Lv. 70 | boss | Hohepriester der Grenth | ❌ ähnlich: Die Ruinenstadt Arah/Forschung - Randall Graustein, Auferstandener, Eigenschaftenhandbuch | Cursed Hellfire Spirit (BOSS_H_4_2) | 8.750.971 | 1.184 | 363 | 2,5 |
+| 5 · Lv. 70 | boss | Giganticus Lupicus | ✅ [Giganticus Lupicus](https://wiki-de.guildwars2.com/wiki/Giganticus_Lupicus) (en: Great Giant) | Cursed Hellfire Spirit (BOSS_H_4_2) | 8.750.971 | 1.184 | 363 | 2,5 |
 |  | scherge | Auferstandene Abscheulichkeit | ✅ [Auferstandene Abscheulichkeit](https://wiki-de.guildwars2.com/wiki/Auferstandene_Abscheulichkeit) (en: Risen Abomination) | Corrupted Jellyfish (MON_H_3_3) | 360.927 | 282 | 295 | 2,5 |
 |  | scherge | Knochenmonstrum | ❌ | Soul-Stolen Anglerfish (MON_SOUL_3_1) | 370.160 | 333 | 234 | 2,5 |
 | 6 · Lv. 70 | endboss | Zhaitan | ✅ [Zhaitan](https://wiki-de.guildwars2.com/wiki/Zhaitan) | Cursed Hellfire Spirit (BOSS_H_4_2) | 8.750.971 | 1.184 | 363 | 2,5 |
@@ -568,7 +568,7 @@ Zone in der Wiki: 🟡 [Drachensturz](https://wiki-de.guildwars2.com/wiki/Drache
 |  | scherge | Erweckte | ✅ [Erweckter](https://wiki-de.guildwars2.com/wiki/Erweckter) (en: Awakened) | Soul-Bound Pyro Droid (MON_SOUL_5_4) | 688.750 | 434 | 352,5 | 2,5 |
 |  | scherge | Gebrandmarkte | ✅ [Gebrandmarkter](https://wiki-de.guildwars2.com/wiki/Gebrandmarkter) (en: Branded) | Soul-Bound Pyro Droid (MON_SOUL_5_4) | 688.750 | 434 | 352,5 | 2,5 |
 
-## Bosse ohne Wiki-Seite (101)
+## Bosse ohne Wiki-Seite (75)
 
 - Banditen-Anführerin – Suche findet: Bandit, Die Blüte der Jugend, Gnashar-Hügel
 - Champion Hylek-Kriegshäuptling
@@ -603,28 +603,6 @@ Zone in der Wiki: 🟡 [Drachensturz](https://wiki-de.guildwars2.com/wiki/Drache
 - Gepfefferte Bridgette
 - Separatisten-Hauptmann DeLana – Suche findet: DeLana-Geldbörse, Verbogener Dietrich, Beutel mit stibitzten Waren
 - Schatten: Separatisten-Hauptmann DeLana – Suche findet: DeLana-Geldbörse, Verbogener Dietrich, Beutel mit stibitzten Waren
-- Ralena & Vassar – Suche findet: Gruft der Liebenden, Vassar, Katakomben von Ascalon (Story)
-- Geisterhafter Nekromant – Suche findet: Geist, Weißer Mantel, Kraftvoller Giftbeutel
-- Meister-Nekromant – Suche findet: Nekromant, Zustandsschaden, Klasse
-- Harathi-Schlächter – Suche findet: Rätsel, Gebiet, Meta-Event
-- Champion Modniir-Häuptling – Suche findet: Liste der Waffensets, Zentaur, Champion
-- Kolossaler Erdelementar
-- Seraphen-Verräter Valen – Suche findet: Biographie/Details
-- Kriegsmeister Ulgoth
-- Zentauren-Kriegsherr Kol
-- Verderbt: Kriegsmeister Ulgoth
-- Schatten: Kriegsmeister Ulgoth
-- Champion Krait-Priester – Suche findet: Krait, Auferstandener, Champion
-- Champion Auferstandener Offizier – Suche findet: Champion, Miniatur, Elite
-- Dredge-Kriegsmaschine
-- Piratinnen-Admiralin
-- Dreiköpfige Krait-Bestie
-- Champion Kropf-Krake
-- Verderbt: Dreiköpfige Krait-Bestie
-- Champion Krait-Echse
-- Zhaff-Sumpfmonster
-- Hylek-Schamane Cuatl – Suche findet: Hylek, Heldenherausforderung
-- Megawurm
 - Champion Brand-Goliath
 - Separatisten-Anführer – Suche findet: Ebonfalke-Festung, Champion, Ebon-Vorhut
 - Flammenlegion-Kultist
@@ -643,10 +621,6 @@ Zone in der Wiki: 🟡 [Drachensturz](https://wiki-de.guildwars2.com/wiki/Drache
 - Dredge-Kriegsgolem
 - Inquestur-Chef Kudu
 - Der Eiserne Schlächter – Suche findet: Ascalon-Becken, Blut-Legion, Flamme und Frost: Die Vergeltung
-- Maul des Zhaitan – Suche findet: Magie, Haus der Verwesung, Der Klang der Psi-Lanze
-- Hohepriester des Balthasar – Suche findet: Die Ruinenstadt Arah/Forschung - Randall Graustein, Auferstandener, Eigenschaftenhandbuch
-- Hohepriesterin der Dwayna – Suche findet: Die Ruinenstadt Arah/Forschung - Randall Graustein, Malchors Sprung, Spielupdate/20231106
-- Hohepriester der Grenth – Suche findet: Die Ruinenstadt Arah/Forschung - Randall Graustein, Auferstandener, Eigenschaftenhandbuch
 - Mordrem-Hüllen-Champion – Suche findet: Hülle, Champion, Mordrem-Organ
 - Mordrem-Rankenbrecher
 - Mordrem-Teragriff

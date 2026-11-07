@@ -86,49 +86,54 @@ const ZONES = [
       ['Seraphen-Armbrustschütze', 'Mark-II-Golem'], ['Separatisten-Scharfschütze', 'Separatisten-Leutnant'],
     ],
     hardMinions: ['Asura-Wachgolem', 'Banditen-Raketengeschütz'] },
-  { name: 'Katakomben von Ascalon', short: 'Katak.', portal: 3, theme: 5,
-    lore: 'Unter den Ruinen von Ascalon öffnet sich ein Riss in die Katakomben. Die Geister der alten Könige finden keine Ruhe.',
+  { name: 'Löwenstein & Klaueninsel', short: 'Klaue', portal: 3, theme: 2,
+    lore: 'Nach dem Anwesen ruft der Pakt nach Löwenstein. Vor der Stadt öffnet sich ein Riss über dem Meer des Leids, und Zhaitans Totenschiffe halten auf die Klaueninsel zu.',
     bosses: [
-      ['Höhlentroll', 'Katakomben'], ['Kasha Schwarzblut', 'Flammenlegion'], ['Ralena & Vassar', 'Liebespaar'],
-      ['Geisterhafter Nekromant'], ['Meister-Nekromant'], ['König Adelbern', 'Zonen-Endboss'],
+      ['Auferstandene Abscheulichkeit', 'Wall von Fort Unerschütterlich'], ['Veteran Auferstandener Grobian', 'Löwenfackel'],
+      ['Admiral Feiste Bakkir', 'Vergeltung'], ['Morgus Lethe', 'Meer des Leids'],
+      ['Monströse Auferstandene Abscheulichkeit'], ['Faulschreck der Seuchenbringer', 'Zonen-Endboss'],
     ],
     minions: [
-      ['Geister-Krieger', 'Geister-Waldläufer'], ['Flammenlegion-Kultist', 'Flammenlegion-Zerstörer'],
-      ['Geister-Liebende', 'Geister-Wächter'], ['Knochen-Diener', 'Geister-Nekromant'],
-      ['Untoter Kanonier', 'Knochen-Schrecken'], ['Ascalonischer Geisterritter', 'Geister-Elite'],
+      ['Auferstandener Leibeigener', 'Auferstandener Pirat'], ['Auferstandener Grobian', 'Auferstandener Seuchenträger'],
+      ['Auferstandener Knappe', 'Auferstandener Ritter'], ['Auferstandener Hai', 'Untoter Riesenhai'],
+      ['Auferstandene Abscheulichkeit', 'Auferstandener Verseuchter'], ['Auferstandener Verderber', 'Auferstandene Seuchenträgerin'],
     ] },
-  { name: 'Harathi-Hinterland', short: 'Harathi', portal: 3, theme: 3,
-    lore: 'Im Harathi-Hinterland tobt der Zentaurenkrieg. Ulgoth sammelt seine Horden am Rand eines gewaltigen Risses.',
+  { name: 'Meerenge der Verwüstung', short: 'Meerenge', portal: 3, theme: 4,
+    lore: 'Vom Fort der Dreifaltigkeit aus setzt der Pakt nach Orr über. In der Meerenge der Verwüstung reißt der Riss den Meeresboden auf, und Auferstandene strömen zum Tempel des Balthasar.',
     bosses: [
-      ['Harathi-Schlächter'], ['Champion Modniir-Häuptling'], ['Kolossaler Erdelementar'], ['Seraphen-Verräter Valen'],
-      ['Zentauren-Kriegsherr Kol'], ['Kriegsmeister Ulgoth', 'Zonen-Endboss'],
+      ['Champion Auferstandener Krait-Nimross'], ['Champion Auferstandener Megalodon', 'Fort der Dreifaltigkeit'],
+      ['Auferstandener Zauberer', 'Turm des Wesirs'], ['Champion Auferstandener Kapitän', 'Paradeplatz'],
+      ['Champion Auferstandener Riese', 'Tempel des Balthasar'], ['Auferstandener Priester des Balthasar', 'Zonen-Endboss'],
     ],
     minions: [
-      ['Harathi-Krieger', 'Harathi-Speerwerfer'], ['Modniir-Berserker', 'Modniir-Schamane'],
-      ['Erdelementar', 'Steinwüter'], ['Abtrünniger Seraph', 'Seraphen-Deserteur'],
-      ['Zentauren-Lanzenreiter', 'Zentauren-Kriegsschamane'], ['Ulgoths Leibgarde', 'Modniir-Kriegsherr'],
+      ['Auferstandener Krait-Damoss', 'Auferstandener Krait-Hypnoss'], ['Auferstandener Bullenhai', 'Auferstandener Krebs'],
+      ['Auferstandener Akolyth', 'Auferstandene Zauberin'], ['Auferstandener Pirat', 'Auferstandener Kommandeur'],
+      ['Auferstandener Unterwerfer', 'Auferstandenen-Luftabwehrgeschütz'], ['Auferstandener Verwüster', 'Auferstandener Bewahrer'],
     ] },
-  { name: 'Blutstrom-Küste', short: 'Blutstrom', portal: 4, theme: 4,
-    lore: 'An der Blutstrom-Küste spült der Riss Auferstandene aus Orr an. Krait und Piraten kämpfen um jeden Strand.',
+  { name: 'Malchors Sprung', short: 'Malchor', portal: 4, theme: 3,
+    lore: 'In Malchors Sprung stehen die Kathedralen der Dwayna und der Lyssa. Der Riss nährt die Verderbnis in ihren Hallen, und die Inquestur zapft am Rand die Energie ab.',
     bosses: [
-      ['Champion Krait-Priester'], ['Champion Auferstandener Offizier'], ['Dredge-Kriegsmaschine'], ['Piratinnen-Admiralin'],
-      ['Champion Kropf-Krake'], ['Dreiköpfige Krait-Bestie', 'Zonen-Endboss'],
+      ['Auferstandene Brutmutter', 'Lindwurm-Eier'], ['Inquestur-Ornithologin', 'Hühnerställe'],
+      ['Golem Typ II YF-Gold', 'Omicron-Anlage'], ['Champion Auferstandener Leutnant', 'Kathedrale der Zephyre'],
+      ['Auferstandene Priesterin der Dwayna', 'Kathedrale der Zephyre'], ['Verdorbene Hohepriesterin', 'Zonen-Endboss · Kathedrale des Ewigen Leuchtens'],
     ],
+    hard2: ['Auge des Zhaitan', 'Königspassage'],
     minions: [
-      ['Krait-Zelot', 'Krait-Neophyt'], ['Auferstandener Matrose', 'Auferstandener Grubenarbeiter'],
-      ['Dredge-Schweißer', 'Dredge-Panzer'], ['Piraten-Maat', 'Piraten-Harpunier'],
-      ['Riffkrake', 'Tiefsee-Lauerer'], ['Krait-Wyrmschlange', 'Krait-Schreckensbrut'],
+      ['Auferstandenes Lindwurm-Junges', 'Auferstandener Lindwurm'], ['Auferstandenes Huhn', 'Auferstandener Bauer'],
+      ['Pyrit-Elementar', 'Inquestur-Golem'], ['Auferstandener Edelmann', 'Auferstandener Hofnarr'],
+      ['Auferstandene Akolythin', 'Auferstandener Verweser'], ['Auferstandenes Gespenst', 'Auferstandener Hylek'],
     ] },
-  { name: 'Funkenschwärmersumpf', short: 'Sumpf', portal: 4, theme: 5,
-    lore: 'Im Funkenschwärmersumpf brodelt Zhaitans Verderbnis. Aus dem Nebel über dem Wasser erhebt sich Tequatl der Sonnenlose.',
+  { name: 'Fluchküste', short: 'Fluchk.', portal: 4, theme: 5,
+    lore: 'An der Fluchküste endet der Weg durch Orr. Hinter den Tempeln der Melandru und des Grenth liegt Arah, und der Riss hier ist der größte, den die Gilde je gesehen hat.',
     bosses: [
-      ['Champion Auferstandener Priester'], ['Champion Krait-Echse'], ['Zhaff-Sumpfmonster'], ['Hylek-Schamane Cuatl'],
-      ['Megawurm'], ['Tequatl der Sonnenlose', 'Zonen-Endboss'],
+      ['Kapitän Gammelbart', 'Auferstandener Piratenkapitän'], ['Champion Auferstandener Gladiator', 'Balthasars Arena'],
+      ['Champion Auferstandene Abscheulichkeit', 'Kastell Schattenlieb'], ['Champion Auferstandener Hofwart', 'Wintertotengeläut-Insel'],
+      ['Auferstandener Priester der Melandru', 'Tempel der Melandru'], ['Auferstandener Priester des Grenth', 'Zonen-Endboss · Kathedrale der Stille'],
     ],
     minions: [
-      ['Auferstandener Akolyth', 'Auferstandener Schreckenswandler'], ['Krait-Echse', 'Krait-Schlinger'],
-      ['Sumpfschlurfer', 'Sumpf-Moskito'], ['Hylek-Krieger', 'Hylek-Giftmischer'],
-      ['Wurmbrut', 'Sandwurm-Larve'], ['Auferstandener Knochenmagier', 'Tequatls Diener'],
+      ['Auferstandener Pirat', 'Auferstandener Fischer'], ['Auferstandener Gorilla', 'Orrianischer Gorilla'],
+      ['Orrianischer Grobian', 'Orrianischer Schlurfer'], ['Auferstandene Spinne', 'Auferstandene Spinnenbrut'],
+      ['Teer-Elementar', 'Orrianischer Spektralhammer'], ['Orrianische Spektralwache', 'Auferstandener Verweser'],
     ] },
 ];
 // Legendäre Stufen (Schattenform des Endbosses): Schergen aus dem Riss
@@ -193,7 +198,9 @@ let txt = `// ==================================================================
 //  Sylvari (Caledon), Norn (Wanderer-Hügel), Asura (Metrica), Charr (Aschfurt).
 //  Zone 6 Caudecus’ Anwesen ist das Finale der Auftragsreihe. Portale:
 //  1 Kryta, Caledon & Zittergipfel · 2 Metrica, Aschfurt & Anwesen ·
-//  3 Ascalon & Harathi · 4 Küste & Sümpfe von Orr.
+//  3 Löwenstein & Meerenge · 4 Orr.
+//  Zonen 7–10 folgen der persönlichen Geschichte: Klaueninsel, dann über die
+//  Meerenge der Verwüstung und Malchors Sprung bis zur Fluchküste vor Arah.
 //    tier    – CQHT-Kapitel; steuert Boss-Scherben, Waffen- und Proviant-Güte
 //    portal  – nötige Riss-Portal-Stufe
 //    theme   – Farbstimmung der Kampfbühne (CSS .stage.zone-1..5)

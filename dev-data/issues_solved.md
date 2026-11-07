@@ -12,6 +12,37 @@ Format:
 
 ---
 
+## v0.23.0
+
+### #031 Inventar-Größe nach Gildenhallen-Stufe
+- Die Waffenkammer hat jetzt Plätze nach Gildenhalle: `ARMORY_SLOTS` in `config.js` (20 / 25 / 30 / 40 / 50 / 60 / 70 / 85 / 100). Anzeige „19/20“ in der Überschrift, ab 90 % orange, voll rot mit Hinweis.
+- Voll: Boss-Beute bleibt liegen (Eintrag in der Chronik), Kaufen im Laden und Ablegen sind gesperrt. Ruhestand legt die Waffe trotzdem ab (nichts geht verloren). Ältere Spielstände mit mehr Waffen behalten alles.
+- Die Gildenhallen-Karte nennt die neuen Plätze bei der nächsten Stufe. Offline gibt es keine Boss-Beute, dort ändert sich nichts.
+
+### #030 Waffenkammer kompakter: Raster, Details per Tipp, „Aufräumen“
+- Waffen als Kacheln (Symbol, Güte T1–T6 in Güte-Farbe, ×Anzahl, ▲ wenn besser als die Waffe eines Helden). Antippen öffnet das Detail: Ausrüsten, eine verkaufen, alle gleichen verkaufen, „Besser für: …“.
+- **🧹 Aufräumen** unter dem Raster: Güten antippen (vorgewählt T1–T3, `ARMORY_CLEANUP_DEFAULT`), Vorschau mit Anzahl und Gold, ein Knopf zum Verkaufen. Geschützt bleibt je Held die beste bessere Waffe (`upgradeIndices()` in `progress.js`); ausgerüstete liegen ohnehin nicht in der Kammer.
+- Güte heißt jetzt überall „T1–T6“ statt „★1–★6“.
+
+### #029 Wer trägt welche Waffe, ist schwer zu erkennen
+- Unter jedem Helden (Zelte, Reserve, Auswahllisten) steht eine Zeile mit Waffensymbol, Name in Güte-Farbe und Güte, sonst „ohne Waffe“ mit dem passenden Waffensymbol.
+
+## v0.22.0
+
+### #032 Alle Helden sollen Schaden bekommen, nicht nur der Tank
+- Quelle: Spieltest. Jeder Monstertreffer wird jetzt auf **alle fitten Helden** verteilt, nach dem neuen Gewicht `ROLES[…].aggro` in `config.js`: Tank 5, Schaden 3, Unterstützer 3, Heiler 2 (Tank + Schaden + Heiler = 50 % / 30 % / 20 %). Die DEF jedes Helden senkt seinen Anteil. Rückzug weiter erst, wenn alle verwundet sind.
+- Offline rechnet mit derselben Regel: `teamProfile()` liefert `teamDef` (DEF gewichtet wie die Verteilung) statt der DEF des vordersten Helden.
+- Simulation (3er-Trupp Tank/Schaden/Heiler ohne Waffen, 1 h): Zonen 1–3 unverändert, Mitte leichter (Zone 5-4 Lv. 44: 234 statt 50 Siege, 4 statt 60 Rückzüge), Zonen 9–10 unverändert schwer. Offline-Effizienz in Zone 9–10 rund 0,05 niedriger.
+- Handbuch („Eine Kampfsekunde“, Rollen) und Rollen-Text im Helden-Fenster angepasst.
+
+## v0.21.0
+
+### #025 Zonen 7–10 an eine andere Stelle verschieben
+- Wunsch: in Tyria bleiben, Orr am Ende. Die Zonen 7–10 folgen jetzt der persönlichen Geschichte nach Caudecus’ Anwesen: **7 Löwenstein & Klaueninsel** (Endboss Faulschreck der Seuchenbringer), **8 Meerenge der Verwüstung** (Auferstandener Priester des Balthasar), **9 Malchors Sprung** (Verdorbene Hohepriesterin, Kathedrale des Ewigen Leuchtens), **10 Fluchküste** (Auferstandener Priester des Grenth). Portal 3 heißt „Löwenstein & Meerenge“, Portal 4 „Orr“.
+- Bosse und Schergen gegen die DE-Wiki geprüft (Gebiets- und Event-Seiten, Kategorie „Auferstandener“). Zahlen bleiben CQHT, Zonen-IDs gleich, Spielstände behalten ihren Fortschritt.
+- Katakomben von Ascalon, Harathi-Hinterland, Blutstrom-Küste und Funkenschwärmersumpf sind nicht mehr im Spiel (Daten in der Git-Historie von `tools/gen-zones.mjs`, Gemini-Zeilen in `dev-data/archiv/gegner-alte-zonen-7-10.jsonl`).
+- Erweiterungs-Entwurf angepasst: Portal 6 heißt „Hoher Norden & Arah“, Arah hat neue Bosse (die Tempel-Priester sind jetzt in Orr).
+
 ## v0.20.1
 
 ### #028 Bosskampf lässt sich durch Zonen- oder Stufenwechsel abbrechen

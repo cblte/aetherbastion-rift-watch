@@ -10,8 +10,8 @@ Im Spiel sind 10 Zonen hinter 4 Portal-Stufen:
 | --- | --- | --- |
 | 1 | Kryta, Caledon & Zittergipfel | Königintal, Caledon-Wald, Wanderer-Hügel |
 | 2 | Metrica, Aschfurt & Anwesen | Provinz Metrica, Ebenen von Aschfurt, Caudecus’ Anwesen |
-| 3 | Ascalon & Harathi | Katakomben von Ascalon, Harathi-Hinterland |
-| 4 | Küste & Sümpfe von Orr | Blutstrom-Küste, Funkenschwärmersumpf |
+| 3 | Löwenstein & Meerenge | Löwenstein & Klaueninsel, Meerenge der Verwüstung |
+| 4 | Orr | Malchors Sprung, Fluchküste |
 
 Die Erweiterung hängt **Portal 5–8** mit den **Zonen 11–20** an. Wie bei den Zonen 1–10 hat jede Zone 5 Bosse und einen **Zonen-Endboss** (★).
 
@@ -24,13 +24,13 @@ Die Erweiterung hängt **Portal 5–8** mit den **Zonen 11–20** an. Wie bei de
 | 11 | Eisensuperiorität | Offene Welt | 61–63 | Gebrandmarkte Verschlinger-Königin, Champion Brand-Goliath, Separatisten-Anführer, Flammenlegion-Kultist, Gebrandmarkter Zerschmetterer-Leutnant | Der Zerschmetterer | Gebrandmarkte, Verschlinger, Flammenlegion |
 | 12 | Zitadelle der Flamme | Verlies | 64–65 | Sklavenmeister, Gaheron-Eiferer, Schmiedemeister, Evolvierter Flammen-Schamane, Magister des Baelfire | Gaheron Baelfire | Flammenlegion, Oger, Feuerelementare |
 
-### Portal 6 – Hoher Norden & Vorstoß nach Orr (Lv. 66–70)
+### Portal 6 – Hoher Norden & Arah (Lv. 66–70)
 
 | # | Zone | Typ | Lv. | Bosse | ★ Endboss | Schergen (Vorschlag) |
 | --- | --- | --- | --- | --- | --- | --- |
 | 13 | Eisklamm-Sund | Offene Welt | 66–67 | Champion Eisbrut-Kodan, Dredge-Generaldirektor, Champion Svanir-Hexenmeister, Unterwasser-Krake Svanir, Eisbrut-Koloss | Klaue von Jormag | Eisbrut, Söhne Svanirs, Schaufler |
 | 14 | Umarmung der Betrübnis | Verlies | 68–69 | Vorarbeiter Spur, Targa der Peiniger, General Molotov, Dredge-Kriegsgolem, Inquestur-Chef Kudu | Der Eiserne Schlächter | Schaufler, Inquestur, Golems |
-| 15 | Ruinen von Arah | Verlies / epische Zone | 70 | Auge des Zhaitan, Maul des Zhaitan, Hohepriester des Balthasar, Hohepriesterin der Dwayna, Hohepriester der Grenth | Zhaitan | Auferstandene, Auferstandene Abscheulichkeit, Knochenmonstrum |
+| 15 | Ruinen von Arah | Verlies / epische Zone | 70 | Mund des Zhaitan, Hoheitliches Auge des Zhaitan, Champion Auferstandene Erzmagierin, Auferstandener Oberster Zauberer, Giganticus Lupicus | Zhaitan | Auferstandene, Auferstandene Abscheulichkeit, Knochenmonstrum |
 
 ## Erweiterung 2: Portal 7–8 (Lv. 71–80)
 
@@ -66,3 +66,5 @@ Alternativ als **„Schwer+“**-Stufe statt eigener Erweiterung.
 - „Blistering Mordrem Wolf“ → *Blasenwerfender Mordrem-Wolf*, „Stavemaster“ → *Stabmeister*, „Branded Aurene-Schatten“ → *Gebrandmarkter Aurene-Schatten*, „Canopic“ → *Kanopen*: eigene Übersetzungen, nicht mit dem deutschen Client abgeglichen.
 - „Eisbrut-Kodann“ → *Eisbrut-Kodan* (die Kodan sind das Volk); „Champion Eisbrut-Kodan“ gibt es so in der DE-Wiki.
 - Alle übrigen Bosse ohne Quellenprüfung übernommen.
+- Seit v0.21.0 liegt Orr (Meerenge, Malchors Sprung, Fluchküste) in den Zonen 8–10. Die Tempel-Priester sind dort Bosse, Arah bekommt dafür Mund und Hoheitliches Auge des Zhaitan, Erzmagierin, Obersten Zauberer und Giganticus Lupicus. Portal 6 heißt jetzt „Hoher Norden & Arah“.
+- Die alten Zonen 7–10 bis v0.20.1 (Katakomben von Ascalon, Harathi-Hinterland, Blutstrom-Küste, Funkenschwärmersumpf) sind nicht mehr im Spiel. Ihre Bosse und Schergen stehen in der Git-Historie von tools/gen-zones.mjs und können als Erweiterungs-Zonen zurückkommen.

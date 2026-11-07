@@ -33,6 +33,7 @@ Der Spielstand ist ein einziges Objekt. Bei Import/Reset wird es per `replaceSta
 - `issues.md`: offenes Feedback mit festen Nummern (`#001` …), nach Kategorie sortiert. Neues landet unter „Eingang“ → einsortieren, nächste freie Nummer vergeben und hochzählen. Erledigtes mit Version nach `issues_solved.md` verschieben (neueste Version oben), Nummern nie neu vergeben.
 - `archiv/`: abgelegte Rohtexte, alte Entwürfe und CQHT-Rohdaten, nicht mehr gepflegt.
   - `cqht-monsters.json/.md` (alle 150 CQHT-Monster und -Bosse mit Werten und Drops, aus der Fan-Wiki: `node tools/fetch-monsters.mjs .`, `--only ID1,ID2` testet ohne zu schreiben). `cqht-monsters.json` ist weiterhin Eingabe für `build-gw2-monsters.mjs`.
+  - `gegner-alte-zonen-7-10.jsonl`: Gemini-Schergen der Zonen 7–10 bis v0.20.1 (Katakomben, Harathi, Blutstrom-Küste, Funkenschwärmersumpf).
   - `cqht-skills.json/.md` (CQHT-Forschungsbaum: 436 Forschungen, deutsche Texte, aus der Fan-Wiki: `node tools/fetch-skills.mjs .`). Grundlage für einen späteren Ausbau des Asura-Labors.
 
 ## Testen
@@ -48,7 +49,7 @@ Der Spielstand ist ein einziges Objekt. Bei Import/Reset wird es per `replaceSta
 - Der Workflow setzt `GAME.BUILD` (Lauf-Nr. · Commit) und hängt `-b<Nr.>` an `CACHE_VERSION`. Unten unter der Navigation steht `v<GAME.VERSION> · Build …`, lokal „Build lokal“. `GAME.VERSION` steigt mit jeder Änderung (siehe Harte Regeln).
 
 ## Bekannte offene Punkte / Ideen
-- Zonen und Bosse: Reihenfolge nach GW2 (Zonen 1–5 = Heimatgebiete der fünf Völker, Zone 6 Caudecus’ Anwesen als Finale der Aufträge; Portal 1 Kryta, Caledon & Zittergipfel, 2 Metrica, Aschfurt & Anwesen, 3 Ascalon & Harathi, 4 Orr), Daten in `tools/gen-zones.mjs` → `node tools/gen-zones.mjs .` erzeugt `js/data/stages.js` (Zahlen bleiben CQHT). Bosse außer Königintal und Anwesen ohne Quellenprüfung. Erweiterung (Zonen 11–20, Portal 5–8) als Entwurf in `tools/data/zones-expansion.json` (lesbar: `dev-data/akrw-zones-expansion.md`); noch nicht im Spiel, `gen-zones.mjs` liest sie noch nicht.
+- Zonen und Bosse: Reihenfolge nach GW2 (Zonen 1–5 = Heimatgebiete der fünf Völker, Zone 6 Caudecus’ Anwesen als Finale der Aufträge; Portal 1 Kryta, Caledon & Zittergipfel, 2 Metrica, Aschfurt & Anwesen, 3 Löwenstein & Meerenge, 4 Orr; Zonen 7–10 folgen der persönlichen Geschichte bis zur Fluchküste), Daten in `tools/gen-zones.mjs` → `node tools/gen-zones.mjs .` erzeugt `js/data/stages.js` (Zahlen bleiben CQHT). Bosse der Zonen 2–5 ohne Quellenprüfung, Zonen 7–10 gegen die DE-Wiki geprüft. Erweiterung (Zonen 11–20, Portal 5–8) als Entwurf in `tools/data/zones-expansion.json` (lesbar: `dev-data/akrw-zones-expansion.md`); noch nicht im Spiel, `gen-zones.mjs` liest sie noch nicht.
 - Noch ohne Funktion: Früchte, Arena-Tickets, Erschöpfung (CQHT Fatigue), Waffen-Modifikation (CQHT Forge), `js/data/specials.js` (Küchen-Prüfung, Kryptis-Seelenfeste).
 - Balancing Spätspiel (Zonen 9–10, schwer, legendär) ist offen: `F.monsterHp`, `F.monsterAtk`, `COMBAT.LEVEL_DIFF`.
 - Live-Kampf: Ein zu schwacher Trupp verdient nichts. Offline: Er bekommt den Effizienz-Anteil.

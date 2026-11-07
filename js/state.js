@@ -4,7 +4,7 @@
 import {
   GAME, HERO_BY_ID, BUILDINGS, MYSTIC, F, COMBAT, ZONES, TENTS, TENT_SIZE, LEVEL_CAP_MAX,
   ROLES, RESEARCH, FEATURES, NORMAL_STAGES, TOTAL_NORMAL, HERO_LEVELS, CYCLE_MS, PORTAL_SHARDS,
-  WEAPON_BY_ID, WEAPON_GRADES, WEAPON_FOR, RECRUIT,
+  WEAPON_BY_ID, WEAPON_GRADES, WEAPON_FOR, RECRUIT, ARMORY_SLOTS,
 } from './config.js';
 import { markFulfilledQuests } from './quests.js';
 
@@ -256,6 +256,10 @@ export const levelCap    = (s) => s.buildings.camp ? BUILDINGS.camp.levels[s.bui
 export const hallGold    = (s) => s.buildings.hall ? BUILDINGS.hall.levels[s.buildings.hall - 1].gold : 0;
 export const buildingUnlocked = (s, key) => s.buildings.hall >= BUILDINGS[key].unlockHall;
 export const featureUnlocked  = (s, key) => s.buildings.hall >= FEATURES[key].unlockHall;
+// Waffenkammer-Plätze nach Gildenhalle; armoryFree < 1 → voll
+export const armorySlots = (state) => ARMORY_SLOTS[Math.min(ARMORY_SLOTS.length, Math.max(1, state.buildings.hall)) - 1];
+export const armoryFree = (state) => armorySlots(state) - state.armory.length;
+
 export const weaponType  = (hero) => {
   const d = heroDef(hero);
   return d.role === 'healer' ? WEAPON_FOR.healer : WEAPON_FOR[d.cls];
