@@ -5,7 +5,7 @@
 
 export const GAME = {
   title: 'Aetherbastion: Rift Watch',
-  VERSION: '0.27.0',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
+  VERSION: '0.27.1',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
   BUILD: 'lokal',                    // ersetzt der Pages-Workflow durch „Nr. · Commit“
   SAVE_KEY: 'aetherbastion_save_v1',
   SAVE_VERSION: 9,
@@ -197,17 +197,18 @@ export const COMBAT = {
   EILE_BONUS: 0.15,        // Eile: +15 % Chance auf Zusatzangriff je Unterstützer
   DEF_CAP: 0.75,           // max. Schadensreduktion
   SHARD_CHANCE: 0.05,
+  ENDGAME_DIFF_SCALE: 1.4, // #047: Zuschlag der Lv.-60-Stufen (schwer, legendär) × 1,4 → d bis ≈ 59 (tools/sim-bosses.mjs)
 };
 
 // Riss-Zonen aus data/stages.js; Schwierigkeit je Stufe berechnen.
 // Bis Lv. 59 zählt das Level, auf Lv.-60-Stufen (Zonen 8–10, schwer, legendär)
-// steigt die Schwierigkeit mit den CQHT-Kosten weiter.
+// steigt die Schwierigkeit mit den CQHT-Kosten weiter (× COMBAT.ENDGAME_DIFF_SCALE).
 export const ZONES = ZONE_DATA.map(z => ({
   ...z,
   stages: z.stages.map((st, i) => ({
     ...st,
     index: i + 1,
-    d: st.level < 60 ? st.level * COMBAT.LEVEL_DIFF : 60 * COMBAT.LEVEL_DIFF + (st.cost - 1000) / 500,
+    d: st.level < 60 ? st.level * COMBAT.LEVEL_DIFF : 60 * COMBAT.LEVEL_DIFF + (st.cost - 1000) / 500 * COMBAT.ENDGAME_DIFF_SCALE,
   })),
 }));
 export const TOTAL_NORMAL = ZONES.length * NORMAL_STAGES;

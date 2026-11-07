@@ -87,16 +87,11 @@ _Zurzeit nichts offen._
   - Die offene Frage aus „Geplant“ jetzt klären: Besessene Helden wieder anbieten, und eine bessere Seltenheit ersetzt die alte (Level bleibt). Alternative: Beförderung #033 hebt die Seltenheit.
 
 ### #043 Endgame-Schwierigkeit: Formel oder Handarbeit?
+- Seit v0.27.1 (#047): schwere/legendäre Stufen deutlich härter (`COMBAT.ENDGAME_DIFF_SCALE`). Offen bleibt: Was kommt nach dem letzten legendären Boss?
 - **Status:** offen · **Quelle:** Entwickler, Gilde
 - Ein Spieler hat alles geschafft (alle Bosse bis legendär, alles maximal ausgebaut). Also ist das Spätspiel schaffbar, aber danach gibt es nichts mehr zu tun.
 - Idee: Nach der letzten Zone über eine Formel endlos weiter skalieren. Der Entwickler findet das eher langweilig.
 - Vorschlag: Keine endlose Formel als Hauptinhalt. Lieber feste Inhalte mit Mechaniken (#042) und Erweiterungen (#044). Eine Formel höchstens als optionaler „endloser Riss“ mit Bestenliste in der Gilde. Dazu den offenen Balancing-Punkt aus `CLAUDE.md` angehen (Zonen 9–10, `F.monsterHp`, `F.monsterAtk`, `COMBAT.LEVEL_DIFF`): den Spieler fragen, wie lange er für schwer/legendär gebraucht hat.
-
-### #047 Schwierigkeit insgesamt anheben
-- **Status:** offen · **Quelle:** Gilde (ArgonautM)
-- Rückmeldung: „Kein Profigamer“ und trotzdem alles locker nebenbei geschafft. Der Boss-Timer (90 s) kam für ihn zu spät, da hatte er fast alle Bosse schon geschafft. Lob: Das Spielprinzip ist gut, der verteilte Schaden macht es realistischer, die QOL-Verbesserungen gefallen.
-- Vorschlag: Nicht nur das Endgame (#043), sondern die ganze Kurve prüfen. Zuerst die Überfluss-Quellen schließen (#045, #046), weil die den Rest leicht machen. Danach `F.monsterHp`, `F.monsterAtk` und `COMBAT.LEVEL_DIFF` nachziehen. Ziel festlegen: z. B. wie viele Tage bis Zone 6 und bis zum letzten legendären Boss.
-- Hinweis: Bestehende Spielstände sind schon weit; bei härteren Zahlen nichts wegnehmen, nur künftige Erträge senken.
 
 ## Idee
 

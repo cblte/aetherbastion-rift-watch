@@ -12,6 +12,14 @@ Format:
 
 ---
 
+## v0.27.1
+
+### #047 Schwierigkeit insgesamt anheben (Balancing)
+- Neues Skript `tools/sim-bosses.mjs`: spielt mit der echten Kampflogik Bosskämpfe durch und sucht je Stufe das Mindest-Level für ≥ 80 % Siege (Profile einfach / mittel / maximal). `--hard` nur schwere/legendäre Stufen, `--hard-scale X` testet einen anderen Zuschlag.
+- Befund: Normale Stufen passen zum mittleren Ausbau. Schwer und legendär lagen mit `d` 48–56 kaum über Zone 10 (52); voll ausgebaut reichte Lv. 41 für jede legendäre Stufe.
+- Neu `COMBAT.ENDGAME_DIFF_SCALE = 1.4`: Der Zuschlag der Lv.-60-Stufen wächst um 40 % (`d` 48–59). Voll ausgebaut braucht schwer jetzt Lv. 17 → 57, legendär Lv. 57. Normale Stufen unverändert, Fortschritt in Spielständen bleibt.
+- Weiter offen: #043 (Inhalte nach dem letzten legendären Boss).
+
 ## v0.27.0
 
 ### #022 Ruhestand mit passivem Einkommen (Spielsystem)
