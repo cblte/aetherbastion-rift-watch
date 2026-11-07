@@ -27,14 +27,14 @@ Danach geht es im selben **Auftrags-Banner** nahtlos weiter (Auftrag 5 bis 24). 
 
 | | Was | Woher | Wofür |
 |---|---|---|---|
-| 🪙 | Gold | Siege, Gildenkasse, Helden ab Lv. 10 | Gebäude, Rekruten, Zelte, Boss-Herausforderungen, Waffen, Belebung |
+| 🟡 | Gold | Siege, Gildenkasse, Helden ab Lv. 10 | Gebäude, Rekruten, Zelte, Boss-Herausforderungen, Waffen, Belebung |
 | 🔮 | Ätherscherben | Siege (5 %), jeder Boss | Riss-Portal |
 | 🧪 | Forschungspunkte | Boss-Siege, Level-Ups, Helden ab Lv. 20 alle 10 Min. | Forschung im Asura-Labor, seltene Waffen |
 | 💠 | Mystische Münzen | Ruhestand | Mystische Schmiede, Würfel-Preis zurücksetzen |
 | 🍞 | Proviant (Güte 1–6) | Boss-Siege, Level-Ups | EXP für einen Helden |
 | 🍎 🎟️ | Früchte, Arena-Tickets | Level-Ups, Bosse | Funktion folgt |
 
-**Gildenkasse:** Alle 10 Minuten zahlt die Gildenhalle Gold aus (100 bis 1.000 🪙 je nach Stufe). Dazu verdient jeder Held ab Lv. 10 Gold und ab Lv. 20 Forschungspunkte, auch in der Reserve.
+**Gildenkasse:** Alle 10 Minuten zahlt die Gildenhalle Gold aus (100 bis 1.000 🟡 je nach Stufe). Dazu verdient jeder Held ab Lv. 10 Gold und ab Lv. 20 Forschungspunkte, auch in der Reserve.
 
 ## Helden & Rollen
 

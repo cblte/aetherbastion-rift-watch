@@ -20,7 +20,19 @@
   --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
   --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  /* Akzentfarbe je Reiter (#app[data-tab]) */
+  --tab-portal: #9d8bff;
+  --tab-camp: #f2c14e;
+  --tab-squads: #59d68c;
+  --tab-lab: #5fd0e6;
+  --tab-forge: #ff8a4c;
+  --accent: var(--aether);
 }
+#app[data-tab="portal"] { --accent: var(--tab-portal); }
+#app[data-tab="camp"]   { --accent: var(--tab-camp); }
+#app[data-tab="squads"] { --accent: var(--tab-squads); }
+#app[data-tab="lab"]    { --accent: var(--tab-lab); }
+#app[data-tab="forge"]  { --accent: var(--tab-forge); }
 
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 html, body { margin: 0; height: 100%; background: var(--bg); }
@@ -44,7 +56,7 @@ textarea { user-select: text; -webkit-user-select: text; }
   display: flex;
   flex-direction: column;
   background:
-    radial-gradient(120% 50% at 50% -10%, rgba(143, 123, 255, .16), transparent 60%),
+    radial-gradient(120% 50% at 50% -10%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 60%),
     linear-gradient(var(--bg), var(--bg-2));
   border-inline: 1px solid #161a28;
   overflow: hidden;
@@ -58,7 +70,7 @@ textarea { user-select: text; -webkit-user-select: text; }
   padding-left: max(10px, env(safe-area-inset-left));
   padding-right: max(10px, env(safe-area-inset-right));
   background: rgba(12, 14, 22, .9);
-  border-bottom: 1px solid var(--line);
+  border-bottom: 2px solid color-mix(in srgb, var(--accent) 55%, var(--line));
   overflow-x: auto;
   scrollbar-width: none;
 }
@@ -120,7 +132,7 @@ h2.sec {
   font: 600 13px/1 var(--sans);
   letter-spacing: .14em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: color-mix(in srgb, var(--accent) 70%, var(--muted));
   margin: 18px 4px 8px;
 }
 h2.sec small { letter-spacing: 0; text-transform: none; font-weight: 400; }
@@ -502,8 +514,19 @@ textarea {
   cursor: pointer;
 }
 #tabs button span { font-size: 22px; line-height: 1; filter: grayscale(.7); transition: filter .2s; }
-#tabs button.active { color: var(--text); background: var(--panel); }
+/* Jeder Reiter hat seine Farbe; der aktive leuchtet in ihr */
+#tabs [data-tab="portal"] { --c: var(--tab-portal); }
+#tabs [data-tab="camp"]   { --c: var(--tab-camp); }
+#tabs [data-tab="squads"] { --c: var(--tab-squads); }
+#tabs [data-tab="lab"]    { --c: var(--tab-lab); }
+#tabs [data-tab="forge"]  { --c: var(--tab-forge); }
+#tabs button.active {
+  color: var(--c);
+  background: color-mix(in srgb, var(--c) 16%, var(--panel));
+  box-shadow: inset 0 3px 0 var(--c);
+}
 #tabs button.active span { filter: none; }
+#tabs button:not(.active) { color: color-mix(in srgb, var(--c) 30%, var(--muted)); }
 #tabs button[hidden] { display: none; }
 #tabs button { position: relative; }
 #tabs button.goal::after {

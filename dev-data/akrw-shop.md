@@ -2,7 +2,7 @@
 
 > Interne Entwicklungs-Referenz für **Aetherbastion: Rift Watch**. Erzeugt aus den Spieldaten in `js/data/`; maßgeblich ist immer der Code. Die Spalte *CQHT* nennt das Vorbild aus Crusaders Quest: Hero Town.
 
-Der Laden zeigt 3 zufällige Waffen und füllt sich alle 30 Minuten neu. Waffen kosten 🪙 Gold; die besten gibt es alternativ für 🧪 Forschungspunkte. Die **Schmiede-Stufe** bestimmt, ab wann eine Waffe im Laden auftauchen kann; die **Chance** ist ihr Gewicht beim Würfeln des Angebots. Heiler tragen immer einen 🔮 Fokus, alle anderen die Waffe ihrer Klasse.
+Der Laden zeigt 3 zufällige Waffen und füllt sich alle 30 Minuten neu. Waffen kosten 🟡 Gold; die besten gibt es alternativ für 🧪 Forschungspunkte. Die **Schmiede-Stufe** bestimmt, ab wann eine Waffe im Laden auftauchen kann; die **Chance** ist ihr Gewicht beim Würfeln des Angebots. Heiler tragen immer einen 🔮 Fokus, alle anderen die Waffe ihrer Klasse.
 
 ## Waffenarten
 
@@ -28,7 +28,7 @@ Der Laden zeigt 3 zufällige Waffen und füllt sich alle 30 Minuten neu. Waffen 
 
 ## ★1 Einfach
 
-| Waffe | Art | 🪙 Gold | 🧪 FP | Schmiede | Chance | CQHT |
+| Waffe | Art | 🟡 Gold | 🧪 FP | Schmiede | Chance | CQHT |
 | --- | --- | --- | --- | --- | --- | --- |
 | Altes Breitschwert | 🗡️ Schwert | 100 | – | Stufe 1 | 0,8 % | Old Broad Sword |
 | Steinhammer | 🔨 Hammer | 100 | – | Stufe 1 | 0,8 % | Stone Hammer |
@@ -39,7 +39,7 @@ Der Laden zeigt 3 zufällige Waffen und füllt sich alle 30 Minuten neu. Waffen 
 
 ## ★2 Fein
 
-| Waffe | Art | 🪙 Gold | 🧪 FP | Schmiede | Chance | CQHT |
+| Waffe | Art | 🟡 Gold | 🧪 FP | Schmiede | Chance | CQHT |
 | --- | --- | --- | --- | --- | --- | --- |
 | Breitschwert | 🗡️ Schwert | 500 | – | Stufe 1 | 1 % | Broad Sword |
 | Bastardschwert | 🗡️ Schwert | 500 | – | Stufe 1 | 1 % | Bastard Sword |
@@ -62,7 +62,7 @@ Der Laden zeigt 3 zufällige Waffen und füllt sich alle 30 Minuten neu. Waffen 
 
 ## ★3 Meisterwerk
 
-| Waffe | Art | 🪙 Gold | 🧪 FP | Schmiede | Chance | CQHT |
+| Waffe | Art | 🟡 Gold | 🧪 FP | Schmiede | Chance | CQHT |
 | --- | --- | --- | --- | --- | --- | --- |
 | Kriegerschwert | 🗡️ Schwert | 2.500 | – | Stufe 1 | 2 % | Warrior Sword |
 | Stahlschwert | 🗡️ Schwert | 2.500 | – | Stufe 1 | 2 % | Steel Sword |
@@ -85,7 +85,7 @@ Der Laden zeigt 3 zufällige Waffen und füllt sich alle 30 Minuten neu. Waffen 
 
 ## ★4 Selten
 
-| Waffe | Art | 🪙 Gold | 🧪 FP | Schmiede | Chance | CQHT |
+| Waffe | Art | 🟡 Gold | 🧪 FP | Schmiede | Chance | CQHT |
 | --- | --- | --- | --- | --- | --- | --- |
 | Seraphen-Säbel | 🗡️ Schwert | 7.500 | – | Stufe 2 | 2 % | Dragoon Sword |
 | Rosenklinge | 🗡️ Schwert | 7.500 | – | Stufe 2 | 2 % | Rose Knife |
@@ -108,7 +108,7 @@ Der Laden zeigt 3 zufällige Waffen und füllt sich alle 30 Minuten neu. Waffen 
 
 ## ★5 Exotisch
 
-| Waffe | Art | 🪙 Gold | 🧪 FP | Schmiede | Chance | CQHT |
+| Waffe | Art | 🟡 Gold | 🧪 FP | Schmiede | Chance | CQHT |
 | --- | --- | --- | --- | --- | --- | --- |
 | Klinge des Tiefseekönigs | 🗡️ Schwert | 12.000 | 5 | Stufe 2 | 0,2 % | Sea King Sword |
 | Schlächterklinge | 🗡️ Schwert | 12.000 | 5 | Stufe 2 | 0,2 % | Killer Sword |
@@ -131,7 +131,7 @@ Der Laden zeigt 3 zufällige Waffen und füllt sich alle 30 Minuten neu. Waffen 
 
 ## ★6 Aufgestiegen
 
-| Waffe | Art | 🪙 Gold | 🧪 FP | Schmiede | Chance | CQHT |
+| Waffe | Art | 🟡 Gold | 🧪 FP | Schmiede | Chance | CQHT |
 | --- | --- | --- | --- | --- | --- | --- |
 | Purpurnes Falchion | 🗡️ Schwert | 25.000 | 25 | Stufe 3 | 0,1 % | Red Falchion |
 | Vulkan | 🔨 Hammer | 25.000 | 25 | Stufe 3 | 0,1 % | Volcano |

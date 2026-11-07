@@ -144,7 +144,7 @@ export function tick(state) {
   if (now >= state.nextCycleMs) {
     ev.cycle = payCycle(state);
     state.nextCycleMs += CYCLE_MS;
-    addLog(state, `💰 Gildenkasse: +${fmt(ev.cycle.gold)}🪙${ev.cycle.rp ? ` +${ev.cycle.rp}🧪` : ''}`, null, 'info');
+    addLog(state, `💰 Gildenkasse: +${fmt(ev.cycle.gold)}🟡${ev.cycle.rp ? ` +${ev.cycle.rp}🧪` : ''}`, null, 'info');
   }
 
   for (const h of state.heroes) {
@@ -232,7 +232,7 @@ function tickSquad(state, i, now, ev) {
     if (mon.boss) {
       const first = recordBossWin(state, i);
       ev.bossWins.push({ squad: i, first, zone: sq.zone, stage: sq.stage });
-      addLog(state, `👑 ${mon.name} besiegt! +${fmt(r.gold)}🪙 +${r.shards}🔮 +${r.rp}🧪${r.weapons.length ? ` · ⚒️ ${r.weapons.map(w => w.name).join(', ')}` : ''}`, i, 'boss');
+      addLog(state, `👑 ${mon.name} besiegt! +${fmt(r.gold)}🟡 +${r.shards}🔮 +${r.rp}🧪${r.weapons.length ? ` · ⚒️ ${r.weapons.map(w => w.name).join(', ')}` : ''}`, i, 'boss');
       if (first) {
         const zone = ZONES[sq.zone - 1];
         addLog(state, sq.stage === NORMAL_STAGES
@@ -240,7 +240,7 @@ function tickSquad(state, i, now, ev) {
           : sq.stage < zone.stages.length ? `🔓 ${zone.name} Stufe ${sq.stage + 1} ist freigeschaltet.` : `🏆 ${zone.name}: alle Stufen gemeistert!`, i, 'boss');
       }
     } else {
-      addLog(state, `${mon.name} besiegt · +${fmt(r.gold)}🪙${r.shards ? ` +${r.shards}🔮` : ''}`, i);
+      addLog(state, `${mon.name} besiegt · +${fmt(r.gold)}🟡${r.shards ? ` +${r.shards}🔮` : ''}`, i);
     }
     for (const lu of r.levelUps) {
       const h = getHero(state, lu.uid);

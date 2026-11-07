@@ -86,6 +86,7 @@ export function render() {
   renderQuest();
   renderView();
   if (modalRefresh) modalRefresh(); // offenes Helden-/Zelt-Modal live aktualisieren
+  $('#app').dataset.tab = tab; // Akzentfarbe je Reiter (CSS)
   const goal = goalTab();
   let shown = 0;
   for (const b of document.querySelectorAll('#tabs [data-tab]')) {
@@ -266,7 +267,7 @@ function renderPortal() {
   let stage;
 
   if (locked) {
-    stage = `<div class="stage-msg">🔒 Zelt ${i + 1} ist noch nicht aufgeschlagen.<br><small>Gildenhalle Stufe ${TENTS[i].hall} · ${fmt(TENTS[i].gold)} 🪙</small></div>`;
+    stage = `<div class="stage-msg">🔒 Zelt ${i + 1} ist noch nicht aufgeschlagen.<br><small>Gildenhalle Stufe ${TENTS[i].hall} · ${fmt(TENTS[i].gold)} 🟡</small></div>`;
   } else if (S.buildings.portal < 1) {
     stage = `<div class="stage-msg">🌀 Das Riss-Portal ist noch nicht aktiv.<br><small>Folge der Quest oben.</small></div>`;
   } else if (!sq.slots.some(u => u != null)) {
@@ -338,7 +339,7 @@ function renderPortal() {
           <div class="muted small">${beaten ? 'Schon besiegt – lohnt sich erneut.' : nextTxt ? `Sieg öffnet ${nextTxt}.` : 'Letzte Stufe.'}</div>
           <div class="reward-line">🧪 ${range(r.rp)} · ⚒️ ${r.weapons} Waffe${r.weapons > 1 ? 'n' : ''} · 🍞 ${r.rations}${r.tickets[1] ? ` · 🎟️ ${range(r.tickets)}` : ''}</div></div>
         <div class="btn-col tight">
-          <button class="btn ${beaten ? '' : 'primary'} ${isGoal ? 'goal' : ''}" data-action="boss" ${can && S.gold >= cost ? '' : 'disabled'}>Herausfordern<small>${cd ? `⏳ ${clock(cd)}` : `🪙 ${fmt(cost)}`}</small></button>
+          <button class="btn ${beaten ? '' : 'primary'} ${isGoal ? 'goal' : ''}" data-action="boss" ${can && S.gold >= cost ? '' : 'disabled'}>Herausfordern<small>${cd ? `⏳ ${clock(cd)}` : `🟡 ${fmt(cost)}`}</small></button>
           <button class="btn ${sq.autoBoss ? 'primary' : ''}" data-action="boss-auto" aria-pressed="${sq.autoBoss}">🔁 Auto ${sq.autoBoss ? 'an' : 'aus'}</button>
         </div></div>
         ${sq.autoBoss && !cd && S.gold < cost ? '<div class="muted small">🔁 Wartet auf genug Gold.</div>' : ''}`;
@@ -410,7 +411,7 @@ function renderPortal() {
 function effectText(key, lvl, short = false) {
   const L = BUILDINGS[key].levels[lvl - 1];
   switch (key) {
-    case 'hall': return lvl ? `${short ? '' : 'Gildenkasse '}${fmt(L.gold)} 🪙/10 Min.` : 'Noch nicht errichtet';
+    case 'hall': return lvl ? `${short ? '' : 'Gildenkasse '}${fmt(L.gold)} 🟡/10 Min.` : 'Noch nicht errichtet';
     case 'camp': return `${short ? '' : 'Level-Cap '}Lv. ${lvl ? L.cap : 10}`;
     case 'kitchen': return `+${Math.round(lvl * BUILDINGS.kitchen.bonusPerLevel * 100)} %${short ? '' : ' EXP'}`;
     case 'lab': return `${short ? '' : 'Forschung bis '}Stufe ${lvl >= TIER_LAB[3] ? 'III' : lvl >= TIER_LAB[2] ? 'II' : lvl ? 'I' : '–'}`;
@@ -493,7 +494,7 @@ function renderCamp() {
     <span>⚔️ Siege <b>${fmt(S.stats.kills)}</b></span>
     <span>👑 Stufen <b>${normalCleared(S)}/${TOTAL_NORMAL}</b></span>
     <span>🌅 Ruhestand <b>${S.stats.retired}</b></span></div>
-    <div class="card small cycle">💰 Gildenkasse in <b>${clock(next)}</b>: +${fmt(hallGold(S))} 🪙 plus Einkommen der Helden ab Lv. 10.</div>
+    <div class="card small cycle">💰 Gildenkasse in <b>${clock(next)}</b>: +${fmt(hallGold(S))} 🟡 plus Einkommen der Helden ab Lv. 10.</div>
     <div class="card small stock"><b>Vorräte</b>
       <div class="stock-row">${RATIONS.map((r, g) => `<span title="${esc(r.name)}">🍞${g + 1} <b>${S.rations[g]}</b></span>`).join('')}</div>
       <div class="muted">🍎 Früchte <b>${S.fruit}</b> · 🎟️ Arena-Tickets <b>${S.tickets}</b> <span class="muted">(Funktion folgt)</span></div></div>`);
@@ -563,7 +564,7 @@ function renderSquads() {
       return `<div class="card tent locked">
         <div class="tent-head"><b>🔒 Zelt ${i + 1}</b><small>Gildenhalle Stufe ${t.hall}</small></div>
         ${canBuy
-          ? `<button class="btn primary block" data-action="buy-tent" data-squad="${i}" ${S.gold >= t.gold ? '' : 'disabled'}>Zelt aufschlagen · 🪙 ${fmt(t.gold)}</button>`
+          ? `<button class="btn primary block" data-action="buy-tent" data-squad="${i}" ${S.gold >= t.gold ? '' : 'disabled'}>Zelt aufschlagen · 🟡 ${fmt(t.gold)}</button>`
           : `<div class="muted small">${i > S.tentsUnlocked ? `Erst Zelt ${i} aufschlagen.` : `Gildenhalle auf Stufe ${t.hall} ausbauen.`}</div>`}
       </div>`;
     }
@@ -613,14 +614,14 @@ function recruitHtml() {
           <div class="hm-sub">${ROLES[d.role].icon} ${ROLES[d.role].name} · ${CLASSES[d.cls].name}${d.buff ? ` · ${d.buff === 'macht' ? 'Macht' : 'Eile'}` : ''}</div>
           <div class="hm-sub">❤ ${fmt(d.baseHp * m)} · ⚔️ ${fmt(d.baseAtk * m)}${d.crit ? ` · Krit ${Math.round(d.crit * 100)} %` : ''}</div>
         </div>
-        <button class="btn primary" data-action="recruit" data-slot="${k}" ${blocked || S.gold < cost ? 'disabled' : ''}>Anwerben<small>🪙 ${fmt(cost)}</small></button>
+        <button class="btn primary" data-action="recruit" data-slot="${k}" ${blocked || S.gold < cost ? 'disabled' : ''}>Anwerben<small>🟡 ${fmt(cost)}</small></button>
       </div>`;
   }).join('') || '<div class="card muted small">Keine Angebote mehr. Neue Rekruten kommen bald.</div>';
   const rc = recruitRefreshCost(S);
   return `
     <div class="card small">Neue Rekruten in <b>${clock(S.recruits.nextRestockMs - S.lastTickMs)}</b> · ${t.slots} Plätze, alle ${t.restockMin} Min.${next ? `<br><span class="muted">Gildenhalle Stufe ${next.hall}: ${next.slots} Plätze, alle ${next.restockMin} Min.</span>` : ''}${blocked ? '<br>Zuerst die Quest abschließen.' : ''}</div>
     ${offers}
-    ${rerollRow(`<button class="btn" data-action="recruit-refresh" ${S.gold >= rc ? '' : 'disabled'}>Liste erneuern<small>🪙 ${fmt(rc)}</small></button>`, 'recruits', S.recruits.refreshes)}`;
+    ${rerollRow(`<button class="btn" data-action="recruit-refresh" ${S.gold >= rc ? '' : 'disabled'}>Liste erneuern<small>🟡 ${fmt(rc)}</small></button>`, 'recruits', S.recruits.refreshes)}`;
 }
 
 // Erneuern-Knopf; nach dem ersten Erneuern daneben „Preis zurücksetzen“ für 💠
@@ -695,7 +696,7 @@ function armoryCards(back = '') {
       <div class="w-info"><div>${weaponName(wid)}${idxs.length > 1 ? ` <b>×${idxs.length}</b>` : ''}</div><div class="muted small">${WEAPON_TYPES[WEAPON_BY_ID[wid].type].name} · ${weaponBonus(wid)}</div></div>
       <div class="b-act btn-col tight">
         <button class="btn primary" data-action="equip-pick" data-idx="${idxs[0]}"${b}>Ausrüsten</button>
-        <button class="btn" data-action="sell" data-idx="${idxs[0]}"><small>Verkaufen 🪙 ${fmt(sellPrice(wid))}</small></button>
+        <button class="btn" data-action="sell" data-idx="${idxs[0]}"><small>Verkaufen 🟡 ${fmt(sellPrice(wid))}</small></button>
       </div></div>`).join('') || '<div class="card muted small">Noch leer. Waffen gibt es im Laden der Charr-Schmiede und als Beute von Bossen.</div>';
 }
 
@@ -712,14 +713,14 @@ function renderForge() {
       return `<div class="card weapon-offer">
         <div class="w-info"><div>${weaponName(wid)}</div><div class="muted small">${WEAPON_TYPES[w.type].name} · ${weaponBonus(wid)}</div></div>
         <div class="b-act btn-col tight">
-          <button class="btn primary" data-action="buy" data-slot="${k}" data-cur="gold" ${S.gold >= w.gold ? '' : 'disabled'}>Kaufen<small>🪙 ${fmt(w.gold)}</small></button>
+          <button class="btn primary" data-action="buy" data-slot="${k}" data-cur="gold" ${S.gold >= w.gold ? '' : 'disabled'}>Kaufen<small>🟡 ${fmt(w.gold)}</small></button>
           ${w.rp != null ? `<button class="btn" data-action="buy" data-slot="${k}" data-cur="rp" ${S.rp >= w.rp ? '' : 'disabled'}><small>oder 🧪 ${w.rp}</small></button>` : ''}
         </div></div>`;
     }).join('') || '<div class="card muted small">Ausverkauft. Neue Ware kommt bald.</div>';
     setHTML($('#weapons'), `
       <div class="card small">Laden: neue Ware in <b>${clock(S.shop.nextRestockMs - S.lastTickMs)}</b>. Schmiede Stufe ${S.buildings.forge} führt Waffen bis ${effectText('forge', S.buildings.forge, true)}.</div>
       ${offers}
-      ${rerollRow(`<button class="btn" data-action="shop-refresh" ${S.gold >= refreshCost(S) ? '' : 'disabled'}>Ware auffrischen<small>🪙 ${fmt(refreshCost(S))}</small></button>`, 'shop', S.shop.refreshes)}
+      ${rerollRow(`<button class="btn" data-action="shop-refresh" ${S.gold >= refreshCost(S) ? '' : 'disabled'}>Ware auffrischen<small>🟡 ${fmt(refreshCost(S))}</small></button>`, 'shop', S.shop.refreshes)}
       ${armory}`);
   }
 
@@ -875,7 +876,7 @@ function heroActions(h, { inSlot = false } = {}) {
   const btns = [];
   if (h.woundedUntil) {
     const c = F.reviveCost(h.level);
-    btns.push(`<button class="btn primary" data-action="revive" data-uid="${h.uid}" ${S.gold >= c ? '' : 'disabled'}>⚡ Sofort beleben · 🪙 ${fmt(c)}</button>`);
+    btns.push(`<button class="btn primary" data-action="revive" data-uid="${h.uid}" ${S.gold >= c ? '' : 'disabled'}>⚡ Sofort beleben · 🟡 ${fmt(c)}</button>`);
   } else if (inSlot) {
     btns.push(`<button class="btn" data-action="unassign" data-uid="${h.uid}">In die Reserve</button>`);
   }
@@ -963,7 +964,7 @@ export function showOfflineReport(report, { debug = false } = {}) {
     return `<div class="card report-squad">
       <div class="tent-head"><b>⛺ Zelt ${r.squad + 1}</b><small>${esc(r.zoneName)} · Stufe ${r.stage}</small></div>
       <div class="report-grid">
-        <span>🪙 +${fmt(r.gold)}</span><span>🔮 +${r.shards}</span>
+        <span>🟡 +${fmt(r.gold)}</span><span>🔮 +${r.shards}</span>
         <span>✨ +${fmt(r.expPerHero)} EXP/Held</span><span>⚔️ ${fmt(r.kills)} Siege</span>
       </div>
       <div class="eff"><span>Effizienz</span>${hpBar(r.minEff, 1, effPct < 100 ? 'warn' : 'ok')}<b>${effPct} %</b></div>
@@ -974,8 +975,8 @@ export function showOfflineReport(report, { debug = false } = {}) {
   openModal(`
     <h3>🌙 Offline-Rissbericht</h3>
     <p class="muted small">${debug ? 'Simuliert: ' : 'Abwesend: '}${fmtDuration(report.elapsedMs)}${report.capped ? ` · gewertet max. ${fmtDuration(report.maxMs)}` : ''}</p>
-    <div class="card report-total"><span>🪙 +${fmt(t.gold)}</span><span>🔮 +${t.shards}</span>${report.rp >= 1 ? `<span>🧪 +${fmt(report.rp)}</span>` : ''}<span>⬆️ ${t.levelUps}</span></div>
-    ${report.cycles ? `<p class="small">💰 Gildenkasse: ${report.cycles}× ausgezahlt, +${fmt(report.cycleGold)} 🪙</p>` : ''}
+    <div class="card report-total"><span>🟡 +${fmt(t.gold)}</span><span>🔮 +${t.shards}</span>${report.rp >= 1 ? `<span>🧪 +${fmt(report.rp)}</span>` : ''}<span>⬆️ ${t.levelUps}</span></div>
+    ${report.cycles ? `<p class="small">💰 Gildenkasse: ${report.cycles}× ausgezahlt, +${fmt(report.cycleGold)} 🟡</p>` : ''}
     ${report.built ? `<p class="small">🔨 ${BUILDINGS[report.built.key].name} Stufe ${report.built.to} ist fertig.</p>` : ''}
     ${squads || '<p class="muted">Keine Trupps im Einsatz.</p>'}
     <p class="muted small">Offline farmen die Trupps nur Schergen. Bosse forderst du live heraus.</p>
@@ -1145,7 +1146,7 @@ function onClick(e) {
     case 'shop-refresh': if (refreshShop(S)) changed('Neue Ware!'); break;
     case 'sell': {
       const wid = S.armory[num(d.idx)];
-      if (wid && sellWeapon(S, num(d.idx))) changed(`Verkauft für 🪙 ${fmt(sellPrice(wid))}`);
+      if (wid && sellWeapon(S, num(d.idx))) changed(`Verkauft für 🟡 ${fmt(sellPrice(wid))}`);
       break;
     }
     case 'equip-pick': openEquipPicker(num(d.idx), d.back || ''); break;

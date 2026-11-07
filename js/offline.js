@@ -96,7 +96,7 @@ export function runOffline(state, elapsedMs) {
   report.totals.gold += report.cycleGold;
   report.rp = state.rp - rpBefore; // Kasse + Level-Ups
   if (report.squads.length || report.cycles) {
-    addLog(state, `🌙 Offline: +${fmt(report.totals.gold)}🪙 +${report.totals.shards}🔮${report.rp >= 1 ? ` +${fmt(report.rp)}🧪` : ''}`, null, 'info');
+    addLog(state, `🌙 Offline: +${fmt(report.totals.gold)}🟡 +${report.totals.shards}🔮${report.rp >= 1 ? ` +${fmt(report.rp)}🧪` : ''}`, null, 'info');
   }
   return report;
 }

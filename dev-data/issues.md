@@ -9,22 +9,15 @@ Feedback und Fehler aus dem Spieltest. Erledigte Punkte wandern mit Version nach
 - **Status:** `offen` · `in Arbeit` · `zurückgestellt` (mit Grund)
 - **Quelle:** wer es gemeldet hat (z. B. „Spieltest Frau“, „Gilde“)
 
-Nächste freie Nummer: **#012**
+Nächste freie Nummer: **#014**
 
 ## Eingang
 
 <!-- Hier neue Punkte notieren, ungeordnet ist okay. -->
 
-- Text "Held tritt der Wacht bei" ist in der Zeile umbrochen. Das da irgendwie unschön aus.
-
 ---
 
 ## UI
-
-### #001 Tabs sehen alle gleich aus
-- **Status:** offen · **Quelle:** Spieltest Frau
-- Alles wirkt sehr gleich, die Tabs haben alle dieselbe Farbe. Man erkennt schwer, wo man ist.
-- Idee: eigene Akzentfarbe je Tab (Navigation und Kopfzeile).
 
 ### #002 Zu viel Text auf einmal
 - **Status:** offen · **Quelle:** Spieltest Frau
@@ -32,15 +25,21 @@ Nächste freie Nummer: **#012**
 - Idee: Texte kürzen, Details einklappbar machen.
 - v0.12.0: Tutorial-Texte gekürzt, im Tutorial keine Statistik, Vorräte und „Schaltet frei“-Listen mehr. Offen: Auftragstexte und die übrigen Ansichten.
 
-### #003 Gold-Symbol sieht aus wie ein Stein
-- **Status:** offen · **Quelle:** Spieltest Frau
-- Das Geld-Symbol wirkt eher wie ein Stein als wie eine Münze.
-- Hängt mit #008 zusammen: Wird 🪙 frei, kann es für Gold genutzt werden.
-
 ### #004 Vorräte / Inventar als eigener Tab
 - **Status:** offen · **Quelle:** Spieltest
 - Die Vorräte sollen einen eigenen Tab bekommen, die Übersicht kann dafür aus der bisherigen Ansicht raus.
 - Eventuell eigener Knopf für das Inventar in der unteren Leiste, falls der Platz reicht (Touch-Ziele ≥ 44 px beachten).
+- Gehört zu #013: Inventar wandert aus der Kopfzeile in die Hauptleiste.
+
+### #012 Gildenhalle: Liste „Schaltet frei“ weglassen
+- **Status:** offen · **Quelle:** Spieltest
+- Die Gildenhallen-Karte zeigt (nach dem Tutorial) immer noch, was die nächste Stufe freischaltet. Unnötig, weil jedes Gebäude selbst anzeigt, ab wann es verfügbar ist.
+
+### #013 Einstellungen als eigener Dialog (⚙️ oben rechts)
+- **Status:** offen · **Quelle:** Spieltest
+- Die Einstellungen stehen bisher unten im Lager und sind schon am Anfang zu sehen.
+- Neu: Zahnrad ⚙️ oben rechts in der Kopfzeile öffnet einen Dialog (Handbuch, Vibration, Spielstand, Debug, Zurücksetzen).
+- Der Platz oben rechts wird frei, weil das Inventar 🎒 in die Hauptleiste wandert (#004).
 
 ## Tutorial
 
@@ -52,7 +51,7 @@ _Zurzeit nichts offen._
 - **Status:** offen · **Quelle:** eigene Idee
 - Mystischer Klee ist in GW2 eine hochwertige Währung für Legendäres.
 - Nutzen für: Forschung und das Zurücksenden von Helden.
-- Dadurch wird das Münz-Symbol frei für Gold (siehe #003).
+- Gold hat seit v0.12.1 das Symbol 🟡 (#003); 💠 kann für den Klee ein eigenes Symbol bekommen.
 - Achtung: Umbenennen im Spielstand braucht eine Migration (`SAVE_VERSION`).
 
 ### #010 Rekrutierungs-Seltenheit an Gildenhallen-Stufe koppeln

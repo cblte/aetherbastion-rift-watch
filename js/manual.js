@@ -32,9 +32,9 @@ export function manualChapters() {
         'Hast du ein Ziel schon früher erreicht, ist der Auftrag sofort erfüllt.',
       ])}` },
 
-    { icon: '🪙', title: 'Währungen & Vorräte', html: `
+    { icon: '🟡', title: 'Währungen & Vorräte', html: `
       ${table(['', 'Woher', 'Wofür'], [
-        ['🪙 Gold', 'Siege, Gildenkasse, Helden ab Lv. 10', 'Gebäude, Rekruten, Zelte, Bosse, Waffen, Beleben'],
+        ['🟡 Gold', 'Siege, Gildenkasse, Helden ab Lv. 10', 'Gebäude, Rekruten, Zelte, Bosse, Waffen, Beleben'],
         ['🔮 Ätherscherben', `Siege (${pct(COMBAT.SHARD_CHANCE)}), jeder Boss`, 'Riss-Portal'],
         ['🧪 Forschungspunkte', 'Bosse, Level-Ups, Helden ab Lv. 20', 'Asura-Labor, seltene Waffen'],
         ['💠 Mystische Münzen', 'Ruhestand', 'Mystische Schmiede, Würfel-Preis zurücksetzen'],
@@ -53,9 +53,9 @@ export function manualChapters() {
       <p>Jedes <b>Zelt</b> ist ein Trupp mit ${TENT_SIZE} Plätzen. Es gibt bis zu ${TENTS.length} Zelte; Zelt 2–${TENTS.length} öffnen ab Gildenhalle ${tentHalls}. Weitere Helden warten in der <b>Reserve</b>. Gute Aufstellung: <b>Tank + Heiler + Schaden</b>.</p>
       <p>Neue Helden wirbst du unter <b>🛡️ Trupps → Rekrutieren</b> an. Dort stehen wechselnde Angebote – mehr und schneller mit besserer Gildenhalle:</p>
       ${table(['Gildenhalle', 'Angebote', 'Neue alle'], RECRUIT.tiers.map(t => [`ab ${t.hall}`, t.slots, `${t.restockMin} Min.`]))}
-      <p>„Liste erneuern“ kostet ${RECRUIT.refreshBase} 🪙 und verdoppelt sich mit jedem Versuch; kommt der Nachschub von selbst, fängt der Preis wieder bei ${RECRUIT.refreshBase} an. Mit 💠 ${REROLL_RESET_COINS} Mystischen Münzen setzt du ihn sofort zurück.</p>
+      <p>„Liste erneuern“ kostet ${RECRUIT.refreshBase} 🟡 und verdoppelt sich mit jedem Versuch; kommt der Nachschub von selbst, fängt der Preis wieder bei ${RECRUIT.refreshBase} an. Mit 💠 ${REROLL_RESET_COINS} Mystischen Münzen setzt du ihn sofort zurück.</p>
       <p>Jeder Rekrut hat eine <b>Seltenheit</b>. Sie bestimmt Preis und Bonus auf LP und ATK. Kostenlose Helden aus den Aufträgen sind „Fein“.</p>
-      ${table(['Seltenheit', 'Preis', 'Bonus'], Object.entries(RECRUIT.rarities).map(([r, x]) => [`<span style="color:${WEAPON_GRADES[r].color}">◆ ${WEAPON_GRADES[r].name}</span>`, `🪙 ${x.cost.toLocaleString('de-DE')}`, x.bonus ? `+${pct(x.bonus)}` : '–']))}` },
+      ${table(['Seltenheit', 'Preis', 'Bonus'], Object.entries(RECRUIT.rarities).map(([r, x]) => [`<span style="color:${WEAPON_GRADES[r].color}">◆ ${WEAPON_GRADES[r].name}</span>`, `🟡 ${x.cost.toLocaleString('de-DE')}`, x.bonus ? `+${pct(x.bonus)}` : '–']))}` },
 
     { icon: '👑', title: 'Kampf & Bosse', html: `
       ${list([

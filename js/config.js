@@ -5,7 +5,7 @@
 
 export const GAME = {
   title: 'Aetherbastion: Rift Watch',
-  VERSION: '0.12.0',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
+  VERSION: '0.12.1',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
   BUILD: 'lokal',                    // ersetzt der Pages-Workflow durch „Nr. · Commit“
   SAVE_KEY: 'aetherbastion_save_v1',
   SAVE_VERSION: 6,
@@ -27,7 +27,7 @@ export { WEAPONS, WEAPON_BY_ID, WEAPON_TYPES, WEAPON_FOR, WEAPON_GRADES, SHOP, D
 export { RATIONS } from './data/specials.js';
 
 export const CURRENCIES = {
-  gold:   { icon: '🪙', name: 'Gold' },
+  gold:   { icon: '🟡', name: 'Gold' },
   shards: { icon: '🔮', name: 'Ätherscherben' },
   coins:  { icon: '💠', name: 'Mystische Münzen' },
   rp:     { icon: '🧪', name: 'Forschungspunkte' },
@@ -224,7 +224,7 @@ export const LEVEL_CAP_MAX = MAX_HERO_LEVEL; // 60
 // ---------------------------------------------------------------------
 //  REKRUTIERUNG (Gildenhalle) – wechselnde Angebote wie im Waffenladen
 //  tiers: ab Gildenhallen-Stufe `hall` gibt es `slots` Angebote, neue alle `restockMin` Minuten.
-//  refreshBase: „Liste erneuern“ kostet 100 🪙 und verdoppelt sich je Versuch;
+//  refreshBase: „Liste erneuern“ kostet 100 🟡 und verdoppelt sich je Versuch;
 //  beim automatischen Nachschub wird der Preis zurückgesetzt.
 //  rarities: Seltenheit (Namen/Farben wie WEAPON_GRADES 2–6) → Preis, Würfel-Gewicht,
 //  Bonus auf LP und ATK. Kostenlose Helden (Onboarding, Aufträge) sind „Fein“.

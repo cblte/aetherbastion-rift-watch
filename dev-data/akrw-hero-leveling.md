@@ -3,12 +3,12 @@
 > Interne Entwicklungs-Referenz für **Aetherbastion: Rift Watch**. Erzeugt aus den Spieldaten in `js/data/`; maßgeblich ist immer der Code. Die Spalte *CQHT* nennt das Vorbild aus Crusaders Quest: Hero Town.
 
 - **EXP gesamt:** benötigte Gesamt-EXP, um die Stufe zu erreichen.
-- **🪙 / 🧪 je Zyklus:** Einkommen pro Held alle 10 Minuten (Gold ab Lv. 10, Forschungspunkte ab Lv. 20) – auch in der Reserve.
+- **🟡 / 🧪 je Zyklus:** Einkommen pro Held alle 10 Minuten (Gold ab Lv. 10, Forschungspunkte ab Lv. 20) – auch in der Reserve.
 - **Erschöpfung:** CQHT-Fatigue-Grenze, *noch ohne Funktion*.
 - **Belohnung:** gibt es beim Erreichen der Stufe. 🍞1–6 = Proviant der Güte 1–6 (Einfache Ration, Feldration, Herzhafte Ration, Offiziersration, Festmahl-Ration, Legendäres Festmahl), 🍎 = Früchte (noch ohne Funktion).
 - Das Level-Cap setzt das ⛺ Zeltlager.
 
-| Lv. | EXP gesamt | 🪙 / Zyklus | 🧪 / Zyklus | Erschöpfung | Belohnung |
+| Lv. | EXP gesamt | 🟡 / Zyklus | 🧪 / Zyklus | Erschöpfung | Belohnung |
 | --- | --- | --- | --- | --- | --- |
 | **1** | 0 | – | – | 100 | – |
 | **2** | 40 | – | – | 100 | – |

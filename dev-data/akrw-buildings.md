@@ -2,7 +2,7 @@
 
 > Interne Entwicklungs-Referenz für **Aetherbastion: Rift Watch**. Erzeugt aus den Spieldaten in `js/data/`; maßgeblich ist immer der Code. Die Spalte *CQHT* nennt das Vorbild aus Crusaders Quest: Hero Town.
 
-Gebaut wird immer **nur ein Gebäude gleichzeitig**. Kosten in 🪙 Gold.
+Gebaut wird immer **nur ein Gebäude gleichzeitig**. Kosten in 🟡 Gold.
 
 ## Übersicht: alle Ausbaukosten
 

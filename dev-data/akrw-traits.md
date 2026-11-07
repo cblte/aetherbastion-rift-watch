@@ -47,7 +47,7 @@ Lager-Helden lohnen sich auch in der **Reserve**: Ihre Boni auf Gold und EXP kö
 | Regeneration | kürzere Verwundung nach 0 LP | ✓ |
 | Boss-Härte | weniger Schaden von Bossen | neu |
 | Ausdauer | höhere Erschöpfungsgrenze | geplant (Erschöpfung) |
-| Gold | mehr 🪙 aus Kämpfen | ✓ (Forschung) |
+| Gold | mehr 🟡 aus Kämpfen | ✓ (Forschung) |
 | EXP | mehr EXP aus Kämpfen | ✓ (Forschung) |
 | Ätherscherben | höhere 🔮-Chance | ✓ (Forschung) |
 | Proviant | mehr EXP aus 🍞 Proviant | neu |

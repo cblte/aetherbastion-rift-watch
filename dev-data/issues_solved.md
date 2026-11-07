@@ -12,6 +12,14 @@ Format:
 
 ---
 
+## v0.12.1
+
+### #001 Tabs sehen alle gleich aus
+- Jeder Reiter hat eine eigene Farbe: Portal violett, Lager gold, Trupps grün, Labor türkis, Schmiede orange. Der aktive Reiter leuchtet in seiner Farbe; Kopfzeilen-Linie, Hintergrund-Schimmer und Überschriften übernehmen sie.
+
+### #003 Gold-Symbol sieht aus wie ein Stein
+- Gold hat jetzt 🟡 statt 🪙 (wie die goldene Münze in GW2), überall im Spiel, im Handbuch und in dev-data.
+
 ## v0.12.0
 
 ### #005 Gesperrte Bereiche sind im Tutorial schon anklickbar
