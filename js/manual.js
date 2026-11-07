@@ -4,7 +4,7 @@
 //  Rückgabe: [{ icon, title, html }] – wird in ui.js als Kapitel gezeigt.
 // =====================================================================
 import {
-  BUILDINGS, ZONES, ROLES, HEROES, TENTS, TENT_SIZE, COMBAT, GAME, NORMAL_STAGES, TOTAL_NORMAL, FEATURES,
+  BUILDINGS, ZONES, ROLES, HEROES, TRAITS, TRAIT_RULES, TENTS, TENT_SIZE, COMBAT, GAME, NORMAL_STAGES, TOTAL_NORMAL, FEATURES,
   RETIRE_MIN_LEVEL, LEVEL_CAP_MAX, ARMORY_SLOTS, RATION_SLOTS, RATION_DROP, RETIRE_HOME, CYCLE_MS, WEAPON_TYPES, WEAPON_GRADES, SHOP, QUESTS, RECRUIT, REROLL_RESET_CLOVER,
 } from './config.js';
 
@@ -57,7 +57,8 @@ export function manualChapters() {
       ${table(['Gildenhalle', 'Angebote', 'Neue alle'], RECRUIT.tiers.map(t => [`ab ${t.hall}`, t.slots, `${t.restockMin} Min.`]))}
       <p>„Liste erneuern“ kostet ${RECRUIT.refreshBase} 🟡 und verdoppelt sich mit jedem Versuch; kommt der Nachschub von selbst, fängt der Preis wieder bei ${RECRUIT.refreshBase} an. Mit 🍀 ${REROLL_RESET_CLOVER} Mystischem Klee setzt du ihn sofort zurück.</p>
       <p>Jeder Rekrut hat eine <b>Seltenheit</b>. Sie bestimmt Preis und Bonus auf LP und ATK. Kostenlose Helden aus den Aufträgen sind „Fein“. Je höher die <b>Gildenhalle</b>, desto öfter kommen seltene Rekruten (Chancen stehen unter „Rekrutieren“).</p>
-      ${table(['Seltenheit', 'Preis', 'Bonus'], Object.entries(RECRUIT.rarities).map(([r, x]) => [`<span style="color:${WEAPON_GRADES[r].color}">◆ ${WEAPON_GRADES[r].name}</span>`, `🟡 ${x.cost.toLocaleString('de-DE')}`, x.bonus ? `+${pct(x.bonus)}` : '–']))}` },
+      ${table(['Seltenheit', 'Preis', 'Bonus', 'Eigenschaften'], Object.entries(RECRUIT.rarities).map(([r, x]) => [`<span style="color:${WEAPON_GRADES[r].color}">◆ ${WEAPON_GRADES[r].name}</span>`, `🟡 ${x.cost.toLocaleString('de-DE')}`, x.bonus ? `+${pct(x.bonus)}` : '–', TRAIT_RULES.count[r]]))}
+      <p><b>Eigenschaften:</b> Jeder Held bringt ${Object.keys(TRAITS).length} mögliche Eigenschaften mit, je nach Seltenheit 1–3 (gewürfelt beim Rekrutieren, im Angebot sichtbar). Ihre Güte liegt höchstens bei der Seltenheit des Helden. Sie verbessern Werte wie ATK, Krit, LP, DEF oder Heilung. 🧭 Lager-Eigenschaften (Gold, EXP, Scherben, Beute, Offline) wirken für den ganzen Trupp, nicht aus der Reserve. Tanks und Heiler bekommen öfter 🛡️ Verteidigung, Schadensausteiler öfter ⚔️ Angriff.</p>` },
 
     { icon: '👑', title: 'Kampf & Bosse', html: `
       ${list([

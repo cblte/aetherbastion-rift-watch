@@ -9,7 +9,7 @@ import {
 } from './config.js';
 import {
   getHero, heroStats, pay, researchLevel, addLog, buildingCost, buildLock, weaponType, gainExp,
-  isOwned, createHero, armoryFree, heroTotalExp,
+  isOwned, createHero, armoryFree, heroTotalExp, rollTraits, traitBonus,
 } from './state.js';
 
 // ---------- Bauen ----------------------------------------------------
@@ -198,7 +198,8 @@ function addRecruitOffers(state, n) {
     const pool = recruitPool(state);
     if (!pool.length) return;
     const d = pool[Math.floor(Math.random() * pool.length)];
-    state.recruits.offers.push({ heroId: d.id, rarity: rollRarity(state) });
+    const rarity = rollRarity(state);
+    state.recruits.offers.push({ heroId: d.id, rarity, traits: rollTraits(d.id, rarity) });
   }
 }
 
@@ -244,7 +245,7 @@ export function hireRecruit(state, slot) {
   if (!o || !HERO_BY_ID[o.heroId] || isOwned(state, o.heroId)) return null;
   if (!pay(state, { gold: recruitCost(o.rarity) })) return null;
   state.recruits.offers.splice(slot, 1);
-  return createHero(state, o.heroId, o.rarity);
+  return createHero(state, o.heroId, o.rarity, o.traits);
 }
 
 // ---------- Würfel-Preis zurücksetzen (🍀) ------------------------------
@@ -263,7 +264,7 @@ export function feedRation(state, uid, g) {
   state.rations[g] -= 1;
   state.stats.rationsFed = (state.stats.rationsFed || 0) + 1;
   const before = heroTotalExp(h);
-  gainExp(state, h, RATIONS[g].exp);
+  gainExp(state, h, RATIONS[g].exp * (1 + traitBonus(h.traits).ration)); // Eigenschaft „Proviant“
   h.fedExp = (h.fedExp || 0) + Math.max(0, heroTotalExp(h) - before); // #046
   return true;
 }

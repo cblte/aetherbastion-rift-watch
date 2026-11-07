@@ -10,7 +10,7 @@
 //  der Laden der Charr-Schmiede füllt sich neu.
 // =====================================================================
 import { ZONES, HERO_BY_ID, CYCLE_MS } from './config.js';
-import { heroStats, addLog, offlineMaxMs, payCycle } from './state.js';
+import { heroStats, addLog, offlineMaxMs, payCycle, squadTrait } from './state.js';
 import { checkConstruction, checkShop, checkRecruits } from './progress.js';
 import { squadMembers, teamProfile, monsterTemplate, applyKillRewards, spawnMonster, fmt } from './combat.js';
 
@@ -61,6 +61,7 @@ export function runOffline(state, elapsedMs) {
     };
     let t = seconds, steps = 0;
     const mon = monsterTemplate(sq.zone, sq.stage, false);
+    const offBonus = 1 + squadTrait(heroes, 'offline'); // Eigenschaft „Offline“: mehr Ertrag je Sieg
 
     while (t > 0 && steps++ < MAX_STEPS) {
       const prof = teamProfile(state, heroes, sq);
@@ -72,7 +73,7 @@ export function runOffline(state, elapsedMs) {
       r.minEff = Math.min(r.minEff, eff);
       t -= ticks;
 
-      const res = applyKillRewards(state, i, mon, heroes, eff, true);
+      const res = applyKillRewards(state, i, mon, heroes, eff * offBonus, true);
       r.kills += eff;
       r.gold += res.gold;
       r.shards += res.shards;

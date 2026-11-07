@@ -5,10 +5,10 @@
 
 export const GAME = {
   title: 'Aetherbastion: Rift Watch',
-  VERSION: '0.28.0',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
+  VERSION: '0.29.0',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
   BUILD: 'lokal',                    // ersetzt der Pages-Workflow durch „Nr. · Commit“
   SAVE_KEY: 'aetherbastion_save_v1',
-  SAVE_VERSION: 9,
+  SAVE_VERSION: 10,
   TICK_MS: 1000,                     // feste Kampf-Ticks
   LOOP_MS: 250,                      // wie oft die Spielschleife nachsieht
   AUTOSAVE_MS: 10_000,
@@ -321,6 +321,114 @@ export const RECRUIT = {
   ],
   freeRarity: 2,
 };
+// ---------------------------------------------------------------------
+//  EIGENSCHAFTEN (Traits, nach CQHT; Entwurf: dev-data/akrw-traits.md)
+//  Jeder Held bringt 1–3 Eigenschaften mit, gewürfelt beim Rekrutieren
+//  (auch kostenlose Helden). Am Helden: traits: [{ id, g }], g = Güte 2–6
+//  (Namen/Farben wie WEAPON_GRADES).
+//  TRAIT_STATS: Was ein Wert bewirkt. Der Prozentwert der Eigenschaft
+//  wird mit `f` multipliziert:
+//    mult = Faktor (ATK +15 % → ×1,15) · add = Prozentpunkte dazu
+//    less = weniger davon (Verwundung, Boss-Schaden)
+//  squad: true → wirkt für den ganzen Trupp (Summe aller Helden im Zelt),
+//  Helden in der Reserve bringen nichts.
+// ---------------------------------------------------------------------
+export const TRAIT_STATS = {
+  atk:     { name: 'ATK',           mode: 'mult', f: 1 },
+  crit:    { name: 'Krit-Chance',   mode: 'add',  f: 0.5 },
+  critdmg: { name: 'Krit-Schaden',  mode: 'mult', f: 1 },
+  speed:   { name: 'Angriffstempo', mode: 'add',  f: 0.5 },  // Chance auf Zusatzangriff, wie Eile
+  hp:      { name: 'Max. LP',       mode: 'mult', f: 1 },
+  def:     { name: 'DEF',           mode: 'add',  f: 0.4 },  // Schadensreduktion, DEF_CAP gilt weiter
+  heal:    { name: 'Heilung',       mode: 'mult', f: 1 },
+  regen:   { name: 'Regeneration',  mode: 'less', f: 1, show: 'Verwundungszeit' },
+  boss:    { name: 'Boss-Härte',    mode: 'less', f: 1, show: 'Schaden von Bossen' },
+  gold:    { name: 'Gold',          mode: 'mult', f: 1, squad: true },
+  exp:     { name: 'EXP',           mode: 'mult', f: 1, squad: true },
+  shards:  { name: 'Ätherscherben', mode: 'mult', f: 1, squad: true },
+  loot:    { name: 'Beute',         mode: 'add',  f: 1, squad: true, show: 'Chance auf Boss-Waffe' },
+  offline: { name: 'Offline',       mode: 'mult', f: 1, squad: true, show: 'Offline-Ertrag' },
+  ration:  { name: 'Proviant',      mode: 'mult', f: 1, show: 'EXP aus Proviant' },
+};
+
+export const TRAIT_SPECS = {
+  angriff:      { name: 'Angriff',      icon: '⚔️' },
+  verteidigung: { name: 'Verteidigung', icon: '🛡️' },
+  lager:        { name: 'Lager',        icon: '🧭' },
+  ausgeglichen: { name: 'Ausgeglichen', icon: '⚖️' },
+};
+
+// Bonus in % je Güte (Index 0 = Fein … 4 = Aufgestiegen), null = gibt es nicht
+const T1 = [3, 5, 8, 12, 15], T1H = [null, null, 8, 12, 15];
+const T2 = [null, 3, 4, 6, 7.5], T2H = [null, null, 4, 6, 7.5];
+const T3 = [null, null, null, 4, 5];
+const tr = (name, spec, stats, pct) => ({ name, spec, stats, pct });
+export const TRAITS = {
+  // Einzel (Ausdauernd aus dem Entwurf fehlt, bis es Erschöpfung gibt)
+  berserkerKraft:  tr('Berserker-Kraft',  'angriff',      ['atk'],     T1),
+  scharfesAuge:    tr('Scharfes Auge',    'angriff',      ['crit'],    T1),
+  wildheit:        tr('Wildheit',         'angriff',      ['critdmg'], T1),
+  eiligeKlinge:    tr('Eilige Klinge',    'angriff',      ['speed'],   T1),
+  zaehigkeit:      tr('Zähigkeit',        'verteidigung', ['def'],     T1),
+  vitalitaet:      tr('Vitalität',        'verteidigung', ['hp'],      T1),
+  felsenfest:      tr('Felsenfest',       'verteidigung', ['boss'],    T1H),
+  zaehesFleisch:   tr('Zähes Fleisch',    'verteidigung', ['regen'],   T1),
+  risslaeufer:     tr('Rissläufer',       'lager',        ['offline'], T1),
+  goldrausch:      tr('Goldrausch',       'lager',        ['gold'],    T1),
+  nebelgelehrter:  tr('Nebelgelehrter',   'lager',        ['exp'],     T1),
+  feldkoch:        tr('Feldkoch',         'lager',        ['ration'],  T1H),
+  aetherspuerer:   tr('Ätherspürer',      'lager',        ['shards'],  T1H),
+  // Doppel
+  kraftvollerStoss: tr('Kraftvoller Stoß',  'angriff',      ['atk', 'critdmg'],   T2),
+  praezision:       tr('Präzisionsschlag',  'angriff',      ['atk', 'crit'],      T2),
+  klingenwirbel:    tr('Klingenwirbel',     'angriff',      ['atk', 'speed'],     T2),
+  toedlicherFokus:  tr('Tödlicher Fokus',   'angriff',      ['crit', 'critdmg'],  T2),
+  sturmangriff:     tr('Sturmangriff',      'angriff',      ['speed', 'crit'],    T2),
+  eiserneAbwehr:    tr('Eiserne Abwehr',    'verteidigung', ['def', 'hp'],        T2),
+  schildwall:       tr('Schildwall',        'verteidigung', ['def', 'boss'],      T2),
+  leichtfuss:       tr('Leichtfuß',         'verteidigung', ['regen', 'def'],     T2),
+  lebensquell:      tr('Lebensquell',       'verteidigung', ['hp', 'heal'],       T2),
+  widerstandskraft: tr('Widerstandskraft',  'verteidigung', ['hp', 'boss'],       T2),
+  marodeurDrang:    tr('Marodeur-Drang',    'ausgeglichen', ['atk', 'hp'],        T2),
+  ritterStand:      tr('Ritterlicher Stand','ausgeglichen', ['atk', 'def'],       T2),
+  kampfsanitaeter:  tr('Kampfsanitäter',    'ausgeglichen', ['heal', 'atk'],      T2),
+  pirscherReflexe:  tr('Pirscher-Reflexe',  'ausgeglichen', ['crit', 'regen'],    T2),
+  spaeherzug:       tr('Späherzug',         'lager',        ['offline', 'exp'],   T2),
+  gildenhaendler:   tr('Gildenhändler',     'lager',        ['gold', 'offline'],  T2),
+  beutejaeger:      tr('Beutejäger',        'lager',        ['loot', 'shards'],   T2H),
+  paktEffizienz:    tr('Pakt-Effizienz',    'lager',        ['gold', 'exp'],      T2),
+  quartiermeister:  tr('Quartiermeister',   'lager',        ['ration', 'exp'],    T2),
+  // Dreifach (nur Exotisch und Aufgestiegen)
+  berserkerPraezision: tr('Berserker-Präzision',     'angriff',      ['atk', 'crit', 'critdmg'],  T3),
+  kriegsrausch:        tr('Charr-Kriegsrausch',      'angriff',      ['atk', 'speed', 'critdmg'], T3),
+  drachenZorn:         tr('Drachen-Zorn',            'angriff',      ['atk', 'critdmg', 'hp'],    T3),
+  assassine:           tr('Assassinen-Meisterschaft','angriff',      ['crit', 'speed', 'critdmg'],T3),
+  ritter:              tr('Unerschütterlicher Ritter','verteidigung',['def', 'hp', 'boss'],       T3),
+  wandererBollwerk:    tr('Wanderer-Bollwerk',       'verteidigung', ['def', 'hp', 'heal'],       T3),
+  kavalier:            tr('Kavalier-Taktik',         'verteidigung', ['def', 'hp', 'regen'],      T3),
+  marodeurVorstoss:    tr('Marodeur-Vorstoß',        'ausgeglichen', ['atk', 'crit', 'hp'],       T3),
+  kreuzritter:         tr('Kreuzritter-Stand',       'ausgeglichen', ['atk', 'def', 'critdmg'],   T3),
+  himmlisch:           tr('Himmlischer Funke',       'ausgeglichen', ['atk', 'def', 'hp'],        T3),
+  verrueckterKoenig:   tr('Glück des Verrückten Königs', 'lager',    ['loot', 'gold', 'exp'],     T3),
+  karawane:            tr('Karawanen-Vorrat',        'lager',        ['ration', 'shards', 'offline'], T3),
+};
+
+// Würfeln: count = Anzahl je Helden-Seltenheit. Jede Eigenschaft bekommt die
+// Güte des Helden oder darunter (gradeDrop: Gewichte für 0, 1, 2 Stufen tiefer,
+// nie unter Fein). specWeight: welche Spezialisierung je Rolle wie oft kommt.
+// Gibt es eine Eigenschaft in der Güte nicht, wird eine andere gewählt.
+// Keine Eigenschaft doppelt am selben Helden.
+export const TRAIT_RULES = {
+  count: { 2: 1, 3: 1, 4: 2, 5: 2, 6: 3 },
+  gradeDrop: [50, 35, 15],
+  specWeight: {
+    tank:    { angriff: 1, verteidigung: 4, lager: 2, ausgeglichen: 2 },
+    healer:  { angriff: 1, verteidigung: 4, lager: 2, ausgeglichen: 2 },
+    dps:     { angriff: 4, verteidigung: 1, lager: 2, ausgeglichen: 2 },
+    support: { angriff: 2, verteidigung: 2, lager: 2, ausgeglichen: 3 },
+  },
+};
+
 export const RETIRE_MIN_LEVEL = 20;
 // #022: Helden im Ruhestand zahlen je Zyklus (CYCLE_MS) 🟡 und 📜 nach goldCycle/rpCycle ihres Levels
 // (js/data/heroLevels.js, CQHT). Plätze: baseSlots + Forschung „Archiv der Veteranen“.

@@ -1,6 +1,6 @@
 # Helden-Eigenschaften (Traits) – Aetherbastion: Rift Watch
 
-> Interne Entwicklungs-Referenz für **Aetherbastion: Rift Watch**. **Geplant, noch nicht im Spiel.** Vorbild ist das Trait-System aus Crusaders Quest: Hero Town (45 Traits). Namen und Werte sind auf unser Spiel und Guild-Wars-2-Begriffe umgemünzt; die Prozentwerte sind Startwerte fürs Balancing und kommen beim Einbau nach `js/config.js`.
+> Interne Entwicklungs-Referenz für **Aetherbastion: Rift Watch**. **Seit v0.29.0 im Spiel** (siehe „Umsetzung“ unten). Vorbild ist das Trait-System aus Crusaders Quest: Hero Town (45 Traits). Namen und Werte sind auf unser Spiel und Guild-Wars-2-Begriffe umgemünzt; die Prozentwerte sind Startwerte fürs Balancing und kommen beim Einbau nach `js/config.js`.
 
 ## Idee
 
@@ -120,7 +120,30 @@ Nur in den Seltenheiten **Aufgestiegen** und **Exotisch**.
 | **Glück des Verrückten Königs** | 🧭 Lager | Beute, Gold, EXP | 5 / 4 % |
 | **Karawanen-Vorrat** | 🧭 Lager | Proviant, Ätherscherben, Offline | 5 / 4 % |
 
-## Offene Fragen für den Einbau
+## Umsetzung (v0.29.0)
+
+Die Daten stehen in `js/config.js` (`TRAITS`, `TRAIT_STATS`, `TRAIT_SPECS`, `TRAIT_RULES`), die Logik in `js/state.js` (`rollTraits`, `traitBonus`, `squadTrait`, `traitSpec`). Am Helden und am Rekrutierungsangebot: `traits: [{ id, g }]`, `g` = Güte 2–6.
+
+Entscheidungen zu den offenen Fragen:
+
+- **Würfeln statt fester Eigenschaften:** Die Eigenschaften werden je Angebot gewürfelt und sind im Angebot sichtbar. Kostenlose Helden (Onboarding, Aufträge) würfeln auch. Bestehende Helden haben bei der Migration (Save-Version 10) Eigenschaften nach ihrer Seltenheit bekommen.
+- **Anzahl und Güte:** Anzahl nach Helden-Seltenheit (Fein/Meisterwerk 1, Selten/Exotisch 2, Aufgestiegen 3). Güte = Seltenheit des Helden mit 50 %, eine Stufe tiefer 35 %, zwei Stufen tiefer 15 % (nie unter Fein). Gibt es eine Eigenschaft in der Güte nicht, wird eine andere gewählt. Keine Eigenschaft doppelt.
+- **Rolle lenkt die Spezialisierung:** `TRAIT_RULES.specWeight`, z. B. Tank/Heiler 4× Verteidigung, Schaden 4× Angriff.
+- **Neu würfeln:** Nur über „Liste erneuern“ (bestehender Preis). Eigenschaften am Helden ändern geht noch nicht (Idee: Mystische Schmiede, siehe #049).
+- **Ruhestand:** Eigenschaften gehen verloren; neu rekrutiert wird neu gewürfelt.
+- **Lager-Boni:** Gelten für den eigenen Trupp (Summe im Zelt), nicht aus der Reserve. So konkurrieren Lager-Helden um Kampfplätze.
+- **Preis:** Bleibt bei der Helden-Seltenheit; die Güte der Eigenschaften kann sie nicht übersteigen.
+- **Zusatzpunkte gedämpft:** Werte, die Prozentpunkte addieren, sind mit Faktor `f` gedämpft (Krit-Chance und Angriffstempo ×0,5, DEF ×0,4), damit ein Aufgestiegen-Held nicht sofort am DEF-Deckel klebt.
+- **Weggelassen:** „Ausdauernd“ und der Wert Ausdauer, bis es Erschöpfung gibt (44 statt 45 Eigenschaften).
+- **Neue Werte:** Boss-Härte (weniger Schaden von Bossen), Proviant (mehr EXP aus Proviant), Offline (mehr Offline-Ertrag je Sieg), Beute (Chance auf eine Boss-Waffe mehr).
+
+## Offene Fragen (Stand v0.29.0)
+
+- Eigenschaften gezielt neu würfeln oder aufwerten (Mystische Schmiede, 🍀)? Passt zu legendären Helden (#049).
+- Sollen Eigenschaften den Preis erhöhen, wenn alle in der höchsten Güte sind?
+- Balancing: Sind die Lager-Boni als Trupp-Summe zu stark, wenn drei Gold-Helden in einem Zelt stehen?
+
+## Ursprüngliche offene Fragen
 
 - **Katalog-Helden vs. Würfeln:** Unsere Helden sind feste Gildenmitglieder (`HEROES` in `js/config.js`). Bekommen sie feste Eigenschaften, oder werden sie beim Rekrutieren gewürfelt?
 - **Neu würfeln:** Kostet ein neues Rekrutierungsangebot Gold, und steigt der Preis wie beim Waffenladen?

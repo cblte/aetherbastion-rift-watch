@@ -8,7 +8,7 @@ import {
   GAME, CURRENCIES, ROLES, CLASSES, RACES, HEROES, HERO_BY_ID, ZONES, COMBAT, F, BUILDINGS, BUILDING_ORDER,
   TENTS, TENT_SIZE, MYSTIC, MYSTIC_ORDER, ONBOARDING, RETIRE_MIN_LEVEL, LEVEL_CAP_MAX, FEATURES,
   RESEARCH, RESEARCH_ORDER, TIER_LAB, HERO_LEVELS, WEAPON_BY_ID, WEAPON_GRADES, WEAPON_TYPES, RATIONS, NORMAL_STAGES,
-  TOTAL_NORMAL, CYCLE_MS, QUESTS as MAIN_QUESTS, RECRUIT, REROLL_RESET_CLOVER, ARMORY_SLOTS, ARMORY_CLEANUP_DEFAULT, UI, RATION_DROP,
+  TRAITS, TRAIT_STATS, TRAIT_SPECS, TOTAL_NORMAL, CYCLE_MS, QUESTS as MAIN_QUESTS, RECRUIT, REROLL_RESET_CLOVER, ARMORY_SLOTS, ARMORY_CLEANUP_DEFAULT, UI, RATION_DROP,
 } from './config.js';
 import { currentQuest, questProgress, questNumber, claimQuest, questDone } from './quests.js';
 import { manualChapters } from './manual.js';
@@ -17,6 +17,7 @@ import {
   activeHeroCount, reserveHeroes, isOwned, rarityBonus, isZoneAvailable, isStageAvailable, stageBeaten,
   stageLock, buildingCost, buildLock, canAfford, pay, createHero, addLog, squadOf, buildingUnlocked,
   featureUnlocked, normalCleared, hallGold, weaponType, armorySlots, armoryFree, rationSlots, retireSlots, retireIncome, retirePlace, addRetired, heroRetire,
+  traitPct, traitSpec,
 } from './state.js';
 import {
   squadMembers, spawnMonster, setStage, reviveHero, assignHero, teamProfile, heroOutput, fmt, stageOf,
@@ -627,6 +628,19 @@ function renderSquads() {
 }
 
 // Seltenheit eines Helden: Name und Farbe wie bei den Waffen-Güten
+// Eigenschaften (Traits): „◆ Name“ in der Farbe der Güte, darunter die Wirkung
+const pctText = (x) => `${(Math.round(x * 1000) / 10).toString().replace('.', ',')} %`;
+function traitEffect(id, g) {
+  return TRAITS[id].stats.map(k => {
+    const ts = TRAIT_STATS[k];
+    return `${ts.mode === 'less' ? '−' : '+'}${pctText(traitPct(id, g) * ts.f)} ${ts.show || ts.name}${ts.squad ? ' (Trupp)' : ''}`;
+  }).join(' · ');
+}
+function traitsHtml(traits) {
+  if (!traits?.length) return '';
+  return `<ul class="traits">${traits.map(x => `<li><span style="color:${WEAPON_GRADES[x.g].color}">◆ <b>${TRAITS[x.id].name}</b></span> <small>${traitEffect(x.id, x.g)}</small></li>`).join('')}</ul>`;
+}
+const specTag = (traits) => { const sp = traitSpec(traits); return sp ? `${TRAIT_SPECS[sp].icon} ${TRAIT_SPECS[sp].name}` : ''; };
 const rarityTag = (r) => `<span class="rar" style="color:${WEAPON_GRADES[r].color}">◆ ${WEAPON_GRADES[r].name}</span>`;
 
 function recruitHtml() {
@@ -642,10 +656,11 @@ function recruitHtml() {
         ${sprite(CLASSES[d.cls].sprite, 'mini-sprite')}
         <div class="hm-body">
           <div class="hm-name"><b>${esc(d.name)}</b></div>
-          <div class="hm-sub">${rarityTag(o.rarity)}</div>
+          <div class="hm-sub">${rarityTag(o.rarity)}${specTag(o.traits) ? ` · ${specTag(o.traits)}` : ''}</div>
           <div class="hm-title">„${esc(d.title)}“ · ${RACES[d.race].name}</div>
           <div class="hm-sub">${ROLES[d.role].icon} ${ROLES[d.role].name} · ${CLASSES[d.cls].name}${d.buff ? ` · ${d.buff === 'macht' ? 'Macht' : 'Eile'}` : ''}</div>
           <div class="hm-sub">❤ ${fmt(d.baseHp * m)} · ⚔️ ${fmt(d.baseAtk * m)}${d.crit ? ` · Krit ${Math.round(d.crit * 100)} %` : ''}</div>
+          ${traitsHtml(o.traits)}
         </div>
         <button class="btn primary" data-action="recruit" data-slot="${k}" ${blocked || S.gold < cost ? 'disabled' : ''}>Anwerben<small>🟡 ${fmt(cost)}</small></button>
       </div>`;
@@ -991,10 +1006,11 @@ function heroDetailHtml(h) {
       <div>
         <div class="hm-name"><b>${esc(d.name)}</b> <span class="lv">Lv. ${h.level}/${levelCap(S)}</span></div>
         <div class="hm-title">„${esc(d.title)}“ · ${RACES[d.race].name}${d.account ? ` · ${esc(d.account)}` : ''}</div>
-        <div class="hm-sub">${rarityTag(h.rarity)}${rarityBonus(h.rarity) ? ` · +${Math.round(rarityBonus(h.rarity) * 100)} % LP/ATK` : ''}</div>
+        <div class="hm-sub">${rarityTag(h.rarity)}${rarityBonus(h.rarity) ? ` · +${Math.round(rarityBonus(h.rarity) * 100)} % LP/ATK` : ''}${specTag(h.traits) ? ` · ${specTag(h.traits)}` : ''}</div>
         <div class="hm-sub">${ROLES[d.role].icon} ${ROLES[d.role].name} · ${CLASSES[d.cls].name}${d.buff ? ` · ${d.buff === 'macht' ? 'Macht (+ATK)' : 'Eile (Tempo)'}` : ''}</div>
       </div>
     </div>
+    ${h.traits?.length ? `<div class="traits-box"><div class="hm-sub">Eigenschaften</div>${traitsHtml(h.traits)}</div>` : ''}
     <div class="stat-grid">
       <span>❤ LP</span><b>${fmt(h.hp)} / ${fmt(hs.maxHp)}</b>
       <span>⚔️ ATK</span><b>${fmt(hs.atk)}</b>
@@ -1002,6 +1018,7 @@ function heroDetailHtml(h) {
       ${out.heal ? `<span>✚ Heilung</span><b>${fmt(out.heal)} LP pro Sekunde</b>` : ''}
       <span>🛡️ DEF</span><b>−${Math.round(hs.defense * 100)} % Schaden</b>
       ${out.canCrit ? `<span>🎯 Krit</span><b>${Math.round(hs.crit * 100)} % · ×${hs.critMult.toFixed(1).replace('.', ',')}</b>` : ''}
+      ${hs.speed && d.role !== 'healer' ? `<span>⏩ Tempo</span><b>+${Math.round(hs.speed * 100)} % Zusatzangriff</b>` : ''}
       <span>⚒️ Waffe</span><b>${weaponLabel(h)}</b>
       <span>✨ EXP</span><b>${fmt(h.exp)} / ${fmt(F.expToNext(h.level))}</b>
       <span>📍 Ort</span><b>${i === -1 ? 'Reserve' : `Zelt ${i + 1}`}</b>
@@ -1276,7 +1293,7 @@ function onClick(e) {
     case 'retire': {
       const h = getHero(S, num(d.uid));
       if (!h) break;
-      confirmModal('🌅 Ruhestand', `${esc(HERO_BY_ID[h.heroId].name)} (Lv. ${h.level}) verlässt das Lager und hinterlässt <b>🍀 ${heroRetire(h).clover}</b> Mystischen Klee.${heroRetire(h).combatLevel < h.level ? ` Proviant-EXP zählt nicht: Klee nach dem Kampf-Level ${heroRetire(h).combatLevel} statt Lv. ${h.level} (voll wären 🍀 ${heroRetire(h).full}).` : ''} ${retireConfirmText(h)} Die Waffe kommt in die Waffenkammer; der Held kann später neu rekrutiert werden (ab Lv. 1).`, 'retire-confirm', { uid: h.uid });
+      confirmModal('🌅 Ruhestand', `${esc(HERO_BY_ID[h.heroId].name)} (Lv. ${h.level}) verlässt das Lager und hinterlässt <b>🍀 ${heroRetire(h).clover}</b> Mystischen Klee.${heroRetire(h).combatLevel < h.level ? ` Proviant-EXP zählt nicht: Klee nach dem Kampf-Level ${heroRetire(h).combatLevel} statt Lv. ${h.level} (voll wären 🍀 ${heroRetire(h).full}).` : ''} ${retireConfirmText(h)} Die Waffe kommt in die Waffenkammer; der Held kann später neu rekrutiert werden (ab Lv. 1, mit neu gewürfelten Eigenschaften).`, 'retire-confirm', { uid: h.uid });
       break;
     }
     case 'retire-confirm': retire(num(d.uid)); break;

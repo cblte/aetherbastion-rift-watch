@@ -5,6 +5,7 @@ import {
   GAME, HERO_BY_ID, BUILDINGS, MYSTIC, F, COMBAT, ZONES, TENTS, TENT_SIZE, LEVEL_CAP_MAX,
   ROLES, RESEARCH, FEATURES, NORMAL_STAGES, TOTAL_NORMAL, HERO_LEVELS, CYCLE_MS, PORTAL_SHARDS,
   WEAPON_BY_ID, WEAPON_GRADES, WEAPON_FOR, RECRUIT, ARMORY_SLOTS, RATION_SLOTS, RETIRE_HOME,
+  TRAITS, TRAIT_STATS, TRAIT_RULES,
 } from './config.js';
 import { markFulfilledQuests } from './quests.js';
 
@@ -132,6 +133,12 @@ const MIGRATIONS = {
     s.retired = Array.isArray(s.retired) ? s.retired : [];
     return s;
   },
+  // v9 → v10: Eigenschaften (Traits). Vorhandene Helden und Angebote würfeln ihre Eigenschaften nach Seltenheit.
+  9: (s) => {
+    for (const h of s.heroes || []) if (HERO_BY_ID[h.heroId]) h.traits = rollTraits(h.heroId, h.rarity || RECRUIT.freeRarity);
+    for (const o of s.recruits?.offers || []) if (o && HERO_BY_ID[o.heroId]) o.traits = rollTraits(o.heroId, o.rarity || RECRUIT.freeRarity);
+    return s;
+  },
   // v4 → v5: Rekrutierung mit Angeboten und Seltenheit. Vorhandene Helden sind „Fein“.
   4: (s) => {
     for (const h of s.heroes || []) h.rarity = RECRUIT.freeRarity;
@@ -188,10 +195,16 @@ function sanitize(s) {
     if (!WEAPON_BY_ID[h.weapon]) h.weapon = null;
     if (!RECRUIT.rarities[h.rarity]) h.rarity = RECRUIT.freeRarity;
     h.level = Math.min(h.level, LEVEL_CAP_MAX);
+    h.traits = cleanTraits(h.traits);
+    if (!h.traits.length) h.traits = rollTraits(h.heroId, h.rarity);
   }
   s.armory = (s.armory || []).filter(w => WEAPON_BY_ID[w]);
   s.shop.offers = (s.shop.offers || []).filter(w => WEAPON_BY_ID[w]);
   s.recruits.offers = (s.recruits.offers || []).filter(o => o && HERO_BY_ID[o.heroId] && RECRUIT.rarities[o.rarity]);
+  for (const o of s.recruits.offers) {
+    o.traits = cleanTraits(o.traits);
+    if (!o.traits.length) o.traits = rollTraits(o.heroId, o.rarity);
+  }
   while (s.rations.length < 6) s.rations.push(0);
   s.log = (s.log || []).slice(0, GAME.LOG_SIZE);
   return s;
@@ -291,14 +304,71 @@ export function heroStats(state, hero) {
   const def = heroDef(hero);
   const w = hero.weapon ? WEAPON_GRADES[WEAPON_BY_ID[hero.weapon].grade] : { atk: 0, hp: 0 };
   const rar = 1 + rarityBonus(hero.rarity);
+  const t = traitBonus(hero.traits);
   return {
     def,
-    atk: F.heroAtk(def.baseAtk, hero.level, 1 + w.atk, rar * prestigeAtk(state) * (1 + rv(state, 'atk'))),
-    maxHp: F.heroHp(def.baseHp, hero.level, rar * (1 + w.hp) * prestigeHp(state) * (1 + rv(state, 'hp'))),
-    crit: Math.min(1, (def.crit || 0) + rv(state, 'crit')),
-    critMult: COMBAT.CRIT_MULT + rv(state, 'critdmg'),
-    defense: Math.min(COMBAT.DEF_CAP, ROLES[def.role].def + rv(state, 'def')),
+    atk: F.heroAtk(def.baseAtk, hero.level, 1 + w.atk, rar * prestigeAtk(state) * (1 + rv(state, 'atk')) * (1 + t.atk)),
+    maxHp: F.heroHp(def.baseHp, hero.level, rar * (1 + w.hp) * prestigeHp(state) * (1 + rv(state, 'hp')) * (1 + t.hp)),
+    crit: Math.min(1, (def.crit || 0) + rv(state, 'crit') + t.crit),
+    critMult: (COMBAT.CRIT_MULT + rv(state, 'critdmg')) * (1 + t.critdmg),
+    defense: Math.min(COMBAT.DEF_CAP, ROLES[def.role].def + rv(state, 'def') + t.def),
+    speed: t.speed,                 // eigene Chance auf Zusatzangriff
+    heal: 1 + t.heal,               // Faktor auf die eigene Heilung
+    regen: 1 - Math.min(0.9, t.regen), // Faktor auf die Verwundungszeit
+    bossDmg: 1 - Math.min(0.9, t.boss), // Faktor auf Schaden von Bossen
+    traits: t,
   };
+}
+
+// ---------- Eigenschaften (Traits) -------------------------------------
+// Bonus einer Eigenschaft je Wert als Anteil (0.15 = 15 %), schon mit TRAIT_STATS[…].f
+export const traitPct = (id, g) => (TRAITS[id]?.pct[g - 2] ?? 0) / 100;
+export function traitBonus(traits) {
+  const t = Object.fromEntries(Object.keys(TRAIT_STATS).map(k => [k, 0]));
+  for (const { id, g } of traits || []) {
+    const tr = TRAITS[id];
+    if (!tr) continue;
+    for (const k of tr.stats) t[k] += traitPct(id, g) * TRAIT_STATS[k].f;
+  }
+  return t;
+}
+// Trupp-Wert (TRAIT_STATS[…].squad): Summe aller Helden im Zelt
+export const squadTrait = (heroes, key) => heroes.reduce((a, h) => a + traitBonus(h.traits)[key], 0);
+// Spezialisierung = Spezialisierung der besten Eigenschaft (bei Gleichstand die erste)
+export function traitSpec(traits) {
+  let best = null;
+  for (const x of traits || []) if (TRAITS[x.id] && (!best || x.g > best.g)) best = x;
+  return best ? TRAITS[best.id].spec : null;
+}
+function cleanTraits(traits) {
+  return (Array.isArray(traits) ? traits : []).filter(x => x && TRAITS[x.id] && TRAITS[x.id].pct[x.g - 2] != null);
+}
+function pickW(pool, rnd) {
+  const sum = pool.reduce((a, o) => a + o.w, 0);
+  let x = rnd() * sum;
+  for (const o of pool) if ((x -= o.w) < 0) return o;
+  return pool[pool.length - 1];
+}
+// Würfelt die Eigenschaften eines Helden nach Seltenheit und Rolle (TRAIT_RULES)
+export function rollTraits(heroId, rarity, rnd = Math.random) {
+  const role = HERO_BY_ID[heroId]?.role || 'dps';
+  const n = TRAIT_RULES.count[rarity] || 1;
+  const out = [];
+  for (let i = 0; i < n; i++) {
+    const drop = pickW(TRAIT_RULES.gradeDrop.map((w, k) => ({ w, k })), rnd).k;
+    let g = Math.max(2, rarity - drop);
+    // In der Güte verfügbar und noch nicht gewählt; notfalls eine Güte tiefer suchen
+    let pool = [];
+    for (; g >= 2 && !pool.length; g--) {
+      pool = Object.entries(TRAITS)
+        .filter(([id, tr]) => tr.pct[g - 2] != null && !out.some(x => x.id === id))
+        .map(([id, tr]) => ({ id, w: TRAIT_RULES.specWeight[role][tr.spec] || 1 }));
+      if (pool.length) break;
+    }
+    if (!pool.length) break;
+    out.push({ id: pickW(pool, rnd).id, g });
+  }
+  return out.sort((a, b) => b.g - a.g);
 }
 
 export function squadOf(state, uid) {
@@ -367,8 +437,9 @@ export function pay(state, cost) {
   return true;
 }
 
-export function createHero(state, heroId, rarity = RECRUIT.freeRarity) {
-  const hero = { uid: state.nextUid++, heroId, rarity, level: 1, exp: 0, fedExp: 0, hp: 0, woundedUntil: 0, weapon: null };
+export function createHero(state, heroId, rarity = RECRUIT.freeRarity, traits = null) {
+  const hero = { uid: state.nextUid++, heroId, rarity, level: 1, exp: 0, fedExp: 0, hp: 0, woundedUntil: 0, weapon: null,
+    traits: traits ? structuredClone(traits) : rollTraits(heroId, rarity) };
   state.heroes.push(hero);
   hero.hp = heroStats(state, hero).maxHp;
   return hero;

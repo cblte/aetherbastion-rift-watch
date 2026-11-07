@@ -50,6 +50,18 @@ Monster treffen alle fitten Helden gleichzeitig: Der Tank bekommt den größten 
 
 Helden steigen bis **Lv. 60** auf. Jede neue Stufe bringt eine Belohnung: Forschungsnotizen, Proviant und manchmal Früchte.
 
+### Eigenschaften
+
+Jeder Held bringt **Eigenschaften** mit, gewürfelt beim Rekrutieren. Du siehst sie schon im Angebot, bevor du zahlst.
+
+- **Anzahl nach Seltenheit:** Fein und Meisterwerk 1, Selten und Exotisch 2, Aufgestiegen 3.
+- **Güte:** Jede Eigenschaft hat eine Güte (Farbe wie bei Waffen), höchstens die Seltenheit des Helden, oft eine oder zwei Stufen darunter. Höhere Güte = größerer Bonus.
+- **Arten:** Einzel-Eigenschaften geben einen großen Bonus auf einen Wert, Doppel- einen mittleren auf zwei, Dreifach- (nur Exotisch und Aufgestiegen) einen kleinen auf drei.
+- **Spezialisierung:** ⚔️ Angriff, 🛡️ Verteidigung, 🧭 Lager oder ⚖️ Ausgeglichen, nach der besten Eigenschaft. Tanks und Heiler bekommen öfter Verteidigung, Schadensausteiler öfter Angriff.
+- **Werte:** ATK, Krit-Chance, Krit-Schaden, Angriffstempo (Chance auf Zusatzangriff), LP, DEF, Heilung, kürzere Verwundung, weniger Schaden von Bossen, EXP aus Proviant.
+- **Lager-Werte (Trupp):** Gold, EXP, Ätherscherben, Beute (Chance auf eine Waffe mehr beim Boss) und Offline-Ertrag wirken für den ganzen Trupp im Zelt, aber nicht aus der Reserve.
+- Wer in den Ruhestand geht und neu rekrutiert wird, würfelt neue Eigenschaften.
+
 ## Zelte = Trupps
 
 - Jedes **Zelt** fasst **3 Helden** und ist ein eigener Trupp.

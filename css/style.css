@@ -490,6 +490,9 @@ h4 { margin: 16px 0 8px; font-size: 14px; color: var(--muted); }
 .hm-name b { font-weight: 700; color: color-mix(in srgb, var(--c) 75%, white); } /* Name in der Farbe der Seltenheit */
 .hm-title { font-size: 13px; color: #c9c4e8; }
 .hm-sub { font-size: 12px; color: var(--muted); }
+.traits { list-style: none; margin: 4px 0 0; padding: 0; display: grid; gap: 2px; font-size: 12px; line-height: 1.3; }
+.traits small { display: block; color: var(--muted); font-size: 11px; }
+.traits-box { margin: 8px 0; }
 .hm-wound { font-size: 12px; color: var(--bad); }
 .hero-row { display: flex; align-items: center; gap: 6px; cursor: pointer; min-height: 60px; }
 .hero-row.disabled { opacity: .45; }

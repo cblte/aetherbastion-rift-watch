@@ -6,7 +6,7 @@
 import { GAME, ZONES, COMBAT, ROLES, F, HERO_BY_ID, TENT_SIZE, CYCLE_MS, RATIONS, RATION_DROP, NORMAL_STAGES } from './config.js';
 import {
   getHero, heroStats, regenMs, goldMult, shardMult, kitchenMult, healMult, tempoBonus, gainExp, addLog,
-  isStageAvailable, squadOf, stageBeaten, payCycle, addRations,
+  isStageAvailable, squadOf, stageBeaten, payCycle, addRations, squadTrait,
 } from './state.js';
 import { checkConstruction, checkShop, checkRecruits, dropWeapons } from './progress.js';
 
@@ -62,11 +62,11 @@ export function teamProfile(state, heroes, squad = null) {
     hpPool += st.maxHp;
     const a = st.atk * atkMult;
     if (st.def.role === 'healer') {
-      heal += a * COMBAT.HEAL_MULT * healMult(state);
+      heal += a * COMBAT.HEAL_MULT * healMult(state) * st.heal;
       dps += a * COMBAT.HEALER_ATK_FACTOR * tempo;
     } else {
       const f = st.def.role === 'support' ? COMBAT.SUPPORT_ATK_FACTOR : 1;
-      dps += a * f * (1 + st.crit * (st.critMult - 1)) * tempo;
+      dps += a * f * (1 + st.crit * (st.critMult - 1)) * (tempo + st.speed);
     }
   }
   // DEF des Trupps, gewichtet wie der Monsterschaden verteilt wird
@@ -80,7 +80,7 @@ export function heroOutput(state, hero) {
   const st = heroStats(state, hero);
   const role = st.def.role;
   if (role === 'healer') {
-    return { hit: st.atk * COMBAT.HEALER_ATK_FACTOR, heal: st.atk * COMBAT.HEAL_MULT * healMult(state), canCrit: false };
+    return { hit: st.atk * COMBAT.HEALER_ATK_FACTOR, heal: st.atk * COMBAT.HEAL_MULT * healMult(state) * st.heal, canCrit: false };
   }
   const f = role === 'support' ? COMBAT.SUPPORT_ATK_FACTOR : 1;
   return { hit: st.atk * f, heal: 0, canCrit: true };
@@ -90,9 +90,10 @@ export function heroOutput(state, hero) {
 // factor: Anteil der Belohnung (Offline-Effizienz). deterministic: Scherben als Erwartungswert.
 export function applyKillRewards(state, squadIdx, tmpl, heroes, factor = 1, deterministic = false) {
   const sq = state.squads[squadIdx];
-  const gold = F.goldPerKill(tmpl.d) * (tmpl.boss ? COMBAT.BOSS_GOLD_MULT : 1) * goldMult(state) * factor;
-  const exp = F.expPerKill(tmpl.d) * (tmpl.boss ? COMBAT.BOSS_EXP_MULT : 1) * kitchenMult(state) * factor;
-  const chance = COMBAT.SHARD_CHANCE * shardMult(state);
+  // Lager-Eigenschaften des Trupps (TRAIT_STATS squad: true)
+  const gold = F.goldPerKill(tmpl.d) * (tmpl.boss ? COMBAT.BOSS_GOLD_MULT : 1) * goldMult(state) * (1 + squadTrait(heroes, 'gold')) * factor;
+  const exp = F.expPerKill(tmpl.d) * (tmpl.boss ? COMBAT.BOSS_EXP_MULT : 1) * kitchenMult(state) * (1 + squadTrait(heroes, 'exp')) * factor;
+  const chance = COMBAT.SHARD_CHANCE * shardMult(state) * (1 + squadTrait(heroes, 'shards'));
   const st = stageOf(sq.zone, sq.stage);
   const zone = ZONES[sq.zone - 1];
   const bossShards = tmpl.boss ? zone.tier * COMBAT.BOSS_SHARDS_PER_ZONE * (st.hard ? 3 : 1) : 0;
@@ -119,7 +120,8 @@ export function applyKillRewards(state, squadIdx, tmpl, heroes, factor = 1, dete
     const r = st.rewards;
     rp = r.rp[0] + Math.floor(Math.random() * (r.rp[1] - r.rp[0] + 1));
     state.rp += rp;
-    ({ got: weapons, lost: lostWeapons } = dropWeapons(state, zone.tier, !!st.hard, r.weapons));
+    const extra = Math.random() < squadTrait(heroes, 'loot') ? 1 : 0; // Eigenschaft „Beute“
+    ({ got: weapons, lost: lostWeapons } = dropWeapons(state, zone.tier, !!st.hard, r.weapons + extra));
     const g = Math.min(RATIONS.length, st.hard ? 6 : zone.tier + (zone.part === 2 ? 1 : 0)) - 1;
     // erster Sieg: volle Menge; danach nur mit RATION_DROP.chance 1–2 Stück (#045)
     let n = 0;
@@ -235,11 +237,11 @@ function tickSquad(state, i, now, ev) {
         .map(x => ({ x, max: heroStats(state, x).maxHp }))
         .filter(o => o.x.hp < o.max)
         .sort((p, q) => p.x.hp / p.max - q.x.hp / q.max)[0];
-      if (target) target.x.hp = Math.min(target.max, target.x.hp + a * COMBAT.HEAL_MULT * healMult(state));
+      if (target) target.x.hp = Math.min(target.max, target.x.hp + a * COMBAT.HEAL_MULT * healMult(state) * st.heal);
       dmg += a * COMBAT.HEALER_ATK_FACTOR;
     } else {
       const f = st.def.role === 'support' ? COMBAT.SUPPORT_ATK_FACTOR : 1;
-      const extra = prof.tempo - 1;
+      const extra = prof.tempo - 1 + st.speed;
       const hits = 1 + Math.floor(extra) + (Math.random() < extra % 1 ? 1 : 0);
       for (let k = 0; k < hits; k++) {
         let x = a * f;
@@ -283,10 +285,11 @@ function tickSquad(state, i, now, ev) {
 
   // Monster trifft alle fitten Helden, aufgeteilt nach Rolle (ROLES[…].aggro)
   for (const { hero, share } of damageShares(frontOrder(state, sq, alive))) {
-    hero.hp -= mon.atk * share * (1 - heroStats(state, hero).defense);
+    const hs = heroStats(state, hero);
+    hero.hp -= mon.atk * share * (1 - hs.defense) * (mon.boss ? hs.bossDmg : 1);
     if (hero.hp <= 0) {
       hero.hp = 0;
-      hero.woundedUntil = now + regenMs(state);
+      hero.woundedUntil = now + Math.round(regenMs(state) * hs.regen);
       addLog(state, `💢 ${HERO_BY_ID[hero.heroId].name} ist verwundet.`, i, 'bad');
     }
   }
