@@ -4,7 +4,7 @@
 //  Rückgabe: [{ icon, title, html }] – wird in ui.js als Kapitel gezeigt.
 // =====================================================================
 import {
-  BUILDINGS, ZONES, ROLES, TENTS, TENT_SIZE, COMBAT, GAME, NORMAL_STAGES, TOTAL_NORMAL, FEATURES,
+  BUILDINGS, ZONES, ROLES, HEROES, TENTS, TENT_SIZE, COMBAT, GAME, NORMAL_STAGES, TOTAL_NORMAL, FEATURES,
   RETIRE_MIN_LEVEL, LEVEL_CAP_MAX, ARMORY_SLOTS, RATION_SLOTS, RATION_DROP, RETIRE_HOME, CYCLE_MS, WEAPON_TYPES, WEAPON_GRADES, SHOP, QUESTS, RECRUIT, REROLL_RESET_CLOVER,
 } from './config.js';
 
@@ -44,6 +44,7 @@ export function manualChapters() {
       <p><b>Gildenkasse:</b> Alle ${min(CYCLE_MS)} Minuten zahlt die Gildenhalle Gold aus. Helden selbst verdienen nur im Kampf.</p>` },
 
     { icon: '🛡️', title: 'Helden, Rollen & Zelte', html: `
+      <p>${HEROES.length} Helden aus fünf Völkern (Charr, Menschen, Norn, Asura, Sylvari), von jeder Rolle gleich viele. Das Volk ändert keine Werte, wichtig sind Rolle und Klasse.</p>
       ${list([
         '🛡️ <b>Tank:</b> steht vorn, wird zuerst angegriffen, viele LP.',
         '⚔️ <b>Schaden:</b> hoher Schaden, oft mit Krit-Chance.',

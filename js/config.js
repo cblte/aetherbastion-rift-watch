@@ -5,7 +5,7 @@
 
 export const GAME = {
   title: 'Aetherbastion: Rift Watch',
-  VERSION: '0.27.1',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
+  VERSION: '0.28.0',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
   BUILD: 'lokal',                    // ersetzt der Pages-Workflow durch „Nr. · Commit“
   SAVE_KEY: 'aetherbastion_save_v1',
   SAVE_VERSION: 9,
@@ -57,35 +57,87 @@ export const CLASSES = {
   nekromant:  { name: 'Nekromant',       sprite: 'HERO_NEKROMANT',  color: '#5fd6a8' },
 };
 
+export const RACES = {
+  charr:   { name: 'Charr' },
+  mensch:  { name: 'Mensch' },
+  norn:    { name: 'Norn' },
+  asura:   { name: 'Asura' },
+  sylvari: { name: 'Sylvari' },
+};
+
 // ---------------------------------------------------------------------
-//  HELDEN-KATALOG
-//  👉 Gilde: Hier einfach `name` und `title` (optional `account`) durch
-//     die Charaktere eurer Gildenmitglieder ersetzen. Die `id` NICHT
-//     ändern, sonst passen alte Spielstände nicht mehr.
+//  HELDEN-KATALOG (60 Helden: 12 je Volk, 15 je Rolle)
+//  Namen aus der Namensliste (dev-data/helden-namen.md, dort auch die
+//  Reserve). Charr-Namen englisch, Norn-Beinamen deutsch wie im DE-Client.
+//  👉 Die `id` NIE ändern, sonst passen alte Spielstände nicht mehr.
+//     `name`, `title`, Werte und Buffs dürfen sich ändern.
+//  race: nur Anzeige (RACES), keine Wirkung im Kampf
 //  buff (nur Unterstützer): 'macht' = +ATK fürs Team, 'eile' = Tempo
 //  crit: Krit-Chance (0–1), vor allem für Schadensausteiler
+//  account (optional): GW2-Accountname eines Gildenmitglieds
 // ---------------------------------------------------------------------
 export const HEROES = [
-  { id: 'h01', name: 'Mitglied 01', title: 'Schildwacht des Lagers',  account: 'Spieler.0001', cls: 'waechter',    role: 'tank',    baseHp: 260, baseAtk: 9 },
-  { id: 'h02', name: 'Mitglied 02', title: 'Flamme der Zuversicht',   account: 'Spieler.0002', cls: 'waechter',    role: 'healer',  baseHp: 180, baseAtk: 7 },
-  { id: 'h03', name: 'Mitglied 03', title: 'Bollwerk von Ascalon',    account: 'Spieler.0003', cls: 'krieger',     role: 'tank',    baseHp: 280, baseAtk: 8 },
-  { id: 'h04', name: 'Mitglied 04', title: 'Klinge im Sturm',         account: 'Spieler.0004', cls: 'krieger',     role: 'dps',     baseHp: 160, baseAtk: 15, crit: 0.15 },
-  { id: 'h05', name: 'Mitglied 05', title: 'Bannerträger der Wacht',  account: 'Spieler.0005', cls: 'krieger',     role: 'support', baseHp: 200, baseAtk: 9, buff: 'macht' },
-  { id: 'h06', name: 'Mitglied 06', title: 'Stimme der Legenden',     account: 'Spieler.0006', cls: 'widergaenger', role: 'tank',   baseHp: 250, baseAtk: 10 },
-  { id: 'h07', name: 'Mitglied 07', title: 'Druide des Hains',        account: 'Spieler.0007', cls: 'waldlaeufer', role: 'healer',  baseHp: 170, baseAtk: 7 },
-  { id: 'h08', name: 'Mitglied 08', title: 'Pfeil der Wildnis',       account: 'Spieler.0008', cls: 'waldlaeufer', role: 'dps',     baseHp: 150, baseAtk: 15, crit: 0.20 },
-  { id: 'h09', name: 'Mitglied 09', title: 'Schatten der Gassen',     account: 'Spieler.0009', cls: 'dieb',        role: 'dps',     baseHp: 135, baseAtk: 17, crit: 0.25 },
-  { id: 'h10', name: 'Mitglied 10', title: 'Dolch im Nebel',          account: 'Spieler.0010', cls: 'dieb',        role: 'dps',     baseHp: 140, baseAtk: 16, crit: 0.22 },
-  { id: 'h11', name: 'Mitglied 11', title: 'Mechanist der Werkbank',  account: 'Spieler.0011', cls: 'ingenieur',   role: 'healer',  baseHp: 175, baseAtk: 8 },
-  { id: 'h12', name: 'Mitglied 12', title: 'Tüftler mit Turbo',       account: 'Spieler.0012', cls: 'ingenieur',   role: 'support', baseHp: 185, baseAtk: 9, buff: 'eile' },
-  { id: 'h13', name: 'Mitglied 13', title: 'Funke des Feuers',        account: 'Spieler.0013', cls: 'elementar',   role: 'dps',     baseHp: 130, baseAtk: 18, crit: 0.15 },
-  { id: 'h14', name: 'Mitglied 14', title: 'Sturm über der Ebene',    account: 'Spieler.0014', cls: 'elementar',   role: 'dps',     baseHp: 130, baseAtk: 17, crit: 0.18 },
-  { id: 'h15', name: 'Mitglied 15', title: 'Meister der Trugbilder',  account: 'Spieler.0015', cls: 'mesmer',      role: 'support', baseHp: 170, baseAtk: 10, buff: 'eile' },
-  { id: 'h16', name: 'Mitglied 16', title: 'Spiegel der Klingen',     account: 'Spieler.0016', cls: 'mesmer',      role: 'dps',     baseHp: 145, baseAtk: 15, crit: 0.20 },
-  { id: 'h17', name: 'Mitglied 17', title: 'Hüter der Grabesstille',  account: 'Spieler.0017', cls: 'nekromant',   role: 'dps',     baseHp: 165, baseAtk: 15, crit: 0.12 },
-  { id: 'h18', name: 'Mitglied 18', title: 'Flüsterer der Seuche',    account: 'Spieler.0018', cls: 'nekromant',   role: 'support', baseHp: 180, baseAtk: 10, buff: 'macht' },
-  { id: 'h19', name: 'Mitglied 19', title: 'Erbe der Nebel',          account: 'Spieler.0019', cls: 'widergaenger', role: 'dps',    baseHp: 165, baseAtk: 15, crit: 0.15 },
-  { id: 'h20', name: 'Mitglied 20', title: 'Wächter des Pakts',       account: 'Spieler.0020', cls: 'waechter',    role: 'dps',     baseHp: 170, baseAtk: 14, crit: 0.12 },
+  { id: 'h01', name: 'Lucian Halford',        title: 'Schild von Götterfels',          race: 'mensch',  cls: 'waechter',     role: 'tank',    baseHp: 260, baseAtk: 9 },
+  { id: 'h02', name: 'Valra Embersoul',       title: 'Glut der Zuversicht',            race: 'charr',   cls: 'waechter',     role: 'healer',  baseHp: 180, baseAtk: 7 },
+  { id: 'h03', name: 'Roxx Ironbreaker',      title: 'Bollwerk der Eisenlegion',       race: 'charr',   cls: 'krieger',      role: 'tank',    baseHp: 280, baseAtk: 8 },
+  { id: 'h04', name: 'Astrid Skadidottir',    title: 'Klinge im Schneesturm',          race: 'norn',    cls: 'krieger',      role: 'dps',     baseHp: 160, baseAtk: 15, crit: 0.15 },
+  { id: 'h05', name: 'Alistair Vance',        title: 'Bannerträger der Seraphen',      race: 'mensch',  cls: 'krieger',      role: 'support', baseHp: 200, baseAtk: 9, buff: 'macht' },
+  { id: 'h06', name: 'Halvar Sonnenschild',   title: 'Stimme der Legenden',            race: 'norn',    cls: 'widergaenger', role: 'tank',    baseHp: 250, baseAtk: 10 },
+  { id: 'h07', name: 'Olwen',                 title: 'Druidin des Hains',              race: 'sylvari', cls: 'waldlaeufer',  role: 'healer',  baseHp: 170, baseAtk: 7 },
+  { id: 'h08', name: 'Arn Adlerauge',         title: 'Pfeil der Zittergipfel',         race: 'norn',    cls: 'waldlaeufer',  role: 'dps',     baseHp: 150, baseAtk: 15, crit: 0.20 },
+  { id: 'h09', name: 'Diana Swift',           title: 'Schatten der Gassen',            race: 'mensch',  cls: 'dieb',         role: 'dps',     baseHp: 135, baseAtk: 17, crit: 0.25 },
+  { id: 'h10', name: 'Snappi',                title: 'Dolch im Nebel',                 race: 'asura',   cls: 'dieb',         role: 'dps',     baseHp: 140, baseAtk: 16, crit: 0.22 },
+  { id: 'h11', name: 'Miphi',                 title: 'Mechanistin der Werkbank',       race: 'asura',   cls: 'ingenieur',    role: 'healer',  baseHp: 175, baseAtk: 8 },
+  { id: 'h12', name: 'Zokk',                  title: 'Tüftler mit Turbo',              race: 'asura',   cls: 'ingenieur',    role: 'support', baseHp: 185, baseAtk: 9, buff: 'eile' },
+  { id: 'h13', name: 'Vorek Stormcaller',     title: 'Sturm über Ascalon',             race: 'charr',   cls: 'elementar',    role: 'dps',     baseHp: 130, baseAtk: 18, crit: 0.15 },
+  { id: 'h14', name: 'Brynhild Frostgeboren', title: 'Frost über den Gipfeln',         race: 'norn',    cls: 'elementar',    role: 'dps',     baseHp: 130, baseAtk: 17, crit: 0.18 },
+  { id: 'h15', name: 'Branwen',               title: 'Meisterin der Trugbilder',       race: 'sylvari', cls: 'mesmer',       role: 'support', baseHp: 170, baseAtk: 10, buff: 'eile' },
+  { id: 'h16', name: 'Cassandra Delacroix',   title: 'Spiegel der Klingen',            race: 'mensch',  cls: 'mesmer',       role: 'dps',     baseHp: 145, baseAtk: 15, crit: 0.20 },
+  { id: 'h17', name: 'Niall',                 title: 'Hüter der Grabesstille',         race: 'sylvari', cls: 'nekromant',    role: 'dps',     baseHp: 165, baseAtk: 15, crit: 0.12 },
+  { id: 'h18', name: 'Korak Ashpyre',         title: 'Flüsterer der Asche',            race: 'charr',   cls: 'nekromant',    role: 'support', baseHp: 180, baseAtk: 10, buff: 'macht' },
+  { id: 'h19', name: 'Caelen',                title: 'Erbe der Nebel',                 race: 'sylvari', cls: 'widergaenger', role: 'dps',     baseHp: 165, baseAtk: 15, crit: 0.15 },
+  { id: 'h20', name: 'Desta Shieldbastion',   title: 'Wächterin des Pakts',            race: 'charr',   cls: 'waechter',     role: 'dps',     baseHp: 170, baseAtk: 14, crit: 0.12 },
+  // ab v0.28.0
+  { id: 'h21', name: 'Vrakka Forgecleaver',   title: 'Schmiedeklinge der Eisenlegion', race: 'charr',   cls: 'krieger',      role: 'dps',     baseHp: 165, baseAtk: 16, crit: 0.15 },
+  { id: 'h22', name: 'Garron Dawnguard',      title: 'Morgenwall der Blutlegion',      race: 'charr',   cls: 'waechter',     role: 'tank',    baseHp: 275, baseAtk: 9 },
+  { id: 'h23', name: 'Rhok Farstrider',      title: 'Hornbläser der Ebenen',          race: 'charr',   cls: 'waldlaeufer',  role: 'support', baseHp: 190, baseAtk: 9, buff: 'eile' },
+  { id: 'h24', name: 'Pyra Talonshot',        title: 'Scharfschützin der Aschelegion', race: 'charr',   cls: 'ingenieur',    role: 'dps',     baseHp: 150, baseAtk: 16, crit: 0.20 },
+  { id: 'h25', name: 'Kaida Cracklebolt',    title: 'Regenruferin von Aschfurt',      race: 'charr',   cls: 'elementar',    role: 'healer',  baseHp: 175, baseAtk: 8 },
+  { id: 'h26', name: 'Elena Mercer',          title: 'Schildmaid von Shaemoor',        race: 'mensch',  cls: 'krieger',      role: 'tank',    baseHp: 270, baseAtk: 9 },
+  { id: 'h27', name: 'Vivienne Suncrest',     title: 'Lichtträgerin der Seraphen',     race: 'mensch',  cls: 'waechter',     role: 'support', baseHp: 195, baseAtk: 10, buff: 'macht' },
+  { id: 'h28', name: 'Julian Croft',          title: 'Priester der Dwayna',            race: 'mensch',  cls: 'waechter',     role: 'healer',  baseHp: 180, baseAtk: 7 },
+  { id: 'h29', name: 'Sophia Dawn',           title: 'Ruferin der Legende Ventari',    race: 'mensch',  cls: 'widergaenger', role: 'healer',  baseHp: 180, baseAtk: 8 },
+  { id: 'h30', name: 'Garrett Fletcher',      title: 'Pfeilmacher aus Beetletun',      race: 'mensch',  cls: 'waldlaeufer',  role: 'dps',     baseHp: 155, baseAtk: 15, crit: 0.20 },
+  { id: 'h31', name: 'Damian Voss',          title: 'Schnitter vom Totenwald',        race: 'mensch',  cls: 'nekromant',    role: 'tank',    baseHp: 255, baseAtk: 10 },
+  { id: 'h32', name: 'Torvald Felsbrecher',   title: 'Riese von Hoelbrak',             race: 'norn',    cls: 'krieger',      role: 'tank',    baseHp: 290, baseAtk: 9 },
+  { id: 'h33', name: 'Freya Morgenwacht',     title: 'Gezeichnet vom Geist des Bären', race: 'norn',    cls: 'widergaenger', role: 'tank',    baseHp: 270, baseAtk: 10 },
+  { id: 'h34', name: 'Vidar Rabenwacht',      title: 'Seher des Raben',                race: 'norn',    cls: 'waldlaeufer',  role: 'healer',  baseHp: 175, baseAtk: 7 },
+  { id: 'h35', name: 'Ingrid Wolfsang',       title: 'Sängerin des Wolfs',             race: 'norn',    cls: 'waldlaeufer',  role: 'support', baseHp: 190, baseAtk: 9, buff: 'eile' },
+  { id: 'h36', name: 'Silje Falkenblick',    title: 'Heilerin des Schneeleoparden',   race: 'norn',    cls: 'waldlaeufer',  role: 'healer',  baseHp: 175, baseAtk: 7 },
+  { id: 'h37', name: 'Soren Eisweber',       title: 'Runen der Stärke',               race: 'norn',    cls: 'elementar',    role: 'support', baseHp: 180, baseAtk: 10, buff: 'macht' },
+  { id: 'h38', name: 'Kragg',                title: 'Kleiner Hammer, großer Schild',  race: 'asura',   cls: 'krieger',      role: 'tank',    baseHp: 240, baseAtk: 9 },
+  { id: 'h39', name: 'Plikka',                title: 'Bannerkalkül der Statischen',    race: 'asura',   cls: 'krieger',      role: 'support', baseHp: 180, baseAtk: 9, buff: 'macht' },
+  { id: 'h40', name: 'Vorx',                  title: 'Golempilot der Dynamik',         race: 'asura',   cls: 'ingenieur',    role: 'tank',    baseHp: 245, baseAtk: 9 },
+  { id: 'h41', name: 'Jazzi',                 title: 'Theoretikerin des Lichts',       race: 'asura',   cls: 'waechter',     role: 'support', baseHp: 180, baseAtk: 10, buff: 'macht' },
+  { id: 'h42', name: 'Flekk',                 title: 'Schleicher von Rata Sum',        race: 'asura',   cls: 'dieb',         role: 'dps',     baseHp: 130, baseAtk: 17, crit: 0.25 },
+  { id: 'h43', name: 'Xenn',                  title: 'Theoretiker der Trugbilder',     race: 'asura',   cls: 'mesmer',       role: 'support', baseHp: 165, baseAtk: 10, buff: 'eile' },
+  { id: 'h44', name: 'Vizza',                 title: 'Krafttheorie in Flammen',        race: 'asura',   cls: 'elementar',    role: 'dps',     baseHp: 125, baseAtk: 19, crit: 0.15 },
+  { id: 'h45', name: 'Maeve',                 title: 'Dorn des Hains',                 race: 'sylvari', cls: 'krieger',      role: 'tank',    baseHp: 260, baseAtk: 9 },
+  { id: 'h46', name: 'Tiernan',               title: 'Ritter des Bleichen Baums',      race: 'sylvari', cls: 'waechter',     role: 'tank',    baseHp: 265, baseAtk: 9 },
+  { id: 'h47', name: 'Eira',                  title: 'Tau der Morgendämmerung',        race: 'sylvari', cls: 'waechter',     role: 'healer',  baseHp: 175, baseAtk: 8 },
+  { id: 'h48', name: 'Iorwerth',              title: 'Wurzel der Stille',              race: 'sylvari', cls: 'nekromant',    role: 'support', baseHp: 180, baseAtk: 10, buff: 'macht' },
+  { id: 'h49', name: 'Rowan',                 title: 'Rufer der Wildnis',              race: 'sylvari', cls: 'waldlaeufer',  role: 'healer',  baseHp: 170, baseAtk: 7 },
+  { id: 'h50', name: 'Seren',                title: 'Schattenheilerin im Caledon-Wald', race: 'sylvari', cls: 'dieb',         role: 'healer',  baseHp: 170, baseAtk: 8 },
+  { id: 'h51', name: 'Barok Lightwall',      title: 'Lichtwall der Eisenlegion',      race: 'charr',   cls: 'waechter',     role: 'tank',    baseHp: 280, baseAtk: 9 },
+  { id: 'h52', name: 'Zanna Soulsear',       title: 'Seelenbrand der Aschelegion',    race: 'charr',   cls: 'widergaenger', role: 'healer',  baseHp: 180, baseAtk: 8 },
+  { id: 'h53', name: 'Cedric Valerius',      title: 'Mechaniker von Ebonfalke',       race: 'mensch',  cls: 'ingenieur',    role: 'support', baseHp: 190, baseAtk: 10, buff: 'macht' },
+  { id: 'h54', name: 'Livia Thorne',         title: 'Hüterin der Stunde',             race: 'mensch',  cls: 'mesmer',       role: 'healer',  baseHp: 170, baseAtk: 8 },
+  { id: 'h55', name: 'Thyra Bärenwacht',     title: 'Schildwall der Wanderer-Hügel',  race: 'norn',    cls: 'krieger',      role: 'tank',    baseHp: 295, baseAtk: 9 },
+  { id: 'h56', name: 'Leif Geisterrufer',    title: 'Rufer der Wildgeister',          race: 'norn',    cls: 'waldlaeufer',  role: 'support', baseHp: 190, baseAtk: 9, buff: 'eile' },
+  { id: 'h57', name: 'Tezz',                 title: 'Legendenkalkulator',             race: 'asura',   cls: 'widergaenger', role: 'tank',    baseHp: 245, baseAtk: 10 },
+  { id: 'h58', name: 'Genni',                title: 'Hydromantin der Synergetik',     race: 'asura',   cls: 'elementar',    role: 'healer',  baseHp: 165, baseAtk: 8 },
+  { id: 'h59', name: 'Kynan',                title: 'Spiegel des Traums',             race: 'sylvari', cls: 'mesmer',       role: 'support', baseHp: 175, baseAtk: 10, buff: 'eile' },
+  { id: 'h60', name: 'Fiona',                title: 'Blüte im Grabesschatten',        race: 'sylvari', cls: 'nekromant',    role: 'healer',  baseHp: 175, baseAtk: 7 },
 ];
 export const HERO_BY_ID = Object.fromEntries(HEROES.map(h => [h.id, h]));
 

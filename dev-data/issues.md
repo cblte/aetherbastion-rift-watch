@@ -9,7 +9,7 @@ Feedback und Fehler aus dem Spieltest. Erledigte Punkte wandern mit Version nach
 - **Status:** `offen` · `in Arbeit` · `zurückgestellt` (mit Grund)
 - **Quelle:** wer es gemeldet hat (z. B. „Spieltest Frau“, „Gilde“)
 
-Nächste freie Nummer: **#049**
+Nächste freie Nummer: **#050**
 
 ## Eingang
 
@@ -82,8 +82,9 @@ _Zurzeit nichts offen._
 - **Status:** offen · **Quelle:** Gilde (Spieler hat alle Bosse inkl. legendär besiegt), vom Entwickler bestätigt
 - Rückmeldung: Überangebot an Schaden, einige Unterstützer, sehr wenige Tanks, nur drei Heiler, alle drei in der Seltenheit Fein.
 - Befund: `HEROES` hat 10 Schaden, 4 Unterstützer, 3 Tanks, 3 Heiler. Jeder Held existiert nur einmal. Kostenlose Helden aus den Aufträgen kommen als `RECRUIT.freeRarity` (2 = Fein) und werden danach nie wieder angeboten (`recruitPool` filtert Besessene). Bekommt man die Heiler per Auftrag, kann man sie also nie in besserer Seltenheit haben.
+- Seit v0.28.0: 60 Helden, je 15 pro Rolle (Teil 1 erledigt). Offen bleibt der zweite Punkt.
 - Vorschlag:
-  - Mehr Heiler und Tanks in `HEROES` (neue `id`s, bestehende nie ändern), damit die Rollen ungefähr gleich groß sind.
+  - ~~Mehr Heiler und Tanks in `HEROES`~~ (v0.28.0) (neue `id`s, bestehende nie ändern), damit die Rollen ungefähr gleich groß sind.
   - Die offene Frage aus „Geplant“ jetzt klären: Besessene Helden wieder anbieten, und eine bessere Seltenheit ersetzt die alte (Level bleibt). Alternative: Beförderung #033 hebt die Seltenheit.
 
 ### #043 Endgame-Schwierigkeit: Formel oder Handarbeit?
@@ -94,6 +95,12 @@ _Zurzeit nichts offen._
 - Vorschlag: Keine endlose Formel als Hauptinhalt. Lieber feste Inhalte mit Mechaniken (#042) und Erweiterungen (#044). Eine Formel höchstens als optionaler „endloser Riss“ mit Bestenliste in der Gilde. Dazu den offenen Balancing-Punkt aus `CLAUDE.md` angehen (Zonen 9–10, `F.monsterHp`, `F.monsterAtk`, `COMBAT.LEVEL_DIFF`): den Spieler fragen, wie lange er für schwer/legendär gebraucht hat.
 
 ## Idee
+
+### #049 Legendäre Helden: 7★ für voll ausgelevelte Helden (und Waffen)
+- **Status:** offen, Umsetzung noch unklar · **Quelle:** Entwickler
+- Idee: Ein Held (genauso eine Waffe), der komplett ausgelevelt ist, lässt sich noch eine Stufe weiter bringen: **7★ / Legendär**. Das sind die Spezialhelden.
+- Legendäre Helden dürfen ein klein wenig zu stark (OP) sein, müssen dafür aber sehr schwer zu bekommen sein.
+- Offen: Weg dorthin (Mystische Schmiede? seltenes Material? langer Auftrag?), Kosten, was sich ändert (Werte-Bonus, eigene Fähigkeit, Rahmenfarbe wie `WEAPON_GRADES` 7). Hängt an #033 (Beförderung) und #039 (bessere Seltenheit ersetzt die alte).
 
 ### #048 Ätherscherben werden Orichalcum (nur aus Waffenverkauf, Aufwerten in der Zwergen-Schmiede)
 - **Status:** offen · **Quelle:** Entwickler

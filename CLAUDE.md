@@ -14,7 +14,7 @@ Mobile-First Idle-RPG als PWA für eine Guild-Wars-2-Gilde (nicht-kommerzielles 
 
 ## Architektur
 - `js/data/*.js`: reine Datentabellen aus Crusaders Quest: Hero Town, auf GW2 umgemünzt (siehe `DATA.md`). Zahlen dort ändern, nicht in der Logik. Ausnahme: `stages.js` wird von `tools/gen-zones.mjs` erzeugt.
-- `config.js`: Konstanten, Formeln (`F`), Helden, Rollen, Forschung, Mystische Schmiede; baut `ZONES` (mit Schwierigkeit `d`) und `BUILDINGS` aus `js/data/`
+- `config.js`: Konstanten, Formeln (`F`), Helden (60, je 15 pro Rolle – beim Ergänzen gleich halten, `race` nur Anzeige), Völker (`RACES`), Rollen, Forschung, Mystische Schmiede; baut `ZONES` (mit Schwierigkeit `d`) und `BUILDINGS` aus `js/data/`
 - `state.js`: Spielstand, Save/Load/Migration (`localStorage['aetherbastion_save_v1']`, aktuell Save-Version 9), abgeleitete Werte (`heroStats` inkl. Waffe/Forschung/DEF, `levelCap`, `isStageAvailable` …)
 - `combat.js`: 1-s-Tick pro Trupp. Squad-`mode` ist `'farm'` (Schergen der Stufe) oder `'boss'` (Herausforderung, 90 s Zeitlimit, danach 90 s Pause `bossReadyAt`; `autoBoss` wiederholt nach der Pause, aus nach Niederlage). Ein Boss-Sieg setzt `state.progress[zone]`. Dazu Belohnungen (`applyKillRewards`), Tauschen und Beleben.
 - `progress.js`: Bauen mit Bauzeit (`state.construction`, immer nur ein Auftrag), Rekrutierung (`state.recruits`: Angebote mit Seltenheit, Timer und Erneuern; Werte in `RECRUIT`), Charr-Schmiede (Laden `state.shop`, Waffenkammer `state.armory`, `hero.weapon` = Waffen-ID), Proviant, Asura-Labor (`state.research`)
@@ -29,6 +29,7 @@ Der Spielstand ist ein einziges Objekt. Bei Import/Reset wird es per `replaceSta
 ## Entwicklungs-Referenzen (`dev-data/`)
 - `akrw-buildings.md`, `akrw-hero-leveling.md`, `akrw-shop.md`, `akrw-progression-stages.md/.json` werden aus `js/data/` erzeugt, `akrw-zones-expansion.md` aus `tools/data/zones-expansion.json`: `node tools/gen-devdata.mjs .` – nach Datenänderungen neu erzeugen, nicht von Hand bearbeiten.
 - `gw2-monsters.json/.md`: jeder GW2-Boss und -Scherge mit CQHT-Vorlage (Werte/Drops unverändert) und Prüfung gegen die DE-GW2-Wiki. `node tools/build-gw2-monsters.mjs .` (Zonen 1–10 aus `js/data/stages.js` über `src`, Zonen 11–20 aus `tools/data/zones-expansion.json`, Wiki-Hinweise und feste CQHT-Vorlagen in `tools/data/gw2-hints.mjs`); Wiki-Ergebnisse liegen in `gw2-wiki-check.json`, `--wiki` prüft alles neu. Nach `gen-zones.mjs` neu erzeugen.
+- `helden-namen.md` ist handgeschrieben: Namensliste der Helden, welche im Spiel sind (mit id) und die Reserve für spätere Helden.
 - `akrw-traits.md` ist handgeschrieben: Entwurf für Helden-Eigenschaften (noch nicht im Spiel).
 - `issues.md`: offenes Feedback mit festen Nummern (`#001` …), nach Kategorie sortiert. Neues landet unter „Eingang“ → einsortieren, nächste freie Nummer vergeben und hochzählen. Erledigtes mit Version nach `issues_solved.md` verschieben (neueste Version oben), Nummern nie neu vergeben.
 - `archiv/`: abgelegte Rohtexte, alte Entwürfe und CQHT-Rohdaten, nicht mehr gepflegt.
@@ -59,5 +60,5 @@ Der Spielstand ist ein einziges Objekt. Bei Import/Reset wird es per `replaceSta
 - Rekrutierung mit Angeboten und Seltenheiten ist drin. Offen: Darf ein Mitglied in einer besseren Seltenheit die alte Version ersetzen (oder doppelt im Lager sein)? Erst nach den nächsten Systemen entscheiden.
 - Questreihe: 23 Aufträge bis Zone 6 (Caudecus’ Anwesen) sind drin (inkl. Heiler und Schaden als kostenlose Rekruten). Später ergänzen: Ruhestand (Mystische Schmiede), Skills, Beförderungen.
 - Skill-System für Helden (kommt später).
-- Beförderungen / Sterne-Stufen für Helden (kommt später).
+- Beförderungen / Sterne-Stufen für Helden (kommt später). Ganz oben: 7★ / Legendär für voll ausgelevelte Helden und Waffen, leicht OP und sehr schwer zu bekommen (#049, Weg noch offen).
 - Dekorationen: nicht geplant.

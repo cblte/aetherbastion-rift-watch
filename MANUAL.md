@@ -39,7 +39,7 @@ Danach geht es im selben **Auftrags-Banner** nahtlos weiter (Auftrag 5 bis 27). 
 
 ## Helden & Rollen
 
-Jeder Held hat eine Klasse aus Guild Wars 2 und eine **Rolle**. Die Rolle bestimmt das Kampfverhalten:
+Im Spiel gibt es 60 Helden, je zwölf Charr, Menschen, Norn, Asura und Sylvari, und von jeder Rolle gleich viele (15). Das Volk ist nur Hintergrund und ändert keine Werte. Jeder Held hat eine Klasse aus Guild Wars 2 und eine **Rolle**. Die Rolle bestimmt das Kampfverhalten:
 
 - 🛡️ **Tank:** Steht vorn und wird zuerst angegriffen. Viele Lebenspunkte, 25 % DEF.
 - ⚔️ **Schadensausteiler:** Hoher Schaden, oft mit Krit-Chance (doppelter Schaden).

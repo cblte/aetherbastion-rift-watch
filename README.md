@@ -67,7 +67,7 @@ Neue Dateien (auch in `js/data/`) müssen zusätzlich in `APP_FILES` in `sw.js` 
 
 ### Gildenmitglieder eintragen
 
-In `js/config.js` im Array `HEROES` bei jedem Helden `name`, `title` und optional `account` ersetzen. **Die `id` nicht ändern**, sonst passen bestehende Spielstände nicht mehr. Klasse (`cls`), Rolle (`role`), Werte und Buffs lassen sich frei anpassen. Weitere Helden einfach mit neuer `id` (z. B. `h21`) anhängen.
+Der Kader hat 60 Helden (12 je Volk, 15 je Rolle, Namen und Reserve in `dev-data/helden-namen.md`). In `js/config.js` im Array `HEROES` lassen sich bei jedem Helden `name`, `title`, `race` (nur Anzeige, siehe `RACES`) und optional `account` ändern. **Die `id` nicht ändern**, sonst passen bestehende Spielstände nicht mehr. Klasse (`cls`), Rolle (`role`), Werte und Buffs lassen sich frei anpassen. Weitere Helden einfach mit neuer `id` (z. B. `h61`) anhängen.
 
 Die Startaufstellung im Onboarding steht in `ONBOARDING` (Tank, Heiler, Schadensausteiler).
 

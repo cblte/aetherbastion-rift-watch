@@ -5,7 +5,7 @@
 //  Bildschirm liegt, wird nicht neu gerendert (keine verlorenen Taps).
 // =====================================================================
 import {
-  GAME, CURRENCIES, ROLES, CLASSES, HEROES, HERO_BY_ID, ZONES, COMBAT, F, BUILDINGS, BUILDING_ORDER,
+  GAME, CURRENCIES, ROLES, CLASSES, RACES, HEROES, HERO_BY_ID, ZONES, COMBAT, F, BUILDINGS, BUILDING_ORDER,
   TENTS, TENT_SIZE, MYSTIC, MYSTIC_ORDER, ONBOARDING, RETIRE_MIN_LEVEL, LEVEL_CAP_MAX, FEATURES,
   RESEARCH, RESEARCH_ORDER, TIER_LAB, HERO_LEVELS, WEAPON_BY_ID, WEAPON_GRADES, WEAPON_TYPES, RATIONS, NORMAL_STAGES,
   TOTAL_NORMAL, CYCLE_MS, QUESTS as MAIN_QUESTS, RECRUIT, REROLL_RESET_CLOVER, ARMORY_SLOTS, ARMORY_CLEANUP_DEFAULT, UI, RATION_DROP,
@@ -643,7 +643,7 @@ function recruitHtml() {
         <div class="hm-body">
           <div class="hm-name"><b>${esc(d.name)}</b></div>
           <div class="hm-sub">${rarityTag(o.rarity)}</div>
-          <div class="hm-title">„${esc(d.title)}“</div>
+          <div class="hm-title">„${esc(d.title)}“ · ${RACES[d.race].name}</div>
           <div class="hm-sub">${ROLES[d.role].icon} ${ROLES[d.role].name} · ${CLASSES[d.cls].name}${d.buff ? ` · ${d.buff === 'macht' ? 'Macht' : 'Eile'}` : ''}</div>
           <div class="hm-sub">❤ ${fmt(d.baseHp * m)} · ⚔️ ${fmt(d.baseAtk * m)}${d.crit ? ` · Krit ${Math.round(d.crit * 100)} %` : ''}</div>
         </div>
@@ -990,7 +990,7 @@ function heroDetailHtml(h) {
       ${sprite(CLASSES[d.cls].sprite, 'detail-sprite')}
       <div>
         <div class="hm-name"><b>${esc(d.name)}</b> <span class="lv">Lv. ${h.level}/${levelCap(S)}</span></div>
-        <div class="hm-title">„${esc(d.title)}“ · ${esc(d.account || '')}</div>
+        <div class="hm-title">„${esc(d.title)}“ · ${RACES[d.race].name}${d.account ? ` · ${esc(d.account)}` : ''}</div>
         <div class="hm-sub">${rarityTag(h.rarity)}${rarityBonus(h.rarity) ? ` · +${Math.round(rarityBonus(h.rarity) * 100)} % LP/ATK` : ''}</div>
         <div class="hm-sub">${ROLES[d.role].icon} ${ROLES[d.role].name} · ${CLASSES[d.cls].name}${d.buff ? ` · ${d.buff === 'macht' ? 'Macht (+ATK)' : 'Eile (Tempo)'}` : ''}</div>
       </div>
