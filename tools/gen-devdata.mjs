@@ -1,6 +1,7 @@
-// Erzeugt dev-data/akrw-*.md und akrw-progression-stages.json aus den Spieldaten (js/data/*.js).
+// Erzeugt dev-data/akrw-*.md und akrw-progression-stages.json aus den Spieldaten (js/data/*.js)
+// und akrw-zones-expansion.md aus tools/data/zones-expansion.json.
 // Aufruf im Projektordner: node tools/gen-devdata.mjs .   (akrw-traits.md ist handgeschrieben)
-import { writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync } from 'node:fs';
 import { pathToFileURL } from 'node:url';
 const root = process.argv[2];
 const imp = (p) => import(pathToFileURL(`${root}/${p}`).href);
@@ -159,4 +160,36 @@ const note = '> Interne Entwicklungs-Referenz für **Aetherbastion: Rift Watch**
   };
   writeFileSync(`${root}/dev-data/akrw-progression-stages.json`, JSON.stringify(json, null, 2) + '\n');
 }
+// ------------------------------------------------- Zonen-Erweiterung (Entwurf)
+{
+  const X = JSON.parse(readFileSync(`${root}/tools/data/zones-expansion.json`, 'utf8'));
+  const lvs = (lv) => lv[0] === lv[1] ? `${lv[0]}` : `${lv[0]}–${lv[1]}`;
+  const base = Object.entries(X.basePortals).map(([p, name]) =>
+    [p, name, ZONE_DATA.filter(z => z.portal === Number(p)).map(z => z.name).join(', ')]);
+  let s = `# Zonen-Erweiterung (Entwurf) – Aetherbastion: Rift Watch
+
+> Interne Entwicklungs-Referenz für **Aetherbastion: Rift Watch**. **Geplant, noch nicht im Spiel.** Erzeugt aus \`tools/data/zones-expansion.json\` mit \`node tools/gen-devdata.mjs .\` – Änderungen dort vornehmen, nicht hier. Die Zonen 1–10 (Portal 1–4) sind im Spiel; ihre Daten stehen in \`tools/gen-zones.mjs\`.
+
+## Ausgangslage
+
+Im Spiel sind ${ZONE_DATA.length} Zonen hinter ${base.length} Portal-Stufen:
+
+${tbl(['Portal', 'Region', 'Zonen'], base)}
+
+Die Erweiterung hängt **Portal ${Math.min(...Object.keys(X.portals))}–${Math.max(...Object.keys(X.portals))}** mit den **Zonen ${X.zones[0].id}–${X.zones.at(-1).id}** an. Wie bei den Zonen 1–10 hat jede Zone ${X.zones[0].bosses.length} Bosse und einen **Zonen-Endboss** (★).
+`;
+  for (const e of X.expansions) {
+    s += `\n## ${e.name}: Portal ${e.portals[0]}–${e.portals[1]} (Lv. ${lvs(e.lv)})\n\n${e.note ? e.note + '\n\n' : ''}`;
+    for (let p = e.portals[0]; p <= e.portals[1]; p++) {
+      const P = X.portals[p];
+      s += `### Portal ${p} – ${P.name} (Lv. ${lvs(P.lv)})\n\n`;
+      s += tbl(['#', 'Zone', 'Typ', 'Lv.', 'Bosse', '★ Endboss', 'Schergen (Vorschlag)'],
+        X.zones.filter(z => z.portal === p).map(z => [z.id, z.name, z.type, lvs(z.lv), z.bosses.join(', '), z.endboss, z.minions.join(', ')])) + '\n\n';
+    }
+  }
+  s += `## Was der Einbau braucht\n\n${X.requirements.map(r => `- ${r}`).join('\n')}\n\n`;
+  s += `## Namen geprüft / angepasst\n\n${X.nameNotes.map(r => `- ${r}`).join('\n')}\n`;
+  out('akrw-zones-expansion.md', s.replace(/\n{3,}/g, '\n\n'));
+}
+
 console.log('ok');

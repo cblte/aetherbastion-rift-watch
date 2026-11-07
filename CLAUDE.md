@@ -26,8 +26,9 @@ Mobile-First Idle-RPG als PWA für eine Guild-Wars-2-Gilde (nicht-kommerzielles 
 Der Spielstand ist ein einziges Objekt. Bei Import/Reset wird es per `replaceState()` in-place ersetzt, damit alle Module dieselbe Referenz behalten.
 
 ## Entwicklungs-Referenzen (`dev-data/`)
-- `akrw-buildings.md`, `akrw-hero-leveling.md`, `akrw-shop.md`, `akrw-progression-stages.md/.json` werden aus `js/data/` erzeugt: `node tools/gen-devdata.mjs .` – nach Datenänderungen neu erzeugen, nicht von Hand bearbeiten.
+- `akrw-buildings.md`, `akrw-hero-leveling.md`, `akrw-shop.md`, `akrw-progression-stages.md/.json` werden aus `js/data/` erzeugt, `akrw-zones-expansion.md` aus `tools/data/zones-expansion.json`: `node tools/gen-devdata.mjs .` – nach Datenänderungen neu erzeugen, nicht von Hand bearbeiten.
 - `cqht-monsters.json/.md` (alle 150 CQHT-Monster und -Bosse mit Werten und Drops) kommen aus der Fan-Wiki: `node tools/fetch-monsters.mjs .` (`--only ID1,ID2` testet einzelne Monster, ohne Dateien zu schreiben). Nur Werte und Texte, keine Grafiken.
+- `gw2-monsters.json/.md`: jeder GW2-Boss und -Scherge mit CQHT-Vorlage (Werte/Drops unverändert) und Prüfung gegen die DE-GW2-Wiki. `node tools/build-gw2-monsters.mjs .` (Zonen 1–10 aus `js/data/stages.js` über `src`, Zonen 11–20 aus `tools/data/zones-expansion.json`, Wiki-Hinweise und feste CQHT-Vorlagen in `tools/data/gw2-hints.mjs`); Wiki-Ergebnisse liegen in `gw2-wiki-check.json`, `--wiki` prüft alles neu. Nach `gen-zones.mjs` neu erzeugen.
 - `akrw-traits.md` ist handgeschrieben: Entwurf für Helden-Eigenschaften (noch nicht im Spiel).
 
 ## Testen
@@ -43,7 +44,7 @@ Der Spielstand ist ein einziges Objekt. Bei Import/Reset wird es per `replaceSta
 - Der Workflow setzt `GAME.BUILD` (Lauf-Nr. · Commit) und hängt `-b<Nr.>` an `CACHE_VERSION`. Unten unter der Navigation steht `v<GAME.VERSION> · Build …`, lokal „Build lokal“. `GAME.VERSION` steigt mit jeder Änderung (siehe Harte Regeln).
 
 ## Bekannte offene Punkte / Ideen
-- Zonen und Bosse: Reihenfolge nach GW2 (Portal 1 Kryta, 2 Zittergipfel & Ascalon, 3 Herz von Tyria, 4 Orr), Daten in `tools/gen-zones.mjs` → `node tools/gen-zones.mjs .` erzeugt `js/data/stages.js` (Zahlen bleiben CQHT). Bosse ab Zone 4 ohne Quellenprüfung. Erweiterung (Zonen 11–20, Portal 5–8) als Entwurf in `dev-data/akrw-zones-expansion.md`.
+- Zonen und Bosse: Reihenfolge nach GW2 (Portal 1 Kryta, 2 Zittergipfel & Ascalon, 3 Herz von Tyria, 4 Orr), Daten in `tools/gen-zones.mjs` → `node tools/gen-zones.mjs .` erzeugt `js/data/stages.js` (Zahlen bleiben CQHT). Bosse ab Zone 4 ohne Quellenprüfung. Erweiterung (Zonen 11–20, Portal 5–8) als Entwurf in `tools/data/zones-expansion.json` (lesbar: `dev-data/akrw-zones-expansion.md`); noch nicht im Spiel, `gen-zones.mjs` liest sie noch nicht.
 - Noch ohne Funktion: Früchte, Arena-Tickets, Erschöpfung (CQHT Fatigue), Waffen-Modifikation (CQHT Forge), `js/data/specials.js` (Küchen-Prüfung, Kryptis-Seelenfeste).
 - Balancing Spätspiel (Zonen 9–10, schwer, legendär) ist offen: `F.monsterHp`, `F.monsterAtk`, `COMBAT.LEVEL_DIFF`.
 - Live-Kampf: Ein zu schwacher Trupp verdient nichts. Offline: Er bekommt den Effizienz-Anteil.

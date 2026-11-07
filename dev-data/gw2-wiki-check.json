@@ -1,0 +1,1918 @@
+{
+  "Abgerichteter Wachhund": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Abtrünniger Seraph": {
+    "status": "fehlt",
+    "suggestions": [
+      "Ebonfalke-Festung",
+      "Die Wachsamen",
+      "Ebon-Vorhut"
+    ]
+  },
+  "Ascalonischer Geisterritter": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Asura-Wachgolem": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Auferstandene Abscheulichkeit": {
+    "status": "ok",
+    "title": "Auferstandene Abscheulichkeit",
+    "en": "Risen Abomination",
+    "via": "Auferstandene Abscheulichkeit",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandene_Abscheulichkeit"
+  },
+  "Auferstandene": {
+    "status": "ok",
+    "title": "Auferstandener",
+    "en": "Risen",
+    "via": "Auferstandene",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener"
+  },
+  "Auferstandener Akolyth": {
+    "status": "ok",
+    "title": "Auferstandener Akolyth",
+    "en": "Risen Acolyte",
+    "via": "Auferstandener Akolyth",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Akolyth"
+  },
+  "Auferstandener Grubenarbeiter": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Auferstandener Knochenmagier": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Auferstandener Matrose": {
+    "status": "fehlt",
+    "suggestions": [
+      "Die traurige Geschichte der \"Raffgier\"",
+      "Triumph oder Tod",
+      "Die Quelle von Orr"
+    ]
+  },
+  "Auferstandener Schreckenswandler": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Auge des Zhaitan": {
+    "status": "ok",
+    "title": "Auge des Zhaitan",
+    "en": "Eye of Zhaitan",
+    "via": "Auge des Zhaitan",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auge_des_Zhaitan"
+  },
+  "Axthauer-Champion": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Banditen": {
+    "status": "ok",
+    "title": "Bandit",
+    "en": "Bandit",
+    "via": "Banditen",
+    "url": "https://wiki-de.guildwars2.com/wiki/Bandit"
+  },
+  "Banditen-Anführerin": {
+    "status": "fehlt",
+    "suggestions": [
+      "Bandit",
+      "Die Blüte der Jugend",
+      "Gnashar-Hügel"
+    ]
+  },
+  "Banditen-Beutelschneider": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Banditen-Bomber": {
+    "status": "fehlt",
+    "suggestions": [
+      "Miniatur",
+      "Die Blüte der Jugend",
+      "Banditen-Entführer"
+    ]
+  },
+  "Banditen-Brandstifter": {
+    "status": "ok",
+    "title": "Banditen-Brandstifter",
+    "en": "Bandit Firestarter",
+    "via": "Banditen-Brandstifter",
+    "url": "https://wiki-de.guildwars2.com/wiki/Banditen-Brandstifter"
+  },
+  "Banditen-Kanonier": {
+    "status": "ok",
+    "title": "Banditen-Kanonier",
+    "en": "Bandit Cannoneer",
+    "via": "Banditen-Kanonier",
+    "url": "https://wiki-de.guildwars2.com/wiki/Banditen-Kanonier"
+  },
+  "Banditen-Kriegsherr-Garde": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Banditen-Plünderer": {
+    "status": "fehlt",
+    "suggestions": [
+      "Champion",
+      "Zentaur",
+      "Miniatur"
+    ]
+  },
+  "Banditen-Rabauke": {
+    "status": "fehlt",
+    "suggestions": [
+      "Liste der Waffensets",
+      "Xunlai-Jade-Verkäufer",
+      "Eine vornehme Gruppe"
+    ]
+  },
+  "Banditen-Raketengeschütz": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Banditen-Scharfschütze": {
+    "status": "fehlt",
+    "suggestions": [
+      "Gleitschirm",
+      "Draufgänger",
+      "Erscheinungsbildpaket Banditen-Heckenschütze"
+    ]
+  },
+  "Banditen-Schläger Grasp": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Banditen-Schläger": {
+    "status": "ok",
+    "title": "Banditen-Schläger",
+    "en": "Bandit Bruiser",
+    "via": "Banditen-Schläger",
+    "url": "https://wiki-de.guildwars2.com/wiki/Banditen-Schl%C3%A4ger"
+  },
+  "Befallenes Riss-Monstrum": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Blasenwerfender Mordrem-Wolf": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Blut-Hexe": {
+    "status": "fehlt",
+    "suggestions": [
+      "Baumgrenzen-Fälle",
+      "Krait",
+      "Miniatur"
+    ]
+  },
+  "Blutfledermaus": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Blutstrom-Küste": {
+    "status": "ok",
+    "title": "Blutstrom-Küste",
+    "en": "Bloodtide Coast",
+    "via": "Blutstrom-Küste",
+    "url": "https://wiki-de.guildwars2.com/wiki/Blutstrom-K%C3%BCste"
+  },
+  "Butler Michiels": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Caudecus’ Anwesen": {
+    "status": "ok",
+    "title": "Caudecus' Anwesen",
+    "en": "Caudecus's Manor",
+    "via": "Caudecus' Anwesen",
+    "url": "https://wiki-de.guildwars2.com/wiki/Caudecus'_Anwesen"
+  },
+  "Champion Auferstandener Offizier": {
+    "status": "fehlt",
+    "suggestions": [
+      "Champion",
+      "Miniatur",
+      "Elite"
+    ]
+  },
+  "Champion Auferstandener Priester": {
+    "status": "erwähnt",
+    "title": "Auferstandener Priester des Balthasar (Miniatur)",
+    "via": "Auferstandener Priester",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Priester_des_Balthasar_(Miniatur)"
+  },
+  "Champion Banditen-Kriegsherr": {
+    "status": "fehlt",
+    "suggestions": [
+      "Königin Jennah",
+      "Spielupdate/20200225",
+      "Spielupdate/Februar 2020"
+    ]
+  },
+  "Champion Banditen-Saboteur": {
+    "status": "ok",
+    "title": "Champion Banditen-Saboteur",
+    "via": "Champion Banditen-Saboteur",
+    "url": "https://wiki-de.guildwars2.com/wiki/Champion_Banditen-Saboteur"
+  },
+  "Champion Brand-Goliath": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Champion Eichenherz": {
+    "status": "teilweise",
+    "title": "Eichenherz",
+    "en": "Oakheart",
+    "via": "Eichenherz",
+    "url": "https://wiki-de.guildwars2.com/wiki/Eichenherz"
+  },
+  "Champion Eisbrut-Kodan": {
+    "status": "ok",
+    "title": "Champion Eisbrut-Kodan",
+    "en": "Champion Icebrood Kodan",
+    "via": "Champion Eisbrut-Kodan",
+    "url": "https://wiki-de.guildwars2.com/wiki/Champion_Eisbrut-Kodan"
+  },
+  "Champion Eisbrut-Wolf": {
+    "status": "ok",
+    "title": "Champion Eisbrut-Wolf",
+    "en": "Champion Icebrood Wolf",
+    "via": "Champion Eisbrut-Wolf",
+    "url": "https://wiki-de.guildwars2.com/wiki/Champion_Eisbrut-Wolf"
+  },
+  "Champion Erweckter Kanopen-Wächter": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Champion Frost-Grawl": {
+    "status": "fehlt",
+    "suggestions": [
+      "Ein festlich-froher Wintertag (2014)",
+      "Winziges Totem",
+      "Kleines Totem"
+    ]
+  },
+  "Champion Grawl-Häuptling": {
+    "status": "fehlt",
+    "suggestions": [
+      "Grawl",
+      "Chronik/Meine Geschichte/Helfende Hände",
+      "Heldenherausforderung"
+    ]
+  },
+  "Champion Höhlentroll": {
+    "status": "ok",
+    "title": "Champion Höhlentroll",
+    "en": "Champion Cave Troll",
+    "via": "Champion Höhlentroll",
+    "url": "https://wiki-de.guildwars2.com/wiki/Champion_H%C3%B6hlentroll"
+  },
+  "Champion Krait-Echse": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Champion Krait-Hexe": {
+    "status": "ok",
+    "title": "Champion Krait-Hexe",
+    "en": "Champion Krait Witch",
+    "via": "Champion Krait-Hexe",
+    "url": "https://wiki-de.guildwars2.com/wiki/Champion_Krait-Hexe"
+  },
+  "Champion Krait-Hypnotiseur": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Champion Krait-Priester": {
+    "status": "fehlt",
+    "suggestions": [
+      "Krait",
+      "Auferstandener",
+      "Champion"
+    ]
+  },
+  "Champion Kropf-Krake": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Champion Minotauren-Bulle": {
+    "status": "fehlt",
+    "suggestions": [
+      "Minotaurus",
+      "Borealis-Wald",
+      "Die Osenfold-Schneide"
+    ]
+  },
+  "Champion Modniir-Häuptling": {
+    "status": "fehlt",
+    "suggestions": [
+      "Liste der Waffensets",
+      "Zentaur",
+      "Champion"
+    ]
+  },
+  "Champion Schlamm-Monstrum": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Champion Svanir-Hexenmeister": {
+    "status": "fehlt",
+    "suggestions": [
+      "Champion",
+      "Miniatur",
+      "Schwarzlöwen-Ticket für Miniaturen"
+    ]
+  },
+  "Champion Svanir-Häscher": {
+    "status": "fehlt",
+    "suggestions": [
+      "Was übrig bleibt",
+      "Miniatur",
+      "Taigan-Hain"
+    ]
+  },
+  "Champion Toxischer Spinnen-König": {
+    "status": "fehlt",
+    "suggestions": [
+      "Trank",
+      "Champion",
+      "Miniatur"
+    ]
+  },
+  "Champion Toxischer Wurm": {
+    "status": "teilweise",
+    "title": "Toxischer Wurm",
+    "en": "Toxic Wurm",
+    "via": "Toxischer Wurm",
+    "url": "https://wiki-de.guildwars2.com/wiki/Toxischer_Wurm"
+  },
+  "Choya-Piñata": {
+    "status": "ok",
+    "title": "Choya-Piñata",
+    "en": "Choya Pinata",
+    "via": "Choya-Piñata",
+    "url": "https://wiki-de.guildwars2.com/wiki/Choya-Pi%C3%B1ata"
+  },
+  "Der Eiserne Schlächter": {
+    "status": "fehlt",
+    "suggestions": [
+      "Ascalon-Becken",
+      "Blut-Legion",
+      "Flamme und Frost: Die Vergeltung"
+    ]
+  },
+  "Der Zerschmetterer": {
+    "status": "ok",
+    "title": "Der Zerschmetterer",
+    "en": "The Shatterer",
+    "via": "Der Zerschmetterer",
+    "url": "https://wiki-de.guildwars2.com/wiki/Der_Zerschmetterer"
+  },
+  "Diener des Hauses": {
+    "status": "fehlt",
+    "suggestions": [
+      "Veteran Brigadegeneral Kernel",
+      "Verdächtige Aktivitäten",
+      "Alarmstufe Rot"
+    ]
+  },
+  "Doppelgänger": {
+    "status": "fehlt",
+    "suggestions": [
+      "Elon-Flusslande",
+      "Der Pfad zum Aufstieg",
+      "Der Treibsumpf"
+    ]
+  },
+  "Drachen-Schamane der Svanir": {
+    "status": "fehlt",
+    "suggestions": [
+      "Besiegt den Drachen-Schamanen der Svanir",
+      "Die Söhne Svanirs",
+      "Wanderer-Hügel"
+    ]
+  },
+  "Drachensturz (Die Nebel)": {
+    "status": "teilweise",
+    "title": "Drachensturz",
+    "en": "Dragonfall",
+    "via": "Drachensturz",
+    "url": "https://wiki-de.guildwars2.com/wiki/Drachensturz"
+  },
+  "Dredge-Bergarbeiter": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Dredge-Generaldirektor": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Dredge-Kommandant": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Dredge-Kommissar": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Dredge-Kriegsgolem": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Dredge-Kriegsmaschine": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Dredge-Panzer": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Dredge-Schallkanone": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Dredge-Schweißer": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Dredge-Sprengmeister": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Dredge-Tunnelmeister": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Dreiköpfige Krait-Bestie": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Eisbrut": {
+    "status": "ok",
+    "title": "Eisbrut",
+    "en": "Icebrood",
+    "via": "Eisbrut",
+    "url": "https://wiki-de.guildwars2.com/wiki/Eisbrut"
+  },
+  "Eisbrut-Bär": {
+    "status": "fehlt",
+    "suggestions": [
+      "Beutekiste",
+      "Die Söhne Svanirs",
+      "Geister der Wildnis"
+    ]
+  },
+  "Eisbrut-Diener": {
+    "status": "ok",
+    "title": "Eisbrut-Diener",
+    "en": "Icebrood Minion",
+    "via": "Eisbrut-Diener",
+    "url": "https://wiki-de.guildwars2.com/wiki/Eisbrut-Diener"
+  },
+  "Eisbrut-Elementar": {
+    "status": "ok",
+    "title": "Eisbrut-Elementar",
+    "en": "Icebrood Elemental",
+    "via": "Eisbrut-Elementar",
+    "url": "https://wiki-de.guildwars2.com/wiki/Eisbrut-Elementar"
+  },
+  "Eisbrut-Goliath": {
+    "status": "ok",
+    "title": "Eisbrut-Goliath",
+    "en": "Icebrood Goliath",
+    "via": "Eisbrut-Goliath",
+    "url": "https://wiki-de.guildwars2.com/wiki/Eisbrut-Goliath"
+  },
+  "Eisbrut-Koloss": {
+    "status": "fehlt",
+    "suggestions": [
+      "Miniatur",
+      "Beherrschungspunkt",
+      "Chuka und Champawat III: Tigris"
+    ]
+  },
+  "Eisbrut-Riese": {
+    "status": "ok",
+    "title": "Eisbrut-Riese",
+    "en": "Icebrood Colossus",
+    "via": "Eisbrut-Riese",
+    "url": "https://wiki-de.guildwars2.com/wiki/Eisbrut-Riese"
+  },
+  "Eisbrut-Troll": {
+    "status": "ok",
+    "title": "Eisbrut-Troll",
+    "en": "Icebrood Troll",
+    "via": "Eisbrut-Troll",
+    "url": "https://wiki-de.guildwars2.com/wiki/Eisbrut-Troll"
+  },
+  "Eisbrut-Wolf": {
+    "status": "ok",
+    "title": "Eisbrut-Wolf",
+    "en": "Icebrood Wolf",
+    "via": "Eisbrut-Wolf",
+    "url": "https://wiki-de.guildwars2.com/wiki/Eisbrut-Wolf"
+  },
+  "Eisbrut-Wyvern": {
+    "status": "fehlt",
+    "suggestions": [
+      "Guild Wars 2: Heart of Thorns",
+      "Miniatur",
+      "Elite"
+    ]
+  },
+  "Eisensuperiorität": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Eisgeist": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Eisklamm-Sund": {
+    "status": "ok",
+    "title": "Eisklamm-Sund",
+    "en": "Frostgorge Sound",
+    "via": "Eisklamm-Sund",
+    "url": "https://wiki-de.guildwars2.com/wiki/Eisklamm-Sund"
+  },
+  "Eiswolf": {
+    "status": "fehlt",
+    "suggestions": [
+      "Winziger Fangzahn",
+      "Großer Fangzahn",
+      "Fangzahn"
+    ]
+  },
+  "Erdelementar": {
+    "status": "erwähnt",
+    "title": "Instabiler Erdelementar",
+    "via": "Erdelementar",
+    "url": "https://wiki-de.guildwars2.com/wiki/Instabiler_Erdelementar"
+  },
+  "Erweckte": {
+    "status": "ok",
+    "title": "Erweckter",
+    "en": "Awakened",
+    "via": "Erweckte",
+    "url": "https://wiki-de.guildwars2.com/wiki/Erweckter"
+  },
+  "Evolvierter Flammen-Schamane": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Feuerelementare": {
+    "status": "fehlt",
+    "suggestions": [
+      "Tragt einen großen Stock",
+      "Besiegt den monströsen Teer-Elementar",
+      "Goldfelder"
+    ]
+  },
+  "Flammenlegion": {
+    "status": "erwähnt",
+    "title": "Flammenlegion-Rüstung (Schwer)",
+    "via": "Flammenlegion",
+    "url": "https://wiki-de.guildwars2.com/wiki/Flammenlegion-R%C3%BCstung_(Schwer)"
+  },
+  "Flammenlegion-Kultist": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Flammenlegion-Zerstörer": {
+    "status": "fehlt",
+    "suggestions": [
+      "Meta-Event"
+    ]
+  },
+  "Flügel-Schrecken": {
+    "status": "fehlt",
+    "suggestions": [
+      "Schlachtzug",
+      "Bezwinger",
+      "Prolog: Durch Blut gebunden"
+    ]
+  },
+  "Frost": {
+    "status": "nur-en",
+    "en": "Frost",
+    "via": "Frost",
+    "url": "https://wiki.guildwars2.com/wiki/Frost"
+  },
+  "Frost-Grawl": {
+    "status": "fehlt",
+    "suggestions": [
+      "Ein festlich-froher Wintertag (2014)",
+      "Winziges Totem",
+      "Kleines Totem"
+    ]
+  },
+  "Funkenschwärmersumpf": {
+    "status": "ok",
+    "title": "Funkenschwärmersumpf",
+    "en": "Sparkfly Fen",
+    "via": "Funkenschwärmersumpf",
+    "url": "https://wiki-de.guildwars2.com/wiki/Funkenschw%C3%A4rmersumpf"
+  },
+  "Gaheron Baelfire": {
+    "status": "teilweise",
+    "title": "Gaheron Baelfeuer",
+    "en": "Gaheron Baelfire",
+    "via": "en: Gaheron Baelfire",
+    "url": "https://wiki-de.guildwars2.com/wiki/Gaheron_Baelfeuer"
+  },
+  "Gaheron-Eiferer": {
+    "status": "fehlt",
+    "suggestions": [
+      "Flammenzitadelle/Forschung - Rhiannon",
+      "Flammenzitadelle/Forschung - Magg",
+      "Flammenzitadelle/Forschung - Farrah"
+    ]
+  },
+  "Gebrandmarkte Hydra": {
+    "status": "fehlt",
+    "suggestions": [
+      "Jahai-Klippen",
+      "Gebrandmarkter",
+      "Zentrale Brandnarbe"
+    ]
+  },
+  "Gebrandmarkte Verschlinger-Königin": {
+    "status": "erwähnt",
+    "title": "Tötet die Gebrandmarkte Verschlinger-Königin",
+    "via": "Gebrandmarkte Verschlinger-Königin",
+    "url": "https://wiki-de.guildwars2.com/wiki/T%C3%B6tet_die_Gebrandmarkte_Verschlinger-K%C3%B6nigin"
+  },
+  "Gebrandmarkte": {
+    "status": "ok",
+    "title": "Gebrandmarkter",
+    "en": "Branded",
+    "via": "Gebrandmarkte",
+    "url": "https://wiki-de.guildwars2.com/wiki/Gebrandmarkter"
+  },
+  "Gebrandmarkter Aurene-Schatten": {
+    "status": "fehlt",
+    "suggestions": [
+      "Miniatur",
+      "Auge des Brandsturms",
+      "Eine zerschmetterte Nation"
+    ]
+  },
+  "Gebrandmarkter Zerschmetterer-Leutnant": {
+    "status": "fehlt",
+    "suggestions": [
+      "Gebrandmarkter",
+      "Der Zerschmetterer",
+      "Eine zerschmetterte Nation"
+    ]
+  },
+  "Geister": {
+    "status": "ok",
+    "title": "Geister der Wildnis",
+    "en": "Spirits of the Wild",
+    "via": "Geister",
+    "url": "https://wiki-de.guildwars2.com/wiki/Geister_der_Wildnis"
+  },
+  "Geister-Elite": {
+    "status": "fehlt",
+    "suggestions": [
+      "Geist",
+      "Ascalonischer Geist",
+      "Geschmiedeter"
+    ]
+  },
+  "Geister-Krieger": {
+    "status": "fehlt",
+    "suggestions": [
+      "Geist",
+      "Ascalonischer Geist",
+      "Waldläufer"
+    ]
+  },
+  "Geister-Liebende": {
+    "status": "fehlt",
+    "suggestions": [
+      "Katakomben von Ascalon",
+      "Katakomben von Ascalon (Story)",
+      "Gruft der Liebenden"
+    ]
+  },
+  "Geister-Nekromant": {
+    "status": "fehlt",
+    "suggestions": [
+      "Geist",
+      "Ascalonischer Geist",
+      "Waldläufer"
+    ]
+  },
+  "Geister-Waldläufer": {
+    "status": "fehlt",
+    "suggestions": [
+      "Waldläufer",
+      "Geist",
+      "Ascalonischer Geist"
+    ]
+  },
+  "Geister-Wächter": {
+    "status": "fehlt",
+    "suggestions": [
+      "Waldläufer",
+      "Dschinn",
+      "Geistertal"
+    ]
+  },
+  "Geisterhafter Nekromant": {
+    "status": "fehlt",
+    "suggestions": [
+      "Geist",
+      "Weißer Mantel",
+      "Kraftvoller Giftbeutel"
+    ]
+  },
+  "Geistertal": {
+    "status": "ok",
+    "title": "Geistertal",
+    "en": "Spirit Vale",
+    "via": "Geistertal",
+    "url": "https://wiki-de.guildwars2.com/wiki/Geistertal"
+  },
+  "Geißel der Schöpfung": {
+    "status": "fehlt",
+    "suggestions": [
+      "Palawas Poesie: Erster Entwurf",
+      "Aphorismen Jokos, des Ewigen Monarchen aller Dinge"
+    ]
+  },
+  "Gendarran-Felder": {
+    "status": "ok",
+    "title": "Gendarran-Felder",
+    "en": "Gendarran Fields",
+    "via": "Gendarran-Felder",
+    "url": "https://wiki-de.guildwars2.com/wiki/Gendarran-Felder"
+  },
+  "General Molotov": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Gepfefferte Bridgette": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Geschmiedete": {
+    "status": "ok",
+    "title": "Geschmiedeter",
+    "en": "Forged",
+    "via": "Geschmiedete",
+    "url": "https://wiki-de.guildwars2.com/wiki/Geschmiedeter"
+  },
+  "Golems": {
+    "status": "teilweise",
+    "title": "Golem",
+    "en": "Golem",
+    "via": "en: Golems",
+    "url": "https://wiki-de.guildwars2.com/wiki/Golem"
+  },
+  "Gorseval der Facettenreiche": {
+    "status": "ok",
+    "title": "Gorseval der Facettenreiche",
+    "en": "Gorseval the Multifarious",
+    "via": "Gorseval der Facettenreiche",
+    "url": "https://wiki-de.guildwars2.com/wiki/Gorseval_der_Facettenreiche"
+  },
+  "Grasgrüne Schwelle": {
+    "status": "ok",
+    "title": "Grasgrüne Schwelle",
+    "en": "Verdant Brink",
+    "via": "Grasgrüne Schwelle",
+    "url": "https://wiki-de.guildwars2.com/wiki/Grasgr%C3%BCne_Schwelle"
+  },
+  "Grawl-Krieger": {
+    "status": "fehlt",
+    "suggestions": [
+      "Grawl",
+      "Geächtetenkluft",
+      "Frusenfell-Bach"
+    ]
+  },
+  "Grawl-Schamane": {
+    "status": "ok",
+    "title": "Grawl-Schamane",
+    "en": "Grawl Shaman",
+    "via": "Grawl-Schamane",
+    "url": "https://wiki-de.guildwars2.com/wiki/Grawl-Schamane"
+  },
+  "Grawl-Steinwerfer": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Großer Züchter": {
+    "status": "fehlt",
+    "suggestions": [
+      "Mabon-Markt",
+      "Brockenmund-Tal",
+      "Klippheim"
+    ]
+  },
+  "Harathi-Hinterland": {
+    "status": "ok",
+    "title": "Harathi-Hinterland",
+    "en": "Harathi Hinterlands",
+    "via": "Harathi-Hinterland",
+    "url": "https://wiki-de.guildwars2.com/wiki/Harathi-Hinterland"
+  },
+  "Harathi-Krieger": {
+    "status": "ok",
+    "title": "Harathi-Krieger",
+    "en": "Harathi Warrior",
+    "via": "Harathi-Krieger",
+    "url": "https://wiki-de.guildwars2.com/wiki/Harathi-Krieger"
+  },
+  "Harathi-Schlächter": {
+    "status": "fehlt",
+    "suggestions": [
+      "Rätsel",
+      "Gebiet",
+      "Meta-Event"
+    ]
+  },
+  "Harathi-Speerwerfer": {
+    "status": "fehlt",
+    "suggestions": [
+      "PvE-Belagerungswaffe"
+    ]
+  },
+  "Herold von Balthasar": {
+    "status": "fehlt",
+    "suggestions": [
+      "Galerie der Rücken-Gegenstände",
+      "Waffengalerie/Schild",
+      "Kleidungsset"
+    ]
+  },
+  "Hexen-Diener": {
+    "status": "fehlt",
+    "suggestions": [
+      "Der Schatten des Verrückten Königs (2015)",
+      "Der Schatten des Verrückten Königs (2018)",
+      "Der Schatten des Verrückten Königs (2021)"
+    ]
+  },
+  "Hohepriester der Grenth": {
+    "status": "fehlt",
+    "suggestions": [
+      "Die Ruinenstadt Arah/Forschung - Randall Graustein",
+      "Auferstandener",
+      "Eigenschaftenhandbuch"
+    ]
+  },
+  "Hohepriester des Balthasar": {
+    "status": "fehlt",
+    "suggestions": [
+      "Die Ruinenstadt Arah/Forschung - Randall Graustein",
+      "Auferstandener",
+      "Eigenschaftenhandbuch"
+    ]
+  },
+  "Hohepriesterin der Dwayna": {
+    "status": "fehlt",
+    "suggestions": [
+      "Die Ruinenstadt Arah/Forschung - Randall Graustein",
+      "Malchors Sprung",
+      "Spielupdate/20231106"
+    ]
+  },
+  "Hylek-Giftmischer": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Hylek-Krieger": {
+    "status": "ok",
+    "title": "Hylek-Krieger",
+    "en": "Hylek Warrior",
+    "via": "Hylek-Krieger",
+    "url": "https://wiki-de.guildwars2.com/wiki/Hylek-Krieger"
+  },
+  "Hylek-Schamane Cuatl": {
+    "status": "fehlt",
+    "suggestions": [
+      "Hylek",
+      "Heldenherausforderung"
+    ]
+  },
+  "Höhlenspinne": {
+    "status": "ok",
+    "title": "Höhlenspinne",
+    "en": "Cave Spider",
+    "via": "Höhlenspinne",
+    "url": "https://wiki-de.guildwars2.com/wiki/H%C3%B6hlenspinne"
+  },
+  "Höhlentroll": {
+    "status": "ok",
+    "title": "Höhlentroll",
+    "en": "Cave Troll",
+    "via": "Höhlentroll",
+    "url": "https://wiki-de.guildwars2.com/wiki/H%C3%B6hlentroll"
+  },
+  "Inquestur": {
+    "status": "ok",
+    "title": "Inquestur",
+    "en": "Inquest",
+    "via": "Inquestur",
+    "url": "https://wiki-de.guildwars2.com/wiki/Inquestur"
+  },
+  "Inquestur-Chef Kudu": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Junger Troll": {
+    "status": "fehlt",
+    "suggestions": [
+      "Wurzeln des Schreckens",
+      "Champion",
+      "Caledon-Wald"
+    ]
+  },
+  "Kasha Schwarzblut": {
+    "status": "ok",
+    "title": "Kasha Schwarzblut",
+    "en": "Kasha Blackblood",
+    "via": "Kasha Schwarzblut",
+    "url": "https://wiki-de.guildwars2.com/wiki/Kasha_Schwarzblut"
+  },
+  "Katakomben von Ascalon": {
+    "status": "ok",
+    "title": "Katakomben von Ascalon",
+    "en": "Ascalonian Catacombs",
+    "via": "Katakomben von Ascalon",
+    "url": "https://wiki-de.guildwars2.com/wiki/Katakomben_von_Ascalon"
+  },
+  "Kern-Spaltmonstrum": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Kessex-Hügel": {
+    "status": "ok",
+    "title": "Kessex-Hügel",
+    "en": "Kessex Hills",
+    "via": "Kessex-Hügel",
+    "url": "https://wiki-de.guildwars2.com/wiki/Kessex-H%C3%BCgel"
+  },
+  "Klaue von Jormag": {
+    "status": "ok",
+    "title": "Klaue von Jormag",
+    "en": "Claw of Jormag",
+    "via": "Klaue von Jormag",
+    "url": "https://wiki-de.guildwars2.com/wiki/Klaue_von_Jormag"
+  },
+  "Knochen-Diener": {
+    "status": "fehlt",
+    "suggestions": [
+      "Eisbrut-Elementar",
+      "Knochen-Spitzhacke",
+      "Sammelwerkzeug"
+    ]
+  },
+  "Knochen-Schrecken": {
+    "status": "fehlt",
+    "suggestions": [
+      "Stabilität",
+      "Schnitter",
+      "Sylvari"
+    ]
+  },
+  "Knochenmonstrum": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Kolossaler Erdelementar": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Krait-Echse": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Krait-Mystiker": {
+    "status": "fehlt",
+    "suggestions": [
+      "Vergeltung (Persönliche Geschichte)",
+      "Die Bewegung der Welt",
+      "Spielupdate/20131029"
+    ]
+  },
+  "Krait-Neophyt": {
+    "status": "fehlt",
+    "suggestions": [
+      "Barrakuda",
+      "Kru-Leiter",
+      "Waffengalerie/Fackel"
+    ]
+  },
+  "Krait-Schlinger": {
+    "status": "fehlt",
+    "suggestions": [
+      "Sibaha"
+    ]
+  },
+  "Krait-Schreckensbrut": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Krait-Sklaventreiber": {
+    "status": "fehlt",
+    "suggestions": [
+      "Abwerfen der Ketten"
+    ]
+  },
+  "Krait-Speerträger": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Krait-Wyrmschlange": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Krait-Wächter": {
+    "status": "fehlt",
+    "suggestions": [
+      "Zustandsschaden",
+      "Miniatur",
+      "Krait"
+    ]
+  },
+  "Krait-Zelot": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Kralkatorrik": {
+    "status": "ok",
+    "title": "Kralkatorrik",
+    "en": "Kralkatorrik",
+    "via": "Kralkatorrik",
+    "url": "https://wiki-de.guildwars2.com/wiki/Kralkatorrik"
+  },
+  "Kriegsmeister Ulgoth": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Kriegsmeister Ulgoths Vorbote": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Kristall-Drachenbrut": {
+    "status": "fehlt",
+    "suggestions": [
+      "Flammenkamm-Steppe",
+      "Tumoks Widerstand",
+      "Zwillingsschwestern-Kreuzung"
+    ]
+  },
+  "Kristallflügel-General": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Kristalloase & Flusslande": {
+    "status": "fehlt",
+    "suggestions": [
+      "Hochland-Brutmutter",
+      "Region",
+      "Guild Wars 2: Path of Fire"
+    ]
+  },
+  "Kryptis-Peiniger": {
+    "status": "fehlt",
+    "suggestions": [
+      "Beherrschungspunkt"
+    ]
+  },
+  "Kryptis-Plünderer": {
+    "status": "fehlt",
+    "suggestions": [
+      "Antiker Knochen",
+      "Phiole mit kraftvollem Blut",
+      "Beherrschungspunkt"
+    ]
+  },
+  "Kryptis-Splitter": {
+    "status": "fehlt",
+    "suggestions": [
+      "Antiker Knochen",
+      "Veredelte Heimstatt-Faser",
+      "Spielupdate/20230926"
+    ]
+  },
+  "König Adelbern": {
+    "status": "ok",
+    "title": "König Adelbern",
+    "en": "King Adelbern",
+    "via": "König Adelbern",
+    "url": "https://wiki-de.guildwars2.com/wiki/K%C3%B6nig_Adelbern"
+  },
+  "Königintal": {
+    "status": "ok",
+    "title": "Königintal",
+    "en": "Queensdale",
+    "via": "Königintal",
+    "url": "https://wiki-de.guildwars2.com/wiki/K%C3%B6nigintal"
+  },
+  "Königlicher Leibwächter Pete": {
+    "status": "fehlt",
+    "suggestions": [
+      "Logan Thackeray"
+    ]
+  },
+  "Königlicher Wächter": {
+    "status": "fehlt",
+    "suggestions": [
+      "Waffengalerie/Schild",
+      "Waffengalerie/Dreizack",
+      "Lorbeer-Kaufmann"
+    ]
+  },
+  "Ley-infundierter Zorn": {
+    "status": "fehlt",
+    "suggestions": [
+      "Chronik/Eisbrut-Saga",
+      "Spielupdate/Juli 2014",
+      "Spielupdate/20160726"
+    ]
+  },
+  "Magister des Baelfire": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Matriarchin der Wyvern": {
+    "status": "fehlt",
+    "suggestions": [
+      "Baumkronen über Pakt-Lager",
+      "Legende Wyvern-Matriarchin",
+      "Tötet die Wyvern-Matriarchin"
+    ]
+  },
+  "Maul des Zhaitan": {
+    "status": "fehlt",
+    "suggestions": [
+      "Magie",
+      "Haus der Verwesung",
+      "Der Klang der Psi-Lanze"
+    ]
+  },
+  "Megawurm": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Meister-Nekromant": {
+    "status": "fehlt",
+    "suggestions": [
+      "Nekromant",
+      "Zustandsschaden",
+      "Klasse"
+    ]
+  },
+  "Minotaurus": {
+    "status": "ok",
+    "title": "Minotaurus",
+    "en": "Minotaur",
+    "via": "Minotaurus",
+    "url": "https://wiki-de.guildwars2.com/wiki/Minotaurus"
+  },
+  "Modniir-Berserker": {
+    "status": "ok",
+    "title": "Modniir-Berserker",
+    "en": "Modniir Defender",
+    "via": "Modniir-Berserker",
+    "url": "https://wiki-de.guildwars2.com/wiki/Modniir-Berserker"
+  },
+  "Modniir-Krieger": {
+    "status": "fehlt",
+    "suggestions": [
+      "Zentaur",
+      "Miniatur",
+      "Champion"
+    ]
+  },
+  "Modniir-Kriegsherr": {
+    "status": "fehlt",
+    "suggestions": [
+      "Zeitachse"
+    ]
+  },
+  "Modniir-Schamane": {
+    "status": "fehlt",
+    "suggestions": [
+      "Miniatur",
+      "Champion",
+      "Welt-Boss"
+    ]
+  },
+  "Mordrem": {
+    "status": "ok",
+    "title": "Mordrem",
+    "en": "Mordrem",
+    "via": "Mordrem",
+    "url": "https://wiki-de.guildwars2.com/wiki/Mordrem"
+  },
+  "Mordrem-Hüllen-Champion": {
+    "status": "fehlt",
+    "suggestions": [
+      "Hülle",
+      "Champion",
+      "Mordrem-Organ"
+    ]
+  },
+  "Mordrem-Kommandeur Diarmid": {
+    "status": "fehlt",
+    "suggestions": [
+      "Eskortiert die Truppen zum Mordrem-Feuerspucker",
+      "Zentraler Angriff",
+      "Klingenmeisterin Diarmid nähert sich"
+    ]
+  },
+  "Mordrem-Kommandeur Stabmeister": {
+    "status": "fehlt",
+    "suggestions": [
+      "Mutter Dschungel sorgt für uns",
+      "Widerstand des Drachen (Meta-Event)",
+      "Stabmeister Adryn nähert sich"
+    ]
+  },
+  "Mordrem-Rankenbrecher": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Mordrem-Scharfschütze": {
+    "status": "fehlt",
+    "suggestions": [
+      "Elite",
+      "Heldenherausforderung",
+      "Gleitschirm"
+    ]
+  },
+  "Mordrem-Teragriff": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Mordrem-Wolf": {
+    "status": "ok",
+    "title": "Mordrem-Wolf",
+    "en": "Mordrem Wolf",
+    "via": "Mordrem-Wolf",
+    "url": "https://wiki-de.guildwars2.com/wiki/Mordrem-Wolf"
+  },
+  "Oger": {
+    "status": "ok",
+    "title": "Oger",
+    "en": "Ogre",
+    "via": "Oger",
+    "url": "https://wiki-de.guildwars2.com/wiki/Oger"
+  },
+  "Patriarch der Wyvern": {
+    "status": "fehlt",
+    "suggestions": [
+      "Legende Wyvern-Patriarch",
+      "Legende Wyvern-Patriarch (Kopfgeld)",
+      "Bezwingt das legendäre Kopfgeldziel (Legendäre Wyvern)"
+    ]
+  },
+  "Piraten-Entermatrose": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Piraten-Harpunier": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Piraten-Kanonier": {
+    "status": "fehlt",
+    "suggestions": [
+      "Pirat",
+      "Gendarr-See",
+      "Jackdaw-Riff"
+    ]
+  },
+  "Piraten-Maat": {
+    "status": "fehlt",
+    "suggestions": [
+      "Pirat",
+      "Skritt",
+      "Ätherklingen"
+    ]
+  },
+  "Piratinnen-Admiralin": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Piratinnen-Kapitänin": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Ralena & Vassar": {
+    "status": "fehlt",
+    "suggestions": [
+      "Gruft der Liebenden",
+      "Vassar",
+      "Katakomben von Ascalon (Story)"
+    ]
+  },
+  "Rankenzorn": {
+    "status": "teilweise",
+    "title": "Mordrem-Rankenzorn",
+    "en": "Mordrem Vinewrath",
+    "via": "Mordrem-Rankenzorn",
+    "url": "https://wiki-de.guildwars2.com/wiki/Mordrem-Rankenzorn"
+  },
+  "Rauchschuppen": {
+    "status": "fehlt",
+    "suggestions": [
+      "Junge Rauchschuppe",
+      "Düstere Ernte (Erfolg)",
+      "Helft Dawkkurra, ihren Schmaus zuzubereiten"
+    ]
+  },
+  "Riffkrake": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Ruinen von Arah": {
+    "status": "teilweise",
+    "title": "Die Ruinenstadt Arah",
+    "en": "The Ruined City of Arah",
+    "via": "Arah",
+    "url": "https://wiki-de.guildwars2.com/wiki/Die_Ruinenstadt_Arah"
+  },
+  "Sabetha die Saboteurin": {
+    "status": "ok",
+    "title": "Sabetha die Saboteurin",
+    "en": "Sabetha the Saboteur",
+    "via": "Sabetha die Saboteurin",
+    "url": "https://wiki-de.guildwars2.com/wiki/Sabetha_die_Saboteurin"
+  },
+  "Sandwurm-Larve": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Schamanen-Vorbote des Jormag": {
+    "status": "fehlt",
+    "suggestions": [
+      "Garantierte Garderoben-Freischaltung"
+    ]
+  },
+  "Schatten-Behemoth": {
+    "status": "ok",
+    "title": "Schatten-Behemoth",
+    "en": "Shadow Behemoth",
+    "via": "Schatten-Behemoth",
+    "url": "https://wiki-de.guildwars2.com/wiki/Schatten-Behemoth"
+  },
+  "Schatten: Kriegsmeister Ulgoth": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Schatten: König Adelbern": {
+    "status": "teilweise",
+    "title": "König Adelbern",
+    "en": "King Adelbern",
+    "via": "König Adelbern",
+    "url": "https://wiki-de.guildwars2.com/wiki/K%C3%B6nig_Adelbern"
+  },
+  "Schatten: Svanir-Schamane": {
+    "status": "fehlt",
+    "suggestions": [
+      "Die Söhne Svanirs",
+      "Wanderer-Hügel",
+      "Eisbrut"
+    ]
+  },
+  "Schatten: Tequatl der Sonnenlose": {
+    "status": "teilweise",
+    "title": "Tequatl der Sonnenlose",
+    "en": "Tequatl the Sunless",
+    "via": "Tequatl der Sonnenlose",
+    "url": "https://wiki-de.guildwars2.com/wiki/Tequatl_der_Sonnenlose"
+  },
+  "Schatten: Toxischer Spinnen-König": {
+    "status": "fehlt",
+    "suggestions": [
+      "Trank",
+      "Champion",
+      "Miniatur"
+    ]
+  },
+  "Schattenbrut": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Schaufler": {
+    "status": "ok",
+    "title": "Schaufler",
+    "en": "Dredge",
+    "via": "Schaufler",
+    "url": "https://wiki-de.guildwars2.com/wiki/Schaufler"
+  },
+  "Schlamm-Elementar": {
+    "status": "fehlt",
+    "suggestions": [
+      "Liste der Elementarmagierfertigkeiten",
+      "Weber",
+      "Hilfsfertigkeit"
+    ]
+  },
+  "Schmiedemeister": {
+    "status": "erwähnt",
+    "title": "Wütende Schmiedemeister-Insignie",
+    "via": "Schmiedemeister",
+    "url": "https://wiki-de.guildwars2.com/wiki/W%C3%BCtende_Schmiedemeister-Insignie"
+  },
+  "Schneekuhlen-Höhen": {
+    "status": "fehlt",
+    "suggestions": [
+      "Frostfang III: Zahn des Frostfangs"
+    ]
+  },
+  "Schneeleopard": {
+    "status": "ok",
+    "title": "Schneeleopard",
+    "en": "Snow Leopard",
+    "via": "Schneeleopard",
+    "url": "https://wiki-de.guildwars2.com/wiki/Schneeleopard"
+  },
+  "Schneeleoparden-Matriarchin": {
+    "status": "fehlt",
+    "suggestions": [
+      "Junger Feuer-Wyvern"
+    ]
+  },
+  "Separatisten-Anführer": {
+    "status": "fehlt",
+    "suggestions": [
+      "Ebonfalke-Festung",
+      "Champion",
+      "Ebon-Vorhut"
+    ]
+  },
+  "Separatisten-Belagerer": {
+    "status": "fehlt",
+    "suggestions": [
+      "Belag-Kreuzung",
+      "Axtzug-Kanal",
+      "Felder der Verwüstung"
+    ]
+  },
+  "Separatisten-Bomber": {
+    "status": "ok",
+    "title": "Separatisten-Bomber",
+    "en": "Separatist Bomber",
+    "via": "Separatisten-Bomber",
+    "url": "https://wiki-de.guildwars2.com/wiki/Separatisten-Bomber"
+  },
+  "Separatisten-Feldwebel": {
+    "status": "fehlt",
+    "suggestions": [
+      "Ebon-Vorhut",
+      "Verbogener Dietrich",
+      "Beutekiste"
+    ]
+  },
+  "Separatisten-Hauptmann DeLana": {
+    "status": "fehlt",
+    "suggestions": [
+      "DeLana-Geldbörse",
+      "Verbogener Dietrich",
+      "Beutel mit stibitzten Waren"
+    ]
+  },
+  "Separatisten-Kämpfer": {
+    "status": "fehlt",
+    "suggestions": [
+      "Beutel mit stibitzten Waren",
+      "Devast-Distrikt",
+      "Beutekiste"
+    ]
+  },
+  "Separatisten-Leutnant": {
+    "status": "fehlt",
+    "suggestions": [
+      "Champion",
+      "Ebon-Vorhut",
+      "Weggeworfene Kluft"
+    ]
+  },
+  "Separatisten-Scharfschütze": {
+    "status": "fehlt",
+    "suggestions": [
+      "Verbogener Dietrich",
+      "Beutel mit stibitzten Waren",
+      "Beutekiste"
+    ]
+  },
+  "Seraphen-Deserteur": {
+    "status": "fehlt",
+    "suggestions": [
+      "Gezielte Verhandlung",
+      "Reparateur",
+      "Liste der Aufgaben"
+    ]
+  },
+  "Seraphen-Verräter Valen": {
+    "status": "fehlt",
+    "suggestions": [
+      "Biographie/Details"
+    ]
+  },
+  "Silberwüste": {
+    "status": "ok",
+    "title": "Die Silberwüste",
+    "en": "The Silverwastes",
+    "via": "Silberwüste",
+    "url": "https://wiki-de.guildwars2.com/wiki/Die_Silberw%C3%BCste"
+  },
+  "Sklavenmeister": {
+    "status": "fehlt",
+    "suggestions": [
+      "Abwerfen der Ketten",
+      "Vertreibt die Auferstandenen Krait aus Kahloipoi",
+      "Aaminah"
+    ]
+  },
+  "Sohn des Svanir": {
+    "status": "fehlt",
+    "suggestions": [
+      "Sohn Svanirs",
+      "Eisbrut",
+      "Halvaunt-Schneefeld"
+    ]
+  },
+  "Steinwüter": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Sumpf-Moskito": {
+    "status": "fehlt",
+    "suggestions": [
+      "Bergsuhlensumpf",
+      "Die Schlacht um den Bergsuhlensumpf",
+      "Willoweg-Haine"
+    ]
+  },
+  "Sumpfdrake": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Sumpfkrebs": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Sumpfschlurfer": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Svanir-Drachenrufer": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Svanir-Eisbrecher": {
+    "status": "erwähnt",
+    "title": "Mini Svanir-Eisbrecher",
+    "via": "Svanir-Eisbrecher",
+    "url": "https://wiki-de.guildwars2.com/wiki/Mini_Svanir-Eisbrecher"
+  },
+  "Svanir-Jäger": {
+    "status": "ok",
+    "title": "Svanir-Jäger",
+    "en": "Svanir Hunter",
+    "via": "Svanir-Jäger",
+    "url": "https://wiki-de.guildwars2.com/wiki/Svanir-J%C3%A4ger"
+  },
+  "Svanir-Plünderer": {
+    "status": "fehlt",
+    "suggestions": [
+      "Champion",
+      "Miniatur",
+      "Yakbiegung"
+    ]
+  },
+  "Svanir-Schamane": {
+    "status": "fehlt",
+    "suggestions": [
+      "Die Söhne Svanirs",
+      "Wanderer-Hügel",
+      "Eisbrut"
+    ]
+  },
+  "Svanir-Schamanin": {
+    "status": "fehlt",
+    "suggestions": [
+      "Wanderer-Hügel",
+      "Schneekuhlenhöhen",
+      "Ehrt den Geist des Bären"
+    ]
+  },
+  "Söhne Svanirs": {
+    "status": "ok",
+    "title": "Die Söhne Svanirs",
+    "en": "Sons of Svanir",
+    "via": "Söhne Svanirs",
+    "url": "https://wiki-de.guildwars2.com/wiki/Die_S%C3%B6hne_Svanirs"
+  },
+  "Talwächter": {
+    "status": "teilweise",
+    "title": "Tal-Wächter",
+    "en": "Vale Guardian",
+    "via": "Tal-Wächter",
+    "url": "https://wiki-de.guildwars2.com/wiki/Tal-W%C3%A4chter"
+  },
+  "Targa der Peiniger": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Tequatl der Sonnenlose": {
+    "status": "ok",
+    "title": "Tequatl der Sonnenlose",
+    "en": "Tequatl the Sunless",
+    "via": "Tequatl der Sonnenlose",
+    "url": "https://wiki-de.guildwars2.com/wiki/Tequatl_der_Sonnenlose"
+  },
+  "Tequatls Diener": {
+    "status": "fehlt",
+    "suggestions": [
+      "Funkenschwärmersumpf",
+      "Auferstandener",
+      "Alt-Drache"
+    ]
+  },
+  "Tiefsee-Lauerer": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Toxische Spinne": {
+    "status": "ok",
+    "title": "Toxische Spinne",
+    "en": "Toxic Spider",
+    "via": "Toxische Spinne",
+    "url": "https://wiki-de.guildwars2.com/wiki/Toxische_Spinne"
+  },
+  "Toxischer Larvenwurm": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Toxischer Wucherer": {
+    "status": "fehlt",
+    "suggestions": [
+      "Chronik/Staffel 1 der Lebendigen Welt",
+      "Spielupdate/20170808",
+      "Spielupdate/20180508"
+    ]
+  },
+  "Turmaine": {
+    "status": "nur-en",
+    "en": "Turmaine",
+    "via": "Turmaine",
+    "url": "https://wiki.guildwars2.com/wiki/Turmaine"
+  },
+  "Turmwächter Karde": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Ulgoths Leibgarde": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Umarmung der Betrübnis": {
+    "status": "ok",
+    "title": "Umarmung der Betrübnis",
+    "en": "Sorrow's Embrace",
+    "via": "Umarmung der Betrübnis",
+    "url": "https://wiki-de.guildwars2.com/wiki/Umarmung_der_Betr%C3%BCbnis"
+  },
+  "Unterwasser-Krake Svanir": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Untote": {
+    "status": "ok",
+    "title": "Untoter",
+    "en": "Undead",
+    "via": "Untote",
+    "url": "https://wiki-de.guildwars2.com/wiki/Untoter"
+  },
+  "Untoter Kanonier": {
+    "status": "fehlt",
+    "suggestions": [
+      "Orden der Gerüchte",
+      "Jackdaw-Riff",
+      "Neustrand-Klippen"
+    ]
+  },
+  "Verderbt: Drachen-Schamane der Svanir": {
+    "status": "fehlt",
+    "suggestions": [
+      "Besiegt den Drachen-Schamanen der Svanir",
+      "Die Söhne Svanirs",
+      "Wanderer-Hügel"
+    ]
+  },
+  "Verderbt: Dreiköpfige Krait-Bestie": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Verderbt: Kriegsmeister Ulgoth": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Verderbt: Kriegsmeister Ulgoths Vorbote": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Verderbt: König Adelbern": {
+    "status": "teilweise",
+    "title": "König Adelbern",
+    "en": "King Adelbern",
+    "via": "König Adelbern",
+    "url": "https://wiki-de.guildwars2.com/wiki/K%C3%B6nig_Adelbern"
+  },
+  "Verderbt: Schatten-Behemoth": {
+    "status": "teilweise",
+    "title": "Schatten-Behemoth",
+    "en": "Shadow Behemoth",
+    "via": "Schatten-Behemoth",
+    "url": "https://wiki-de.guildwars2.com/wiki/Schatten-Behemoth"
+  },
+  "Verderbt: Svanir-Schamane": {
+    "status": "fehlt",
+    "suggestions": [
+      "Die Söhne Svanirs",
+      "Wanderer-Hügel",
+      "Eisbrut"
+    ]
+  },
+  "Verderbt: Tequatl der Sonnenlose": {
+    "status": "teilweise",
+    "title": "Tequatl der Sonnenlose",
+    "en": "Tequatl the Sunless",
+    "via": "Tequatl der Sonnenlose",
+    "url": "https://wiki-de.guildwars2.com/wiki/Tequatl_der_Sonnenlose"
+  },
+  "Verderbt: Toxischer Spinnen-König": {
+    "status": "fehlt",
+    "suggestions": [
+      "Trank",
+      "Champion",
+      "Miniatur"
+    ]
+  },
+  "Verschlinger": {
+    "status": "ok",
+    "title": "Verschlinger",
+    "en": "Devourer",
+    "via": "Verschlinger",
+    "url": "https://wiki-de.guildwars2.com/wiki/Verschlinger"
+  },
+  "Verschlinger-Matriarchin": {
+    "status": "fehlt",
+    "suggestions": [
+      "Champion",
+      "Elite",
+      "Die Dunkellande"
+    ]
+  },
+  "Verzerrter Geist": {
+    "status": "fehlt",
+    "suggestions": [
+      "Elitefertigkeit",
+      "Versteckte Arkana",
+      "Chronik/Eisbrut-Saga"
+    ]
+  },
+  "Vorarbeiter Spur": {
+    "status": "fehlt",
+    "suggestions": [
+      "Die Belagerungsebene",
+      "Leseratte",
+      "Zwielichtgarten/Forschung - Ätherpfad"
+    ]
+  },
+  "Waldspinne": {
+    "status": "ok",
+    "title": "Waldspinne",
+    "en": "Forest Spider",
+    "via": "Waldspinne",
+    "url": "https://wiki-de.guildwars2.com/wiki/Waldspinne"
+  },
+  "Wanderer-Hügel": {
+    "status": "ok",
+    "title": "Wanderer-Hügel",
+    "en": "Wayfarer Foothills",
+    "via": "Wanderer-Hügel",
+    "url": "https://wiki-de.guildwars2.com/wiki/Wanderer-H%C3%BCgel"
+  },
+  "Wildschwein": {
+    "status": "fehlt",
+    "suggestions": [
+      "Eber",
+      "Zähmling",
+      "Banditenwinkel-Höhle"
+    ]
+  },
+  "Wurmbrut": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Wyvern": {
+    "status": "ok",
+    "title": "Wyvern",
+    "en": "Wyvern",
+    "via": "Wyvern",
+    "url": "https://wiki-de.guildwars2.com/wiki/Wyvern"
+  },
+  "Zentauren-Belagerer": {
+    "status": "fehlt",
+    "suggestions": [
+      "Zentauren-Katapult",
+      "Trébuchet (Tödliche Gewalt)",
+      "Galen"
+    ]
+  },
+  "Zentauren-Belagerungsmeister": {
+    "status": "fehlt",
+    "suggestions": [
+      "Zentaur",
+      "Steinbohrung-Kammern",
+      "Wächterpass"
+    ]
+  },
+  "Zentauren-Bogenschütze": {
+    "status": "fehlt",
+    "suggestions": [
+      "Seraphen",
+      "Zentaur",
+      "Tamini-Bogenschütze"
+    ]
+  },
+  "Zentauren-Krieger": {
+    "status": "fehlt",
+    "suggestions": [
+      "Sylvari",
+      "Verkrüppelung",
+      "Wiedergänger"
+    ]
+  },
+  "Zentauren-Kriegsherr Kol": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Zentauren-Kriegsschamane": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Zentauren-Kriegstrommler": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Zentauren-Lanzenreiter": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Zentauren-Oberhäuptling": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Zentauren-Späher": {
+    "status": "fehlt",
+    "suggestions": [
+      "Seraphen",
+      "Harathi-Hinterland",
+      "Helft Bronson, die Truppen der Zentauren zu stören"
+    ]
+  },
+  "Zhaff-Sumpfmonster": {
+    "status": "fehlt",
+    "suggestions": []
+  },
+  "Zhaitan": {
+    "status": "ok",
+    "title": "Zhaitan",
+    "en": "Zhaitan",
+    "via": "Zhaitan",
+    "url": "https://wiki-de.guildwars2.com/wiki/Zhaitan"
+  },
+  "Zitadelle der Flamme": {
+    "status": "fehlt",
+    "suggestions": [
+      "Schwarzklingen-See",
+      "Einen Spion für einen Spion",
+      "Razen der Räuber"
+    ]
+  },
+  "Zunder-Bandit": {
+    "status": "fehlt",
+    "suggestions": [
+      "Trophäe",
+      "Seraphen-Soldatin Dianna",
+      "Spielupdate/20121215"
+    ]
+  }
+}

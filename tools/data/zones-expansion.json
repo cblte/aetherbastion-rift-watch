@@ -1,0 +1,256 @@
+{
+  "note": "Handgeschrieben: Entwurf der Zonen-Erweiterung (geplant, noch nicht im Spiel). Daraus erzeugt: dev-data/akrw-zones-expansion.md (node tools/gen-devdata.mjs .) und die Zonen 11–20 in dev-data/gw2-monsters.* (node tools/build-gw2-monsters.mjs .). basePortals = Namen der Portale 1–4 im Spiel. minions = Schergen-Vorschlag (Stufe i bekommt Schergen i und i+1, reihum).",
+  "basePortals": {
+    "1": "Kryta",
+    "2": "Zittergipfel & Ascalon",
+    "3": "Herz von Tyria",
+    "4": "Küste & Sümpfe von Orr"
+  },
+  "expansions": [
+    {
+      "name": "Erweiterung 1",
+      "portals": [5, 6],
+      "lv": [61, 70]
+    },
+    {
+      "name": "Erweiterung 2",
+      "portals": [7, 8],
+      "lv": [71, 80],
+      "note": "Alternativ als **„Schwer+“**-Stufe statt eigener Erweiterung."
+    }
+  ],
+  "portals": {
+    "5": {
+      "name": "Das Land der Charr",
+      "lv": [61, 65]
+    },
+    "6": {
+      "name": "Hoher Norden & Vorstoß nach Orr",
+      "lv": [66, 70]
+    },
+    "7": {
+      "name": "Maguuma-Dschungel",
+      "lv": [71, 75]
+    },
+    "8": {
+      "name": "Wüste, Geistertal & Weltende",
+      "lv": [76, 80]
+    }
+  },
+  "zones": [
+    {
+      "id": 11,
+      "name": "Eisensuperiorität",
+      "portal": 5,
+      "type": "Offene Welt",
+      "lv": [61, 63],
+      "bosses": [
+        "Gebrandmarkte Verschlinger-Königin",
+        "Champion Brand-Goliath",
+        "Separatisten-Anführer",
+        "Flammenlegion-Kultist",
+        "Gebrandmarkter Zerschmetterer-Leutnant"
+      ],
+      "endboss": "Der Zerschmetterer",
+      "minions": [
+        "Gebrandmarkte",
+        "Verschlinger",
+        "Flammenlegion"
+      ]
+    },
+    {
+      "id": 12,
+      "name": "Zitadelle der Flamme",
+      "portal": 5,
+      "type": "Verlies",
+      "lv": [64, 65],
+      "bosses": [
+        "Sklavenmeister",
+        "Gaheron-Eiferer",
+        "Schmiedemeister",
+        "Evolvierter Flammen-Schamane",
+        "Magister des Baelfire"
+      ],
+      "endboss": "Gaheron Baelfire",
+      "minions": [
+        "Flammenlegion",
+        "Oger",
+        "Feuerelementare"
+      ]
+    },
+    {
+      "id": 13,
+      "name": "Eisklamm-Sund",
+      "portal": 6,
+      "type": "Offene Welt",
+      "lv": [66, 67],
+      "bosses": [
+        "Champion Eisbrut-Kodan",
+        "Dredge-Generaldirektor",
+        "Champion Svanir-Hexenmeister",
+        "Unterwasser-Krake Svanir",
+        "Eisbrut-Koloss"
+      ],
+      "endboss": "Klaue von Jormag",
+      "minions": [
+        "Eisbrut",
+        "Söhne Svanirs",
+        "Schaufler"
+      ]
+    },
+    {
+      "id": 14,
+      "name": "Umarmung der Betrübnis",
+      "portal": 6,
+      "type": "Verlies",
+      "lv": [68, 69],
+      "bosses": [
+        "Vorarbeiter Spur",
+        "Targa der Peiniger",
+        "General Molotov",
+        "Dredge-Kriegsgolem",
+        "Inquestur-Chef Kudu"
+      ],
+      "endboss": "Der Eiserne Schlächter",
+      "minions": [
+        "Schaufler",
+        "Inquestur",
+        "Golems"
+      ]
+    },
+    {
+      "id": 15,
+      "name": "Ruinen von Arah",
+      "portal": 6,
+      "type": "Verlies / epische Zone",
+      "lv": [70, 70],
+      "bosses": [
+        "Auge des Zhaitan",
+        "Maul des Zhaitan",
+        "Hohepriester des Balthasar",
+        "Hohepriesterin der Dwayna",
+        "Hohepriester der Grenth"
+      ],
+      "endboss": "Zhaitan",
+      "minions": [
+        "Auferstandene",
+        "Auferstandene Abscheulichkeit",
+        "Knochenmonstrum"
+      ]
+    },
+    {
+      "id": 16,
+      "name": "Silberwüste",
+      "portal": 7,
+      "type": "Offene Welt",
+      "lv": [71, 73],
+      "bosses": [
+        "Mordrem-Hüllen-Champion",
+        "Mordrem-Rankenbrecher",
+        "Mordrem-Teragriff",
+        "Blasenwerfender Mordrem-Wolf",
+        "Großer Züchter"
+      ],
+      "endboss": "Rankenzorn",
+      "minions": [
+        "Mordrem",
+        "Mordrem-Wolf",
+        "Mordrem-Scharfschütze"
+      ]
+    },
+    {
+      "id": 17,
+      "name": "Grasgrüne Schwelle",
+      "portal": 7,
+      "type": "Offene Welt",
+      "lv": [74, 75],
+      "bosses": [
+        "Patriarch der Wyvern",
+        "Axthauer-Champion",
+        "Mordrem-Kommandeur Diarmid",
+        "Mordrem-Kommandeur Stabmeister",
+        "Flügel-Schrecken"
+      ],
+      "endboss": "Matriarchin der Wyvern",
+      "minions": [
+        "Mordrem",
+        "Wyvern",
+        "Rauchschuppen"
+      ]
+    },
+    {
+      "id": 18,
+      "name": "Geistertal",
+      "portal": 8,
+      "type": "Schlachtzug",
+      "lv": [76, 77],
+      "bosses": [
+        "Talwächter",
+        "Gorseval der Facettenreiche",
+        "Zunder-Bandit",
+        "Kern-Spaltmonstrum",
+        "Turmwächter Karde"
+      ],
+      "endboss": "Sabetha die Saboteurin",
+      "minions": [
+        "Geister",
+        "Banditen",
+        "Untote"
+      ]
+    },
+    {
+      "id": 19,
+      "name": "Kristalloase & Flusslande",
+      "portal": 8,
+      "type": "Offene Welt",
+      "lv": [78, 79],
+      "bosses": [
+        "Gebrandmarkte Hydra",
+        "Choya-Piñata",
+        "Champion Erweckter Kanopen-Wächter",
+        "Verschlinger-Matriarchin",
+        "Herold von Balthasar"
+      ],
+      "endboss": "Doppelgänger",
+      "minions": [
+        "Erweckte",
+        "Geschmiedete",
+        "Gebrandmarkte"
+      ]
+    },
+    {
+      "id": 20,
+      "name": "Drachensturz (Die Nebel)",
+      "portal": 8,
+      "type": "Epische Zone",
+      "lv": [80, 80],
+      "bosses": [
+        "Ley-infundierter Zorn",
+        "Befallenes Riss-Monstrum",
+        "Kristallflügel-General",
+        "Gebrandmarkter Aurene-Schatten",
+        "Geißel der Schöpfung"
+      ],
+      "endboss": "Kralkatorrik",
+      "minions": [
+        "Gebrandmarkte",
+        "Kristall-Drachenbrut",
+        "Erweckte"
+      ]
+    }
+  ],
+  "requirements": [
+    "**Level-Cap über 60:** `MAX_HERO_LEVEL` und die EXP-Tabelle in `js/data/heroLevels.js` enden bei Lv. 60, das Zeltlager auch. Für Lv. 61–80 brauchen wir neue Zeilen (EXP, Gold/Zyklus, Belohnungen) und weitere Zeltlager-Stufen.",
+    "**Stufen-Werte:** Die CQHT-Daten reichen nur bis Kapitel 5. Level, Kosten und Belohnungen für die Zonen 11–20 müssen wir selbst festlegen (oder an `dev-data/cqht-monsters.*` anlehnen).",
+    "**Riss-Portal:** Stufe 5–8 in `js/data/buildings.js` ergänzen, Ätherscherben in `PORTAL_SHARDS`.",
+    "**Schwere und legendäre Stufen:** gleiches Muster wie Zonen 1–10 (☠️ Boss 5 und „Verderbt: Endboss“, ⭐ „Schatten: Endboss“), oder Erweiterung 2 als „Schwer+“.",
+    "**Zonen-Daten:** in `tools/gen-zones.mjs` ergänzen; der Generator muss dafür Stufen ohne CQHT-Vorlage erzeugen können."
+  ],
+  "nameNotes": [
+    "„Umarmung des Betrübnis“ → **Umarmung der Betrübnis** (deutscher Name von Sorrow’s Embrace).",
+    "Englische Zusätze in Klammern entfernt (Shatterer, Vinewrath, Forsaken Thicket, Vale Guardian).",
+    "„Blistering Mordrem Wolf“ → *Blasenwerfender Mordrem-Wolf*, „Stavemaster“ → *Stabmeister*, „Branded Aurene-Schatten“ → *Gebrandmarkter Aurene-Schatten*, „Canopic“ → *Kanopen*: eigene Übersetzungen, nicht mit dem deutschen Client abgeglichen.",
+    "„Eisbrut-Kodann“ → *Eisbrut-Kodan* (die Kodan sind das Volk); „Champion Eisbrut-Kodan“ gibt es so in der DE-Wiki.",
+    "Alle übrigen Bosse ohne Quellenprüfung übernommen."
+  ]
+}
