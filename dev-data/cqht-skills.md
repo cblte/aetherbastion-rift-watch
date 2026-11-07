@@ -2,7 +2,7 @@
 
 > Interne Entwicklungs-Referenz für **Aetherbastion: Rift Watch** (späterer Ausbau des Asura-Labors). Erzeugt mit `node tools/fetch-skills.mjs .` aus https://cqht-wiki.vercel.app/en/skills am 2026-11-07. Nicht von Hand bearbeiten. Spielinhalte © CQ LABS / Loadcomplete; nur als Vorlage, Namen und Texte vor der Übernahme auf GW2 ummünzen.
 
-**Felder:** *Labor* = nötige Labor-Stufe · *Kosten* in Honor (bei uns 🧪 Forschungspunkte) · *Zeit* wie in der Wiki angezeigt (m:ss, vermutlich Sekunden) · *Voraussetzung* = vorher nötige Forschungen · *Schaltet frei* = Funktion statt reinem Wertebonus. Deutsche Namen und Texte stammen aus der Wiki.
+**Felder:** *Labor* = nötige Labor-Stufe · *Kosten* in Honor (bei uns 📜 Forschungsnotizen) · *Zeit* wie in der Wiki angezeigt (m:ss, vermutlich Sekunden) · *Voraussetzung* = vorher nötige Forschungen · *Schaltet frei* = Funktion statt reinem Wertebonus. Deutsche Namen und Texte stammen aus der Wiki.
 
 | Baum | Forschungen | Kosten gesamt | Zeit gesamt | Freischaltungen |
 | --- | --- | --- | --- | --- |

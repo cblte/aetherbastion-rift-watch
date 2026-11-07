@@ -12,6 +12,34 @@ Format:
 
 ---
 
+## v0.14.1
+
+### #015 Forschungspunkte gibt es in GW2 nicht
+- Quelle: eigene Idee. 🧪 Forschungspunkte heißen jetzt 📜 Forschungsnotizen (GW2-Begriff). Nur Name und Symbol; Spielstand-Feld `rp` und Balancing unverändert. Debug in den Einstellungen hat jetzt 🛠️.
+
+## v0.14.0
+
+### #008 „Mystische Münzen“ durch „Mystischer Klee“ ersetzen
+- 💠 Mystische Münzen heißen jetzt 🍀 Mystischer Klee (Spielstand-Feld `clover`, Save-Version 7, Migration übernimmt die Menge).
+- Verwendung wie bisher: Ruhestand gibt Klee, ausgegeben wird er in der Mystischen Schmiede (dauerhafte Boni) und zum Zurücksetzen des Würfel-Preises.
+- Entschieden: Das Asura-Labor kostet keinen Klee, sondern Forschungsnotizen (siehe #015).
+
+## v0.13.1
+
+### #014 „danach: …“ im Auftrags-Banner weglassen
+- Quelle: Spieltest. Der Ausblick auf den nächsten Auftrag (aus #009) ist wieder raus; der Spieler soll nicht alles vorab sehen. Punkt am Reiter, leuchtende Knöpfe und 🎯 bleiben.
+
+## v0.13.0
+
+### #004 Vorräte / Inventar als eigener Tab
+- Neuer Reiter 🎒 Inventar in der unteren Leiste (6 Reiter, je ca. 60 px breit): Proviant, Früchte, Arena-Tickets, Waffenkammer, ausgerüstete Waffen. Die Vorräte-Karte im Lager ist weg. Im Tutorial ausgeblendet.
+
+### #012 Gildenhalle: Liste „Schaltet frei“ weglassen
+- Die Gildenhallen-Karte zeigt keine Freischalt-Liste mehr. Nach dem Ausbau nennt die Meldung weiterhin kurz, was neu ist.
+
+### #013 Einstellungen als eigener Dialog (⚙️ oben rechts)
+- Zahnrad ⚙️ oben rechts in der Kopfzeile (statt 🎒) öffnet die Einstellungen als Dialog. Im Lager stehen sie nicht mehr.
+
 ## v0.12.1
 
 ### #001 Tabs sehen alle gleich aus

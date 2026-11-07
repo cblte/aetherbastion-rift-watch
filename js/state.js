@@ -17,8 +17,8 @@ export function createNewState(now = Date.now()) {
     gold: 0,
     shards: 0,
     shardFrac: 0,          // Bruchteile für deterministische Offline-Scherben
-    coins: 0,
-    rp: 0,                 // 🧪 Forschungspunkte (CQHT: Honor)
+    clover: 0,             // 🍀 Mystischer Klee (Ruhestand → Mystische Schmiede, Würfel-Preis)
+    rp: 0,                 // 📜 Forschungsnotizen (CQHT: Honor)
     rations: [0, 0, 0, 0, 0, 0], // Proviant Güte 1–6 (CQHT: Bread)
     fruit: 0,              // CQHT-Früchte (noch ohne Funktion)
     tickets: 0,            // Arena-Tickets (noch ohne Funktion)
@@ -113,6 +113,12 @@ const MIGRATIONS = {
       s.construction = null;
     }
     for (const sq of s.squads || []) { sq.monster = null; if (sq.mode === 'boss') sq.mode = 'farm'; }
+    return s;
+  },
+  // v6 → v7: 💠 Mystische Münzen heißen jetzt 🍀 Mystischer Klee (Menge bleibt)
+  6: (s) => {
+    s.clover = (s.clover || 0) + (s.coins || 0);
+    delete s.coins;
     return s;
   },
   // v4 → v5: Rekrutierung mit Angeboten und Seltenheit. Vorhandene Helden sind „Fein“.
@@ -346,7 +352,7 @@ export function createHero(state, heroId, rarity = RECRUIT.freeRarity) {
 }
 
 // Gibt die Anzahl gewonnener Stufen zurück. Jede neue Stufe bringt die
-// CQHT-„Return Reward“: 🧪, Proviant und Früchte.
+// CQHT-„Return Reward“: 📜, Proviant und Früchte.
 export function gainExp(state, hero, amount) {
   const cap = levelCap(state);
   if (hero.level >= cap) { hero.exp = 0; return 0; }

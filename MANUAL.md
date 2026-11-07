@@ -12,7 +12,7 @@ Quest-Banner führen dich durch den Start. Die Reiter unten erscheinen erst, wen
 4. **Ersten Helden aufnehmen**, einen Wächter als Tank für Zelt 1 (kostenlos)
 5. **Riss-Portal aktivieren**. Jetzt erscheinen alle Reiter. Der Wächter kämpft zunächst allein, Heiler und Schadensausteiler folgen über die ersten Aufträge.
 
-Der nächste Schritt leuchtet: ein Punkt am passenden Reiter und ein leuchtender Knopf. Im Banner steht oben, was danach kommt.
+Der nächste Schritt leuchtet: ein Punkt am passenden Reiter und ein leuchtender Knopf.
 
 ### Aufträge
 
@@ -20,7 +20,7 @@ Danach geht es im selben **Auftrags-Banner** nahtlos weiter (Auftrag 5 bis 24). 
 
 - Der Balken zeigt den Fortschritt, **„Hingehen“** springt zum passenden Reiter.
 - Bei Boss-Aufträgen zeigt 🎯 die Zielstufe, in der Stufenliste und am Knopf **„Herausfordern“**.
-- Ist ein Auftrag erfüllt, holst du die **Belohnung** (Gold, Ätherscherben oder Forschungspunkte) mit einem Tipp ab. Erst dann kommt der nächste.
+- Ist ein Auftrag erfüllt, holst du die **Belohnung** (Gold, Ätherscherben oder Forschungsnotizen) mit einem Tipp ab. Erst dann kommt der nächste.
 - Hast du ein Ziel schon früher erreicht, ist der Auftrag sofort erfüllt.
 
 ## Währungen & Vorräte
@@ -29,12 +29,12 @@ Danach geht es im selben **Auftrags-Banner** nahtlos weiter (Auftrag 5 bis 24). 
 |---|---|---|---|
 | 🟡 | Gold | Siege, Gildenkasse, Helden ab Lv. 10 | Gebäude, Rekruten, Zelte, Boss-Herausforderungen, Waffen, Belebung |
 | 🔮 | Ätherscherben | Siege (5 %), jeder Boss | Riss-Portal |
-| 🧪 | Forschungspunkte | Boss-Siege, Level-Ups, Helden ab Lv. 20 alle 10 Min. | Forschung im Asura-Labor, seltene Waffen |
-| 💠 | Mystische Münzen | Ruhestand | Mystische Schmiede, Würfel-Preis zurücksetzen |
+| 📜 | Forschungsnotizen | Boss-Siege, Level-Ups, Helden ab Lv. 20 alle 10 Min. | Forschung im Asura-Labor, seltene Waffen |
+| 🍀 | Mystischer Klee | Ruhestand | Mystische Schmiede, Würfel-Preis zurücksetzen |
 | 🍞 | Proviant (Güte 1–6) | Boss-Siege, Level-Ups | EXP für einen Helden |
 | 🍎 🎟️ | Früchte, Arena-Tickets | Level-Ups, Bosse | Funktion folgt |
 
-**Gildenkasse:** Alle 10 Minuten zahlt die Gildenhalle Gold aus (100 bis 1.000 🟡 je nach Stufe). Dazu verdient jeder Held ab Lv. 10 Gold und ab Lv. 20 Forschungspunkte, auch in der Reserve.
+**Gildenkasse:** Alle 10 Minuten zahlt die Gildenhalle Gold aus (100 bis 1.000 🟡 je nach Stufe). Dazu verdient jeder Held ab Lv. 10 Gold und ab Lv. 20 Forschungsnotizen, auch in der Reserve.
 
 ## Helden & Rollen
 
@@ -47,7 +47,7 @@ Jeder Held hat eine Klasse aus Guild Wars 2 und eine **Rolle**. Die Rolle bestim
 
 Monster greifen immer den vordersten lebenden Helden an: Tank → Schaden → Unterstützer → Heiler.
 
-Helden steigen bis **Lv. 60** auf. Jede neue Stufe bringt eine Belohnung: Forschungspunkte, Proviant und manchmal Früchte.
+Helden steigen bis **Lv. 60** auf. Jede neue Stufe bringt eine Belohnung: Forschungsnotizen, Proviant und manchmal Früchte.
 
 ## Zelte = Trupps
 
@@ -65,7 +65,7 @@ Helden steigen bis **Lv. 60** auf. Jede neue Stufe bringt eine Belohnung: Forsch
 - Wenn du meinst, dass dein Trupp stark genug ist, tippst du auf **„Herausfordern“**. Das kostet etwas Gold. Dann hat der Trupp **90 Sekunden**, um den Boss zu besiegen.
 - Nach jeder Herausforderung (Sieg, Niederlage oder Abbruch) verschnauft der Trupp **90 Sekunden**. In der Pause kämpft er gegen die Schergen der Stufe weiter.
 - **🔁 Auto** wiederholt die Herausforderung nach jeder Pause von selbst, solange das Gold reicht. So sammelst du Boss-Beute nebenbei. Nach einer Niederlage oder einem Abbruch schaltet sich Auto aus. Offline kämpfen die Trupps nur gegen Schergen.
-  - **Sieg:** Forschungspunkte, Waffen, Proviant, Ätherscherben. Beim ersten Sieg wird die nächste Stufe frei.
+  - **Sieg:** Forschungsnotizen, Waffen, Proviant, Ätherscherben. Beim ersten Sieg wird die nächste Stufe frei.
   - **Zeit abgelaufen oder alle gefallen:** Der Trupp kehrt zu den Schergen zurück. Versuch es später erneut.
 - Bereits besiegte Bosse kannst du jederzeit erneut herausfordern, zum Beispiel für Waffen.
 - Fällt ein Held auf 0 LP, ist er **verwundet** und erholt sich **90 Sekunden** lang. Für Gold kannst du ihn sofort beleben (⚡).
@@ -128,7 +128,7 @@ Die Karte der Gildenhalle zeigt, was die nächste Stufe freischaltet. Die Mystis
 
 ## 🔬 Asura-Labor – Forschung
 
-Mit **🧪 Forschungspunkten** erforschst du dauerhafte Verbesserungen in drei Bäumen. Jeder Knoten hat bis zu 5 Stufen. Tiefere Knoten brauchen einen Vorgänger und eine höhere Laborstufe (Stufe II ab Labor 3, Stufe III ab Labor 5).
+Mit **📜 Forschungsnotizen** erforschst du dauerhafte Verbesserungen in drei Bäumen. Jeder Knoten hat bis zu 5 Stufen. Tiefere Knoten brauchen einen Vorgänger und eine höhere Laborstufe (Stufe II ab Labor 3, Stufe III ab Labor 5).
 
 | Baum | Knoten |
 |---|---|
@@ -138,9 +138,9 @@ Mit **🧪 Forschungspunkten** erforschst du dauerhafte Verbesserungen in drei B
 
 ## ⚒️ Charr-Schmiede – Waffen
 
-- Der **Laden** bietet 3 Waffen an und füllt sich alle 30 Minuten neu. „Ware auffrischen“ kostet 100 Gold und verdoppelt sich jedes Mal, bis der Laden sich von selbst erneuert. Mit **2 💠 Mystischen Münzen** setzt du den Preis sofort zurück auf 100.
+- Der **Laden** bietet 3 Waffen an und füllt sich alle 30 Minuten neu. „Ware auffrischen“ kostet 100 Gold und verdoppelt sich jedes Mal, bis der Laden sich von selbst erneuert. Mit **2 🍀 Mystischem Klee** setzt du den Preis sofort zurück auf 100.
 - Gekaufte Waffen und Boss-Beute landen in der **Waffenkammer** (Reiter ⚒️ Schmiede). Boss-Beute kommt auch schon, bevor die Schmiede gebaut ist. Dort rüstest du sie aus oder verkaufst sie (25 % des Preises).
-- **🎒 Inventar** (Knopf oben rechts in der Kopfzeile): Waffenkammer, ausgerüstete Waffen und Proviant an einem Ort. Ausrüsten und Verfüttern geht dort oder im Helden-Fenster.
+- **🎒 Inventar** (eigener Reiter in der unteren Leiste): Proviant, Früchte, Arena-Tickets, Waffenkammer und ausgerüstete Waffen an einem Ort. Ausrüsten und Verfüttern geht dort oder im Helden-Fenster.
 - Jeder Held trägt eine **Waffenart**: Heiler einen **Fokus**, sonst nach Klasse.
 
 | Waffenart | Träger |
@@ -171,7 +171,7 @@ Im Reiter **🛡️ Trupps → Rekrutieren** stehen wechselnde **Angebote**. Wie
 | ab Stufe 3 | 4 | 25 Min. |
 | ab Stufe 5 | 6 | 20 Min. |
 
-- **Liste erneuern** kostet 100 Gold und verdoppelt sich mit jedem Versuch (100, 200, 400 …). Kommt der Nachschub von selbst, fängt der Preis wieder bei 100 an. Mit **2 💠 Mystischen Münzen** kannst du ihn sofort zurücksetzen.
+- **Liste erneuern** kostet 100 Gold und verdoppelt sich mit jedem Versuch (100, 200, 400 …). Kommt der Nachschub von selbst, fängt der Preis wieder bei 100 an. Mit **2 🍀 Mystischem Klee** kannst du ihn sofort zurücksetzen.
 - Nach einem Ausbau der Gildenhalle kommen die zusätzlichen Plätze sofort dazu.
 - Jeder Rekrut hat eine **Seltenheit**. Sie bestimmt den Preis und einen Bonus auf LP und ATK:
 
@@ -190,7 +190,7 @@ Im Reiter **🛡️ Trupps → Rekrutieren** stehen wechselnde **Angebote**. Wie
 ## Ruhestand & Mystische Schmiede (Prestige)
 
 - Die Mystische Schmiede öffnet sich ab **Gildenhalle 5**.
-- Helden ab **Lv. 20** können in den **Ruhestand** gehen. Sie verlassen das Lager und hinterlassen **💠 Mystische Münzen** = Level² ÷ 100 (Lv. 20 = 4, Lv. 60 = 36). Ihre Waffe kommt zurück in die Waffenkammer.
+- Helden ab **Lv. 20** können in den **Ruhestand** gehen. Sie verlassen das Lager und hinterlassen **🍀 Mystischen Klee** = Level² ÷ 100 (Lv. 20 = 4, Lv. 60 = 36). Ihre Waffe kommt zurück in die Waffenkammer.
 - Ein Held im Ruhestand kann später erneut rekrutiert werden und beginnt wieder bei Lv. 1.
 - In der **✨ Mystischen Schmiede** gibt es dauerhafte Boni mit je 5 Stufen: mehr Trupp-ATK, mehr HP, kürzere Regeneration, mehr Gold und Scherben.
 
@@ -198,7 +198,7 @@ Im Reiter **🛡️ Trupps → Rekrutieren** stehen wechselnde **Angebote**. Wie
 
 Schließt du die App, farmen deine Trupps die Schergen ihrer Stufe weiter, **bis zu 8 Stunden** (mit Forschung bis 10). Die Gildenkasse zahlt weiter aus, Bauaufträge werden fertig und der Laden füllt sich neu. Bosse gibt es nur live. Der **🌙 Offline-Rissbericht** zeigt alles bei der Rückkehr. Liegt die **Effizienz** eines Trupps unter 100 %, ist seine Stufe zu schwer.
 
-## Einstellungen (🏛️ Lager, ganz unten)
+## Einstellungen (⚙️ Zahnrad oben rechts)
 
 - **📖 Handbuch:** Kurzfassung dieser Anleitung im Spiel
 - **Vibration** bei Level-Ups an/aus

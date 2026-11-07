@@ -4,7 +4,7 @@
 //     gleich GAME.VERSION in js/config.js –, sonst bekommen installierte
 //     Clients die neuen Dateien nicht.
 // =====================================================================
-const CACHE_VERSION = 'aetherbastion-0.12.1'; // = GAME.VERSION in js/config.js
+const CACHE_VERSION = 'aetherbastion-0.14.1'; // = GAME.VERSION in js/config.js
 const APP_FILES = [
   './',
   './index.html',

@@ -2,7 +2,7 @@
 //  Waffen der Charr-Schmiede – aus CQHT „Smithy Shop“ übertragen
 //    type    – Waffenart (siehe WEAPON_TYPES)
 //    grade   – Güte ★1–6 (Seltenheit wie in GW2, siehe WEAPON_GRADES)
-//    gold/rp – Kaufpreis in Gold bzw. alternativ in 🧪 (CQHT: Honor)
+//    gold/rp – Kaufpreis in Gold bzw. alternativ in 📜 (CQHT: Honor)
 //    smithy  – benötigte Stufe der Charr-Schmiede
 //    weight  – Häufigkeit im Laden und bei Drops (CQHT-Drop-Chance in %)
 //    src     – CQHT-Original (nur zur Orientierung)

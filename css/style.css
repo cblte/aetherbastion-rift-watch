@@ -26,6 +26,7 @@
   --tab-squads: #59d68c;
   --tab-lab: #5fd0e6;
   --tab-forge: #ff8a4c;
+  --tab-inv: #e889c0;
   --accent: var(--aether);
 }
 #app[data-tab="portal"] { --accent: var(--tab-portal); }
@@ -33,6 +34,7 @@
 #app[data-tab="squads"] { --accent: var(--tab-squads); }
 #app[data-tab="lab"]    { --accent: var(--tab-lab); }
 #app[data-tab="forge"]  { --accent: var(--tab-forge); }
+#app[data-tab="inv"]    { --accent: var(--tab-inv); }
 
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 html, body { margin: 0; height: 100%; background: var(--bg); }
@@ -90,15 +92,15 @@ textarea { user-select: text; -webkit-user-select: text; }
 .chip b { font-variant-numeric: tabular-nums; font-weight: 650; }
 .chip.gold b { color: var(--gold); }
 .chip.shards b { color: #c6a8ff; }
-.chip.coins b { color: var(--aether-2); }
+.chip.clover b { color: #7fe08f; }
 .chip.rp b { color: #9ff0b8; }
 .chip[hidden] { display: none; }
 .card.recruit { border-left: 3px solid var(--r, var(--line)); }
 .rar { font-weight: 600; }
 /* 🎒 Inventar-Knopf: sieht aus wie ein Chip, Tippfläche wird auf 44 px erweitert */
-.chip.inv { position: relative; color: inherit; font: inherit; font-size: 12px; cursor: pointer; border-color: var(--aether); }
-.chip.inv::after { content: ''; position: absolute; inset: -6px -2px; }
-.chip.inv:active { background: var(--panel-2); }
+.chip.settings { flex: 0 0 auto; min-width: 40px; position: relative; color: inherit; font: inherit; font-size: 17px; cursor: pointer; }
+.chip.settings::after { content: ''; position: absolute; inset: -6px -2px; } /* Tippfläche ≥ 44 px */
+.chip.settings:active { background: var(--panel-2); }
 
 /* ---------- Quest-Banner ------------------------------------------ */
 .quest {
@@ -520,6 +522,7 @@ textarea {
 #tabs [data-tab="squads"] { --c: var(--tab-squads); }
 #tabs [data-tab="lab"]    { --c: var(--tab-lab); }
 #tabs [data-tab="forge"]  { --c: var(--tab-forge); }
+#tabs [data-tab="inv"]    { --c: var(--tab-inv); }
 #tabs button.active {
   color: var(--c);
   background: color-mix(in srgb, var(--c) 16%, var(--panel));

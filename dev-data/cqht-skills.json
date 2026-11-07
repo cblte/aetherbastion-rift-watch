@@ -1,7 +1,7 @@
 {
   "source": "https://cqht-wiki.vercel.app/en/skills",
   "fetched": "2026-11-07T09:54:26.802Z",
-  "note": "Erzeugt mit node tools/fetch-skills.mjs . – nicht von Hand bearbeiten. price = Honor (bei uns 🧪 Forschungspunkte), labLevel = nötige Labor-Stufe, time = Forschungszeit (Wiki-Anzeige m:ss, vermutlich Sekunden).",
+  "note": "Erzeugt mit node tools/fetch-skills.mjs . – nicht von Hand bearbeiten. price = Honor (bei uns 📜 Forschungsnotizen), labLevel = nötige Labor-Stufe, time = Forschungszeit (Wiki-Anzeige m:ss, vermutlich Sekunden).",
   "trees": [
     {
       "id": "MANAGE",

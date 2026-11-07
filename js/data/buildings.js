@@ -74,7 +74,7 @@ export const BUILDING_DATA = {
   // CQHT Skill Lab (INSTITUTE), max. 10 – Stufe öffnet Forschungsstufen
   lab: {
     name: 'Asura-Labor', icon: '🔬', unlockHall: 1, src: 'Skill Lab',
-    desc: 'Forschung mit 🧪 Forschungspunkten. Höhere Stufen öffnen tiefere Forschung.',
+    desc: 'Forschung mit 📜 Forschungsnotizen. Höhere Stufen öffnen tiefere Forschung.',
     levels: [
       { cost: 250,       time: 0,     hall: 1 },
       { cost: 500,       time: 30,    hall: 2 },

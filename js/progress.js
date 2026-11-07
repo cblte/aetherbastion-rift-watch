@@ -5,7 +5,7 @@
 // =====================================================================
 import {
   BUILDINGS, RESEARCH, TIER_LAB, F, WEAPONS, WEAPON_BY_ID, WEAPON_GRADES, SHOP, DROP_GRADES, RATIONS,
-  HEROES, HERO_BY_ID, RECRUIT, QUESTS, ONBOARDING, REROLL_RESET_COINS,
+  HEROES, HERO_BY_ID, RECRUIT, QUESTS, ONBOARDING, REROLL_RESET_CLOVER,
 } from './config.js';
 import {
   getHero, heroStats, pay, researchLevel, addLog, buildingCost, buildLock, weaponType, gainExp,
@@ -210,11 +210,11 @@ export function hireRecruit(state, slot) {
   return createHero(state, o.heroId, o.rarity);
 }
 
-// ---------- Würfel-Preis zurücksetzen (💠) ------------------------------
+// ---------- Würfel-Preis zurücksetzen (🍀) ------------------------------
 // which: 'shop' (Waffenladen) oder 'recruits' (Rekruten). Nur wenn schon erneuert wurde.
 export function resetRerollCost(state, which) {
   const box = which === 'shop' ? state.shop : which === 'recruits' ? state.recruits : null;
-  if (!box || box.refreshes < 1 || !pay(state, { coins: REROLL_RESET_COINS })) return false;
+  if (!box || box.refreshes < 1 || !pay(state, { clover: REROLL_RESET_CLOVER })) return false;
   box.refreshes = 0;
   return true;
 }

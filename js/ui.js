@@ -8,7 +8,7 @@ import {
   GAME, CURRENCIES, ROLES, CLASSES, HEROES, HERO_BY_ID, ZONES, COMBAT, F, BUILDINGS, BUILDING_ORDER,
   TENTS, TENT_SIZE, MYSTIC, MYSTIC_ORDER, ONBOARDING, RETIRE_MIN_LEVEL, LEVEL_CAP_MAX, FEATURES,
   RESEARCH, RESEARCH_ORDER, TIER_LAB, WEAPON_BY_ID, WEAPON_GRADES, WEAPON_TYPES, RATIONS, NORMAL_STAGES,
-  TOTAL_NORMAL, CYCLE_MS, QUESTS as MAIN_QUESTS, RECRUIT, REROLL_RESET_COINS,
+  TOTAL_NORMAL, CYCLE_MS, QUESTS as MAIN_QUESTS, RECRUIT, REROLL_RESET_CLOVER,
 } from './config.js';
 import { currentQuest, questProgress, questNumber, claimQuest, questDone } from './quests.js';
 import { manualChapters } from './manual.js';
@@ -106,11 +106,10 @@ export function render() {
 function renderHud() {
   $('#hud-gold').textContent = fmt(S.gold);
   $('#hud-shards').textContent = fmt(S.shards);
-  $('#hud-coins').textContent = fmt(S.coins);
+  $('#hud-clover').textContent = fmt(S.clover);
   $('#hud-rp').textContent = fmt(S.rp);
   $('#hud-rp-chip').hidden = S.buildings.lab < 1 && S.rp < 1;
   $('#hud-cap').textContent = `${levelCap(S)}/${LEVEL_CAP_MAX}`;
-  $('#hud-inv').textContent = fmt(S.armory.length);
   $('#hud-heroes').textContent = `${activeHeroCount(S)}/${TENTS.length * TENT_SIZE}`;
 }
 
@@ -118,10 +117,10 @@ function renderHud() {
 // key = Gebäude, dessen Karte im Lager den Schritt auch auslöst · tab = Reiter des Schritts
 const QUESTS = [
   null,
-  { icon: '🏛️', short: 'Gildenhalle', tab: 'camp', key: 'hall', text: 'Errichte die <b>Gildenhalle</b>.', btn: 'Errichten (kostenlos)', action: 'ob-hall' },
-  { icon: '⛺', short: 'Erstes Zelt', tab: 'camp', key: 'camp', text: 'Schlage dein <b>erstes Zelt</b> auf. Hier wohnen deine Helden.', btn: 'Zelt aufschlagen (kostenlos)', action: 'ob-camp' },
-  { icon: '🛡️', short: 'Erster Held', tab: 'squads', text: () => `Nimm <b>${esc(HERO_BY_ID[ONBOARDING.tank].name)}</b> als ersten Helden auf. Als Tank steht dieser Held vorn.`, btn: 'Aufnehmen (kostenlos)', action: 'ob-recruit' },
-  { icon: '🌀', short: 'Riss-Portal', tab: 'squads', text: 'Aktiviere das <b>Riss-Portal</b>. Dann beginnt der erste Kampf.', btn: 'Portal aktivieren', action: 'ob-finish' },
+  { icon: '🏛️', tab: 'camp', key: 'hall', text: 'Errichte die <b>Gildenhalle</b>.', btn: 'Errichten (kostenlos)', action: 'ob-hall' },
+  { icon: '⛺', tab: 'camp', key: 'camp', text: 'Schlage dein <b>erstes Zelt</b> auf. Hier wohnen deine Helden.', btn: 'Zelt aufschlagen (kostenlos)', action: 'ob-camp' },
+  { icon: '🛡️', tab: 'squads', text: () => `Nimm <b>${esc(HERO_BY_ID[ONBOARDING.tank].name)}</b> als ersten Helden auf. Als Tank steht dieser Held vorn.`, btn: 'Aufnehmen (kostenlos)', action: 'ob-recruit' },
+  { icon: '🌀', tab: 'squads', text: 'Aktiviere das <b>Riss-Portal</b>. Dann beginnt der erste Kampf.', btn: 'Portal aktivieren', action: 'ob-finish' },
 ];
 
 // Onboarding und Aufträge zählen durchgehend: Auftrag 1–4 = Onboarding, danach QUESTS aus config.js
@@ -129,7 +128,7 @@ const OB_STEPS = QUESTS.length - 1;
 const questTotal = () => OB_STEPS + MAIN_QUESTS.length;
 
 // Reiter erscheinen erst, wenn das Tutorial sie braucht (Wert = Onboarding-Schritt)
-const TAB_FROM = { camp: 1, squads: 3, portal: 5, lab: 5, forge: 5 };
+const TAB_FROM = { camp: 1, squads: 3, portal: 5, inv: 5, lab: 5, forge: 5 };
 const tabVisible = (t) => S.onboarding >= TAB_FROM[t];
 
 // Reiter, in dem es gerade weitergeht (bekommt einen Punkt in der Navigation)
@@ -148,8 +147,6 @@ function questStageTarget() {
   return { zone: q.goal.zone, stage: Math.min((S.progress[q.goal.zone] || 0) + 1, q.goal.stage) };
 }
 
-const nextText = (icon, title) => ` · danach: ${icon} ${esc(title)}`;
-
 function renderQuest() {
   const q = $('#quest');
   $('#start-overlay').hidden = S.onboarding !== 0;
@@ -157,10 +154,8 @@ function renderQuest() {
   if (!step) { renderMainQuest(q); return; }
   q.hidden = false;
   const text = typeof step.text === 'function' ? step.text() : step.text;
-  const after = QUESTS[S.onboarding + 1];
-  const first = MAIN_QUESTS[0];
   setHTML(q, `
-    <div class="quest-step">Auftrag ${S.onboarding}/${questTotal()}${after ? nextText(after.icon, after.short) : first ? nextText(first.icon, first.title) : ''}</div>
+    <div class="quest-step">Auftrag ${S.onboarding}/${questTotal()}</div>
     <div class="quest-body"><span class="quest-icon">${step.icon}</span><p>${text}</p></div>
     <button class="btn primary block" data-action="${step.action}">${step.btn}</button>`);
 }
@@ -180,13 +175,11 @@ function renderMainQuest(q) {
     : done
     ? `<button class="btn primary block" data-action="quest-claim">${Object.keys(quest.reward).length ? `Belohnung abholen · ${rewardText(quest.reward)}` : 'Weiter'}</button>`
     : quest.tab && quest.tab !== tab ? `<button class="btn block" data-action="tab" data-tab="${quest.tab}">Hingehen</button>` : '';
-  const doneIds = new Set(S.questsDone);
-  const after = MAIN_QUESTS.find(x => x !== quest && !doneIds.has(x.id));
   const target = questStageTarget();
   const targetLine = target
     ? `<div class="quest-target">🎯 ${esc(ZONES[target.zone - 1].name)} · Stufe ${target.stage}: Boss mit <b>„Herausfordern“</b> besiegen</div>` : '';
   setHTML(q, `
-    <div class="quest-step">Auftrag ${OB_STEPS + questNumber(quest)}/${questTotal()}${done ? ' · erfüllt ✓' : after ? nextText(after.icon, after.title) : ''}</div>
+    <div class="quest-step">Auftrag ${OB_STEPS + questNumber(quest)}/${questTotal()}${done ? ' · erfüllt ✓' : ''}</div>
     <div class="quest-body"><span class="quest-icon">${quest.icon}</span><p><b>${esc(quest.title)}</b><br>${esc(quest.text)}</p></div>
     ${targetLine}
     ${quest.goal.type === 'freeHero' ? '' : `<div class="quest-progress"><span style="width:${Math.round(have / need * 100)}%"></span><small>${fmt(have)}/${fmt(need)} · ${rewardText(quest.reward)}</small></div>`}
@@ -205,8 +198,8 @@ const SKELETONS = {
     <section id="portal-up"></section>
     <h2 class="sec">Kampf-Chronik</h2>
     <ol id="chronicle" class="chronicle"></ol>`,
-  camp: `<h2 class="sec">Gildenlager</h2><section id="camp-stats"></section><section id="buildings"></section>
-    <h2 class="sec">Einstellungen</h2><section id="settings"></section>`,
+  camp: `<h2 class="sec">Gildenlager</h2><section id="camp-stats"></section><section id="buildings"></section>`,
+  inv: `<h2 class="sec">🎒 Inventar</h2><section id="inventory"></section>`,
   squads: `<h2 class="sec">Zelte</h2><section id="tents"></section>
     <div id="squads-more"><h2 class="sec">Reserve</h2><section id="reserve"></section>
     <h2 class="sec">Rekrutieren</h2><section id="recruit"></section></div>`,
@@ -223,7 +216,7 @@ function renderView() {
     view.dataset.tab = tab;
     view.scrollTop = 0;
   }
-  ({ portal: renderPortal, camp: renderCamp, squads: renderSquads, lab: renderLab, forge: renderForge })[tab]();
+  ({ portal: renderPortal, camp: renderCamp, squads: renderSquads, inv: renderInventory, lab: renderLab, forge: renderForge })[tab]();
 }
 
 // ---------- Bausteine -------------------------------------------------
@@ -337,7 +330,7 @@ function renderPortal() {
       bossBar = `<div class="card boss-card ${beaten ? '' : 'fresh'}">
         <div><b>👑 ${esc(st.boss.name)}</b> <span class="lv">Lv. ${st.level}</span>
           <div class="muted small">${beaten ? 'Schon besiegt – lohnt sich erneut.' : nextTxt ? `Sieg öffnet ${nextTxt}.` : 'Letzte Stufe.'}</div>
-          <div class="reward-line">🧪 ${range(r.rp)} · ⚒️ ${r.weapons} Waffe${r.weapons > 1 ? 'n' : ''} · 🍞 ${r.rations}${r.tickets[1] ? ` · 🎟️ ${range(r.tickets)}` : ''}</div></div>
+          <div class="reward-line">📜 ${range(r.rp)} · ⚒️ ${r.weapons} Waffe${r.weapons > 1 ? 'n' : ''} · 🍞 ${r.rations}${r.tickets[1] ? ` · 🎟️ ${range(r.tickets)}` : ''}</div></div>
         <div class="btn-col tight">
           <button class="btn ${beaten ? '' : 'primary'} ${isGoal ? 'goal' : ''}" data-action="boss" ${can && S.gold >= cost ? '' : 'disabled'}>Herausfordern<small>${cd ? `⏳ ${clock(cd)}` : `🟡 ${fmt(cost)}`}</small></button>
           <button class="btn ${sq.autoBoss ? 'primary' : ''}" data-action="boss-auto" aria-pressed="${sq.autoBoss}">🔁 Auto ${sq.autoBoss ? 'an' : 'aus'}</button>
@@ -464,14 +457,12 @@ function buildingCard(key) {
     btn = `<button class="btn primary" data-action="build" data-key="${key}" ${lock || !canAfford(S, cost) ? 'disabled' : ''}>
       ${lvl ? `Stufe ${next}` : 'Bauen'}<small>${costText(cost)}</small>${secs ? `<small>⏱ ${fmtTime(secs)}</small>` : ''}</button>`;
   }
-  const unlocks = key === 'hall' && !maxed && S.onboarding >= 5 ? hallUnlocks(next) : [];
   return `<div class="card building ${building ? 'building-now' : ''}">
     <div class="b-icon">${b.icon}</div>
     <div class="b-body">
       <div class="b-title"><b>${b.name}</b><span class="lv">Stufe ${lvl}/${b.max}</span></div>
       <div class="b-desc">${b.desc}</div>
       <div class="b-eff">${effectText(key, lvl)}${!maxed ? ` <span class="arrow">→</span> ${effectText(key, next, true)}` : ''}</div>
-      ${unlocks.length ? `<div class="b-unlock">Schaltet frei: ${unlocks.join(', ')}</div>` : ''}
       ${building ? `<div class="b-unlock">Wird auf Stufe ${c.to} ausgebaut …</div>` : ''}
       ${note ? `<div class="b-note">${note}</div>` : ''}
     </div>
@@ -486,7 +477,6 @@ function renderCamp() {
     // Tutorial: nur Gildenhalle und (ab Schritt 2) Zeltlager, keine Statistik
     setHTML($('#camp-stats'), '');
     setHTML($('#buildings'), BUILDING_ORDER.filter(k => k === 'hall' || (k === 'camp' && S.onboarding >= 2)).map(buildingCard).join(''));
-    renderSettings();
     return;
   }
   const next = S.nextCycleMs - S.lastTickMs;
@@ -494,16 +484,18 @@ function renderCamp() {
     <span>⚔️ Siege <b>${fmt(S.stats.kills)}</b></span>
     <span>👑 Stufen <b>${normalCleared(S)}/${TOTAL_NORMAL}</b></span>
     <span>🌅 Ruhestand <b>${S.stats.retired}</b></span></div>
-    <div class="card small cycle">💰 Gildenkasse in <b>${clock(next)}</b>: +${fmt(hallGold(S))} 🟡 plus Einkommen der Helden ab Lv. 10.</div>
-    <div class="card small stock"><b>Vorräte</b>
-      <div class="stock-row">${RATIONS.map((r, g) => `<span title="${esc(r.name)}">🍞${g + 1} <b>${S.rations[g]}</b></span>`).join('')}</div>
-      <div class="muted">🍎 Früchte <b>${S.fruit}</b> · 🎟️ Arena-Tickets <b>${S.tickets}</b> <span class="muted">(Funktion folgt)</span></div></div>`);
+    <div class="card small cycle">💰 Gildenkasse in <b>${clock(next)}</b>: +${fmt(hallGold(S))} 🟡 plus Einkommen der Helden ab Lv. 10.</div>`);
   setHTML($('#buildings'), BUILDING_ORDER.map(buildingCard).join(''));
-  renderSettings();
 }
 
-function renderSettings() {
-  setHTML($('#settings'), `
+// ⚙️ Einstellungen als Dialog (Zahnrad oben rechts)
+function openSettings() {
+  const refresh = () => openModal(settingsHtml(), refresh);
+  refresh();
+}
+
+function settingsHtml() {
+  return `${modalHead('⚙️ Einstellungen')}
     <div class="card"><button class="btn block" data-action="manual">📖 Handbuch</button></div>
     <div class="card setting">
       <span>📳 Vibration bei Level-Ups</span>
@@ -517,13 +509,13 @@ function renderSettings() {
       </div>
     </div>
     <div class="card">
-      <div class="b-title"><b>🧪 Debug</b></div>
+      <div class="b-title"><b>🛠️ Debug</b></div>
       <button class="btn block" data-action="debug-offline">15 Min. Offline simulieren</button>
     </div>
     <div class="card">
       <button class="btn danger block" data-action="reset">Spielstand zurücksetzen</button>
     </div>
-    <p class="muted small center">${GAME.title} · ${versionText()} · Spielstand v${S.version}<br>Nicht-kommerzielles Fanprojekt. Guild Wars 2 ist eine Marke von ArenaNet/NCSOFT; dieses Projekt ist nicht mit ihnen verbunden.</p>`);
+    <p class="muted small center">${GAME.title} · ${versionText()} · Spielstand v${S.version}<br>Nicht-kommerzielles Fanprojekt. Guild Wars 2 ist eine Marke von ArenaNet/NCSOFT; dieses Projekt ist nicht mit ihnen verbunden.</p>`;
 }
 
 // ---------- Trupps -----------------------------------------------------
@@ -624,10 +616,10 @@ function recruitHtml() {
     ${rerollRow(`<button class="btn" data-action="recruit-refresh" ${S.gold >= rc ? '' : 'disabled'}>Liste erneuern<small>🟡 ${fmt(rc)}</small></button>`, 'recruits', S.recruits.refreshes)}`;
 }
 
-// Erneuern-Knopf; nach dem ersten Erneuern daneben „Preis zurücksetzen“ für 💠
+// Erneuern-Knopf; nach dem ersten Erneuern daneben „Preis zurücksetzen“ für 🍀
 function rerollRow(refreshBtn, which, refreshes) {
   if (refreshes < 1) return `<div class="btn-row">${refreshBtn}</div>`;
-  return `<div class="btn-row">${refreshBtn}<button class="btn" data-action="reroll-reset" data-which="${which}" ${S.coins >= REROLL_RESET_COINS ? '' : 'disabled'}>Preis zurücksetzen<small>💠 ${REROLL_RESET_COINS}</small></button></div>`;
+  return `<div class="btn-row">${refreshBtn}<button class="btn" data-action="reroll-reset" data-which="${which}" ${S.clover >= REROLL_RESET_CLOVER ? '' : 'disabled'}>Preis zurücksetzen<small>🍀 ${REROLL_RESET_CLOVER}</small></button></div>`;
 }
 
 // ---------- Asura-Labor ------------------------------------------------
@@ -640,14 +632,14 @@ function renderLab() {
   if (S.buildings.lab < 1) {
     setHTML($('#lab'), lockedCard('🔬', 'Asura-Labor noch nicht gebaut',
       buildingUnlocked(S, 'lab')
-        ? 'Baue das Asura-Labor im Gildenlager. Dort setzt du 🧪 Forschungspunkte aus Boss-Siegen und Level-Ups ein.'
+        ? 'Baue das Asura-Labor im Gildenlager. Dort setzt du 📜 Forschungsnotizen aus Boss-Siegen und Level-Ups ein.'
         : `Verfügbar ab Gildenhalle Stufe ${BUILDINGS.lab.unlockHall}. Hier erforschst du später mehr ATK, DEF, HP, Angriffstempo und kürzere Regeneration.`));
     return;
   }
   setHTML($('#lab'), `
     <div class="card lab-head">
-      <div><b>🧪 ${fmt(S.rp)}</b> Forschungspunkte</div>
-      <div class="muted small">Labor Stufe ${S.buildings.lab} · Forschungsstufe II ab Labor ${TIER_LAB[2]}, III ab Labor ${TIER_LAB[3]}.<br>🧪 gibt es für Boss-Siege, Level-Ups und alle 10 Min. von Helden ab Lv. 20.</div>
+      <div><b>📜 ${fmt(S.rp)}</b> Forschungsnotizen</div>
+      <div class="muted small">Labor Stufe ${S.buildings.lab} · Forschungsstufe II ab Labor ${TIER_LAB[2]}, III ab Labor ${TIER_LAB[3]}.<br>📜 gibt es für Boss-Siege, Level-Ups und alle 10 Min. von Helden ab Lv. 20.</div>
     </div>
     ${RESEARCH_ORDER.map(tk => {
       const tree = RESEARCH[tk];
@@ -664,7 +656,7 @@ function renderLab() {
             ${info.reason && !maxed ? `<div class="b-note">🔒 ${info.reason}</div>` : ''}
           </div>
           <div class="b-act">${maxed ? '<button class="btn" disabled>Maximal</button>'
-            : `<button class="btn primary" data-action="research" data-tree="${tk}" data-node="${nk}" ${info.ok ? '' : 'disabled'}>Erforschen<small>🧪 ${fmt(info.cost)}</small></button>`}</div>
+            : `<button class="btn primary" data-action="research" data-tree="${tk}" data-node="${nk}" ${info.ok ? '' : 'disabled'}>Erforschen<small>📜 ${fmt(info.cost)}</small></button>`}</div>
         </div>`;
       }).join('')}</div>`;
     }).join('')}`);
@@ -714,7 +706,7 @@ function renderForge() {
         <div class="w-info"><div>${weaponName(wid)}</div><div class="muted small">${WEAPON_TYPES[w.type].name} · ${weaponBonus(wid)}</div></div>
         <div class="b-act btn-col tight">
           <button class="btn primary" data-action="buy" data-slot="${k}" data-cur="gold" ${S.gold >= w.gold ? '' : 'disabled'}>Kaufen<small>🟡 ${fmt(w.gold)}</small></button>
-          ${w.rp != null ? `<button class="btn" data-action="buy" data-slot="${k}" data-cur="rp" ${S.rp >= w.rp ? '' : 'disabled'}><small>oder 🧪 ${w.rp}</small></button>` : ''}
+          ${w.rp != null ? `<button class="btn" data-action="buy" data-slot="${k}" data-cur="rp" ${S.rp >= w.rp ? '' : 'disabled'}><small>oder 📜 ${w.rp}</small></button>` : ''}
         </div></div>`;
     }).join('') || '<div class="card muted small">Ausverkauft. Neue Ware kommt bald.</div>';
     setHTML($('#weapons'), `
@@ -729,7 +721,7 @@ function renderForge() {
     return;
   }
   setHTML($('#mystic'), `
-    <div class="card small">Schicke Helden ab Lv. ${RETIRE_MIN_LEVEL} in den Ruhestand, um 💠 Mystische Münzen zu erhalten (Lv.²/100). Die Boni hier sind dauerhaft.</div>
+    <div class="card small">Schicke Helden ab Lv. ${RETIRE_MIN_LEVEL} in den Ruhestand, um 🍀 Mystischen Klee zu erhalten (Lv.²/100). Die Boni hier sind dauerhaft.</div>
     ${MYSTIC_ORDER.map(k => {
       const m = MYSTIC[k];
       const lvl = S.mystic[k];
@@ -743,7 +735,7 @@ function renderForge() {
           <div class="b-eff">${m.sign}${Math.round(lvl * m.per * 100)} %${maxed ? '' : ` <span class="arrow">→</span> ${m.sign}${Math.round((lvl + 1) * m.per * 100)} %`}<div class="b-desc">${m.unit.replace('% ', '')}</div></div>
         </div>
         <div class="b-act">${maxed ? '<button class="btn" disabled>Maximal</button>'
-          : `<button class="btn primary" data-action="mystic" data-key="${k}" ${S.coins >= cost ? '' : 'disabled'}>Stufe ${lvl + 1}<small>💠 ${cost}</small></button>`}</div>
+          : `<button class="btn primary" data-action="mystic" data-key="${k}" ${S.clover >= cost ? '' : 'disabled'}>Stufe ${lvl + 1}<small>🍀 ${cost}</small></button>`}</div>
       </div>`;
     }).join('')}`);
 }
@@ -765,27 +757,33 @@ function openEquipPicker(idx, back = '') {
       : '<p class="muted small">Kein Held kann diese Waffenart tragen.</p>'}`);
 }
 
-// 🎒 Inventar: Waffenkammer, ausgerüstete Waffen und Vorräte an einem Ort (läuft live mit)
+// 🎒 Inventar-Reiter: Waffenkammer, ausgerüstete Waffen und Vorräte an einem Ort
+function renderInventory() {
+  setHTML($('#inventory'), inventoryHtml());
+}
+
+function inventoryHtml() {
+  const equipped = S.heroes.filter(h => h.weapon).sort((a, b) => b.level - a.level);
+  const rations = RATIONS.map((r, g) => S.rations[g] > 0 ? `<div class="card weapon-offer">
+      <div class="w-info"><div>🍞${g + 1} ${esc(r.name)} <b>×${S.rations[g]}</b></div><div class="muted small">+${fmt(r.exp)} EXP pro Stück</div></div>
+      <div class="b-act"><button class="btn primary" data-action="feed-pick" data-g="${g}">Verfüttern</button></div></div>` : '').join('');
+  return `
+    <h3 class="tree-title">🍞 Proviant</h3>
+    ${rations || '<div class="card muted small">Kein Proviant. Den gibt es als Beute von Bossen.</div>'}
+    <div class="card muted small">🍎 Früchte <b>${S.fruit}</b> · 🎟️ Arena-Tickets <b>${S.tickets}</b> (Funktion folgt)</div>
+    <h3 class="tree-title">🗄️ Waffenkammer (${S.armory.length})</h3>
+    ${armoryCards('inv')}
+    ${equipped.length ? `<h3 class="tree-title">⚔️ Ausgerüstet (${equipped.length})</h3>
+      ${equipped.map(h => `<div class="card weapon-offer">
+        <div class="w-info"><div>${weaponName(h.weapon)}</div><div class="muted small">${esc(HERO_BY_ID[h.heroId].name)} · Lv. ${h.level}</div></div>
+        <div class="b-act"><button class="btn" data-action="unequip" data-uid="${h.uid}">Ablegen</button></div></div>`).join('')}` : ''}`;
+}
+
+// Zurück zum Inventar-Reiter (aus Ausrüsten/Verfüttern)
 function openInventory() {
-  const build = () => {
-    const equipped = S.heroes.filter(h => h.weapon).sort((a, b) => b.level - a.level);
-    const rations = RATIONS.map((r, g) => S.rations[g] > 0 ? `<div class="card weapon-offer">
-        <div class="w-info"><div>🍞${g + 1} ${esc(r.name)} <b>×${S.rations[g]}</b></div><div class="muted small">+${fmt(r.exp)} EXP pro Stück</div></div>
-        <div class="b-act"><button class="btn primary" data-action="feed-pick" data-g="${g}">Verfüttern</button></div></div>` : '').join('');
-    return `
-      ${modalHead('🎒 Inventar')}
-      <h3 class="tree-title">🗄️ Waffenkammer (${S.armory.length})</h3>
-      ${armoryCards('inv')}
-      ${equipped.length ? `<h3 class="tree-title">⚔️ Ausgerüstet (${equipped.length})</h3>
-        ${equipped.map(h => `<div class="card weapon-offer">
-          <div class="w-info"><div>${weaponName(h.weapon)}</div><div class="muted small">${esc(HERO_BY_ID[h.heroId].name)} · Lv. ${h.level}</div></div>
-          <div class="b-act"><button class="btn" data-action="unequip" data-uid="${h.uid}">Ablegen</button></div></div>`).join('')}` : ''}
-      <h3 class="tree-title">🍞 Proviant</h3>
-      ${rations || '<div class="card muted small">Kein Proviant. Den gibt es als Beute von Bossen.</div>'}
-      <div class="card muted small">🍎 Früchte <b>${S.fruit}</b> · 🎟️ Arena-Tickets <b>${S.tickets}</b> (Funktion folgt)</div>`;
-  };
-  const refresh = () => openModal(build(), refresh);
-  refresh();
+  closeModal();
+  if (tabVisible('inv')) tab = 'inv';
+  render();
 }
 
 // Proviant aus dem Inventar an einen Helden geben
@@ -896,7 +894,7 @@ function heroActions(h, { inSlot = false } = {}) {
   if (!featureUnlocked(S, 'mystic')) {
     btns.push(`<div class="muted small">Ruhestand ab Gildenhalle ${FEATURES.mystic.unlockHall} (Mystische Schmiede).</div>`);
   } else if (h.level >= RETIRE_MIN_LEVEL) {
-    btns.push(`<button class="btn danger" data-action="retire" data-uid="${h.uid}">🌅 Ruhestand · +💠 ${F.retireCoins(h.level)}</button>`);
+    btns.push(`<button class="btn danger" data-action="retire" data-uid="${h.uid}">🌅 Ruhestand · +🍀 ${F.retireClover(h.level)}</button>`);
   } else {
     btns.push(`<div class="muted small">Ruhestand ab Lv. ${RETIRE_MIN_LEVEL}.</div>`);
   }
@@ -975,7 +973,7 @@ export function showOfflineReport(report, { debug = false } = {}) {
   openModal(`
     <h3>🌙 Offline-Rissbericht</h3>
     <p class="muted small">${debug ? 'Simuliert: ' : 'Abwesend: '}${fmtDuration(report.elapsedMs)}${report.capped ? ` · gewertet max. ${fmtDuration(report.maxMs)}` : ''}</p>
-    <div class="card report-total"><span>🟡 +${fmt(t.gold)}</span><span>🔮 +${t.shards}</span>${report.rp >= 1 ? `<span>🧪 +${fmt(report.rp)}</span>` : ''}<span>⬆️ ${t.levelUps}</span></div>
+    <div class="card report-total"><span>🟡 +${fmt(t.gold)}</span><span>🔮 +${t.shards}</span>${report.rp >= 1 ? `<span>📜 +${fmt(report.rp)}</span>` : ''}<span>⬆️ ${t.levelUps}</span></div>
     ${report.cycles ? `<p class="small">💰 Gildenkasse: ${report.cycles}× ausgezahlt, +${fmt(report.cycleGold)} 🟡</p>` : ''}
     ${report.built ? `<p class="small">🔨 ${BUILDINGS[report.built.key].name} Stufe ${report.built.to} ist fertig.</p>` : ''}
     ${squads || '<p class="muted">Keine Trupps im Einsatz.</p>'}
@@ -1129,11 +1127,11 @@ function onClick(e) {
       break;
     case 'recruit': recruit(num(d.slot)); break;
     case 'recruit-refresh': if (refreshRecruits(S)) changed('Neue Rekruten!'); break;
-    case 'reroll-reset': if (resetRerollCost(S, d.which)) changed('💠 Preis zurückgesetzt'); else toast('Nicht genug Mystische Münzen.'); break;
+    case 'reroll-reset': if (resetRerollCost(S, d.which)) changed('🍀 Preis zurückgesetzt'); else toast('Nicht genug Mystischen Klee.'); break;
     case 'retire': {
       const h = getHero(S, num(d.uid));
       if (!h) break;
-      confirmModal('🌅 Ruhestand', `${esc(HERO_BY_ID[h.heroId].name)} (Lv. ${h.level}) verlässt das Lager und hinterlässt <b>💠 ${F.retireCoins(h.level)}</b> Mystische Münzen. Die Waffe kommt in die Waffenkammer; der Held kann später neu rekrutiert werden (ab Lv. 1).`, 'retire-confirm', { uid: h.uid });
+      confirmModal('🌅 Ruhestand', `${esc(HERO_BY_ID[h.heroId].name)} (Lv. ${h.level}) verlässt das Lager und hinterlässt <b>🍀 ${F.retireClover(h.level)}</b> Mystischen Klee. Die Waffe kommt in die Waffenkammer; der Held kann später neu rekrutiert werden (ab Lv. 1).`, 'retire-confirm', { uid: h.uid });
       break;
     }
     case 'retire-confirm': retire(num(d.uid)); break;
@@ -1159,6 +1157,7 @@ function onClick(e) {
       }
       break;
     case 'inventory': openInventory(); break;
+    case 'settings': openSettings(); break;
     case 'feed-pick': openFeedPicker(num(d.g)); break;
     case 'unequip':
       if (unequipWeapon(S, num(d.uid))) { hooks.save?.(); if (modalRefresh) modalRefresh(); render(); }
@@ -1172,13 +1171,13 @@ function onClick(e) {
       break;
     case 'research':
       if (doResearch(S, d.tree, d.node)) changed('🔬 Forschung abgeschlossen!');
-      else toast('Nicht genug Forschungspunkte.');
+      else toast('Nicht genug Forschungsnotizen.');
       break;
     case 'mystic': {
       const m = MYSTIC[d.key];
       const lvl = S.mystic[d.key];
-      if (lvl >= m.costs.length || S.coins < m.costs[lvl]) break;
-      S.coins -= m.costs[lvl];
+      if (lvl >= m.costs.length || S.clover < m.costs[lvl]) break;
+      S.clover -= m.costs[lvl];
       S.mystic[d.key] += 1;
       changed(`${m.name} Stufe ${lvl + 1}`); break;
     }
@@ -1275,14 +1274,14 @@ function retire(uid) {
     sq.slots[sq.slots.indexOf(uid)] = null;
     if (!sq.slots.some(u => u != null)) { sq.status = 'idle'; sq.monster = null; sq.mode = 'farm'; }
   }
-  const coins = F.retireCoins(h.level);
-  S.coins += coins;
+  const clover = F.retireClover(h.level);
+  S.clover += clover;
   if (h.weapon) S.armory.push(h.weapon);
   S.heroes = S.heroes.filter(x => x.uid !== uid);
   S.stats.retired += 1;
-  addLog(S, `🌅 ${HERO_BY_ID[h.heroId].name} geht in den Ruhestand (+${coins}💠).`, null, 'info');
+  addLog(S, `🌅 ${HERO_BY_ID[h.heroId].name} geht in den Ruhestand (+${clover} 🍀).`, null, 'info');
   closeModal();
-  changed(`+💠 ${coins} Mystische Münzen`);
+  changed(`+🍀 ${clover} Mystischer Klee`);
 }
 
 // ---------------------------------------------------------------------

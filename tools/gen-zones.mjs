@@ -196,7 +196,7 @@ let txt = `// ==================================================================
 //    theme   – Farbstimmung der Kampfbühne (CSS .stage.zone-1..5)
 //    level   – empfohlenes Heldenlevel / Monsterstufe (CQHT „Lv.“)
 //    cost    – Gold für eine Boss-Herausforderung (CQHT „cost“)
-//    rewards – Boss-Belohnung: rp = 🧪 Forschungspunkte (CQHT Honor),
+//    rewards – Boss-Belohnung: rp = 📜 Forschungsnotizen (CQHT Honor),
 //              weapons = Waffen-Drops, rations = Proviant (CQHT Bread),
 //              tickets = Arena-Tickets (noch ohne Funktion)
 //    src     – Name des CQHT-Originals (nur zur Orientierung)

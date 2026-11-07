@@ -2,7 +2,7 @@
 
 > Interne Entwicklungs-Referenz für **Aetherbastion: Rift Watch**. Erzeugt aus den Spieldaten in `js/data/`; maßgeblich ist immer der Code. Die Spalte *CQHT* nennt das Vorbild aus Crusaders Quest: Hero Town.
 
-10 Zonen; je zwei teilen sich ein CQHT-Kapitel (*tier*). Pro Zone 5 normale Stufen, dann ☠️ schwere und in jeder zweiten Zone eine ⭐ legendäre. **Kosten** = Gold für eine Boss-Herausforderung. **Belohnung** = 🧪 Forschungspunkte, ⚒️ Waffen, 🍞 Proviant, 🎟️ Arena-Tickets (noch ohne Funktion).
+10 Zonen; je zwei teilen sich ein CQHT-Kapitel (*tier*). Pro Zone 5 normale Stufen, dann ☠️ schwere und in jeder zweiten Zone eine ⭐ legendäre. **Kosten** = Gold für eine Boss-Herausforderung. **Belohnung** = 📜 Forschungsnotizen, ⚒️ Waffen, 🍞 Proviant, 🎟️ Arena-Tickets (noch ohne Funktion).
 
 | # | Zone | Portal | Kapitel | Lv. (normal) |
 | --- | --- | --- | --- | --- |
@@ -21,7 +21,7 @@
 
 *Über dem Königintal bei Beetletun reißt der erste Riss auf. Banditen nutzen das Chaos, und aus dem Riss kriechen Schatten.*
 
-| Stufe | Boss | Schergen | Lv. | Kosten | 🧪 | ⚒️ | 🍞 | 🎟️ | CQHT |
+| Stufe | Boss | Schergen | Lv. | Kosten | 📜 | ⚒️ | 🍞 | 🎟️ | CQHT |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | Banditen-Anführerin | Banditen-Beutelschneider, Banditen-Schläger | 3 | 50 | 1 | 1 | 1 | 0 | 1-1 · Emperor Slime |
 | 2 | Champion Banditen-Saboteur | Banditen-Bomber, Banditen-Brandstifter | 5 | 60 | 1 | 1 | 1 | 0 | 1-2 · Emperor Slime |
@@ -35,7 +35,7 @@
 
 *Im Sumpfland der Kessex-Hügel giftet der Riss das Wasser. Krait, Zentauren und die Hexen des Waldes werden unruhig.*
 
-| Stufe | Boss | Schergen | Lv. | Kosten | 🧪 | ⚒️ | 🍞 | 🎟️ | CQHT |
+| Stufe | Boss | Schergen | Lv. | Kosten | 📜 | ⚒️ | 🍞 | 🎟️ | CQHT |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | Banditen-Schläger Grasp | Banditen-Rabauke, Banditen-Scharfschütze | 12 | 100 | 1–2 | 1 | 2 | 0 | 1-6 · Ogre |
 | 2 | Champion Krait-Hypnotiseur | Krait-Mystiker, Krait-Wächter | 14 | 110 | 1–2 | 1 | 2 | 0 | 1-7 · Ogre |
@@ -50,7 +50,7 @@
 
 *Die Spur führt in Caudecus’ Anwesen. Hauptmann DeLana und die Separatisten verschanzen sich hinter dem flackernden Riss.*
 
-| Stufe | Boss | Schergen | Lv. | Kosten | 🧪 | ⚒️ | 🍞 | 🎟️ | CQHT |
+| Stufe | Boss | Schergen | Lv. | Kosten | 📜 | ⚒️ | 🍞 | 🎟️ | CQHT |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | Separatisten-Belagerer | Separatisten-Kämpfer, Separatisten-Bomber | 22 | 100 | 1–2 | 1 | 1 | 1 | 2-1 · Hard Mudman |
 | 2 | Königlicher Leibwächter Pete | Königlicher Wächter, Separatisten-Feldwebel | 24 | 120 | 1–2 | 1 | 1 | 1 | 2-2 · Hard Mudman |
@@ -64,7 +64,7 @@
 
 *Eisige Winde über den Wanderer-Hügeln. Söhne des Svanir und Grawl beten den Riss als Zeichen Jormags an.*
 
-| Stufe | Boss | Schergen | Lv. | Kosten | 🧪 | ⚒️ | 🍞 | 🎟️ | CQHT |
+| Stufe | Boss | Schergen | Lv. | Kosten | 📜 | ⚒️ | 🍞 | 🎟️ | CQHT |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | Champion Minotauren-Bulle | Minotaurus, Schneeleopard | 31 | 200 | 1–3 | 1 | 2 | 1 | 2-6 · Basilisk |
 | 2 | Champion Grawl-Häuptling | Grawl-Krieger, Grawl-Schamane | 33 | 220 | 1–3 | 1 | 2 | 1 | 2-7 · Basilisk |
@@ -79,7 +79,7 @@
 
 *In den Schneekuhlen-Höhen graben sich Dredge zum Riss vor, während die Svanir ihren Drachen anrufen.*
 
-| Stufe | Boss | Schergen | Lv. | Kosten | 🧪 | ⚒️ | 🍞 | 🎟️ | CQHT |
+| Stufe | Boss | Schergen | Lv. | Kosten | 📜 | ⚒️ | 🍞 | 🎟️ | CQHT |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | Schneeleoparden-Matriarchin | Schneeleopard, Eiswolf | 41 | 200 | 1–3 | 1 | 1 | 1 | 3-1 · Monster Anglerfish |
 | 2 | Champion Svanir-Häscher | Svanir-Jäger, Svanir-Plünderer | 42 | 240 | 1–3 | 1 | 1 | 1 | 3-2 · Monster Anglerfish |
@@ -93,7 +93,7 @@
 
 *Unter den Ruinen von Ascalon öffnet sich ein Riss in die Katakomben. Die Geister der alten Könige finden keine Ruhe.*
 
-| Stufe | Boss | Schergen | Lv. | Kosten | 🧪 | ⚒️ | 🍞 | 🎟️ | CQHT |
+| Stufe | Boss | Schergen | Lv. | Kosten | 📜 | ⚒️ | 🍞 | 🎟️ | CQHT |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | Höhlentroll | Geister-Krieger, Geister-Waldläufer | 46 | 400 | 1–3 | 1 | 2 | 1 | 3-6 · Shark Warrior |
 | 2 | Kasha Schwarzblut | Flammenlegion-Kultist, Flammenlegion-Zerstörer | 47 | 440 | 2–3 | 1 | 2 | 1 | 3-7 · Shark Warrior |
@@ -108,7 +108,7 @@
 
 *Über den Gendarran-Feldern stehen gleich mehrere Risse. Zentauren, Dredge und Piraten wittern ihre Chance.*
 
-| Stufe | Boss | Schergen | Lv. | Kosten | 🧪 | ⚒️ | 🍞 | 🎟️ | CQHT |
+| Stufe | Boss | Schergen | Lv. | Kosten | 📜 | ⚒️ | 🍞 | 🎟️ | CQHT |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | Piratinnen-Kapitänin | Piraten-Entermatrose, Piraten-Kanonier | 51 | 400 | 2–4 | 1 | 1 | 1 | 4-1 · Hell Squishy |
 | 2 | Champion Schlamm-Monstrum | Schlamm-Elementar, Sumpfkrebs | 52 | 450 | 2–4 | 1 | 1 | 1 | 4-2 · Hell Squishy |
@@ -122,7 +122,7 @@
 
 *Im Harathi-Hinterland tobt der Zentaurenkrieg. Ulgoth sammelt seine Horden am Rand eines gewaltigen Risses.*
 
-| Stufe | Boss | Schergen | Lv. | Kosten | 🧪 | ⚒️ | 🍞 | 🎟️ | CQHT |
+| Stufe | Boss | Schergen | Lv. | Kosten | 📜 | ⚒️ | 🍞 | 🎟️ | CQHT |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | Harathi-Schlächter | Harathi-Krieger, Harathi-Speerwerfer | 56 | 650 | 2–4 | 1 | 2 | 1 | 4-6 · Stone Giant |
 | 2 | Champion Modniir-Häuptling | Modniir-Berserker, Modniir-Schamane | 57 | 700 | 2–4 | 1 | 2 | 1 | 4-7 · Stone Giant |
@@ -137,7 +137,7 @@
 
 *An der Blutstrom-Küste spült der Riss Auferstandene aus Orr an. Krait und Piraten kämpfen um jeden Strand.*
 
-| Stufe | Boss | Schergen | Lv. | Kosten | 🧪 | ⚒️ | 🍞 | 🎟️ | CQHT |
+| Stufe | Boss | Schergen | Lv. | Kosten | 📜 | ⚒️ | 🍞 | 🎟️ | CQHT |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | Champion Krait-Priester | Krait-Zelot, Krait-Neophyt | 60 | 1.200 | 4–5 | 1 | 4 | 1 | 5-1 · Pyro Droid DX |
 | 2 | Champion Auferstandener Offizier | Auferstandener Matrose, Auferstandener Grubenarbeiter | 60 | 1.400 | 4–5 | 1 | 4 | 1 | 5-2 · Pyro Droid DX |
@@ -151,7 +151,7 @@
 
 *Im Funkenschwärmersumpf brodelt Zhaitans Verderbnis. Aus dem Nebel über dem Wasser erhebt sich Tequatl der Sonnenlose.*
 
-| Stufe | Boss | Schergen | Lv. | Kosten | 🧪 | ⚒️ | 🍞 | 🎟️ | CQHT |
+| Stufe | Boss | Schergen | Lv. | Kosten | 📜 | ⚒️ | 🍞 | 🎟️ | CQHT |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | Champion Auferstandener Priester | Auferstandener Akolyth, Auferstandener Schreckenswandler | 60 | 2.200 | 6–7 | 1 | 5 | 1 | 5-6 · Titan Rocket |
 | 2 | Champion Krait-Echse | Krait-Echse, Krait-Schlinger | 60 | 2.400 | 6–8 | 1 | 5 | 1 | 5-7 · Titan Rocket |

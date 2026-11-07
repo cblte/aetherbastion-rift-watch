@@ -9,7 +9,7 @@
 // React-Server-Components-Payload (self.__next_f.push(...)). Felder laut Wiki-Code:
 //   type   – Baum: MANAGE, HERO, MANAGE2, HERO2
 //   level  – nötige Labor-Stufe (1–10)
-//   price  – Kosten in Honor (bei uns 🧪 Forschungspunkte)
+//   price  – Kosten in Honor (bei uns 📜 Forschungsnotizen)
 //   time   – Forschungszeit; die Wiki zeigt sie als m:ss an (also vermutlich Sekunden)
 //   prereq – IDs der Forschungen, die vorher fertig sein müssen
 //   unlock – Funktion, die die Forschung freischaltet (sonst ein reiner Wertebonus)
@@ -109,7 +109,7 @@ const trees = order.map(t => {
 });
 writeFileSync(`${root}/dev-data/cqht-skills.json`, JSON.stringify({
   source: `${BASE}/en/skills`, fetched: new Date().toISOString(),
-  note: 'Erzeugt mit node tools/fetch-skills.mjs . – nicht von Hand bearbeiten. price = Honor (bei uns 🧪 Forschungspunkte), labLevel = nötige Labor-Stufe, time = Forschungszeit (Wiki-Anzeige m:ss, vermutlich Sekunden).',
+  note: 'Erzeugt mit node tools/fetch-skills.mjs . – nicht von Hand bearbeiten. price = Honor (bei uns 📜 Forschungsnotizen), labLevel = nötige Labor-Stufe, time = Forschungszeit (Wiki-Anzeige m:ss, vermutlich Sekunden).',
   trees, skills }, null, 2) + '\n');
 
 const de = (n) => Number(n).toLocaleString('de-DE');
@@ -119,7 +119,7 @@ let md = `# Forschung – Crusaders Quest: Hero Town (Referenz)
 
 > Interne Entwicklungs-Referenz für **Aetherbastion: Rift Watch** (späterer Ausbau des Asura-Labors). Erzeugt mit \`node tools/fetch-skills.mjs .\` aus ${BASE}/en/skills am ${date}. Nicht von Hand bearbeiten. Spielinhalte © CQ LABS / Loadcomplete; nur als Vorlage, Namen und Texte vor der Übernahme auf GW2 ummünzen.
 
-**Felder:** *Labor* = nötige Labor-Stufe · *Kosten* in Honor (bei uns 🧪 Forschungspunkte) · *Zeit* wie in der Wiki angezeigt (m:ss, vermutlich Sekunden) · *Voraussetzung* = vorher nötige Forschungen · *Schaltet frei* = Funktion statt reinem Wertebonus. Deutsche Namen und Texte stammen aus der Wiki.
+**Felder:** *Labor* = nötige Labor-Stufe · *Kosten* in Honor (bei uns 📜 Forschungsnotizen) · *Zeit* wie in der Wiki angezeigt (m:ss, vermutlich Sekunden) · *Voraussetzung* = vorher nötige Forschungen · *Schaltet frei* = Funktion statt reinem Wertebonus. Deutsche Namen und Texte stammen aus der Wiki.
 
 | Baum | Forschungen | Kosten gesamt | Zeit gesamt | Freischaltungen |
 | --- | --- | --- | --- | --- |

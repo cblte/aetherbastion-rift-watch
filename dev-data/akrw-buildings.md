@@ -117,7 +117,7 @@ Stufe bestimmt die verfügbaren Riss-Zonen.
 
 *CQHT: Skill Lab · max. Stufe 10 · ab Gildenhalle 1*
 
-Forschung mit 🧪 Forschungspunkten. Höhere Stufen öffnen tiefere Forschung.
+Forschung mit 📜 Forschungsnotizen. Höhere Stufen öffnen tiefere Forschung.
 
 > Asura-Know-how für alle: Golemtechnik, Ätherkunde und Nebelphysik – egal woher das Wissen stammt, hier gehört es der ganzen Gilde.
 
@@ -134,7 +134,7 @@ Forschung mit 🧪 Forschungspunkten. Höhere Stufen öffnen tiefere Forschung.
 | 9 | 500.000 | 30 Min. | 8 |
 | 10 | 1.000.000 | 35 Min. | 9 |
 
-**So funktioniert es:** Forschung mit 🧪 Forschungspunkten in drei Bäumen (Offensive, Defensive, Logistik). Stufe 3 öffnet Forschungsstufe II, Stufe 5 Stufe III.
+**So funktioniert es:** Forschung mit 📜 Forschungsnotizen in drei Bäumen (Offensive, Defensive, Logistik). Stufe 3 öffnet Forschungsstufe II, Stufe 5 Stufe III.
 
 ## ⚒️ Charr-Schmiede
 

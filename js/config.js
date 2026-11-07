@@ -5,10 +5,10 @@
 
 export const GAME = {
   title: 'Aetherbastion: Rift Watch',
-  VERSION: '0.12.1',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
+  VERSION: '0.14.1',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
   BUILD: 'lokal',                    // ersetzt der Pages-Workflow durch „Nr. · Commit“
   SAVE_KEY: 'aetherbastion_save_v1',
-  SAVE_VERSION: 6,
+  SAVE_VERSION: 7,
   TICK_MS: 1000,                     // feste Kampf-Ticks
   LOOP_MS: 250,                      // wie oft die Spielschleife nachsieht
   AUTOSAVE_MS: 10_000,
@@ -29,8 +29,8 @@ export { RATIONS } from './data/specials.js';
 export const CURRENCIES = {
   gold:   { icon: '🟡', name: 'Gold' },
   shards: { icon: '🔮', name: 'Ätherscherben' },
-  coins:  { icon: '💠', name: 'Mystische Münzen' },
-  rp:     { icon: '🧪', name: 'Forschungspunkte' },
+  clover: { icon: '🍀', name: 'Mystischer Klee' },
+  rp:     { icon: '📜', name: 'Forschungsnotizen' },
 };
 
 // order: kleinere Zahl = steht weiter vorn (wird zuerst angegriffen)
@@ -128,9 +128,9 @@ export const QUESTS = [
     text: 'Besiege alle fünf Bosse im Königintal.',
     goal: { type: 'stage', zone: 1, stage: 5 }, reward: { gold: 500, rp: 3 } },
   { id: 'lab', icon: '🔬', title: 'Asura-Know-how', tab: 'camp',
-    text: 'Baue das Asura-Labor. Mit 🧪 Forschungspunkten werden deine Helden stärker.',
+    text: 'Baue das Asura-Labor. Mit 📜 Forschungsnotizen werden deine Helden stärker.',
     goal: { type: 'building', key: 'lab', level: 1 }, reward: { rp: 3 } },
-  { id: 'research1', icon: '🧪', title: 'Erste Forschung', tab: 'lab',
+  { id: 'research1', icon: '📜', title: 'Erste Forschung', tab: 'lab',
     text: 'Erforsche im Asura-Labor eine beliebige Stufe.',
     goal: { type: 'research', n: 1 }, reward: { gold: 400 } },
   { id: 'lv10', icon: '⬆️', title: 'Erfahrene Wacht', tab: 'squads',
@@ -215,7 +215,7 @@ export const F = {
   // EXP-Kurve aus data/heroLevels.js (CQHT „Total XP“)
   expToNext: (level) => level >= MAX_HERO_LEVEL ? Infinity
     : HERO_LEVELS[level].totalExp - HERO_LEVELS[level - 1].totalExp,
-  retireCoins: (level) => Math.floor((level * level) / 100),
+  retireClover: (level) => Math.floor((level * level) / 100),
   reviveCost: (level) => Math.round(15 * Math.pow(level, 1.5)),
   researchCost: (base, toLevel) => Math.round(base * Math.pow(toLevel, 1.6)),
 };
@@ -269,10 +269,10 @@ export const TENTS = [
 export const TENT_SIZE = 3;
 
 // ---------------------------------------------------------------------
-//  ASURA-LABOR – Forschungsbäume (bezahlt mit 🧪, CQHT: Honor)
+//  ASURA-LABOR – Forschungsbäume (bezahlt mit 📜, CQHT: Honor)
 //  tier: Stufe im Baum; benötigt Asura-Labor ≥ TIER_LAB[tier]
 //  req:  [Knoten, Mindeststufe] – Voraussetzung im selben Baum
-//  per:  Wirkung je Stufe; base: Grundkosten in 🧪
+//  per:  Wirkung je Stufe; base: Grundkosten in 📜
 // ---------------------------------------------------------------------
 export const TIER_LAB = { 1: 1, 2: 3, 3: 5 };
 export const RESEARCH = {
@@ -309,5 +309,5 @@ export const MYSTIC = {
 export const MYSTIC_ORDER = ['atk', 'hp', 'regen', 'loot'];
 
 // Neu-Würfeln (Waffenladen, Rekruten): Der verdoppelte Preis für „erneuern“ lässt sich
-// mit 💠 Mystischen Münzen wieder auf den Startpreis setzen.
-export const REROLL_RESET_COINS = 2;
+// mit 🍀 Mystischem Klee wieder auf den Startpreis setzen.
+export const REROLL_RESET_CLOVER = 2;

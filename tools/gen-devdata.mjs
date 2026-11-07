@@ -34,7 +34,7 @@ const note = '> Interne Entwicklungs-Referenz für **Aetherbastion: Rift Watch**
     camp: 'Gilt für das ganze Lager und bestimmt das **Level-Cap** aller Helden (bis Lv. 60). Die Trupps selbst sind die Zelte 1–4 mit je 3 Plätzen. *Geplant:* Erschöpfung – müde Helden ziehen sich kurz ins Zelt zurück.',
     portal: 'Jede Stufe öffnet ein neues Portal mit weiteren Riss-Zonen (Stufe 1 = Kryta, Zonen 1–3 · Stufe 2 = Zittergipfel & Ascalon, Zonen 4–6 · Stufe 3 = Herz von Tyria, Zonen 7–8 · Stufe 4 = Küste & Sümpfe von Orr, Zonen 9–10). Kostet zusätzlich 🔮 Ätherscherben. Statt einzelner Monster wie in CQHT wählt jeder Trupp eine Stufe und farmt deren Schergen.',
     kitchen: `+${Math.round(b.kitchen.bonusPerLevel * 100)} % EXP pro Stufe für alle Helden. Eigene Ergänzung (die CQHT-Bäckerei-Daten fehlen). *Geplant:* Prüfung der Feldküche (${KITCHEN_TRIAL.name}).`,
-    lab: 'Forschung mit 🧪 Forschungspunkten in drei Bäumen (Offensive, Defensive, Logistik). Stufe 3 öffnet Forschungsstufe II, Stufe 5 Stufe III.',
+    lab: 'Forschung mit 📜 Forschungsnotizen in drei Bäumen (Offensive, Defensive, Logistik). Stufe 3 öffnet Forschungsstufe II, Stufe 5 Stufe III.',
     forge: `Waffenladen mit ${SHOP.offers} Angeboten, alle ${SHOP.restockMs / 60_000} Minuten neu; „Ware auffrischen“ kostet ${SHOP.refreshBase} Gold und verdoppelt sich bis zum nächsten Auffüllen. Dazu die Waffenkammer (Ausrüsten, Verkaufen zu ${SHOP.sellFactor * 100} %). Höhere Stufen bringen bessere Ware. *Geplant:* Waffen-Modifikation (CQHT Forge).`,
   };
   let s = `# Gebäude – Aetherbastion: Rift Watch\n\n${note}\n\nGebaut wird immer **nur ein Gebäude gleichzeitig**. Kosten in 🟡 Gold.\n`;
@@ -80,14 +80,14 @@ const note = '> Interne Entwicklungs-Referenz für **Aetherbastion: Rift Watch**
 {
   const rew = (r) => {
     const parts = [];
-    if (r.rp) parts.push(`${r.rp} 🧪`);
+    if (r.rp) parts.push(`${r.rp} 📜`);
     r.rations.forEach((n, g) => n && parts.push(`🍞${g + 1} ×${n}`));
     if (r.fruit) parts.push(`🍎 ×${r.fruit}`);
     return parts.join(', ') || '–';
   };
   let s = `# Helden-Stufen – Aetherbastion: Rift Watch\n\n${note}\n\n`;
-  s += `- **EXP gesamt:** benötigte Gesamt-EXP, um die Stufe zu erreichen.\n- **🟡 / 🧪 je Zyklus:** Einkommen pro Held alle ${CYCLE_MS / 60_000} Minuten (Gold ab Lv. 10, Forschungspunkte ab Lv. 20) – auch in der Reserve.\n- **Erschöpfung:** CQHT-Fatigue-Grenze, *noch ohne Funktion*.\n- **Belohnung:** gibt es beim Erreichen der Stufe. 🍞1–6 = Proviant der Güte 1–6 (${RATIONS.map(r => r.name).join(', ')}), 🍎 = Früchte (noch ohne Funktion).\n- Das Level-Cap setzt das ⛺ Zeltlager.\n\n`;
-  s += tbl(['Lv.', 'EXP gesamt', '🟡 / Zyklus', '🧪 / Zyklus', 'Erschöpfung', 'Belohnung'],
+  s += `- **EXP gesamt:** benötigte Gesamt-EXP, um die Stufe zu erreichen.\n- **🟡 / 📜 je Zyklus:** Einkommen pro Held alle ${CYCLE_MS / 60_000} Minuten (Gold ab Lv. 10, Forschungsnotizen ab Lv. 20) – auch in der Reserve.\n- **Erschöpfung:** CQHT-Fatigue-Grenze, *noch ohne Funktion*.\n- **Belohnung:** gibt es beim Erreichen der Stufe. 🍞1–6 = Proviant der Güte 1–6 (${RATIONS.map(r => r.name).join(', ')}), 🍎 = Früchte (noch ohne Funktion).\n- Das Level-Cap setzt das ⛺ Zeltlager.\n\n`;
+  s += tbl(['Lv.', 'EXP gesamt', '🟡 / Zyklus', '📜 / Zyklus', 'Erschöpfung', 'Belohnung'],
     HERO_LEVELS.map(l => [`**${l.lv}**`, de(l.totalExp), l.goldCycle || '–', l.rpCycle || '–', de(l.fatigue), rew(l.reward)]));
   out('akrw-hero-leveling.md', s + '\n');
 }
@@ -97,7 +97,7 @@ const note = '> Interne Entwicklungs-Referenz für **Aetherbastion: Rift Watch**
   const carriers = {};
   for (const [cls, t] of Object.entries(WEAPON_FOR || {})) (carriers[t] ||= []).push(cls);
   let s = `# Charr-Schmiede: Waffen & Laden – Aetherbastion: Rift Watch\n\n${note}\n\n`;
-  s += `Der Laden zeigt ${SHOP.offers} zufällige Waffen und füllt sich alle ${SHOP.restockMs / 60_000} Minuten neu. Waffen kosten 🟡 Gold; die besten gibt es alternativ für 🧪 Forschungspunkte. Die **Schmiede-Stufe** bestimmt, ab wann eine Waffe im Laden auftauchen kann; die **Chance** ist ihr Gewicht beim Würfeln des Angebots. Heiler tragen immer einen 🔮 Fokus, alle anderen die Waffe ihrer Klasse.\n\n`;
+  s += `Der Laden zeigt ${SHOP.offers} zufällige Waffen und füllt sich alle ${SHOP.restockMs / 60_000} Minuten neu. Waffen kosten 🟡 Gold; die besten gibt es alternativ für 📜 Forschungsnotizen. Die **Schmiede-Stufe** bestimmt, ab wann eine Waffe im Laden auftauchen kann; die **Chance** ist ihr Gewicht beim Würfeln des Angebots. Heiler tragen immer einen 🔮 Fokus, alle anderen die Waffe ihrer Klasse.\n\n`;
   s += `## Waffenarten\n\n` + tbl(['Waffe', 'CQHT-Klasse'], Object.entries(WEAPON_TYPES).map(([k, t]) => [`${t.icon} ${t.name}`, { schwert: 'Warrior', hammer: 'Paladin', bogen: 'Archer', gewehr: 'Hunter', stab: 'Wizard', fokus: 'Priest' }[k]])) + '\n\n';
   s += `## Güten\n\n` + tbl(['Güte', 'Name', 'ATK', 'HP', 'Boss-Drop in Kapitel'], Object.entries(WEAPON_GRADES).map(([g, w]) => {
     const tiers = Object.entries(DROP_GRADES).filter(([k, [lo, hi]]) => +g >= lo && +g <= hi).map(([k]) => k === 'hard' ? 'schwer/legendär' : k);
@@ -106,7 +106,7 @@ const note = '> Interne Entwicklungs-Referenz für **Aetherbastion: Rift Watch**
   for (const g of Object.keys(WEAPON_GRADES)) {
     const list = WEAPONS.filter(w => w.grade === +g);
     if (!list.length) continue;
-    s += `\n## ★${g} ${WEAPON_GRADES[g].name}\n\n` + tbl(['Waffe', 'Art', '🟡 Gold', '🧪 FP', 'Schmiede', 'Chance', 'CQHT'],
+    s += `\n## ★${g} ${WEAPON_GRADES[g].name}\n\n` + tbl(['Waffe', 'Art', '🟡 Gold', '📜 FN', 'Schmiede', 'Chance', 'CQHT'],
       list.map(w => [w.name, `${WEAPON_TYPES[w.type].icon} ${WEAPON_TYPES[w.type].name}`, de(w.gold), w.rp ? de(w.rp) : '–', `Stufe ${w.smithy}`, `${String(w.weight).replace('.', ',')} %`, w.src])) + '\n';
   }
   out('akrw-shop.md', s);
@@ -124,10 +124,10 @@ const note = '> Interne Entwicklungs-Referenz für **Aetherbastion: Rift Watch**
     return `Hard ${ch}-${hardIdx}`;
   };
   let s = `# Riss-Zonen & Stufen – Aetherbastion: Rift Watch\n\n${note}\n\n`;
-  s += `${ZONE_DATA.length} Zonen; je zwei teilen sich ein CQHT-Kapitel (*tier*). Pro Zone ${NORMAL_STAGES} normale Stufen, dann ☠️ schwere und in jeder zweiten Zone eine ⭐ legendäre. **Kosten** = Gold für eine Boss-Herausforderung. **Belohnung** = 🧪 Forschungspunkte, ⚒️ Waffen, 🍞 Proviant, 🎟️ Arena-Tickets (noch ohne Funktion).\n\n`;
+  s += `${ZONE_DATA.length} Zonen; je zwei teilen sich ein CQHT-Kapitel (*tier*). Pro Zone ${NORMAL_STAGES} normale Stufen, dann ☠️ schwere und in jeder zweiten Zone eine ⭐ legendäre. **Kosten** = Gold für eine Boss-Herausforderung. **Belohnung** = 📜 Forschungsnotizen, ⚒️ Waffen, 🍞 Proviant, 🎟️ Arena-Tickets (noch ohne Funktion).\n\n`;
   s += tbl(['#', 'Zone', 'Portal', 'Kapitel', 'Lv. (normal)'], ZONE_DATA.map(z => [z.id, z.name, z.portal, `${z.tier} (${z.part === 1 ? '1. Hälfte' : '2. Hälfte'})`, range([z.stages[0].level, z.stages[NORMAL_STAGES - 1].level])])) + '\n';
   for (const z of ZONE_DATA) {
-    s += `\n## ${z.id}. ${z.name}\n\n*${z.lore}*\n\n` + tbl(['Stufe', 'Boss', 'Schergen', 'Lv.', 'Kosten', '🧪', '⚒️', '🍞', '🎟️', 'CQHT'],
+    s += `\n## ${z.id}. ${z.name}\n\n*${z.lore}*\n\n` + tbl(['Stufe', 'Boss', 'Schergen', 'Lv.', 'Kosten', '📜', '⚒️', '🍞', '🎟️', 'CQHT'],
       z.stages.map((st, k) => [`${st.legend ? '⭐ ' : st.hard ? '☠️ ' : ''}${k + 1}`, st.boss.name, st.minions.map(m => m.name).join(', '), st.level, de(st.cost), range(st.rewards.rp), st.rewards.weapons, st.rewards.rations, range(st.rewards.tickets), `${cq(z, k)} · ${st.src}`])) + '\n';
   }
   s += `\n## Sonderinhalte *(geplant)*\n\n### ${KITCHEN_TRIAL.name}\n\n` + tbl(['Stufe', 'Gegner', 'CQHT'], KITCHEN_TRIAL.stages.map(t => [t.id, t.boss.name, t.src])) + '\n';
