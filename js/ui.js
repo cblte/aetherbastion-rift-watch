@@ -274,7 +274,7 @@ function renderPortal() {
       <div class="arena-title"><b>⛺ Zelt ${i + 1}</b><small>${locked ? 'gesperrt' : `${esc(stageLabel(sq))}${sq.mode === 'boss' ? ' · 👑 Boss' : ''}`}</small></div>
       <button class="icon-btn" data-action="squad-step" data-dir="1" aria-label="Nächster Trupp">›</button>
     </div>
-    <div class="stage zone-${ZONES[sq.zone - 1].tier}">${stage}</div>
+    <div class="stage zone-${ZONES[sq.zone - 1].theme || ZONES[sq.zone - 1].tier}">${stage}</div>
     <div class="arena-heroes">${heroes}</div>`);
 
   // Boss-Leiste

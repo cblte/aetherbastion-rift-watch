@@ -31,7 +31,7 @@ const note = '> Interne Entwicklungs-Referenz für **Aetherbastion: Rift Watch**
   const how = {
     hall: `Zahlt alle ${CYCLE_MS / 60_000} Minuten die **Gildenkasse** aus und bestimmt, welche Stufen der anderen Gebäude gebaut werden dürfen. Jede Stufe verlangt eine Anzahl insgesamt besiegter Normal-Stufen. Zelt 2, 3 und 4 öffnen ab Stufe 3, 6 und 9; die Mystische Schmiede ab Stufe 5.`,
     camp: 'Gilt für das ganze Lager und bestimmt das **Level-Cap** aller Helden (bis Lv. 60). Die Trupps selbst sind die Zelte 1–4 mit je 3 Plätzen. *Geplant:* Erschöpfung – müde Helden ziehen sich kurz ins Zelt zurück.',
-    portal: 'Jede Stufe öffnet zwei weitere Riss-Zonen (Stufe 1 = Zonen 1–2 … Stufe 5 = Zonen 9–10). Kostet zusätzlich 🔮 Ätherscherben. Statt einzelner Monster wie in CQHT wählt jeder Trupp eine Stufe und farmt deren Schergen.',
+    portal: 'Jede Stufe öffnet ein neues Portal mit weiteren Riss-Zonen (Stufe 1 = Kryta, Zonen 1–3 · Stufe 2 = Zittergipfel & Ascalon, Zonen 4–6 · Stufe 3 = Herz von Tyria, Zonen 7–8 · Stufe 4 = Küste & Sümpfe von Orr, Zonen 9–10). Kostet zusätzlich 🔮 Ätherscherben. Statt einzelner Monster wie in CQHT wählt jeder Trupp eine Stufe und farmt deren Schergen.',
     kitchen: `+${Math.round(b.kitchen.bonusPerLevel * 100)} % EXP pro Stufe für alle Helden. Eigene Ergänzung (die CQHT-Bäckerei-Daten fehlen). *Geplant:* Prüfung der Feldküche (${KITCHEN_TRIAL.name}).`,
     lab: 'Forschung mit 🧪 Forschungspunkten in drei Bäumen (Offensive, Defensive, Logistik). Stufe 3 öffnet Forschungsstufe II, Stufe 5 Stufe III.',
     forge: `Waffenladen mit ${SHOP.offers} Angeboten, alle ${SHOP.restockMs / 60_000} Minuten neu; „Ware auffrischen“ kostet ${SHOP.refreshBase} Gold und verdoppelt sich bis zum nächsten Auffüllen. Dazu die Waffenkammer (Ausrüsten, Verkaufen zu ${SHOP.sellFactor * 100} %). Höhere Stufen bringen bessere Ware. *Geplant:* Waffen-Modifikation (CQHT Forge).`,
@@ -55,7 +55,7 @@ const note = '> Interne Entwicklungs-Referenz für **Aetherbastion: Rift Watch**
       total += sum;
       rows.push([H, items.map(x => `${x.txt} (${de(x.cost)})`).join(', '), de(sum), de(total)]);
     }
-    s += `\n## Übersicht: alle Ausbaukosten\n\nAlles, was mit der jeweiligen Gildenhallen-Stufe baubar wird (Halle selbst, Gebäudestufen, neue Zelte), mit Summe und laufender Gesamtsumme. Das Riss-Portal kostet zusätzlich 🔮 Ätherscherben (${PORTAL_SHARDS.slice(1).map(de).join(' / ')} für Stufe 2–5).\n\n`;
+    s += `\n## Übersicht: alle Ausbaukosten\n\nAlles, was mit der jeweiligen Gildenhallen-Stufe baubar wird (Halle selbst, Gebäudestufen, neue Zelte), mit Summe und laufender Gesamtsumme. Das Riss-Portal kostet zusätzlich 🔮 Ätherscherben (${PORTAL_SHARDS.slice(1).map(de).join(' / ')} für Stufe 2–${PORTAL_SHARDS.length}).\n\n`;
     s += tbl(['Gildenhalle', 'Neu baubar (Kosten)', 'Summe', 'Gesamt'], rows);
     s += `\n\n${tbl(['Gebäude', 'Stufen', 'Alle Stufen zusammen'], [
       ...BUILDING_ORDER.map(key => [`${b[key].icon} ${b[key].name}`, b[key].levels.length, de(b[key].levels.reduce((n, l) => n + l.cost, 0))]),

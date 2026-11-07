@@ -100,6 +100,21 @@ const MIGRATIONS = {
     s.questsDone = markFulfilledQuests(s);
     return s;
   },
+  // v5 → v6: Neue Zonen-Reihenfolge (IDs und Fortschritt bleiben). Riss-Portal hat nur noch 4 Stufen;
+  // jede alte Stufe L öffnet mit min(L, 4) mindestens dieselben Zonen wie vorher.
+  // Ein laufender Ausbau auf Stufe 5 wird abgebrochen und erstattet.
+  5: (s) => {
+    const b = s.buildings || {};
+    b.portal = Math.min(b.portal || 0, 4);
+    const c = s.construction;
+    if (c && c.key === 'portal' && c.to > 4) {
+      s.gold = (s.gold || 0) + 25_000;
+      s.shards = (s.shards || 0) + 100;
+      s.construction = null;
+    }
+    for (const sq of s.squads || []) { sq.monster = null; if (sq.mode === 'boss') sq.mode = 'farm'; }
+    return s;
+  },
   // v4 → v5: Rekrutierung mit Angeboten und Seltenheit. Vorhandene Helden sind „Fein“.
   4: (s) => {
     for (const h of s.heroes || []) h.rarity = RECRUIT.freeRarity;

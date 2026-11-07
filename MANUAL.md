@@ -14,7 +14,7 @@ Quest-Banner führen dich durch den Start:
 
 ### Aufträge
 
-Danach geht es im selben **Auftrags-Banner** nahtlos weiter (Auftrag 5 bis 24). Die Aufträge zeigen dir nacheinander alle Systeme: neue Rekruten, Bosse, Leveln, Gebäude, Waffen, Forschung, Proviant, das Riss-Portal und den zweiten Trupp, bis die Wanderer-Hügel befreit sind.
+Danach geht es im selben **Auftrags-Banner** nahtlos weiter (Auftrag 5 bis 24). Die Aufträge zeigen dir nacheinander alle Systeme: neue Rekruten, Bosse, Leveln, Gebäude, Waffen, Forschung, Proviant, das Riss-Portal und den zweiten Trupp, bis Caudecus’ Anwesen befreit ist.
 
 - Der Balken zeigt den Fortschritt, **„Hingehen“** springt zum passenden Reiter.
 - Ist ein Auftrag erfüllt, holst du die **Belohnung** (Gold, Ätherscherben oder Forschungspunkte) mit einem Tipp ab. Erst dann kommt der nächste.
@@ -72,35 +72,39 @@ Helden steigen bis **Lv. 60** auf. Jede neue Stufe bringt eine Belohnung: Forsch
 
 ## Riss-Zonen
 
-| # | Zone | Benötigt | Bosse (normal) |
-|---|---|---|---|
-| 1 | Königintal | Riss-Portal 1 | Tür-Wache, Separatisten-Leutnant |
-| 2 | Caudecus’ Anwesen | Riss-Portal 1 + Königintal befreit | Hauptmann DeLana, Wahlen, Prototyp-Golem |
-| 3 | Wanderer-Hügel | Riss-Portal 2 + Anwesen befreit | Svanir-Schamane, Grawl-Oberschamane |
-| 4 | Zittergipfel | Riss-Portal 2 + Wanderer-Hügel befreit | Svanir-Häuptling, Eisbrut-Koloss, Klaue Jormags |
-| 5 | Elon-Flusslande | Riss-Portal 3 + Zittergipfel befreit | Erweckter Hauptmann, Erweckter Pharao |
-| 6 | Kristallwüste | Riss-Portal 3 + Elon befreit | Wüsten-Hydra, Gebrandmarkter Koloss, Riesiger Sandwurm |
-| 7 | Maguuma-Dschungel | Riss-Portal 4 + Wüste befreit | Raptor-Rudelführer, Chak-Gerent |
-| 8 | Silberwüste | Riss-Portal 4 + Dschungel befreit | Mordrem-Teragriff, Mordrem-Wächter, Mordrem-Rankenzorn |
-| 9 | Rand der Nebel | Riss-Portal 5 + Silberwüste befreit | Phantom-Fürst, Kryptis-Verschlinger |
-| 10 | Die Nebel | Riss-Portal 5 + Nebelrand befreit | Kryptis-Risshüter, Kryptis-Kriegsherr, Kryptis-Risstyrann |
+Die Zonen folgen grob der Reise durch Tyria. Jede Stufe des **Riss-Portals** öffnet ein neues Portal mit mehreren Zonen; eine Zone wird frei, wenn die Portal-Stufe reicht und alle Bosse der vorigen Zone besiegt sind.
 
-Die ersten Bosse einer Zone tauchen auf mehreren Stufen auf, jedes Mal stärker (wie in Hero Town).
-
-### Königintal und Caudecus’ Anwesen
-
-| Zone | Stufe | Lv. | Boss | Schergen |
+| # | Zone | Portal | Lv. | Bosse Stufe 1–5 (★ = Zonen-Endboss) |
 |---|---|---|---|---|
-| Königintal | 1–3 | 3–6 | Tür-Wache | Banditen-Beutelschneider, Banditen-Schläger |
-| Königintal | 4–5 | 8–10 | Separatisten-Leutnant | Separatisten-Bomber, Separatisten-Feldwebel |
-| Königintal | ☠️ 6 | 60 | Delilah | Banditen-Bomber, Banditen-Brandstifter |
-| Königintal | ☠️ 7 | 60 | Treffsicherer Seamus | Banditen-Scharfschütze, Banditen-Fallensteller |
-| Anwesen | 1–2 | 12–14 | Hauptmann DeLana | Separatisten-Kämpfer, Separatisten-Scharfschütze |
-| Anwesen | 3–4 | 16–18 | Wahlen | Banditen-Vollstrecker, Banditen-Kanonier |
-| Anwesen | 5 | 20 | Prototyp-Golem | Defekter Wachgolem, Kryptis-Splitter |
-| Anwesen | ☠️ 6 | 60 | Frost | Banditen-Raketengeschütz, Kryptis-Plünderer |
-| Anwesen | ☠️ 7 | 60 | Jagdhund | Abgerichteter Wachhund, Kryptis-Peiniger |
-| Anwesen | ⭐ 8 | 60 | Kryptis-Golem | Kryptis-Wachgolem, Kryptis-Splitter |
+| 1 | Königintal | 1 · Kryta | 3–10 | Banditen-Anführerin, Champion Banditen-Saboteur, Champion Eichenherz, Champion Krait-Hexe, ★ Schatten-Behemoth |
+| 2 | Kessex-Hügel | 1 · Kryta | 12–20 | Banditen-Schläger Grasp, Champion Krait-Hypnotiseur, Champion Toxischer Wurm, Zentauren-Oberhäuptling, ★ Champion Toxischer Spinnen-König |
+| 3 | Caudecus’ Anwesen | 1 · Kryta | 22–29 | Separatisten-Belagerer, Königlicher Leibwächter Pete, Butler Michiels, Gepfefferte Bridgette, ★ Separatisten-Hauptmann DeLana |
+| 4 | Wanderer-Hügel | 2 · Zittergipfel & Ascalon | 31–40 | Champion Minotauren-Bulle, Champion Grawl-Häuptling, Champion Eisbrut-Wolf, Schamanen-Vorbote des Jormag, ★ Svanir-Schamane |
+| 5 | Schneekuhlen-Höhen | 2 · Zittergipfel & Ascalon | 41–45 | Schneeleoparden-Matriarchin, Champion Svanir-Häscher, Champion Frost-Grawl, Dredge-Tunnelmeister, ★ Drachen-Schamane der Svanir |
+| 6 | Katakomben von Ascalon | 2 · Zittergipfel & Ascalon | 46–50 | Höhlentroll, Kasha Schwarzblut, Ralena & Vassar, Geisterhafter Nekromant, ★ König Adelbern |
+| 7 | Gendarran-Felder | 3 · Herz von Tyria | 51–55 | Piratinnen-Kapitänin, Champion Schlamm-Monstrum, Zentauren-Belagerungsmeister, Dredge-Kommandant, ★ Kriegsmeister Ulgoths Vorbote |
+| 8 | Harathi-Hinterland | 3 · Herz von Tyria | 56–60 | Harathi-Schlächter, Champion Modniir-Häuptling, Kolossaler Erdelementar, Seraphen-Verräter Valen, ★ Kriegsmeister Ulgoth |
+| 9 | Blutstrom-Küste | 4 · Küste & Sümpfe von Orr | 60 | Champion Krait-Priester, Champion Auferstandener Offizier, Dredge-Kriegsmaschine, Piratinnen-Admiralin, ★ Dreiköpfige Krait-Bestie |
+| 10 | Funkenschwärmersumpf | 4 · Küste & Sümpfe von Orr | 60 | Champion Auferstandener Priester, Champion Krait-Echse, Zhaff-Sumpfmonster, Hylek-Schamane Cuatl, ★ Tequatl der Sonnenlose |
+
+Jede normale Stufe hat einen eigenen Boss; auf Stufe 5 wartet der **Zonen-Endboss**.
+
+### Schwere und legendäre Stufen
+
+| Zone | ☠️ Schwer | ⭐ Legendär |
+|---|---|---|
+| Königintal | Champion Höhlentroll, Verderbt: Schatten-Behemoth | – |
+| Kessex-Hügel | Blut-Hexe, Verderbt: Toxischer Spinnen-König | Schatten: Toxischer Spinnen-König |
+| Caudecus’ Anwesen | Turmaine, Frost | – |
+| Wanderer-Hügel | Eisbrut-Goliath, Verderbt: Svanir-Schamane | Schatten: Svanir-Schamane |
+| Schneekuhlen-Höhen | Eisbrut-Riese, Verderbt: Drachen-Schamane der Svanir | – |
+| Katakomben von Ascalon | Meister-Nekromant, Verderbt: König Adelbern | Schatten: König Adelbern |
+| Gendarran-Felder | Champion Banditen-Kriegsherr, Verderbt: Kriegsmeister Ulgoths Vorbote | – |
+| Harathi-Hinterland | Zentauren-Kriegsherr Kol, Verderbt: Kriegsmeister Ulgoth | Schatten: Kriegsmeister Ulgoth |
+| Blutstrom-Küste | Champion Kropf-Krake, Verderbt: Dreiköpfige Krait-Bestie | – |
+| Funkenschwärmersumpf | Megawurm, Verderbt: Tequatl der Sonnenlose | Schatten: Tequatl der Sonnenlose |
+
+„Verderbt“ und „Schatten“ sind vom Riss verzerrte Formen des Zonen-Endbosses. Die Bosse ab Zone 4 sind GW2-typisch, aber nicht im Detail geprüft.
 
 Im **🌀 Portal** wählst du oben den Trupp (Pfeile, Trupp-Karten antippen oder in der Arena wischen). Darunter wählst du Zone und Stufe.
 
@@ -112,7 +116,7 @@ Gebaut wird immer **nur ein Gebäude gleichzeitig**, und höhere Stufen brauchen
 |---|---|---|
 | 🏛️ Gildenhalle | 1–9 | Gildenkasse alle 10 Min., schaltet Gebäudestufen frei. Braucht 3 / 9 / 21 / 29 / 31 / 40 / 50 / 50 besiegte Stufen. |
 | ⛺ Zeltlager | 1–7 | Level-Cap: 10 / 20 / 30 / 40 / 50 / 55 / 60 |
-| 🌀 Riss-Portal | 1–5 | Jede Stufe öffnet zwei weitere Zonen (bis Zone 10). Kostet Gold + Ätherscherben. |
+| 🌀 Riss-Portal | 1–4 | Jede Stufe öffnet ein neues Portal: 1 = Kryta (Zonen 1–3), 2 = Zittergipfel & Ascalon (4–6), 3 = Herz von Tyria (7–8), 4 = Küste & Sümpfe von Orr (9–10). Kostet Gold + Ätherscherben. |
 | 🍲 Feldküche | 1–10 | +5 % EXP pro Stufe |
 | 🔬 Asura-Labor | 1–10 | Forschung; Stufe 3 und 5 öffnen tiefere Forschung |
 | ⚒️ Charr-Schmiede | 1–3 | Waffenladen und Waffenkammer. Stufe 2 und 3 bringen bessere Ware. Ab Gildenhalle 2. |

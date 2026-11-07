@@ -80,7 +80,7 @@ Die Tabellen in `js/data/` stammen aus Crusaders Quest: Hero Town und sind auf G
 
 ### Balancing
 
-Formeln stehen im Objekt `F` in `js/config.js`, Kampfkonstanten in `COMBAT`. Die Schwierigkeit einer Stufe ist `level × COMBAT.LEVEL_DIFF` (auf Lv.-60-Stufen steigt sie mit den Kosten weiter). Monster wachsen mit `F.monsterHp`/`F.monsterAtk`. Königintal und Caudecus’ Anwesen (= Kapitel 1 in Hero Town) sind schnell durch (etwa 20 Minuten). Das Spätspiel (Zonen 9–10, schwer) ist noch nicht durchbalanciert.
+Formeln stehen im Objekt `F` in `js/config.js`, Kampfkonstanten in `COMBAT`. Die Schwierigkeit einer Stufe ist `level × COMBAT.LEVEL_DIFF` (auf Lv.-60-Stufen steigt sie mit den Kosten weiter). Monster wachsen mit `F.monsterHp`/`F.monsterAtk`. Königintal und Kessex-Hügel (= Kapitel 1 in Hero Town) sind schnell durch (etwa 20 Minuten). Das Spätspiel (Zonen 9–10, schwer) ist noch nicht durchbalanciert.
 
 ### Pixel-Art einsetzen
 

@@ -12,9 +12,9 @@ Mobile-First Idle-RPG als PWA für eine Guild-Wars-2-Gilde (nicht-kommerzielles 
 - Änderungen am Save-Format: `GAME.SAVE_VERSION` erhöhen und eine Migration in `MIGRATIONS` (`js/state.js`) ergänzen.
 
 ## Architektur
-- `js/data/*.js`: reine Datentabellen aus Crusaders Quest: Hero Town, auf GW2 umgemünzt (siehe `DATA.md`). Zahlen dort ändern, nicht in der Logik.
+- `js/data/*.js`: reine Datentabellen aus Crusaders Quest: Hero Town, auf GW2 umgemünzt (siehe `DATA.md`). Zahlen dort ändern, nicht in der Logik. Ausnahme: `stages.js` wird von `tools/gen-zones.mjs` erzeugt.
 - `config.js`: Konstanten, Formeln (`F`), Helden, Rollen, Forschung, Mystische Schmiede; baut `ZONES` (mit Schwierigkeit `d`) und `BUILDINGS` aus `js/data/`
-- `state.js`: Spielstand, Save/Load/Migration (`localStorage['aetherbastion_save_v1']`, aktuell Save-Version 5), abgeleitete Werte (`heroStats` inkl. Waffe/Forschung/DEF, `levelCap`, `isStageAvailable` …)
+- `state.js`: Spielstand, Save/Load/Migration (`localStorage['aetherbastion_save_v1']`, aktuell Save-Version 6), abgeleitete Werte (`heroStats` inkl. Waffe/Forschung/DEF, `levelCap`, `isStageAvailable` …)
 - `combat.js`: 1-s-Tick pro Trupp. Squad-`mode` ist `'farm'` (Schergen der Stufe) oder `'boss'` (Herausforderung, 90 s Zeitlimit, danach 90 s Pause `bossReadyAt`; `autoBoss` wiederholt nach der Pause, aus nach Niederlage). Ein Boss-Sieg setzt `state.progress[zone]`. Dazu Belohnungen (`applyKillRewards`), Tauschen und Beleben.
 - `progress.js`: Bauen mit Bauzeit (`state.construction`, immer nur ein Auftrag), Rekrutierung (`state.recruits`: Angebote mit Seltenheit, Timer und Erneuern; Werte in `RECRUIT`), Charr-Schmiede (Laden `state.shop`, Waffenkammer `state.armory`, `hero.weapon` = Waffen-ID), Proviant, Asura-Labor (`state.research`)
 - `quests.js`: Aufträge nach dem Onboarding (Daten: `QUESTS` in `config.js`). Erledigte `id`s in `state.questsDone`; ohne Import aus `state.js` (wird von der Migration genutzt)
@@ -43,7 +43,7 @@ Der Spielstand ist ein einziges Objekt. Bei Import/Reset wird es per `replaceSta
 - Der Workflow setzt `GAME.BUILD` (Lauf-Nr. · Commit) und hängt `-b<Nr.>` an `CACHE_VERSION`. Unten unter der Navigation steht `v<GAME.VERSION> · Build …`, lokal „Build lokal“. `GAME.VERSION` steigt mit jeder Änderung (siehe Harte Regeln).
 
 ## Bekannte offene Punkte / Ideen
-- Zonen 1–2 sind ausgearbeitet (Caudecus’ Anwesen). Bosse der Zonen 3–10 sind GW2-typisch, aber ohne Quellenprüfung; schwere Stufen dort sind „Verderbte“ Varianten.
+- Zonen und Bosse: Reihenfolge nach GW2 (Portal 1 Kryta, 2 Zittergipfel & Ascalon, 3 Herz von Tyria, 4 Orr), Daten in `tools/gen-zones.mjs` → `node tools/gen-zones.mjs .` erzeugt `js/data/stages.js` (Zahlen bleiben CQHT). Bosse ab Zone 4 ohne Quellenprüfung. Erweiterung (Zonen 11–20, Portal 5–8) als Entwurf in `dev-data/akrw-zones-expansion.md`.
 - Noch ohne Funktion: Früchte, Arena-Tickets, Erschöpfung (CQHT Fatigue), Waffen-Modifikation (CQHT Forge), `js/data/specials.js` (Küchen-Prüfung, Kryptis-Seelenfeste).
 - Balancing Spätspiel (Zonen 9–10, schwer, legendär) ist offen: `F.monsterHp`, `F.monsterAtk`, `COMBAT.LEVEL_DIFF`.
 - Live-Kampf: Ein zu schwacher Trupp verdient nichts. Offline: Er bekommt den Effizienz-Anteil.

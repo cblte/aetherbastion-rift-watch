@@ -5,10 +5,10 @@
 
 export const GAME = {
   title: 'Aetherbastion: Rift Watch',
-  VERSION: '0.10.0',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
+  VERSION: '0.11.0',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
   BUILD: 'lokal',                    // ersetzt der Pages-Workflow durch „Nr. · Commit“
   SAVE_KEY: 'aetherbastion_save_v1',
-  SAVE_VERSION: 5,
+  SAVE_VERSION: 6,
   TICK_MS: 1000,                     // feste Kampf-Ticks
   LOOP_MS: 250,                      // wie oft die Spielschleife nachsieht
   AUTOSAVE_MS: 10_000,
@@ -103,8 +103,8 @@ export const QUESTS = [
   { id: 'healer', icon: '✚', title: 'Verstärkung: Heilung', tab: 'portal',
     text: 'Verstärkung mit Heilkräften meldet sich am Lager. Mit Heilung hält der Trupp länger durch.',
     goal: { type: 'freeHero', hero: ONBOARDING.healer }, reward: {} },
-  { id: 'boss1', icon: '👑', title: 'Die Tür-Wache', tab: 'portal',
-    text: 'Vor Beetletun hält eine Tür-Wache den Riss offen. Fordere sie heraus.',
+  { id: 'boss1', icon: '👑', title: 'Die Banditen-Anführerin', tab: 'portal',
+    text: 'An der Alten Mühle bei Beetletun hält eine Banditen-Anführerin den Riss offen. Fordere sie heraus.',
     goal: { type: 'stage', zone: 1, stage: 1 }, reward: { gold: 100 } },
   { id: 'dps', icon: '⚔️', title: 'Verstärkung: Schaden', tab: 'portal',
     text: 'Nach dem ersten Sieg will sich jemand mit Feuerkraft anschließen. Damit ist Zelt 1 voll besetzt.',
@@ -148,8 +148,8 @@ export const QUESTS = [
   { id: 'portal2', icon: '🌀', title: 'Der Riss weitet sich', tab: 'portal',
     text: 'Baue das Riss-Portal auf Stufe 2 aus. Dafür brauchst du 🔮 Ätherscherben.',
     goal: { type: 'building', key: 'portal', level: 2 }, reward: { gold: 1_000 } },
-  { id: 'zone2', icon: '🏆', title: 'Caudecus’ Anwesen', tab: 'portal',
-    text: 'Befreie Caudecus’ Anwesen und besiege den Prototyp-Golem.',
+  { id: 'zone2', icon: '🏆', title: 'Die Kessex-Hügel', tab: 'portal',
+    text: 'Befreie die Kessex-Hügel und besiege den Toxischen Spinnen-König.',
     goal: { type: 'stage', zone: 2, stage: 5 }, reward: { gold: 1_500, rp: 5 } },
   { id: 'tent2', icon: '⛺', title: 'Ein zweiter Trupp', tab: 'squads',
     text: 'Schlage Zelt 2 auf (ab Gildenhalle Stufe 3).',
@@ -157,8 +157,8 @@ export const QUESTS = [
   { id: 'squad2', icon: '🛡️', title: 'Volle Besetzung', tab: 'squads',
     text: 'Besetze Zelt 2 mit drei Helden. Achte auf Tank, Heiler und Schaden.',
     goal: { type: 'squadFull', squad: 1 }, reward: { gold: 2_000 } },
-  { id: 'zone3', icon: '🏆', title: 'Wanderer-Hügel', tab: 'portal',
-    text: 'Treibe die Söhne des Svanir aus den Wanderer-Hügeln.',
+  { id: 'zone3', icon: '🏆', title: 'Caudecus’ Anwesen', tab: 'portal',
+    text: 'Stürme Caudecus’ Anwesen und stelle Separatisten-Hauptmann DeLana.',
     goal: { type: 'stage', zone: 3, stage: 5 }, reward: { gold: 3_000, rp: 10 } },
 ];
 
@@ -251,7 +251,7 @@ export const RETIRE_MIN_LEVEL = 20;
 //  GEBÄUDE (Tabellen in data/buildings.js)
 //  Ätherscherben für das Riss-Portal sind eine eigene Ergänzung.
 // ---------------------------------------------------------------------
-export const PORTAL_SHARDS = [0, 5, 15, 40, 100]; // je Zielstufe 1–5
+export const PORTAL_SHARDS = [0, 15, 40, 100]; // je Zielstufe 1–4
 export const BUILDINGS = Object.fromEntries(Object.entries(BUILDING_DATA).map(([k, b]) => [k, { ...b, max: b.levels.length }]));
 
 // Freischaltungen nach Gildenhallen-Stufe (wird im Gildenlager angezeigt)
