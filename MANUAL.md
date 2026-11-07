@@ -4,19 +4,22 @@ Aus den Nebeln reißen Kryptis-Risse auf. Eure Gilde schlägt ein Lager an ihrem
 
 ## Die ersten Schritte
 
-Quest-Banner führen dich durch den Start:
+Quest-Banner führen dich durch den Start. Die Reiter unten erscheinen erst, wenn du sie brauchst:
 
 1. **Gildenlager gründen**
-2. **Gildenhalle errichten** (kostenlos)
-3. **Zeltlager aufschlagen** (kostenlos, Level-Cap Lv. 10)
-4. **Ersten Helden rekrutieren**, einen Wächter als Tank für Zelt 1 (kostenlos)
-5. **Riss-Portal aktivieren**. Der Wächter kämpft zunächst allein, Heiler und Schadensausteiler folgen über die ersten Aufträge.
+2. **Gildenhalle errichten** (kostenlos). Danach ist nur das **Lager** sichtbar.
+3. **Erstes Zelt aufschlagen** (kostenlos, baut das Zeltlager, Level-Cap Lv. 10). Danach erscheint **Trupps**.
+4. **Ersten Helden aufnehmen**, einen Wächter als Tank für Zelt 1 (kostenlos)
+5. **Riss-Portal aktivieren**. Jetzt erscheinen alle Reiter. Der Wächter kämpft zunächst allein, Heiler und Schadensausteiler folgen über die ersten Aufträge.
+
+Der nächste Schritt leuchtet: ein Punkt am passenden Reiter und ein leuchtender Knopf. Im Banner steht oben, was danach kommt.
 
 ### Aufträge
 
 Danach geht es im selben **Auftrags-Banner** nahtlos weiter (Auftrag 5 bis 24). Die Aufträge zeigen dir nacheinander alle Systeme: neue Rekruten, Bosse, Leveln, Gebäude, Waffen, Forschung, Proviant, das Riss-Portal und den zweiten Trupp, bis Caudecus’ Anwesen befreit ist.
 
 - Der Balken zeigt den Fortschritt, **„Hingehen“** springt zum passenden Reiter.
+- Bei Boss-Aufträgen zeigt 🎯 die Zielstufe, in der Stufenliste und am Knopf **„Herausfordern“**.
 - Ist ein Auftrag erfüllt, holst du die **Belohnung** (Gold, Ätherscherben oder Forschungspunkte) mit einem Tipp ab. Erst dann kommt der nächste.
 - Hast du ein Ziel schon früher erreicht, ist der Auftrag sofort erfüllt.
 

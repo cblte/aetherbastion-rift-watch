@@ -24,9 +24,10 @@ export function manualChapters() {
   return [
     { icon: '🧭', title: 'Erste Schritte', html: `
       <p>Aus den Nebeln reißen Kryptis-Risse auf. Eure Gilde schlägt ein Lager an ihrem Rand auf und hält Wacht. Deine Helden kämpfen in Trupps automatisch – auch wenn die App geschlossen ist.</p>
-      <p>Das <b>Auftrags-Banner</b> oben führt dich durch das Spiel (${questTotal} Aufträge): Gildenhalle, Zeltlager, erster Held, Riss-Portal, dann Bosse, Gebäude, Waffen, Forschung und weitere Trupps.</p>
+      <p>Das <b>Auftrags-Banner</b> oben führt dich durch das Spiel (${questTotal} Aufträge): Gildenhalle, erstes Zelt, erster Held, Riss-Portal, dann Bosse, Gebäude, Waffen, Forschung und weitere Trupps.</p>
       ${list([
         'Der Balken zeigt den Fortschritt, <b>„Hingehen“</b> springt zum passenden Reiter.',
+        'Der nächste Schritt leuchtet: ein Punkt am Reiter, ein leuchtender Knopf, bei Bossen 🎯 an der Zielstufe.',
         'Erfüllte Aufträge holst du mit einem Tipp ab – erst dann kommt der nächste.',
         'Hast du ein Ziel schon früher erreicht, ist der Auftrag sofort erfüllt.',
       ])}` },

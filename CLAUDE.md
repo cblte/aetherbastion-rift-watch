@@ -31,6 +31,7 @@ Der Spielstand ist ein einziges Objekt. Bei Import/Reset wird es per `replaceSta
 - `cqht-skills.json/.md` (kompletter CQHT-Forschungsbaum: 436 Forschungen in 4 Bäumen mit Labor-Stufe, Kosten in Honor, Zeit, Voraussetzungen, Freischaltungen, Namen/Texte auf Deutsch) kommen aus der Fan-Wiki: `node tools/fetch-skills.mjs .`. Grundlage für einen späteren Ausbau des Asura-Labors; noch nicht im Spiel.
 - `gw2-monsters.json/.md`: jeder GW2-Boss und -Scherge mit CQHT-Vorlage (Werte/Drops unverändert) und Prüfung gegen die DE-GW2-Wiki. `node tools/build-gw2-monsters.mjs .` (Zonen 1–10 aus `js/data/stages.js` über `src`, Zonen 11–20 aus `tools/data/zones-expansion.json`, Wiki-Hinweise und feste CQHT-Vorlagen in `tools/data/gw2-hints.mjs`); Wiki-Ergebnisse liegen in `gw2-wiki-check.json`, `--wiki` prüft alles neu. Nach `gen-zones.mjs` neu erzeugen.
 - `akrw-traits.md` ist handgeschrieben: Entwurf für Helden-Eigenschaften (noch nicht im Spiel).
+- `issues.md`: offenes Feedback mit festen Nummern (`#001` …), nach Kategorie sortiert. Neues landet unter „Eingang“ → einsortieren, nächste freie Nummer vergeben und hochzählen. Erledigtes mit Version nach `issues_solved.md` verschieben (neueste Version oben), Nummern nie neu vergeben.
 
 ## Testen
 - `python3 -m http.server 8080` → http://localhost:8080 (über `file://` geht es nicht)
