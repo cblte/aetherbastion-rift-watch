@@ -5,10 +5,10 @@
 
 export const GAME = {
   title: 'Aetherbastion: Rift Watch',
-  VERSION: '0.25.0',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
+  VERSION: '0.26.0',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
   BUILD: 'lokal',                    // ersetzt der Pages-Workflow durch „Nr. · Commit“
   SAVE_KEY: 'aetherbastion_save_v1',
-  SAVE_VERSION: 7,
+  SAVE_VERSION: 8,
   TICK_MS: 1000,                     // feste Kampf-Ticks
   LOOP_MS: 250,                      // wie oft die Spielschleife nachsieht
   AUTOSAVE_MS: 10_000,
@@ -227,6 +227,7 @@ export const F = {
   // EXP-Kurve aus data/heroLevels.js (CQHT „Total XP“)
   expToNext: (level) => level >= MAX_HERO_LEVEL ? Infinity
     : HERO_LEVELS[level].totalExp - HERO_LEVELS[level - 1].totalExp,
+  // #046: level = Kampf-Level (das Level nur aus Kampf-EXP, Proviant zählt nicht), siehe heroRetire()
   retireClover: (level) => Math.floor((level * level) / 100),
   reviveCost: (level) => Math.round(15 * Math.pow(level, 1.5)),
   researchCost: (base, toLevel) => Math.round(base * Math.pow(toLevel, 1.6)),

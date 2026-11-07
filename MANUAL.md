@@ -217,6 +217,7 @@ Wie oft welche Seltenheit kommt, hängt von der **Gildenhalle** ab. Die aktuelle
 
 - Die Mystische Schmiede öffnet sich ab **Gildenhalle 5**.
 - Helden ab **Lv. 20** können in den **Ruhestand** gehen. Sie verlassen das Lager und hinterlassen **🍀 Mystischen Klee** = Level² ÷ 100 (Lv. 20 = 4, Lv. 60 = 36). Ihre Waffe kommt zurück in die Waffenkammer.
+- Klee gibt es nur für EXP aus dem **Kampf**. EXP aus 🍞 Proviant zählt nicht: Der Klee richtet sich nach dem **Kampf-Level**, also dem Level, das der Held nur mit Kampf-EXP hätte. Ein Held, der nur mit Proviant gelevelt wurde, bringt 0 🍀; Füttern nimmt aber auch keinen Klee weg.
 - Ein Held im Ruhestand kann später erneut rekrutiert werden und beginnt wieder bei Lv. 1.
 - In der **✨ Mystischen Schmiede** gibt es dauerhafte Boni mit je 5 Stufen: mehr Trupp-ATK, mehr HP, kürzere Regeneration, mehr Gold und Scherben.
 

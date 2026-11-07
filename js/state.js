@@ -121,6 +121,11 @@ const MIGRATIONS = {
     delete s.coins;
     return s;
   },
+  // v7 → v8: Helden merken sich ihre Proviant-EXP (#046). Alte Helden starten mit 0.
+  7: (s) => {
+    for (const h of s.heroes || []) h.fedExp = h.fedExp || 0;
+    return s;
+  },
   // v4 → v5: Rekrutierung mit Angeboten und Seltenheit. Vorhandene Helden sind „Fein“.
   4: (s) => {
     for (const h of s.heroes || []) h.rarity = RECRUIT.freeRarity;
@@ -357,10 +362,22 @@ export function pay(state, cost) {
 }
 
 export function createHero(state, heroId, rarity = RECRUIT.freeRarity) {
-  const hero = { uid: state.nextUid++, heroId, rarity, level: 1, exp: 0, hp: 0, woundedUntil: 0, weapon: null };
+  const hero = { uid: state.nextUid++, heroId, rarity, level: 1, exp: 0, fedExp: 0, hp: 0, woundedUntil: 0, weapon: null };
   state.heroes.push(hero);
   hero.hp = heroStats(state, hero).maxHp;
   return hero;
+}
+
+// Gesamt-EXP eines Helden seit Lv. 1 (CQHT „Total XP“ + angesammelte EXP)
+export const heroTotalExp = (hero) => HERO_LEVELS[hero.level - 1].totalExp + hero.exp;
+
+// #046: Klee beim Ruhestand nach dem Kampf-Level: dem Level, das der Held nur mit
+// Kampf-EXP hätte. Proviant zählt nicht, nimmt aber auch nichts weg.
+export function heroRetire(hero) {
+  const combat = Math.max(0, heroTotalExp(hero) - (hero.fedExp || 0));
+  let lv = 1;
+  while (lv < hero.level && HERO_LEVELS[lv].totalExp <= combat) lv += 1;
+  return { combatLevel: lv, clover: F.retireClover(lv), full: F.retireClover(hero.level) };
 }
 
 // Gibt die Anzahl gewonnener Stufen zurück. Jede neue Stufe bringt die

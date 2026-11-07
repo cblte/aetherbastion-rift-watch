@@ -130,6 +130,7 @@ export function manualChapters() {
       ${list([
         `Ab <b>Gildenhalle ${FEATURES.mystic.unlockHall}</b> können Helden ab <b>Lv. ${RETIRE_MIN_LEVEL}</b> in den Ruhestand gehen.`,
         'Sie hinterlassen <b>🍀 Mystischen Klee</b> – je höher das Level, desto mehr. Ihre Waffe kommt in die Waffenkammer.',
+        'Klee gibt es nur für EXP aus dem <b>Kampf</b>: Er richtet sich nach dem Level, das der Held ohne 🍞 Proviant hätte.',
         'In der <b>Mystischen Schmiede</b> kaufst du damit dauerhafte Boni für alle Trupps.',
         'Ein Held im Ruhestand kann später neu rekrutiert werden und beginnt wieder bei Lv. 1.',
       ])}` },

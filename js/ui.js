@@ -16,7 +16,7 @@ import {
   createNewState, exportSave, importSave, replaceState, getHero, heroStats, levelCap,
   activeHeroCount, reserveHeroes, isOwned, rarityBonus, isZoneAvailable, isStageAvailable, stageBeaten,
   stageLock, buildingCost, buildLock, canAfford, pay, createHero, addLog, squadOf, buildingUnlocked,
-  featureUnlocked, normalCleared, hallGold, weaponType, armorySlots, armoryFree, rationSlots,
+  featureUnlocked, normalCleared, hallGold, weaponType, armorySlots, armoryFree, rationSlots, heroRetire,
 } from './state.js';
 import {
   squadMembers, spawnMonster, setStage, reviveHero, assignHero, teamProfile, heroOutput, fmt, stageOf,
@@ -1033,7 +1033,7 @@ function heroActions(h, { inSlot = false } = {}) {
   if (!featureUnlocked(S, 'mystic')) {
     btns.push(`<div class="muted small">Ruhestand ab Gildenhalle ${FEATURES.mystic.unlockHall} (Mystische Schmiede).</div>`);
   } else if (h.level >= RETIRE_MIN_LEVEL) {
-    btns.push(`<button class="btn danger" data-action="retire" data-uid="${h.uid}">🌅 Ruhestand · +🍀 ${F.retireClover(h.level)}</button>`);
+    btns.push(`<button class="btn danger" data-action="retire" data-uid="${h.uid}">🌅 Ruhestand · +🍀 ${heroRetire(h).clover}</button>`);
   } else {
     btns.push(`<div class="muted small">Ruhestand ab Lv. ${RETIRE_MIN_LEVEL}.</div>`);
   }
@@ -1275,7 +1275,7 @@ function onClick(e) {
     case 'retire': {
       const h = getHero(S, num(d.uid));
       if (!h) break;
-      confirmModal('🌅 Ruhestand', `${esc(HERO_BY_ID[h.heroId].name)} (Lv. ${h.level}) verlässt das Lager und hinterlässt <b>🍀 ${F.retireClover(h.level)}</b> Mystischen Klee. Die Waffe kommt in die Waffenkammer; der Held kann später neu rekrutiert werden (ab Lv. 1).`, 'retire-confirm', { uid: h.uid });
+      confirmModal('🌅 Ruhestand', `${esc(HERO_BY_ID[h.heroId].name)} (Lv. ${h.level}) verlässt das Lager und hinterlässt <b>🍀 ${heroRetire(h).clover}</b> Mystischen Klee.${heroRetire(h).combatLevel < h.level ? ` Proviant-EXP zählt nicht: Klee nach dem Kampf-Level ${heroRetire(h).combatLevel} statt Lv. ${h.level} (voll wären 🍀 ${heroRetire(h).full}).` : ''} Die Waffe kommt in die Waffenkammer; der Held kann später neu rekrutiert werden (ab Lv. 1).`, 'retire-confirm', { uid: h.uid });
       break;
     }
     case 'retire-confirm': retire(num(d.uid)); break;
@@ -1443,7 +1443,7 @@ function retire(uid) {
     sq.slots[sq.slots.indexOf(uid)] = null;
     if (!sq.slots.some(u => u != null)) { sq.status = 'idle'; sq.monster = null; sq.mode = 'farm'; }
   }
-  const clover = F.retireClover(h.level);
+  const clover = heroRetire(h).clover;
   S.clover += clover;
   if (h.weapon) S.armory.push(h.weapon);
   S.heroes = S.heroes.filter(x => x.uid !== uid);

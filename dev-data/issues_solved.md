@@ -12,6 +12,14 @@ Format:
 
 ---
 
+## v0.26.0
+
+### #046 Mystische Schmiede zu leicht: Rekrutieren, füttern, Ruhestand (Balancing)
+- Helden merken sich ihre Proviant-EXP (`hero.fedExp`, gezählt in `feedRation`). Der Ruhestand zahlt 🍀 nach dem **Kampf-Level**: dem Level, das der Held nur mit Kampf-EXP hätte (`heroRetire()` in `state.js`, Formel `F.retireClover` unverändert).
+- Ein nur gefütterter Held bringt 0 🍀. Füttern nimmt aber keinen Klee weg (Kampf bis Lv. 30, dann gefüttert auf Lv. 46 → weiter 9 🍀 statt 21).
+- Ruhestand-Knopf und Bestätigung zeigen den echten Klee, bei Proviant mit Hinweis „Kampf-Level X statt Lv. Y“. Handbuch ergänzt.
+- Save-Version 8: Migration setzt `fedExp = 0` für vorhandene Helden (alte Helden zählen voll).
+
 ## v0.25.0
 
 ### #045 Proviant im Überfluss (Balancing)
