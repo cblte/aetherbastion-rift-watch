@@ -8,7 +8,7 @@ import {
   GAME, CURRENCIES, ROLES, CLASSES, HEROES, HERO_BY_ID, ZONES, COMBAT, F, BUILDINGS, BUILDING_ORDER,
   TENTS, TENT_SIZE, MYSTIC, MYSTIC_ORDER, ONBOARDING, RETIRE_MIN_LEVEL, LEVEL_CAP_MAX, FEATURES,
   RESEARCH, RESEARCH_ORDER, TIER_LAB, WEAPON_BY_ID, WEAPON_GRADES, WEAPON_TYPES, RATIONS, NORMAL_STAGES,
-  TOTAL_NORMAL, CYCLE_MS, QUESTS as MAIN_QUESTS, RECRUIT, REROLL_RESET_CLOVER, ARMORY_SLOTS, ARMORY_CLEANUP_DEFAULT,
+  TOTAL_NORMAL, CYCLE_MS, QUESTS as MAIN_QUESTS, RECRUIT, REROLL_RESET_CLOVER, ARMORY_SLOTS, ARMORY_CLEANUP_DEFAULT, UI,
 } from './config.js';
 import { currentQuest, questProgress, questNumber, claimQuest, questDone } from './quests.js';
 import { manualChapters } from './manual.js';
@@ -151,15 +151,29 @@ function questStageTarget() {
   return { zone: q.goal.zone, stage: Math.min((S.progress[q.goal.zone] || 0) + 1, q.goal.stage) };
 }
 
+// #038: Auftrags-Banner klappt beim Scrollen ein (nur Kopfzeile, Fortschritt, Abholen),
+// Antippen der Kopfzeile klappt um, ein neuer Auftrag öffnet es wieder
+let questCompact = false, questKey = '';
+function setQuestCompact(on) {
+  if (questCompact === on) return;
+  questCompact = on;
+  $('#quest').classList.toggle('compact', on);
+}
+function questHead(label, title) {
+  return `<button class="quest-step" data-action="quest-toggle" aria-expanded="${!questCompact}">${label}<span class="quest-mini">${title ? ` · ${esc(title)}` : ''}</span><span class="quest-caret">${questCompact ? '▸' : '▾'}</span></button>`;
+}
+
 function renderQuest() {
   const q = $('#quest');
+  const key = S.onboarding < QUESTS.length ? `ob${S.onboarding}` : currentQuest(S)?.id || '';
+  if (key !== questKey) { questKey = key; setQuestCompact(false); }
   $('#start-overlay').hidden = S.onboarding !== 0;
   const step = QUESTS[S.onboarding];
   if (!step) { renderMainQuest(q); return; }
   q.hidden = false;
   const text = typeof step.text === 'function' ? step.text() : step.text;
   setHTML(q, `
-    <div class="quest-step">Auftrag ${S.onboarding}/${questTotal()}</div>
+    ${questHead(`Auftrag ${S.onboarding}/${questTotal()}`, '')}
     <div class="quest-body"><span class="quest-icon">${step.icon}</span><p>${text}</p></div>
     ${tab !== step.tab ? `<button class="btn primary block" data-action="tab" data-tab="${step.tab}">Hingehen</button>` : ''}`);
 }
@@ -182,7 +196,7 @@ function renderMainQuest(q) {
   const targetLine = target
     ? `<div class="quest-target">🎯 ${esc(ZONES[target.zone - 1].name)} · Stufe ${target.stage}</div>` : '';
   setHTML(q, `
-    <div class="quest-step">Auftrag ${OB_STEPS + questNumber(quest)}/${questTotal()}${done ? ' · erfüllt ✓' : ''}</div>
+    ${questHead(`Auftrag ${OB_STEPS + questNumber(quest)}/${questTotal()}${done ? ' · erfüllt ✓' : ''}`, quest.title)}
     <div class="quest-body"><span class="quest-icon">${quest.icon}</span><p><b>${esc(quest.title)}</b><br>${esc(quest.text)}</p></div>
     ${targetLine}
     ${quest.goal.type === 'freeHero' ? '' : `<div class="quest-progress"><span style="width:${Math.round(have / need * 100)}%"></span><small>${fmt(have)}/${fmt(need)} · ${rewardText(quest.reward)}</small></div>`}
@@ -401,7 +415,7 @@ function renderPortal() {
   setHTML($('#portal-up'), S.onboarding >= 5 ? buildingCard('portal') : '');
 
   setHTML($('#chronicle'), S.log.length
-    ? S.log.map(l => `<li class="log ${l.kind || ''}">${l.s != null ? `<span class="tag">Z${l.s + 1}</span>` : '<span class="tag">✦</span>'}<span>${esc(l.msg)}</span></li>`).join('')
+    ? S.log.map(l => `<li class="log ${l.kind || ''}">${l.s != null ? `<span class="tag" title="Zelt ${l.s + 1}">⛺${l.s + 1}${l.z ? `<small>${esc(ZONES[l.z - 1].short)}</small>` : ''}</span>` : '<span class="tag">✦</span>'}<span>${esc(l.msg)}</span></li>`).join('')
     : '<li class="log muted">Noch ist es still an den Rissen …</li>');
 }
 
@@ -1210,7 +1224,12 @@ function onClick(e) {
     case 'squad-step': stepSquad(num(d.dir)); break;
     case 'view-zone': viewZone = num(d.zone); render(); break;
     case 'stage':
-      if (setStage(S, S.selectedSquad, num(d.zone), num(d.stage))) changed(); break;
+      if (setStage(S, S.selectedSquad, num(d.zone), num(d.stage))) {
+        changed(`⛺ Zelt ${S.selectedSquad + 1} → ${stageLabel(S.squads[S.selectedSquad])}`);
+        showArenaChange();
+      }
+      break;
+    case 'quest-toggle': setQuestCompact(!questCompact); render(); break;
     case 'boss': {
       const r = challengeBoss(S, S.selectedSquad);
       if (r === true) changed();
@@ -1437,9 +1456,23 @@ function retire(uid) {
 // ---------------------------------------------------------------------
 //  Wischen in der Arena wechselt den Trupp
 // ---------------------------------------------------------------------
+// #038: Nach einem Zonenwechsel zur Kampfbühne scrollen und sie kurz aufleuchten lassen
+function showArenaChange() {
+  const view = $('#view');
+  setQuestCompact(true);
+  view.scrollTo({ top: 0, behavior: 'smooth' });
+  const st = $('#arena-wrap'); // statisch (nicht vom Diff ersetzt), leuchtet über CSS .changed .stage
+  if (!st) return;
+  st.classList.remove('changed');
+  void st.offsetWidth; // Animation neu starten
+  st.classList.add('changed');
+}
+
 function setupSwipe() {
   let sx = 0, sy = 0, active = false;
   const view = $('#view');
+  // #038: Banner einklappen, sobald man im Inhalt nach unten scrollt
+  view.addEventListener('scroll', () => { if (view.scrollTop > UI.QUEST_COLLAPSE_PX) setQuestCompact(true); }, { passive: true });
   view.addEventListener('touchstart', (e) => {
     if (!e.target.closest('#arena-wrap') || e.touches.length !== 1) { active = false; return; }
     active = true;

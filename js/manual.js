@@ -30,6 +30,7 @@ export function manualChapters() {
         'Der nächste Schritt leuchtet: ein Punkt am Reiter, ein leuchtender Knopf, bei Bossen 🎯 an der Zielstufe.',
         'Erfüllte Aufträge holst du mit einem Tipp ab – erst dann kommt der nächste.',
         'Hast du ein Ziel schon früher erreicht, ist der Auftrag sofort erfüllt.',
+        'Beim Scrollen klappt das Banner ein. Ein Tipp auf die Kopfzeile klappt es wieder auf.',
       ])}` },
 
     { icon: '🟡', title: 'Währungen & Vorräte', html: `
@@ -62,6 +63,8 @@ export function manualChapters() {
         'Jeder Trupp kämpft unabhängig in einer Riss-Zone, eine Aktion pro Sekunde.',
         'Dein Trupp <b>farmt die Schergen</b> der gewählten Stufe: Gold, EXP und ab und zu Ätherscherben.',
         `<b>„Herausfordern“</b> kostet etwas Gold. Dann hat der Trupp <b>${COMBAT.BOSS_TIME_LIMIT} Sekunden</b> für den Boss. Bis dahin lassen sich Zone und Stufe nicht wechseln – aussteigen geht mit <b>„Abbrechen“</b>.`,
+        'Jedes Zelt kämpft in seiner eigenen Zone. Ein Wechsel greift sofort, die Kampfbühne leuchtet kurz auf.',
+        'In der Chronik steht das Zelt (⛺1 …) mit der Zone darunter.',
         `Nach jeder Herausforderung – Sieg, Niederlage oder Abbruch – verschnauft der Trupp <b>${COMBAT.BOSS_COOLDOWN} Sekunden</b> und kämpft solange gegen die Schergen der Stufe.`,
         '<b>🔁 Auto</b> wiederholt die Herausforderung nach jeder Pause von selbst (wenn das Gold reicht) – gut, um Boss-Beute zu sammeln. Nach einer Niederlage schaltet sich Auto aus. Offline kämpfen Trupps nur gegen Schergen.',
         '<b>Sieg:</b> Forschungsnotizen, Waffen, Proviant, Scherben – beim ersten Sieg öffnet sich die nächste Stufe.',

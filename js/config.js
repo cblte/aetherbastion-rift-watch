@@ -5,7 +5,7 @@
 
 export const GAME = {
   title: 'Aetherbastion: Rift Watch',
-  VERSION: '0.23.0',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
+  VERSION: '0.24.0',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
   BUILD: 'lokal',                    // ersetzt der Pages-Workflow durch „Nr. · Commit“
   SAVE_KEY: 'aetherbastion_save_v1',
   SAVE_VERSION: 7,
@@ -284,6 +284,11 @@ export const FEATURES = {
 // Waffenkammer: Plätze je Gildenhallen-Stufe (Index 0 = Stufe 1). Ist sie voll,
 // bleiben Boss-Drops liegen und der Laden verkauft nichts mehr. Aufräumen:
 // Standard-Auswahl der Güten (WEAPON_GRADES) im „Aufräumen“-Dialog.
+// Oberfläche
+export const UI = {
+  QUEST_COLLAPSE_PX: 40,   // ab so viel Scrollen im Inhalt klappt das Auftrags-Banner ein (#038)
+};
+
 export const ARMORY_SLOTS = [20, 25, 30, 40, 50, 60, 70, 85, 100];
 export const ARMORY_CLEANUP_DEFAULT = [1, 2, 3];
 

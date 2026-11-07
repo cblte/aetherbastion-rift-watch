@@ -23,17 +23,7 @@ _Zurzeit nichts offen._
 
 ## UI
 
-### #037 Chronik zeigt immer „Z1“
-- **Status:** offen · **Quelle:** Spieltest
-- Eindruck: Das Log zeigt immer Z1, egal welcher Gegner. Tatsächlich heißt „Z1“ **Zelt 1** (Trupp), nicht Zone 1 – leicht zu verwechseln, weil „Zone“ und „Zelt“ beide mit Z anfangen.
-- Antwort auf die Frage dazu: Ja, jedes Zelt kämpft schon in seiner eigenen Zone und Stufe (Zone/Stufe im 🌀 Portal je Trupp wählen, oben den Trupp wechseln).
-- Vorschlag: Kürzel „⛺1“ statt „Z1“. Bei Kampfeinträgen zusätzlich die Zone kurz (z. B. „⛺1 · Malchor“), damit man sieht, dass die Trupps an verschiedenen Orten kämpfen.
-
-### #038 Zonenwechsel auf dem Handy kaum sichtbar
-- **Status:** offen · **Quelle:** Spieltest
-- Beim Wechsel von Zone/Stufe während des Kampfs wirkte es, als blieben die Gegner gleich. Der Wechsel klappt aber sofort (neuer Gegner aus der neuen Stufe). Auf dem Smartphone verdeckt das Auftrags-Banner oben die Kampfbühne, darum sieht man es nicht.
-- Wunsch dazu: Gegner einer Zone dürfen ruhig gleich bleiben, die Champions (Bosse) sind das Ziel.
-- Vorschlag: Nach dem Wechsel kurzer Hinweis „⛺ Zelt 1 → Malchors Sprung · Stufe 2“ und kurzes Aufleuchten der Kampfbühne. Auftrags-Banner beim Scrollen einklappen (nur Titel und Fortschrittsbalken), damit die Bühne sichtbar bleibt.
+_Zurzeit nichts offen._
 
 ## Tutorial
 

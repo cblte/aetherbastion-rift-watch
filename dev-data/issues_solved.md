@@ -12,6 +12,15 @@ Format:
 
 ---
 
+## v0.24.0
+
+### #038 Zonenwechsel auf dem Handy kaum sichtbar (UI)
+- Nach dem Wechsel von Zone/Stufe: Hinweis „⛺ Zelt 1 → Malchors Sprung · Stufe 2“, die Seite springt zur Kampfbühne, und sie leuchtet kurz auf.
+- Das Auftrags-Banner klappt beim Scrollen ein (Kopfzeile mit Titel, Fortschrittsbalken, „Belohnung abholen“ bleibt). Antippen der Kopfzeile klappt um, ein neuer Auftrag öffnet es wieder. Schwelle `UI.QUEST_COLLAPSE_PX` in `config.js`.
+
+### #037 Chronik zeigt immer „Z1“ (UI)
+- „Z1“ hieß Zelt 1. Jetzt steht „⛺1“ im Kürzel, darunter klein die Zone (`short`, z. B. „Malchor“). Die Zone wird beim Eintrag gespeichert (`log[].z`), ältere Einträge zeigen nur das Zelt.
+
 ## v0.23.0
 
 ### #031 Inventar-Größe nach Gildenhallen-Stufe

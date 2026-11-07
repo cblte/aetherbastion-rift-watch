@@ -22,6 +22,7 @@ Danach geht es im selben **Auftrags-Banner** nahtlos weiter (Auftrag 5 bis 27). 
 - Bei Boss-Aufträgen zeigt 🎯 die Zielstufe, in der Stufenliste und am Knopf **„Herausfordern“**.
 - Ist ein Auftrag erfüllt, holst du die **Belohnung** (Gold, Ätherscherben oder Forschungsnotizen) mit einem Tipp ab. Erst dann kommt der nächste.
 - Hast du ein Ziel schon früher erreicht, ist der Auftrag sofort erfüllt.
+- Scrollst du nach unten, klappt das Banner ein (nur Titel und Balken), damit die Kampfbühne Platz hat. Ein Tipp auf die Kopfzeile klappt es wieder auf, ein neuer Auftrag öffnet es von selbst.
 
 ## Währungen & Vorräte
 
@@ -63,6 +64,8 @@ Helden steigen bis **Lv. 60** auf. Jede neue Stufe bringt eine Belohnung: Forsch
 - Jede Zone hat **5 normale Stufen** und **2 schwere** ☠️, jede zweite Zone zusätzlich **1 legendäre** ⭐. Jede Stufe hat einen **Boss** 👑, zwei Arten von **Schergen** und ein empfohlenes **Heldenlevel**.
 - Dein Trupp **farmt die Schergen** der gewählten Stufe. Das bringt Gold, EXP und ab und zu Ätherscherben.
 - Wenn du meinst, dass dein Trupp stark genug ist, tippst du auf **„Herausfordern“**. Das kostet etwas Gold. Dann hat der Trupp **90 Sekunden**, um den Boss zu besiegen. Solange der Bosskampf läuft, lassen sich Zone und Stufe nicht wechseln; wer aussteigen will, tippt auf **„Abbrechen“**.
+- Wählst du eine andere Zone oder Stufe, zieht das Zelt sofort um: Ein Hinweis bestätigt den Wechsel, die Seite springt zur Kampfbühne, und sie leuchtet kurz auf. Jedes Zelt kämpft in seiner eigenen Zone.
+- In der **Chronik** steht vor jedem Eintrag das Zelt (⛺1, ⛺2 …) und darunter kurz die Zone, in der es gerade kämpft.
 - Nach jeder Herausforderung (Sieg, Niederlage oder Abbruch) verschnauft der Trupp **90 Sekunden**. In der Pause kämpft er gegen die Schergen der Stufe weiter.
 - **🔁 Auto** wiederholt die Herausforderung nach jeder Pause von selbst, solange das Gold reicht. So sammelst du Boss-Beute nebenbei. Nach einer Niederlage oder einem Abbruch schaltet sich Auto aus. Offline kämpfen die Trupps nur gegen Schergen.
   - **Sieg:** Forschungsnotizen, Waffen, Proviant, Ätherscherben. Beim ersten Sieg wird die nächste Stufe frei.

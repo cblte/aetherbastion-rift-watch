@@ -386,6 +386,8 @@ export function payCycle(state) {
 }
 
 export function addLog(state, msg, squad = null, kind = '') {
-  state.log.unshift({ t: state.lastTickMs, s: squad, msg, kind });
+  // z = Zone des Trupps beim Eintrag (#037), damit die Chronik zeigt, wo er gekämpft hat
+  const z = squad != null ? state.squads[squad]?.zone : undefined;
+  state.log.unshift({ t: state.lastTickMs, s: squad, ...(z ? { z } : {}), msg, kind });
   if (state.log.length > GAME.LOG_SIZE) state.log.length = GAME.LOG_SIZE;
 }
