@@ -1,9 +1,9 @@
 {
   "note": "Handgeschrieben: Entwurf der Zonen-Erweiterung (geplant, noch nicht im Spiel). Daraus erzeugt: dev-data/akrw-zones-expansion.md (node tools/gen-devdata.mjs .) und die Zonen 11–20 in dev-data/gw2-monsters.* (node tools/build-gw2-monsters.mjs .). basePortals = Namen der Portale 1–4 im Spiel. minions = Schergen-Vorschlag (Stufe i bekommt Schergen i und i+1, reihum).",
   "basePortals": {
-    "1": "Kryta",
-    "2": "Zittergipfel & Ascalon",
-    "3": "Herz von Tyria",
+    "1": "Kryta, Caledon & Zittergipfel",
+    "2": "Metrica, Aschfurt & Anwesen",
+    "3": "Ascalon & Harathi",
     "4": "Küste & Sümpfe von Orr"
   },
   "expansions": [

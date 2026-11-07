@@ -48,7 +48,7 @@ Der Spielstand ist ein einziges Objekt. Bei Import/Reset wird es per `replaceSta
 - Der Workflow setzt `GAME.BUILD` (Lauf-Nr. · Commit) und hängt `-b<Nr.>` an `CACHE_VERSION`. Unten unter der Navigation steht `v<GAME.VERSION> · Build …`, lokal „Build lokal“. `GAME.VERSION` steigt mit jeder Änderung (siehe Harte Regeln).
 
 ## Bekannte offene Punkte / Ideen
-- Zonen und Bosse: Reihenfolge nach GW2 (Portal 1 Kryta, 2 Zittergipfel & Ascalon, 3 Herz von Tyria, 4 Orr), Daten in `tools/gen-zones.mjs` → `node tools/gen-zones.mjs .` erzeugt `js/data/stages.js` (Zahlen bleiben CQHT). Bosse ab Zone 4 ohne Quellenprüfung. Erweiterung (Zonen 11–20, Portal 5–8) als Entwurf in `tools/data/zones-expansion.json` (lesbar: `dev-data/akrw-zones-expansion.md`); noch nicht im Spiel, `gen-zones.mjs` liest sie noch nicht.
+- Zonen und Bosse: Reihenfolge nach GW2 (Zonen 1–5 = Heimatgebiete der fünf Völker, Zone 6 Caudecus’ Anwesen als Finale der Aufträge; Portal 1 Kryta, Caledon & Zittergipfel, 2 Metrica, Aschfurt & Anwesen, 3 Ascalon & Harathi, 4 Orr), Daten in `tools/gen-zones.mjs` → `node tools/gen-zones.mjs .` erzeugt `js/data/stages.js` (Zahlen bleiben CQHT). Bosse außer Königintal und Anwesen ohne Quellenprüfung. Erweiterung (Zonen 11–20, Portal 5–8) als Entwurf in `tools/data/zones-expansion.json` (lesbar: `dev-data/akrw-zones-expansion.md`); noch nicht im Spiel, `gen-zones.mjs` liest sie noch nicht.
 - Noch ohne Funktion: Früchte, Arena-Tickets, Erschöpfung (CQHT Fatigue), Waffen-Modifikation (CQHT Forge), `js/data/specials.js` (Küchen-Prüfung, Kryptis-Seelenfeste).
 - Balancing Spätspiel (Zonen 9–10, schwer, legendär) ist offen: `F.monsterHp`, `F.monsterAtk`, `COMBAT.LEVEL_DIFF`.
 - Live-Kampf: Ein zu schwacher Trupp verdient nichts. Offline: Er bekommt den Effizienz-Anteil.
@@ -56,7 +56,7 @@ Der Spielstand ist ein einziges Objekt. Bei Import/Reset wird es per `replaceSta
 
 ## Geplant (bereits entschieden)
 - Rekrutierung mit Angeboten und Seltenheiten ist drin. Offen: Darf ein Mitglied in einer besseren Seltenheit die alte Version ersetzen (oder doppelt im Lager sein)? Erst nach den nächsten Systemen entscheiden.
-- Questreihe: 20 Aufträge bis Zone 3 sind drin (inkl. Heiler und Schaden als kostenlose Rekruten). Später ergänzen: Ruhestand (Mystische Schmiede), Skills, Beförderungen.
+- Questreihe: 23 Aufträge bis Zone 6 (Caudecus’ Anwesen) sind drin (inkl. Heiler und Schaden als kostenlose Rekruten). Später ergänzen: Ruhestand (Mystische Schmiede), Skills, Beförderungen.
 - Skill-System für Helden (kommt später).
 - Beförderungen / Sterne-Stufen für Helden (kommt später).
 - Dekorationen: nicht geplant.

@@ -1,13 +1,13 @@
 # GW2-Gegner ↔ CQHT-Vorlagen
 
-> Interne Entwicklungs-Referenz für **Aetherbastion: Rift Watch**. Erzeugt mit `node tools/build-gw2-monsters.mjs .` aus `js/data/stages.js` (Zonen 1–10), `tools/data/zones-expansion.json` (Entwurf Zonen 11–20, Wiki-Hinweise in `tools/data/gw2-hints.mjs`) und `dev-data/cqht-monsters.json`. Nicht von Hand bearbeiten.
+> Interne Entwicklungs-Referenz für **Aetherbastion: Rift Watch**. Erzeugt mit `node tools/build-gw2-monsters.mjs .` aus `js/data/stages.js` (Zonen 1–10), `tools/data/zones-expansion.json` (Entwurf Zonen 11–20, Wiki-Hinweise in `tools/data/gw2-hints.mjs`) und `dev-data/archiv/cqht-monsters.json`. Nicht von Hand bearbeiten.
 
 **Zuordnung:** Zonen 1–10 exakt über die Stufe (`src` = CQHT-Boss; Schergen aus demselben CQHT-Kapitel). Zonen 11–20 nach Rang auf CQHT *Hard*, *Legendär*, Soltar bzw. *Hard*-/*Soul*-Monster. Werte (HP/ATK auf Lv. 1, DEF, Tempo) und Drops sind die der CQHT-Vorlage. Im Spiel rechnet `config.js` die Kampfwerte weiter aus dem Stufen-Level.
 
-**Wiki-Prüfung** (https://wiki-de.guildwars2.com, verschiedene Namen): Bosse ✅ 20 · 🟡 10 · 📄 3 · 🇬🇧 2 · ❌ 100 | Schergen ✅ 36 · 🟡 1 · 📄 3 · 🇬🇧 0 · ❌ 105
+**Wiki-Prüfung** (https://wiki-de.guildwars2.com, verschiedene Namen): Bosse ✅ 20 · 🟡 9 · 📄 3 · 🇬🇧 2 · ❌ 101 | Schergen ✅ 38 · 🟡 1 · 📄 3 · 🇬🇧 0 · ❌ 97
 ✅ Seite mit genau diesem Namen · 🟡 nur eine Variante gefunden (ohne „Champion“, Klammer oder „Verderbt:/Schatten:“, oder über die englische Wiki) · 📄 keine eigene Seite, aber in einem Seitentitel erwähnt (meist ein Event) · 🇬🇧 nur in der englischen Wiki · ❌ keine Seite – vermutlich kein echter GW2-Name oder im deutschen Spiel anders benannt. Schergen-Namen sind oft beschreibend erfunden (z. B. „Banditen-Bomber“); ❌ ist dort weniger schlimm als bei Bossen.
 
-## Portal 1: Kryta
+## Portal 1: Kryta, Caledon & Zittergipfel
 
 ### 1. Königintal
 
@@ -37,185 +37,185 @@ Zone in der Wiki: ✅ [Königintal](https://wiki-de.guildwars2.com/wiki/K%C3%B6n
 |  | scherge | Schattenbrut | ❌ | Goblin Fighter (MON_H_1_2) | 117.384 | 244 | 237 | 2,5 |
 |  | scherge | Kryptis-Splitter | ❌ ähnlich: Antiker Knochen, Veredelte Heimstatt-Faser, Spielupdate/20230926 | Goblin Fighter (MON_H_1_2) | 117.384 | 244 | 237 | 2,5 |
 
-### 2. Kessex-Hügel
+### 2. Caledon-Wald
 
-Zone in der Wiki: ✅ [Kessex-Hügel](https://wiki-de.guildwars2.com/wiki/Kessex-H%C3%BCgel) (en: Kessex Hills)
+Zone in der Wiki: ✅ [Caledon-Wald](https://wiki-de.guildwars2.com/wiki/Caledon-Wald) (en: Caledon Forest)
 
 | Stufe | Rolle | GW2-Name | Wiki | CQHT-Vorlage | HP Lv.1 | ATK Lv.1 | DEF | Tempo |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 · Lv. 12 | boss | Banditen-Schläger Grasp | ❌ | Ogre (BOSS_1_3_1) | 9.460 | 84 | 41,5 | 1,5 |
-|  | scherge | Banditen-Rabauke | ❌ ähnlich: Liste der Waffensets, Xunlai-Jade-Verkäufer, Eine vornehme Gruppe | Werewolf (MON_1_5) | 630 | 20 | 28,5 | 2,5 |
-|  | scherge | Banditen-Scharfschütze | ❌ ähnlich: Gleitschirm, Draufgänger, Erscheinungsbildpaket Banditen-Heckenschütze | Ent (MON_1_6) | 1.260 | 31 | 44,5 | 2,5 |
-| 2 · Lv. 14 | boss | Champion Krait-Hypnotiseur | ❌ | Ogre (BOSS_1_3_2) | 10.460 | 94 | 47,5 | 1,5 |
+| 1 · Lv. 12 | boss | Champion Hylek-Kriegshäuptling | ❌ | Ogre (BOSS_1_3_1) | 9.460 | 84 | 41,5 | 1,5 |
+|  | scherge | Hylek-Krieger | ✅ [Hylek-Krieger](https://wiki-de.guildwars2.com/wiki/Hylek-Krieger) (en: Hylek Warrior) | Werewolf (MON_1_5) | 630 | 20 | 28,5 | 2,5 |
+|  | scherge | Hylek-Blasrohrschütze | ❌ | Ent (MON_1_6) | 1.260 | 31 | 44,5 | 2,5 |
+| 2 · Lv. 14 | boss | Champion Skritt-Schatzmeister | ❌ | Ogre (BOSS_1_3_2) | 10.460 | 94 | 47,5 | 1,5 |
+|  | scherge | Skritt-Plünderer | ❌ ähnlich: Skritt, Miniatur, Akk-Wildnis | Ent (MON_1_6) | 1.260 | 31 | 44,5 | 2,5 |
+|  | scherge | Skritt-Dieb | ✅ [Skritt-Dieb](https://wiki-de.guildwars2.com/wiki/Skritt-Dieb) (en: Skritt Thief) | Ent (MON_1_6) | 1.260 | 31 | 44,5 | 2,5 |
+| 3 · Lv. 16 | boss | Champion Albtraumhof-Ritter | 🟡 [Albtraumhof-Ritter](https://wiki-de.guildwars2.com/wiki/Albtraumhof-Ritter) (en: Nightmare Court Knight) | Raging Ogre (BOSS_1_4_1) | 12.190 | 104 | 54,5 | 1,5 |
+|  | scherge | Albtraumhof-Höfling | ❌ ähnlich: Albtraumhof, Skrittsburg-Zentrum, Entmantelung der Dunkelheit | Ent (MON_1_6) | 1.260 | 31 | 44,5 | 2,5 |
+|  | scherge | Albtraumhof-Wächter | ❌ ähnlich: Albtraumhof, Chronik/Meine Geschichte/Die Lehren des Ventari, Arias' Garten | Ent (MON_1_6) | 1.260 | 31 | 44,5 | 2,5 |
+| 4 · Lv. 18 | boss | Champion Krait-Orakel | ❌ ähnlich: Alt-Drache, Eisige Schritte | Raging Ogre (BOSS_1_4_2) | 14.080 | 114 | 59,5 | 1,5 |
 |  | scherge | Krait-Mystiker | ❌ ähnlich: Vergeltung (Persönliche Geschichte), Die Bewegung der Welt, Spielupdate/20131029 | Ent (MON_1_6) | 1.260 | 31 | 44,5 | 2,5 |
-|  | scherge | Krait-Wächter | ❌ ähnlich: Zustandsschaden, Miniatur, Krait | Ent (MON_1_6) | 1.260 | 31 | 44,5 | 2,5 |
-| 3 · Lv. 16 | boss | Champion Toxischer Wurm | 🟡 [Toxischer Wurm](https://wiki-de.guildwars2.com/wiki/Toxischer_Wurm) (en: Toxic Wurm) | Raging Ogre (BOSS_1_4_1) | 12.190 | 104 | 54,5 | 1,5 |
-|  | scherge | Toxischer Larvenwurm | ❌ | Ent (MON_1_6) | 1.260 | 31 | 44,5 | 2,5 |
 |  | scherge | Sumpfdrake | ❌ | Ent (MON_1_6) | 1.260 | 31 | 44,5 | 2,5 |
-| 4 · Lv. 18 | boss | Zentauren-Oberhäuptling | ❌ | Raging Ogre (BOSS_1_4_2) | 14.080 | 114 | 59,5 | 1,5 |
-|  | scherge | Zentauren-Krieger | ❌ ähnlich: Sylvari, Verkrüppelung, Wiedergänger | Ent (MON_1_6) | 1.260 | 31 | 44,5 | 2,5 |
-|  | scherge | Zentauren-Späher | ❌ ähnlich: Seraphen, Harathi-Hinterland, Helft Bronson, die Truppen der Zentauren zu stören | Ent (MON_1_6) | 1.260 | 31 | 44,5 | 2,5 |
-| 5 · Lv. 20 | endboss | Champion Toxischer Spinnen-König | ❌ ähnlich: Trank, Champion, Miniatur | Golem (BOSS_1_5) | 17.250 | 123 | 72,5 | 1,5 |
-|  | scherge | Toxische Spinne | ✅ [Toxische Spinne](https://wiki-de.guildwars2.com/wiki/Toxische_Spinne) (en: Toxic Spider) | Ent (MON_1_6) | 1.260 | 31 | 44,5 | 2,5 |
-|  | scherge | Toxischer Wucherer | ❌ ähnlich: Chronik/Staffel 1 der Lebendigen Welt, Spielupdate/20170808, Spielupdate/20180508 | Ent (MON_1_6) | 1.260 | 31 | 44,5 | 2,5 |
-| 6 ☠️ · Lv. 60 | boss | Blut-Hexe | ❌ ähnlich: Baumgrenzen-Fälle, Krait, Miniatur | Mighty Ogre (BOSS_H_1_3) | 2.177.802 | 1.036 | 253 | 2,5 |
-|  | scherge | Hexen-Diener | ❌ ähnlich: Der Schatten des Verrückten Königs (2015), Der Schatten des Verrückten Königs (2018), Der Schatten des Verrückten Königs (2021) | Cursed Werewolf (MON_H_1_3) | 144.444 | 249 | 243 | 2,5 |
-|  | scherge | Blutfledermaus | ❌ | Cursed Werewolf (MON_H_1_3) | 144.444 | 249 | 243 | 2,5 |
-| 7 ☠️ · Lv. 60 | boss | Verderbt: Toxischer Spinnen-König | ❌ ähnlich: Trank, Champion, Miniatur | Ogre Elite Fighter (BOSS_H_1_4) | 2.775.363 | 1.050 | 263 | 1 |
-|  | scherge | Toxische Spinne | ✅ [Toxische Spinne](https://wiki-de.guildwars2.com/wiki/Toxische_Spinne) (en: Toxic Spider) | Cursed Ent (MON_H_1_4) | 171.504 | 253 | 250 | 2,5 |
+| 5 · Lv. 20 | endboss | Albtraumhof-Gräfin | ❌ ähnlich: Albtraumhof, Zwielichtgarten, Chronik/Staffel 2 | Golem (BOSS_1_5) | 17.250 | 123 | 72,5 | 1,5 |
+|  | scherge | Albtraum-Ranke | ❌ ähnlich: Finsterer Tagtraum, Kampf-Objekt, Karston-Kammern | Ent (MON_1_6) | 1.260 | 31 | 44,5 | 2,5 |
+|  | scherge | Verzerrter Sylvari | ❌ ähnlich: Elitefertigkeit, Liste der Mesmerfertigkeiten, Versteckte Arkana | Ent (MON_1_6) | 1.260 | 31 | 44,5 | 2,5 |
+| 6 ☠️ · Lv. 60 | boss | Verderbter Baumgeist | ❌ ähnlich: Herz des Vulkans (Chronik), Der Erhalt des Gleichgewichts | Mighty Ogre (BOSS_H_1_3) | 2.177.802 | 1.036 | 253 | 2,5 |
+|  | scherge | Waldspinne | ✅ [Waldspinne](https://wiki-de.guildwars2.com/wiki/Waldspinne) (en: Forest Spider) | Cursed Werewolf (MON_H_1_3) | 144.444 | 249 | 243 | 2,5 |
+|  | scherge | Rankenwüter | ❌ | Cursed Werewolf (MON_H_1_3) | 144.444 | 249 | 243 | 2,5 |
+| 7 ☠️ · Lv. 60 | boss | Verderbt: Albtraumhof-Gräfin | ❌ ähnlich: Albtraumhof, Zwielichtgarten, Chronik/Staffel 2 | Ogre Elite Fighter (BOSS_H_1_4) | 2.775.363 | 1.050 | 263 | 1 |
+|  | scherge | Albtraum-Ranke | ❌ ähnlich: Finsterer Tagtraum, Kampf-Objekt, Karston-Kammern | Cursed Ent (MON_H_1_4) | 171.504 | 253 | 250 | 2,5 |
 |  | scherge | Kryptis-Splitter | ❌ ähnlich: Antiker Knochen, Veredelte Heimstatt-Faser, Spielupdate/20230926 | Cursed Ent (MON_H_1_4) | 171.504 | 253 | 250 | 2,5 |
-| 8 ⭐ · Lv. 60 | boss | Schatten: Toxischer Spinnen-König | ❌ ähnlich: Trank, Champion, Miniatur | Dark Golem (BOSS_H_L_1) | 12.933.897 | 1.277 | 433 | 0,5 |
+| 8 ⭐ · Lv. 60 | boss | Schatten: Albtraumhof-Gräfin | ❌ ähnlich: Albtraumhof, Zwielichtgarten, Chronik/Staffel 2 | Dark Golem (BOSS_H_L_1) | 12.933.897 | 1.277 | 433 | 0,5 |
 |  | scherge | Kryptis-Plünderer | ❌ ähnlich: Antiker Knochen, Phiole mit kraftvollem Blut, Beherrschungspunkt | Soul-Stolen Werewolf (MON_SOUL_1_3) | 196.390 | 278 | 169 | 2,5 |
 |  | scherge | Kryptis-Peiniger | ❌ ähnlich: Beherrschungspunkt | Soul-Stolen Ent (MON_SOUL_1_4) | 225.350 | 287 | 180 | 2,5 |
 
-### 3. Caudecus’ Anwesen
-
-Zone in der Wiki: ✅ [Caudecus' Anwesen](https://wiki-de.guildwars2.com/wiki/Caudecus'_Anwesen) (en: Caudecus's Manor)
-
-| Stufe | Rolle | GW2-Name | Wiki | CQHT-Vorlage | HP Lv.1 | ATK Lv.1 | DEF | Tempo |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 · Lv. 22 | boss | Separatisten-Belagerer | ❌ ähnlich: Belag-Kreuzung, Axtzug-Kanal, Felder der Verwüstung | Hard Mudman (BOSS_2_1_1) | 15.560 | 113 | 77,5 | 1,5 |
-|  | scherge | Separatisten-Kämpfer | ❌ ähnlich: Beutel mit stibitzten Waren, Devast-Distrikt, Beutekiste | Mudman (MON_2_2) | 1.840 | 40 | 71,5 | 2,5 |
-|  | scherge | Separatisten-Bomber | ✅ [Separatisten-Bomber](https://wiki-de.guildwars2.com/wiki/Separatisten-Bomber) (en: Separatist Bomber) | Mummy (MON_2_3) | 2.080 | 45 | 80 | 2,5 |
-| 2 · Lv. 24 | boss | Königlicher Leibwächter Pete | ❌ ähnlich: Logan Thackeray | Hard Mudman (BOSS_2_1_2) | 17.110 | 128 | 82,5 | 1,5 |
-|  | scherge | Königlicher Wächter | ❌ ähnlich: Waffengalerie/Schild, Waffengalerie/Dreizack, Lorbeer-Kaufmann | Mummy (MON_2_3) | 2.080 | 45 | 80 | 2,5 |
-|  | scherge | Separatisten-Feldwebel | ❌ ähnlich: Ebon-Vorhut, Verbogener Dietrich, Beutekiste | Old Mummy (MON_2_4) | 2.190 | 47 | 85 | 2,5 |
-| 3 · Lv. 25 | boss | Butler Michiels | ❌ | Hard Mudman (BOSS_2_1_3) | 17.320 | 151 | 85 | 1,5 |
-|  | scherge | Diener des Hauses | ❌ ähnlich: Veteran Brigadegeneral Kernel, Verdächtige Aktivitäten, Alarmstufe Rot | Mummy (MON_2_3) | 2.080 | 45 | 80 | 2,5 |
-|  | scherge | Abgerichteter Wachhund | ❌ | Old Mummy (MON_2_4) | 2.190 | 47 | 85 | 2,5 |
-| 4 · Lv. 27 | boss | Gepfefferte Bridgette | ❌ | Pharaoh Mummy (BOSS_2_2_1) | 18.400 | 193 | 90 | 1,5 |
-|  | scherge | Seraphen-Deserteur | ❌ ähnlich: Gezielte Verhandlung, Reparateur, Liste der Aufgaben | Old Mummy (MON_2_4) | 2.190 | 47 | 85 | 2,5 |
-|  | scherge | Banditen-Kanonier | ✅ [Banditen-Kanonier](https://wiki-de.guildwars2.com/wiki/Banditen-Kanonier) (en: Bandit Cannoneer) | Black Lizardman (MON_2_5) | 2.510 | 55 | 90 | 2,5 |
-| 5 · Lv. 29 | endboss | Separatisten-Hauptmann DeLana | ❌ ähnlich: DeLana-Geldbörse, Verbogener Dietrich, Beutel mit stibitzten Waren | Pharaoh Mummy (BOSS_2_2_2) | 22.250 | 226 | 95 | 1,5 |
-|  | scherge | Separatisten-Scharfschütze | ❌ ähnlich: Verbogener Dietrich, Beutel mit stibitzten Waren, Beutekiste | Black Lizardman (MON_2_5) | 2.510 | 55 | 90 | 2,5 |
-|  | scherge | Separatisten-Leutnant | ❌ ähnlich: Champion, Ebon-Vorhut, Weggeworfene Kluft | Anubis (MON_2_6) | 3.590 | 83 | 100 | 2,5 |
-| 6 ☠️ · Lv. 60 | boss | Turmaine | 🇬🇧 [Turmaine](https://wiki.guildwars2.com/wiki/Turmaine) | Emperor Mudman (BOSS_H_2_1) | 3.372.924 | 1.063 | 273 | 2,5 |
-|  | scherge | Asura-Wachgolem | ❌ | Elite Sandman (MON_H_2_1) | 198.565 | 257 | 256 | 2,5 |
-|  | scherge | Banditen-Raketengeschütz | ❌ | Elite Sandman (MON_H_2_1) | 198.565 | 257 | 256 | 2,5 |
-| 7 ☠️ · Lv. 60 | boss | Frost | 🇬🇧 [Frost](https://wiki.guildwars2.com/wiki/Frost) | Ancient Pharaoh Mummy (BOSS_H_2_2) | 3.970.485 | 1.076 | 283 | 2,5 |
-|  | scherge | Separatisten-Scharfschütze | ❌ ähnlich: Verbogener Dietrich, Beutel mit stibitzten Waren, Beutekiste | Sturdy Mummy (MON_H_2_2) | 225.625 | 261 | 263 | 2,5 |
-|  | scherge | Kryptis-Splitter | ❌ ähnlich: Antiker Knochen, Veredelte Heimstatt-Faser, Spielupdate/20230926 | Sturdy Mummy (MON_H_2_2) | 225.625 | 261 | 263 | 2,5 |
-
-## Portal 2: Zittergipfel & Ascalon
-
-### 4. Wanderer-Hügel
+### 3. Wanderer-Hügel
 
 Zone in der Wiki: ✅ [Wanderer-Hügel](https://wiki-de.guildwars2.com/wiki/Wanderer-H%C3%BCgel) (en: Wayfarer Foothills)
 
 | Stufe | Rolle | GW2-Name | Wiki | CQHT-Vorlage | HP Lv.1 | ATK Lv.1 | DEF | Tempo |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 · Lv. 31 | boss | Champion Minotauren-Bulle | ❌ ähnlich: Minotaurus, Borealis-Wald, Die Osenfold-Schneide | Basilisk (BOSS_2_3_1) | 29.100 | 269 | 105 | 1,5 |
-|  | scherge | Minotaurus | ✅ [Minotaurus](https://wiki-de.guildwars2.com/wiki/Minotaurus) (en: Minotaur) | Anubis (MON_2_6) | 3.590 | 83 | 100 | 2,5 |
-|  | scherge | Schneeleopard | ✅ [Schneeleopard](https://wiki-de.guildwars2.com/wiki/Schneeleopard) (en: Snow Leopard) | Anubis (MON_2_6) | 3.590 | 83 | 100 | 2,5 |
-| 2 · Lv. 33 | boss | Champion Grawl-Häuptling | ❌ ähnlich: Grawl, Chronik/Meine Geschichte/Helfende Hände, Heldenherausforderung | Basilisk (BOSS_2_3_2) | 34.100 | 276 | 110 | 1,5 |
-|  | scherge | Grawl-Krieger | ❌ ähnlich: Grawl, Geächtetenkluft, Frusenfell-Bach | Anubis (MON_2_6) | 3.590 | 83 | 100 | 2,5 |
-|  | scherge | Grawl-Schamane | ✅ [Grawl-Schamane](https://wiki-de.guildwars2.com/wiki/Grawl-Schamane) (en: Grawl Shaman) | Anubis (MON_2_6) | 3.590 | 83 | 100 | 2,5 |
-| 3 · Lv. 35 | boss | Champion Eisbrut-Wolf | ✅ [Champion Eisbrut-Wolf](https://wiki-de.guildwars2.com/wiki/Champion_Eisbrut-Wolf) (en: Champion Icebrood Wolf) | Huge Basilisk (BOSS_2_4_1) | 36.410 | 289 | 115 | 1,5 |
-|  | scherge | Eisbrut-Wolf | ✅ [Eisbrut-Wolf](https://wiki-de.guildwars2.com/wiki/Eisbrut-Wolf) (en: Icebrood Wolf) | Anubis (MON_2_6) | 3.590 | 83 | 100 | 2,5 |
-|  | scherge | Eisbrut-Elementar | ✅ [Eisbrut-Elementar](https://wiki-de.guildwars2.com/wiki/Eisbrut-Elementar) (en: Icebrood Elemental) | Anubis (MON_2_6) | 3.590 | 83 | 100 | 2,5 |
-| 4 · Lv. 37 | boss | Schamanen-Vorbote des Jormag | ❌ ähnlich: Garantierte Garderoben-Freischaltung | Huge Basilisk (BOSS_2_4_2) | 36.920 | 301 | 120 | 1,5 |
-|  | scherge | Sohn des Svanir | ❌ ähnlich: Sohn Svanirs, Eisbrut, Halvaunt-Schneefeld | Anubis (MON_2_6) | 3.590 | 83 | 100 | 2,5 |
-|  | scherge | Svanir-Eisbrecher | 📄 [Mini Svanir-Eisbrecher](https://wiki-de.guildwars2.com/wiki/Mini_Svanir-Eisbrecher) | Anubis (MON_2_6) | 3.590 | 83 | 100 | 2,5 |
-| 5 · Lv. 40 | endboss | Svanir-Schamane | ❌ ähnlich: Die Söhne Svanirs, Wanderer-Hügel, Eisbrut | Sandworm (BOSS_2_5) | 51.570 | 543 | 142,5 | 1,5 |
-|  | scherge | Svanir-Schamanin | ❌ ähnlich: Wanderer-Hügel, Schneekuhlenhöhen, Ehrt den Geist des Bären | Anubis (MON_2_6) | 3.590 | 83 | 100 | 2,5 |
+| 1 · Lv. 22 | boss | Champion Minotauren-Bulle | ❌ ähnlich: Minotaurus, Borealis-Wald, Die Osenfold-Schneide | Hard Mudman (BOSS_2_1_1) | 15.560 | 113 | 77,5 | 1,5 |
+|  | scherge | Minotaurus | ✅ [Minotaurus](https://wiki-de.guildwars2.com/wiki/Minotaurus) (en: Minotaur) | Mudman (MON_2_2) | 1.840 | 40 | 71,5 | 2,5 |
+|  | scherge | Schneeleopard | ✅ [Schneeleopard](https://wiki-de.guildwars2.com/wiki/Schneeleopard) (en: Snow Leopard) | Mummy (MON_2_3) | 2.080 | 45 | 80 | 2,5 |
+| 2 · Lv. 24 | boss | Champion Grawl-Häuptling | ❌ ähnlich: Grawl, Chronik/Meine Geschichte/Helfende Hände, Heldenherausforderung | Hard Mudman (BOSS_2_1_2) | 17.110 | 128 | 82,5 | 1,5 |
+|  | scherge | Grawl-Krieger | ❌ ähnlich: Grawl, Geächtetenkluft, Frusenfell-Bach | Mummy (MON_2_3) | 2.080 | 45 | 80 | 2,5 |
+|  | scherge | Grawl-Schamane | ✅ [Grawl-Schamane](https://wiki-de.guildwars2.com/wiki/Grawl-Schamane) (en: Grawl Shaman) | Old Mummy (MON_2_4) | 2.190 | 47 | 85 | 2,5 |
+| 3 · Lv. 25 | boss | Champion Eisbrut-Wolf | ✅ [Champion Eisbrut-Wolf](https://wiki-de.guildwars2.com/wiki/Champion_Eisbrut-Wolf) (en: Champion Icebrood Wolf) | Hard Mudman (BOSS_2_1_3) | 17.320 | 151 | 85 | 1,5 |
+|  | scherge | Eisbrut-Wolf | ✅ [Eisbrut-Wolf](https://wiki-de.guildwars2.com/wiki/Eisbrut-Wolf) (en: Icebrood Wolf) | Mummy (MON_2_3) | 2.080 | 45 | 80 | 2,5 |
+|  | scherge | Eisbrut-Elementar | ✅ [Eisbrut-Elementar](https://wiki-de.guildwars2.com/wiki/Eisbrut-Elementar) (en: Icebrood Elemental) | Old Mummy (MON_2_4) | 2.190 | 47 | 85 | 2,5 |
+| 4 · Lv. 27 | boss | Schamanen-Vorbote des Jormag | ❌ ähnlich: Garantierte Garderoben-Freischaltung | Pharaoh Mummy (BOSS_2_2_1) | 18.400 | 193 | 90 | 1,5 |
+|  | scherge | Sohn des Svanir | ❌ ähnlich: Sohn Svanirs, Eisbrut, Halvaunt-Schneefeld | Old Mummy (MON_2_4) | 2.190 | 47 | 85 | 2,5 |
+|  | scherge | Svanir-Eisbrecher | 📄 [Mini Svanir-Eisbrecher](https://wiki-de.guildwars2.com/wiki/Mini_Svanir-Eisbrecher) | Black Lizardman (MON_2_5) | 2.510 | 55 | 90 | 2,5 |
+| 5 · Lv. 29 | endboss | Svanir-Schamane | ❌ ähnlich: Die Söhne Svanirs, Wanderer-Hügel, Eisbrut | Pharaoh Mummy (BOSS_2_2_2) | 22.250 | 226 | 95 | 1,5 |
+|  | scherge | Svanir-Schamanin | ❌ ähnlich: Wanderer-Hügel, Schneekuhlenhöhen, Ehrt den Geist des Bären | Black Lizardman (MON_2_5) | 2.510 | 55 | 90 | 2,5 |
 |  | scherge | Eisgeist | ❌ | Anubis (MON_2_6) | 3.590 | 83 | 100 | 2,5 |
-| 6 ☠️ · Lv. 60 | boss | Eisbrut-Goliath | ✅ [Eisbrut-Goliath](https://wiki-de.guildwars2.com/wiki/Eisbrut-Goliath) (en: Icebrood Goliath) | Red Basilisk (BOSS_H_2_3) | 4.568.046 | 1.090 | 293 | 2,5 |
-|  | scherge | Eisbrut-Bär | ❌ ähnlich: Beutekiste, Die Söhne Svanirs, Geister der Wildnis | Cursed Desert Lizardman (MON_H_2_3) | 252.685 | 265 | 269 | 2,5 |
-|  | scherge | Eisbrut-Wyvern | ❌ ähnlich: Guild Wars 2: Heart of Thorns, Miniatur, Elite | Cursed Desert Lizardman (MON_H_2_3) | 252.685 | 265 | 269 | 2,5 |
-| 7 ☠️ · Lv. 60 | boss | Verderbt: Svanir-Schamane | ❌ ähnlich: Die Söhne Svanirs, Wanderer-Hügel, Eisbrut | Cataclysm Basilisk (BOSS_H_2_4) | 5.165.606 | 1.103 | 303 | 1 |
-|  | scherge | Svanir-Schamanin | ❌ ähnlich: Wanderer-Hügel, Schneekuhlenhöhen, Ehrt den Geist des Bären | Cursed Anubis (MON_H_2_4) | 279.746 | 270 | 275 | 2,5 |
-|  | scherge | Kryptis-Splitter | ❌ ähnlich: Antiker Knochen, Veredelte Heimstatt-Faser, Spielupdate/20230926 | Cursed Anubis (MON_H_2_4) | 279.746 | 270 | 275 | 2,5 |
-| 8 ⭐ · Lv. 60 | boss | Schatten: Svanir-Schamane | ❌ ähnlich: Die Söhne Svanirs, Wanderer-Hügel, Eisbrut | Dark Sandworm (BOSS_H_L_2) | 13.531.458 | 1.291 | 443 | 0,5 |
-|  | scherge | Kryptis-Plünderer | ❌ ähnlich: Antiker Knochen, Phiole mit kraftvollem Blut, Beherrschungspunkt | Soul-Stolen Lizardman (MON_SOUL_2_3) | 312.240 | 315 | 212 | 2,5 |
-|  | scherge | Kryptis-Peiniger | ❌ ähnlich: Beherrschungspunkt | Soul-Stolen Anubis (MON_SOUL_2_4) | 341.200 | 324 | 223 | 2,5 |
+| 6 ☠️ · Lv. 60 | boss | Eisbrut-Goliath | ✅ [Eisbrut-Goliath](https://wiki-de.guildwars2.com/wiki/Eisbrut-Goliath) (en: Icebrood Goliath) | Emperor Mudman (BOSS_H_2_1) | 3.372.924 | 1.063 | 273 | 2,5 |
+|  | scherge | Eisbrut-Bär | ❌ ähnlich: Beutekiste, Die Söhne Svanirs, Geister der Wildnis | Elite Sandman (MON_H_2_1) | 198.565 | 257 | 256 | 2,5 |
+|  | scherge | Eisbrut-Wyvern | ❌ ähnlich: Guild Wars 2: Heart of Thorns, Miniatur, Elite | Elite Sandman (MON_H_2_1) | 198.565 | 257 | 256 | 2,5 |
+| 7 ☠️ · Lv. 60 | boss | Verderbt: Svanir-Schamane | ❌ ähnlich: Die Söhne Svanirs, Wanderer-Hügel, Eisbrut | Ancient Pharaoh Mummy (BOSS_H_2_2) | 3.970.485 | 1.076 | 283 | 2,5 |
+|  | scherge | Svanir-Schamanin | ❌ ähnlich: Wanderer-Hügel, Schneekuhlenhöhen, Ehrt den Geist des Bären | Sturdy Mummy (MON_H_2_2) | 225.625 | 261 | 263 | 2,5 |
+|  | scherge | Kryptis-Splitter | ❌ ähnlich: Antiker Knochen, Veredelte Heimstatt-Faser, Spielupdate/20230926 | Sturdy Mummy (MON_H_2_2) | 225.625 | 261 | 263 | 2,5 |
 
-### 5. Schneekuhlen-Höhen
+## Portal 2: Metrica, Aschfurt & Anwesen
 
-Zone in der Wiki: ❌ ähnlich: Frostfang III: Zahn des Frostfangs
+### 4. Provinz Metrica
+
+Zone in der Wiki: ✅ [Provinz Metrica](https://wiki-de.guildwars2.com/wiki/Provinz_Metrica) (en: Metrica Province)
 
 | Stufe | Rolle | GW2-Name | Wiki | CQHT-Vorlage | HP Lv.1 | ATK Lv.1 | DEF | Tempo |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 · Lv. 41 | boss | Schneeleoparden-Matriarchin | ❌ ähnlich: Junger Feuer-Wyvern | Monster Anglerfish (BOSS_3_1_1) | 45.860 | 254 | 140 | 1,5 |
-|  | scherge | Schneeleopard | ✅ [Schneeleopard](https://wiki-de.guildwars2.com/wiki/Schneeleopard) (en: Snow Leopard) | Pink Starfish (MON_3_4) | 8.010 | 105 | 132 | 2,5 |
-|  | scherge | Eiswolf | ❌ ähnlich: Winziger Fangzahn, Großer Fangzahn, Fangzahn | Blue Jellyfish (MON_3_5) | 8.420 | 123 | 138 | 2,5 |
-| 2 · Lv. 42 | boss | Champion Svanir-Häscher | ❌ ähnlich: Was übrig bleibt, Miniatur, Taigan-Hain | Monster Anglerfish (BOSS_3_1_2) | 46.610 | 297 | 142,5 | 1,5 |
-|  | scherge | Svanir-Jäger | ✅ [Svanir-Jäger](https://wiki-de.guildwars2.com/wiki/Svanir-J%C3%A4ger) (en: Svanir Hunter) | Pink Starfish (MON_3_4) | 8.010 | 105 | 132 | 2,5 |
-|  | scherge | Svanir-Plünderer | ❌ ähnlich: Champion, Miniatur, Yakbiegung | Blue Jellyfish (MON_3_5) | 8.420 | 123 | 138 | 2,5 |
-| 3 · Lv. 43 | boss | Champion Frost-Grawl | ❌ ähnlich: Ein festlich-froher Wintertag (2014), Winziges Totem, Kleines Totem | Monster Anglerfish (BOSS_3_1_3) | 71.520 | 303 | 145 | 1,5 |
-|  | scherge | Frost-Grawl | ❌ ähnlich: Ein festlich-froher Wintertag (2014), Winziges Totem, Kleines Totem | Blue Jellyfish (MON_3_5) | 8.420 | 123 | 138 | 2,5 |
-|  | scherge | Grawl-Steinwerfer | ❌ | Mermaid Wizard (MON_3_6) | 9.870 | 135 | 144 | 2,5 |
-| 4 · Lv. 44 | boss | Dredge-Tunnelmeister | ❌ | Black Starfish (BOSS_3_2_1) | 78.320 | 353 | 147,5 | 1,5 |
-|  | scherge | Dredge-Bergarbeiter | ❌ | Blue Jellyfish (MON_3_5) | 8.420 | 123 | 138 | 2,5 |
-|  | scherge | Dredge-Schallkanone | ❌ | Mermaid Wizard (MON_3_6) | 9.870 | 135 | 144 | 2,5 |
-| 5 · Lv. 45 | endboss | Drachen-Schamane der Svanir | ❌ ähnlich: Besiegt den Drachen-Schamanen der Svanir, Die Söhne Svanirs, Wanderer-Hügel | Black Starfish (BOSS_3_2_2) | 86.080 | 418 | 150 | 1,5 |
-|  | scherge | Svanir-Drachenrufer | ❌ | Mermaid Wizard (MON_3_6) | 9.870 | 135 | 144 | 2,5 |
-|  | scherge | Eisbrut-Diener | ✅ [Eisbrut-Diener](https://wiki-de.guildwars2.com/wiki/Eisbrut-Diener) (en: Icebrood Minion) | Mermaid Wizard (MON_3_6) | 9.870 | 135 | 144 | 2,5 |
-| 6 ☠️ · Lv. 60 | boss | Eisbrut-Riese | ✅ [Eisbrut-Riese](https://wiki-de.guildwars2.com/wiki/Eisbrut-Riese) (en: Icebrood Colossus) | Cursed Monster Angler (BOSS_H_3_1) | 5.763.167 | 1.117 | 313 | 2,5 |
-|  | scherge | Eisbrut-Troll | ✅ [Eisbrut-Troll](https://wiki-de.guildwars2.com/wiki/Eisbrut-Troll) (en: Icebrood Troll) | Red Angler (MON_H_3_1) | 306.806 | 274 | 282 | 2,5 |
-|  | scherge | Eisbrut-Koloss | ❌ ähnlich: Miniatur, Beherrschungspunkt, Chuka und Champawat III: Tigris | Red Angler (MON_H_3_1) | 306.806 | 274 | 282 | 2,5 |
-| 7 ☠️ · Lv. 60 | boss | Verderbt: Drachen-Schamane der Svanir | ❌ ähnlich: Besiegt den Drachen-Schamanen der Svanir, Die Söhne Svanirs, Wanderer-Hügel | Cursed Blackstar (BOSS_H_3_2) | 6.360.728 | 1.130 | 323 | 2,5 |
-|  | scherge | Svanir-Drachenrufer | ❌ | Cursed Redstar (MON_H_3_2) | 333.867 | 278 | 288 | 2,5 |
+| 1 · Lv. 31 | boss | Champion Inquestur-Golem | ❌ ähnlich: Inquestur, Golem, Haufen kristallinen Staubs | Basilisk (BOSS_2_3_1) | 29.100 | 269 | 105 | 1,5 |
+|  | scherge | Inquestur-Assistent | ✅ [Inquestur-Assistent](https://wiki-de.guildwars2.com/wiki/Inquestur-Assistent) (en: Inquest Assistant) | Anubis (MON_2_6) | 3.590 | 83 | 100 | 2,5 |
+|  | scherge | Inquestur-Golem | ❌ ähnlich: Inquestur, Golem, Haufen kristallinen Staubs | Anubis (MON_2_6) | 3.590 | 83 | 100 | 2,5 |
+| 2 · Lv. 33 | boss | Champion Skritt-Anführer | ❌ ähnlich: Skritt, Ebonfalke-Festung, Champion | Basilisk (BOSS_2_3_2) | 34.100 | 276 | 110 | 1,5 |
+|  | scherge | Skritt-Bastler | ❌ ähnlich: Skritt, Skrittsburg-Zentrum, Bastler Fur'anchish | Anubis (MON_2_6) | 3.590 | 83 | 100 | 2,5 |
+|  | scherge | Skritt-Späher | ❌ ähnlich: Helft Zippti bei der Untersuchung der ungewöhnlich aggressiven Skritt, Befreit das Trainingsgebiet von Ungeziefer, Hanto-Handelsposten | Anubis (MON_2_6) | 3.590 | 83 | 100 | 2,5 |
+| 3 · Lv. 35 | boss | Champion Riesen-Moa | ❌ ähnlich: Knochensplitter, Meerenge der Verwüstung, Cereboth-Schlucht | Huge Basilisk (BOSS_2_4_1) | 36.410 | 289 | 115 | 1,5 |
+|  | scherge | Moa | ✅ [Moa](https://wiki-de.guildwars2.com/wiki/Moa) | Anubis (MON_2_6) | 3.590 | 83 | 100 | 2,5 |
+|  | scherge | Hylek-Krieger | ✅ [Hylek-Krieger](https://wiki-de.guildwars2.com/wiki/Hylek-Krieger) (en: Hylek Warrior) | Anubis (MON_2_6) | 3.590 | 83 | 100 | 2,5 |
+| 4 · Lv. 37 | boss | Inquestur-Versuchsleiterin | ❌ | Huge Basilisk (BOSS_2_4_2) | 36.920 | 301 | 120 | 1,5 |
+|  | scherge | Inquestur-Techniker | ✅ [Inquestur-Techniker](https://wiki-de.guildwars2.com/wiki/Inquestur-Techniker) (en: Inquest Engineer) | Anubis (MON_2_6) | 3.590 | 83 | 100 | 2,5 |
+|  | scherge | Mark-I-Golem | ❌ ähnlich: Golem, Beutekiste, Raserei III: Rage | Anubis (MON_2_6) | 3.590 | 83 | 100 | 2,5 |
+| 5 · Lv. 40 | endboss | Kolossaler Inquestur-Golem | ❌ ähnlich: Champion, Rollkäfer, Chronik/Staffel 4 der Lebendigen Welt | Sandworm (BOSS_2_5) | 51.570 | 543 | 142,5 | 1,5 |
+|  | scherge | Inquestur-Wächter | ❌ ähnlich: Golem, Miniatur, Waffengalerie/Schild | Anubis (MON_2_6) | 3.590 | 83 | 100 | 2,5 |
+|  | scherge | Mark-III-Golem | ❌ ähnlich: Golem, Raserei III: Rage, Beutekiste | Anubis (MON_2_6) | 3.590 | 83 | 100 | 2,5 |
+| 6 ☠️ · Lv. 60 | boss | Entfesseltes Experiment | ❌ ähnlich: Waffengalerie/Großschwert, Waffengalerie/Zepter, Waffengalerie/Kriegshorn | Red Basilisk (BOSS_H_2_3) | 4.568.046 | 1.090 | 293 | 2,5 |
+|  | scherge | Riss-Funke | ❌ ähnlich: Miniatur, Kodonur-Tempel, Chronik/Secrets of the Obscure | Cursed Desert Lizardman (MON_H_2_3) | 252.685 | 265 | 269 | 2,5 |
+|  | scherge | Instabiles Experiment | ❌ ähnlich: Inquestur, Ektoplasmakugel, Chronik/Meine Geschichte/Interessierte Gruppen | Cursed Desert Lizardman (MON_H_2_3) | 252.685 | 265 | 269 | 2,5 |
+| 7 ☠️ · Lv. 60 | boss | Verderbt: Kolossaler Inquestur-Golem | ❌ ähnlich: Champion, Rollkäfer, Chronik/Staffel 4 der Lebendigen Welt | Cataclysm Basilisk (BOSS_H_2_4) | 5.165.606 | 1.103 | 303 | 1 |
+|  | scherge | Inquestur-Wächter | ❌ ähnlich: Golem, Miniatur, Waffengalerie/Schild | Cursed Anubis (MON_H_2_4) | 279.746 | 270 | 275 | 2,5 |
+|  | scherge | Kryptis-Splitter | ❌ ähnlich: Antiker Knochen, Veredelte Heimstatt-Faser, Spielupdate/20230926 | Cursed Anubis (MON_H_2_4) | 279.746 | 270 | 275 | 2,5 |
+| 8 ⭐ · Lv. 60 | boss | Schatten: Kolossaler Inquestur-Golem | ❌ ähnlich: Champion, Rollkäfer, Chronik/Staffel 4 der Lebendigen Welt | Dark Sandworm (BOSS_H_L_2) | 13.531.458 | 1.291 | 443 | 0,5 |
+|  | scherge | Kryptis-Plünderer | ❌ ähnlich: Antiker Knochen, Phiole mit kraftvollem Blut, Beherrschungspunkt | Soul-Stolen Lizardman (MON_SOUL_2_3) | 312.240 | 315 | 212 | 2,5 |
+|  | scherge | Kryptis-Peiniger | ❌ ähnlich: Beherrschungspunkt | Soul-Stolen Anubis (MON_SOUL_2_4) | 341.200 | 324 | 223 | 2,5 |
+
+### 5. Ebenen von Aschfurt
+
+Zone in der Wiki: ✅ [Ebenen von Aschfurt](https://wiki-de.guildwars2.com/wiki/Ebenen_von_Aschfurt) (en: Plains of Ashford)
+
+| Stufe | Rolle | GW2-Name | Wiki | CQHT-Vorlage | HP Lv.1 | ATK Lv.1 | DEF | Tempo |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 · Lv. 41 | boss | Champion Verschlinger-Königin | ✅ [Champion Verschlinger-Königin](https://wiki-de.guildwars2.com/wiki/Champion_Verschlinger-K%C3%B6nigin) | Monster Anglerfish (BOSS_3_1_1) | 45.860 | 254 | 140 | 1,5 |
+|  | scherge | Verschlinger | ✅ [Verschlinger](https://wiki-de.guildwars2.com/wiki/Verschlinger) (en: Devourer) | Pink Starfish (MON_3_4) | 8.010 | 105 | 132 | 2,5 |
+|  | scherge | Verschlinger-Brut | ❌ ähnlich: Verschlinger, Finstertal, Gram-Hügel | Blue Jellyfish (MON_3_5) | 8.420 | 123 | 138 | 2,5 |
+| 2 · Lv. 42 | boss | Champion Skal-Alpha | ❌ ähnlich: Verwundbarkeit, Hellwasser-Zufluss, Die Säbelrassler-Bucht | Monster Anglerfish (BOSS_3_1_2) | 46.610 | 297 | 142,5 | 1,5 |
+|  | scherge | Skal | ✅ [Skal](https://wiki-de.guildwars2.com/wiki/Skal) (en: Skale) | Pink Starfish (MON_3_4) | 8.010 | 105 | 132 | 2,5 |
+|  | scherge | Wildkatze | ❌ ähnlich: Raubkatze, Die Blüte der Jugend, Bestiarium | Blue Jellyfish (MON_3_5) | 8.420 | 123 | 138 | 2,5 |
+| 3 · Lv. 43 | boss | Separatisten-Anführerin | ❌ ähnlich: Ebon-Vorhut, Langmar-Anwesen, Jägerschlund | Monster Anglerfish (BOSS_3_1_3) | 71.520 | 303 | 145 | 1,5 |
+|  | scherge | Separatisten-Kämpfer | ❌ ähnlich: Beutel mit stibitzten Waren, Devast-Distrikt, Beutekiste | Blue Jellyfish (MON_3_5) | 8.420 | 123 | 138 | 2,5 |
+|  | scherge | Separatisten-Brandstifter | ❌ | Mermaid Wizard (MON_3_6) | 9.870 | 135 | 144 | 2,5 |
+| 4 · Lv. 44 | boss | Champion Ascalonischer Geisterhauptmann | ❌ ähnlich: Permanenter Todesstoß des ascalonischen Anführers | Black Starfish (BOSS_3_2_1) | 78.320 | 353 | 147,5 | 1,5 |
+|  | scherge | Ascalonischer Geist | ✅ [Ascalonischer Geist](https://wiki-de.guildwars2.com/wiki/Ascalonischer_Geist) (en: Ascalonian ghost) | Blue Jellyfish (MON_3_5) | 8.420 | 123 | 138 | 2,5 |
+|  | scherge | Geister-Bogenschütze | ❌ ähnlich: Geist, Seraphen, Ascalonischer Geist | Mermaid Wizard (MON_3_6) | 9.870 | 135 | 144 | 2,5 |
+| 5 · Lv. 45 | endboss | Flammenlegion-Kriegsherr | ❌ ähnlich: Liste der Rüstungssets | Black Starfish (BOSS_3_2_2) | 86.080 | 418 | 150 | 1,5 |
+|  | scherge | Flammenlegion-Kultist | ❌ | Mermaid Wizard (MON_3_6) | 9.870 | 135 | 144 | 2,5 |
+|  | scherge | Flammenlegion-Zerstörer | ❌ ähnlich: Meta-Event | Mermaid Wizard (MON_3_6) | 9.870 | 135 | 144 | 2,5 |
+| 6 ☠️ · Lv. 60 | boss | Flammenlegion-Schamane | ❌ | Cursed Monster Angler (BOSS_H_3_1) | 5.763.167 | 1.117 | 313 | 2,5 |
+|  | scherge | Flammenlegion-Krieger | ❌ ähnlich: Meta-Event, Liste der Rüstungssets, Einrichtung der Feurigen (Bossfraktal) | Red Angler (MON_H_3_1) | 306.806 | 274 | 282 | 2,5 |
+|  | scherge | Feuerelementar | ❌ ähnlich: Wintertotengeläut-Insel, Goldfelder, April-2014-Feature-Release | Red Angler (MON_H_3_1) | 306.806 | 274 | 282 | 2,5 |
+| 7 ☠️ · Lv. 60 | boss | Verderbt: Flammenlegion-Kriegsherr | ❌ ähnlich: Liste der Rüstungssets | Cursed Blackstar (BOSS_H_3_2) | 6.360.728 | 1.130 | 323 | 2,5 |
+|  | scherge | Flammenlegion-Kultist | ❌ | Cursed Redstar (MON_H_3_2) | 333.867 | 278 | 288 | 2,5 |
 |  | scherge | Kryptis-Splitter | ❌ ähnlich: Antiker Knochen, Veredelte Heimstatt-Faser, Spielupdate/20230926 | Cursed Redstar (MON_H_3_2) | 333.867 | 278 | 288 | 2,5 |
 
-### 6. Katakomben von Ascalon
+### 6. Caudecus’ Anwesen
+
+Zone in der Wiki: ✅ [Caudecus' Anwesen](https://wiki-de.guildwars2.com/wiki/Caudecus'_Anwesen) (en: Caudecus's Manor)
+
+| Stufe | Rolle | GW2-Name | Wiki | CQHT-Vorlage | HP Lv.1 | ATK Lv.1 | DEF | Tempo |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 · Lv. 46 | boss | Separatisten-Belagerer | ❌ ähnlich: Belag-Kreuzung, Axtzug-Kanal, Felder der Verwüstung | Shark Warrior (BOSS_3_3_1) | 96.810 | 478 | 152,5 | 1,5 |
+|  | scherge | Separatisten-Kämpfer | ❌ ähnlich: Beutel mit stibitzten Waren, Devast-Distrikt, Beutekiste | Mermaid Wizard (MON_3_6) | 9.870 | 135 | 144 | 2,5 |
+|  | scherge | Separatisten-Bomber | ✅ [Separatisten-Bomber](https://wiki-de.guildwars2.com/wiki/Separatisten-Bomber) (en: Separatist Bomber) | Mermaid Wizard (MON_3_6) | 9.870 | 135 | 144 | 2,5 |
+| 2 · Lv. 47 | boss | Königlicher Leibwächter Pete | ❌ ähnlich: Logan Thackeray | Shark Warrior (BOSS_3_3_2) | 98.990 | 547 | 155 | 1,5 |
+|  | scherge | Königlicher Wächter | ❌ ähnlich: Waffengalerie/Schild, Waffengalerie/Dreizack, Lorbeer-Kaufmann | Mermaid Wizard (MON_3_6) | 9.870 | 135 | 144 | 2,5 |
+|  | scherge | Separatisten-Feldwebel | ❌ ähnlich: Ebon-Vorhut, Verbogener Dietrich, Beutekiste | Mermaid Wizard (MON_3_6) | 9.870 | 135 | 144 | 2,5 |
+| 3 · Lv. 48 | boss | Butler Michiels | ❌ | EliteShark W. (BOSS_3_4_1) | 101.180 | 553 | 157,5 | 1,5 |
+|  | scherge | Diener des Hauses | ❌ ähnlich: Veteran Brigadegeneral Kernel, Verdächtige Aktivitäten, Alarmstufe Rot | Mermaid Wizard (MON_3_6) | 9.870 | 135 | 144 | 2,5 |
+|  | scherge | Abgerichteter Wachhund | ❌ | Mermaid Wizard (MON_3_6) | 9.870 | 135 | 144 | 2,5 |
+| 4 · Lv. 49 | boss | Gepfefferte Bridgette | ❌ | EliteShark W. (BOSS_3_4_2) | 101.770 | 640 | 160 | 1,5 |
+|  | scherge | Seraphen-Deserteur | ❌ ähnlich: Gezielte Verhandlung, Reparateur, Liste der Aufgaben | Mermaid Wizard (MON_3_6) | 9.870 | 135 | 144 | 2,5 |
+|  | scherge | Banditen-Kanonier | ✅ [Banditen-Kanonier](https://wiki-de.guildwars2.com/wiki/Banditen-Kanonier) (en: Bandit Cannoneer) | Mermaid Wizard (MON_3_6) | 9.870 | 135 | 144 | 2,5 |
+| 5 · Lv. 50 | endboss | Separatisten-Hauptmann DeLana | ❌ ähnlich: DeLana-Geldbörse, Verbogener Dietrich, Beutel mit stibitzten Waren | Kraken (BOSS_3_5) | 117.770 | 701 | 162,5 | 1,5 |
+|  | scherge | Separatisten-Scharfschütze | ❌ ähnlich: Verbogener Dietrich, Beutel mit stibitzten Waren, Beutekiste | Mermaid Wizard (MON_3_6) | 9.870 | 135 | 144 | 2,5 |
+|  | scherge | Separatisten-Leutnant | ❌ ähnlich: Champion, Ebon-Vorhut, Weggeworfene Kluft | Mermaid Wizard (MON_3_6) | 9.870 | 135 | 144 | 2,5 |
+| 6 ☠️ · Lv. 60 | boss | Turmaine | 🇬🇧 [Turmaine](https://wiki.guildwars2.com/wiki/Turmaine) | Mighty Shark Warrior (BOSS_H_3_3) | 6.958.289 | 1.143 | 333 | 2,5 |
+|  | scherge | Asura-Wachgolem | ❌ | Corrupted Jellyfish (MON_H_3_3) | 360.927 | 282 | 295 | 2,5 |
+|  | scherge | Banditen-Raketengeschütz | ❌ | Corrupted Jellyfish (MON_H_3_3) | 360.927 | 282 | 295 | 2,5 |
+| 7 ☠️ · Lv. 60 | boss | Frost | 🇬🇧 [Frost](https://wiki.guildwars2.com/wiki/Frost) | Mighty Elite Shark Warrior (BOSS_H_3_4) | 7.555.850 | 1.157 | 343 | 1 |
+|  | scherge | Separatisten-Scharfschütze | ❌ ähnlich: Verbogener Dietrich, Beutel mit stibitzten Waren, Beutekiste | Mermaid Witch (MON_H_3_4) | 387.987 | 286 | 301 | 2,5 |
+|  | scherge | Kryptis-Splitter | ❌ ähnlich: Antiker Knochen, Veredelte Heimstatt-Faser, Spielupdate/20230926 | Mermaid Witch (MON_H_3_4) | 387.987 | 286 | 301 | 2,5 |
+| 8 ⭐ · Lv. 60 | boss | Schatten: Separatisten-Hauptmann DeLana | ❌ ähnlich: DeLana-Geldbörse, Verbogener Dietrich, Beutel mit stibitzten Waren | Dark Kraken (BOSS_H_L_3) | 14.129.018 | 1.304 | 453 | 0,5 |
+|  | scherge | Kryptis-Plünderer | ❌ ähnlich: Antiker Knochen, Phiole mit kraftvollem Blut, Beherrschungspunkt | Soul-Stolen Jellyfish (MON_SOUL_3_3) | 428.090 | 352 | 255,5 | 2,5 |
+|  | scherge | Kryptis-Peiniger | ❌ ähnlich: Beherrschungspunkt | Soul-Stolen Mermaid Wizard (MON_SOUL_3_4) | 457.050 | 361 | 266 | 2,5 |
+
+## Portal 3: Ascalon & Harathi
+
+### 7. Katakomben von Ascalon
 
 Zone in der Wiki: ✅ [Katakomben von Ascalon](https://wiki-de.guildwars2.com/wiki/Katakomben_von_Ascalon) (en: Ascalonian Catacombs)
 
 | Stufe | Rolle | GW2-Name | Wiki | CQHT-Vorlage | HP Lv.1 | ATK Lv.1 | DEF | Tempo |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 · Lv. 46 | boss | Höhlentroll | ✅ [Höhlentroll](https://wiki-de.guildwars2.com/wiki/H%C3%B6hlentroll) (en: Cave Troll) | Shark Warrior (BOSS_3_3_1) | 96.810 | 478 | 152,5 | 1,5 |
-|  | scherge | Geister-Krieger | ❌ ähnlich: Geist, Ascalonischer Geist, Waldläufer | Mermaid Wizard (MON_3_6) | 9.870 | 135 | 144 | 2,5 |
-|  | scherge | Geister-Waldläufer | ❌ ähnlich: Waldläufer, Geist, Ascalonischer Geist | Mermaid Wizard (MON_3_6) | 9.870 | 135 | 144 | 2,5 |
-| 2 · Lv. 47 | boss | Kasha Schwarzblut | ✅ [Kasha Schwarzblut](https://wiki-de.guildwars2.com/wiki/Kasha_Schwarzblut) (en: Kasha Blackblood) | Shark Warrior (BOSS_3_3_2) | 98.990 | 547 | 155 | 1,5 |
-|  | scherge | Flammenlegion-Kultist | ❌ | Mermaid Wizard (MON_3_6) | 9.870 | 135 | 144 | 2,5 |
-|  | scherge | Flammenlegion-Zerstörer | ❌ ähnlich: Meta-Event | Mermaid Wizard (MON_3_6) | 9.870 | 135 | 144 | 2,5 |
-| 3 · Lv. 48 | boss | Ralena & Vassar | ❌ ähnlich: Gruft der Liebenden, Vassar, Katakomben von Ascalon (Story) | EliteShark W. (BOSS_3_4_1) | 101.180 | 553 | 157,5 | 1,5 |
-|  | scherge | Geister-Liebende | ❌ ähnlich: Katakomben von Ascalon, Katakomben von Ascalon (Story), Gruft der Liebenden | Mermaid Wizard (MON_3_6) | 9.870 | 135 | 144 | 2,5 |
-|  | scherge | Geister-Wächter | ❌ ähnlich: Waldläufer, Dschinn, Geistertal | Mermaid Wizard (MON_3_6) | 9.870 | 135 | 144 | 2,5 |
-| 4 · Lv. 49 | boss | Geisterhafter Nekromant | ❌ ähnlich: Geist, Weißer Mantel, Kraftvoller Giftbeutel | EliteShark W. (BOSS_3_4_2) | 101.770 | 640 | 160 | 1,5 |
-|  | scherge | Knochen-Diener | ❌ ähnlich: Eisbrut-Elementar, Knochen-Spitzhacke, Sammelwerkzeug | Mermaid Wizard (MON_3_6) | 9.870 | 135 | 144 | 2,5 |
-|  | scherge | Geister-Nekromant | ❌ ähnlich: Geist, Ascalonischer Geist, Waldläufer | Mermaid Wizard (MON_3_6) | 9.870 | 135 | 144 | 2,5 |
-| 5 · Lv. 50 | endboss | König Adelbern | ✅ [König Adelbern](https://wiki-de.guildwars2.com/wiki/K%C3%B6nig_Adelbern) (en: King Adelbern) | Kraken (BOSS_3_5) | 117.770 | 701 | 162,5 | 1,5 |
-|  | scherge | Ascalonischer Geisterritter | ❌ | Mermaid Wizard (MON_3_6) | 9.870 | 135 | 144 | 2,5 |
-|  | scherge | Geister-Elite | ❌ ähnlich: Geist, Ascalonischer Geist, Geschmiedeter | Mermaid Wizard (MON_3_6) | 9.870 | 135 | 144 | 2,5 |
-| 6 ☠️ · Lv. 60 | boss | Meister-Nekromant | ❌ ähnlich: Nekromant, Zustandsschaden, Klasse | Mighty Shark Warrior (BOSS_H_3_3) | 6.958.289 | 1.143 | 333 | 2,5 |
-|  | scherge | Untoter Kanonier | ❌ ähnlich: Orden der Gerüchte, Jackdaw-Riff, Neustrand-Klippen | Corrupted Jellyfish (MON_H_3_3) | 360.927 | 282 | 295 | 2,5 |
-|  | scherge | Knochen-Schrecken | ❌ ähnlich: Stabilität, Schnitter, Sylvari | Corrupted Jellyfish (MON_H_3_3) | 360.927 | 282 | 295 | 2,5 |
-| 7 ☠️ · Lv. 60 | boss | Verderbt: König Adelbern | 🟡 [König Adelbern](https://wiki-de.guildwars2.com/wiki/K%C3%B6nig_Adelbern) (en: King Adelbern) | Mighty Elite Shark Warrior (BOSS_H_3_4) | 7.555.850 | 1.157 | 343 | 1 |
-|  | scherge | Ascalonischer Geisterritter | ❌ | Mermaid Witch (MON_H_3_4) | 387.987 | 286 | 301 | 2,5 |
-|  | scherge | Kryptis-Splitter | ❌ ähnlich: Antiker Knochen, Veredelte Heimstatt-Faser, Spielupdate/20230926 | Mermaid Witch (MON_H_3_4) | 387.987 | 286 | 301 | 2,5 |
-| 8 ⭐ · Lv. 60 | boss | Schatten: König Adelbern | 🟡 [König Adelbern](https://wiki-de.guildwars2.com/wiki/K%C3%B6nig_Adelbern) (en: King Adelbern) | Dark Kraken (BOSS_H_L_3) | 14.129.018 | 1.304 | 453 | 0,5 |
-|  | scherge | Kryptis-Plünderer | ❌ ähnlich: Antiker Knochen, Phiole mit kraftvollem Blut, Beherrschungspunkt | Soul-Stolen Jellyfish (MON_SOUL_3_3) | 428.090 | 352 | 255,5 | 2,5 |
-|  | scherge | Kryptis-Peiniger | ❌ ähnlich: Beherrschungspunkt | Soul-Stolen Mermaid Wizard (MON_SOUL_3_4) | 457.050 | 361 | 266 | 2,5 |
-
-## Portal 3: Herz von Tyria
-
-### 7. Gendarran-Felder
-
-Zone in der Wiki: ✅ [Gendarran-Felder](https://wiki-de.guildwars2.com/wiki/Gendarran-Felder) (en: Gendarran Fields)
-
-| Stufe | Rolle | GW2-Name | Wiki | CQHT-Vorlage | HP Lv.1 | ATK Lv.1 | DEF | Tempo |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 · Lv. 51 | boss | Piratinnen-Kapitänin | ❌ | Hell Squishy (BOSS_4_1_1) | 178.230 | 578 | 190 | 1,5 |
-|  | scherge | Piraten-Entermatrose | ❌ | Ash Squishy (MON_4_2) | 10.380 | 146 | 166 | 2,5 |
-|  | scherge | Piraten-Kanonier | ❌ ähnlich: Pirat, Gendarr-See, Jackdaw-Riff | Flame Spirit (MON_4_3) | 13.910 | 149 | 172 | 2,5 |
-| 2 · Lv. 52 | boss | Champion Schlamm-Monstrum | ❌ | Hell Squishy (BOSS_4_1_2) | 201.560 | 587 | 177,5 | 1,5 |
-|  | scherge | Schlamm-Elementar | ❌ ähnlich: Liste der Elementarmagierfertigkeiten, Weber, Hilfsfertigkeit | Ash Squishy (MON_4_2) | 10.380 | 146 | 166 | 2,5 |
-|  | scherge | Sumpfkrebs | ❌ | Flame Spirit (MON_4_3) | 13.910 | 149 | 172 | 2,5 |
-| 3 · Lv. 53 | boss | Zentauren-Belagerungsmeister | ❌ ähnlich: Zentaur, Steinbohrung-Kammern, Wächterpass | Hell Squishy (BOSS_4_1_3) | 223.940 | 596 | 180 | 1,5 |
-|  | scherge | Zentauren-Belagerer | ❌ ähnlich: Zentauren-Katapult, Trébuchet (Tödliche Gewalt), Galen | Flame Spirit (MON_4_3) | 13.910 | 149 | 172 | 2,5 |
-|  | scherge | Zentauren-Bogenschütze | ❌ ähnlich: Seraphen, Zentaur, Tamini-Bogenschütze | Evil Flame Spirit (MON_4_4) | 14.010 | 147 | 175,5 | 2,5 |
-| 4 · Lv. 54 | boss | Dredge-Kommandant | ❌ | Hellfire Spirit (BOSS_4_2_1) | 259.600 | 633 | 182,5 | 1,5 |
-|  | scherge | Dredge-Sprengmeister | ❌ | Evil Flame Spirit (MON_4_4) | 14.010 | 147 | 175,5 | 2,5 |
-|  | scherge | Dredge-Kommissar | ❌ | Elite Lizardman (MON_4_5) | 16.630 | 158 | 179 | 2,5 |
-| 5 · Lv. 55 | endboss | Kriegsmeister Ulgoths Vorbote | ❌ | Hellfire Spirit (BOSS_4_2_2) | 259.300 | 642 | 185 | 1,5 |
-|  | scherge | Modniir-Krieger | ❌ ähnlich: Zentaur, Miniatur, Champion | Elite Lizardman (MON_4_5) | 16.630 | 158 | 179 | 2,5 |
-|  | scherge | Zentauren-Kriegstrommler | ❌ | Ifrit (MON_4_6) | 18.150 | 219 | 182,5 | 2,5 |
-| 6 ☠️ · Lv. 60 | boss | Champion Banditen-Kriegsherr | ❌ ähnlich: Königin Jennah, Spielupdate/20200225, Spielupdate/Februar 2020 | Volcano Sludge (BOSS_H_4_1) | 8.153.410 | 1.170 | 353 | 2,5 |
-|  | scherge | Banditen-Kriegsherr-Garde | ❌ | Cursed Lava Sludge (MON_H_4_1) | 415.048 | 291 | 308 | 2,5 |
-|  | scherge | Banditen-Plünderer | ❌ ähnlich: Champion, Zentaur, Miniatur | Cursed Lava Sludge (MON_H_4_1) | 415.048 | 291 | 308 | 2,5 |
-| 7 ☠️ · Lv. 60 | boss | Verderbt: Kriegsmeister Ulgoths Vorbote | ❌ | Cursed Hellfire Spirit (BOSS_H_4_2) | 8.750.971 | 1.184 | 363 | 2,5 |
-|  | scherge | Modniir-Krieger | ❌ ähnlich: Zentaur, Miniatur, Champion | Cursed Fire Spirit (MON_H_4_2) | 442.108 | 295 | 314 | 2,5 |
+| 1 · Lv. 51 | boss | Höhlentroll | ✅ [Höhlentroll](https://wiki-de.guildwars2.com/wiki/H%C3%B6hlentroll) (en: Cave Troll) | Hell Squishy (BOSS_4_1_1) | 178.230 | 578 | 190 | 1,5 |
+|  | scherge | Geister-Krieger | ❌ ähnlich: Geist, Ascalonischer Geist, Waldläufer | Ash Squishy (MON_4_2) | 10.380 | 146 | 166 | 2,5 |
+|  | scherge | Geister-Waldläufer | ❌ ähnlich: Waldläufer, Geist, Ascalonischer Geist | Flame Spirit (MON_4_3) | 13.910 | 149 | 172 | 2,5 |
+| 2 · Lv. 52 | boss | Kasha Schwarzblut | ✅ [Kasha Schwarzblut](https://wiki-de.guildwars2.com/wiki/Kasha_Schwarzblut) (en: Kasha Blackblood) | Hell Squishy (BOSS_4_1_2) | 201.560 | 587 | 177,5 | 1,5 |
+|  | scherge | Flammenlegion-Kultist | ❌ | Ash Squishy (MON_4_2) | 10.380 | 146 | 166 | 2,5 |
+|  | scherge | Flammenlegion-Zerstörer | ❌ ähnlich: Meta-Event | Flame Spirit (MON_4_3) | 13.910 | 149 | 172 | 2,5 |
+| 3 · Lv. 53 | boss | Ralena & Vassar | ❌ ähnlich: Gruft der Liebenden, Vassar, Katakomben von Ascalon (Story) | Hell Squishy (BOSS_4_1_3) | 223.940 | 596 | 180 | 1,5 |
+|  | scherge | Geister-Liebende | ❌ ähnlich: Katakomben von Ascalon, Katakomben von Ascalon (Story), Gruft der Liebenden | Flame Spirit (MON_4_3) | 13.910 | 149 | 172 | 2,5 |
+|  | scherge | Geister-Wächter | ❌ ähnlich: Waldläufer, Dschinn, Geistertal | Evil Flame Spirit (MON_4_4) | 14.010 | 147 | 175,5 | 2,5 |
+| 4 · Lv. 54 | boss | Geisterhafter Nekromant | ❌ ähnlich: Geist, Weißer Mantel, Kraftvoller Giftbeutel | Hellfire Spirit (BOSS_4_2_1) | 259.600 | 633 | 182,5 | 1,5 |
+|  | scherge | Knochen-Diener | ❌ ähnlich: Eisbrut-Elementar, Knochen-Spitzhacke, Sammelwerkzeug | Evil Flame Spirit (MON_4_4) | 14.010 | 147 | 175,5 | 2,5 |
+|  | scherge | Geister-Nekromant | ❌ ähnlich: Geist, Ascalonischer Geist, Waldläufer | Elite Lizardman (MON_4_5) | 16.630 | 158 | 179 | 2,5 |
+| 5 · Lv. 55 | endboss | König Adelbern | ✅ [König Adelbern](https://wiki-de.guildwars2.com/wiki/K%C3%B6nig_Adelbern) (en: King Adelbern) | Hellfire Spirit (BOSS_4_2_2) | 259.300 | 642 | 185 | 1,5 |
+|  | scherge | Ascalonischer Geisterritter | ❌ | Elite Lizardman (MON_4_5) | 16.630 | 158 | 179 | 2,5 |
+|  | scherge | Geister-Elite | ❌ ähnlich: Geist, Ascalonischer Geist, Geschmiedeter | Ifrit (MON_4_6) | 18.150 | 219 | 182,5 | 2,5 |
+| 6 ☠️ · Lv. 60 | boss | Meister-Nekromant | ❌ ähnlich: Nekromant, Zustandsschaden, Klasse | Volcano Sludge (BOSS_H_4_1) | 8.153.410 | 1.170 | 353 | 2,5 |
+|  | scherge | Untoter Kanonier | ❌ ähnlich: Orden der Gerüchte, Jackdaw-Riff, Neustrand-Klippen | Cursed Lava Sludge (MON_H_4_1) | 415.048 | 291 | 308 | 2,5 |
+|  | scherge | Knochen-Schrecken | ❌ ähnlich: Stabilität, Schnitter, Sylvari | Cursed Lava Sludge (MON_H_4_1) | 415.048 | 291 | 308 | 2,5 |
+| 7 ☠️ · Lv. 60 | boss | Verderbt: König Adelbern | 🟡 [König Adelbern](https://wiki-de.guildwars2.com/wiki/K%C3%B6nig_Adelbern) (en: King Adelbern) | Cursed Hellfire Spirit (BOSS_H_4_2) | 8.750.971 | 1.184 | 363 | 2,5 |
+|  | scherge | Ascalonischer Geisterritter | ❌ | Cursed Fire Spirit (MON_H_4_2) | 442.108 | 295 | 314 | 2,5 |
 |  | scherge | Kryptis-Splitter | ❌ ähnlich: Antiker Knochen, Veredelte Heimstatt-Faser, Spielupdate/20230926 | Cursed Fire Spirit (MON_H_4_2) | 442.108 | 295 | 314 | 2,5 |
 
 ### 8. Harathi-Hinterland
@@ -568,43 +568,44 @@ Zone in der Wiki: 🟡 [Drachensturz](https://wiki-de.guildwars2.com/wiki/Drache
 |  | scherge | Erweckte | ✅ [Erweckter](https://wiki-de.guildwars2.com/wiki/Erweckter) (en: Awakened) | Soul-Bound Pyro Droid (MON_SOUL_5_4) | 688.750 | 434 | 352,5 | 2,5 |
 |  | scherge | Gebrandmarkte | ✅ [Gebrandmarkter](https://wiki-de.guildwars2.com/wiki/Gebrandmarkter) (en: Branded) | Soul-Bound Pyro Droid (MON_SOUL_5_4) | 688.750 | 434 | 352,5 | 2,5 |
 
-## Bosse ohne Wiki-Seite (100)
+## Bosse ohne Wiki-Seite (101)
 
 - Banditen-Anführerin – Suche findet: Bandit, Die Blüte der Jugend, Gnashar-Hügel
-- Banditen-Schläger Grasp
-- Champion Krait-Hypnotiseur
-- Zentauren-Oberhäuptling
-- Champion Toxischer Spinnen-König – Suche findet: Trank, Champion, Miniatur
-- Blut-Hexe – Suche findet: Baumgrenzen-Fälle, Krait, Miniatur
-- Verderbt: Toxischer Spinnen-König – Suche findet: Trank, Champion, Miniatur
-- Schatten: Toxischer Spinnen-König – Suche findet: Trank, Champion, Miniatur
-- Separatisten-Belagerer – Suche findet: Belag-Kreuzung, Axtzug-Kanal, Felder der Verwüstung
-- Königlicher Leibwächter Pete – Suche findet: Logan Thackeray
-- Butler Michiels
-- Gepfefferte Bridgette
-- Separatisten-Hauptmann DeLana – Suche findet: DeLana-Geldbörse, Verbogener Dietrich, Beutel mit stibitzten Waren
+- Champion Hylek-Kriegshäuptling
+- Champion Skritt-Schatzmeister
+- Champion Krait-Orakel – Suche findet: Alt-Drache, Eisige Schritte
+- Albtraumhof-Gräfin – Suche findet: Albtraumhof, Zwielichtgarten, Chronik/Staffel 2
+- Verderbter Baumgeist – Suche findet: Herz des Vulkans (Chronik), Der Erhalt des Gleichgewichts
+- Verderbt: Albtraumhof-Gräfin – Suche findet: Albtraumhof, Zwielichtgarten, Chronik/Staffel 2
+- Schatten: Albtraumhof-Gräfin – Suche findet: Albtraumhof, Zwielichtgarten, Chronik/Staffel 2
 - Champion Minotauren-Bulle – Suche findet: Minotaurus, Borealis-Wald, Die Osenfold-Schneide
 - Champion Grawl-Häuptling – Suche findet: Grawl, Chronik/Meine Geschichte/Helfende Hände, Heldenherausforderung
 - Schamanen-Vorbote des Jormag – Suche findet: Garantierte Garderoben-Freischaltung
 - Svanir-Schamane – Suche findet: Die Söhne Svanirs, Wanderer-Hügel, Eisbrut
 - Verderbt: Svanir-Schamane – Suche findet: Die Söhne Svanirs, Wanderer-Hügel, Eisbrut
-- Schatten: Svanir-Schamane – Suche findet: Die Söhne Svanirs, Wanderer-Hügel, Eisbrut
-- Schneeleoparden-Matriarchin – Suche findet: Junger Feuer-Wyvern
-- Champion Svanir-Häscher – Suche findet: Was übrig bleibt, Miniatur, Taigan-Hain
-- Champion Frost-Grawl – Suche findet: Ein festlich-froher Wintertag (2014), Winziges Totem, Kleines Totem
-- Dredge-Tunnelmeister
-- Drachen-Schamane der Svanir – Suche findet: Besiegt den Drachen-Schamanen der Svanir, Die Söhne Svanirs, Wanderer-Hügel
-- Verderbt: Drachen-Schamane der Svanir – Suche findet: Besiegt den Drachen-Schamanen der Svanir, Die Söhne Svanirs, Wanderer-Hügel
+- Champion Inquestur-Golem – Suche findet: Inquestur, Golem, Haufen kristallinen Staubs
+- Champion Skritt-Anführer – Suche findet: Skritt, Ebonfalke-Festung, Champion
+- Champion Riesen-Moa – Suche findet: Knochensplitter, Meerenge der Verwüstung, Cereboth-Schlucht
+- Inquestur-Versuchsleiterin
+- Kolossaler Inquestur-Golem – Suche findet: Champion, Rollkäfer, Chronik/Staffel 4 der Lebendigen Welt
+- Entfesseltes Experiment – Suche findet: Waffengalerie/Großschwert, Waffengalerie/Zepter, Waffengalerie/Kriegshorn
+- Verderbt: Kolossaler Inquestur-Golem – Suche findet: Champion, Rollkäfer, Chronik/Staffel 4 der Lebendigen Welt
+- Schatten: Kolossaler Inquestur-Golem – Suche findet: Champion, Rollkäfer, Chronik/Staffel 4 der Lebendigen Welt
+- Champion Skal-Alpha – Suche findet: Verwundbarkeit, Hellwasser-Zufluss, Die Säbelrassler-Bucht
+- Separatisten-Anführerin – Suche findet: Ebon-Vorhut, Langmar-Anwesen, Jägerschlund
+- Champion Ascalonischer Geisterhauptmann – Suche findet: Permanenter Todesstoß des ascalonischen Anführers
+- Flammenlegion-Kriegsherr – Suche findet: Liste der Rüstungssets
+- Flammenlegion-Schamane
+- Verderbt: Flammenlegion-Kriegsherr – Suche findet: Liste der Rüstungssets
+- Separatisten-Belagerer – Suche findet: Belag-Kreuzung, Axtzug-Kanal, Felder der Verwüstung
+- Königlicher Leibwächter Pete – Suche findet: Logan Thackeray
+- Butler Michiels
+- Gepfefferte Bridgette
+- Separatisten-Hauptmann DeLana – Suche findet: DeLana-Geldbörse, Verbogener Dietrich, Beutel mit stibitzten Waren
+- Schatten: Separatisten-Hauptmann DeLana – Suche findet: DeLana-Geldbörse, Verbogener Dietrich, Beutel mit stibitzten Waren
 - Ralena & Vassar – Suche findet: Gruft der Liebenden, Vassar, Katakomben von Ascalon (Story)
 - Geisterhafter Nekromant – Suche findet: Geist, Weißer Mantel, Kraftvoller Giftbeutel
 - Meister-Nekromant – Suche findet: Nekromant, Zustandsschaden, Klasse
-- Piratinnen-Kapitänin
-- Champion Schlamm-Monstrum
-- Zentauren-Belagerungsmeister – Suche findet: Zentaur, Steinbohrung-Kammern, Wächterpass
-- Dredge-Kommandant
-- Kriegsmeister Ulgoths Vorbote
-- Champion Banditen-Kriegsherr – Suche findet: Königin Jennah, Spielupdate/20200225, Spielupdate/Februar 2020
-- Verderbt: Kriegsmeister Ulgoths Vorbote
 - Harathi-Schlächter – Suche findet: Rätsel, Gebiet, Meta-Event
 - Champion Modniir-Häuptling – Suche findet: Liste der Waffensets, Zentaur, Champion
 - Kolossaler Erdelementar

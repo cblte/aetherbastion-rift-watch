@@ -8,9 +8,9 @@ Im Spiel sind 10 Zonen hinter 4 Portal-Stufen:
 
 | Portal | Region | Zonen |
 | --- | --- | --- |
-| 1 | Kryta | Königintal, Kessex-Hügel, Caudecus’ Anwesen |
-| 2 | Zittergipfel & Ascalon | Wanderer-Hügel, Schneekuhlen-Höhen, Katakomben von Ascalon |
-| 3 | Herz von Tyria | Gendarran-Felder, Harathi-Hinterland |
+| 1 | Kryta, Caledon & Zittergipfel | Königintal, Caledon-Wald, Wanderer-Hügel |
+| 2 | Metrica, Aschfurt & Anwesen | Provinz Metrica, Ebenen von Aschfurt, Caudecus’ Anwesen |
+| 3 | Ascalon & Harathi | Katakomben von Ascalon, Harathi-Hinterland |
 | 4 | Küste & Sümpfe von Orr | Blutstrom-Küste, Funkenschwärmersumpf |
 
 Die Erweiterung hängt **Portal 5–8** mit den **Zonen 11–20** an. Wie bei den Zonen 1–10 hat jede Zone 5 Bosse und einen **Zonen-Endboss** (★).
@@ -54,7 +54,7 @@ Alternativ als **„Schwer+“**-Stufe statt eigener Erweiterung.
 ## Was der Einbau braucht
 
 - **Level-Cap über 60:** `MAX_HERO_LEVEL` und die EXP-Tabelle in `js/data/heroLevels.js` enden bei Lv. 60, das Zeltlager auch. Für Lv. 61–80 brauchen wir neue Zeilen (EXP, Gold/Zyklus, Belohnungen) und weitere Zeltlager-Stufen.
-- **Stufen-Werte:** Die CQHT-Daten reichen nur bis Kapitel 5. Level, Kosten und Belohnungen für die Zonen 11–20 müssen wir selbst festlegen (oder an `dev-data/cqht-monsters.*` anlehnen).
+- **Stufen-Werte:** Die CQHT-Daten reichen nur bis Kapitel 5. Level, Kosten und Belohnungen für die Zonen 11–20 müssen wir selbst festlegen (oder an `dev-data/archiv/cqht-monsters.*` anlehnen).
 - **Riss-Portal:** Stufe 5–8 in `js/data/buildings.js` ergänzen, Ätherscherben in `PORTAL_SHARDS`.
 - **Schwere und legendäre Stufen:** gleiches Muster wie Zonen 1–10 (☠️ Boss 5 und „Verderbt: Endboss“, ⭐ „Schatten: Endboss“), oder Erweiterung 2 als „Schwer+“.
 - **Zonen-Daten:** in `tools/gen-zones.mjs` ergänzen; der Generator muss dafür Stufen ohne CQHT-Vorlage erzeugen können.

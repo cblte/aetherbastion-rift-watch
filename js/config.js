@@ -5,7 +5,7 @@
 
 export const GAME = {
   title: 'Aetherbastion: Rift Watch',
-  VERSION: '0.19.0',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
+  VERSION: '0.20.0',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
   BUILD: 'lokal',                    // ersetzt der Pages-Workflow durch „Nr. · Commit“
   SAVE_KEY: 'aetherbastion_save_v1',
   SAVE_VERSION: 7,
@@ -148,8 +148,8 @@ export const QUESTS = [
   { id: 'portal2', icon: '🌀', title: 'Der Riss weitet sich', tab: 'portal',
     text: 'Baue das Riss-Portal auf Stufe 2 aus (braucht 🔮).',
     goal: { type: 'building', key: 'portal', level: 2 }, reward: { gold: 1_000 } },
-  { id: 'zone2', icon: '🏆', title: 'Die Kessex-Hügel', tab: 'portal',
-    text: 'Besiege alle Bosse in den Kessex-Hügeln.',
+  { id: 'zone2', icon: '🏆', title: 'Der Caledon-Wald', tab: 'portal',
+    text: 'Besiege alle Bosse im Caledon-Wald.',
     goal: { type: 'stage', zone: 2, stage: 5 }, reward: { gold: 1_500, rp: 5 } },
   { id: 'tent2', icon: '⛺', title: 'Ein zweiter Trupp', tab: 'squads',
     text: 'Schlage Zelt 2 auf (ab Gildenhalle 3).',
@@ -157,9 +157,18 @@ export const QUESTS = [
   { id: 'squad2', icon: '🛡️', title: 'Volle Besetzung', tab: 'squads',
     text: 'Besetze Zelt 2 mit Tank, Heiler und Schaden.',
     goal: { type: 'squadFull', squad: 1 }, reward: { gold: 2_000 } },
-  { id: 'zone3', icon: '🏆', title: 'Caudecus’ Anwesen', tab: 'portal',
-    text: 'Besiege alle Bosse in Caudecus’ Anwesen.',
+  { id: 'zone3', icon: '🏆', title: 'Die Wanderer-Hügel', tab: 'portal',
+    text: 'Besiege alle Bosse in den Wanderer-Hügeln.',
     goal: { type: 'stage', zone: 3, stage: 5 }, reward: { gold: 3_000, rp: 10 } },
+  { id: 'zone4', icon: '🏆', title: 'Die Provinz Metrica', tab: 'portal',
+    text: 'Besiege alle Bosse in der Provinz Metrica.',
+    goal: { type: 'stage', zone: 4, stage: 5 }, reward: { gold: 5_000, rp: 12 } },
+  { id: 'zone5', icon: '🏆', title: 'Die Ebenen von Aschfurt', tab: 'portal',
+    text: 'Besiege alle Bosse in den Ebenen von Aschfurt.',
+    goal: { type: 'stage', zone: 5, stage: 5 }, reward: { gold: 8_000, rp: 15 } },
+  { id: 'zone6', icon: '🏆', title: 'Caudecus’ Anwesen', tab: 'portal',
+    text: 'Alle Spuren führen zurück ins Königintal. Besiege alle Bosse in Caudecus’ Anwesen.',
+    goal: { type: 'stage', zone: 6, stage: 5 }, reward: { gold: 12_000, rp: 20 } },
 ];
 
 // ---------------------------------------------------------------------

@@ -5,12 +5,12 @@
     "note": "Interne Referenz. Maßgeblich sind die Spieldaten im Code. original_* = Vorbild aus Crusaders Quest: Hero Town.",
     "zones": [
       "Königintal",
-      "Kessex-Hügel",
-      "Caudecus’ Anwesen",
+      "Caledon-Wald",
       "Wanderer-Hügel",
-      "Schneekuhlen-Höhen",
+      "Provinz Metrica",
+      "Ebenen von Aschfurt",
+      "Caudecus’ Anwesen",
       "Katakomben von Ascalon",
-      "Gendarran-Felder",
       "Harathi-Hinterland",
       "Blutstrom-Küste",
       "Funkenschwärmersumpf"
@@ -216,23 +216,23 @@
     },
     {
       "id": 2,
-      "name": "Kessex-Hügel",
-      "short": "Kessex",
+      "name": "Caledon-Wald",
+      "short": "Caledon",
       "tier": 1,
       "part": 2,
       "portal": 1,
-      "lore": "Im Sumpfland der Kessex-Hügel giftet der Riss das Wasser. Krait, Zentauren und die Hexen des Waldes werden unruhig.",
+      "lore": "Nahe dem Hain wuchern Albtraum-Ranken aus dem Riss im Caledon-Wald. Der Albtraumhof sieht seine Stunde gekommen.",
       "stages": [
         {
           "stage": 1,
           "mode": "normal",
           "original_stage": "1-6",
           "original_name": "Ogre",
-          "boss": "Banditen-Schläger Grasp",
-          "boss_sprite": "BOSS_BANDITEN_SCHLAEGER_GRASP",
+          "boss": "Champion Hylek-Kriegshäuptling",
+          "boss_sprite": "BOSS_CHAMPION_HYLEK_KRIEGSHAEUPTLING",
           "minions": [
-            "Banditen-Rabauke",
-            "Banditen-Scharfschütze"
+            "Hylek-Krieger",
+            "Hylek-Blasrohrschütze"
           ],
           "level": 12,
           "cost": 100,
@@ -254,11 +254,11 @@
           "mode": "normal",
           "original_stage": "1-7",
           "original_name": "Ogre",
-          "boss": "Champion Krait-Hypnotiseur",
-          "boss_sprite": "BOSS_CHAMPION_KRAIT_HYPNOTISEUR",
+          "boss": "Champion Skritt-Schatzmeister",
+          "boss_sprite": "BOSS_CHAMPION_SKRITT_SCHATZMEISTER",
           "minions": [
-            "Krait-Mystiker",
-            "Krait-Wächter"
+            "Skritt-Plünderer",
+            "Skritt-Dieb"
           ],
           "level": 14,
           "cost": 110,
@@ -280,11 +280,11 @@
           "mode": "normal",
           "original_stage": "1-8",
           "original_name": "Raging Ogre",
-          "boss": "Champion Toxischer Wurm",
-          "boss_sprite": "BOSS_CHAMPION_TOXISCHER_WURM",
+          "boss": "Champion Albtraumhof-Ritter",
+          "boss_sprite": "BOSS_CHAMPION_ALBTRAUMHOF_RITTER",
           "minions": [
-            "Toxischer Larvenwurm",
-            "Sumpfdrake"
+            "Albtraumhof-Höfling",
+            "Albtraumhof-Wächter"
           ],
           "level": 16,
           "cost": 120,
@@ -306,11 +306,11 @@
           "mode": "normal",
           "original_stage": "1-9",
           "original_name": "Raging Ogre",
-          "boss": "Zentauren-Oberhäuptling",
-          "boss_sprite": "BOSS_ZENTAUREN_OBERHAEUPTLING",
+          "boss": "Champion Krait-Orakel",
+          "boss_sprite": "BOSS_CHAMPION_KRAIT_ORAKEL",
           "minions": [
-            "Zentauren-Krieger",
-            "Zentauren-Späher"
+            "Krait-Mystiker",
+            "Sumpfdrake"
           ],
           "level": 18,
           "cost": 130,
@@ -332,11 +332,11 @@
           "mode": "normal",
           "original_stage": "1-10",
           "original_name": "Golem",
-          "boss": "Champion Toxischer Spinnen-König",
-          "boss_sprite": "BOSS_CHAMPION_TOXISCHER_SPINNEN_KOENIG",
+          "boss": "Albtraumhof-Gräfin",
+          "boss_sprite": "BOSS_ALBTRAUMHOF_GRAEFIN",
           "minions": [
-            "Toxische Spinne",
-            "Toxischer Wucherer"
+            "Albtraum-Ranke",
+            "Verzerrter Sylvari"
           ],
           "level": 20,
           "cost": 150,
@@ -359,11 +359,11 @@
           "mode": "hard",
           "original_stage": "Hard 1-3",
           "original_name": "Mighty Ogre",
-          "boss": "Blut-Hexe",
-          "boss_sprite": "BOSS_BLUT_HEXE",
+          "boss": "Verderbter Baumgeist",
+          "boss_sprite": "BOSS_VERDERBTER_BAUMGEIST",
           "minions": [
-            "Hexen-Diener",
-            "Blutfledermaus"
+            "Waldspinne",
+            "Rankenwüter"
           ],
           "level": 60,
           "cost": 1600,
@@ -386,10 +386,10 @@
           "mode": "hard",
           "original_stage": "Hard 1-4",
           "original_name": "Ogre Elite Fighter",
-          "boss": "Verderbt: Toxischer Spinnen-König",
-          "boss_sprite": "BOSS_VERDERBT_TOXISCHER_SPINNEN_KOENIG",
+          "boss": "Verderbt: Albtraumhof-Gräfin",
+          "boss_sprite": "BOSS_VERDERBT_ALBTRAUMHOF_GRAEFIN",
           "minions": [
-            "Toxische Spinne",
+            "Albtraum-Ranke",
             "Kryptis-Splitter"
           ],
           "level": 60,
@@ -413,8 +413,8 @@
           "mode": "legendary",
           "original_stage": "L-1",
           "original_name": "Dark Golem",
-          "boss": "Schatten: Toxischer Spinnen-König",
-          "boss_sprite": "BOSS_SCHATTEN_TOXISCHER_SPINNEN_KOENIG",
+          "boss": "Schatten: Albtraumhof-Gräfin",
+          "boss_sprite": "BOSS_SCHATTEN_ALBTRAUMHOF_GRAEFIN",
           "minions": [
             "Kryptis-Plünderer",
             "Kryptis-Peiniger"
@@ -439,27 +439,26 @@
     },
     {
       "id": 3,
-      "name": "Caudecus’ Anwesen",
-      "short": "Anwesen",
+      "name": "Wanderer-Hügel",
+      "short": "Wanderer",
       "tier": 2,
       "part": 1,
       "portal": 1,
-      "lore": "Die Spur führt in Caudecus’ Anwesen. Hauptmann DeLana und die Separatisten verschanzen sich hinter dem flackernden Riss.",
+      "lore": "Eisige Winde über den Wanderer-Hügeln. Söhne des Svanir und Grawl beten den Riss als Zeichen Jormags an.",
       "stages": [
         {
           "stage": 1,
           "mode": "normal",
           "original_stage": "2-1",
           "original_name": "Hard Mudman",
-          "boss": "Separatisten-Belagerer",
-          "boss_sprite": "BOSS_SEPARATISTEN_BELAGERER",
+          "boss": "Champion Minotauren-Bulle",
+          "boss_sprite": "BOSS_CHAMPION_MINOTAUREN_BULLE",
           "minions": [
-            "Separatisten-Kämpfer",
-            "Separatisten-Bomber"
+            "Minotaurus",
+            "Schneeleopard"
           ],
           "level": 22,
           "cost": 100,
-          "info": "Geschichte",
           "rewards": {
             "research_points": [
               1,
@@ -478,15 +477,14 @@
           "mode": "normal",
           "original_stage": "2-2",
           "original_name": "Hard Mudman",
-          "boss": "Königlicher Leibwächter Pete",
-          "boss_sprite": "BOSS_KOENIGLICHER_LEIBWAECHTER_PETE",
+          "boss": "Champion Grawl-Häuptling",
+          "boss_sprite": "BOSS_CHAMPION_GRAWL_HAEUPTLING",
           "minions": [
-            "Königlicher Wächter",
-            "Separatisten-Feldwebel"
+            "Grawl-Krieger",
+            "Grawl-Schamane"
           ],
           "level": 24,
           "cost": 120,
-          "info": "Geschichte",
           "rewards": {
             "research_points": [
               1,
@@ -505,15 +503,14 @@
           "mode": "normal",
           "original_stage": "2-3",
           "original_name": "Hard Mudman",
-          "boss": "Butler Michiels",
-          "boss_sprite": "BOSS_BUTLER_MICHIELS",
+          "boss": "Champion Eisbrut-Wolf",
+          "boss_sprite": "BOSS_CHAMPION_EISBRUT_WOLF",
           "minions": [
-            "Diener des Hauses",
-            "Abgerichteter Wachhund"
+            "Eisbrut-Wolf",
+            "Eisbrut-Elementar"
           ],
           "level": 25,
           "cost": 140,
-          "info": "Weg 3",
           "rewards": {
             "research_points": [
               1,
@@ -532,15 +529,14 @@
           "mode": "normal",
           "original_stage": "2-4",
           "original_name": "Pharaoh Mummy",
-          "boss": "Gepfefferte Bridgette",
-          "boss_sprite": "BOSS_GEPFEFFERTE_BRIDGETTE",
+          "boss": "Schamanen-Vorbote des Jormag",
+          "boss_sprite": "BOSS_SCHAMANEN_VORBOTE_DES_JORMAG",
           "minions": [
-            "Seraphen-Deserteur",
-            "Banditen-Kanonier"
+            "Sohn des Svanir",
+            "Svanir-Eisbrecher"
           ],
           "level": 27,
           "cost": 160,
-          "info": "Weg 2",
           "rewards": {
             "research_points": [
               1,
@@ -559,15 +555,15 @@
           "mode": "normal",
           "original_stage": "2-5",
           "original_name": "Pharaoh Mummy",
-          "boss": "Separatisten-Hauptmann DeLana",
-          "boss_sprite": "BOSS_SEPARATISTEN_HAUPTMANN_DELANA",
+          "boss": "Svanir-Schamane",
+          "boss_sprite": "BOSS_SVANIR_SCHAMANE",
           "minions": [
-            "Separatisten-Scharfschütze",
-            "Separatisten-Leutnant"
+            "Svanir-Schamanin",
+            "Eisgeist"
           ],
           "level": 29,
           "cost": 180,
-          "info": "Zonen-Endboss",
+          "info": "Zonen-Endboss · die Maw",
           "rewards": {
             "research_points": [
               1,
@@ -586,15 +582,15 @@
           "mode": "hard",
           "original_stage": "Hard 2-1",
           "original_name": "Emperor Mudman",
-          "boss": "Turmaine",
-          "boss_sprite": "BOSS_TURMAINE",
+          "boss": "Eisbrut-Goliath",
+          "boss_sprite": "BOSS_EISBRUT_GOLIATH",
           "minions": [
-            "Asura-Wachgolem",
-            "Banditen-Raketengeschütz"
+            "Eisbrut-Bär",
+            "Eisbrut-Wyvern"
           ],
           "level": 60,
           "cost": 2000,
-          "info": "Schwer · Weg 2",
+          "info": "Schwer",
           "rewards": {
             "research_points": [
               14,
@@ -613,15 +609,15 @@
           "mode": "hard",
           "original_stage": "Hard 2-2",
           "original_name": "Ancient Pharaoh Mummy",
-          "boss": "Frost",
-          "boss_sprite": "BOSS_FROST",
+          "boss": "Verderbt: Svanir-Schamane",
+          "boss_sprite": "BOSS_VERDERBT_SVANIR_SCHAMANE",
           "minions": [
-            "Separatisten-Scharfschütze",
+            "Svanir-Schamanin",
             "Kryptis-Splitter"
           ],
           "level": 60,
           "cost": 2200,
-          "info": "Schwer · Endboss von Weg 1",
+          "info": "Schwer · vom Riss verderbt",
           "rewards": {
             "research_points": [
               15,
@@ -639,23 +635,23 @@
     },
     {
       "id": 4,
-      "name": "Wanderer-Hügel",
-      "short": "Wanderer",
+      "name": "Provinz Metrica",
+      "short": "Metrica",
       "tier": 2,
       "part": 2,
       "portal": 2,
-      "lore": "Eisige Winde über den Wanderer-Hügeln. Söhne des Svanir und Grawl beten den Riss als Zeichen Jormags an.",
+      "lore": "Die Inquestur hat den Riss in der Provinz Metrica nicht entdeckt – sie hat ihn angezapft. Golems bewachen die Messgeräte, und die Versuche geraten außer Kontrolle.",
       "stages": [
         {
           "stage": 1,
           "mode": "normal",
           "original_stage": "2-6",
           "original_name": "Basilisk",
-          "boss": "Champion Minotauren-Bulle",
-          "boss_sprite": "BOSS_CHAMPION_MINOTAUREN_BULLE",
+          "boss": "Champion Inquestur-Golem",
+          "boss_sprite": "BOSS_CHAMPION_INQUESTUR_GOLEM",
           "minions": [
-            "Minotaurus",
-            "Schneeleopard"
+            "Inquestur-Assistent",
+            "Inquestur-Golem"
           ],
           "level": 31,
           "cost": 200,
@@ -677,11 +673,11 @@
           "mode": "normal",
           "original_stage": "2-7",
           "original_name": "Basilisk",
-          "boss": "Champion Grawl-Häuptling",
-          "boss_sprite": "BOSS_CHAMPION_GRAWL_HAEUPTLING",
+          "boss": "Champion Skritt-Anführer",
+          "boss_sprite": "BOSS_CHAMPION_SKRITT_ANFUEHRER",
           "minions": [
-            "Grawl-Krieger",
-            "Grawl-Schamane"
+            "Skritt-Bastler",
+            "Skritt-Späher"
           ],
           "level": 33,
           "cost": 220,
@@ -703,11 +699,11 @@
           "mode": "normal",
           "original_stage": "2-8",
           "original_name": "Huge Basilisk",
-          "boss": "Champion Eisbrut-Wolf",
-          "boss_sprite": "BOSS_CHAMPION_EISBRUT_WOLF",
+          "boss": "Champion Riesen-Moa",
+          "boss_sprite": "BOSS_CHAMPION_RIESEN_MOA",
           "minions": [
-            "Eisbrut-Wolf",
-            "Eisbrut-Elementar"
+            "Moa",
+            "Hylek-Krieger"
           ],
           "level": 35,
           "cost": 240,
@@ -729,11 +725,11 @@
           "mode": "normal",
           "original_stage": "2-9",
           "original_name": "Huge Basilisk",
-          "boss": "Schamanen-Vorbote des Jormag",
-          "boss_sprite": "BOSS_SCHAMANEN_VORBOTE_DES_JORMAG",
+          "boss": "Inquestur-Versuchsleiterin",
+          "boss_sprite": "BOSS_INQUESTUR_VERSUCHSLEITERIN",
           "minions": [
-            "Sohn des Svanir",
-            "Svanir-Eisbrecher"
+            "Inquestur-Techniker",
+            "Mark-I-Golem"
           ],
           "level": 37,
           "cost": 260,
@@ -755,15 +751,15 @@
           "mode": "normal",
           "original_stage": "2-10",
           "original_name": "Sandworm",
-          "boss": "Svanir-Schamane",
-          "boss_sprite": "BOSS_SVANIR_SCHAMANE",
+          "boss": "Kolossaler Inquestur-Golem",
+          "boss_sprite": "BOSS_KOLOSSALER_INQUESTUR_GOLEM",
           "minions": [
-            "Svanir-Schamanin",
-            "Eisgeist"
+            "Inquestur-Wächter",
+            "Mark-III-Golem"
           ],
           "level": 40,
           "cost": 300,
-          "info": "Zonen-Endboss · die Maw",
+          "info": "Zonen-Endboss",
           "rewards": {
             "research_points": [
               1,
@@ -782,11 +778,11 @@
           "mode": "hard",
           "original_stage": "Hard 2-3",
           "original_name": "Red Basilisk",
-          "boss": "Eisbrut-Goliath",
-          "boss_sprite": "BOSS_EISBRUT_GOLIATH",
+          "boss": "Entfesseltes Experiment",
+          "boss_sprite": "BOSS_ENTFESSELTES_EXPERIMENT",
           "minions": [
-            "Eisbrut-Bär",
-            "Eisbrut-Wyvern"
+            "Riss-Funke",
+            "Instabiles Experiment"
           ],
           "level": 60,
           "cost": 2400,
@@ -809,10 +805,10 @@
           "mode": "hard",
           "original_stage": "Hard 2-4",
           "original_name": "Cataclysm Basilisk",
-          "boss": "Verderbt: Svanir-Schamane",
-          "boss_sprite": "BOSS_VERDERBT_SVANIR_SCHAMANE",
+          "boss": "Verderbt: Kolossaler Inquestur-Golem",
+          "boss_sprite": "BOSS_VERDERBT_KOLOSSALER_INQUESTUR_GOLEM",
           "minions": [
-            "Svanir-Schamanin",
+            "Inquestur-Wächter",
             "Kryptis-Splitter"
           ],
           "level": 60,
@@ -836,8 +832,8 @@
           "mode": "legendary",
           "original_stage": "L-2",
           "original_name": "Dark Sandworm",
-          "boss": "Schatten: Svanir-Schamane",
-          "boss_sprite": "BOSS_SCHATTEN_SVANIR_SCHAMANE",
+          "boss": "Schatten: Kolossaler Inquestur-Golem",
+          "boss_sprite": "BOSS_SCHATTEN_KOLOSSALER_INQUESTUR_GOLEM",
           "minions": [
             "Kryptis-Plünderer",
             "Kryptis-Peiniger"
@@ -862,23 +858,23 @@
     },
     {
       "id": 5,
-      "name": "Schneekuhlen-Höhen",
-      "short": "Schneek.",
+      "name": "Ebenen von Aschfurt",
+      "short": "Aschfurt",
       "tier": 3,
       "part": 1,
       "portal": 2,
-      "lore": "In den Schneekuhlen-Höhen graben sich Dredge zum Riss vor, während die Svanir ihren Drachen anrufen.",
+      "lore": "In den Ebenen von Aschfurt ruft die Flammenlegion den Riss als Zeichen ihrer Götter aus. Darunter erwachen die Geister Ascalons.",
       "stages": [
         {
           "stage": 1,
           "mode": "normal",
           "original_stage": "3-1",
           "original_name": "Monster Anglerfish",
-          "boss": "Schneeleoparden-Matriarchin",
-          "boss_sprite": "BOSS_SCHNEELEOPARDEN_MATRIARCHIN",
+          "boss": "Champion Verschlinger-Königin",
+          "boss_sprite": "BOSS_CHAMPION_VERSCHLINGER_KOENIGIN",
           "minions": [
-            "Schneeleopard",
-            "Eiswolf"
+            "Verschlinger",
+            "Verschlinger-Brut"
           ],
           "level": 41,
           "cost": 200,
@@ -900,11 +896,11 @@
           "mode": "normal",
           "original_stage": "3-2",
           "original_name": "Monster Anglerfish",
-          "boss": "Champion Svanir-Häscher",
-          "boss_sprite": "BOSS_CHAMPION_SVANIR_HAESCHER",
+          "boss": "Champion Skal-Alpha",
+          "boss_sprite": "BOSS_CHAMPION_SKAL_ALPHA",
           "minions": [
-            "Svanir-Jäger",
-            "Svanir-Plünderer"
+            "Skal",
+            "Wildkatze"
           ],
           "level": 42,
           "cost": 240,
@@ -926,11 +922,11 @@
           "mode": "normal",
           "original_stage": "3-3",
           "original_name": "Monster Anglerfish",
-          "boss": "Champion Frost-Grawl",
-          "boss_sprite": "BOSS_CHAMPION_FROST_GRAWL",
+          "boss": "Separatisten-Anführerin",
+          "boss_sprite": "BOSS_SEPARATISTEN_ANFUEHRERIN",
           "minions": [
-            "Frost-Grawl",
-            "Grawl-Steinwerfer"
+            "Separatisten-Kämpfer",
+            "Separatisten-Brandstifter"
           ],
           "level": 43,
           "cost": 280,
@@ -952,11 +948,11 @@
           "mode": "normal",
           "original_stage": "3-4",
           "original_name": "Black Starfish",
-          "boss": "Dredge-Tunnelmeister",
-          "boss_sprite": "BOSS_DREDGE_TUNNELMEISTER",
+          "boss": "Champion Ascalonischer Geisterhauptmann",
+          "boss_sprite": "BOSS_CHAMPION_ASCALONISCHER_GEISTERHAUPTMANN",
           "minions": [
-            "Dredge-Bergarbeiter",
-            "Dredge-Schallkanone"
+            "Ascalonischer Geist",
+            "Geister-Bogenschütze"
           ],
           "level": 44,
           "cost": 320,
@@ -978,11 +974,11 @@
           "mode": "normal",
           "original_stage": "3-5",
           "original_name": "Black Starfish",
-          "boss": "Drachen-Schamane der Svanir",
-          "boss_sprite": "BOSS_DRACHEN_SCHAMANE_DER_SVANIR",
+          "boss": "Flammenlegion-Kriegsherr",
+          "boss_sprite": "BOSS_FLAMMENLEGION_KRIEGSHERR",
           "minions": [
-            "Svanir-Drachenrufer",
-            "Eisbrut-Diener"
+            "Flammenlegion-Kultist",
+            "Flammenlegion-Zerstörer"
           ],
           "level": 45,
           "cost": 360,
@@ -1005,11 +1001,11 @@
           "mode": "hard",
           "original_stage": "Hard 3-1",
           "original_name": "Cursed Monster Angler",
-          "boss": "Eisbrut-Riese",
-          "boss_sprite": "BOSS_EISBRUT_RIESE",
+          "boss": "Flammenlegion-Schamane",
+          "boss_sprite": "BOSS_FLAMMENLEGION_SCHAMANE",
           "minions": [
-            "Eisbrut-Troll",
-            "Eisbrut-Koloss"
+            "Flammenlegion-Krieger",
+            "Feuerelementar"
           ],
           "level": 60,
           "cost": 2800,
@@ -1032,10 +1028,10 @@
           "mode": "hard",
           "original_stage": "Hard 3-2",
           "original_name": "Cursed Blackstar",
-          "boss": "Verderbt: Drachen-Schamane der Svanir",
-          "boss_sprite": "BOSS_VERDERBT_DRACHEN_SCHAMANE_DER_SVANIR",
+          "boss": "Verderbt: Flammenlegion-Kriegsherr",
+          "boss_sprite": "BOSS_VERDERBT_FLAMMENLEGION_KRIEGSHERR",
           "minions": [
-            "Svanir-Drachenrufer",
+            "Flammenlegion-Kultist",
             "Kryptis-Splitter"
           ],
           "level": 60,
@@ -1058,27 +1054,27 @@
     },
     {
       "id": 6,
-      "name": "Katakomben von Ascalon",
-      "short": "Katak.",
+      "name": "Caudecus’ Anwesen",
+      "short": "Anwesen",
       "tier": 3,
       "part": 2,
       "portal": 2,
-      "lore": "Unter den Ruinen von Ascalon öffnet sich ein Riss in die Katakomben. Die Geister der alten Könige finden keine Ruhe.",
+      "lore": "Alle Spuren aus den Heimatgebieten führen zurück ins Königintal: in Caudecus’ Anwesen. Hauptmann DeLana und die Separatisten verschanzen sich hinter dem flackernden Riss.",
       "stages": [
         {
           "stage": 1,
           "mode": "normal",
           "original_stage": "3-6",
           "original_name": "Shark Warrior",
-          "boss": "Höhlentroll",
-          "boss_sprite": "BOSS_HOEHLENTROLL",
+          "boss": "Separatisten-Belagerer",
+          "boss_sprite": "BOSS_SEPARATISTEN_BELAGERER",
           "minions": [
-            "Geister-Krieger",
-            "Geister-Waldläufer"
+            "Separatisten-Kämpfer",
+            "Separatisten-Bomber"
           ],
           "level": 46,
           "cost": 400,
-          "info": "Katakomben",
+          "info": "Geschichte",
           "rewards": {
             "research_points": [
               1,
@@ -1097,15 +1093,15 @@
           "mode": "normal",
           "original_stage": "3-7",
           "original_name": "Shark Warrior",
-          "boss": "Kasha Schwarzblut",
-          "boss_sprite": "BOSS_KASHA_SCHWARZBLUT",
+          "boss": "Königlicher Leibwächter Pete",
+          "boss_sprite": "BOSS_KOENIGLICHER_LEIBWAECHTER_PETE",
           "minions": [
-            "Flammenlegion-Kultist",
-            "Flammenlegion-Zerstörer"
+            "Königlicher Wächter",
+            "Separatisten-Feldwebel"
           ],
           "level": 47,
           "cost": 440,
-          "info": "Flammenlegion",
+          "info": "Geschichte",
           "rewards": {
             "research_points": [
               2,
@@ -1124,15 +1120,15 @@
           "mode": "normal",
           "original_stage": "3-8",
           "original_name": "EliteShark W.",
-          "boss": "Ralena & Vassar",
-          "boss_sprite": "BOSS_RALENA_VASSAR",
+          "boss": "Butler Michiels",
+          "boss_sprite": "BOSS_BUTLER_MICHIELS",
           "minions": [
-            "Geister-Liebende",
-            "Geister-Wächter"
+            "Diener des Hauses",
+            "Abgerichteter Wachhund"
           ],
           "level": 48,
           "cost": 480,
-          "info": "Liebespaar",
+          "info": "Weg 3",
           "rewards": {
             "research_points": [
               2,
@@ -1151,14 +1147,15 @@
           "mode": "normal",
           "original_stage": "3-9",
           "original_name": "EliteShark W.",
-          "boss": "Geisterhafter Nekromant",
-          "boss_sprite": "BOSS_GEISTERHAFTER_NEKROMANT",
+          "boss": "Gepfefferte Bridgette",
+          "boss_sprite": "BOSS_GEPFEFFERTE_BRIDGETTE",
           "minions": [
-            "Knochen-Diener",
-            "Geister-Nekromant"
+            "Seraphen-Deserteur",
+            "Banditen-Kanonier"
           ],
           "level": 49,
           "cost": 520,
+          "info": "Weg 2",
           "rewards": {
             "research_points": [
               2,
@@ -1177,11 +1174,11 @@
           "mode": "normal",
           "original_stage": "3-10",
           "original_name": "Kraken",
-          "boss": "König Adelbern",
-          "boss_sprite": "BOSS_KOENIG_ADELBERN",
+          "boss": "Separatisten-Hauptmann DeLana",
+          "boss_sprite": "BOSS_SEPARATISTEN_HAUPTMANN_DELANA",
           "minions": [
-            "Ascalonischer Geisterritter",
-            "Geister-Elite"
+            "Separatisten-Scharfschütze",
+            "Separatisten-Leutnant"
           ],
           "level": 50,
           "cost": 600,
@@ -1204,15 +1201,15 @@
           "mode": "hard",
           "original_stage": "Hard 3-3",
           "original_name": "Mighty Shark Warrior",
-          "boss": "Meister-Nekromant",
-          "boss_sprite": "BOSS_MEISTER_NEKROMANT",
+          "boss": "Turmaine",
+          "boss_sprite": "BOSS_TURMAINE",
           "minions": [
-            "Untoter Kanonier",
-            "Knochen-Schrecken"
+            "Asura-Wachgolem",
+            "Banditen-Raketengeschütz"
           ],
           "level": 60,
           "cost": 3200,
-          "info": "Schwer",
+          "info": "Schwer · Weg 2",
           "rewards": {
             "research_points": [
               20,
@@ -1231,15 +1228,15 @@
           "mode": "hard",
           "original_stage": "Hard 3-4",
           "original_name": "Mighty Elite Shark Warrior",
-          "boss": "Verderbt: König Adelbern",
-          "boss_sprite": "BOSS_VERDERBT_KOENIG_ADELBERN",
+          "boss": "Frost",
+          "boss_sprite": "BOSS_FROST",
           "minions": [
-            "Ascalonischer Geisterritter",
+            "Separatisten-Scharfschütze",
             "Kryptis-Splitter"
           ],
           "level": 60,
           "cost": 3400,
-          "info": "Schwer · vom Riss verderbt",
+          "info": "Schwer · Endboss von Weg 1",
           "rewards": {
             "research_points": [
               21,
@@ -1258,8 +1255,8 @@
           "mode": "legendary",
           "original_stage": "L-3",
           "original_name": "Dark Kraken",
-          "boss": "Schatten: König Adelbern",
-          "boss_sprite": "BOSS_SCHATTEN_KOENIG_ADELBERN",
+          "boss": "Schatten: Separatisten-Hauptmann DeLana",
+          "boss_sprite": "BOSS_SCHATTEN_SEPARATISTEN_HAUPTMANN_DELANA",
           "minions": [
             "Kryptis-Plünderer",
             "Kryptis-Peiniger"
@@ -1284,26 +1281,27 @@
     },
     {
       "id": 7,
-      "name": "Gendarran-Felder",
-      "short": "Gendarran",
+      "name": "Katakomben von Ascalon",
+      "short": "Katak.",
       "tier": 4,
       "part": 1,
       "portal": 3,
-      "lore": "Über den Gendarran-Feldern stehen gleich mehrere Risse. Zentauren, Dredge und Piraten wittern ihre Chance.",
+      "lore": "Unter den Ruinen von Ascalon öffnet sich ein Riss in die Katakomben. Die Geister der alten Könige finden keine Ruhe.",
       "stages": [
         {
           "stage": 1,
           "mode": "normal",
           "original_stage": "4-1",
           "original_name": "Hell Squishy",
-          "boss": "Piratinnen-Kapitänin",
-          "boss_sprite": "BOSS_PIRATINNEN_KAPITAENIN",
+          "boss": "Höhlentroll",
+          "boss_sprite": "BOSS_HOEHLENTROLL",
           "minions": [
-            "Piraten-Entermatrose",
-            "Piraten-Kanonier"
+            "Geister-Krieger",
+            "Geister-Waldläufer"
           ],
           "level": 51,
           "cost": 400,
+          "info": "Katakomben",
           "rewards": {
             "research_points": [
               2,
@@ -1322,14 +1320,15 @@
           "mode": "normal",
           "original_stage": "4-2",
           "original_name": "Hell Squishy",
-          "boss": "Champion Schlamm-Monstrum",
-          "boss_sprite": "BOSS_CHAMPION_SCHLAMM_MONSTRUM",
+          "boss": "Kasha Schwarzblut",
+          "boss_sprite": "BOSS_KASHA_SCHWARZBLUT",
           "minions": [
-            "Schlamm-Elementar",
-            "Sumpfkrebs"
+            "Flammenlegion-Kultist",
+            "Flammenlegion-Zerstörer"
           ],
           "level": 52,
           "cost": 450,
+          "info": "Flammenlegion",
           "rewards": {
             "research_points": [
               2,
@@ -1348,14 +1347,15 @@
           "mode": "normal",
           "original_stage": "4-3",
           "original_name": "Hell Squishy",
-          "boss": "Zentauren-Belagerungsmeister",
-          "boss_sprite": "BOSS_ZENTAUREN_BELAGERUNGSMEISTER",
+          "boss": "Ralena & Vassar",
+          "boss_sprite": "BOSS_RALENA_VASSAR",
           "minions": [
-            "Zentauren-Belagerer",
-            "Zentauren-Bogenschütze"
+            "Geister-Liebende",
+            "Geister-Wächter"
           ],
           "level": 53,
           "cost": 500,
+          "info": "Liebespaar",
           "rewards": {
             "research_points": [
               2,
@@ -1374,11 +1374,11 @@
           "mode": "normal",
           "original_stage": "4-4",
           "original_name": "Hellfire Spirit",
-          "boss": "Dredge-Kommandant",
-          "boss_sprite": "BOSS_DREDGE_KOMMANDANT",
+          "boss": "Geisterhafter Nekromant",
+          "boss_sprite": "BOSS_GEISTERHAFTER_NEKROMANT",
           "minions": [
-            "Dredge-Sprengmeister",
-            "Dredge-Kommissar"
+            "Knochen-Diener",
+            "Geister-Nekromant"
           ],
           "level": 54,
           "cost": 550,
@@ -1400,11 +1400,11 @@
           "mode": "normal",
           "original_stage": "4-5",
           "original_name": "Hellfire Spirit",
-          "boss": "Kriegsmeister Ulgoths Vorbote",
-          "boss_sprite": "BOSS_KRIEGSMEISTER_ULGOTHS_VORBOTE",
+          "boss": "König Adelbern",
+          "boss_sprite": "BOSS_KOENIG_ADELBERN",
           "minions": [
-            "Modniir-Krieger",
-            "Zentauren-Kriegstrommler"
+            "Ascalonischer Geisterritter",
+            "Geister-Elite"
           ],
           "level": 55,
           "cost": 600,
@@ -1427,11 +1427,11 @@
           "mode": "hard",
           "original_stage": "Hard 4-1",
           "original_name": "Volcano Sludge",
-          "boss": "Champion Banditen-Kriegsherr",
-          "boss_sprite": "BOSS_CHAMPION_BANDITEN_KRIEGSHERR",
+          "boss": "Meister-Nekromant",
+          "boss_sprite": "BOSS_MEISTER_NEKROMANT",
           "minions": [
-            "Banditen-Kriegsherr-Garde",
-            "Banditen-Plünderer"
+            "Untoter Kanonier",
+            "Knochen-Schrecken"
           ],
           "level": 60,
           "cost": 3600,
@@ -1454,10 +1454,10 @@
           "mode": "hard",
           "original_stage": "Hard 4-2",
           "original_name": "Cursed Hellfire Spirit",
-          "boss": "Verderbt: Kriegsmeister Ulgoths Vorbote",
-          "boss_sprite": "BOSS_VERDERBT_KRIEGSMEISTER_ULGOTHS_VORBOTE",
+          "boss": "Verderbt: König Adelbern",
+          "boss_sprite": "BOSS_VERDERBT_KOENIG_ADELBERN",
           "minions": [
-            "Modniir-Krieger",
+            "Ascalonischer Geisterritter",
             "Kryptis-Splitter"
           ],
           "level": 60,

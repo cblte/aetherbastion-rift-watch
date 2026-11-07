@@ -29,19 +29,52 @@ const ZONES = [
       ['Waldspinne', 'Wildschwein'], ['Krait-Sklaventreiber', 'Krait-Speerträger'],
       ['Höhlenspinne', 'Junger Troll'], ['Schattenbrut', 'Verzerrter Geist'],
     ] },
-  { name: 'Kessex-Hügel', short: 'Kessex', portal: 1, theme: 4,
-    lore: 'Im Sumpfland der Kessex-Hügel giftet der Riss das Wasser. Krait, Zentauren und die Hexen des Waldes werden unruhig.',
+  { name: 'Caledon-Wald', short: 'Caledon', portal: 1, theme: 4,
+    lore: 'Nahe dem Hain wuchern Albtraum-Ranken aus dem Riss im Caledon-Wald. Der Albtraumhof sieht seine Stunde gekommen.',
     bosses: [
-      ['Banditen-Schläger Grasp'], ['Champion Krait-Hypnotiseur'], ['Champion Toxischer Wurm'], ['Zentauren-Oberhäuptling'],
-      ['Blut-Hexe'], ['Champion Toxischer Spinnen-König', 'Zonen-Endboss'],
+      ['Champion Hylek-Kriegshäuptling'], ['Champion Skritt-Schatzmeister'], ['Champion Albtraumhof-Ritter'], ['Champion Krait-Orakel'],
+      ['Verderbter Baumgeist'], ['Albtraumhof-Gräfin', 'Zonen-Endboss'],
     ],
     minions: [
-      ['Banditen-Rabauke', 'Banditen-Scharfschütze'], ['Krait-Mystiker', 'Krait-Wächter'],
-      ['Toxischer Larvenwurm', 'Sumpfdrake'], ['Zentauren-Krieger', 'Zentauren-Späher'],
-      ['Hexen-Diener', 'Blutfledermaus'], ['Toxische Spinne', 'Toxischer Wucherer'],
+      ['Hylek-Krieger', 'Hylek-Blasrohrschütze'], ['Skritt-Plünderer', 'Skritt-Dieb'],
+      ['Albtraumhof-Höfling', 'Albtraumhof-Wächter'], ['Krait-Mystiker', 'Sumpfdrake'],
+      ['Waldspinne', 'Rankenwüter'], ['Albtraum-Ranke', 'Verzerrter Sylvari'],
     ] },
-  { name: 'Caudecus’ Anwesen', short: 'Anwesen', portal: 1, theme: 3,
-    lore: 'Die Spur führt in Caudecus’ Anwesen. Hauptmann DeLana und die Separatisten verschanzen sich hinter dem flackernden Riss.',
+  { name: 'Wanderer-Hügel', short: 'Wanderer', portal: 1, theme: 2,
+    lore: 'Eisige Winde über den Wanderer-Hügeln. Söhne des Svanir und Grawl beten den Riss als Zeichen Jormags an.',
+    bosses: [
+      ['Champion Minotauren-Bulle'], ['Champion Grawl-Häuptling'], ['Champion Eisbrut-Wolf'], ['Schamanen-Vorbote des Jormag'],
+      ['Eisbrut-Goliath'], ['Svanir-Schamane', 'Zonen-Endboss · die Maw'],
+    ],
+    minions: [
+      ['Minotaurus', 'Schneeleopard'], ['Grawl-Krieger', 'Grawl-Schamane'],
+      ['Eisbrut-Wolf', 'Eisbrut-Elementar'], ['Sohn des Svanir', 'Svanir-Eisbrecher'],
+      ['Eisbrut-Bär', 'Eisbrut-Wyvern'], ['Svanir-Schamanin', 'Eisgeist'],
+    ] },
+  { name: 'Provinz Metrica', short: 'Metrica', portal: 2, theme: 5,
+    lore: 'Die Inquestur hat den Riss in der Provinz Metrica nicht entdeckt – sie hat ihn angezapft. Golems bewachen die Messgeräte, und die Versuche geraten außer Kontrolle.',
+    bosses: [
+      ['Champion Inquestur-Golem'], ['Champion Skritt-Anführer'], ['Champion Riesen-Moa'], ['Inquestur-Versuchsleiterin'],
+      ['Entfesseltes Experiment'], ['Kolossaler Inquestur-Golem', 'Zonen-Endboss'],
+    ],
+    minions: [
+      ['Inquestur-Assistent', 'Inquestur-Golem'], ['Skritt-Bastler', 'Skritt-Späher'],
+      ['Moa', 'Hylek-Krieger'], ['Inquestur-Techniker', 'Mark-I-Golem'],
+      ['Riss-Funke', 'Instabiles Experiment'], ['Inquestur-Wächter', 'Mark-III-Golem'],
+    ] },
+  { name: 'Ebenen von Aschfurt', short: 'Aschfurt', portal: 2, theme: 3,
+    lore: 'In den Ebenen von Aschfurt ruft die Flammenlegion den Riss als Zeichen ihrer Götter aus. Darunter erwachen die Geister Ascalons.',
+    bosses: [
+      ['Champion Verschlinger-Königin'], ['Champion Skal-Alpha'], ['Separatisten-Anführerin'], ['Champion Ascalonischer Geisterhauptmann'],
+      ['Flammenlegion-Schamane'], ['Flammenlegion-Kriegsherr', 'Zonen-Endboss'],
+    ],
+    minions: [
+      ['Verschlinger', 'Verschlinger-Brut'], ['Skal', 'Wildkatze'],
+      ['Separatisten-Kämpfer', 'Separatisten-Brandstifter'], ['Ascalonischer Geist', 'Geister-Bogenschütze'],
+      ['Flammenlegion-Krieger', 'Feuerelementar'], ['Flammenlegion-Kultist', 'Flammenlegion-Zerstörer'],
+    ] },
+  { name: 'Caudecus’ Anwesen', short: 'Anwesen', portal: 2, theme: 1,
+    lore: 'Alle Spuren aus den Heimatgebieten führen zurück ins Königintal: in Caudecus’ Anwesen. Hauptmann DeLana und die Separatisten verschanzen sich hinter dem flackernden Riss.',
     bosses: [
       ['Separatisten-Belagerer', 'Geschichte'], ['Königlicher Leibwächter Pete', 'Geschichte'], ['Butler Michiels', 'Weg 3'],
       ['Gepfefferte Bridgette', 'Weg 2'], ['Turmaine', 'Weg 2'], ['Separatisten-Hauptmann DeLana', 'Zonen-Endboss'],
@@ -53,29 +86,7 @@ const ZONES = [
       ['Seraphen-Armbrustschütze', 'Mark-II-Golem'], ['Separatisten-Scharfschütze', 'Separatisten-Leutnant'],
     ],
     hardMinions: ['Asura-Wachgolem', 'Banditen-Raketengeschütz'] },
-  { name: 'Wanderer-Hügel', short: 'Wanderer', portal: 2, theme: 2,
-    lore: 'Eisige Winde über den Wanderer-Hügeln. Söhne des Svanir und Grawl beten den Riss als Zeichen Jormags an.',
-    bosses: [
-      ['Champion Minotauren-Bulle'], ['Champion Grawl-Häuptling'], ['Champion Eisbrut-Wolf'], ['Schamanen-Vorbote des Jormag'],
-      ['Eisbrut-Goliath'], ['Svanir-Schamane', 'Zonen-Endboss · die Maw'],
-    ],
-    minions: [
-      ['Minotaurus', 'Schneeleopard'], ['Grawl-Krieger', 'Grawl-Schamane'],
-      ['Eisbrut-Wolf', 'Eisbrut-Elementar'], ['Sohn des Svanir', 'Svanir-Eisbrecher'],
-      ['Eisbrut-Bär', 'Eisbrut-Wyvern'], ['Svanir-Schamanin', 'Eisgeist'],
-    ] },
-  { name: 'Schneekuhlen-Höhen', short: 'Schneek.', portal: 2, theme: 2,
-    lore: 'In den Schneekuhlen-Höhen graben sich Dredge zum Riss vor, während die Svanir ihren Drachen anrufen.',
-    bosses: [
-      ['Schneeleoparden-Matriarchin'], ['Champion Svanir-Häscher'], ['Champion Frost-Grawl'], ['Dredge-Tunnelmeister'],
-      ['Eisbrut-Riese'], ['Drachen-Schamane der Svanir', 'Zonen-Endboss'],
-    ],
-    minions: [
-      ['Schneeleopard', 'Eiswolf'], ['Svanir-Jäger', 'Svanir-Plünderer'],
-      ['Frost-Grawl', 'Grawl-Steinwerfer'], ['Dredge-Bergarbeiter', 'Dredge-Schallkanone'],
-      ['Eisbrut-Troll', 'Eisbrut-Koloss'], ['Svanir-Drachenrufer', 'Eisbrut-Diener'],
-    ] },
-  { name: 'Katakomben von Ascalon', short: 'Katak.', portal: 2, theme: 5,
+  { name: 'Katakomben von Ascalon', short: 'Katak.', portal: 3, theme: 5,
     lore: 'Unter den Ruinen von Ascalon öffnet sich ein Riss in die Katakomben. Die Geister der alten Könige finden keine Ruhe.',
     bosses: [
       ['Höhlentroll', 'Katakomben'], ['Kasha Schwarzblut', 'Flammenlegion'], ['Ralena & Vassar', 'Liebespaar'],
@@ -85,17 +96,6 @@ const ZONES = [
       ['Geister-Krieger', 'Geister-Waldläufer'], ['Flammenlegion-Kultist', 'Flammenlegion-Zerstörer'],
       ['Geister-Liebende', 'Geister-Wächter'], ['Knochen-Diener', 'Geister-Nekromant'],
       ['Untoter Kanonier', 'Knochen-Schrecken'], ['Ascalonischer Geisterritter', 'Geister-Elite'],
-    ] },
-  { name: 'Gendarran-Felder', short: 'Gendarran', portal: 3, theme: 1,
-    lore: 'Über den Gendarran-Feldern stehen gleich mehrere Risse. Zentauren, Dredge und Piraten wittern ihre Chance.',
-    bosses: [
-      ['Piratinnen-Kapitänin'], ['Champion Schlamm-Monstrum'], ['Zentauren-Belagerungsmeister'], ['Dredge-Kommandant'],
-      ['Champion Banditen-Kriegsherr'], ['Kriegsmeister Ulgoths Vorbote', 'Zonen-Endboss'],
-    ],
-    minions: [
-      ['Piraten-Entermatrose', 'Piraten-Kanonier'], ['Schlamm-Elementar', 'Sumpfkrebs'],
-      ['Zentauren-Belagerer', 'Zentauren-Bogenschütze'], ['Dredge-Sprengmeister', 'Dredge-Kommissar'],
-      ['Banditen-Kriegsherr-Garde', 'Banditen-Plünderer'], ['Modniir-Krieger', 'Zentauren-Kriegstrommler'],
     ] },
   { name: 'Harathi-Hinterland', short: 'Harathi', portal: 3, theme: 3,
     lore: 'Im Harathi-Hinterland tobt der Zentaurenkrieg. Ulgoth sammelt seine Horden am Rand eines gewaltigen Risses.',
@@ -189,8 +189,11 @@ let txt = `// ==================================================================
 //  legendäre (⭐) Stufe:
 //    Teil 1: CQHT X-1..5  + Hard X-1..2
 //    Teil 2: CQHT X-6..10 + Hard X-3..4 + L-X
-//  Zonen-Reihenfolge und Bosse folgen GW2 (Portal 1: Kryta, 2: Zittergipfel
-//  & Ascalon, 3: Herz von Tyria, 4: Küste & Sümpfe von Orr).
+//  Zonen 1–5 sind die Heimatgebiete der fünf Völker: Mensch (Königintal),
+//  Sylvari (Caledon), Norn (Wanderer-Hügel), Asura (Metrica), Charr (Aschfurt).
+//  Zone 6 Caudecus’ Anwesen ist das Finale der Auftragsreihe. Portale:
+//  1 Kryta, Caledon & Zittergipfel · 2 Metrica, Aschfurt & Anwesen ·
+//  3 Ascalon & Harathi · 4 Küste & Sümpfe von Orr.
 //    tier    – CQHT-Kapitel; steuert Boss-Scherben, Waffen- und Proviant-Güte
 //    portal  – nötige Riss-Portal-Stufe
 //    theme   – Farbstimmung der Kampfbühne (CSS .stage.zone-1..5)

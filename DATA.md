@@ -17,7 +17,7 @@ Die Tabellen in `js/data/` stammen aus Crusaders Quest: Hero Town (CQHT, Communi
 | Honor | 📜 Forschungsnotizen | überall |
 | Bread G1–G6 | 🍞 Proviant Güte 1–6 | `specials.js` (`RATIONS`) |
 | Fruit, Arena Ticket | 🍎 Früchte, 🎟️ Arena-Tickets (noch ohne Funktion) | – |
-| Normal-Kapitel 1–5 | je zwei Riss-Zonen (`tier` = Kapitel): Königintal + Kessex-Hügel, Caudecus’ Anwesen + Wanderer-Hügel, Schneekuhlen-Höhen + Katakomben von Ascalon, Gendarran-Felder + Harathi-Hinterland, Blutstrom-Küste + Funkenschwärmersumpf (Namen und Bosse aus `tools/gen-zones.mjs`). X-1..5 → Zone Teil 1, X-6..10 → Teil 2 | `stages.js` |
+| Normal-Kapitel 1–5 | je zwei Riss-Zonen (`tier` = Kapitel): Königintal + Caledon-Wald, Wanderer-Hügel + Provinz Metrica, Ebenen von Aschfurt + Caudecus’ Anwesen, Katakomben von Ascalon + Harathi-Hinterland, Blutstrom-Küste + Funkenschwärmersumpf (Namen und Bosse aus `tools/gen-zones.mjs`). X-1..5 → Zone Teil 1, X-6..10 → Teil 2 | `stages.js` |
 | Hard X-1 bis X-4 | ☠️ Schwere Stufen 6–7 (X-1/2 in Teil 1, X-3/4 in Teil 2) | `stages.js` |
 | L-1 bis L-5 | ⭐ Legendäre Stufe 8 in Teil 2 | `stages.js` |
 | Fercrow (Bäckerei-Bosse) | Prüfung der Feldküche (vorbereitet) | `specials.js` |

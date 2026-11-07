@@ -92,7 +92,7 @@ export function manualChapters() {
       ${table(['Gebäude', 'Wirkung'], [
         [`🏛️ ${BUILDINGS.hall.name}`, `Gildenkasse, schaltet alles andere frei. Braucht ${hallStages} besiegte Stufen.`],
         [`⛺ ${BUILDINGS.camp.name}`, `Level-Cap ${caps}`],
-        [`🌀 ${BUILDINGS.portal.name}`, 'Jede Stufe öffnet ein neues Portal: Kryta · Zittergipfel & Ascalon · Herz von Tyria · Orr. Kostet Gold + 🔮.'],
+        [`🌀 ${BUILDINGS.portal.name}`, 'Jede Stufe öffnet ein neues Portal: Kryta, Caledon & Zittergipfel · Metrica, Aschfurt & Anwesen · Ascalon & Harathi · Orr. Kostet Gold + 🔮.'],
         [`🍲 ${BUILDINGS.kitchen.name}`, `+${pct(BUILDINGS.kitchen.bonusPerLevel)} EXP pro Stufe`],
         [`🔬 ${BUILDINGS.lab.name}`, 'Forschung; höhere Stufen öffnen tiefere Forschung'],
         [`⚒️ ${BUILDINGS.forge.name}`, 'Waffenladen und Waffenkammer'],

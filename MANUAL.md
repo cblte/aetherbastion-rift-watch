@@ -16,7 +16,7 @@ Der nächste Schritt leuchtet: ein Punkt am passenden Reiter und ein leuchtender
 
 ### Aufträge
 
-Danach geht es im selben **Auftrags-Banner** nahtlos weiter (Auftrag 5 bis 24). Die Aufträge zeigen dir nacheinander alle Systeme: neue Rekruten, Bosse, Leveln, Gebäude, Waffen, Forschung, Proviant, das Riss-Portal und den zweiten Trupp, bis Caudecus’ Anwesen befreit ist.
+Danach geht es im selben **Auftrags-Banner** nahtlos weiter (Auftrag 5 bis 27). Die Aufträge zeigen dir nacheinander alle Systeme: neue Rekruten, Bosse, Leveln, Gebäude, Waffen, Forschung, Proviant, das Riss-Portal und den zweiten Trupp, bis Caudecus’ Anwesen befreit ist.
 
 - Der Balken zeigt den Fortschritt, **„Hingehen“** springt zum passenden Reiter.
 - Bei Boss-Aufträgen zeigt 🎯 die Zielstufe, in der Stufenliste und am Knopf **„Herausfordern“**.
@@ -83,18 +83,18 @@ Helden steigen bis **Lv. 60** auf. Jede neue Stufe bringt eine Belohnung: Forsch
 
 ## Riss-Zonen
 
-Die Zonen folgen grob der Reise durch Tyria. Jede Stufe des **Riss-Portals** öffnet ein neues Portal mit mehreren Zonen; eine Zone wird frei, wenn die Portal-Stufe reicht und alle Bosse der vorigen Zone besiegt sind.
+Die Zonen 1–5 sind die Heimatgebiete der fünf Völker: Königintal (Menschen), Caledon-Wald (Sylvari), Wanderer-Hügel (Norn), Provinz Metrica (Asura) und Ebenen von Aschfurt (Charr). Danach führen alle Spuren zurück nach Caudecus’ Anwesen, und weiter geht es durch Ascalon, Harathi und Orr. Jede Stufe des **Riss-Portals** öffnet ein neues Portal mit mehreren Zonen; eine Zone wird frei, wenn die Portal-Stufe reicht und alle Bosse der vorigen Zone besiegt sind.
 
 | # | Zone | Portal | Lv. | Bosse Stufe 1–5 (★ = Zonen-Endboss) |
 |---|---|---|---|---|
-| 1 | Königintal | 1 · Kryta | 3–10 | Banditen-Anführerin, Champion Banditen-Saboteur, Champion Eichenherz, Champion Krait-Hexe, ★ Schatten-Behemoth |
-| 2 | Kessex-Hügel | 1 · Kryta | 12–20 | Banditen-Schläger Grasp, Champion Krait-Hypnotiseur, Champion Toxischer Wurm, Zentauren-Oberhäuptling, ★ Champion Toxischer Spinnen-König |
-| 3 | Caudecus’ Anwesen | 1 · Kryta | 22–29 | Separatisten-Belagerer, Königlicher Leibwächter Pete, Butler Michiels, Gepfefferte Bridgette, ★ Separatisten-Hauptmann DeLana |
-| 4 | Wanderer-Hügel | 2 · Zittergipfel & Ascalon | 31–40 | Champion Minotauren-Bulle, Champion Grawl-Häuptling, Champion Eisbrut-Wolf, Schamanen-Vorbote des Jormag, ★ Svanir-Schamane |
-| 5 | Schneekuhlen-Höhen | 2 · Zittergipfel & Ascalon | 41–45 | Schneeleoparden-Matriarchin, Champion Svanir-Häscher, Champion Frost-Grawl, Dredge-Tunnelmeister, ★ Drachen-Schamane der Svanir |
-| 6 | Katakomben von Ascalon | 2 · Zittergipfel & Ascalon | 46–50 | Höhlentroll, Kasha Schwarzblut, Ralena & Vassar, Geisterhafter Nekromant, ★ König Adelbern |
-| 7 | Gendarran-Felder | 3 · Herz von Tyria | 51–55 | Piratinnen-Kapitänin, Champion Schlamm-Monstrum, Zentauren-Belagerungsmeister, Dredge-Kommandant, ★ Kriegsmeister Ulgoths Vorbote |
-| 8 | Harathi-Hinterland | 3 · Herz von Tyria | 56–60 | Harathi-Schlächter, Champion Modniir-Häuptling, Kolossaler Erdelementar, Seraphen-Verräter Valen, ★ Kriegsmeister Ulgoth |
+| 1 | Königintal | 1 · Kryta, Caledon & Zittergipfel | 3–10 | Banditen-Anführerin, Champion Banditen-Saboteur, Champion Eichenherz, Champion Krait-Hexe, ★ Schatten-Behemoth |
+| 2 | Caledon-Wald | 1 · Kryta, Caledon & Zittergipfel | 12–20 | Champion Hylek-Kriegshäuptling, Champion Skritt-Schatzmeister, Champion Albtraumhof-Ritter, Champion Krait-Orakel, ★ Albtraumhof-Gräfin |
+| 3 | Wanderer-Hügel | 1 · Kryta, Caledon & Zittergipfel | 22–29 | Champion Minotauren-Bulle, Champion Grawl-Häuptling, Champion Eisbrut-Wolf, Schamanen-Vorbote des Jormag, ★ Svanir-Schamane |
+| 4 | Provinz Metrica | 2 · Metrica, Aschfurt & Anwesen | 31–40 | Champion Inquestur-Golem, Champion Skritt-Anführer, Champion Riesen-Moa, Inquestur-Versuchsleiterin, ★ Kolossaler Inquestur-Golem |
+| 5 | Ebenen von Aschfurt | 2 · Metrica, Aschfurt & Anwesen | 41–45 | Champion Verschlinger-Königin, Champion Skal-Alpha, Separatisten-Anführerin, Champion Ascalonischer Geisterhauptmann, ★ Flammenlegion-Kriegsherr |
+| 6 | Caudecus’ Anwesen | 2 · Metrica, Aschfurt & Anwesen | 46–50 | Separatisten-Belagerer, Königlicher Leibwächter Pete, Butler Michiels, Gepfefferte Bridgette, ★ Separatisten-Hauptmann DeLana |
+| 7 | Katakomben von Ascalon | 3 · Ascalon & Harathi | 51–55 | Höhlentroll, Kasha Schwarzblut, Ralena & Vassar, Geisterhafter Nekromant, ★ König Adelbern |
+| 8 | Harathi-Hinterland | 3 · Ascalon & Harathi | 56–60 | Harathi-Schlächter, Champion Modniir-Häuptling, Kolossaler Erdelementar, Seraphen-Verräter Valen, ★ Kriegsmeister Ulgoth |
 | 9 | Blutstrom-Küste | 4 · Küste & Sümpfe von Orr | 60 | Champion Krait-Priester, Champion Auferstandener Offizier, Dredge-Kriegsmaschine, Piratinnen-Admiralin, ★ Dreiköpfige Krait-Bestie |
 | 10 | Funkenschwärmersumpf | 4 · Küste & Sümpfe von Orr | 60 | Champion Auferstandener Priester, Champion Krait-Echse, Zhaff-Sumpfmonster, Hylek-Schamane Cuatl, ★ Tequatl der Sonnenlose |
 
@@ -105,17 +105,17 @@ Jede normale Stufe hat einen eigenen Boss; auf Stufe 5 wartet der **Zonen-Endbos
 | Zone | ☠️ Schwer | ⭐ Legendär |
 |---|---|---|
 | Königintal | Champion Höhlentroll, Verderbt: Schatten-Behemoth | – |
-| Kessex-Hügel | Blut-Hexe, Verderbt: Toxischer Spinnen-König | Schatten: Toxischer Spinnen-König |
-| Caudecus’ Anwesen | Turmaine, Frost | – |
-| Wanderer-Hügel | Eisbrut-Goliath, Verderbt: Svanir-Schamane | Schatten: Svanir-Schamane |
-| Schneekuhlen-Höhen | Eisbrut-Riese, Verderbt: Drachen-Schamane der Svanir | – |
-| Katakomben von Ascalon | Meister-Nekromant, Verderbt: König Adelbern | Schatten: König Adelbern |
-| Gendarran-Felder | Champion Banditen-Kriegsherr, Verderbt: Kriegsmeister Ulgoths Vorbote | – |
+| Caledon-Wald | Verderbter Baumgeist, Verderbt: Albtraumhof-Gräfin | Schatten: Albtraumhof-Gräfin |
+| Wanderer-Hügel | Eisbrut-Goliath, Verderbt: Svanir-Schamane | – |
+| Provinz Metrica | Entfesseltes Experiment, Verderbt: Kolossaler Inquestur-Golem | Schatten: Kolossaler Inquestur-Golem |
+| Ebenen von Aschfurt | Flammenlegion-Schamane, Verderbt: Flammenlegion-Kriegsherr | – |
+| Caudecus’ Anwesen | Turmaine, Frost | Schatten: Separatisten-Hauptmann DeLana |
+| Katakomben von Ascalon | Meister-Nekromant, Verderbt: König Adelbern | – |
 | Harathi-Hinterland | Zentauren-Kriegsherr Kol, Verderbt: Kriegsmeister Ulgoth | Schatten: Kriegsmeister Ulgoth |
 | Blutstrom-Küste | Champion Kropf-Krake, Verderbt: Dreiköpfige Krait-Bestie | – |
 | Funkenschwärmersumpf | Megawurm, Verderbt: Tequatl der Sonnenlose | Schatten: Tequatl der Sonnenlose |
 
-„Verderbt“ und „Schatten“ sind vom Riss verzerrte Formen des Zonen-Endbosses. Die Bosse ab Zone 4 sind GW2-typisch, aber nicht im Detail geprüft.
+„Verderbt“ und „Schatten“ sind vom Riss verzerrte Formen des Zonen-Endbosses. Die Bosse außer Königintal und Anwesen sind GW2-typisch, aber nicht im Detail geprüft.
 
 Im **🌀 Portal** wählst du oben den Trupp (Pfeile, Trupp-Karten antippen oder in der Arena wischen). Darunter wählst du Zone und Stufe.
 
@@ -127,7 +127,7 @@ Gebaut wird immer **nur ein Gebäude gleichzeitig**, und höhere Stufen brauchen
 |---|---|---|
 | 🏛️ Gildenhalle | 1–9 | Gildenkasse alle 10 Min., schaltet Gebäudestufen frei. Braucht 3 / 9 / 21 / 29 / 31 / 40 / 50 / 50 besiegte Stufen. |
 | ⛺ Zeltlager | 1–7 | Level-Cap: 10 / 20 / 30 / 40 / 50 / 55 / 60 |
-| 🌀 Riss-Portal | 1–4 | Jede Stufe öffnet ein neues Portal: 1 = Kryta (Zonen 1–3), 2 = Zittergipfel & Ascalon (4–6), 3 = Herz von Tyria (7–8), 4 = Küste & Sümpfe von Orr (9–10). Kostet Gold + Ätherscherben. |
+| 🌀 Riss-Portal | 1–4 | Jede Stufe öffnet ein neues Portal: 1 = Kryta, Caledon & Zittergipfel (Zonen 1–3), 2 = Metrica, Aschfurt & Anwesen (4–6), 3 = Ascalon & Harathi (7–8), 4 = Küste & Sümpfe von Orr (9–10). Kostet Gold + Ätherscherben. |
 | 🍲 Feldküche | 1–10 | +5 % EXP pro Stufe |
 | 🔬 Asura-Labor | 1–10 | Forschung; Stufe 3 und 5 öffnen tiefere Forschung |
 | ⚒️ Charr-Schmiede | 1–3 | Waffenladen und Waffenkammer. Stufe 2 und 3 bringen bessere Ware. Ab Gildenhalle 2. |

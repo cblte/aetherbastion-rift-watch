@@ -7,12 +7,12 @@
 | # | Zone | Portal | Kapitel | Lv. (normal) |
 | --- | --- | --- | --- | --- |
 | 1 | Königintal | 1 | 1 (1. Hälfte) | 3–10 |
-| 2 | Kessex-Hügel | 1 | 1 (2. Hälfte) | 12–20 |
-| 3 | Caudecus’ Anwesen | 1 | 2 (1. Hälfte) | 22–29 |
-| 4 | Wanderer-Hügel | 2 | 2 (2. Hälfte) | 31–40 |
-| 5 | Schneekuhlen-Höhen | 2 | 3 (1. Hälfte) | 41–45 |
-| 6 | Katakomben von Ascalon | 2 | 3 (2. Hälfte) | 46–50 |
-| 7 | Gendarran-Felder | 3 | 4 (1. Hälfte) | 51–55 |
+| 2 | Caledon-Wald | 1 | 1 (2. Hälfte) | 12–20 |
+| 3 | Wanderer-Hügel | 1 | 2 (1. Hälfte) | 22–29 |
+| 4 | Provinz Metrica | 2 | 2 (2. Hälfte) | 31–40 |
+| 5 | Ebenen von Aschfurt | 2 | 3 (1. Hälfte) | 41–45 |
+| 6 | Caudecus’ Anwesen | 2 | 3 (2. Hälfte) | 46–50 |
+| 7 | Katakomben von Ascalon | 3 | 4 (1. Hälfte) | 51–55 |
 | 8 | Harathi-Hinterland | 3 | 4 (2. Hälfte) | 56–60 |
 | 9 | Blutstrom-Küste | 4 | 5 (1. Hälfte) | 60 |
 | 10 | Funkenschwärmersumpf | 4 | 5 (2. Hälfte) | 60 |
@@ -31,92 +31,92 @@
 | ☠️ 6 | Champion Höhlentroll | Höhlenspinne, Junger Troll | 60 | 1.200 | 10–20 | 1 | 5 | 1 | Hard 1-1 · Cursed Emperor Slime |
 | ☠️ 7 | Verderbt: Schatten-Behemoth | Schattenbrut, Kryptis-Splitter | 60 | 1.400 | 11–21 | 1 | 5 | 1 | Hard 1-2 · Cursed Elite Goblin Warrior |
 
-## 2. Kessex-Hügel
+## 2. Caledon-Wald
 
-*Im Sumpfland der Kessex-Hügel giftet der Riss das Wasser. Krait, Zentauren und die Hexen des Waldes werden unruhig.*
-
-| Stufe | Boss | Schergen | Lv. | Kosten | 📜 | ⚒️ | 🍞 | 🎟️ | CQHT |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | Banditen-Schläger Grasp | Banditen-Rabauke, Banditen-Scharfschütze | 12 | 100 | 1–2 | 1 | 2 | 0 | 1-6 · Ogre |
-| 2 | Champion Krait-Hypnotiseur | Krait-Mystiker, Krait-Wächter | 14 | 110 | 1–2 | 1 | 2 | 0 | 1-7 · Ogre |
-| 3 | Champion Toxischer Wurm | Toxischer Larvenwurm, Sumpfdrake | 16 | 120 | 1–2 | 1 | 3 | 0 | 1-8 · Raging Ogre |
-| 4 | Zentauren-Oberhäuptling | Zentauren-Krieger, Zentauren-Späher | 18 | 130 | 1–2 | 1 | 3 | 0 | 1-9 · Raging Ogre |
-| 5 | Champion Toxischer Spinnen-König | Toxische Spinne, Toxischer Wucherer | 20 | 150 | 1–2 | 1 | 3 | 0 | 1-10 · Golem |
-| ☠️ 6 | Blut-Hexe | Hexen-Diener, Blutfledermaus | 60 | 1.600 | 12–22 | 2 | 6 | 1–2 | Hard 1-3 · Mighty Ogre |
-| ☠️ 7 | Verderbt: Toxischer Spinnen-König | Toxische Spinne, Kryptis-Splitter | 60 | 1.800 | 13–23 | 2 | 6 | 1–2 | Hard 1-4 · Ogre Elite Fighter |
-| ⭐ 8 | Schatten: Toxischer Spinnen-König | Kryptis-Plünderer, Kryptis-Peiniger | 60 | 5.000 | 50–62 | 3 | 10 | 1–4 | L-1 · Dark Golem |
-
-## 3. Caudecus’ Anwesen
-
-*Die Spur führt in Caudecus’ Anwesen. Hauptmann DeLana und die Separatisten verschanzen sich hinter dem flackernden Riss.*
+*Nahe dem Hain wuchern Albtraum-Ranken aus dem Riss im Caledon-Wald. Der Albtraumhof sieht seine Stunde gekommen.*
 
 | Stufe | Boss | Schergen | Lv. | Kosten | 📜 | ⚒️ | 🍞 | 🎟️ | CQHT |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | Separatisten-Belagerer | Separatisten-Kämpfer, Separatisten-Bomber | 22 | 100 | 1–2 | 1 | 1 | 1 | 2-1 · Hard Mudman |
-| 2 | Königlicher Leibwächter Pete | Königlicher Wächter, Separatisten-Feldwebel | 24 | 120 | 1–2 | 1 | 1 | 1 | 2-2 · Hard Mudman |
-| 3 | Butler Michiels | Diener des Hauses, Abgerichteter Wachhund | 25 | 140 | 1–2 | 1 | 1 | 1 | 2-3 · Hard Mudman |
-| 4 | Gepfefferte Bridgette | Seraphen-Deserteur, Banditen-Kanonier | 27 | 160 | 1–3 | 1 | 2 | 1 | 2-4 · Pharaoh Mummy |
-| 5 | Separatisten-Hauptmann DeLana | Separatisten-Scharfschütze, Separatisten-Leutnant | 29 | 180 | 1–3 | 1 | 2 | 1 | 2-5 · Pharaoh Mummy |
-| ☠️ 6 | Turmaine | Asura-Wachgolem, Banditen-Raketengeschütz | 60 | 2.000 | 14–24 | 2 | 6 | 1–2 | Hard 2-1 · Emperor Mudman |
-| ☠️ 7 | Frost | Separatisten-Scharfschütze, Kryptis-Splitter | 60 | 2.200 | 15–25 | 2 | 6 | 1–2 | Hard 2-2 · Ancient Pharaoh Mummy |
+| 1 | Champion Hylek-Kriegshäuptling | Hylek-Krieger, Hylek-Blasrohrschütze | 12 | 100 | 1–2 | 1 | 2 | 0 | 1-6 · Ogre |
+| 2 | Champion Skritt-Schatzmeister | Skritt-Plünderer, Skritt-Dieb | 14 | 110 | 1–2 | 1 | 2 | 0 | 1-7 · Ogre |
+| 3 | Champion Albtraumhof-Ritter | Albtraumhof-Höfling, Albtraumhof-Wächter | 16 | 120 | 1–2 | 1 | 3 | 0 | 1-8 · Raging Ogre |
+| 4 | Champion Krait-Orakel | Krait-Mystiker, Sumpfdrake | 18 | 130 | 1–2 | 1 | 3 | 0 | 1-9 · Raging Ogre |
+| 5 | Albtraumhof-Gräfin | Albtraum-Ranke, Verzerrter Sylvari | 20 | 150 | 1–2 | 1 | 3 | 0 | 1-10 · Golem |
+| ☠️ 6 | Verderbter Baumgeist | Waldspinne, Rankenwüter | 60 | 1.600 | 12–22 | 2 | 6 | 1–2 | Hard 1-3 · Mighty Ogre |
+| ☠️ 7 | Verderbt: Albtraumhof-Gräfin | Albtraum-Ranke, Kryptis-Splitter | 60 | 1.800 | 13–23 | 2 | 6 | 1–2 | Hard 1-4 · Ogre Elite Fighter |
+| ⭐ 8 | Schatten: Albtraumhof-Gräfin | Kryptis-Plünderer, Kryptis-Peiniger | 60 | 5.000 | 50–62 | 3 | 10 | 1–4 | L-1 · Dark Golem |
 
-## 4. Wanderer-Hügel
+## 3. Wanderer-Hügel
 
 *Eisige Winde über den Wanderer-Hügeln. Söhne des Svanir und Grawl beten den Riss als Zeichen Jormags an.*
 
 | Stufe | Boss | Schergen | Lv. | Kosten | 📜 | ⚒️ | 🍞 | 🎟️ | CQHT |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | Champion Minotauren-Bulle | Minotaurus, Schneeleopard | 31 | 200 | 1–3 | 1 | 2 | 1 | 2-6 · Basilisk |
-| 2 | Champion Grawl-Häuptling | Grawl-Krieger, Grawl-Schamane | 33 | 220 | 1–3 | 1 | 2 | 1 | 2-7 · Basilisk |
-| 3 | Champion Eisbrut-Wolf | Eisbrut-Wolf, Eisbrut-Elementar | 35 | 240 | 1–3 | 1 | 3 | 1 | 2-8 · Huge Basilisk |
-| 4 | Schamanen-Vorbote des Jormag | Sohn des Svanir, Svanir-Eisbrecher | 37 | 260 | 1–3 | 1 | 3 | 1 | 2-9 · Huge Basilisk |
-| 5 | Svanir-Schamane | Svanir-Schamanin, Eisgeist | 40 | 300 | 1–3 | 1 | 3 | 1 | 2-10 · Sandworm |
-| ☠️ 6 | Eisbrut-Goliath | Eisbrut-Bär, Eisbrut-Wyvern | 60 | 2.400 | 16–27 | 2 | 7 | 1–2 | Hard 2-3 · Red Basilisk |
-| ☠️ 7 | Verderbt: Svanir-Schamane | Svanir-Schamanin, Kryptis-Splitter | 60 | 2.600 | 17–28 | 2 | 7 | 1–2 | Hard 2-4 · Cataclysm Basilisk |
-| ⭐ 8 | Schatten: Svanir-Schamane | Kryptis-Plünderer, Kryptis-Peiniger | 60 | 5.000 | 55–67 | 4 | 11 | 1–4 | L-2 · Dark Sandworm |
+| 1 | Champion Minotauren-Bulle | Minotaurus, Schneeleopard | 22 | 100 | 1–2 | 1 | 1 | 1 | 2-1 · Hard Mudman |
+| 2 | Champion Grawl-Häuptling | Grawl-Krieger, Grawl-Schamane | 24 | 120 | 1–2 | 1 | 1 | 1 | 2-2 · Hard Mudman |
+| 3 | Champion Eisbrut-Wolf | Eisbrut-Wolf, Eisbrut-Elementar | 25 | 140 | 1–2 | 1 | 1 | 1 | 2-3 · Hard Mudman |
+| 4 | Schamanen-Vorbote des Jormag | Sohn des Svanir, Svanir-Eisbrecher | 27 | 160 | 1–3 | 1 | 2 | 1 | 2-4 · Pharaoh Mummy |
+| 5 | Svanir-Schamane | Svanir-Schamanin, Eisgeist | 29 | 180 | 1–3 | 1 | 2 | 1 | 2-5 · Pharaoh Mummy |
+| ☠️ 6 | Eisbrut-Goliath | Eisbrut-Bär, Eisbrut-Wyvern | 60 | 2.000 | 14–24 | 2 | 6 | 1–2 | Hard 2-1 · Emperor Mudman |
+| ☠️ 7 | Verderbt: Svanir-Schamane | Svanir-Schamanin, Kryptis-Splitter | 60 | 2.200 | 15–25 | 2 | 6 | 1–2 | Hard 2-2 · Ancient Pharaoh Mummy |
 
-## 5. Schneekuhlen-Höhen
+## 4. Provinz Metrica
 
-*In den Schneekuhlen-Höhen graben sich Dredge zum Riss vor, während die Svanir ihren Drachen anrufen.*
+*Die Inquestur hat den Riss in der Provinz Metrica nicht entdeckt – sie hat ihn angezapft. Golems bewachen die Messgeräte, und die Versuche geraten außer Kontrolle.*
 
 | Stufe | Boss | Schergen | Lv. | Kosten | 📜 | ⚒️ | 🍞 | 🎟️ | CQHT |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | Schneeleoparden-Matriarchin | Schneeleopard, Eiswolf | 41 | 200 | 1–3 | 1 | 1 | 1 | 3-1 · Monster Anglerfish |
-| 2 | Champion Svanir-Häscher | Svanir-Jäger, Svanir-Plünderer | 42 | 240 | 1–3 | 1 | 1 | 1 | 3-2 · Monster Anglerfish |
-| 3 | Champion Frost-Grawl | Frost-Grawl, Grawl-Steinwerfer | 43 | 280 | 1–3 | 1 | 1 | 1 | 3-3 · Monster Anglerfish |
-| 4 | Dredge-Tunnelmeister | Dredge-Bergarbeiter, Dredge-Schallkanone | 44 | 320 | 1–3 | 1 | 2 | 1 | 3-4 · Black Starfish |
-| 5 | Drachen-Schamane der Svanir | Svanir-Drachenrufer, Eisbrut-Diener | 45 | 360 | 1–3 | 1 | 2 | 1 | 3-5 · Black Starfish |
-| ☠️ 6 | Eisbrut-Riese | Eisbrut-Troll, Eisbrut-Koloss | 60 | 2.800 | 18–28 | 2 | 7 | 1–2 | Hard 3-1 · Cursed Monster Angler |
-| ☠️ 7 | Verderbt: Drachen-Schamane der Svanir | Svanir-Drachenrufer, Kryptis-Splitter | 60 | 3.000 | 19–30 | 2 | 7 | 1–2 | Hard 3-2 · Cursed Blackstar |
+| 1 | Champion Inquestur-Golem | Inquestur-Assistent, Inquestur-Golem | 31 | 200 | 1–3 | 1 | 2 | 1 | 2-6 · Basilisk |
+| 2 | Champion Skritt-Anführer | Skritt-Bastler, Skritt-Späher | 33 | 220 | 1–3 | 1 | 2 | 1 | 2-7 · Basilisk |
+| 3 | Champion Riesen-Moa | Moa, Hylek-Krieger | 35 | 240 | 1–3 | 1 | 3 | 1 | 2-8 · Huge Basilisk |
+| 4 | Inquestur-Versuchsleiterin | Inquestur-Techniker, Mark-I-Golem | 37 | 260 | 1–3 | 1 | 3 | 1 | 2-9 · Huge Basilisk |
+| 5 | Kolossaler Inquestur-Golem | Inquestur-Wächter, Mark-III-Golem | 40 | 300 | 1–3 | 1 | 3 | 1 | 2-10 · Sandworm |
+| ☠️ 6 | Entfesseltes Experiment | Riss-Funke, Instabiles Experiment | 60 | 2.400 | 16–27 | 2 | 7 | 1–2 | Hard 2-3 · Red Basilisk |
+| ☠️ 7 | Verderbt: Kolossaler Inquestur-Golem | Inquestur-Wächter, Kryptis-Splitter | 60 | 2.600 | 17–28 | 2 | 7 | 1–2 | Hard 2-4 · Cataclysm Basilisk |
+| ⭐ 8 | Schatten: Kolossaler Inquestur-Golem | Kryptis-Plünderer, Kryptis-Peiniger | 60 | 5.000 | 55–67 | 4 | 11 | 1–4 | L-2 · Dark Sandworm |
 
-## 6. Katakomben von Ascalon
+## 5. Ebenen von Aschfurt
+
+*In den Ebenen von Aschfurt ruft die Flammenlegion den Riss als Zeichen ihrer Götter aus. Darunter erwachen die Geister Ascalons.*
+
+| Stufe | Boss | Schergen | Lv. | Kosten | 📜 | ⚒️ | 🍞 | 🎟️ | CQHT |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 | Champion Verschlinger-Königin | Verschlinger, Verschlinger-Brut | 41 | 200 | 1–3 | 1 | 1 | 1 | 3-1 · Monster Anglerfish |
+| 2 | Champion Skal-Alpha | Skal, Wildkatze | 42 | 240 | 1–3 | 1 | 1 | 1 | 3-2 · Monster Anglerfish |
+| 3 | Separatisten-Anführerin | Separatisten-Kämpfer, Separatisten-Brandstifter | 43 | 280 | 1–3 | 1 | 1 | 1 | 3-3 · Monster Anglerfish |
+| 4 | Champion Ascalonischer Geisterhauptmann | Ascalonischer Geist, Geister-Bogenschütze | 44 | 320 | 1–3 | 1 | 2 | 1 | 3-4 · Black Starfish |
+| 5 | Flammenlegion-Kriegsherr | Flammenlegion-Kultist, Flammenlegion-Zerstörer | 45 | 360 | 1–3 | 1 | 2 | 1 | 3-5 · Black Starfish |
+| ☠️ 6 | Flammenlegion-Schamane | Flammenlegion-Krieger, Feuerelementar | 60 | 2.800 | 18–28 | 2 | 7 | 1–2 | Hard 3-1 · Cursed Monster Angler |
+| ☠️ 7 | Verderbt: Flammenlegion-Kriegsherr | Flammenlegion-Kultist, Kryptis-Splitter | 60 | 3.000 | 19–30 | 2 | 7 | 1–2 | Hard 3-2 · Cursed Blackstar |
+
+## 6. Caudecus’ Anwesen
+
+*Alle Spuren aus den Heimatgebieten führen zurück ins Königintal: in Caudecus’ Anwesen. Hauptmann DeLana und die Separatisten verschanzen sich hinter dem flackernden Riss.*
+
+| Stufe | Boss | Schergen | Lv. | Kosten | 📜 | ⚒️ | 🍞 | 🎟️ | CQHT |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 | Separatisten-Belagerer | Separatisten-Kämpfer, Separatisten-Bomber | 46 | 400 | 1–3 | 1 | 2 | 1 | 3-6 · Shark Warrior |
+| 2 | Königlicher Leibwächter Pete | Königlicher Wächter, Separatisten-Feldwebel | 47 | 440 | 2–3 | 1 | 2 | 1 | 3-7 · Shark Warrior |
+| 3 | Butler Michiels | Diener des Hauses, Abgerichteter Wachhund | 48 | 480 | 2–3 | 1 | 3 | 1 | 3-8 · EliteShark W. |
+| 4 | Gepfefferte Bridgette | Seraphen-Deserteur, Banditen-Kanonier | 49 | 520 | 2–3 | 1 | 3 | 1 | 3-9 · EliteShark W. |
+| 5 | Separatisten-Hauptmann DeLana | Separatisten-Scharfschütze, Separatisten-Leutnant | 50 | 600 | 2–3 | 1 | 3 | 1 | 3-10 · Kraken |
+| ☠️ 6 | Turmaine | Asura-Wachgolem, Banditen-Raketengeschütz | 60 | 3.200 | 20–31 | 2 | 8 | 1–3 | Hard 3-3 · Mighty Shark Warrior |
+| ☠️ 7 | Frost | Separatisten-Scharfschütze, Kryptis-Splitter | 60 | 3.400 | 21–33 | 2 | 8 | 1–3 | Hard 3-4 · Mighty Elite Shark Warrior |
+| ⭐ 8 | Schatten: Separatisten-Hauptmann DeLana | Kryptis-Plünderer, Kryptis-Peiniger | 60 | 5.000 | 60–71 | 4 | 11 | 1–5 | L-3 · Dark Kraken |
+
+## 7. Katakomben von Ascalon
 
 *Unter den Ruinen von Ascalon öffnet sich ein Riss in die Katakomben. Die Geister der alten Könige finden keine Ruhe.*
 
 | Stufe | Boss | Schergen | Lv. | Kosten | 📜 | ⚒️ | 🍞 | 🎟️ | CQHT |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | Höhlentroll | Geister-Krieger, Geister-Waldläufer | 46 | 400 | 1–3 | 1 | 2 | 1 | 3-6 · Shark Warrior |
-| 2 | Kasha Schwarzblut | Flammenlegion-Kultist, Flammenlegion-Zerstörer | 47 | 440 | 2–3 | 1 | 2 | 1 | 3-7 · Shark Warrior |
-| 3 | Ralena & Vassar | Geister-Liebende, Geister-Wächter | 48 | 480 | 2–3 | 1 | 3 | 1 | 3-8 · EliteShark W. |
-| 4 | Geisterhafter Nekromant | Knochen-Diener, Geister-Nekromant | 49 | 520 | 2–3 | 1 | 3 | 1 | 3-9 · EliteShark W. |
-| 5 | König Adelbern | Ascalonischer Geisterritter, Geister-Elite | 50 | 600 | 2–3 | 1 | 3 | 1 | 3-10 · Kraken |
-| ☠️ 6 | Meister-Nekromant | Untoter Kanonier, Knochen-Schrecken | 60 | 3.200 | 20–31 | 2 | 8 | 1–3 | Hard 3-3 · Mighty Shark Warrior |
-| ☠️ 7 | Verderbt: König Adelbern | Ascalonischer Geisterritter, Kryptis-Splitter | 60 | 3.400 | 21–33 | 2 | 8 | 1–3 | Hard 3-4 · Mighty Elite Shark Warrior |
-| ⭐ 8 | Schatten: König Adelbern | Kryptis-Plünderer, Kryptis-Peiniger | 60 | 5.000 | 60–71 | 4 | 11 | 1–5 | L-3 · Dark Kraken |
-
-## 7. Gendarran-Felder
-
-*Über den Gendarran-Feldern stehen gleich mehrere Risse. Zentauren, Dredge und Piraten wittern ihre Chance.*
-
-| Stufe | Boss | Schergen | Lv. | Kosten | 📜 | ⚒️ | 🍞 | 🎟️ | CQHT |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | Piratinnen-Kapitänin | Piraten-Entermatrose, Piraten-Kanonier | 51 | 400 | 2–4 | 1 | 1 | 1 | 4-1 · Hell Squishy |
-| 2 | Champion Schlamm-Monstrum | Schlamm-Elementar, Sumpfkrebs | 52 | 450 | 2–4 | 1 | 1 | 1 | 4-2 · Hell Squishy |
-| 3 | Zentauren-Belagerungsmeister | Zentauren-Belagerer, Zentauren-Bogenschütze | 53 | 500 | 2–4 | 1 | 1 | 1 | 4-3 · Hell Squishy |
-| 4 | Dredge-Kommandant | Dredge-Sprengmeister, Dredge-Kommissar | 54 | 550 | 2–4 | 1 | 2 | 1 | 4-4 · Hellfire Spirit |
-| 5 | Kriegsmeister Ulgoths Vorbote | Modniir-Krieger, Zentauren-Kriegstrommler | 55 | 600 | 2–4 | 1 | 2 | 1 | 4-5 · Hellfire Spirit |
-| ☠️ 6 | Champion Banditen-Kriegsherr | Banditen-Kriegsherr-Garde, Banditen-Plünderer | 60 | 3.600 | 22–33 | 2 | 8 | 1–3 | Hard 4-1 · Volcano Sludge |
-| ☠️ 7 | Verderbt: Kriegsmeister Ulgoths Vorbote | Modniir-Krieger, Kryptis-Splitter | 60 | 3.800 | 23–35 | 2 | 8 | 1–3 | Hard 4-2 · Cursed Hellfire Spirit |
+| 1 | Höhlentroll | Geister-Krieger, Geister-Waldläufer | 51 | 400 | 2–4 | 1 | 1 | 1 | 4-1 · Hell Squishy |
+| 2 | Kasha Schwarzblut | Flammenlegion-Kultist, Flammenlegion-Zerstörer | 52 | 450 | 2–4 | 1 | 1 | 1 | 4-2 · Hell Squishy |
+| 3 | Ralena & Vassar | Geister-Liebende, Geister-Wächter | 53 | 500 | 2–4 | 1 | 1 | 1 | 4-3 · Hell Squishy |
+| 4 | Geisterhafter Nekromant | Knochen-Diener, Geister-Nekromant | 54 | 550 | 2–4 | 1 | 2 | 1 | 4-4 · Hellfire Spirit |
+| 5 | König Adelbern | Ascalonischer Geisterritter, Geister-Elite | 55 | 600 | 2–4 | 1 | 2 | 1 | 4-5 · Hellfire Spirit |
+| ☠️ 6 | Meister-Nekromant | Untoter Kanonier, Knochen-Schrecken | 60 | 3.600 | 22–33 | 2 | 8 | 1–3 | Hard 4-1 · Volcano Sludge |
+| ☠️ 7 | Verderbt: König Adelbern | Ascalonischer Geisterritter, Kryptis-Splitter | 60 | 3.800 | 23–35 | 2 | 8 | 1–3 | Hard 4-2 · Cursed Hellfire Spirit |
 
 ## 8. Harathi-Hinterland
 
