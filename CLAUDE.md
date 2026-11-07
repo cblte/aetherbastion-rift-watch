@@ -4,6 +4,7 @@ Mobile-First Idle-RPG als PWA für eine Guild-Wars-2-Gilde (nicht-kommerzielles 
 
 ## Harte Regeln
 - Vanilla HTML/CSS/JS mit ES-Modulen. Keine Frameworks, keine Build-Tools, kein Backend, keine externen CDNs (muss offline laufen).
+- Eine Schrift: Atkinson Hyperlegible lokal in `css/fonts/` (OFL), nur Normal und Fett (400/700). Keine weiteren Schriften oder Kursivschnitte.
 - Keine Original-Grafiken, Logos oder Icons aus Guild Wars 2. Grafiken sind Platzhalter `[SPRITE: TAG]` (Funktion `sprite()` in `js/ui.js`).
 - Mobile first: max-width 440px, Touch-Ziele ≥ 44 × 44 px, keine Hover-Funktionen, Safe-Areas beachten.
 - Alle Zahlen und Formeln gehören in `js/config.js`, nicht in die Logik.

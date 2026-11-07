@@ -30,7 +30,7 @@ Die Tabellen in `js/data/` stammen aus Crusaders Quest: Hero Town (CQHT, Communi
 
 - **Stufen:** Level, Kosten und Belohnungen aller 75 Stufen (50 normal, 20 schwer, 5 L). Das Boss-Muster pro Kapitel (3-2-2-2-1 Stufen pro Boss) gilt auch in Aetherbastion. Die CQHT-„cost“ ist der Gold-Preis einer Boss-Herausforderung.
 - **Gebäude:** Kosten, Bauzeiten und Gildenhallen-Voraussetzungen je Stufe. Die Gildenhalle braucht wie in CQHT besiegte Stufen (3, 9, 21, 29, 31, 40, 50, 50).
-- **Helden:** EXP-Kurve bis Lv. 60, Gold und Forschungsnotizen je 10-Min.-Zyklus, Belohnung pro Level-Up.
+- **Helden:** EXP-Kurve bis Lv. 60, Belohnung pro Level-Up. Die Spalten Gold und Forschungsnotizen je Zyklus (`goldCycle`, `rpCycle`) sind übernommen, aber ungenutzt (siehe #022).
 - **Waffen:** Alle 84 Waffen mit Güte, Preis (Gold bzw. alternativ 📜), nötiger Schmiede-Stufe und Häufigkeit. Laden mit 3 Angeboten, alle 30 Min. neu, Auffrischen ab 100 Gold (verdoppelt sich).
 
 ## Eigene Annahmen und Abweichungen
@@ -42,4 +42,5 @@ Die Tabellen in `js/data/` stammen aus Crusaders Quest: Hero Town (CQHT, Communi
 - **Proviant-EXP** (40 bis 15.000 je Güte) und die Proviant-Güte je Kapitel (`tier`, Teil 2 eine Güte höher) sind eigene Werte.
 - **Kampfwerte:** Die Monsterstärke ergibt sich aus dem Stufen-Level (`COMBAT.LEVEL_DIFF`). Auf Lv.-60-Stufen steigt sie zusätzlich mit den CQHT-Kosten.
 - **Namen:** Bosse von Königintal und Anwesen aus dem Dungeon „Caudecus’ Anwesen“. Die Bosse der anderen Zonen sind GW2-typisch, aber nicht einzeln geprüft. Waffennamen sind freie deutsche Umdichtungen.
+- **Kein Helden-Einkommen:** Die Gildenkasse zahlt nur das Gold der Gildenhalle. Helden verdienen nur im Kampf.
 - **Noch nicht im Spiel:** Erschöpfung (Fatigue), Früchte, Arena, Waffen-Modifikation, Sonderinhalte aus `specials.js`.

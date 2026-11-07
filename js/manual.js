@@ -34,13 +34,13 @@ export function manualChapters() {
 
     { icon: '🟡', title: 'Währungen & Vorräte', html: `
       ${table(['', 'Woher', 'Wofür'], [
-        ['🟡 Gold', 'Siege, Gildenkasse, Helden ab Lv. 10', 'Gebäude, Rekruten, Zelte, Bosse, Waffen, Beleben'],
+        ['🟡 Gold', 'Siege, Gildenkasse', 'Gebäude, Rekruten, Zelte, Bosse, Waffen, Beleben'],
         ['🔮 Ätherscherben', `Siege (${pct(COMBAT.SHARD_CHANCE)}), jeder Boss`, 'Riss-Portal'],
-        ['📜 Forschungsnotizen', 'Bosse, Level-Ups, Helden ab Lv. 20', 'Asura-Labor, seltene Waffen'],
+        ['📜 Forschungsnotizen', 'Bosse, Level-Ups', 'Asura-Labor, seltene Waffen'],
         ['🍀 Mystischer Klee', 'Ruhestand', 'Mystische Schmiede, Würfel-Preis zurücksetzen'],
         ['🍞 Proviant', 'Bosse, Level-Ups', 'EXP für einen Helden'],
       ])}
-      <p><b>Gildenkasse:</b> Alle ${min(CYCLE_MS)} Minuten zahlt die Gildenhalle Gold aus. Helden ab Lv. 10 verdienen Gold, ab Lv. 20 auch Forschungsnotizen – sogar in der Reserve.</p>` },
+      <p><b>Gildenkasse:</b> Alle ${min(CYCLE_MS)} Minuten zahlt die Gildenhalle Gold aus. Helden selbst verdienen nur im Kampf.</p>` },
 
     { icon: '🛡️', title: 'Helden, Rollen & Zelte', html: `
       ${list([
@@ -54,7 +54,7 @@ export function manualChapters() {
       <p>Neue Helden wirbst du unter <b>🛡️ Trupps → Rekrutieren</b> an. Dort stehen wechselnde Angebote – mehr und schneller mit besserer Gildenhalle:</p>
       ${table(['Gildenhalle', 'Angebote', 'Neue alle'], RECRUIT.tiers.map(t => [`ab ${t.hall}`, t.slots, `${t.restockMin} Min.`]))}
       <p>„Liste erneuern“ kostet ${RECRUIT.refreshBase} 🟡 und verdoppelt sich mit jedem Versuch; kommt der Nachschub von selbst, fängt der Preis wieder bei ${RECRUIT.refreshBase} an. Mit 🍀 ${REROLL_RESET_CLOVER} Mystischem Klee setzt du ihn sofort zurück.</p>
-      <p>Jeder Rekrut hat eine <b>Seltenheit</b>. Sie bestimmt Preis und Bonus auf LP und ATK. Kostenlose Helden aus den Aufträgen sind „Fein“.</p>
+      <p>Jeder Rekrut hat eine <b>Seltenheit</b>. Sie bestimmt Preis und Bonus auf LP und ATK. Kostenlose Helden aus den Aufträgen sind „Fein“. Je höher die <b>Gildenhalle</b>, desto öfter kommen seltene Rekruten (Chancen stehen unter „Rekrutieren“).</p>
       ${table(['Seltenheit', 'Preis', 'Bonus'], Object.entries(RECRUIT.rarities).map(([r, x]) => [`<span style="color:${WEAPON_GRADES[r].color}">◆ ${WEAPON_GRADES[r].name}</span>`, `🟡 ${x.cost.toLocaleString('de-DE')}`, x.bonus ? `+${pct(x.bonus)}` : '–']))}` },
 
     { icon: '👑', title: 'Kampf & Bosse', html: `
@@ -67,7 +67,15 @@ export function manualChapters() {
         '<b>Sieg:</b> Forschungsnotizen, Waffen, Proviant, Scherben – beim ersten Sieg öffnet sich die nächste Stufe.',
         '<b>Niederlage:</b> Der Trupp kehrt zu den Schergen zurück. Versuch es später erneut.',
         `Fällt ein Held auf 0 LP, ist er <b>verwundet</b> und erholt sich ${COMBAT.WOUND_MS / 1000} Sekunden lang. ⚡ belebt ihn sofort gegen Gold.`,
-        'Fallen alle drei, zieht sich der Trupp ins Lager zurück und kehrt nach der Erholung zurück.',
+        'Fallen alle drei, zieht sich der Trupp ins Lager zurück und kehrt zurück, sobald ein Held wieder fit ist (erholt oder belebt).',
+      ])}
+      <p><b>Eine Kampfsekunde:</b></p>
+      ${list([
+        `⚔️ Schaden und 🛡️ Tank greifen mit voller ATK an, 📯 Unterstützer mit ${pct(COMBAT.SUPPORT_ATK_FACTOR)}. Krit-Treffer machen ×${COMBAT.CRIT_MULT} Schaden.`,
+        `✚ Heiler heilen den Verbündeten mit den wenigsten LP (Anteil) um ATK × ${String(COMBAT.HEAL_MULT).replace('.', ',')} und greifen mit ${pct(COMBAT.HEALER_ATK_FACTOR)} ATK an, ohne Krit.`,
+        'Danach schlägt das Monster den vordersten Helden. Seine DEF senkt den Schaden.',
+        `Nach jedem Sieg heilt der ganze Trupp ${pct(COMBAT.KILL_HEAL)} seiner LP.`,
+        'Die Werte siehst du im Helden-Fenster (💥 Schaden, ✚ Heilung) und für den ganzen Trupp unter jedem Zelt.',
       ])}
       <p>Tipp: Fordere den Boss heraus, sobald dein Trupp das empfohlene Level erreicht. Scheitern kostet nur das Herausforderungs-Gold.</p>` },
 
@@ -95,7 +103,7 @@ export function manualChapters() {
       ${list([
         `Der <b>Laden</b> der Charr-Schmiede hat ${SHOP.offers} Angebote und füllt sich alle ${min(SHOP.restockMs)} Minuten neu.`,
         `„Ware auffrischen“ verdoppelt seinen Preis bis zum nächsten Nachschub – oder bis du ihn mit 🍀 ${REROLL_RESET_CLOVER} Mystischem Klee zurücksetzt.`,
-        `Boss-Beute und Käufe landen in der <b>Waffenkammer</b> (Reiter ⚒️ Schmiede) – Beute auch schon, bevor die Schmiede steht. Dort rüstest du aus oder verkaufst (${pct(SHOP.sellFactor)} des Preises).`,
+        `Boss-Beute und Käufe landen in der <b>Waffenkammer</b> (Reiter 🎒 Inventar und ⚒️ Schmiede) – Beute auch schon, bevor die Schmiede steht. Dort rüstest du aus oder verkaufst (${pct(SHOP.sellFactor)} des Preises).`,
         'Der Reiter <b>🎒 Inventar</b> zeigt Proviant, Waffenkammer und ausgerüstete Waffen an einem Ort. Ausrüsten geht dort oder im Helden-Fenster.',
         'Jeder Held trägt eine Waffenart: Heiler einen Fokus, sonst nach Klasse.',
       ])}

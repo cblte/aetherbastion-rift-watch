@@ -9,6 +9,7 @@ Mobile-First Idle-RPG als Progressive Web App. Vanilla HTML, CSS und JavaScript 
 ```
 index.html            App-Gerüst (Kopfzeile, Quest-Banner, Ansicht, Navigation)
 css/style.css         Dark-Mode-UI, Platzhalter-Sprites, Safe-Areas
+css/fonts/            Schrift Atkinson Hyperlegible (woff2, Normal + Fett) mit Lizenz OFL.txt
 js/config.js          Zahlen & Formeln, Helden-Katalog, Rollen, Forschung, Prestige; bindet js/data/ ein
 js/data/stages.js     Riss-Zonen: 10 × (5 normal + 2 schwer, jede zweite + 1 legendär), Bosse, Schergen, Level, Kosten, Belohnungen
 js/data/buildings.js  Gebäude-Tabellen je Stufe: Kosten, Bauzeit, Voraussetzungen, Gildenkasse, Level-Cap
@@ -100,4 +101,5 @@ Fehlende Felder werden zusätzlich automatisch mit Standardwerten aufgefüllt.
 - **Spielschleife:** Läuft alle 250 ms an, misst aber immer die echte Zeit seit `lastTickMs` und holt volle 1-Sekunden-Ticks nach. Lücken über 30 s (Hintergrund, Drosselung, App zu) gehen an `runOffline()`. Ab 60 s erscheint der Offline-Rissbericht. Auf `setInterval`-Genauigkeit wird nie vertraut.
 - **Offline-Berechnung:** Gildenkasse je 10-Min.-Zyklus, fertige Bauaufträge, neuer Laden. Pro Trupp Sieg für Sieg gegen die Schergen der gewählten Stufe, mit Erwartungswerten (DPS inkl. Krit/Macht/Eile, Heilung, HP-Puffer). Die Effizienz `min(1, (HP-Puffer + Heilung × Zeit) ÷ eingehender Schaden)` skaliert die Belohnung. Ein zu schwacher Trupp bekommt nur einen Bruchteil. Bosse gibt es offline nicht. Scherben werden als Erwartungswert über `shardFrac` angesammelt, damit das Ergebnis deterministisch bleibt. Maximal 8 Stunden, mit der Forschung „Stasis-Feld“ bis 10 Stunden.
 - **Kein verlorener Tipp:** Bereiche werden nur neu gezeichnet, wenn sich ihr HTML geändert hat, und nie, solange ein Finger auf dem Bildschirm liegt.
+- **Schrift:** Atkinson Hyperlegible vom Braille Institute, SIL Open Font License 1.1 (`css/fonts/OFL.txt`). Liegt lokal im Projekt (Quelle: npm-Paket `@fontsource/atkinson-hyperlegible` 5.2.8, nur lateinischer Zeichensatz), damit das Spiel offline läuft. Eine Schrift für alles; Monospace nur für Sprite-Platzhalter und den Spielstand-Code.
 - **iOS:** Für das Homescreen-Icon wird `icon-192.png` genutzt (iOS kann kein SVG-Icon). Vibration gibt es auf iOS nicht, die Einstellung ist dort wirkungslos.

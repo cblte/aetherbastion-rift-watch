@@ -1,6 +1,19 @@
 /* =====================================================================
    Aetherbastion: Rift Watch – Dark-Mode Mobile UI
    ===================================================================== */
+
+/* Eine Schrift für alles: Atkinson Hyperlegible (Braille Institute, SIL OFL 1.1,
+   Lizenz in css/fonts/OFL.txt). Lokal eingebunden, damit das Spiel offline läuft. */
+@font-face {
+  font-family: "Atkinson Hyperlegible";
+  src: url("fonts/atkinson-hyperlegible-latin-400-normal.woff2") format("woff2");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Atkinson Hyperlegible";
+  src: url("fonts/atkinson-hyperlegible-latin-700-normal.woff2") format("woff2");
+  font-weight: 700; font-style: normal; font-display: swap;
+}
 :root {
   --bg: #0c0e16;
   --bg-2: #121522;
@@ -17,8 +30,8 @@
   --warn: #ffb347;
   --radius: 14px;
   --tap: 44px;
-  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
-  --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --sans: "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --serif: var(--sans); /* früher eigene Serifenschrift; jetzt einheitlich */
   --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   /* Akzentfarbe je Reiter (#app[data-tab]) */
   --tab-portal: #9d8bff;
@@ -89,14 +102,15 @@ textarea { user-select: text; -webkit-user-select: text; }
   letter-spacing: -.01em;
   white-space: nowrap;
 }
-.chip b { font-variant-numeric: tabular-nums; font-weight: 650; }
+.chip b { font-variant-numeric: tabular-nums; font-weight: 700; }
 .chip.gold b { color: var(--gold); }
 .chip.shards b { color: #c6a8ff; }
 .chip.clover b { color: #7fe08f; }
 .chip.rp b { color: #9ff0b8; }
 .chip[hidden] { display: none; }
 .card.recruit { border-left: 3px solid var(--r, var(--line)); }
-.rar { font-weight: 600; }
+.odds { margin-top: 6px; padding-top: 6px; border-top: 1px solid var(--line); }
+.rar { font-weight: 700; }
 /* 🎒 Inventar-Knopf: sieht aus wie ein Chip, Tippfläche wird auf 44 px erweitert */
 .chip.settings { flex: 0 0 auto; min-width: 40px; position: relative; color: inherit; font: inherit; font-size: 17px; cursor: pointer; }
 .chip.settings::after { content: ''; position: absolute; inset: -6px -2px; } /* Tippfläche ≥ 44 px */
@@ -131,7 +145,7 @@ textarea { user-select: text; -webkit-user-select: text; }
   padding: 10px max(10px, env(safe-area-inset-right)) 16px max(10px, env(safe-area-inset-left));
 }
 h2.sec {
-  font: 600 13px/1 var(--sans);
+  font: 700 13px/1 var(--sans);
   letter-spacing: .14em;
   text-transform: uppercase;
   color: color-mix(in srgb, var(--accent) 70%, var(--muted));
@@ -163,12 +177,12 @@ h4 { margin: 16px 0 8px; font-size: 14px; color: var(--muted); }
   border-radius: 12px;
   border: 1px solid var(--line);
   background: var(--panel-2);
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
   display: inline-flex; flex-direction: column; align-items: center; justify-content: center;
   line-height: 1.15;
 }
-.btn small { font-weight: 500; font-size: 12px; opacity: .85; margin-top: 2px; white-space: nowrap; }
+.btn small { font-weight: 400; font-size: 12px; opacity: .85; margin-top: 2px; white-space: nowrap; }
 .btn:active:not(:disabled) { transform: scale(.97); }
 .btn.primary { background: linear-gradient(180deg, #8f7bff, #6b58e0); border-color: #a597ff; color: #fff; }
 .btn.danger { background: #3a1d26; border-color: #6e2e3d; color: #ffb3b3; }
@@ -205,11 +219,11 @@ h4 { margin: 16px 0 8px; font-size: 14px; color: var(--muted); }
   word-break: break-all;
   image-rendering: pixelated;
 }
-.hero-sprite { width: 100%; aspect-ratio: 1; }
+.hero-sprite { width: 56px; height: 56px; align-self: center; font-size: 7px; } /* kompakt, damit „Herausfordern“ auf dem Handy sichtbar bleibt */
 .mini-sprite { width: 48px; height: 48px; flex: none; font-size: 7px; }
 .detail-sprite { width: 72px; height: 72px; flex: none; }
-.mob-sprite { --c: #ff6b8b; width: 96px; height: 96px; flex: none; font-size: 9px; }
-.mob.boss .mob-sprite { --c: var(--gold); width: 108px; height: 108px; box-shadow: 0 0 22px rgba(242, 193, 78, .3); }
+.mob-sprite { --c: #ff6b8b; width: 72px; height: 72px; flex: none; font-size: 8px; }
+.mob.boss .mob-sprite { --c: var(--gold); width: 80px; height: 80px; box-shadow: 0 0 22px rgba(242, 193, 78, .3); }
 .mob-sprite.hit { animation: hit .28s ease-out; }
 @keyframes hit {
   0% { transform: translateX(0); filter: brightness(1.8); }
@@ -242,9 +256,9 @@ h4 { margin: 16px 0 8px; font-size: 14px; color: var(--muted); }
 .arena-title b { font-family: var(--serif); font-size: 18px; }
 .arena-title small { color: var(--muted); }
 .stage {
-  min-height: 156px;
+  min-height: 100px;
   display: flex; align-items: center; justify-content: center;
-  padding: 12px;
+  padding: 8px 12px;
   margin: 0 8px;
   border-radius: 14px;
   background:
@@ -280,7 +294,7 @@ h4 { margin: 16px 0 8px; font-size: 14px; color: var(--muted); }
 .arena-hero.empty { align-items: center; justify-content: center; color: var(--muted); border-style: dashed; font-size: 20px; }
 .arena-hero.empty small { font-size: 12px; }
 .arena-hero.wounded { opacity: .55; filter: grayscale(.6); }
-.ah-name { font-size: 12px; font-weight: 650; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ah-name { color: color-mix(in srgb, var(--c) 75%, white); font-size: 12px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .ah-lv { font-size: 11px; color: var(--muted); }
 .ah-status { font-size: 11px; color: var(--muted); }
 .arena-hero.wounded .ah-status { color: var(--bad); }
@@ -288,7 +302,7 @@ h4 { margin: 16px 0 8px; font-size: 14px; color: var(--muted); }
 .float {
   position: absolute; top: 34%;
   transform: translateX(-50%);
-  font: 800 16px/1 var(--sans);
+  font: 700 16px/1 var(--sans);
   color: #fff;
   text-shadow: 0 2px 6px #000;
   animation: floatUp .95s ease-out forwards;
@@ -335,7 +349,7 @@ h4 { margin: 16px 0 8px; font-size: 14px; color: var(--muted); }
 }
 .zone-txt { flex: 1; display: flex; flex-direction: column; }
 .zone-txt small { color: var(--muted); font-size: 12px; }
-.zone-flag { color: var(--good); font-weight: 800; }
+.zone-flag { color: var(--good); font-weight: 700; }
 
 /* ---------- Boss & Stufen ----------------------------------------- */
 .boss-card { display: flex; gap: 10px; align-items: center; justify-content: space-between; margin-top: 8px; }
@@ -362,8 +376,8 @@ h4 { margin: 16px 0 8px; font-size: 14px; color: var(--muted); }
 }
 .stage-row.sel { border-color: var(--aether-2); background: color-mix(in srgb, var(--aether-2) 10%, var(--panel)); }
 .stage-row.locked, .stage-row:disabled { opacity: .5; cursor: default; }
-.stage-row small.info { color: #a99fd9; font-style: italic; }
-.lore { margin: 0 4px 8px; font-style: italic; }
+.stage-row small.info { color: #a99fd9; }
+.lore { margin: 0 4px 8px; }
 .locked-card { display: flex; gap: 12px; align-items: center; opacity: .85; }
 .locked-b { opacity: .55; }
 .b-unlock { font-size: 12px; color: var(--aether-2); margin-top: 4px; }
@@ -444,12 +458,12 @@ h4 { margin: 16px 0 8px; font-size: 14px; color: var(--muted); }
   cursor: pointer;
 }
 .slot-empty { display: flex; align-items: center; justify-content: center; height: 46px; color: var(--muted); }
-.tent-foot { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); margin-top: 8px; }
+.tent-foot { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2px 10px; font-size: 12px; color: var(--muted); margin-top: 8px; }
 .hero-mini { --c: var(--aether); display: flex; gap: 10px; align-items: center; width: 100%; }
 .hero-mini.wounded { opacity: .7; }
 .hm-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
-.hm-name b { font-weight: 650; }
-.hm-title { font-family: var(--serif); font-style: italic; font-size: 13px; color: #c9c4e8; }
+.hm-name b { font-weight: 700; color: color-mix(in srgb, var(--c) 75%, white); } /* Name in der Farbe der Seltenheit */
+.hm-title { font-size: 13px; color: #c9c4e8; }
 .hm-sub { font-size: 12px; color: var(--muted); }
 .hm-wound { font-size: 12px; color: var(--bad); }
 .hero-row { display: flex; align-items: center; gap: 6px; cursor: pointer; min-height: 60px; }
@@ -498,7 +512,7 @@ textarea {
 .manual-body li { margin: 4px 0; }
 .m-table { width: 100%; border-collapse: collapse; font-size: 12.5px; margin: 8px 0; }
 .m-table th, .m-table td { text-align: left; padding: 5px 6px; border-bottom: 1px solid var(--line); vertical-align: top; }
-.m-table th { color: var(--muted); font-weight: 600; }
+.m-table th { color: var(--muted); font-weight: 700; }
 
 /* ---------- Navigation -------------------------------------------- */
 #tabs {
@@ -511,7 +525,7 @@ textarea {
   min-height: 56px;
   min-width: 0;
   border: 0; background: transparent; border-radius: 12px;
-  color: var(--muted); font-size: 11px; font-weight: 600;
+  color: var(--muted); font-size: 11px; font-weight: 700;
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
   cursor: pointer;
 }

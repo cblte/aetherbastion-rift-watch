@@ -67,6 +67,18 @@ export function teamProfile(state, heroes, squad = null) {
   return { dps, heal, hpPool, atkMult, tempo, might, eile, frontDef };
 }
 
+// Was ein einzelner Held pro Sekunde tut (ohne Trupp-Buffs) – für Anzeigen
+// hit = Schaden pro Angriff · heal = Heilung pro Sekunde · canCrit = Krit möglich
+export function heroOutput(state, hero) {
+  const st = heroStats(state, hero);
+  const role = st.def.role;
+  if (role === 'healer') {
+    return { hit: st.atk * COMBAT.HEALER_ATK_FACTOR, heal: st.atk * COMBAT.HEAL_MULT * healMult(state), canCrit: false };
+  }
+  const f = role === 'support' ? COMBAT.SUPPORT_ATK_FACTOR : 1;
+  return { hit: st.atk * f, heal: 0, canCrit: true };
+}
+
 // ---------- Belohnungen (live + offline) -----------------------------
 // factor: Anteil der Belohnung (Offline-Effizienz). deterministic: Scherben als Erwartungswert.
 export function applyKillRewards(state, squadIdx, tmpl, heroes, factor = 1, deterministic = false) {
@@ -144,7 +156,7 @@ export function tick(state) {
   if (now >= state.nextCycleMs) {
     ev.cycle = payCycle(state);
     state.nextCycleMs += CYCLE_MS;
-    addLog(state, `💰 Gildenkasse: +${fmt(ev.cycle.gold)}🟡${ev.cycle.rp ? ` +${ev.cycle.rp}📜` : ''}`, null, 'info');
+    addLog(state, `💰 Gildenkasse: +${fmt(ev.cycle.gold)}🟡`, null, 'info');
   }
 
   for (const h of state.heroes) {
@@ -169,7 +181,7 @@ function tickSquad(state, i, now, ev) {
   if (!members.length) { sq.status = 'idle'; sq.monster = null; sq.mode = 'farm'; return; }
 
   if (sq.status === 'retreat') {
-    if (members.some(h => h.woundedUntil)) return;
+    if (members.every(h => h.woundedUntil)) return; // zurück, sobald ein Held wieder fit ist
     sq.status = 'fighting';
     spawnMonster(state, sq);
     addLog(state, 'Der Trupp kehrt in den Riss zurück.', i, 'info');

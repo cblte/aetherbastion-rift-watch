@@ -37,7 +37,7 @@ export function runOffline(state, elapsedMs) {
   report.cycles = 0; report.cycleGold = 0;
   while (state.nextCycleMs <= start + cappedMs) {
     const c = payCycle(state);
-    report.cycles += 1; report.cycleGold += c.gold; report.rp += c.rp;
+    report.cycles += 1; report.cycleGold += c.gold;
     state.nextCycleMs += CYCLE_MS;
   }
   if (state.nextCycleMs <= start + elapsedMs) {

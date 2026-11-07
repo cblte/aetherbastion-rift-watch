@@ -373,17 +373,12 @@ export function gainExp(state, hero, amount) {
   return gained;
 }
 
-// Gildenkasse + Helden-Einkommen für einen 10-Min.-Zyklus (CQHT „/cycle“)
+// Gildenkasse für einen 10-Min.-Zyklus: nur das Gold der Gildenhalle.
+// Helden haben kein passives Einkommen (goldCycle/rpCycle in heroLevels.js bleiben ungenutzt, siehe #022).
 export function payCycle(state) {
-  let gold = hallGold(state), rp = 0;
-  for (const h of state.heroes) {
-    const row = HERO_LEVELS[h.level - 1];
-    gold += row.goldCycle;
-    rp += row.rpCycle;
-  }
+  const gold = hallGold(state);
   state.gold += gold;
-  state.rp += rp;
-  return { gold, rp };
+  return { gold };
 }
 
 export function addLog(state, msg, squad = null, kind = '') {

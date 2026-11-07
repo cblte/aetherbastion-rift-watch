@@ -19,13 +19,13 @@ import {
   featureUnlocked, normalCleared, hallGold, weaponType,
 } from './state.js';
 import {
-  squadMembers, spawnMonster, setStage, reviveHero, assignHero, teamProfile, fmt, stageOf,
+  squadMembers, spawnMonster, setStage, reviveHero, assignHero, teamProfile, heroOutput, fmt, stageOf,
   challengeBoss, canChallengeBoss, abortBoss, bossCost, bossCooldownLeft, toggleAutoBoss,
 } from './combat.js';
 import {
   researchInfo, doResearch, startBuild, refreshShop, refreshCost, buyWeapon, sellWeapon, sellPrice,
   equipWeapon, unequipWeapon, fitsHero, feedRation,
-  recruitTier, recruitRefreshCost, refreshRecruits, recruitCost, hireRecruit, resetRerollCost,
+  recruitTier, recruitRefreshCost, refreshRecruits, recruitCost, hireRecruit, resetRerollCost, recruitOdds,
 } from './progress.js';
 import { runOffline } from './offline.js';
 
@@ -114,29 +114,33 @@ function renderHud() {
 }
 
 // ---------- Onboarding ------------------------------------------------
-// key = Gebäude, dessen Karte im Lager den Schritt auch auslöst · tab = Reiter des Schritts
+// Das Banner führt nur hin („Hingehen“); ausgelöst wird der Schritt auf der Seite selbst.
+// tab = Reiter des Schritts · key = Gebäudekarte im Lager, die den Schritt auslöst (btn = ihr Knopf)
 const QUESTS = [
   null,
-  { icon: '🏛️', tab: 'camp', key: 'hall', text: 'Errichte die <b>Gildenhalle</b>.', btn: 'Errichten (kostenlos)', action: 'ob-hall' },
-  { icon: '⛺', tab: 'camp', key: 'camp', text: 'Schlage dein <b>erstes Zelt</b> auf. Hier wohnen deine Helden.', btn: 'Zelt aufschlagen (kostenlos)', action: 'ob-camp' },
-  { icon: '🛡️', tab: 'squads', text: () => `Nimm <b>${esc(HERO_BY_ID[ONBOARDING.tank].name)}</b> als ersten Helden auf. Als Tank steht dieser Held vorn.`, btn: 'Aufnehmen (kostenlos)', action: 'ob-recruit' },
-  { icon: '🌀', tab: 'squads', text: 'Aktiviere das <b>Riss-Portal</b>. Dann beginnt der erste Kampf.', btn: 'Portal aktivieren', action: 'ob-finish' },
+  { icon: '🏛️', tab: 'camp', key: 'hall', text: 'Errichte die <b>Gildenhalle</b>.', btn: 'Errichten', action: 'ob-hall' },
+  { icon: '⛺', tab: 'camp', key: 'camp', text: 'Schlage dein <b>erstes Zelt</b> auf. Hier wohnen deine Helden.', btn: 'Aufschlagen', action: 'ob-camp' },
+  { icon: '🛡️', tab: 'squads', text: () => `Nimm <b>${esc(HERO_BY_ID[ONBOARDING.tank].name)}</b> als ersten Helden in Zelt 1 auf. Als Tank steht dieser Held vorn.`, action: 'ob-recruit' },
+  { icon: '🌀', tab: 'camp', key: 'portal', text: 'Aktiviere das <b>Riss-Portal</b> im Lager. Dann beginnt der erste Kampf.', btn: 'Aktivieren', action: 'ob-finish' },
 ];
 
 // Onboarding und Aufträge zählen durchgehend: Auftrag 1–4 = Onboarding, danach QUESTS aus config.js
 const OB_STEPS = QUESTS.length - 1;
 const questTotal = () => OB_STEPS + MAIN_QUESTS.length;
 
-// Reiter erscheinen erst, wenn das Tutorial sie braucht (Wert = Onboarding-Schritt)
+// Reiter erscheinen erst, wenn das Tutorial sie braucht (Wert = Onboarding-Schritt).
+// Labor und Schmiede zusätzlich erst, wenn sie gebaut sind (Schmiede auch mit Mystischer Schmiede).
 const TAB_FROM = { camp: 1, squads: 3, portal: 5, inv: 5, lab: 5, forge: 5 };
-const tabVisible = (t) => S.onboarding >= TAB_FROM[t];
+const tabVisible = (t) => S.onboarding >= TAB_FROM[t]
+  && (t !== 'lab' || S.buildings.lab >= 1)
+  && (t !== 'forge' || S.buildings.forge >= 1 || featureUnlocked(S, 'mystic'));
 
 // Reiter, in dem es gerade weitergeht (bekommt einen Punkt in der Navigation)
 function goalTab() {
   const step = QUESTS[S.onboarding];
   if (step) return step.tab;
   const q = currentQuest(S);
-  if (!q || q.goal.type === 'freeHero' || questDone(S, q)) return null;
+  if (!q || questDone(S, q)) return null;
   return q.tab || null;
 }
 
@@ -157,7 +161,7 @@ function renderQuest() {
   setHTML(q, `
     <div class="quest-step">Auftrag ${S.onboarding}/${questTotal()}</div>
     <div class="quest-body"><span class="quest-icon">${step.icon}</span><p>${text}</p></div>
-    <button class="btn primary block" data-action="${step.action}">${step.btn}</button>`);
+    ${tab !== step.tab ? `<button class="btn primary block" data-action="tab" data-tab="${step.tab}">Hingehen</button>` : ''}`);
 }
 
 const versionText = () => `v${GAME.VERSION} · Build ${GAME.BUILD}`;
@@ -170,14 +174,13 @@ function renderMainQuest(q) {
   q.hidden = false;
   const { have, need } = questProgress(S, quest);
   const done = have >= need;
-  const btn = quest.goal.type === 'freeHero' && !done
-    ? `<button class="btn primary block" data-action="quest-hero">${esc(HERO_BY_ID[quest.goal.hero].name)} aufnehmen (kostenlos)</button>`
-    : done
+  // Das Banner führt nur hin; aufgenommen/gebaut wird auf der Seite selbst (nur Belohnungen holt man hier ab)
+  const btn = done
     ? `<button class="btn primary block" data-action="quest-claim">${Object.keys(quest.reward).length ? `Belohnung abholen · ${rewardText(quest.reward)}` : 'Weiter'}</button>`
     : quest.tab && quest.tab !== tab ? `<button class="btn block" data-action="tab" data-tab="${quest.tab}">Hingehen</button>` : '';
   const target = questStageTarget();
   const targetLine = target
-    ? `<div class="quest-target">🎯 ${esc(ZONES[target.zone - 1].name)} · Stufe ${target.stage}: Boss mit <b>„Herausfordern“</b> besiegen</div>` : '';
+    ? `<div class="quest-target">🎯 ${esc(ZONES[target.zone - 1].name)} · Stufe ${target.stage}</div>` : '';
   setHTML(q, `
     <div class="quest-step">Auftrag ${OB_STEPS + questNumber(quest)}/${questTotal()}${done ? ' · erfüllt ✓' : ''}</div>
     <div class="quest-body"><span class="quest-icon">${quest.icon}</span><p><b>${esc(quest.title)}</b><br>${esc(quest.text)}</p></div>
@@ -266,7 +269,7 @@ function renderPortal() {
   } else if (!sq.slots.some(u => u != null)) {
     stage = `<div class="stage-msg">⛺ Dieses Zelt ist leer.<br><button class="btn" data-action="tab" data-tab="squads">Helden einteilen</button></div>`;
   } else if (sq.status === 'retreat') {
-    const left = Math.max(0, ...squadMembers(S, sq).map(h => (h.woundedUntil || 0) - S.lastTickMs));
+    const left = Math.max(0, Math.min(...squadMembers(S, sq).map(h => (h.woundedUntil || 0) - S.lastTickMs)));
     stage = `<div class="stage-msg retreat">🏕️ Rückzug ins Lager<br><small>Rückkehr in ${clock(left)}</small></div>`;
   } else if (sq.monster) {
     const m = sq.monster;
@@ -292,7 +295,7 @@ function renderPortal() {
     const def = hs.def;
     const wounded = !!h.woundedUntil;
     return `
-      <button class="arena-hero ${wounded ? 'wounded' : ''}" style="--c:${CLASSES[def.cls].color}" data-action="slot" data-squad="${i}" data-slot="${slot}">
+      <button class="arena-hero ${wounded ? 'wounded' : ''}" style="--c:${WEAPON_GRADES[h.rarity].color}" data-action="slot" data-squad="${i}" data-slot="${slot}">
         ${sprite(CLASSES[def.cls].sprite, 'hero-sprite')}
         <div class="ah-name">${ROLES[def.role].icon} ${esc(def.name)}</div>
         <div class="ah-lv">Lv. ${h.level}${h.weapon ? ` · ★${WEAPON_BY_ID[h.weapon].grade}` : ''}</div>
@@ -446,7 +449,7 @@ function buildingCard(key) {
   } else if (S.onboarding < 5) {
     // Im Tutorial: nur der aktuelle Schritt hat einen Knopf
     const step = QUESTS[S.onboarding];
-    if (step?.key === key) btn = `<button class="btn primary goal" data-action="${step.action}">${lvl ? `Stufe ${next}` : 'Bauen'}<small>kostenlos</small></button>`;
+    if (step?.key === key) btn = `<button class="btn primary goal" data-action="${step.action}">${step.btn}<small>kostenlos</small></button>`;
   } else if (maxed) {
     btn = `<button class="btn" disabled>Maximal</button>`;
   } else {
@@ -474,9 +477,9 @@ const fmtTime = (secs) => secs >= 60 ? `${Math.floor(secs / 60)} Min.${secs % 60
 
 function renderCamp() {
   if (S.onboarding < 5) {
-    // Tutorial: nur Gildenhalle und (ab Schritt 2) Zeltlager, keine Statistik
+    // Tutorial: nur Gildenhalle, ab Schritt 2 Zeltlager, ab Schritt 4 Riss-Portal; keine Statistik
     setHTML($('#camp-stats'), '');
-    setHTML($('#buildings'), BUILDING_ORDER.filter(k => k === 'hall' || (k === 'camp' && S.onboarding >= 2)).map(buildingCard).join(''));
+    setHTML($('#buildings'), BUILDING_ORDER.filter(k => k === 'hall' || (k === 'camp' && S.onboarding >= 2) || (k === 'portal' && S.onboarding >= 4)).map(buildingCard).join(''));
     return;
   }
   const next = S.nextCycleMs - S.lastTickMs;
@@ -484,7 +487,7 @@ function renderCamp() {
     <span>⚔️ Siege <b>${fmt(S.stats.kills)}</b></span>
     <span>👑 Stufen <b>${normalCleared(S)}/${TOTAL_NORMAL}</b></span>
     <span>🌅 Ruhestand <b>${S.stats.retired}</b></span></div>
-    <div class="card small cycle">💰 Gildenkasse in <b>${clock(next)}</b>: +${fmt(hallGold(S))} 🟡 plus Einkommen der Helden ab Lv. 10.</div>`);
+    <div class="card small cycle">💰 Gildenkasse in <b>${clock(next)}</b>: +${fmt(hallGold(S))} 🟡</div>`);
   setHTML($('#buildings'), BUILDING_ORDER.map(buildingCard).join(''));
 }
 
@@ -523,7 +526,7 @@ function heroMini(h, opts = {}) {
   const hs = heroStats(S, h);
   const def = hs.def;
   const wounded = !!h.woundedUntil;
-  return `<div class="hero-mini ${wounded ? 'wounded' : ''}" style="--c:${CLASSES[def.cls].color}">
+  return `<div class="hero-mini ${wounded ? 'wounded' : ''}" style="--c:${WEAPON_GRADES[h.rarity].color}">
     ${sprite(CLASSES[def.cls].sprite, 'mini-sprite')}
     <div class="hm-body">
       <div class="hm-name"><b>${esc(def.name)}</b> <span class="lv">Lv. ${h.level}</span>${h.weapon ? ` <span class="wpn" style="color:${WEAPON_GRADES[WEAPON_BY_ID[h.weapon].grade].color}">★${WEAPON_BY_ID[h.weapon].grade}</span>` : ''}</div>
@@ -545,9 +548,17 @@ function tentWarnings(sq) {
   return w.join(' · ');
 }
 
+// Auftrag „Verstärkung“: kostenloser Held, der auf der Trupp-Seite aufgenommen wird (oder null)
+function questFreeHero() {
+  const q = currentQuest(S);
+  return q && q.goal.type === 'freeHero' && !isOwned(S, q.goal.hero) ? HERO_BY_ID[q.goal.hero] : null;
+}
+
 function renderSquads() {
   const tutorial = S.onboarding < 5;
   $('#squads-more').hidden = tutorial;
+  const free = questFreeHero();
+  const freeSlot = free ? S.squads[0].slots.indexOf(null) : -1; // quest-hero setzt in Zelt 1, sonst Reserve
   setHTML($('#tents'), S.squads.map((sq, i) => {
     if (i >= S.tentsUnlocked) {
       if (tutorial) return '';
@@ -569,18 +580,23 @@ function renderSquads() {
         if (!h && S.onboarding === 3 && i === 0 && slot === 0) {
           return `<button class="slot goal" data-action="ob-recruit"><span class="slot-empty">＋ ${esc(HERO_BY_ID[ONBOARDING.tank].name)} aufnehmen</span></button>`;
         }
+        if (!h && free && i === 0 && slot === freeSlot) {
+          return `<button class="slot goal" data-action="quest-hero"><span class="slot-empty">＋ ${esc(free.name)} aufnehmen</span></button>`;
+        }
         if (!h && tutorial) return `<div class="slot"><span class="slot-empty">Platz frei</span></div>`;
         return `<button class="slot" data-action="slot" data-squad="${i}" data-slot="${slot}">${h ? heroMini(h) : '<span class="slot-empty">＋ Platz frei</span>'}</button>`;
       }).join('')}</div>
-      ${tutorial ? '' : `<div class="tent-foot"><span>⚔️ ~${fmt(prof.dps)} DPS</span><span>✚ ${fmt(prof.heal)}/s</span><span>❤ ${fmt(prof.hpPool)}</span></div>
+      ${tutorial ? '' : `<div class="tent-foot"><span>⚔️ ~${fmt(prof.dps)} Schaden/s</span><span>✚ ${fmt(prof.heal)} Heilung/s</span><span>❤ ${fmt(prof.hpPool)} LP</span></div>
       ${warn ? `<div class="b-note">${warn}</div>` : ''}`}
     </div>`;
   }).join(''));
 
   const res = reserveHeroes(S).sort((a, b) => b.level - a.level);
-  setHTML($('#reserve'), res.length
+  const joinCard = free && freeSlot < 0
+    ? `<button class="card btn primary block goal" data-action="quest-hero">＋ ${esc(free.name)} aufnehmen (Reserve)</button>` : '';
+  setHTML($('#reserve'), joinCard + (res.length
     ? res.map(h => `<button class="card hero-row" data-action="hero" data-uid="${h.uid}">${heroMini(h)}<span class="chev">›</span></button>`).join('')
-    : '<div class="card muted small">Keine Helden in Reserve. Neue Rekruten landen hier, sobald alle Zelte voll sind.</div>');
+    : joinCard ? '' : '<div class="card muted small">Keine Helden in Reserve.</div>'));
 
   setHTML($('#recruit'), recruitHtml());
 }
@@ -597,7 +613,7 @@ function recruitHtml() {
     const d = HERO_BY_ID[o.heroId];
     const cost = recruitCost(o.rarity);
     const m = 1 + rarityBonus(o.rarity);
-    return `<div class="card recruit" style="--c:${CLASSES[d.cls].color};--r:${WEAPON_GRADES[o.rarity].color}">
+    return `<div class="card recruit" style="--c:${WEAPON_GRADES[o.rarity].color};--r:${WEAPON_GRADES[o.rarity].color}">
         ${sprite(CLASSES[d.cls].sprite, 'mini-sprite')}
         <div class="hm-body">
           <div class="hm-name"><b>${esc(d.name)}</b></div>
@@ -610,8 +626,13 @@ function recruitHtml() {
       </div>`;
   }).join('') || '<div class="card muted small">Keine Angebote mehr. Neue Rekruten kommen bald.</div>';
   const rc = recruitRefreshCost(S);
+  const odds = Object.entries(recruitOdds(S)).filter(([, w]) => w > 0)
+    .map(([r, w]) => `<span style="color:${WEAPON_GRADES[r].color}">◆</span> ${w} %`).join(' · ');
+  const nextOdds = RECRUIT.odds.find(x => x.hall > S.buildings.hall);
+  const better = Math.min(next?.hall ?? Infinity, nextOdds?.hall ?? Infinity);
   return `
-    <div class="card small">Neue Rekruten in <b>${clock(S.recruits.nextRestockMs - S.lastTickMs)}</b> · ${t.slots} Plätze, alle ${t.restockMin} Min.${next ? `<br><span class="muted">Gildenhalle Stufe ${next.hall}: ${next.slots} Plätze, alle ${next.restockMin} Min.</span>` : ''}${blocked ? '<br>Zuerst die Quest abschließen.' : ''}</div>
+    <div class="card small">Neue Rekruten in <b>${clock(S.recruits.nextRestockMs - S.lastTickMs)}</b>${blocked ? '<br>Zuerst die Quest abschließen.' : ''}
+      <div class="odds">${odds}${better < Infinity ? `<br><span class="muted">Mehr und seltenere ab Gildenhalle ${better}.</span>` : ''}</div></div>
     ${offers}
     ${rerollRow(`<button class="btn" data-action="recruit-refresh" ${S.gold >= rc ? '' : 'disabled'}>Liste erneuern<small>🟡 ${fmt(rc)}</small></button>`, 'recruits', S.recruits.refreshes)}`;
 }
@@ -639,7 +660,7 @@ function renderLab() {
   setHTML($('#lab'), `
     <div class="card lab-head">
       <div><b>📜 ${fmt(S.rp)}</b> Forschungsnotizen</div>
-      <div class="muted small">Labor Stufe ${S.buildings.lab} · Forschungsstufe II ab Labor ${TIER_LAB[2]}, III ab Labor ${TIER_LAB[3]}.<br>📜 gibt es für Boss-Siege, Level-Ups und alle 10 Min. von Helden ab Lv. 20.</div>
+      <div class="muted small">Stufe II ab Labor ${TIER_LAB[2]}, III ab Labor ${TIER_LAB[3]}.</div>
     </div>
     ${RESEARCH_ORDER.map(tk => {
       const tree = RESEARCH[tk];
@@ -689,7 +710,7 @@ function armoryCards(back = '') {
       <div class="b-act btn-col tight">
         <button class="btn primary" data-action="equip-pick" data-idx="${idxs[0]}"${b}>Ausrüsten</button>
         <button class="btn" data-action="sell" data-idx="${idxs[0]}"><small>Verkaufen 🟡 ${fmt(sellPrice(wid))}</small></button>
-      </div></div>`).join('') || '<div class="card muted small">Noch leer. Waffen gibt es im Laden der Charr-Schmiede und als Beute von Bossen.</div>';
+      </div></div>`).join('') || '<div class="card muted small">Noch leer. Waffen gibt es von Bossen und im Laden.</div>';
 }
 
 function renderForge() {
@@ -710,7 +731,7 @@ function renderForge() {
         </div></div>`;
     }).join('') || '<div class="card muted small">Ausverkauft. Neue Ware kommt bald.</div>';
     setHTML($('#weapons'), `
-      <div class="card small">Laden: neue Ware in <b>${clock(S.shop.nextRestockMs - S.lastTickMs)}</b>. Schmiede Stufe ${S.buildings.forge} führt Waffen bis ${effectText('forge', S.buildings.forge, true)}.</div>
+      <div class="card small">Neue Ware in <b>${clock(S.shop.nextRestockMs - S.lastTickMs)}</b></div>
       ${offers}
       ${rerollRow(`<button class="btn" data-action="shop-refresh" ${S.gold >= refreshCost(S) ? '' : 'disabled'}>Ware auffrischen<small>🟡 ${fmt(refreshCost(S))}</small></button>`, 'shop', S.shop.refreshes)}
       ${armory}`);
@@ -721,7 +742,7 @@ function renderForge() {
     return;
   }
   setHTML($('#mystic'), `
-    <div class="card small">Schicke Helden ab Lv. ${RETIRE_MIN_LEVEL} in den Ruhestand, um 🍀 Mystischen Klee zu erhalten (Lv.²/100). Die Boni hier sind dauerhaft.</div>
+    <div class="card small">Ruhestand ab Lv. ${RETIRE_MIN_LEVEL} bringt 🍀. Die Boni hier sind dauerhaft.</div>
     ${MYSTIC_ORDER.map(k => {
       const m = MYSTIC[k];
       const lvl = S.mystic[k];
@@ -769,7 +790,7 @@ function inventoryHtml() {
       <div class="b-act"><button class="btn primary" data-action="feed-pick" data-g="${g}">Verfüttern</button></div></div>` : '').join('');
   return `
     <h3 class="tree-title">🍞 Proviant</h3>
-    ${rations || '<div class="card muted small">Kein Proviant. Den gibt es als Beute von Bossen.</div>'}
+    ${rations || '<div class="card muted small">Kein Proviant. Den gibt es von Bossen.</div>'}
     <div class="card muted small">🍎 Früchte <b>${S.fruit}</b> · 🎟️ Arena-Tickets <b>${S.tickets}</b> (Funktion folgt)</div>
     <h3 class="tree-title">🗄️ Waffenkammer (${S.armory.length})</h3>
     ${armoryCards('inv')}
@@ -848,8 +869,16 @@ function heroDetailHtml(h) {
   const hs = heroStats(S, h);
   const d = hs.def;
   const i = squadOf(S, h.uid);
+  const out = heroOutput(S, h);
+  const pct = (x) => `${Math.round(x * 100)} %`;
+  const roleHint = {
+    tank: 'Steht vorn und fängt die Treffer ab.',
+    dps: 'Greift jede Sekunde an.',
+    support: `Greift mit ${pct(COMBAT.SUPPORT_ATK_FACTOR)} ATK an und stärkt den Trupp.`,
+    healer: `Heilt jede Sekunde den schwächsten Verbündeten und greift mit ${pct(COMBAT.HEALER_ATK_FACTOR)} ATK an (ohne Krit).`,
+  }[d.role];
   return `
-    <div class="detail" style="--c:${CLASSES[d.cls].color}">
+    <div class="detail" style="--c:${WEAPON_GRADES[h.rarity].color}">
       ${sprite(CLASSES[d.cls].sprite, 'detail-sprite')}
       <div>
         <div class="hm-name"><b>${esc(d.name)}</b> <span class="lv">Lv. ${h.level}/${levelCap(S)}</span></div>
@@ -861,12 +890,15 @@ function heroDetailHtml(h) {
     <div class="stat-grid">
       <span>❤ LP</span><b>${fmt(h.hp)} / ${fmt(hs.maxHp)}</b>
       <span>⚔️ ATK</span><b>${fmt(hs.atk)}</b>
+      <span>💥 Schaden</span><b>${fmt(out.hit)} pro Sekunde</b>
+      ${out.heal ? `<span>✚ Heilung</span><b>${fmt(out.heal)} LP pro Sekunde</b>` : ''}
       <span>🛡️ DEF</span><b>−${Math.round(hs.defense * 100)} % Schaden</b>
-      <span>🎯 Krit</span><b>${Math.round(hs.crit * 100)} % · ×${hs.critMult.toFixed(1).replace('.', ',')}</b>
+      ${out.canCrit ? `<span>🎯 Krit</span><b>${Math.round(hs.crit * 100)} % · ×${hs.critMult.toFixed(1).replace('.', ',')}</b>` : ''}
       <span>⚒️ Waffe</span><b>${weaponLabel(h)}</b>
       <span>✨ EXP</span><b>${fmt(h.exp)} / ${fmt(F.expToNext(h.level))}</b>
       <span>📍 Ort</span><b>${i === -1 ? 'Reserve' : `Zelt ${i + 1}`}</b>
     </div>
+    <div class="muted small">${ROLES[d.role].icon} ${roleHint} Werte ohne Trupp-Boni.</div>
     ${h.woundedUntil ? `<div class="b-note">💢 Verwundet – regeneriert in ${clock(h.woundedUntil - S.lastTickMs)}</div>` : ''}`;
 }
 

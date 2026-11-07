@@ -4,13 +4,13 @@ Aus den Nebeln reißen Kryptis-Risse auf. Eure Gilde schlägt ein Lager an ihrem
 
 ## Die ersten Schritte
 
-Quest-Banner führen dich durch den Start. Die Reiter unten erscheinen erst, wenn du sie brauchst:
+Quest-Banner führen dich durch den Start. **„Hingehen“** bringt dich zur richtigen Seite, den Schritt selbst machst du dort mit dem leuchtenden Knopf. Die Reiter unten erscheinen erst, wenn du sie brauchst:
 
 1. **Gildenlager gründen**
 2. **Gildenhalle errichten** (kostenlos). Danach ist nur das **Lager** sichtbar.
 3. **Erstes Zelt aufschlagen** (kostenlos, baut das Zeltlager, Level-Cap Lv. 10). Danach erscheint **Trupps**.
-4. **Ersten Helden aufnehmen**, einen Wächter als Tank für Zelt 1 (kostenlos)
-5. **Riss-Portal aktivieren**. Jetzt erscheinen alle Reiter. Der Wächter kämpft zunächst allein, Heiler und Schadensausteiler folgen über die ersten Aufträge.
+4. **Ersten Helden aufnehmen**, einen Wächter als Tank: im leeren Platz von Zelt 1 (kostenlos)
+5. **Riss-Portal aktivieren** im Lager. Jetzt erscheinen **Portal** und **Inventar**; **Labor** und **Schmiede** kommen dazu, sobald du sie gebaut hast. Der Wächter kämpft zunächst allein, Heiler und Schadensausteiler folgen über die ersten Aufträge: Du nimmst sie bei **Trupps** im leuchtenden Platz von Zelt 1 auf.
 
 Der nächste Schritt leuchtet: ein Punkt am passenden Reiter und ein leuchtender Knopf.
 
@@ -27,14 +27,14 @@ Danach geht es im selben **Auftrags-Banner** nahtlos weiter (Auftrag 5 bis 24). 
 
 | | Was | Woher | Wofür |
 |---|---|---|---|
-| 🟡 | Gold | Siege, Gildenkasse, Helden ab Lv. 10 | Gebäude, Rekruten, Zelte, Boss-Herausforderungen, Waffen, Belebung |
+| 🟡 | Gold | Siege, Gildenkasse | Gebäude, Rekruten, Zelte, Boss-Herausforderungen, Waffen, Belebung |
 | 🔮 | Ätherscherben | Siege (5 %), jeder Boss | Riss-Portal |
-| 📜 | Forschungsnotizen | Boss-Siege, Level-Ups, Helden ab Lv. 20 alle 10 Min. | Forschung im Asura-Labor, seltene Waffen |
+| 📜 | Forschungsnotizen | Boss-Siege, Level-Ups | Forschung im Asura-Labor, seltene Waffen |
 | 🍀 | Mystischer Klee | Ruhestand | Mystische Schmiede, Würfel-Preis zurücksetzen |
 | 🍞 | Proviant (Güte 1–6) | Boss-Siege, Level-Ups | EXP für einen Helden |
 | 🍎 🎟️ | Früchte, Arena-Tickets | Level-Ups, Bosse | Funktion folgt |
 
-**Gildenkasse:** Alle 10 Minuten zahlt die Gildenhalle Gold aus (100 bis 1.000 🟡 je nach Stufe). Dazu verdient jeder Held ab Lv. 10 Gold und ab Lv. 20 Forschungsnotizen, auch in der Reserve.
+**Gildenkasse:** Alle 10 Minuten zahlt die Gildenhalle Gold aus (100 bis 1.000 🟡 je nach Stufe). Helden haben kein passives Einkommen, sie verdienen nur im Kampf.
 
 ## Helden & Rollen
 
@@ -69,7 +69,15 @@ Helden steigen bis **Lv. 60** auf. Jede neue Stufe bringt eine Belohnung: Forsch
   - **Zeit abgelaufen oder alle gefallen:** Der Trupp kehrt zu den Schergen zurück. Versuch es später erneut.
 - Bereits besiegte Bosse kannst du jederzeit erneut herausfordern, zum Beispiel für Waffen.
 - Fällt ein Held auf 0 LP, ist er **verwundet** und erholt sich **90 Sekunden** lang. Für Gold kannst du ihn sofort beleben (⚡).
-- Fallen alle drei, zieht sich der Trupp **ins Lager zurück** und kehrt nach der Erholung automatisch zurück.
+- Fallen alle drei, zieht sich der Trupp **ins Lager zurück** und kehrt automatisch zurück, sobald ein Held wieder fit ist (erholt oder belebt). Die anderen erholen sich im Zelt weiter.
+
+### Eine Kampfsekunde
+
+- ⚔️ Schadensausteiler und 🛡️ Tanks greifen mit voller ATK an, 📯 Unterstützer mit 70 %. Krit-Treffer machen doppelten Schaden.
+- ✚ Heiler heilen den Verbündeten mit den wenigsten LP (Anteil) um **ATK × 1,8** und greifen mit **40 % ATK** an, ohne Krit.
+- Danach schlägt das Monster den vordersten Helden. Seine DEF senkt den Schaden.
+- Nach jedem Sieg heilt der ganze Trupp 10 % seiner LP.
+- Im Helden-Fenster stehen **💥 Schaden** und **✚ Heilung** pro Sekunde (ohne Trupp-Boni). Unter jedem Zelt stehen Schaden, Heilung und LP des ganzen Trupps.
 
 **Schwere Stufen** öffnen sich, wenn alle 50 normalen Stufen besiegt sind. **Legendäre Stufen** kommen nach allen schweren.
 
@@ -139,7 +147,7 @@ Mit **📜 Forschungsnotizen** erforschst du dauerhafte Verbesserungen in drei B
 ## ⚒️ Charr-Schmiede – Waffen
 
 - Der **Laden** bietet 3 Waffen an und füllt sich alle 30 Minuten neu. „Ware auffrischen“ kostet 100 Gold und verdoppelt sich jedes Mal, bis der Laden sich von selbst erneuert. Mit **2 🍀 Mystischem Klee** setzt du den Preis sofort zurück auf 100.
-- Gekaufte Waffen und Boss-Beute landen in der **Waffenkammer** (Reiter ⚒️ Schmiede). Boss-Beute kommt auch schon, bevor die Schmiede gebaut ist. Dort rüstest du sie aus oder verkaufst sie (25 % des Preises).
+- Gekaufte Waffen und Boss-Beute landen in der **Waffenkammer** (Reiter 🎒 Inventar und ⚒️ Schmiede). Boss-Beute kommt auch schon, bevor die Schmiede gebaut ist. Dort rüstest du sie aus oder verkaufst sie (25 % des Preises).
 - **🎒 Inventar** (eigener Reiter in der unteren Leiste): Proviant, Früchte, Arena-Tickets, Waffenkammer und ausgerüstete Waffen an einem Ort. Ausrüsten und Verfüttern geht dort oder im Helden-Fenster.
 - Jeder Held trägt eine **Waffenart**: Heiler einen **Fokus**, sonst nach Klasse.
 
@@ -175,13 +183,23 @@ Im Reiter **🛡️ Trupps → Rekrutieren** stehen wechselnde **Angebote**. Wie
 - Nach einem Ausbau der Gildenhalle kommen die zusätzlichen Plätze sofort dazu.
 - Jeder Rekrut hat eine **Seltenheit**. Sie bestimmt den Preis und einen Bonus auf LP und ATK:
 
-| Seltenheit | Preis | Bonus LP/ATK | Häufigkeit |
-| --- | --- | --- | --- |
-| ◆ Fein | 100 | – | 45 % |
-| ◆ Meisterwerk | 500 | +10 % | 30 % |
-| ◆ Selten | 2.500 | +20 % | 15 % |
-| ◆ Exotisch | 5.000 | +35 % | 7 % |
-| ◆ Aufgestiegen | 10.000 | +50 % | 3 % |
+| Seltenheit | Preis | Bonus LP/ATK |
+| --- | --- | --- |
+| ◆ Fein | 100 | – |
+| ◆ Meisterwerk | 500 | +10 % |
+| ◆ Selten | 2.500 | +20 % |
+| ◆ Exotisch | 5.000 | +35 % |
+| ◆ Aufgestiegen | 10.000 | +50 % |
+
+Wie oft welche Seltenheit kommt, hängt von der **Gildenhalle** ab. Die aktuellen Chancen stehen im Spiel unter „Rekrutieren“.
+
+| Gildenhalle | Fein | Meisterwerk | Selten | Exotisch | Aufgestiegen |
+| --- | --- | --- | --- | --- | --- |
+| ab Stufe 1 | 70 % | 25 % | 5 % | – | – |
+| ab Stufe 3 | 50 % | 30 % | 15 % | 5 % | – |
+| ab Stufe 5 | 35 % | 30 % | 20 % | 12 % | 3 % |
+| ab Stufe 7 | 20 % | 30 % | 25 % | 17 % | 8 % |
+| ab Stufe 9 | 10 % | 25 % | 30 % | 22 % | 13 % |
 
 - Jedes Gildenmitglied kann nur einmal gleichzeitig im Lager sein; Mitglieder im Lager tauchen nicht im Angebot auf.
 - Die kostenlosen Helden aus Onboarding und Aufträgen (Tank, Heiler, Schaden) sind „Fein“ und kommen nicht ins Angebot.

@@ -5,7 +5,7 @@
 
 export const GAME = {
   title: 'Aetherbastion: Rift Watch',
-  VERSION: '0.14.1',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
+  VERSION: '0.19.0',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
   BUILD: 'lokal',                    // ersetzt der Pages-Workflow durch „Nr. · Commit“
   SAVE_KEY: 'aetherbastion_save_v1',
   SAVE_VERSION: 7,
@@ -100,65 +100,65 @@ export const ONBOARDING = { tank: 'h01', healer: 'h07', dps: 'h13' };
 //  tab: Reiter, zu dem „Hingehen“ führt
 // ---------------------------------------------------------------------
 export const QUESTS = [
-  { id: 'healer', icon: '✚', title: 'Verstärkung: Heilung', tab: 'portal',
-    text: 'Verstärkung mit Heilkräften meldet sich am Lager. Mit Heilung hält der Trupp länger durch.',
+  { id: 'healer', icon: '✚', title: 'Verstärkung: Heilung', tab: 'squads',
+    text: 'Jemand mit Heilkräften meldet sich. Nimm die Verstärkung in Zelt 1 auf.',
     goal: { type: 'freeHero', hero: ONBOARDING.healer }, reward: {} },
   { id: 'boss1', icon: '👑', title: 'Die Banditen-Anführerin', tab: 'portal',
-    text: 'An der Alten Mühle bei Beetletun hält eine Banditen-Anführerin den Riss offen. Fordere sie heraus.',
+    text: 'Sie hält den Riss an der Alten Mühle offen. Fordere sie heraus.',
     goal: { type: 'stage', zone: 1, stage: 1 }, reward: { gold: 100 } },
-  { id: 'dps', icon: '⚔️', title: 'Verstärkung: Schaden', tab: 'portal',
-    text: 'Nach dem ersten Sieg will sich jemand mit Feuerkraft anschließen. Damit ist Zelt 1 voll besetzt.',
+  { id: 'dps', icon: '⚔️', title: 'Verstärkung: Schaden', tab: 'squads',
+    text: 'Jemand mit Feuerkraft will mit. Damit ist Zelt 1 voll.',
     goal: { type: 'freeHero', hero: ONBOARDING.dps }, reward: {} },
   { id: 'lv5', icon: '⬆️', title: 'Erste Erfahrung', tab: 'squads',
-    text: 'Lass deine Helden an den Schergen wachsen, bis einer Lv. 5 erreicht.',
+    text: 'Bring einen Helden auf Lv. 5.',
     goal: { type: 'heroLevel', level: 5 }, reward: { gold: 150 } },
   { id: 'stage3', icon: '⚔️', title: 'Tiefer ins Königintal', tab: 'portal',
     text: 'Besiege den Boss von Stufe 3 im Königintal.',
     goal: { type: 'stage', zone: 1, stage: 3 }, reward: { gold: 200, shards: 1 } },
   { id: 'hall2', icon: '🏛️', title: 'Eine größere Halle', tab: 'camp',
-    text: 'Baue die Gildenhalle auf Stufe 2 aus. Die Gildenkasse zahlt dann mehr.',
+    text: 'Baue die Gildenhalle auf Stufe 2 aus.',
     goal: { type: 'building', key: 'hall', level: 2 }, reward: { gold: 300 } },
   { id: 'kitchen', icon: '🍲', title: 'Warme Mahlzeiten', tab: 'camp',
-    text: 'Errichte die Feldküche. Satte Helden lernen schneller.',
+    text: 'Baue die Feldküche. Satte Helden lernen schneller.',
     goal: { type: 'building', key: 'kitchen', level: 1 }, reward: { gold: 200 } },
   { id: 'weapon', icon: '🗡️', title: 'Bewaffnet', tab: 'squads',
-    text: 'Bosse lassen Waffen fallen. Rüste einen Helden mit einer Waffe aus.',
+    text: 'Rüste einen Helden mit einer Waffe aus.',
     goal: { type: 'weapon' }, reward: { shards: 2 } },
   { id: 'zone1', icon: '🏆', title: 'Das Königintal ist frei', tab: 'portal',
     text: 'Besiege alle fünf Bosse im Königintal.',
     goal: { type: 'stage', zone: 1, stage: 5 }, reward: { gold: 500, rp: 3 } },
   { id: 'lab', icon: '🔬', title: 'Asura-Know-how', tab: 'camp',
-    text: 'Baue das Asura-Labor. Mit 📜 Forschungsnotizen werden deine Helden stärker.',
+    text: 'Baue das Asura-Labor.',
     goal: { type: 'building', key: 'lab', level: 1 }, reward: { rp: 3 } },
   { id: 'research1', icon: '📜', title: 'Erste Forschung', tab: 'lab',
-    text: 'Erforsche im Asura-Labor eine beliebige Stufe.',
+    text: 'Erforsche eine beliebige Stufe.',
     goal: { type: 'research', n: 1 }, reward: { gold: 400 } },
   { id: 'lv10', icon: '⬆️', title: 'Erfahrene Wacht', tab: 'squads',
     text: 'Bring einen Helden auf Lv. 10.',
     goal: { type: 'heroLevel', level: 10 }, reward: { shards: 2 } },
   { id: 'camp2', icon: '⛺', title: 'Mehr Platz im Lager', tab: 'camp',
-    text: 'Baue das Zeltlager auf Stufe 2 aus. Das Level-Cap steigt auf 20.',
+    text: 'Baue das Zeltlager auf Stufe 2 aus (Level-Cap 20).',
     goal: { type: 'building', key: 'camp', level: 2 }, reward: { gold: 800 } },
   { id: 'ration', icon: '🍞', title: 'Proviant verteilen', tab: 'squads',
-    text: 'Füttere einen Helden mit Proviant aus den Boss-Beuten.',
+    text: 'Gib einem Helden Proviant (🎒 Inventar).',
     goal: { type: 'ration', n: 1 }, reward: { rp: 3 } },
   { id: 'forge', icon: '⚒️', title: 'Charr-Stahl', tab: 'camp',
-    text: 'Errichte die Charr-Schmiede mit Waffenladen und Waffenkammer.',
+    text: 'Baue die Charr-Schmiede.',
     goal: { type: 'building', key: 'forge', level: 1 }, reward: { shards: 2 } },
   { id: 'portal2', icon: '🌀', title: 'Der Riss weitet sich', tab: 'portal',
-    text: 'Baue das Riss-Portal auf Stufe 2 aus. Dafür brauchst du 🔮 Ätherscherben.',
+    text: 'Baue das Riss-Portal auf Stufe 2 aus (braucht 🔮).',
     goal: { type: 'building', key: 'portal', level: 2 }, reward: { gold: 1_000 } },
   { id: 'zone2', icon: '🏆', title: 'Die Kessex-Hügel', tab: 'portal',
-    text: 'Befreie die Kessex-Hügel und besiege den Toxischen Spinnen-König.',
+    text: 'Besiege alle Bosse in den Kessex-Hügeln.',
     goal: { type: 'stage', zone: 2, stage: 5 }, reward: { gold: 1_500, rp: 5 } },
   { id: 'tent2', icon: '⛺', title: 'Ein zweiter Trupp', tab: 'squads',
-    text: 'Schlage Zelt 2 auf (ab Gildenhalle Stufe 3).',
+    text: 'Schlage Zelt 2 auf (ab Gildenhalle 3).',
     goal: { type: 'tents', n: 2 }, reward: { shards: 5 } },
   { id: 'squad2', icon: '🛡️', title: 'Volle Besetzung', tab: 'squads',
-    text: 'Besetze Zelt 2 mit drei Helden. Achte auf Tank, Heiler und Schaden.',
+    text: 'Besetze Zelt 2 mit Tank, Heiler und Schaden.',
     goal: { type: 'squadFull', squad: 1 }, reward: { gold: 2_000 } },
   { id: 'zone3', icon: '🏆', title: 'Caudecus’ Anwesen', tab: 'portal',
-    text: 'Stürme Caudecus’ Anwesen und stelle Separatisten-Hauptmann DeLana.',
+    text: 'Besiege alle Bosse in Caudecus’ Anwesen.',
     goal: { type: 'stage', zone: 3, stage: 5 }, reward: { gold: 3_000, rp: 10 } },
 ];
 
@@ -226,8 +226,10 @@ export const LEVEL_CAP_MAX = MAX_HERO_LEVEL; // 60
 //  tiers: ab Gildenhallen-Stufe `hall` gibt es `slots` Angebote, neue alle `restockMin` Minuten.
 //  refreshBase: „Liste erneuern“ kostet 100 🟡 und verdoppelt sich je Versuch;
 //  beim automatischen Nachschub wird der Preis zurückgesetzt.
-//  rarities: Seltenheit (Namen/Farben wie WEAPON_GRADES 2–6) → Preis, Würfel-Gewicht,
+//  rarities: Seltenheit (Namen/Farben wie WEAPON_GRADES 2–6) → Preis und
 //  Bonus auf LP und ATK. Kostenlose Helden (Onboarding, Aufträge) sind „Fein“.
+//  odds: Würfel-Gewichte der Seltenheiten (in %) ab Gildenhallen-Stufe `hall`.
+//  Je größer die Halle, desto öfter kommen seltene Rekruten.
 // ---------------------------------------------------------------------
 export const RECRUIT = {
   tiers: [
@@ -237,12 +239,20 @@ export const RECRUIT = {
   ],
   refreshBase: 100,
   rarities: {
-    2: { cost: 100,    weight: 45, bonus: 0 },     // Fein
-    3: { cost: 500,    weight: 30, bonus: 0.10 },  // Meisterwerk
-    4: { cost: 2_500,  weight: 15, bonus: 0.20 },  // Selten
-    5: { cost: 5_000,  weight: 7,  bonus: 0.35 },  // Exotisch
-    6: { cost: 10_000, weight: 3,  bonus: 0.50 },  // Aufgestiegen
+    2: { cost: 100,    bonus: 0 },     // Fein
+    3: { cost: 500,    bonus: 0.10 },  // Meisterwerk
+    4: { cost: 2_500,  bonus: 0.20 },  // Selten
+    5: { cost: 5_000,  bonus: 0.35 },  // Exotisch
+    6: { cost: 10_000, bonus: 0.50 },  // Aufgestiegen
   },
+  odds: [
+    //            Fein  Meister  Selten  Exotisch  Aufgest.
+    { hall: 1, w: { 2: 70, 3: 25, 4: 5,  5: 0,  6: 0 } },
+    { hall: 3, w: { 2: 50, 3: 30, 4: 15, 5: 5,  6: 0 } },
+    { hall: 5, w: { 2: 35, 3: 30, 4: 20, 5: 12, 6: 3 } },
+    { hall: 7, w: { 2: 20, 3: 30, 4: 25, 5: 17, 6: 8 } },
+    { hall: 9, w: { 2: 10, 3: 25, 4: 30, 5: 22, 6: 13 } },
+  ],
   freeRarity: 2,
 };
 export const RETIRE_MIN_LEVEL = 20;

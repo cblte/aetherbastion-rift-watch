@@ -151,8 +151,15 @@ function recruitPool(state) {
   return HEROES.filter(d => !isOwned(state, d.id) && !offered.has(d.id) && !reserved.has(d.id));
 }
 
-function rollRarity(rnd = Math.random) {
-  const pool = Object.entries(RECRUIT.rarities).map(([r, x]) => ({ r: Number(r), weight: x.weight }));
+// Würfel-Gewichte der Seltenheiten für die aktuelle Gildenhallen-Stufe ({ Seltenheit: % })
+export function recruitOdds(state) {
+  let o = RECRUIT.odds[0];
+  for (const x of RECRUIT.odds) if (state.buildings.hall >= x.hall) o = x;
+  return o.w;
+}
+
+function rollRarity(state, rnd = Math.random) {
+  const pool = Object.entries(recruitOdds(state)).filter(([, w]) => w > 0).map(([r, w]) => ({ r: Number(r), weight: w }));
   return pickWeighted(pool, rnd).r;
 }
 
@@ -161,7 +168,7 @@ function addRecruitOffers(state, n) {
     const pool = recruitPool(state);
     if (!pool.length) return;
     const d = pool[Math.floor(Math.random() * pool.length)];
-    state.recruits.offers.push({ heroId: d.id, rarity: rollRarity() });
+    state.recruits.offers.push({ heroId: d.id, rarity: rollRarity(state) });
   }
 }
 
