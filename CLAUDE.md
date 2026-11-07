@@ -28,6 +28,7 @@ Der Spielstand ist ein einziges Objekt. Bei Import/Reset wird es per `replaceSta
 ## Entwicklungs-Referenzen (`dev-data/`)
 - `akrw-buildings.md`, `akrw-hero-leveling.md`, `akrw-shop.md`, `akrw-progression-stages.md/.json` werden aus `js/data/` erzeugt, `akrw-zones-expansion.md` aus `tools/data/zones-expansion.json`: `node tools/gen-devdata.mjs .` – nach Datenänderungen neu erzeugen, nicht von Hand bearbeiten.
 - `cqht-monsters.json/.md` (alle 150 CQHT-Monster und -Bosse mit Werten und Drops) kommen aus der Fan-Wiki: `node tools/fetch-monsters.mjs .` (`--only ID1,ID2` testet einzelne Monster, ohne Dateien zu schreiben). Nur Werte und Texte, keine Grafiken.
+- `cqht-skills.json/.md` (kompletter CQHT-Forschungsbaum: 436 Forschungen in 4 Bäumen mit Labor-Stufe, Kosten in Honor, Zeit, Voraussetzungen, Freischaltungen, Namen/Texte auf Deutsch) kommen aus der Fan-Wiki: `node tools/fetch-skills.mjs .`. Grundlage für einen späteren Ausbau des Asura-Labors; noch nicht im Spiel.
 - `gw2-monsters.json/.md`: jeder GW2-Boss und -Scherge mit CQHT-Vorlage (Werte/Drops unverändert) und Prüfung gegen die DE-GW2-Wiki. `node tools/build-gw2-monsters.mjs .` (Zonen 1–10 aus `js/data/stages.js` über `src`, Zonen 11–20 aus `tools/data/zones-expansion.json`, Wiki-Hinweise und feste CQHT-Vorlagen in `tools/data/gw2-hints.mjs`); Wiki-Ergebnisse liegen in `gw2-wiki-check.json`, `--wiki` prüft alles neu. Nach `gen-zones.mjs` neu erzeugen.
 - `akrw-traits.md` ist handgeschrieben: Entwurf für Helden-Eigenschaften (noch nicht im Spiel).
 
