@@ -1,0 +1,124 @@
+Hier sind Schergen (normale Gegner) aus dem Königintal (Stufe 1–17), aufgeteilt nach Gegend:
+
+#	Gegner	Stufe	Gegend
+1	Brackwasser-Skal	3–4	Dorf Shaemoor
+2	Flachlandwurm-Junges	2–3	Felder von Shaemoor
+3	Tamini-Krieger	6–7	Schnorrer-Plateau
+4	Tamini-Bogenschütze	6–7	Schnorrer-Plateau
+5	Skritt-Sammler	7	Schnorrer-Plateau
+6	Skritt-Flaschenwerferin	7–8	Flautenloch
+7	Ettin	7–9	Schwingen-Pfad / Forst der Königin
+8	Waldeber	8–10	Forst der Königin / Herzwald
+9	Adler-Raptor	9	Forst der Königin
+10	Waldspinne	8–10	Forst der Königin
+11	Goldener Moa	9–10	Forst der Königin
+12	Bär	7	Forst der Königin
+13	Hirsch / Hirschkuh	6–9	Forst der Königin / Herzwald
+14	Zerstörer-Troll	–	Event „Bereit zum Sprengen"
+15	Erweckte (verschiedene)	1–80	Event „Besiegt die eindringenden Erweckten"
+
+
+================
+
+Hier sind **normale Schergen** aus dem Caledon-Wald (Stufe 1–15):
+
+| # | Gegner | Stufe | Gegend |
+|---|--------|-------|--------|
+| 1 | Auferstandener Leibeigener | 2–3 | Wächterwäldchen |
+| 2 | Kranke Raupe | 2–3 | Arias' Garten |
+| 3 | Dschungelraupe | 2–3 | Arias' Garten |
+| 4 | Dschungelspinnen-Junges | 2–3 | Arias' Garten |
+| 5 | Albtraumhof-Dornenwolf | 5–8 | Ogham-Wildnis / Morgan-Spirale / Ventry-Bucht |
+| 6 | Albtraum-Duellant | 6 | Wilddornhöhle |
+| 7 | Albtraumhof-Wache | 6 | Wilddornhöhle |
+| 8 | Auferstandene Abscheulichkeit | 5–6 | Morgan-Spirale |
+| 9 | Albtraumhöfling | 8–9 | Ventry-Bucht |
+| 10 | Dschungelspinne | 8–14 | Glencarn-Gipfelchen / Vogelbeerenwälder |
+| 11 | Dschungel-Raptor | 8–15 | Glencarn-Gipfelchen / Vogelbeerenwälder |
+| 12 | Dschungel-Eber | 8–14 | Glencarn-Gipfelchen / Vogelbeerenwälder |
+| 13 | Dschungelwurm | 8–15 | Glencarn-Gipfelchen / Bergsuhlensumpf |
+| 14 | Dschungelwurm-Junges | 8–10 | Glencarn-Gipfelchen |
+| 15 | Erd-Elementar | 8–11 | Glencarn-Gipfelchen |
+| 16 | Klippen-Fledermaus | 8–11 | Glencarn-Gipfelchen |
+| 17 | Auferstandener Knecht (Risen Thrall) | 8–14 | Glencarn-Gipfelchen / Vogelbeerenwälder |
+| 18 | Auferstandener Grobian (Risen Brute) | 8–14 | Glencarn-Gipfelchen / Vogelbeerenwälder |
+| 19 | Krait-Damoss | 10–11 | Ventry-Bucht |
+| 20 | Caromi-Späher | 11–12 | Händleranger / Herrschaftsgebiet der Winde |
+
+**Besondere Gegner in der Zone:**
+
+- **Champion**: *Großer Dschungelwurm* (15, World Boss im Bergsuhlensumpf)
+- **Veteran**: *Veterane Urzeit-Maguuma-Wurmin* (8), *Veteran Krait-Hexe* (10), *Veteran Auferstandener Hylek* (5–6), *Schneller Pfeil* (11, Heldenherausforderung)
+
+Die Zone ist geprägt von drei Hauptfeinden: **Auferstandene** (Orrianische Untote) im Westen, dem **Albtraumhof** (verdrehte Sylvari) in der Mitte und den **Krait** im Osten an den Buchten.
+
+==========================
+
+Hier sind **normale Schergen** aus den Ebenen von Aschfurt (Stufe 1–15):
+
+| # | Gegner | Stufe | Gegend |
+|---|--------|-------|--------|
+| 1 | Geißelschwanz-Verschlinger | 3 | Kanonenbruch-Hügel / Verschlinger-Mündung |
+| 2 | Flammen-Legion-Pirscher | 4–5 | Facula Castrum / Feritas-See |
+| 3 | Flammen-Legion-Axtunhold | 4–5 | Facula Castrum / Igni Castrum |
+| 4 | Flammen-Legion-Klingenstürmer | 5–8 | Facula Castrum / Igni Castrum / Charr-Triumph |
+| 5 | Ascalon-Bauer | 4–7 | Anwesen des alten Herzogs / Sieger-Präsidium |
+| 6 | Ascalon-Bogenschütze | 6–7 | Anwesen des alten Herzogs / Sieger-Präsidium |
+| 7 | Ascalon-Kämpfer | 6–11 | Anwesen des alten Herzogs / Devast-Distrikt |
+| 8 | Ascalon-Magierin | 6–11 | Anwesen des alten Herzogs / Devast-Distrikt |
+| 9 | Ascalon-Heiler | 6–11 | Anwesen des alten Herzogs / Devast-Distrikt |
+| 10 | Salamanderlindwurm | 9–10 | Aschfurt-Forum |
+| 11 | Minotaurus | 10 | Aschfurt-Forum |
+| 12 | Schattenskelk | 11 | Sagenklauen-Weite |
+| 13 | Oger-Späher | 13 | Cadem-Wald |
+| 14 | Oger-Jäger | 13 | Cadem-Wald |
+| 15 | Oger-Grobian | 13 | Cadem-Wald |
+| 16 | Fledermaus | 14 | Menschliches Wehklagen |
+| 17 | Harpyie | 8–10 | Katakomben von Ascalon |
+| 18 | Verschlinger | 10 | Katakomben von Ascalon |
+| 19 | Skal | 12 | Ascalon-Becken |
+
+**Besondere Gegner in der Zone:**
+
+- **Champion**: *Schroffstein-Oger-Häuptling* (13, Cadem-Wald), *Erzürnter riesiger Verschlinger* (3, Verschlinger-Mündung)
+- **Veteran**: *Veteran Ascalon-Hauptmann* (11), *Veteran Ascalon-Magierin* (11), *Veteran Oger-Jägerin* (13), *Veteran Oger-Grobian* (13), *Veteran Oger-Späher* (13)
+
+Die Zone ist geprägt von drei Hauptfeinden: **Ascalonische Geister** (durch das Feindfeuer erweckte Untote) im Zentrum und Süden, der **Flammen-Legion** (abtrünnige Charr) im Norden und den **Ogern** (Schroffstein-Klan) im Osten.
+
+===========================
+
+Hier sind **normale Schergen** aus der Provinz Metrica (Stufe 1–15, Startzone der Asura):
+
+| # | Gegner | Stufe | Gegend |
+|---|--------|-------|--------|
+| 1 | Sumpflindwurm | 2 | Die Hinterlabore / Jeztar-Fälle |
+| 2 | Moskitos | 2 | Die Hinterlabore |
+| 3 | Asche (Ember) | 4 | Wildflammenhöhlen |
+| 4 | Inquestur-Agent | 3–6 | Die Hinterlabore / Jeztar-Fälle / Das Spukhaus |
+| 5 | Hylek (Cuatl) | 5–6 | Jeztar-Fälle / Loch Jezt |
+| 6 | Jaguar | 8 | Akk-Wildnis / Fischerstrandbeuge |
+| 7 | Dschungel-Raptor | 8–9 | Akk-Wildnis / Fischerstrandbeuge |
+| 8 | Skritt | 8–9 | Der Schlangenwind / Voloxian-Passage |
+| 9 | Skritt-Sammler | 9 | Der Schlangenwind |
+| 10 | Hylek (Cuatl) | 10–11 | Michoan-Marschen / Cuatl-Sumpfland |
+| 11 | Warg | 11 | Michoan-Marschen |
+| 12 | Frosch | 11 | Michoan-Marschen |
+| 13 | Funkenschwärmer | 11 | Michoan-Marschen |
+| 14 | Leuchtkäfer | 11 | Michoan-Marschen |
+| 15 | Dschungel-Troll | 12 | Graufarn-Weiten / Der Ameisenhügel |
+| 16 | Spinnenkönigin | 13 | Graufarn-Weiten |
+| 17 | Inquestur-Grenadier | 13–14 | Äußerer Inquestur-Komplex / Hexan-Abflachung |
+| 18 | Inquestur-Agent | 15 | Äußerer Inquestur-Komplex |
+| 19 | Asche (Ember) | 15 | Thaumanova-Reaktor |
+
+**Besondere Gegner in der Zone:**
+
+- **World Boss**: *Feuer-Elementar* (15, Thaumanova-Reaktor)
+- **Champion**: *Golemancer Gitt* (11, Michoan-Marschen), *Häuptling Cipactli* (5–6), *Black Ice 4444* (13, Äußerer Inquestur-Komplex)
+- **Veteran**: *Veteran Master Genius Jettz* (6, Das Spukhaus), *Veteran Inquestur-Agent* (13–14)
+
+Die Zone ist geprägt von **Inquestur**-Agenten (überwiegend im Norden), **Skritt** in den Höhlen im Süden, **Hylek** (Cuatl-Stamm) in den Marschen und **Dschungeltieren** in den Akk-Wildnissen.
+
+
+
+

@@ -241,7 +241,7 @@
   ],
   "requirements": [
     "**Level-Cap über 60:** `MAX_HERO_LEVEL` und die EXP-Tabelle in `js/data/heroLevels.js` enden bei Lv. 60, das Zeltlager auch. Für Lv. 61–80 brauchen wir neue Zeilen (EXP, Gold/Zyklus, Belohnungen) und weitere Zeltlager-Stufen.",
-    "**Stufen-Werte:** Die CQHT-Daten reichen nur bis Kapitel 5. Level, Kosten und Belohnungen für die Zonen 11–20 müssen wir selbst festlegen (oder an `dev-data/cqht-monsters.*` anlehnen).",
+    "**Stufen-Werte:** Die CQHT-Daten reichen nur bis Kapitel 5. Level, Kosten und Belohnungen für die Zonen 11–20 müssen wir selbst festlegen (oder an `dev-data/archiv/cqht-monsters.*` anlehnen).",
     "**Riss-Portal:** Stufe 5–8 in `js/data/buildings.js` ergänzen, Ätherscherben in `PORTAL_SHARDS`.",
     "**Schwere und legendäre Stufen:** gleiches Muster wie Zonen 1–10 (☠️ Boss 5 und „Verderbt: Endboss“, ⭐ „Schatten: Endboss“), oder Erweiterung 2 als „Schwer+“.",
     "**Zonen-Daten:** in `tools/gen-zones.mjs` ergänzen; der Generator muss dafür Stufen ohne CQHT-Vorlage erzeugen können."

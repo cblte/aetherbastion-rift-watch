@@ -2,7 +2,7 @@
 // Zonen, Bosse und Schergen kommen aus js/data/stages.js (Zonen 1–10) und
 // tools/data/zones-expansion.json (Entwurf Zonen 11–20) – hier nichts davon doppeln.
 
-// Feste CQHT-Vorlage statt der Zuordnung nach Rang (Name → ID aus dev-data/cqht-monsters.json)
+// Feste CQHT-Vorlage statt der Zuordnung nach Rang (Name → ID aus dev-data/archiv/cqht-monsters.json)
 export const CQHT_OVERRIDES = {};
 
 // Wiki-Seite unter anderem Namen (Spielname → Titel in wiki-de.guildwars2.com).

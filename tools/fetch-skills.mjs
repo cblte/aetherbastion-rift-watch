@@ -1,6 +1,6 @@
 // Lädt den kompletten Forschungsbaum (Skill Research / Skill Lab) aus der CQHT-Fan-Wiki
 // (https://cqht-wiki.vercel.app/en/skills) und schreibt ihn als Entwicklungs-Referenz nach
-// dev-data/cqht-skills.json und .md – Grundlage für einen späteren Ausbau des Asura-Labors.
+// dev-data/archiv/cqht-skills.json und .md – Grundlage für einen späteren Ausbau des Asura-Labors.
 // Nur Werte und Texte – keine Grafiken (icon ist nur der Name des Original-Icons, siehe CLAUDE.md).
 //
 // Aufruf im Projektordner:  node tools/fetch-skills.mjs .
@@ -107,7 +107,7 @@ const trees = order.map(t => {
   return { id: t, name: TREES[t], count: list.length, price: list.reduce((a, s) => a + s.price, 0),
     time: list.reduce((a, s) => a + (s.time ?? 0), 0), unlocks: list.filter(s => s.unlock).length };
 });
-writeFileSync(`${root}/dev-data/cqht-skills.json`, JSON.stringify({
+writeFileSync(`${root}/dev-data/archiv/cqht-skills.json`, JSON.stringify({
   source: `${BASE}/en/skills`, fetched: new Date().toISOString(),
   note: 'Erzeugt mit node tools/fetch-skills.mjs . – nicht von Hand bearbeiten. price = Honor (bei uns 📜 Forschungsnotizen), labLevel = nötige Labor-Stufe, time = Forschungszeit (Wiki-Anzeige m:ss, vermutlich Sekunden).',
   trees, skills }, null, 2) + '\n');
@@ -136,6 +136,6 @@ for (const t of trees) {
     }
   }
 }
-writeFileSync(`${root}/dev-data/cqht-skills.md`, md);
+writeFileSync(`${root}/dev-data/archiv/cqht-skills.md`, md);
 console.log(`${skills.length} Forschungen: ${trees.map(t => `${t.id} ${t.count}`).join(', ')}`);
 if (missing.length) console.warn(`Voraussetzungen ohne passende Forschung: ${missing.join('; ')}`);

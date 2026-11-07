@@ -1,5 +1,5 @@
 // Baut den GW2-Gegner-Datensatz: jeder GW2-Boss und -Scherge bekommt eine CQHT-Vorlage aus
-// dev-data/cqht-monsters.json (Werte und Drops bleiben unverändert erhalten), und jeder Name wird
+// dev-data/archiv/cqht-monsters.json (Werte und Drops bleiben unverändert erhalten), und jeder Name wird
 // gegen die deutsche GW2-Wiki (wiki-de.guildwars2.com) geprüft.
 //
 // Aufruf im Projektordner:  node tools/build-gw2-monsters.mjs .  [--wiki]
@@ -30,7 +30,7 @@ const EXPANSION_ZONES = X.zones.map(z => {
   if (!z.minions?.length) throw new Error(`zones-expansion.json, Zone ${z.id}: keine Schergen (minions)`);
   return { ...z, zone: z.name, bosses: [...z.bosses, z.endboss] };
 });
-const cqht = JSON.parse(readFileSync(`${root}/dev-data/cqht-monsters.json`, 'utf8')).monsters;
+const cqht = JSON.parse(readFileSync(`${root}/dev-data/archiv/cqht-monsters.json`, 'utf8')).monsters;
 const byId = Object.fromEntries(cqht.map(m => [m.id, m]));
 
 const WIKI = 'https://wiki-de.guildwars2.com';
@@ -201,7 +201,7 @@ const outZones = zones.map(z => ({
     minions: s.minions.map(m => enemy(m, 'scherge')) })),
 }));
 writeFileSync(`${root}/dev-data/gw2-monsters.json`, JSON.stringify({
-  note: 'Erzeugt mit node tools/build-gw2-monsters.mjs . – nicht von Hand bearbeiten. stats/drops = CQHT-Vorlage (dev-data/cqht-monsters.json).',
+  note: 'Erzeugt mit node tools/build-gw2-monsters.mjs . – nicht von Hand bearbeiten. stats/drops = CQHT-Vorlage (dev-data/archiv/cqht-monsters.json).',
   zones: outZones }, null, 2) + '\n');
 
 const de = (n) => (n == null ? '–' : Number(n).toLocaleString('de-DE'));
@@ -218,7 +218,7 @@ const bossList = enemies.filter(e => e.role !== 'scherge'), mobList = enemies.fi
 
 let md = `# GW2-Gegner ↔ CQHT-Vorlagen
 
-> Interne Entwicklungs-Referenz für **Aetherbastion: Rift Watch**. Erzeugt mit \`node tools/build-gw2-monsters.mjs .\` aus \`js/data/stages.js\` (Zonen 1–10), \`tools/data/zones-expansion.json\` (Entwurf Zonen 11–20, Wiki-Hinweise in \`tools/data/gw2-hints.mjs\`) und \`dev-data/cqht-monsters.json\`. Nicht von Hand bearbeiten.
+> Interne Entwicklungs-Referenz für **Aetherbastion: Rift Watch**. Erzeugt mit \`node tools/build-gw2-monsters.mjs .\` aus \`js/data/stages.js\` (Zonen 1–10), \`tools/data/zones-expansion.json\` (Entwurf Zonen 11–20, Wiki-Hinweise in \`tools/data/gw2-hints.mjs\`) und \`dev-data/archiv/cqht-monsters.json\`. Nicht von Hand bearbeiten.
 
 **Zuordnung:** Zonen 1–10 exakt über die Stufe (\`src\` = CQHT-Boss; Schergen aus demselben CQHT-Kapitel). Zonen 11–20 nach Rang auf CQHT *Hard*, *Legendär*, Soltar bzw. *Hard*-/*Soul*-Monster. Werte (HP/ATK auf Lv. 1, DEF, Tempo) und Drops sind die der CQHT-Vorlage. Im Spiel rechnet \`config.js\` die Kampfwerte weiter aus dem Stufen-Level.
 

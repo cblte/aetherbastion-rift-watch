@@ -1,5 +1,5 @@
 // Lädt alle Monster und Bosse aus der CQHT-Fan-Wiki (https://cqht-wiki.vercel.app/en/monsters)
-// und schreibt sie als Entwicklungs-Referenz nach dev-data/cqht-monsters.json und .md.
+// und schreibt sie als Entwicklungs-Referenz nach dev-data/archiv/cqht-monsters.json und .md.
 // Nur Werte und Texte – keine Grafiken oder Animationen (siehe CLAUDE.md, Harte Regeln).
 //
 // Aufruf im Projektordner:  node tools/fetch-monsters.mjs .  [--only BOSS_1_1_1,MON_1_1] [--delay 250]
@@ -191,9 +191,9 @@ for (const [i, id] of ids.entries()) {
 }
 
 if (!only) {
-  writeFileSync(`${root}/dev-data/cqht-monsters.json`, JSON.stringify({ source: `${BASE}/${LANG}/monsters`, fetched: new Date().toISOString(), monsters: list }, null, 2) + '\n');
-  writeFileSync(`${root}/dev-data/cqht-monsters.md`, toMarkdown(list));
-  console.log(`Geschrieben: dev-data/cqht-monsters.json und .md (${list.length} Monster)`);
+  writeFileSync(`${root}/dev-data/archiv/cqht-monsters.json`, JSON.stringify({ source: `${BASE}/${LANG}/monsters`, fetched: new Date().toISOString(), monsters: list }, null, 2) + '\n');
+  writeFileSync(`${root}/dev-data/archiv/cqht-monsters.md`, toMarkdown(list));
+  console.log(`Geschrieben: dev-data/archiv/cqht-monsters.json und .md (${list.length} Monster)`);
 } else {
   console.log(JSON.stringify(list, null, 2));
 }
