@@ -3,10 +3,10 @@
 //  Ein Trupp farmt die Schergen einer Stufe. Den Boss der Stufe fordert
 //  der Spieler selbst heraus; ein Sieg schaltet die nächste Stufe frei.
 // =====================================================================
-import { GAME, ZONES, COMBAT, ROLES, F, HERO_BY_ID, TENT_SIZE, CYCLE_MS, RATIONS, NORMAL_STAGES } from './config.js';
+import { GAME, ZONES, COMBAT, ROLES, F, HERO_BY_ID, TENT_SIZE, CYCLE_MS, RATIONS, RATION_DROP, NORMAL_STAGES } from './config.js';
 import {
   getHero, heroStats, regenMs, goldMult, shardMult, kitchenMult, healMult, tempoBonus, gainExp, addLog,
-  isStageAvailable, squadOf, stageBeaten, payCycle,
+  isStageAvailable, squadOf, stageBeaten, payCycle, addRations,
 } from './state.js';
 import { checkConstruction, checkShop, checkRecruits, dropWeapons } from './progress.js';
 
@@ -121,8 +121,14 @@ export function applyKillRewards(state, squadIdx, tmpl, heroes, factor = 1, dete
     state.rp += rp;
     ({ got: weapons, lost: lostWeapons } = dropWeapons(state, zone.tier, !!st.hard, r.weapons));
     const g = Math.min(RATIONS.length, st.hard ? 6 : zone.tier + (zone.part === 2 ? 1 : 0)) - 1;
-    rations = r.rations;
-    state.rations[g] += rations;
+    // erster Sieg: volle Menge; danach nur mit RATION_DROP.chance 1–2 Stück (#045)
+    let n = 0;
+    if (!stageBeaten(state, sq.zone, sq.stage)) n = r.rations;
+    else if (Math.random() < RATION_DROP.chance) {
+      const [lo, hi] = RATION_DROP.amount;
+      n = lo + Math.floor(Math.random() * (hi - lo + 1));
+    }
+    rations = addRations(state, g, n);
     state.tickets += r.tickets[0] + Math.floor(Math.random() * (r.tickets[1] - r.tickets[0] + 1));
   }
   return { gold, exp, shards, levelUps, rp, weapons, lostWeapons, rations };

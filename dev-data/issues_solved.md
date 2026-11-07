@@ -12,6 +12,15 @@ Format:
 
 ---
 
+## v0.25.0
+
+### #045 Proviant im Überfluss (Balancing)
+- Brot gibt es beim **ersten Sieg** über einen Boss in voller Menge (`rewards.rations` in `stages.js`), danach nur mit 25 % Chance 1–2 Stück (`RATION_DROP` in `config.js`).
+- Lager je Güte begrenzt, wächst mit der Gildenhalle: 30 bis 100 (`RATION_SLOTS`, `rationSlots()`, `addRations()` in `state.js`). Gilt auch für Brot aus Level-Ups. Alte Bestände über dem Limit bleiben, es kommt nur nichts dazu.
+- Erstsieg über den vorhandenen Fortschritt (`stageBeaten`), daher keine Save-Migration.
+- Boss-Karte zeigt nach dem ersten Sieg „🍞 25 %: 1–2“, Inventar „×n / Limit“. Handbuch ergänzt.
+- Weiter offen: Ruhestand-Schleife (#046), Schwierigkeit (#047).
+
 ## v0.24.0
 
 ### #038 Zonenwechsel auf dem Handy kaum sichtbar (UI)

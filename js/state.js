@@ -4,7 +4,7 @@
 import {
   GAME, HERO_BY_ID, BUILDINGS, MYSTIC, F, COMBAT, ZONES, TENTS, TENT_SIZE, LEVEL_CAP_MAX,
   ROLES, RESEARCH, FEATURES, NORMAL_STAGES, TOTAL_NORMAL, HERO_LEVELS, CYCLE_MS, PORTAL_SHARDS,
-  WEAPON_BY_ID, WEAPON_GRADES, WEAPON_FOR, RECRUIT, ARMORY_SLOTS,
+  WEAPON_BY_ID, WEAPON_GRADES, WEAPON_FOR, RECRUIT, ARMORY_SLOTS, RATION_SLOTS,
 } from './config.js';
 import { markFulfilledQuests } from './quests.js';
 
@@ -258,6 +258,14 @@ export const buildingUnlocked = (s, key) => s.buildings.hall >= BUILDINGS[key].u
 export const featureUnlocked  = (s, key) => s.buildings.hall >= FEATURES[key].unlockHall;
 // Waffenkammer-Plätze nach Gildenhalle; armoryFree < 1 → voll
 export const armorySlots = (state) => ARMORY_SLOTS[Math.min(ARMORY_SLOTS.length, Math.max(1, state.buildings.hall)) - 1];
+export const rationSlots = (state) => RATION_SLOTS[Math.min(RATION_SLOTS.length, Math.max(1, state.buildings.hall)) - 1];
+// Proviant der Güte g (0–5) einlagern, höchstens bis zum Lager-Limit. Alte Bestände darüber bleiben.
+// Rückgabe: tatsächlich eingelagert
+export function addRations(state, g, n) {
+  const add = Math.max(0, Math.min(n, rationSlots(state) - state.rations[g]));
+  state.rations[g] += add;
+  return add;
+}
 export const armoryFree = (state) => armorySlots(state) - state.armory.length;
 
 export const weaponType  = (hero) => {
@@ -369,7 +377,7 @@ export function gainExp(state, hero, amount) {
     gained += 1;
     const r = HERO_LEVELS[hero.level - 1].reward;
     state.rp += r.rp;
-    r.rations.forEach((n, g) => { state.rations[g] += n; });
+    r.rations.forEach((n, g) => { addRations(state, g, n); });
     state.fruit += r.fruit;
     if (!hero.woundedUntil) hero.hp += heroStats(state, hero).maxHp - oldMax;
   }

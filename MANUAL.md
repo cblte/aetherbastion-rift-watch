@@ -155,6 +155,7 @@ Mit **📜 Forschungsnotizen** erforschst du dauerhafte Verbesserungen in drei B
 - **Platz:** Die Waffenkammer wächst mit der Gildenhalle: 20 / 25 / 30 / 40 / 50 / 60 / 70 / 85 / 100 Plätze. Ist sie voll, **bleibt Boss-Beute liegen** (Hinweis in der Chronik), der Laden verkauft nichts, und Ablegen geht nicht.
 - **🧹 Aufräumen** verkauft alle Waffen der gewählten Güten auf einmal (vorgewählt: T1–T3). Waffen mit ▲ und ausgerüstete Waffen bleiben immer.
 - In Zelten, Reserve und Auswahllisten steht unter jedem Helden seine Waffe (oder „ohne Waffe“).
+- **🍞 Proviant:** Beim ersten Sieg über einen Boss gibt es die volle Menge, danach nur mit 25 % Chance 1–2 Stück. Das Lager fasst je Güte 30 / 35 / 40 / 50 / 60 / 70 / 80 / 90 / 100 Stück (nach Gildenhalle); was darüber geht, verfällt.
 - **🎒 Inventar** (eigener Reiter in der unteren Leiste): Proviant, Früchte, Arena-Tickets, Waffenkammer und ausgerüstete Waffen an einem Ort. Ausrüsten und Verfüttern geht dort oder im Helden-Fenster.
 - Jeder Held trägt eine **Waffenart**: Heiler einen **Fokus**, sonst nach Klasse.
 

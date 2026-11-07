@@ -5,7 +5,7 @@
 // =====================================================================
 import {
   BUILDINGS, ZONES, ROLES, TENTS, TENT_SIZE, COMBAT, GAME, NORMAL_STAGES, TOTAL_NORMAL, FEATURES,
-  RETIRE_MIN_LEVEL, LEVEL_CAP_MAX, ARMORY_SLOTS, CYCLE_MS, WEAPON_TYPES, WEAPON_GRADES, SHOP, QUESTS, RECRUIT, REROLL_RESET_CLOVER,
+  RETIRE_MIN_LEVEL, LEVEL_CAP_MAX, ARMORY_SLOTS, RATION_SLOTS, RATION_DROP, CYCLE_MS, WEAPON_TYPES, WEAPON_GRADES, SHOP, QUESTS, RECRUIT, REROLL_RESET_CLOVER,
 } from './config.js';
 
 const pct = (x) => `${Math.round(x * 100)} %`;
@@ -114,7 +114,8 @@ export function manualChapters() {
       ])}
       <p>${Object.values(WEAPON_TYPES).map(t => `${t.icon} ${t.name}`).join(' · ')}</p>
       ${table(['Güte', 'Bonus'], Object.entries(WEAPON_GRADES).map(([g, w]) => [`★${g} ${w.name}`, `+${pct(w.atk)} ATK, +${pct(w.hp)} HP`]))}
-      <p><b>🍞 Proviant</b> gibt einem Helden sofort EXP – ideal für frisch Rekrutierte, die hinterherhinken. Verfüttern im Inventar oder im Helden-Fenster.</p>` },
+      <p><b>🍞 Proviant</b> gibt einem Helden sofort EXP – ideal für frisch Rekrutierte, die hinterherhinken. Verfüttern im Inventar oder im Helden-Fenster.</p>
+      <p>Beim <b>ersten Sieg</b> über einen Boss gibt es die volle Menge, danach nur mit ${pct(RATION_DROP.chance)} Chance ${RATION_DROP.amount.join('–')} Stück. Das Lager fasst je Güte ${RATION_SLOTS[0]} bis ${RATION_SLOTS.at(-1)} Stück (wächst mit der Gildenhalle); was darüber geht, verfällt.</p>` },
 
     { icon: '🔬', title: 'Forschung', html: `
       <p>Im <b>Asura-Labor</b> erforschst du mit 📜 Forschungsnotizen dauerhafte Verbesserungen in drei Bäumen:</p>

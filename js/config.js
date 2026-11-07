@@ -5,7 +5,7 @@
 
 export const GAME = {
   title: 'Aetherbastion: Rift Watch',
-  VERSION: '0.24.0',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
+  VERSION: '0.25.0',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
   BUILD: 'lokal',                    // ersetzt der Pages-Workflow durch „Nr. · Commit“
   SAVE_KEY: 'aetherbastion_save_v1',
   SAVE_VERSION: 7,
@@ -291,6 +291,11 @@ export const UI = {
 
 export const ARMORY_SLOTS = [20, 25, 30, 40, 50, 60, 70, 85, 100];
 export const ARMORY_CLEANUP_DEFAULT = [1, 2, 3];
+
+// Proviant (🍞) aus Boss-Siegen (#045). Erster Sieg über eine Stufe: volle Menge aus stages.js.
+// Danach nur mit chance und amount [min, max] Stück. Lager je Güte wächst mit der Gildenhalle.
+export const RATION_DROP = { chance: 0.25, amount: [1, 2] };
+export const RATION_SLOTS = [30, 35, 40, 50, 60, 70, 80, 90, 100];
 
 // Zelte (= Trupps). Zelt 1 ab Start.
 export const TENTS = [
