@@ -374,7 +374,9 @@ function renderPortal() {
       : `Besiege zuerst alle ${NORMAL_STAGES} Bosse in ${prev.name}.`);
   } else {
     const tg = questStageTarget();
-    stagesHtml = (z.lore && z.lore !== 'Entwurf' ? `<p class="muted small lore">${esc(z.lore)}</p>` : '') + z.stages.map((stg, k) => {
+    const bossLock = !locked && sq.mode === 'boss'; // Bosskampf läuft → Zone/Stufe nicht wechselbar
+    stagesHtml = (bossLock ? `<p class="card lock-note small">👑 Der Bosskampf läuft. Zone und Stufe lassen sich erst danach wechseln – oder oben „Abbrechen“.</p>` : '')
+      + (z.lore && z.lore !== 'Entwurf' ? `<p class="muted small lore">${esc(z.lore)}</p>` : '') + z.stages.map((stg, k) => {
       const n = k + 1;
       const goal = tg && tg.zone === z.id && tg.stage === n;
       const lock = stageLock(S, z.id, n);
@@ -383,7 +385,7 @@ function renderPortal() {
       const cur = !locked && sq.zone === z.id && sq.stage === n;
       const tag = stg.legend ? '⭐' : stg.hard ? '☠️' : '';
       const head = n === NORMAL_STAGES + 1 ? `<h4 class="hard-head">${z.stages.some(s => s.legend) ? '☠️ Schwer & ⭐ Legendär' : '☠️ Schwer'}</h4>` : '';
-      return `${head}<button class="stage-row ${cur ? 'sel' : ''} ${avail ? '' : 'locked'} ${stg.hard ? 'hard' : ''} ${goal && !cur ? 'goal' : ''}" data-action="stage" data-zone="${z.id}" data-stage="${n}" ${avail && !locked ? '' : 'disabled'}>
+      return `${head}<button class="stage-row ${cur ? 'sel' : ''} ${avail ? '' : 'locked'} ${stg.hard ? 'hard' : ''} ${goal && !cur && !bossLock ? 'goal' : ''}" data-action="stage" data-zone="${z.id}" data-stage="${n}" ${avail && !locked && !bossLock ? '' : 'disabled'}>
         <span class="zone-num">${n > NORMAL_STAGES ? tag : n}</span>
         <span class="zone-txt">
           <b>${avail || beaten ? `👑 ${esc(stg.boss.name)}` : '🔒 Unbekannter Boss'} <span class="lv">Lv. ${stg.level}</span></b>
@@ -761,8 +763,11 @@ function renderForge() {
     }).join('')}`);
 }
 
+// Mit Zurück-Ziel nur ← (führt in den vorigen Dialog), sonst nur ✕ – nie beides
 function modalHead(title, back = '') {
-  return `<div class="modal-head">${back ? `<button class="icon-btn" data-action="${back}" aria-label="Zurück">←</button>` : ''}<h3>${title}</h3><button class="icon-btn" data-action="modal-close" aria-label="Schließen">✕</button></div>`;
+  return back
+    ? `<div class="modal-head back"><button class="icon-btn" data-action="${back}" aria-label="Zurück">←</button><h3>${title}</h3></div>`
+    : `<div class="modal-head"><h3>${title}</h3><button class="icon-btn" data-action="modal-close" aria-label="Schließen">✕</button></div>`;
 }
 
 function openEquipPicker(idx, back = '') {

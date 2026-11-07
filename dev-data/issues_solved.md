@@ -12,6 +12,16 @@ Format:
 
 ---
 
+## v0.20.1
+
+### #028 Bosskampf lässt sich durch Zonen- oder Stufenwechsel abbrechen
+- `setStage()` in `combat.js` lehnt Wechsel ab, solange der Trupp im Bosskampf ist (`mode === 'boss'`). Aussteigen geht nur über „Abbrechen“ (`abortBoss`, mit 90-s-Pause).
+- 🌀 Portal: Stufen sind während des Bosskampfs gesperrt, darüber ein goldener Hinweis. Andere Zonen lassen sich weiter ansehen.
+- Handbuch (`MANUAL.md`, `manual.js`) ergänzt. Mitglieder tauschen bleibt im Bosskampf erlaubt.
+
+### #027 Proviant-Dialog hat ✕ und Zurück-Pfeil
+- `modalHead()` in `ui.js`: Dialoge mit Zurück-Ziel zeigen nur noch ←, alle anderen nur ✕. Betrifft „verfüttern“ und „Ausrüsten“ aus dem 🎒 Inventar.
+
 ## v0.19.0
 
 ### #024 Heilung und Schaden der Helden sind nicht sichtbar

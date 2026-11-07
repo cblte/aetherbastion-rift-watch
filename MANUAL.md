@@ -62,7 +62,7 @@ Helden steigen bis **Lv. 60** auf. Jede neue Stufe bringt eine Belohnung: Forsch
 - Jeder Trupp kämpft **unabhängig** in einer Riss-Zone, eine Aktion pro Sekunde.
 - Jede Zone hat **5 normale Stufen** und **2 schwere** ☠️, jede zweite Zone zusätzlich **1 legendäre** ⭐. Jede Stufe hat einen **Boss** 👑, zwei Arten von **Schergen** und ein empfohlenes **Heldenlevel**.
 - Dein Trupp **farmt die Schergen** der gewählten Stufe. Das bringt Gold, EXP und ab und zu Ätherscherben.
-- Wenn du meinst, dass dein Trupp stark genug ist, tippst du auf **„Herausfordern“**. Das kostet etwas Gold. Dann hat der Trupp **90 Sekunden**, um den Boss zu besiegen.
+- Wenn du meinst, dass dein Trupp stark genug ist, tippst du auf **„Herausfordern“**. Das kostet etwas Gold. Dann hat der Trupp **90 Sekunden**, um den Boss zu besiegen. Solange der Bosskampf läuft, lassen sich Zone und Stufe nicht wechseln; wer aussteigen will, tippt auf **„Abbrechen“**.
 - Nach jeder Herausforderung (Sieg, Niederlage oder Abbruch) verschnauft der Trupp **90 Sekunden**. In der Pause kämpft er gegen die Schergen der Stufe weiter.
 - **🔁 Auto** wiederholt die Herausforderung nach jeder Pause von selbst, solange das Gold reicht. So sammelst du Boss-Beute nebenbei. Nach einer Niederlage oder einem Abbruch schaltet sich Auto aus. Offline kämpfen die Trupps nur gegen Schergen.
   - **Sieg:** Forschungsnotizen, Waffen, Proviant, Ätherscherben. Beim ersten Sieg wird die nächste Stufe frei.

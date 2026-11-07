@@ -378,6 +378,7 @@ h4 { margin: 16px 0 8px; font-size: 14px; color: var(--muted); }
 .stage-row.locked, .stage-row:disabled { opacity: .5; cursor: default; }
 .stage-row small.info { color: #a99fd9; }
 .lore { margin: 0 4px 8px; }
+.lock-note { border-color: var(--gold); color: var(--gold); }
 .locked-card { display: flex; gap: 12px; align-items: center; opacity: .85; }
 .locked-b { opacity: .55; }
 .b-unlock { font-size: 12px; color: var(--aether-2); margin-top: 4px; }
@@ -585,6 +586,7 @@ textarea {
 }
 .modal-head { display: flex; justify-content: space-between; align-items: center; }
 .modal-head h3 { margin: 0; }
+.modal-head.back { justify-content: flex-start; gap: 8px; }
 @keyframes fade { from { opacity: 0; } }
 @keyframes up { from { transform: translateY(30px); opacity: 0; } }
 .detail { --c: var(--aether); display: flex; gap: 12px; align-items: center; margin: 8px 0 10px; }

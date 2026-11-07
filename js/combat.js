@@ -294,6 +294,7 @@ function startRetreat(state, i) {
 // ---------- Aktionen ------------------------------------------------
 export function setStage(state, i, zone, stage) {
   const sq = state.squads[i];
+  if (sq.mode === 'boss') return false; // Während einer Herausforderung bleibt der Trupp, wo er ist (Abbrechen geht über abortBoss)
   if (!isStageAvailable(state, zone, stage)) return false;
   if (sq.zone === zone && sq.stage === stage) return false;
   sq.zone = zone;

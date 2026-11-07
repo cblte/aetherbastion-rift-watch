@@ -9,17 +9,17 @@ Feedback und Fehler aus dem Spieltest. Erledigte Punkte wandern mit Version nach
 - **Status:** `offen` · `in Arbeit` · `zurückgestellt` (mit Grund)
 - **Quelle:** wer es gemeldet hat (z. B. „Spieltest Frau“, „Gilde“)
 
-Nächste freie Nummer: **#027**
+Nächste freie Nummer: **#029**
 
 ## Eingang
 
 <!-- Hier neue Punkte notieren, ungeordnet ist okay. -->
-der verfüttern bildschirm hat ein X und eine Pfeil Zurück. das ist irgendwie doppelt. erreichbar über das inventar.
-
-ich denke, bosse sollten auf jedenfall eine waffe fallen lassen. zumindest mit einer wahrscheinlichkeit.
-
 
 ---
+
+## Fehler
+
+_Zurzeit nichts offen._
 
 ## UI
 
@@ -35,8 +35,9 @@ _Zurzeit nichts offen._
 - **Status:** offen · **Quelle:** Entwickler
 - Wunsch: Mehr echte GW2-Gegner pro Zone statt 2 Schergen pro Stufe, etwa 5 Schergen pro Stufe. Jeder hat einen Basiswert, und manchmal kommt ein Scherge als **Veteran** oder **Elite** aus einem Riss und ist entsprechend stärker.
 - Daten: `dev-data/gegner-pro-zone.jsonl` (von Gemini). 153 Zeilen, alle 10 Zonen, 15–18 Schergen pro Zone, mindestens 3 pro Stufe. Felder: `zone`, `name`, `faction`, `stages` (1–5), `attack` (Nahkampf/Fernkampf/Magie), `area`, `flavor`, `rift` {`name`, `ability`}, `wiki`. Keine Zahlenwerte, die Stärke bleibt bei den Formeln in `config.js`.
-- Prüfung (Stand Abruf DE-Wiki): Nur 63 von 150 Wiki-Links existieren. Zonen 1–5 sind gut (Aschfurt 15/15, Königintal 15/18, Caledon 13/15), ab Zone 6 meist geraten (Katakomben 0/15, Harathi und Blutstrom 1/15). Vor der Übernahme Namen prüfen bzw. von Gemini nachbessern lassen.
-- Kleinkram in den Daten: Zone heißt dort `Caudecus' Anwesen` (gerader Apostroph statt ’), 3 Namen kommen in mehreren Zonen vor, ein Riss-Name doppelt („Spektraler Riss-Schütze“). Bosse sind nicht drin (eigene Datei geplant).
+- Zonen 1–6 bereinigt (jetzt 148 Zeilen): Namen auf die Schreibweise der DE-Wiki gebracht (z. B. Arktischer Bär → Arctodus, Sohn von Svanir (Jäger) → Svanir-Jäger, Cuatl-Krieger → Hylek-Krieger), erfundene Anwesen-Gegner durch echte ersetzt (Kleriker des Weißen Mantels, Separatist, Höhlenspinne …), Harathi-Krieger und Modniir-Berserker vom Königintal ins Harathi-Hinterland, Funkenschwärmer von Metrica in den Funkenschwärmersumpf, Apostroph `Caudecus’ Anwesen`, Wiki-Links neu gesetzt. Alle Namen stehen in der Wiki, außer bewusst eigenen Gegnern mit `"wiki": null` (Sumpfschrecken, Abgerichteter Wachhund, Diener des Hauses); Inquestur-Golem verweist auf die Wiki-Seite „Golem“. Jede Stufe hat mindestens 3 Schergen.
+- Zonen 7–10 noch ungeprüft und großteils erfunden (Katakomben 0/15, Harathi 3/17, Blutstrom 1/15, Sumpf 4/16 in der Wiki), ein Riss-Name doppelt („Spektraler Riss-Schütze“). Erst nach #025 nachbessern.
+- Riss-Formen: Etwa die Hälfte der Namen beginnt mit „Riss-…“ (eintönig), Fähigkeiten nennen teils Dinge, die das Spiel nicht kennt (Mana, Ausweichen) – als Kampf-Log-Text nutzbar, nicht als Regel. Evtl. von Gemini abwechslungsreicher neu schreiben lassen. Bosse sind nicht drin (eigene Datei geplant).
 - Zum Umsetzen:
   - Regeln für Veteran/Elite in `config.js` (Chance, ×LP, ×Angriff, Beute), Namen und Fähigkeit aus `rift`.
   - Kampf und Offline-Berechnung müssen mehr als 2 Schergen pro Stufe auswürfeln können.

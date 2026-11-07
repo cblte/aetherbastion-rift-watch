@@ -61,7 +61,7 @@ export function manualChapters() {
       ${list([
         'Jeder Trupp kämpft unabhängig in einer Riss-Zone, eine Aktion pro Sekunde.',
         'Dein Trupp <b>farmt die Schergen</b> der gewählten Stufe: Gold, EXP und ab und zu Ätherscherben.',
-        `<b>„Herausfordern“</b> kostet etwas Gold. Dann hat der Trupp <b>${COMBAT.BOSS_TIME_LIMIT} Sekunden</b> für den Boss.`,
+        `<b>„Herausfordern“</b> kostet etwas Gold. Dann hat der Trupp <b>${COMBAT.BOSS_TIME_LIMIT} Sekunden</b> für den Boss. Bis dahin lassen sich Zone und Stufe nicht wechseln – aussteigen geht mit <b>„Abbrechen“</b>.`,
         `Nach jeder Herausforderung – Sieg, Niederlage oder Abbruch – verschnauft der Trupp <b>${COMBAT.BOSS_COOLDOWN} Sekunden</b> und kämpft solange gegen die Schergen der Stufe.`,
         '<b>🔁 Auto</b> wiederholt die Herausforderung nach jeder Pause von selbst (wenn das Gold reicht) – gut, um Boss-Beute zu sammeln. Nach einer Niederlage schaltet sich Auto aus. Offline kämpfen Trupps nur gegen Schergen.',
         '<b>Sieg:</b> Forschungsnotizen, Waffen, Proviant, Scherben – beim ersten Sieg öffnet sich die nächste Stufe.',
