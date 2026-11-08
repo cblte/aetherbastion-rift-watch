@@ -17,7 +17,7 @@ import {
   activeHeroCount, reserveHeroes, isOwned, rarityBonus, isZoneAvailable, isStageAvailable, stageBeaten,
   stageLock, buildingCost, buildLock, canAfford, pay, createHero, addLog, squadOf, buildingUnlocked,
   featureUnlocked, normalCleared, hallGold, weaponType, armorySlots, armoryFree, rationSlots, retireSlots, retireIncome, retirePlace, addRetired, heroRetire,
-  traitPct, traitSpec,
+  traitPct, traitSpec, classBonus,
 } from './state.js';
 import {
   squadMembers, spawnMonster, setStage, reviveHero, assignHero, teamProfile, heroOutput, fmt, stageOf,
@@ -640,6 +640,13 @@ function traitsHtml(traits) {
   if (!traits?.length) return '';
   return `<ul class="traits">${traits.map(x => `<li><span style="color:${WEAPON_GRADES[x.g].color}">◆ <b>${TRAITS[x.id].name}</b></span> <small>${traitEffect(x.id, x.g)}</small></li>`).join('')}</ul>`;
 }
+// Klassenbonus: „Wächter-Bonus: +3,2 % DEF“
+function classBonusText(cls) {
+  const c = classBonus(cls);
+  if (!c) return '';
+  const ts = TRAIT_STATS[c.stat];
+  return `${CLASSES[cls].name}-Bonus: ${ts.mode === 'less' ? '−' : '+'}${pctText(c.value)} ${ts.show || ts.name}${ts.squad ? ' (Trupp)' : ''}`;
+}
 const specTag = (traits) => { const sp = traitSpec(traits); return sp ? `${TRAIT_SPECS[sp].icon} ${TRAIT_SPECS[sp].name}` : ''; };
 const rarityTag = (r) => `<span class="rar" style="color:${WEAPON_GRADES[r].color}">◆ ${WEAPON_GRADES[r].name}</span>`;
 
@@ -660,6 +667,7 @@ function recruitHtml() {
           <div class="hm-title">„${esc(d.title)}“ · ${RACES[d.race].name}</div>
           <div class="hm-sub">${ROLES[d.role].icon} ${ROLES[d.role].name} · ${CLASSES[d.cls].name}${d.buff ? ` · ${d.buff === 'macht' ? 'Macht' : 'Eile'}` : ''}</div>
           <div class="hm-sub">❤ ${fmt(d.baseHp * m)} · ⚔️ ${fmt(d.baseAtk * m)}${d.crit ? ` · Krit ${Math.round(d.crit * 100)} %` : ''}</div>
+          <div class="hm-sub">${classBonusText(d.cls)}</div>
           ${traitsHtml(o.traits)}
         </div>
         <button class="btn primary" data-action="recruit" data-slot="${k}" ${blocked || S.gold < cost ? 'disabled' : ''}>Anwerben<small>🟡 ${fmt(cost)}</small></button>
@@ -1010,7 +1018,7 @@ function heroDetailHtml(h) {
         <div class="hm-sub">${ROLES[d.role].icon} ${ROLES[d.role].name} · ${CLASSES[d.cls].name}${d.buff ? ` · ${d.buff === 'macht' ? 'Macht (+ATK)' : 'Eile (Tempo)'}` : ''}</div>
       </div>
     </div>
-    ${h.traits?.length ? `<div class="traits-box"><div class="hm-sub">Eigenschaften</div>${traitsHtml(h.traits)}</div>` : ''}
+    <div class="traits-box"><div class="hm-sub">${classBonusText(d.cls)}</div>${h.traits?.length ? `<div class="hm-sub">Eigenschaften</div>${traitsHtml(h.traits)}` : ''}</div>
     <div class="stat-grid">
       <span>❤ LP</span><b>${fmt(h.hp)} / ${fmt(hs.maxHp)}</b>
       <span>⚔️ ATK</span><b>${fmt(hs.atk)}</b>

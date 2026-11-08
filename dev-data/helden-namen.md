@@ -7,6 +7,7 @@ Regeln:
 - Charr-Namen bleiben englisch, Norn-Beinamen werden deutsch (wie im deutschen GW2-Client). Menschen, Asura und Sylvari wie in der Liste.
 - Die Fantasy-Klassen der Liste sind auf GW2-Klassen und Rollen verteilt: Paladin → meist Wächter-Tank, Priester → Heiler oder Unterstützer, Bogenschütze → Waldläufer, Dieb oder Ingenieur, Magier → Elementarmagier, Mesmer oder Nekromant, Krieger → Krieger oder Widergänger.
 - Das Volk (`race`) ist nur Anzeige.
+- Klasse und Rolle sind unabhängig. Welche Rollen zu einer Klasse passen, steht in `CLASSES[…].roles` (nach GW2-Spezialisierungen, z. B. Mesmer-Tank = Chronomant, Dieb-Heiler = Spektral). Seit v0.30.0 gibt die Klasse einen festen Klassenbonus.
 - ids nie ändern. Neue Helden bekommen `h61` und folgende.
 
 ## Im Spiel (v0.28.0)
@@ -45,7 +46,7 @@ Regeln:
 | h28 | Julian Croft | Mensch | Priester | Wächter | Heiler |
 | h29 | Sophia Dawn | Mensch | Priester | Widergänger | Heiler |
 | h30 | Garrett Fletcher | Mensch | Bogenschütze | Waldläufer | Schaden |
-| h31 | Damian Voss | Mensch | Magier | Nekromant | Tank |
+| h31 | Damian Voss | Mensch | Magier | Mesmer | Tank |
 | h32 | Torvald Felsbrecher (Boulderkracker) | Norn | Krieger | Krieger | Tank |
 | h33 | Freya Morgenwacht (Dawnguard) | Norn | Paladin | Widergänger | Tank |
 | h34 | Vidar Rabenwacht (Ravenward) | Norn | Priester | Waldläufer | Heiler |

@@ -50,6 +50,24 @@ Monster treffen alle fitten Helden gleichzeitig: Der Tank bekommt den größten 
 
 Helden steigen bis **Lv. 60** auf. Jede neue Stufe bringt eine Belohnung: Forschungsnotizen, Proviant und manchmal Früchte.
 
+### Klassen
+
+Rolle und Klasse sind zwei Dinge: Die **Rolle** (Tank, Heiler, Unterstützer, Schaden) bestimmt, was ein Held im Kampf macht. Die **Klasse** (GW2-Beruf) bestimmt die Waffenart und gibt einen kleinen festen **Klassenbonus**. Ein Wächter kann also Tank, Heiler, Unterstützer oder Schaden sein und bekommt immer den Wächter-Bonus.
+
+| Klasse | Klassenbonus | Waffe |
+| --- | --- | --- |
+| Wächter | +3,2 % DEF | Hammer |
+| Krieger | +8 % LP | Schwert |
+| Widergänger | −8 % Schaden von Bossen | Hammer |
+| Waldläufer | +4 % Angriffstempo | Bogen |
+| Dieb | +4 % Krit-Chance | Schwert |
+| Ingenieur | +8 % Chance auf Boss-Waffe (Trupp) | Gewehr |
+| Elementarmagier | +8 % ATK | Stab |
+| Mesmer | +8 % Krit-Schaden | Schwert |
+| Nekromant | −8 % Verwundungszeit | Stab |
+
+Heiler tragen unabhängig von der Klasse immer einen Fokus.
+
 ### Eigenschaften
 
 Jeder Held bringt **Eigenschaften** mit, gewürfelt beim Rekrutieren. Du siehst sie schon im Angebot, bevor du zahlst.

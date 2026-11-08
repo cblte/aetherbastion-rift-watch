@@ -4,7 +4,7 @@
 import {
   GAME, HERO_BY_ID, BUILDINGS, MYSTIC, F, COMBAT, ZONES, TENTS, TENT_SIZE, LEVEL_CAP_MAX,
   ROLES, RESEARCH, FEATURES, NORMAL_STAGES, TOTAL_NORMAL, HERO_LEVELS, CYCLE_MS, PORTAL_SHARDS,
-  WEAPON_BY_ID, WEAPON_GRADES, WEAPON_FOR, RECRUIT, ARMORY_SLOTS, RATION_SLOTS, RETIRE_HOME,
+  WEAPON_BY_ID, WEAPON_GRADES, CLASSES, WEAPON_FOR, RECRUIT, ARMORY_SLOTS, RATION_SLOTS, RETIRE_HOME,
   TRAITS, TRAIT_STATS, TRAIT_RULES,
 } from './config.js';
 import { markFulfilledQuests } from './quests.js';
@@ -193,6 +193,7 @@ function sanitize(s) {
   }
   for (const h of s.heroes) {
     if (!WEAPON_BY_ID[h.weapon]) h.weapon = null;
+    else if (WEAPON_BY_ID[h.weapon].type !== weaponType(h)) { (s.armory ||= []).push(h.weapon); h.weapon = null; }
     if (!RECRUIT.rarities[h.rarity]) h.rarity = RECRUIT.freeRarity;
     h.level = Math.min(h.level, LEVEL_CAP_MAX);
     h.traits = cleanTraits(h.traits);
@@ -304,7 +305,7 @@ export function heroStats(state, hero) {
   const def = heroDef(hero);
   const w = hero.weapon ? WEAPON_GRADES[WEAPON_BY_ID[hero.weapon].grade] : { atk: 0, hp: 0 };
   const rar = 1 + rarityBonus(hero.rarity);
-  const t = traitBonus(hero.traits);
+  const t = heroBonus(hero);
   return {
     def,
     atk: F.heroAtk(def.baseAtk, hero.level, 1 + w.atk, rar * prestigeAtk(state) * (1 + rv(state, 'atk')) * (1 + t.atk)),
@@ -333,7 +334,19 @@ export function traitBonus(traits) {
   return t;
 }
 // Trupp-Wert (TRAIT_STATS[…].squad): Summe aller Helden im Zelt
-export const squadTrait = (heroes, key) => heroes.reduce((a, h) => a + traitBonus(h.traits)[key], 0);
+export const squadTrait = (heroes, key) => heroes.reduce((a, h) => a + heroBonus(h)[key], 0);
+// Klassenbonus (CLASSES[…].bonus) als Anteil, schon mit TRAIT_STATS[…].f
+export const classBonus = (cls) => {
+  const b = CLASSES[cls]?.bonus;
+  return b ? { stat: b[0], value: b[1] / 100 * TRAIT_STATS[b[0]].f } : null;
+};
+// Eigenschaften + Klassenbonus eines Helden
+export function heroBonus(hero) {
+  const t = traitBonus(hero.traits);
+  const c = classBonus(HERO_BY_ID[hero.heroId]?.cls);
+  if (c) t[c.stat] += c.value;
+  return t;
+}
 // Spezialisierung = Spezialisierung der besten Eigenschaft (bei Gleichstand die erste)
 export function traitSpec(traits) {
   let best = null;

@@ -5,7 +5,7 @@
 
 export const GAME = {
   title: 'Aetherbastion: Rift Watch',
-  VERSION: '0.29.0',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
+  VERSION: '0.30.0',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
   BUILD: 'lokal',                    // ersetzt der Pages-Workflow durch „Nr. · Commit“
   SAVE_KEY: 'aetherbastion_save_v1',
   SAVE_VERSION: 10,
@@ -45,16 +45,23 @@ export const ROLES = {
   healer:  { name: 'Heiler',            icon: '✚',  order: 3, def: 0.08, aggro: 2 },
 };
 
+// Klassen (GW2-Berufe). Unabhängig von der Rolle: Ein Wächter kann Tank,
+// Heiler, Unterstützer oder Schaden sein. Die Klasse bestimmt
+//   - die Waffenart (WEAPON_FOR in js/data/weapons.js; Heiler immer Fokus)
+//   - einen festen Klassenbonus: bonus = [Wert aus TRAIT_STATS, Prozent],
+//     gerechnet wie eine Eigenschaft (mit dem Faktor f, Trupp-Werte für den Trupp)
+//   - roles: welche Rollen zur Klasse passen (nach GW2-Spezialisierungen).
+//     Nur für neue Helden beim Ergänzen, im Spiel ohne Wirkung.
 export const CLASSES = {
-  waechter:   { name: 'Wächter',         sprite: 'HERO_WAECHTER',   color: '#8fc4ff' },
-  krieger:    { name: 'Krieger',         sprite: 'HERO_KRIEGER',    color: '#f0c060' },
-  widergaenger:{ name: 'Widergänger',    sprite: 'HERO_WIDERGAENGER', color: '#c98a6a' },
-  waldlaeufer:{ name: 'Waldläufer',      sprite: 'HERO_WALDLAEUFER', color: '#8fd47a' },
-  dieb:       { name: 'Dieb',            sprite: 'HERO_DIEB',       color: '#b9a3c9' },
-  ingenieur:  { name: 'Ingenieur',       sprite: 'HERO_INGENIEUR',  color: '#e0a352' },
-  elementar:  { name: 'Elementarmagier', sprite: 'HERO_ELEMENTARMAGIER', color: '#ff8a6b' },
-  mesmer:     { name: 'Mesmer',          sprite: 'HERO_MESMER',     color: '#e07ad8' },
-  nekromant:  { name: 'Nekromant',       sprite: 'HERO_NEKROMANT',  color: '#5fd6a8' },
+  waechter:    { name: 'Wächter',         sprite: 'HERO_WAECHTER',        color: '#8fc4ff', bonus: ['def', 8],     roles: ['tank', 'healer', 'support', 'dps'] },
+  krieger:     { name: 'Krieger',         sprite: 'HERO_KRIEGER',         color: '#f0c060', bonus: ['hp', 8],      roles: ['tank', 'support', 'dps'] },
+  widergaenger:{ name: 'Widergänger',     sprite: 'HERO_WIDERGAENGER',    color: '#c98a6a', bonus: ['boss', 8],    roles: ['tank', 'healer', 'support', 'dps'] },
+  waldlaeufer: { name: 'Waldläufer',      sprite: 'HERO_WALDLAEUFER',     color: '#8fd47a', bonus: ['speed', 8],   roles: ['healer', 'support', 'dps'] },
+  dieb:        { name: 'Dieb',            sprite: 'HERO_DIEB',            color: '#b9a3c9', bonus: ['crit', 8],    roles: ['healer', 'support', 'dps'] },
+  ingenieur:   { name: 'Ingenieur',       sprite: 'HERO_INGENIEUR',       color: '#e0a352', bonus: ['loot', 8],    roles: ['tank', 'healer', 'support', 'dps'] },
+  elementar:   { name: 'Elementarmagier', sprite: 'HERO_ELEMENTARMAGIER', color: '#ff8a6b', bonus: ['atk', 8],     roles: ['healer', 'support', 'dps'] },
+  mesmer:      { name: 'Mesmer',          sprite: 'HERO_MESMER',          color: '#e07ad8', bonus: ['critdmg', 8], roles: ['tank', 'healer', 'support', 'dps'] },
+  nekromant:   { name: 'Nekromant',       sprite: 'HERO_NEKROMANT',       color: '#5fd6a8', bonus: ['regen', 8],   roles: ['healer', 'support', 'dps'] },
 };
 
 export const RACES = {
@@ -108,7 +115,7 @@ export const HEROES = [
   { id: 'h28', name: 'Julian Croft',          title: 'Priester der Dwayna',            race: 'mensch',  cls: 'waechter',     role: 'healer',  baseHp: 180, baseAtk: 7 },
   { id: 'h29', name: 'Sophia Dawn',           title: 'Ruferin der Legende Ventari',    race: 'mensch',  cls: 'widergaenger', role: 'healer',  baseHp: 180, baseAtk: 8 },
   { id: 'h30', name: 'Garrett Fletcher',      title: 'Pfeilmacher aus Beetletun',      race: 'mensch',  cls: 'waldlaeufer',  role: 'dps',     baseHp: 155, baseAtk: 15, crit: 0.20 },
-  { id: 'h31', name: 'Damian Voss',          title: 'Schnitter vom Totenwald',        race: 'mensch',  cls: 'nekromant',    role: 'tank',    baseHp: 255, baseAtk: 10 },
+  { id: 'h31', name: 'Damian Voss',          title: 'Chronomant der Zeitlinie',       race: 'mensch',  cls: 'mesmer',       role: 'tank',    baseHp: 255, baseAtk: 10 },
   { id: 'h32', name: 'Torvald Felsbrecher',   title: 'Riese von Hoelbrak',             race: 'norn',    cls: 'krieger',      role: 'tank',    baseHp: 290, baseAtk: 9 },
   { id: 'h33', name: 'Freya Morgenwacht',     title: 'Gezeichnet vom Geist des Bären', race: 'norn',    cls: 'widergaenger', role: 'tank',    baseHp: 270, baseAtk: 10 },
   { id: 'h34', name: 'Vidar Rabenwacht',      title: 'Seher des Raben',                race: 'norn',    cls: 'waldlaeufer',  role: 'healer',  baseHp: 175, baseAtk: 7 },

@@ -9,7 +9,7 @@ import {
 } from './config.js';
 import {
   getHero, heroStats, pay, researchLevel, addLog, buildingCost, buildLock, weaponType, gainExp,
-  isOwned, createHero, armoryFree, heroTotalExp, rollTraits, traitBonus,
+  isOwned, createHero, armoryFree, heroTotalExp, rollTraits, heroBonus,
 } from './state.js';
 
 // ---------- Bauen ----------------------------------------------------
@@ -264,7 +264,7 @@ export function feedRation(state, uid, g) {
   state.rations[g] -= 1;
   state.stats.rationsFed = (state.stats.rationsFed || 0) + 1;
   const before = heroTotalExp(h);
-  gainExp(state, h, RATIONS[g].exp * (1 + traitBonus(h.traits).ration)); // Eigenschaft „Proviant“
+  gainExp(state, h, RATIONS[g].exp * (1 + heroBonus(h).ration)); // Eigenschaft „Proviant“
   h.fedExp = (h.fedExp || 0) + Math.max(0, heroTotalExp(h) - before); // #046
   return true;
 }
