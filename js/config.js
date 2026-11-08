@@ -5,7 +5,7 @@
 
 export const GAME = {
   title: 'Aetherbastion: Rift Watch',
-  VERSION: '0.31.0',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
+  VERSION: '0.33.0',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
   CHANGELOG_URL: 'https://github.com/cblte/aetherbastion-rift-watch/blob/main/CHANGELOG.md', // Link in den Einstellungen
   BUILD: 'lokal',                    // ersetzt der Pages-Workflow durch „Nr. · Commit“
   SAVE_KEY: 'aetherbastion_save_v1',
@@ -321,7 +321,8 @@ export const RECRUIT = {
   },
   odds: [
     //            Fein  Meister  Selten  Exotisch  Aufgest.
-    { hall: 1, w: { 2: 70, 3: 25, 4: 5,  5: 0,  6: 0 } },
+    { hall: 1, w: { 2: 80, 3: 20, 4: 0,  5: 0,  6: 0 } },   // #054: Selten erst ab Halle 2
+    { hall: 2, w: { 2: 70, 3: 25, 4: 5,  5: 0,  6: 0 } },
     { hall: 3, w: { 2: 50, 3: 30, 4: 15, 5: 5,  6: 0 } },
     { hall: 5, w: { 2: 35, 3: 30, 4: 20, 5: 12, 6: 3 } },
     { hall: 7, w: { 2: 20, 3: 30, 4: 25, 5: 17, 6: 8 } },
@@ -461,6 +462,12 @@ export const FEATURES = {
 // Oberfläche
 export const UI = {
   QUEST_COLLAPSE_PX: 40,   // ab so viel Scrollen im Inhalt klappt das Auftrags-Banner ein (#038)
+  // #053: Gedrückt halten wiederholt (z. B. Proviant): erste Wiederholung nach HOLD_DELAY_MS,
+  // dann alle HOLD_REPEAT_MS, jedes Mal um HOLD_ACCEL schneller bis HOLD_MIN_MS.
+  HOLD_DELAY_MS: 400,
+  HOLD_REPEAT_MS: 180,
+  HOLD_ACCEL: 0.88,
+  HOLD_MIN_MS: 40,
 };
 
 export const ARMORY_SLOTS = [20, 25, 30, 40, 50, 60, 70, 85, 100];
@@ -470,6 +477,10 @@ export const ARMORY_CLEANUP_DEFAULT = [1, 2, 3];
 // Danach nur mit chance und amount [min, max] Stück. Lager je Güte wächst mit der Gildenhalle.
 export const RATION_DROP = { chance: 0.25, amount: [1, 2] };
 export const RATION_SLOTS = [30, 35, 40, 50, 60, 70, 80, 90, 100];
+
+// Vorräte verkaufen (🎒 Inventar): 🟡 je Stück. rations[g] = Proviant der Güte g+1 (etwa 0,4 🟡 je EXP).
+// Früchte haben noch keine andere Funktion, Verkaufen ist bis dahin ihr Nutzen.
+export const SELL = { rations: [15, 60, 200, 600, 2_000, 6_000], fruit: 250 };
 
 // Zelte (= Trupps). Zelt 1 ab Start.
 export const TENTS = [

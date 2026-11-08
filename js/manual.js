@@ -5,11 +5,12 @@
 // =====================================================================
 import {
   BUILDINGS, ZONES, ROLES, CLASSES, TRAIT_STATS, HEROES, TRAITS, TRAIT_RULES, TENTS, TENT_SIZE, COMBAT, GAME, NORMAL_STAGES, TOTAL_NORMAL, FEATURES,
-  RETIRE_MIN_LEVEL, LEVEL_CAP_MAX, ARMORY_SLOTS, RATION_SLOTS, RATION_DROP, RETIRE_HOME, CYCLE_MS, WEAPON_TYPES, WEAPON_FOR, WEAPON_GRADES, SHOP, QUESTS, RECRUIT, REROLL_RESET_CLOVER,
+  RETIRE_MIN_LEVEL, LEVEL_CAP_MAX, ARMORY_SLOTS, RATION_SLOTS, RATION_DROP, RETIRE_HOME, CYCLE_MS, WEAPON_TYPES, WEAPON_FOR, WEAPON_GRADES, SHOP, SELL, QUESTS, RECRUIT, REROLL_RESET_CLOVER,
 } from './config.js';
 
 const pct = (x) => `${Math.round(x * 100)} %`;
 const min = (ms) => Math.round(ms / 60_000);
+const de = (n) => n.toLocaleString('de-DE');
 const list = (items) => `<ul>${items.map(i => `<li>${i}</li>`).join('')}</ul>`;
 const table = (head, rows) => `<table class="m-table"><thead><tr>${head.map(h => `<th>${h}</th>`).join('')}</tr></thead>
   <tbody>${rows.map(r => `<tr>${r.map(c => `<td>${c}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
@@ -111,14 +112,15 @@ export function manualChapters() {
         `Der <b>Laden</b> der Charr-Schmiede hat ${SHOP.offers} Angebote und füllt sich alle ${min(SHOP.restockMs)} Minuten neu.`,
         `„Ware auffrischen“ verdoppelt seinen Preis bis zum nächsten Nachschub – oder bis du ihn mit 🍀 ${REROLL_RESET_CLOVER} Mystischem Klee zurücksetzt.`,
         `Boss-Beute und Käufe landen in der <b>Waffenkammer</b> (Reiter 🎒 Inventar und ⚒️ Schmiede) – Beute auch schon, bevor die Schmiede steht. Dort rüstest du aus oder verkaufst (${pct(SHOP.sellFactor)} des Preises).`,
-        'Der Reiter <b>🎒 Inventar</b> zeigt Proviant, Waffenkammer und ausgerüstete Waffen an einem Ort. Ausrüsten geht dort oder im Helden-Fenster.',
+        'Der Reiter <b>🎒 Inventar</b> zeigt Proviant, Früchte, Waffenkammer und ausgerüstete Waffen an einem Ort. Ausrüsten geht dort oder im Helden-Fenster.',
+        `Proviant und Früchte kannst du dort auch <b>verkaufen</b> (🍞1 ${de(SELL.rations[0])} bis 🍞6 ${de(SELL.rations[5])} 🟡, 🍎 ${de(SELL.fruit)} 🟡 pro Stück).`,
         'Waffen erscheinen als Kacheln (Güte T1–T6). Antippen: Ausrüsten oder Verkaufen. ▲ = besser als die Waffe eines Helden.',
         `Die Waffenkammer wächst mit der Gildenhalle (${ARMORY_SLOTS[0]} bis ${ARMORY_SLOTS.at(-1)} Plätze). Ist sie voll, bleibt Boss-Beute liegen. <b>🧹 Aufräumen</b> verkauft ganze Güten auf einmal; ▲-Waffen bleiben.`,
         'Jeder Held trägt eine Waffenart: Heiler einen Fokus, sonst nach Klasse.',
       ])}
       <p>${Object.values(WEAPON_TYPES).map(t => `${t.icon} ${t.name}`).join(' · ')}</p>
       ${table(['Güte', 'Bonus'], Object.entries(WEAPON_GRADES).map(([g, w]) => [`★${g} ${w.name}`, `+${pct(w.atk)} ATK, +${pct(w.hp)} HP`]))}
-      <p><b>🍞 Proviant</b> gibt einem Helden sofort EXP – ideal für frisch Rekrutierte, die hinterherhinken. Verfüttern im Inventar oder im Helden-Fenster.</p>
+      <p><b>🍞 Proviant</b> gibt einem Helden sofort EXP – ideal für frisch Rekrutierte, die hinterherhinken. Verfüttern im Inventar oder im Helden-Fenster. „⏫ +1 Level“ gibt genau so viel, wie bis zum nächsten Level fehlt; Knopf gedrückt halten wiederholt.</p>
       <p>Beim <b>ersten Sieg</b> über einen Boss gibt es die volle Menge, danach nur mit ${pct(RATION_DROP.chance)} Chance ${RATION_DROP.amount.join('–')} Stück. Das Lager fasst je Güte ${RATION_SLOTS[0]} bis ${RATION_SLOTS.at(-1)} Stück (wächst mit der Gildenhalle); was darüber geht, verfällt.</p>` },
 
     { icon: '🔬', title: 'Forschung', html: `

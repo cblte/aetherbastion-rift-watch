@@ -9,7 +9,7 @@ Feedback und Fehler aus dem Spieltest. Erledigte Punkte wandern mit Version nach
 - **Status:** `offen` · `in Arbeit` · `zurückgestellt` (mit Grund)
 - **Quelle:** wer es gemeldet hat (z. B. „Spieltest Frau“, „Gilde“)
 
-Nächste freie Nummer: **#052**
+Nächste freie Nummer: **#063**
 
 ## Eingang
 
@@ -27,6 +27,14 @@ _Zurzeit nichts offen._
 - **Status:** offen · **Quelle:** Entwickler
 - Eindruck: Auf 440 px ist alles zu viel auf einmal.
 - Vorschlag: Erst eine Bestandsaufnahme machen, Bildschirm für Bildschirm (Kopfbereich mit Währungen, Trupp-Karten, Gebäude, Rekrutierung, Schmiede): Was braucht man ständig, was nur selten? Seltenes hinter Aufklappen oder Unter-Tabs legen. Passt zu #034 (weniger Währungen = weniger Kopfbereich).
+
+### #055 Kampf-Chronik als Popup
+- **Status:** zurückgestellt (zusammen mit #041/#056) · **Quelle:** Gilde
+- Die Chronik muss nicht dauerhaft unten im Lager stehen. Idee: 📜-Knopf öffnet sie als Modal (läuft live mit), evtl. die letzte Zeile als Einzeiler sichtbar lassen.
+
+### #056 Bildschirme ohne Scrollen, nur Listen scrollen
+- **Status:** zurückgestellt (nächster Schritt, nach v0.32.0) · **Quelle:** Gilde
+- Wunsch: Die Bildschirme selbst sollen (fast) nicht scrollen, nur Listen in aufklappenden Bereichen. Gehört zur Bestandsaufnahme in #041, #055 ist ein erster Schritt.
 
 ## Tutorial
 
@@ -91,7 +99,56 @@ _Zurzeit nichts offen._
   - Skript in `tools/`, das die JSONL liest, Namen gegen die Wiki prüft (wie `build-gw2-monsters.mjs`) und die Schergen in `stages.js` schreibt (zusammen mit `gen-zones.mjs`).
   - Handbuch (`MANUAL.md`, `manual.js`) ergänzen.
 
+### #062 Gegner-Vielfalt: Profile für Schergen, knackige Bosse
+- **Status:** offen (nach #061) · **Quelle:** Entwickler
+- Befund: Jede Stufe hat 2 Schergen-Typen, die sich nur im Namen unterscheiden (`monsterTemplate()` in `combat.js` gibt beiden dieselben Werte). Bosse unterscheiden sich ebenfalls nur in den Zahlen. Spielerisch kämpft man immer gegen denselben Gegner.
+- Vorschlag Schergen: **Profile** mit Faktoren auf die Grundwerte der Stufe (aus #061), Werte in `config.js`, z. B.:
+  - *Rohling*: viel LP und DEF, langsam (3,0 s)
+  - *Flinker*: wenig LP, schnell (1,5 s)
+  - *Schütze/Magier*: mittlere LP, hoher ATK, wenig DEF
+  - *Schwarm*: sehr wenig LP, wenig Beute, kommt oft
+
+  Jeder Scherge in `tools/gen-zones.mjs` bekommt ein Profil. Mehr Schergen pro Stufe (3–5) und Veteran/Elite laufen über #026; beide zusammen umsetzen.
+- Vorschlag Bosse (Champions): **Die Bosse sollen knackig sein**, vor allem der Endboss jeder Zone. Ziel: Den Endboss schafft nur ein Trupp auf Höchstlevel der Zone mit passender Waffe (und Forschung), nicht schon ein Trupp, der gerade das empfohlene Level erreicht hat. Bosse bekommen ebenfalls ein Profil (Tempo 1,5 s aus CQHT, eigene LP/DEF-Faktoren); Endbosse einen eigenen Zuschlag in `config.js`.
+- Später: Boss-Fähigkeiten (Wut-Phase unter X % LP, Schergen rufen, Flächenangriff) → #042, #051 D.
+- Prüfen mit `tools/sim-bosses.mjs`: Endboss mit Max-Level-Trupp + Waffe knapp im 90-s-Limit, mit schwächerem Trupp nicht.
+
 ## Balancing
+
+### #061 Gegnerwerte nach CQHT: mehr LP, DEF, Angriffstempo, weniger Beute im Spätspiel
+- **Status:** offen · **Quelle:** Entwickler
+- Eindruck: Gegner sind viel zu schwach, das Spiel läuft sehr schnell.
+- Befund (Vergleich mit allen CQHT-Schergen in `dev-data/archiv/cqht-monsters.json`, unsere Formeln mit d = Level × 0,8):
+
+  | Lv. | CQHT LP / ATK / DEF | wir LP / ATK | CQHT EXP / Gold | wir EXP / Gold |
+  |---|---|---|---|---|
+  | 1 | 160 / 6 / 0 | 65 / 6,4 | 10 / 2 | 9 / 5 |
+  | 8 | 470 / 16 / 22,5 | 110 / 10 | 22 / 8 | 17 / 10 |
+  | 14 | 1260 / 31 / 44,5 | 174 / 15 | 59 / 12 | 31 / 18 |
+  | 30 | 2510 / 55 / 90 | 548 / 40 | 118 / 21 | 136 / 69 |
+  | 45 | 9870 / 135 / 144 | 1855 / 113 | 463 / 34 | 651 / 296 |
+  | 60 | 25669 / 222 / 189 | 5821 / 301 | 900 / 47 | 2824 / 1152 |
+
+  - **LP** 2,5–7× zu niedrig, auf allen Stufen.
+  - **Angriffstempo:** CQHT-Schergen greifen alle **2,5 s** an, Bosse alle **1,5 s** (Intervall, bestätigt). Bei uns trifft jedes Monster jede Sekunde → unser Schaden pro Sekunde ist schon jetzt 2–4× höher als in CQHT. ATK pro Treffer darf steigen, wenn das Tempo sinkt.
+  - **DEF:** Monster haben bei uns keine, in CQHT 0 bis 189 (dazu RES, gleicher Wert).
+  - **Beute:** Ab ca. Lv. 30 viel zu viel, auf Lv. 60 3× EXP und 25× Gold. Levelkurve und Baukosten sind CQHT-Werte, deshalb geht das Spätspiel im Eiltempo.
+  - Proviant bleibt Boss-Beute (die 0,05 % der CQHT-Schergen lassen wir weg).
+- Vorschlag:
+  - `F.monsterHp`/`F.monsterAtk`/`F.goldPerKill`/`F.expPerKill` durch eine Tabelle nach Stufen-Level ersetzen (Datei in `js/data/`, aus `cqht-monsters.json` erzeugt, Werte zwischen den Stützstellen interpolieren). Bosse ebenso aus den CQHT-Bossen.
+  - In `config.js` je ein Regler für LP, ATK, DEF und Beute, um die CQHT-Werte an unsere Helden-Grundwerte anzupassen.
+  - Monster-DEF wirkt wie Helden-DEF (Schadensreduktion, Kappung wie `DEF_CAP`), Formel in `F`.
+  - Angriffstempo als Wert je Monster (Schergen 2,5 s, Bosse 1,5 s), später je Profil (#062).
+- **Tick und Angriffe trennen** (entschieden 2026-11-08, wie in Idle-Spielen üblich: Simulation, Angriffs-Timer und Darstellung getrennt):
+  - **Simulation 10×/s** (`GAME.TICK_MS: 100`). Ein Tick lässt nur die Zeit laufen, er ist kein Angriff. Lücken ≤ 30 s in `main.js` = bis zu 300 Ticks, unkritisch.
+  - **Angriffs-Timer je Kämpfer:** Monster (Schergen 2,5 s, Bosse 1,5 s) und Helden zählen hoch und greifen erst bei ≥ Intervall an. Rest behalten (`timer -= intervall`), damit krumme Intervalle im Schnitt genau stimmen.
+  - **Helden bekommen Intervalle** nach Klasse/Waffenart (`CLASSES` in `config.js`, z. B. Dieb schnell mit kleinen Treffern, Elementarmagier langsam und hart). Eile, Tempo-Forschung und Traits verkürzen das Intervall, statt wie heute den Schaden je Tick zu vervielfachen (`teamProfile`: `tempo + st.speed`). Heilung ebenfalls als Intervall oder pro Sekunde × dt.
+  - **Alles in Sekunden statt Ticks:** `bossTicks` → verstrichene Zeit gegen `BOSS_TIME_LIMIT`, Regeneration, Kill-Heilung, Boss-Pause, Gildenkasse-Zyklen prüfen.
+  - **Darstellung getrennt:** `render()` ca. 4×/s bzw. bei Ereignissen, nicht bei jedem Tick. LP-Balken per CSS-`transition` weich, Treffer als kurze CSS-Animation (Wackeln/Schadenszahl), ausgelöst von Angriffs-Ereignissen. Kein 60-fps-Neuzeichnen (Akku).
+  - **Offline** (`offline.js`) bleibt bei Erwartungswerten: Schaden/s = ATK ÷ Intervall.
+  - Save-Format: Timer pro Monster/Held sind flüchtig (beim Laden 0), `bossTicks` ggf. migrieren → `SAVE_VERSION` + Migration, falls sich gespeicherte Felder ändern.
+- Ziel festlegen, bevor man Zahlen dreht: Wie lange dauert ein Schergen-Kampf auf passendem Level (z. B. 5–8 s)? Dann mit `tools/sim-bosses.mjs` Siege/h, Rückzüge und Zeit pro Zone prüfen, Offline-Effizienz mit.
+- Hängt zusammen mit #043 (Endgame-Balancing, `COMBAT.LEVEL_DIFF`), #051 (Schadensverteilung) und #062.
 
 ### #039 Zu viele Schadens-Helden, Heiler nur in „Fein“
 - **Status:** offen · **Quelle:** Gilde (Spieler hat alle Bosse inkl. legendär besiegt), vom Entwickler bestätigt
@@ -110,6 +167,17 @@ _Zurzeit nichts offen._
 - Vorschlag: Keine endlose Formel als Hauptinhalt. Lieber feste Inhalte mit Mechaniken (#042) und Erweiterungen (#044). Eine Formel höchstens als optionaler „endloser Riss“ mit Bestenliste in der Gilde. Dazu den offenen Balancing-Punkt aus `CLAUDE.md` angehen (Zonen 9–10, `F.monsterHp`, `F.monsterAtk`, `COMBAT.LEVEL_DIFF`): den Spieler fragen, wie lange er für schwer/legendär gebraucht hat.
 
 ## Idee
+
+### #060 Aufträge mit Gold nach der Questreihe (tägliche oder wiederholbare Aufträge)
+- **Status:** zurückgestellt (lange Bank, noch nicht nötig) · **Quelle:** Entwickler
+- Befund aus dem Gold-Vergleich mit CQHT: Gold gibt es aus Siegen, der Gildenkasse (Halle und Ruhestand), Waffen-/Vorratsverkauf und Aufträgen. Die Aufträge (`QUESTS` in `config.js`) enden aber mit Zone 6 (zusammen 34.650 🟡). Danach bringen Aufträge kein Gold mehr.
+- Idee für später: tägliche oder wiederholbare Aufträge (z. B. „Besiege 50 Schergen“, „Gewinne 3 Boss-Kämpfe“), oder die Questreihe für Zonen 7–10 fortsetzen.
+- Nebenbefund: Goldwandler, Glücksbringer und Gold-Eigenschaften wirken nur auf das Gold aus Siegen, nicht auf die Gildenkasse. Beim Angehen mitprüfen, ob das so bleiben soll.
+
+### #058 Farben und Look: weniger technisch, mehr GW2
+- **Status:** zurückgestellt (für das UI-Redesign) · **Quelle:** Gilde
+- Eindruck: sehr textlastig, Farben nach „dunkle Asura-Technik“. GW2 ist bunter. Holz muss nicht sein, aber wärmere, mittelalterliche Töne.
+- Idee: Warme Grundfarben (Pergament oder Dunkelbraun), Gold als Akzent, Ätherviolett nur für Riss/Portal, kräftigere Rollen-Farben. Über die CSS-Variablen machbar, am besten zusammen mit der Pixel-Art. Das rote ✕ aus #057 ist ein erstes Element.
 
 ### #049 Legendäre Helden: 7★ für voll ausgelevelte Helden (und Waffen)
 - **Status:** offen, Umsetzung noch unklar · **Quelle:** Entwickler

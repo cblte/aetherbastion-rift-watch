@@ -3,6 +3,15 @@
 Was sich im Spiel geändert hat, neueste Version oben. Die Nummern (#…) verweisen auf die Feedback-Liste.
 Die Version steht im Spiel unten unter der Navigation.
 
+## v0.33.0 – 08.11.2026
+- **Proviant und Früchte verkaufen:** Im 🎒 Inventar haben jede Proviant-Sorte und die 🍎 Früchte einen Knopf **Verkaufen** (1×, 10× oder alle). Pro Stück: 🍞1 15 🟡 bis 🍞6 6.000 🟡, 🍎 250 🟡 (#059).
+
+## v0.32.0 – 08.11.2026
+- **Proviant schneller verfüttern:** Im Proviant-Dialog (🎒 Inventar) hat jeder Held einen EXP-Balken mit „noch … bis Lv. X“, dazu die Knöpfe **🍞 +1** und **⏫ +1 Level** (verfüttert genau so viel, wie bis zum nächsten Level fehlt, die Menge steht dabei). Knopf **gedrückt halten** wiederholt, immer schneller, auch im Helden-Fenster. Nach jedem Füttern siehst du, was es gebracht hat (#053).
+- **Ausrüsten und Verfüttern:** Jeder Held zeigt, wo er steht (⛺2 · Platz 1 oder 💤 Reserve). Helden in Zelten stehen oben (#052).
+- **Dialoge schließen:** Überall dasselbe rote ✕ oben rechts, der Zurück-Pfeil ist weg (#057).
+- **Rekrutieren:** Seltene Rekruten gibt es erst ab Gildenhalle 2. Halle 1 würfelt nur noch Fein (80 %) und Meisterwerk (20 %) (#054).
+
 ## v0.31.0 – 08.11.2026
 - Neu: dieser Changelog, verlinkt in ⚙️ Einstellungen unter „📰 Was ist neu?“.
 

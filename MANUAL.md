@@ -28,12 +28,13 @@ Danach geht es im selben **Auftrags-Banner** nahtlos weiter (Auftrag 5 bis 27). 
 
 | | Was | Woher | Wofür |
 |---|---|---|---|
-| 🟡 | Gold | Siege, Gildenkasse | Gebäude, Rekruten, Zelte, Boss-Herausforderungen, Waffen, Belebung |
+| 🟡 | Gold | Siege, Gildenkasse, Aufträge, Verkauf (Waffen, Proviant, Früchte) | Gebäude, Rekruten, Zelte, Boss-Herausforderungen, Waffen, Belebung |
 | 🔮 | Ätherscherben | Siege (5 %), jeder Boss | Riss-Portal |
 | 📜 | Forschungsnotizen | Boss-Siege, Level-Ups | Forschung im Asura-Labor, seltene Waffen |
 | 🍀 | Mystischer Klee | Ruhestand | Mystische Schmiede, Würfel-Preis zurücksetzen |
-| 🍞 | Proviant (Güte 1–6) | Boss-Siege, Level-Ups | EXP für einen Helden |
-| 🍎 🎟️ | Früchte, Arena-Tickets | Level-Ups, Bosse | Funktion folgt |
+| 🍞 | Proviant (Güte 1–6) | Boss-Siege, Level-Ups | EXP für einen Helden, oder verkaufen |
+| 🍎 | Früchte | Level-Ups | Verkaufen (eigene Funktion folgt) |
+| 🎟️ | Arena-Tickets | Bosse | Funktion folgt |
 
 **Gildenkasse:** Alle 10 Minuten zahlt die Gildenhalle Gold aus (100 bis 1.000 🟡 je nach Stufe). Helden haben kein passives Einkommen, sie verdienen nur im Kampf.
 
@@ -186,7 +187,9 @@ Mit **📜 Forschungsnotizen** erforschst du dauerhafte Verbesserungen in drei B
 - **🧹 Aufräumen** verkauft alle Waffen der gewählten Güten auf einmal (vorgewählt: T1–T3). Waffen mit ▲ und ausgerüstete Waffen bleiben immer.
 - In Zelten, Reserve und Auswahllisten steht unter jedem Helden seine Waffe (oder „ohne Waffe“).
 - **🍞 Proviant:** Beim ersten Sieg über einen Boss gibt es die volle Menge, danach nur mit 25 % Chance 1–2 Stück. Das Lager fasst je Güte 30 / 35 / 40 / 50 / 60 / 70 / 80 / 90 / 100 Stück (nach Gildenhalle); was darüber geht, verfällt.
-- **🎒 Inventar** (eigener Reiter in der unteren Leiste): Proviant, Früchte, Arena-Tickets, Waffenkammer und ausgerüstete Waffen an einem Ort. Ausrüsten und Verfüttern geht dort oder im Helden-Fenster.
+- **🎒 Inventar** (eigener Reiter in der unteren Leiste): Proviant, Früchte, Arena-Tickets, Waffenkammer und ausgerüstete Waffen an einem Ort. Ausrüsten und Verfüttern geht dort oder im Helden-Fenster. Beide Listen zeigen, ob ein Held in einem Zelt steht (⛺ Zelt · Platz) oder in der Reserve (💤).
+- **Proviant verfüttern:** Jeder Held hat einen EXP-Balken. **🍞 +1** gibt ein Stück, **⏫ +1 Level** genau so viel, wie bis zum nächsten Level fehlt (die Menge steht auf dem Knopf). Knopf **gedrückt halten** wiederholt, immer schneller.
+- **Proviant und Früchte verkaufen:** Im Inventar hat jede Sorte den Knopf **Verkaufen** (1×, 10× oder alle). Preise je Stück: 🍞1–6 = 15 / 60 / 200 / 600 / 2.000 / 6.000 🟡, 🍎 = 250 🟡.
 - Jeder Held trägt eine **Waffenart**: Heiler einen **Fokus**, sonst nach Klasse.
 
 | Waffenart | Träger |
@@ -233,7 +236,8 @@ Wie oft welche Seltenheit kommt, hängt von der **Gildenhalle** ab. Die aktuelle
 
 | Gildenhalle | Fein | Meisterwerk | Selten | Exotisch | Aufgestiegen |
 | --- | --- | --- | --- | --- | --- |
-| ab Stufe 1 | 70 % | 25 % | 5 % | – | – |
+| ab Stufe 1 | 80 % | 20 % | – | – | – |
+| ab Stufe 2 | 70 % | 25 % | 5 % | – | – |
 | ab Stufe 3 | 50 % | 30 % | 15 % | 5 % | – |
 | ab Stufe 5 | 35 % | 30 % | 20 % | 12 % | 3 % |
 | ab Stufe 7 | 20 % | 30 % | 25 % | 17 % | 8 % |

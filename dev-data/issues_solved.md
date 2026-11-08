@@ -12,6 +12,31 @@ Format:
 
 ---
 
+## v0.33.0
+
+### #059 Proviant und Früchte verkaufen
+- **Quelle:** Entwickler (Gold-Vergleich mit CQHT: dort kann man alle Gegenstände verkaufen, bei uns nur Waffen).
+- 🎒 Inventar: Knopf „Verkaufen“ je Proviant-Sorte und für 🍎 Früchte, Dialog mit 1× / 10× / alle. Preise in `SELL` (`config.js`), Logik `sellSupplies()` in `progress.js`. Handbuch angepasst.
+
+## v0.32.0
+
+### #054 Seltene Helden schon in Gildenhalle 1 (Balancing)
+- **Quelle:** Gilde. Halle 1 würfelte 70/25/5 (Fein/Meisterwerk/Selten); mit Erneuern kam Selten schnell, und seit v0.29.0 bringt Selten 2 Eigenschaften statt 1.
+- `RECRUIT.odds`: Halle 1 jetzt 80/20/0, neue Stufe Halle 2 mit 70/25/5, ab Halle 3 unverändert. Handbuch-Tabelle angepasst.
+
+### #052 Ausrüsten: Ist der Held im Zelt oder in Reserve? (UI)
+- **Quelle:** Gilde. Ausrüsten- und Proviant-Dialog zeigen je Held „⛺2 · Platz 1“ oder „💤 Reserve“ (`placeTag()` in `ui.js`). Helden in Zelten stehen oben (nach Zelt und Platz), danach die Reserve nach Level (`byPlace()`).
+
+### #053 Proviant verfüttern ist mühsam (UI)
+- **Quelle:** Gilde. Kein 10er/100er-Schritt, stattdessen:
+  - Proviant-Dialog: EXP-Balken je Held mit „x / y EXP bis Lv. N“, Knöpfe **🍞 +1** und **⏫ +1 Level** (`rationsToLevel()`/`feedRations()` in `progress.js`, rechnet die Eigenschaft „Proviant“ mit; reicht der Vorrat nicht, steht „alle n×, reicht nicht“ dabei).
+  - Gedrückt halten wiederholt (`data-hold`, Takt in `UI.HOLD_*`), auch im Helden-Fenster. Das Modal frischt sich dabei selbst auf.
+  - Toast nach jedem Füttern: EXP und Rest bis zum nächsten Level, bei Level-Aufstieg das neue Level statt „Lecker!“.
+  - `feedRation()` verbraucht am Level-Cap nichts mehr.
+
+### #057 Dialoge: einheitlich ✕, als roter Knopf (UI)
+- **Quelle:** Gilde. `modalHead()` zeigt immer ein rotes, gezeichnetes ✕ oben rechts (`.close-x`, 44-px-Tippfläche). Der ← aus #027 ist weg; aus dem Inventar geöffnete Dialoge führen mit dem ✕ zurück ins Inventar. Zelt-, Helden- und Handbuch-Dialog nutzen jetzt auch `modalHead()`. Erster Baustein für das Redesign (#058).
+
 ## v0.30.1
 
 ### #050 Helden-Detail: Symbole und Text nicht sauber ausgerichtet (UI)

@@ -25,7 +25,8 @@ import {
 } from './combat.js';
 import {
   researchInfo, doResearch, startBuild, refreshShop, refreshCost, buyWeapon, sellWeapon, sellWeapons, sellPrice,
-  upgradeIndices, equipWeapon, unequipWeapon, fitsHero, feedRation,
+  upgradeIndices, equipWeapon, unequipWeapon, fitsHero, feedRations, rationsToLevel, rationExp,
+  sellSupplies, supplyPrice, supplyCount,
   recruitTier, recruitRefreshCost, refreshRecruits, recruitCost, hireRecruit, resetRerollCost, recruitOdds,
 } from './progress.js';
 import { runOffline } from './offline.js';
@@ -38,6 +39,8 @@ let pointerDown = false;
 let pendingRender = false;
 let pointerTimer = 0;
 let suppressClickUntil = 0; // nach einem Wischen keinen Tipp auslösen
+let hold = null;            // #053: laufendes Gedrückt-Halten { d, x, y, ms, n, timer }
+let suppressHoldClickUntil = 0;
 
 const $ = (sel, root = document) => root.querySelector(sel);
 const esc = (s) => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -70,6 +73,11 @@ export function initUI(state, h) {
   document.addEventListener('pointerdown', down, true);
   document.addEventListener('pointerup', up, true);
   document.addEventListener('pointercancel', up, true);
+  document.addEventListener('pointerdown', startHold);
+  document.addEventListener('pointermove', moveHold, { passive: true });
+  document.addEventListener('pointerup', stopHold);
+  document.addEventListener('pointercancel', stopHold);
+  document.addEventListener('contextmenu', (e) => { if (e.target.closest?.('[data-hold]')) e.preventDefault(); });
 
   $('#build-info').textContent = versionText();
   app.addEventListener('click', onClick);
@@ -548,13 +556,38 @@ function heroMini(h, opts = {}) {
   return `<div class="hero-mini ${wounded ? 'wounded' : ''}" style="--c:${WEAPON_GRADES[h.rarity].color}">
     ${sprite(CLASSES[def.cls].sprite, 'mini-sprite')}
     <div class="hm-body">
-      <div class="hm-name"><b>${esc(def.name)}</b> <span class="lv">Lv. ${h.level}</span></div>
+      <div class="hm-name"><b>${esc(def.name)}</b> <span class="lv">Lv. ${h.level}</span>${opts.place ? ` <span class="hm-place">${placeTag(h)}</span>` : ''}</div>
       <div class="hm-sub"><span style="color:${WEAPON_GRADES[h.rarity].color}">◆</span> ${ROLES[def.role].icon} ${ROLES[def.role].name} · ${CLASSES[def.cls].name}</div>
       <div class="hm-wpn">${heroWeaponLine(h)}</div>
       ${opts.bars === false ? '' : hpBar(h.hp, hs.maxHp, 'hero-hp')}
+      ${opts.exp ? expLine(h) : ''}
       ${wounded ? `<div class="hm-wound">💢 Verwundet · ${clock(h.woundedUntil - S.lastTickMs)}</div>` : ''}
     </div>
   </div>`;
+}
+
+// #052: Wo steht der Held? Zelt und Platz, sonst Reserve
+function placeOf(h) {
+  const i = squadOf(S, h.uid);
+  return i < 0 ? null : { i, slot: S.squads[i].slots.indexOf(h.uid) };
+}
+function placeTag(h) {
+  const p = placeOf(h);
+  return p ? `⛺${p.i + 1} · Platz ${p.slot + 1}` : '💤 Reserve';
+}
+// Helden in Zelten zuerst (nach Zelt und Platz), dann die Reserve nach Level
+function byPlace(a, b) {
+  const pa = placeOf(a), pb = placeOf(b);
+  if (pa && pb) return pa.i - pb.i || pa.slot - pb.slot;
+  if (pa || pb) return pa ? -1 : 1;
+  return b.level - a.level;
+}
+
+// #053: EXP-Balken mit Zahlen (Proviant-Dialog)
+function expLine(h) {
+  if (h.level >= levelCap(S)) return '<div class="hm-exp muted">Level-Cap erreicht</div>';
+  const next = F.expToNext(h.level);
+  return `${hpBar(h.exp, next, 'exp')}<div class="hm-exp">✨ ${fmt(h.exp)} / ${fmt(next)} EXP bis Lv. ${h.level + 1}</div>`;
 }
 
 // #029: Welche Waffe trägt der Held? Symbol, Name in Güte-Farbe, Güte
@@ -891,23 +924,22 @@ function renderForge() {
     }).join('')}`);
 }
 
-// Mit Zurück-Ziel nur ← (führt in den vorigen Dialog), sonst nur ✕ – nie beides
-function modalHead(title, back = '') {
-  return back
-    ? `<div class="modal-head back"><button class="icon-btn" data-action="${back}" aria-label="Zurück">←</button><h3>${title}</h3></div>`
-    : `<div class="modal-head"><h3>${title}</h3><button class="icon-btn" data-action="modal-close" aria-label="Schließen">✕</button></div>`;
+// #057: Jeder Dialog hat oben rechts dasselbe rote ✕. Mit `close` (z. B. 'inventory') führt es
+// statt nur zu schließen dorthin zurück, wo der Dialog geöffnet wurde.
+function modalHead(title, close = '') {
+  return `<div class="modal-head"><h3>${title}</h3><button class="close-x" data-action="${close || 'modal-close'}" aria-label="Schließen"><i></i></button></div>`;
 }
 
 function openEquipPicker(idx, back = '') {
   const wid = S.armory[idx];
   if (!wid) return;
-  const heroes = S.heroes.filter(h => fitsHero(h, wid)).sort((a, b) => b.level - a.level);
+  const heroes = S.heroes.filter(h => fitsHero(h, wid)).sort(byPlace);
   const b = back ? ` data-back="${back}"` : '';
   openModal(`
     ${modalHead('Ausrüsten', back ? 'inventory' : '')}
     <p>${weaponName(wid)}<br><span class="muted small">${weaponBonus(wid)} · passt zu: ${WEAPON_TYPES[WEAPON_BY_ID[wid].type].name}-Trägern</span></p>
     ${heroes.length ? `<div class="pick-list">${heroes.map(h => `<button class="card hero-row" data-action="equip" data-uid="${h.uid}" data-idx="${idx}"${b}>
-      ${heroMini(h, { bars: false })}<span class="small">${h.weapon ? `ersetzt T${WEAPON_BY_ID[h.weapon].grade}` : 'frei'}</span></button>`).join('')}</div>`
+      ${heroMini(h, { bars: false, place: true })}<span class="small">${h.weapon ? `ersetzt T${WEAPON_BY_ID[h.weapon].grade}` : 'frei'}</span></button>`).join('')}</div>`
       : '<p class="muted small">Kein Held kann diese Waffenart tragen.</p>'}`);
 }
 
@@ -920,11 +952,16 @@ function inventoryHtml() {
   const equipped = S.heroes.filter(h => h.weapon).sort((a, b) => b.level - a.level);
   const rations = RATIONS.map((r, g) => S.rations[g] > 0 ? `<div class="card weapon-offer">
       <div class="w-info"><div>🍞${g + 1} ${esc(r.name)} <b>×${S.rations[g]}</b> <span class="muted small">/ ${rationSlots(S)}</span></div><div class="muted small">+${fmt(r.exp)} EXP pro Stück</div></div>
-      <div class="b-act"><button class="btn primary" data-action="feed-pick" data-g="${g}">Verfüttern</button></div></div>` : '').join('');
+      <div class="b-act btn-col tight"><button class="btn primary" data-action="feed-pick" data-g="${g}">Verfüttern</button>
+        <button class="btn" data-action="supply-sell" data-kind="ration" data-g="${g}">Verkaufen<small>🟡 ${fmt(supplyPrice('ration', g))}/Stk.</small></button></div></div>` : '').join('');
+  const fruit = S.fruit > 0 ? `<div class="card weapon-offer">
+      <div class="w-info"><div>🍎 Früchte <b>×${S.fruit}</b></div><div class="muted small">Von Level-Ups. Eigene Funktion folgt.</div></div>
+      <div class="b-act"><button class="btn" data-action="supply-sell" data-kind="fruit">Verkaufen<small>🟡 ${fmt(supplyPrice('fruit'))}/Stk.</small></button></div></div>` : '';
   return `
     <h3 class="tree-title">🍞 Proviant</h3>
     ${rations || '<div class="card muted small">Kein Proviant. Den gibt es von Bossen.</div>'}
-    <div class="card muted small">🍎 Früchte <b>${S.fruit}</b> · 🎟️ Arena-Tickets <b>${S.tickets}</b> (Funktion folgt)</div>
+    ${fruit}
+    <div class="card muted small">🎟️ Arena-Tickets <b>${S.tickets}</b> (Funktion folgt)</div>
     ${armoryCards('inv')}
     ${equipped.length ? `<h3 class="tree-title">⚔️ Ausgerüstet (${equipped.length})</h3>
       ${equipped.map(h => `<div class="card weapon-offer">
@@ -945,18 +982,97 @@ function openFeedPicker(g) {
     const r = RATIONS[g];
     if (!(S.rations[g] > 0)) return null;
     const cap = levelCap(S);
-    const heroes = [...S.heroes].sort((a, b) => b.level - a.level);
+    const heroes = [...S.heroes].sort((a, b) => (a.level >= cap) - (b.level >= cap) || byPlace(a, b));
     return `
       ${modalHead(`🍞${g + 1} verfüttern`, 'inventory')}
-      <p>${esc(r.name)} <b>×${S.rations[g]}</b><br><span class="muted small">+${fmt(r.exp)} EXP pro Stück</span></p>
-      <div class="pick-list">${heroes.map(h => {
-        const full = h.level >= cap;
-        return `<button class="card hero-row${full ? ' disabled' : ''}" data-action="feed" data-uid="${h.uid}" data-g="${g}" ${full ? 'disabled' : ''}>
-          ${heroMini(h, { bars: false })}<span class="small">${full ? 'Level-Cap' : `+${fmt(r.exp)} EXP`}</span></button>`;
-      }).join('')}</div>`;
+      <p>${esc(r.name)} <b>×${S.rations[g]}</b><br><span class="muted small">+${fmt(r.exp)} EXP pro Stück · Knopf gedrückt halten wiederholt</span></p>
+      <div class="pick-list">${heroes.map(h => feedRow(h, g, cap)).join('')}</div>`;
   };
   const refresh = () => { const html = build(); if (html) openModal(html, refresh); else openInventory(); };
   refresh();
+}
+
+// Proviant oder Früchte verkaufen: 1, 10 oder alle (läuft live mit)
+function openSupplySell(kind, g) {
+  const build = () => {
+    const have = supplyCount(S, kind, g);
+    if (!have) return null;
+    const price = supplyPrice(kind, g);
+    const label = kind === 'fruit' ? '🍎 Früchte' : `🍞${g + 1} ${esc(RATIONS[g].name)}`;
+    const btn = (n, cls = '') => `<button class="btn ${cls}" data-action="supply-sell-n" data-kind="${kind}" data-g="${g}" data-n="${n}">${n === have && n > 1 ? `Alle ${n}` : `${n}×`} verkaufen<small>🟡 ${fmt(price * n)}</small></button>`;
+    return `
+      ${modalHead('Verkaufen', 'inventory')}
+      <p>${label} <b>×${have}</b><br><span class="muted small">🟡 ${fmt(price)} pro Stück</span></p>
+      <div class="btn-col">
+        ${btn(1)}
+        ${have > 10 ? btn(10) : ''}
+        ${have > 1 ? btn(have, 'danger') : ''}
+      </div>`;
+  };
+  const refresh = () => { const html = build(); if (html) openModal(html, refresh); else openInventory(); };
+  refresh();
+}
+
+// #053: Eine Zeile im Proviant-Dialog: Held mit EXP-Balken, „+1“ und „+1 Level“
+function feedRow(h, g, cap) {
+  const full = h.level >= cap;
+  const per = rationExp(h, g);
+  const need = Math.ceil((F.expToNext(h.level) - h.exp) / per);
+  const n = rationsToLevel(S, h, g);
+  return `<div class="card feed-row${full ? ' disabled' : ''}">
+    ${heroMini(h, { bars: false, place: true, exp: true })}
+    ${full ? '' : `<div class="btn-row">
+      <button class="btn" data-action="feed" data-hold="1" data-uid="${h.uid}" data-g="${g}">🍞 +1<small>+${fmt(per)} EXP</small></button>
+      <button class="btn primary" data-action="feed-level" data-hold="1" data-uid="${h.uid}" data-g="${g}">⏫ +1 Level<small>${need > n ? `alle ${n}×, reicht nicht` : `${n}× 🍞${g + 1}`}</small></button>
+    </div>`}
+  </div>`;
+}
+
+// #053: Proviant geben mit Rückmeldung. mode 1 = ein Stück, 'level' = bis zum nächsten Level.
+function doFeed(d, mode) {
+  const h = getHero(S, Number(d.uid));
+  const g = Number(d.g);
+  if (!h) return false;
+  const res = feedRations(S, h.uid, g, mode === 'level' ? rationsToLevel(S, h, g) : 1);
+  if (!res.fed) return false;
+  hooks.save?.();
+  const name = esc(HERO_BY_ID[h.heroId].name);
+  const gained = fmt(res.fed * rationExp(h, g));
+  if (res.levels) toast(`⏫ <b>${name}</b> ist jetzt <b>Lv. ${h.level}</b>! (${res.fed}× 🍞${g + 1}, +${gained} EXP)`);
+  else toast(`🍞 ${name} +${gained} EXP · noch ${fmt(Math.ceil(F.expToNext(h.level) - h.exp))} bis Lv. ${h.level + 1}`);
+  return true;
+}
+
+// #053: Gedrückt halten wiederholt eine Aktion mit data-hold, immer schneller.
+// Das Modal wird direkt aufgefrischt (render() wartet, solange ein Finger aufliegt).
+function startHold(e) {
+  const el = e.target.closest?.('[data-hold]');
+  stopHold();
+  if (!el || el.disabled || (e.button ?? 0) !== 0) return;
+  hold = { d: { ...el.dataset }, x: e.clientX, y: e.clientY, ms: UI.HOLD_REPEAT_MS, n: 0 };
+  hold.timer = setTimeout(holdStep, UI.HOLD_DELAY_MS);
+}
+function holdStep() {
+  if (!hold) return;
+  if (!runHoldAction(hold.d)) { stopHold(); return; }
+  hold.n += 1;
+  if (modalRefresh) modalRefresh();
+  hold.ms = Math.max(UI.HOLD_MIN_MS, hold.ms * UI.HOLD_ACCEL);
+  hold.timer = setTimeout(holdStep, hold.ms);
+}
+function runHoldAction(d) {
+  if (d.action === 'feed') return doFeed(d, 1);
+  if (d.action === 'feed-level') return doFeed(d, 'level');
+  return false;
+}
+function stopHold() {
+  if (!hold) return;
+  clearTimeout(hold.timer);
+  if (hold.n) suppressHoldClickUntil = performance.now() + 600;
+  hold = null;
+}
+function moveHold(e) {
+  if (hold && Math.hypot(e.clientX - hold.x, e.clientY - hold.y) > 12) stopHold();
 }
 
 // ---------------------------------------------------------------------
@@ -1058,7 +1174,7 @@ function heroActions(h, { inSlot = false } = {}) {
   }
   if (S.rations.some(n => n > 0) && h.level < levelCap(S)) {
     btns.push(`<div class="sub-title">🍞 Proviant geben (EXP)</div><div class="btn-row wrap">${RATIONS.map((r, g) => S.rations[g] > 0
-      ? `<button class="btn" data-action="feed" data-uid="${h.uid}" data-g="${g}">🍞${g + 1} ×${S.rations[g]}<small>+${fmt(r.exp)} EXP</small></button>` : '').join('')}</div>`);
+      ? `<button class="btn" data-action="feed" data-hold="1" data-uid="${h.uid}" data-g="${g}">🍞${g + 1} ×${S.rations[g]}<small>+${fmt(rationExp(h, g))} EXP</small></button>` : '').join('')}</div>`);
   }
   if (!featureUnlocked(S, 'mystic')) {
     btns.push(`<div class="muted small">Ruhestand ab Gildenhalle ${FEATURES.mystic.unlockHall} (Mystische Schmiede).</div>`);
@@ -1077,7 +1193,7 @@ function openSlotModal(i, slot) {
   const res = reserveHeroes(S).sort((a, b) => b.level - a.level);
   const locked = h && h.woundedUntil;
   openModal(`
-    <div class="modal-head"><h3>⛺ Zelt ${i + 1} · Platz ${slot + 1}</h3><button class="icon-btn" data-action="modal-close" aria-label="Schließen">✕</button></div>
+    ${modalHead(`⛺ Zelt ${i + 1} · Platz ${slot + 1}`)}
     ${h ? heroDetailHtml(h) + heroActions(h, { inSlot: true }) : '<p class="muted">Dieser Platz ist frei.</p>'}
     <h4>${h ? 'Tauschen mit Held aus der Reserve' : 'Held aus der Reserve wählen'}</h4>
     ${locked ? '<p class="muted small">Verwundete Helden können nicht getauscht werden.</p>' : res.length
@@ -1092,7 +1208,7 @@ function openHeroModal(uid) {
   const free = [];
   S.squads.slice(0, S.tentsUnlocked).forEach((sq, i) => sq.slots.forEach((u, slot) => { if (u == null) free.push({ i, slot }); }));
   openModal(`
-    <div class="modal-head"><h3>Held</h3><button class="icon-btn" data-action="modal-close" aria-label="Schließen">✕</button></div>
+    ${modalHead('Held')}
     ${heroDetailHtml(h)}
     ${heroActions(h)}
     ${!h.woundedUntil && squadOf(S, uid) === -1 && free.length ? `<h4>In ein Zelt setzen</h4><div class="btn-row wrap">${free.map(f => `<button class="btn" data-action="assign" data-squad="${f.i}" data-slot="${f.slot}" data-uid="${uid}">Zelt ${f.i + 1} · Platz ${f.slot + 1}</button>`).join('')}</div>` : ''}`,
@@ -1101,7 +1217,7 @@ function openHeroModal(uid) {
 
 function openManual() {
   openModal(`
-    <div class="modal-head"><h3>📖 Handbuch</h3><button class="icon-btn" data-action="modal-close" aria-label="Schließen">✕</button></div>
+    ${modalHead('📖 Handbuch')}
     <div class="manual">${manualChapters().map(c => `
       <details class="manual-ch"><summary><span>${c.icon}</span>${c.title}</summary><div class="manual-body">${c.html}</div></details>`).join('')}
     </div>
@@ -1197,6 +1313,7 @@ function onClick(e) {
   const a = el.dataset.action;
   const d = el.dataset;
   if (a === 'modal-bg' && e.target !== el) return;
+  if (el.dataset.hold && performance.now() < suppressHoldClickUntil) return; // #053: Halten hat schon gefüttert
   const num = (v) => Number(v);
 
   switch (a) {
@@ -1357,13 +1474,18 @@ function onClick(e) {
     case 'inventory': openInventory(); break;
     case 'settings': openSettings(); break;
     case 'feed-pick': openFeedPicker(num(d.g)); break;
+    case 'supply-sell': openSupplySell(d.kind, num(d.g)); break;
+    case 'supply-sell-n': {
+      const r = sellSupplies(S, d.kind, num(d.g), num(d.n));
+      if (r.count) { hooks.save?.(); toast(`Verkauft: ${r.count}× für 🟡 ${fmt(r.gold)}`); render(); }
+      break;
+    }
     case 'unequip':
       if (unequipWeapon(S, num(d.uid))) { hooks.save?.(); if (modalRefresh) modalRefresh(); render(); }
       else if (armoryFree(S) < 1) toast('🗄️ Waffenkammer voll – erst aufräumen.');
       break;
-    case 'feed':
-      if (feedRation(S, num(d.uid), num(d.g))) {
-        hooks.save?.(); toast('🍞 Lecker!');
+    case 'feed': case 'feed-level':
+      if (doFeed(d, a === 'feed' ? 1 : 'level')) {
         if (modalRefresh) modalRefresh();
         render();
       }

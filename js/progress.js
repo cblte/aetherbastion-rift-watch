@@ -5,11 +5,11 @@
 // =====================================================================
 import {
   BUILDINGS, RESEARCH, TIER_LAB, F, WEAPONS, WEAPON_BY_ID, WEAPON_GRADES, SHOP, DROP_GRADES, RATIONS,
-  HEROES, HERO_BY_ID, RECRUIT, QUESTS, ONBOARDING, REROLL_RESET_CLOVER,
+  HEROES, HERO_BY_ID, RECRUIT, QUESTS, ONBOARDING, REROLL_RESET_CLOVER, SELL,
 } from './config.js';
 import {
   getHero, heroStats, pay, researchLevel, addLog, buildingCost, buildLock, weaponType, gainExp,
-  isOwned, createHero, armoryFree, heroTotalExp, rollTraits, heroBonus,
+  isOwned, createHero, armoryFree, heroTotalExp, rollTraits, heroBonus, levelCap,
 } from './state.js';
 
 // ---------- Bauen ----------------------------------------------------
@@ -104,6 +104,19 @@ export function sellWeapons(state, indices) {
   state.armory = state.armory.filter((_, k) => !drop.has(k));
   state.gold += gold;
   return { count: drop.size, gold };
+}
+
+// Vorräte verkaufen: kind 'ration' (Güte g 0–5) oder 'fruit'. Gibt { count, gold } zurück.
+export const supplyPrice = (kind, g = 0) => (kind === 'fruit' ? SELL.fruit : SELL.rations[g] || 0);
+export const supplyCount = (state, kind, g = 0) => (kind === 'fruit' ? state.fruit : state.rations[g] || 0);
+export function sellSupplies(state, kind, g, n) {
+  const count = Math.max(0, Math.min(Math.floor(n), supplyCount(state, kind, g)));
+  if (!count) return { count: 0, gold: 0 };
+  if (kind === 'fruit') state.fruit -= count;
+  else state.rations[g] -= count;
+  const gold = count * supplyPrice(kind, g);
+  state.gold += gold;
+  return { count, gold };
 }
 
 // Waffen, die für einen Helden besser wären als seine jetzige (höhere Güte).
@@ -258,15 +271,35 @@ export function resetRerollCost(state, which) {
 }
 
 // ---------- Proviant (CQHT Bread) --------------------------------------
+// EXP pro Stück für diesen Helden (mit Eigenschaft „Proviant“)
+export const rationExp = (hero, g) => RATIONS[g].exp * (1 + heroBonus(hero).ration);
+
 export function feedRation(state, uid, g) {
   const h = getHero(state, uid);
-  if (!h || state.rations[g] < 1) return false;
+  if (!h || state.rations[g] < 1 || h.level >= levelCap(state)) return false;
   state.rations[g] -= 1;
   state.stats.rationsFed = (state.stats.rationsFed || 0) + 1;
   const before = heroTotalExp(h);
-  gainExp(state, h, RATIONS[g].exp * (1 + heroBonus(h).ration)); // Eigenschaft „Proviant“
+  gainExp(state, h, rationExp(h, g)); // Eigenschaft „Proviant“
   h.fedExp = (h.fedExp || 0) + Math.max(0, heroTotalExp(h) - before); // #046
   return true;
+}
+
+// #053: So viele Stück der Güte g braucht der Held bis zum nächsten Level (höchstens der Vorrat).
+// 0 = am Level-Cap oder kein Vorrat.
+export function rationsToLevel(state, hero, g) {
+  if (!hero || hero.level >= levelCap(state) || !(state.rations[g] > 0)) return 0;
+  const need = F.expToNext(hero.level) - hero.exp;
+  return Math.min(state.rations[g], Math.max(1, Math.ceil(need / rationExp(hero, g))));
+}
+
+// Mehrere Stück auf einmal (z. B. „+1 Level“). Gibt { fed, levels } zurück.
+export function feedRations(state, uid, g, n) {
+  const h = getHero(state, uid);
+  const lv0 = h ? h.level : 0;
+  let fed = 0;
+  while (fed < n && feedRation(state, uid, g)) fed += 1;
+  return { fed, levels: h ? h.level - lv0 : 0 };
 }
 
 // ---------- Asura-Labor ----------------------------------------------
