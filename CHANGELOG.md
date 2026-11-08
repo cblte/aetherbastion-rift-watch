@@ -3,6 +3,18 @@
 Was sich im Spiel geändert hat, neueste Version oben. Die Nummern (#…) verweisen auf die Feedback-Liste.
 Die Version steht im Spiel unten unter der Navigation.
 
+## v0.35.0 – 08.11.2026
+- **Neuer Kampftakt (#061):** Nicht mehr alle schlagen jede Sekunde gleichzeitig zu. Jeder Held greift im **Takt seiner Klasse** an, z. B. Dieb alle 0,7 s, Elementarmagier alle 1,5 s. Schnelle Klassen treffen öfter, aber schwächer. Eile und Tempo machen den Takt kürzer. Schergen schlagen alle 2,5 s zu, Bosse alle 1,5 s. Der Takt steht im Helden-Fenster (⏱️).
+- **Anführer und Angriffsarten (#051):** Platz 1 im Zelt ist der **🚩 Anführer**. Gegner greifen jetzt unterschiedlich an, das steht unter ihrem Namen:
+  - 🗡️ **Nahkampf** trifft vor allem den Anführer.
+  - 🏹 **Fernkampf** trifft einen einzelnen Helden voll.
+  - ✨ **Magie** trifft alle gleich.
+
+  Stell deinen Tank also auf Platz 1. Beim Update stellen sich alle Trupps einmal von selbst so auf.
+- **Boss-Flächenangriff:** Bosse holen alle 12 s zu einem Angriff auf den ganzen Trupp aus. Kurz vorher erscheint eine Warnung.
+- Getroffene Helden wackeln kurz in der Arena.
+- **Balancing:** Bosse sind dadurch etwas härter. Damit die schweren und legendären Stufen schaffbar bleiben wie in v0.34.0, sind sie ein Stück leichter eingestellt. Beim Farmen von Schergen ändert sich kaum etwas, auch offline nicht.
+
 ## v0.34.0 – 08.11.2026
 - **Waffen-Beute neu gestaffelt:** Aufgestiegene Waffen (T6) fallen nur noch auf **schweren ☠️ Stufen** (T5–T6) und **legendären ⭐ Stufen** (immer T6). Malchors Sprung und Fluchküste geben normal nur noch T5.
 - **Laden der Charr-Schmiede:** T5-Waffen gibt es dort erst ab **Riss-Portal 4**, T6 erst, wenn alle 50 normalen Stufen besiegt sind. Bisher konnte man sich schon ab Gildenhalle 3 eine T5 kaufen.

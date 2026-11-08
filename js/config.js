@@ -5,12 +5,12 @@
 
 export const GAME = {
   title: 'Aetherbastion: Rift Watch',
-  VERSION: '0.34.0',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
+  VERSION: '0.35.0',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
   CHANGELOG_URL: 'https://github.com/cblte/aetherbastion-rift-watch/blob/main/CHANGELOG.md', // Link in den Einstellungen
   BUILD: 'lokal',                    // ersetzt der Pages-Workflow durch „Nr. · Commit“
   SAVE_KEY: 'aetherbastion_save_v1',
-  SAVE_VERSION: 10,
-  TICK_MS: 1000,                     // feste Kampf-Ticks
+  SAVE_VERSION: 11,
+  TICK_MS: 100,                      // Simulationsschritt (10×/s). Ein Tick lässt nur Zeit laufen, Angriffe kommen über Timer (#061)
   LOOP_MS: 250,                      // wie oft die Spielschleife nachsieht
   AUTOSAVE_MS: 10_000,
   OFFLINE_MAX_MS: 8 * 60 * 60 * 1000, // max. 8 Stunden Offline-Ertrag
@@ -37,9 +37,8 @@ export const CURRENCIES = {
 // order: kleinere Zahl = steht weiter vorn (wird zuerst angegriffen)
 export const ROLES = {
   // def   = Grund-Schadensreduktion der Rolle (0.25 = −25 % erlittener Schaden)
-  // aggro = Gewicht beim Verteilen des Monsterschadens: Jeder Treffer wird auf
-  //         alle fitten Helden im Verhältnis ihrer Gewichte aufgeteilt
-  //         (Tank + Schaden + Heiler = 50 % / 30 % / 20 %).
+  // aggro = Gewicht bei der Zielwahl der Gegner (#051): Nahkampf-Rest hinter dem Anführer,
+  //         Fernkampf-Ziel. Siehe COMBAT.LEADER_SHARE.
   tank:    { name: 'Tank',              icon: '🛡️', order: 0, def: 0.25, aggro: 5 },
   dps:     { name: 'Schadensausteiler', icon: '⚔️', order: 1, def: 0.05, aggro: 3 },
   support: { name: 'Unterstützer',      icon: '📯', order: 2, def: 0.10, aggro: 3 },
@@ -51,18 +50,20 @@ export const ROLES = {
 //   - die Waffenart (WEAPON_FOR in js/data/weapons.js; Heiler immer Fokus)
 //   - einen festen Klassenbonus: bonus = [Wert aus TRAIT_STATS, Prozent],
 //     gerechnet wie eine Eigenschaft (mit dem Faktor f, Trupp-Werte für den Trupp)
+//   - interval: Sekunden zwischen zwei Angriffen (#061). Schaden je Treffer = ATK × interval,
+//     damit alle Klassen gleich viel Schaden pro Sekunde machen. Eile/Tempo verkürzen das Intervall.
 //   - roles: welche Rollen zur Klasse passen (nach GW2-Spezialisierungen).
 //     Nur für neue Helden beim Ergänzen, im Spiel ohne Wirkung.
 export const CLASSES = {
-  waechter:    { name: 'Wächter',         sprite: 'HERO_WAECHTER',        color: '#8fc4ff', bonus: ['def', 8],     roles: ['tank', 'healer', 'support', 'dps'] },
-  krieger:     { name: 'Krieger',         sprite: 'HERO_KRIEGER',         color: '#f0c060', bonus: ['hp', 8],      roles: ['tank', 'support', 'dps'] },
-  widergaenger:{ name: 'Widergänger',     sprite: 'HERO_WIDERGAENGER',    color: '#c98a6a', bonus: ['boss', 8],    roles: ['tank', 'healer', 'support', 'dps'] },
-  waldlaeufer: { name: 'Waldläufer',      sprite: 'HERO_WALDLAEUFER',     color: '#8fd47a', bonus: ['speed', 8],   roles: ['healer', 'support', 'dps'] },
-  dieb:        { name: 'Dieb',            sprite: 'HERO_DIEB',            color: '#b9a3c9', bonus: ['crit', 8],    roles: ['healer', 'support', 'dps'] },
-  ingenieur:   { name: 'Ingenieur',       sprite: 'HERO_INGENIEUR',       color: '#e0a352', bonus: ['loot', 8],    roles: ['tank', 'healer', 'support', 'dps'] },
-  elementar:   { name: 'Elementarmagier', sprite: 'HERO_ELEMENTARMAGIER', color: '#ff8a6b', bonus: ['atk', 8],     roles: ['healer', 'support', 'dps'] },
-  mesmer:      { name: 'Mesmer',          sprite: 'HERO_MESMER',          color: '#e07ad8', bonus: ['critdmg', 8], roles: ['tank', 'healer', 'support', 'dps'] },
-  nekromant:   { name: 'Nekromant',       sprite: 'HERO_NEKROMANT',       color: '#5fd6a8', bonus: ['regen', 8],   roles: ['healer', 'support', 'dps'] },
+  waechter:    { name: 'Wächter',         interval: 1.2, sprite: 'HERO_WAECHTER',        color: '#8fc4ff', bonus: ['def', 8],     roles: ['tank', 'healer', 'support', 'dps'] },
+  krieger:     { name: 'Krieger',         interval: 1.2, sprite: 'HERO_KRIEGER',         color: '#f0c060', bonus: ['hp', 8],      roles: ['tank', 'support', 'dps'] },
+  widergaenger:{ name: 'Widergänger',     interval: 1.1, sprite: 'HERO_WIDERGAENGER',    color: '#c98a6a', bonus: ['boss', 8],    roles: ['tank', 'healer', 'support', 'dps'] },
+  waldlaeufer: { name: 'Waldläufer',      interval: 0.9, sprite: 'HERO_WALDLAEUFER',     color: '#8fd47a', bonus: ['speed', 8],   roles: ['healer', 'support', 'dps'] },
+  dieb:        { name: 'Dieb',            interval: 0.7, sprite: 'HERO_DIEB',            color: '#b9a3c9', bonus: ['crit', 8],    roles: ['healer', 'support', 'dps'] },
+  ingenieur:   { name: 'Ingenieur',       interval: 1.0, sprite: 'HERO_INGENIEUR',     color: '#e0a352', bonus: ['loot', 8],    roles: ['tank', 'healer', 'support', 'dps'] },
+  elementar:   { name: 'Elementarmagier', interval: 1.5, sprite: 'HERO_ELEMENTARMAGIER', color: '#ff8a6b', bonus: ['atk', 8],     roles: ['healer', 'support', 'dps'] },
+  mesmer:      { name: 'Mesmer',          interval: 1.1, sprite: 'HERO_MESMER',          color: '#e07ad8', bonus: ['critdmg', 8], roles: ['tank', 'healer', 'support', 'dps'] },
+  nekromant:   { name: 'Nekromant',       interval: 1.3, sprite: 'HERO_NEKROMANT',       color: '#5fd6a8', bonus: ['regen', 8],   roles: ['healer', 'support', 'dps'] },
 };
 
 export const RACES = {
@@ -254,14 +255,38 @@ export const COMBAT = {
   HEALER_ATK_FACTOR: 0.4,  // Heiler greifen nebenbei schwach an
   SUPPORT_ATK_FACTOR: 0.7,
   MIGHT_BONUS: 0.12,       // Macht: +12 % Team-ATK je Unterstützer
-  EILE_BONUS: 0.15,        // Eile: +15 % Chance auf Zusatzangriff je Unterstützer
+  EILE_BONUS: 0.15,        // Eile: +15 % Angriffstempo je Unterstützer (Intervall ÷ 1,15)
   DEF_CAP: 0.75,           // max. Schadensreduktion
   SHARD_CHANCE: 0.05,
+  // Angriffs-Timer (#061): Sekunden zwischen zwei Monster-Angriffen (CQHT: Schergen 2,5 s, Bosse 1,5 s).
+  // Schaden je Treffer = F.monsterAtk × Intervall, also gleich viel Schaden pro Sekunde wie vorher.
+  MINION_INTERVAL: 2.5,
+  BOSS_INTERVAL: 1.5,
+  SPAWN_DELAY: 0.5,        // Sekunden, bis der nächste Gegner da ist (live und offline)
+  // Zielwahl (#051 B + D): Platz 1 im Zelt ist der Anführer (fällt er, rückt der Nächste nach).
+  //   melee  (Nahkampf): Anführer bekommt LEADER_SHARE, der Rest verteilt sich nach ROLES[…].aggro
+  //   ranged (Fernkampf): ein Ziel, gewürfelt nach aggro
+  //   magic  (Magie): Fläche, alle fitten Helden teilen sich AREA_TOTAL × Treffer gleichmäßig
+  // Die Angriffsart steht je Gegner in data/stages.js (tools/gen-zones.mjs).
+  LEADER_SHARE: 0.6,
+  AREA_TOTAL: 1.0,
+  // Bosse holen alle BOSS_AOE_EVERY Sekunden zu einem Flächenangriff aus (Ansage BOSS_AOE_WARN s vorher):
+  // jeder fitte Held bekommt F.monsterAtk × BOSS_AOE_FACTOR.
+  BOSS_AOE_EVERY: 12,
+  BOSS_AOE_WARN: 3,
+  BOSS_AOE_FACTOR: 0.5,
   ENDGAME_DIFF_SCALE: 1.4, // #047: Zuschlag der normalen Lv.-60-Stufen (Zonen 8–10) × 1,4 → d bis ≈ 54 (tools/sim-bosses.mjs)
   // Schwere Stufen beginnen über der letzten normalen Stufe (Fluchküste 5, d ≈ 53,6) und steigen
   // gleichmäßig von Königintal ☠️6 bis Fluchküste ☠️7. Legendär liegt darüber (Zone 2 → Zone 10).
-  HARD_DIFF:   { from: 56, to: 61 },     // Fluchküste ☠️7: Max-Trupp Lv. 60 mit T6 knapp (tools/sim-bosses.mjs)
-  LEGEND_DIFF: { from: 61.5, to: 62.5 }, // absichtlich knüppelhart: Max-Trupp Lv. 60 ≈ 43 % → 3 % Siegchance; später mit S-Tier-Trupp nachregeln
+  HARD_DIFF:   { from: 54.5, to: 59.5 }, // v0.35.0 −1,5 (Angriffs-Timer + Boss-Fläche machen Bosse härter). Fluchküste ☠️7: Max-Trupp Lv. 60 mit T6 knapp
+  LEGEND_DIFF: { from: 60.8, to: 61 },   // absichtlich knüppelhart: Max-Trupp Lv. 60 ≈ 45 % (Caledon) → 3 % (Fluchküste); später mit S-Tier-Trupp nachregeln
+};
+
+// Angriffsarten der Gegner (#051), Anzeige in der Arena
+export const ATTACK_TYPES = {
+  melee:  { icon: '🗡️', name: 'Nahkampf' },
+  ranged: { icon: '🏹', name: 'Fernkampf' },
+  magic:  { icon: '✨', name: 'Magie' },
 };
 
 // Riss-Zonen aus data/stages.js; Schwierigkeit je Stufe berechnen.

@@ -143,8 +143,16 @@ const HARD2_MINION = 'Kryptis-Splitter';
 const tag = (s) => s.toUpperCase()
   .replace(/Ä/g, 'AE').replace(/Ö/g, 'OE').replace(/Ü/g, 'UE').replace(/ß/g, 'SS').replace(/’/g, '')
   .replace(/[^A-Z0-9]+/g, '_').replace(/^_|_$/g, '');
-const boss = (name) => ({ name, sprite: `BOSS_${tag(name)}` });
-const mob = (name) => ({ name, sprite: `MOB_${tag(name)}` });
+// Angriffsart (#051 D) nach dem Namen: melee = trifft den Anführer, ranged = ein Ziel,
+// magic = Fläche (COMBAT in js/config.js). Fernkampf wird vor Magie geprüft (Geister-Bogenschütze).
+// ATTACK_OVERRIDE setzt einzelne Gegner fest, wenn die Regel danebenliegt.
+const RANGED = /schütz|bogen|bomber|kanonier|geschütz|späher|blasrohr|brandstifter|wyvern|junges|belagerer|ornithologin/i;
+const MAGIC = /schaman|mystiker|geist|gespenst|spektral|elementar|funke|experiment|kultist|zauber|akolyth|priester|hexe|orakel|verderber|seuchen|hypnoss|schattenbrut|peiniger|vorbote|auge des|verweser|splitter/i;
+const ATTACK_OVERRIDE = { 'Ascalonischer Geist': 'magic', 'Verderbter Baumgeist': 'melee' };
+export const attackOf = (name) => ATTACK_OVERRIDE[name.replace(/^(Champion|Verderbt:|Schatten:|Veteran) /, '')]
+  || (RANGED.test(name) ? 'ranged' : MAGIC.test(name) ? 'magic' : 'melee');
+const boss = (name) => ({ name, sprite: `BOSS_${tag(name)}`, attack: attackOf(name) });
+const mob = (name) => ({ name, sprite: `MOB_${tag(name)}`, attack: attackOf(name) });
 
 const out = [];
 OLD.forEach((oz, zi) => {

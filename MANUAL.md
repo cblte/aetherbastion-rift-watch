@@ -42,12 +42,12 @@ Danach geht es im selben **Auftrags-Banner** nahtlos weiter (Auftrag 5 bis 27). 
 
 Im Spiel gibt es 60 Helden, je zwölf Charr, Menschen, Norn, Asura und Sylvari, und von jeder Rolle gleich viele (15). Das Volk ist nur Hintergrund und ändert keine Werte. Jeder Held hat eine Klasse aus Guild Wars 2 und eine **Rolle**. Die Rolle bestimmt das Kampfverhalten:
 
-- 🛡️ **Tank:** Steht vorn und wird zuerst angegriffen. Viele Lebenspunkte, 25 % DEF.
+- 🛡️ **Tank:** Viele Lebenspunkte, 25 % DEF. Gehört auf Platz 1, den Anführer-Platz.
 - ⚔️ **Schadensausteiler:** Hoher Schaden, oft mit Krit-Chance (doppelter Schaden).
-- 📯 **Unterstützer:** Etwas Schaden plus Team-Buff: *Macht* (+12 % ATK) oder *Eile* (Chance auf Zusatzangriff).
-- ✚ **Heiler:** Heilt jede Sekunde den schwächsten Verbündeten und greift leicht an.
+- 📯 **Unterstützer:** Etwas Schaden plus Team-Buff: *Macht* (+12 % ATK) oder *Eile* (+15 % Angriffstempo).
+- ✚ **Heiler:** Heilt im eigenen Takt den schwächsten Verbündeten und greift leicht an.
 
-Monster treffen alle fitten Helden gleichzeitig: Der Tank bekommt den größten Anteil, der Heiler den kleinsten (Details unter „Eine Kampfsekunde“).
+**Platz 1** im Zelt ist der **🚩 Anführer**. Nahkämpfer schlagen vor allem auf ihn ein, fällt er, rückt der Nächste nach (Details unter „So läuft ein Kampf“).
 
 Helden steigen bis **Lv. 60** auf. Jede neue Stufe bringt eine Belohnung: Forschungsnotizen, Proviant und manchmal Früchte.
 
@@ -55,17 +55,19 @@ Helden steigen bis **Lv. 60** auf. Jede neue Stufe bringt eine Belohnung: Forsch
 
 Rolle und Klasse sind zwei Dinge: Die **Rolle** (Tank, Heiler, Unterstützer, Schaden) bestimmt, was ein Held im Kampf macht. Die **Klasse** (GW2-Beruf) bestimmt die Waffenart und gibt einen kleinen festen **Klassenbonus**. Ein Wächter kann also Tank, Heiler, Unterstützer oder Schaden sein und bekommt immer den Wächter-Bonus.
 
-| Klasse | Klassenbonus | Waffe |
-| --- | --- | --- |
-| Wächter | +3,2 % DEF | Hammer |
-| Krieger | +8 % LP | Schwert |
-| Widergänger | −8 % Schaden von Bossen | Hammer |
-| Waldläufer | +4 % Angriffstempo | Bogen |
-| Dieb | +4 % Krit-Chance | Schwert |
-| Ingenieur | +8 % Chance auf Boss-Waffe (Trupp) | Gewehr |
-| Elementarmagier | +8 % ATK | Stab |
-| Mesmer | +8 % Krit-Schaden | Schwert |
-| Nekromant | −8 % Verwundungszeit | Stab |
+| Klasse | Klassenbonus | Waffe | Takt |
+| --- | --- | --- | --- |
+| Wächter | +3,2 % DEF | Hammer | 1,2 s |
+| Krieger | +8 % LP | Schwert | 1,2 s |
+| Widergänger | −8 % Schaden von Bossen | Hammer | 1,1 s |
+| Waldläufer | +4 % Angriffstempo | Bogen | 0,9 s |
+| Dieb | +4 % Krit-Chance | Schwert | 0,7 s |
+| Ingenieur | +8 % Chance auf Boss-Waffe (Trupp) | Gewehr | 1,0 s |
+| Elementarmagier | +8 % ATK | Stab | 1,5 s |
+| Mesmer | +8 % Krit-Schaden | Schwert | 1,1 s |
+| Nekromant | −8 % Verwundungszeit | Stab | 1,3 s |
+
+**Takt:** So oft greift die Klasse an. Schnelle Klassen treffen öfter, aber schwächer. Pro Sekunde machen alle gleich viel Schaden.
 
 Heiler tragen unabhängig von der Klasse immer einen Fokus.
 
@@ -77,7 +79,7 @@ Jeder Held bringt **Eigenschaften** mit, gewürfelt beim Rekrutieren. Du siehst 
 - **Güte:** Jede Eigenschaft hat eine Güte (Farbe wie bei Waffen), höchstens die Seltenheit des Helden, oft eine oder zwei Stufen darunter. Höhere Güte = größerer Bonus.
 - **Arten:** Einzel-Eigenschaften geben einen großen Bonus auf einen Wert, Doppel- einen mittleren auf zwei, Dreifach- (nur Exotisch und Aufgestiegen) einen kleinen auf drei.
 - **Spezialisierung:** ⚔️ Angriff, 🛡️ Verteidigung, 🧭 Lager oder ⚖️ Ausgeglichen, nach der besten Eigenschaft. Tanks und Heiler bekommen öfter Verteidigung, Schadensausteiler öfter Angriff.
-- **Werte:** ATK, Krit-Chance, Krit-Schaden, Angriffstempo (Chance auf Zusatzangriff), LP, DEF, Heilung, kürzere Verwundung, weniger Schaden von Bossen, EXP aus Proviant.
+- **Werte:** ATK, Krit-Chance, Krit-Schaden, Angriffstempo (kürzerer Takt), LP, DEF, Heilung, kürzere Verwundung, weniger Schaden von Bossen, EXP aus Proviant.
 - **Lager-Werte (Trupp):** Gold, EXP, Ätherscherben, Beute (Chance auf eine Waffe mehr beim Boss) und Offline-Ertrag wirken für den ganzen Trupp im Zelt, aber nicht aus der Reserve.
 - Wer in den Ruhestand geht und neu rekrutiert wird, würfelt neue Eigenschaften.
 
@@ -87,11 +89,11 @@ Jeder Held bringt **Eigenschaften** mit, gewürfelt beim Rekrutieren. Du siehst 
 - Es gibt bis zu **4 Zelte** (12 aktive Helden). Zelt 2, 3 und 4 werden ab **Gildenhalle Stufe 3, 6 und 9** freigeschaltet und kosten Gold.
 - Weitere Helden warten in der **Reserve**. Sie kämpfen nicht, erholen sich aber.
 - Im Reiter **🛡️ Trupps** tippst du auf einen Zeltplatz, um einen Helden einzusetzen, zu tauschen, auszurüsten oder mit Proviant zu füttern.
-- Gute Aufstellung: **Tank + Heiler + Schadensausteiler.**
+- Gute Aufstellung: **Tank + Heiler + Schadensausteiler**, der Tank auf Platz 1 (🚩 Anführer).
 
 ## Kampf: Stufen, Schergen und Bosse
 
-- Jeder Trupp kämpft **unabhängig** in einer Riss-Zone, eine Aktion pro Sekunde.
+- Jeder Trupp kämpft **unabhängig** in einer Riss-Zone. Jeder Held und jeder Gegner greift in seinem eigenen Takt an.
 - Jede Zone hat **5 normale Stufen** und **2 schwere** ☠️, jede zweite Zone zusätzlich **1 legendäre** ⭐. Jede Stufe hat einen **Boss** 👑, zwei Arten von **Schergen** und ein empfohlenes **Heldenlevel**.
 - Dein Trupp **farmt die Schergen** der gewählten Stufe. Das bringt Gold, EXP und ab und zu Ätherscherben.
 - Wenn du meinst, dass dein Trupp stark genug ist, tippst du auf **„Herausfordern“**. Das kostet etwas Gold. Dann hat der Trupp **90 Sekunden**, um den Boss zu besiegen. Solange der Bosskampf läuft, lassen sich Zone und Stufe nicht wechseln; wer aussteigen will, tippt auf **„Abbrechen“**.
@@ -105,11 +107,18 @@ Jeder Held bringt **Eigenschaften** mit, gewürfelt beim Rekrutieren. Du siehst 
 - Fällt ein Held auf 0 LP, ist er **verwundet** und erholt sich **90 Sekunden** lang. Für Gold kannst du ihn sofort beleben (⚡).
 - Fallen alle drei, zieht sich der Trupp **ins Lager zurück** und kehrt automatisch zurück, sobald ein Held wieder fit ist (erholt oder belebt). Die anderen erholen sich im Zelt weiter.
 
-### Eine Kampfsekunde
+### So läuft ein Kampf
 
+- Jeder Held greift im **Takt seiner Klasse** an (⏱️ im Helden-Fenster, Tabelle oben). Eile, Forschung und Tempo-Eigenschaften verkürzen den Takt.
 - ⚔️ Schadensausteiler und 🛡️ Tanks greifen mit voller ATK an, 📯 Unterstützer mit 70 %. Krit-Treffer machen doppelten Schaden.
-- ✚ Heiler heilen den Verbündeten mit den wenigsten LP (Anteil) um **ATK × 1,8** und greifen mit **40 % ATK** an, ohne Krit.
-- Danach schlägt das Monster zu und trifft **alle fitten Helden**: 🛡️ Tank 5 Teile, ⚔️ Schaden und 📯 Unterstützer je 3, ✚ Heiler 2 (Tank + Schaden + Heiler = 50 % / 30 % / 20 %). Die DEF jedes Helden senkt seinen Anteil. Wer auf 0 LP fällt, ist verwundet; erst wenn alle verwundet sind, zieht sich der Trupp zurück.
+- ✚ Heiler heilen den Verbündeten mit den wenigsten LP (Anteil) um **ATK × 1,8 pro Sekunde** und greifen mit **40 % ATK** an, ohne Krit.
+- Ein neuer Gegner braucht einen halben Moment (0,5 s), bis er da ist.
+- **Schergen** greifen alle **2,5 s** an, **Bosse** alle **1,5 s**. Unter dem Gegner steht, wie er angreift:
+  - 🗡️ **Nahkampf:** 60 % auf den 🚩 Anführer (Platz 1), der Rest verteilt sich auf die anderen: 🛡️ Tank 5 Teile, ⚔️ Schaden und 📯 Unterstützer je 3, ✚ Heiler 2.
+  - 🏹 **Fernkampf:** trifft einen Helden mit voller Wucht, gewürfelt nach denselben Teilen.
+  - ✨ **Magie:** trifft alle fitten Helden zu gleichen Teilen.
+- 💥 **Bosse** holen alle **12 s** zu einem **Flächenangriff** aus, der jeden Helden trifft. 3 s vorher steht die Warnung unter dem Boss.
+- Die DEF jedes Helden senkt seinen Schaden. Wer auf 0 LP fällt, ist verwundet. Erst wenn alle verwundet sind, zieht sich der Trupp zurück.
 - Nach jedem Sieg heilt der ganze Trupp 10 % seiner LP.
 - Im Helden-Fenster stehen **💥 Schaden** und **✚ Heilung** pro Sekunde (ohne Trupp-Boni). Unter jedem Zelt stehen Schaden, Heilung und LP des ganzen Trupps.
 

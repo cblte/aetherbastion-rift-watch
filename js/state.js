@@ -49,7 +49,8 @@ export function createNewState(now = Date.now()) {
 function createSquad() {
   // mode: 'farm' = Schergen der Stufe, 'boss' = Boss-Herausforderung läuft
   // bossReadyAt: ab wann wieder herausgefordert werden darf (ms); autoBoss: nach der Pause automatisch erneut
-  return { zone: 1, stage: 1, mode: 'farm', bossTicks: 0, bossReadyAt: 0, autoBoss: false, status: 'idle', monster: null, slots: Array(TENT_SIZE).fill(null) };
+  // bossTime: Sekunden seit Beginn der Herausforderung · heroT: Angriffs-Timer der Helden (uid → s, #061)
+  return { zone: 1, stage: 1, mode: 'farm', bossTime: 0, bossReadyAt: 0, autoBoss: false, status: 'idle', monster: null, heroT: {}, slots: Array(TENT_SIZE).fill(null) };
 }
 
 // ---------------------------------------------------------------------
@@ -64,7 +65,7 @@ const MIGRATIONS = {
     delete s.zonesCleared;
     for (const sq of s.squads || []) {
       delete sq.wave;
-      sq.stage = 1; sq.mode = 'farm'; sq.bossTicks = 0; sq.monster = null;
+      sq.stage = 1; sq.mode = 'farm'; sq.bossTime = 0; sq.monster = null;
       if (sq.status === 'fighting') sq.status = 'idle';
     }
     for (const h of s.heroes || []) h.weapon = null;
@@ -137,6 +138,25 @@ const MIGRATIONS = {
   9: (s) => {
     for (const h of s.heroes || []) if (HERO_BY_ID[h.heroId]) h.traits = rollTraits(h.heroId, h.rarity || RECRUIT.freeRarity);
     for (const o of s.recruits?.offers || []) if (o && HERO_BY_ID[o.heroId]) o.traits = rollTraits(o.heroId, o.rarity || RECRUIT.freeRarity);
+    return s;
+  },
+  // v10 → v11: Angriffs-Timer statt 1-s-Ticks (#061), Platz 1 = Anführer (#051).
+  // Damit sich der Kampf nicht plötzlich ändert, stellt sich jeder Trupp einmal nach Rolle auf
+  // (Tank vorn, wie bisher die Kampfreihenfolge). Laufende Gegner werden neu gerufen.
+  10: (s) => {
+    const order = (uid) => {
+      const h = (s.heroes || []).find(x => x.uid === uid);
+      return h && HERO_BY_ID[h.heroId] ? ROLES[HERO_BY_ID[h.heroId].role].order : 9;
+    };
+    for (const sq of s.squads || []) {
+      sq.bossTime = sq.bossTicks || 0;
+      delete sq.bossTicks;
+      sq.heroT = {};
+      sq.monster = null;
+      const filled = (sq.slots || []).filter(u => u != null);
+      filled.sort((a, b) => order(a) - order(b));
+      sq.slots = [...filled, ...Array(TENT_SIZE - filled.length).fill(null)];
+    }
     return s;
   },
   // v4 → v5: Rekrutierung mit Angeboten und Seltenheit. Vorhandene Helden sind „Fein“.
@@ -313,7 +333,8 @@ export function heroStats(state, hero) {
     crit: Math.min(1, (def.crit || 0) + rv(state, 'crit') + t.crit),
     critMult: (COMBAT.CRIT_MULT + rv(state, 'critdmg')) * (1 + t.critdmg),
     defense: Math.min(COMBAT.DEF_CAP, ROLES[def.role].def + rv(state, 'def') + t.def),
-    speed: t.speed,                 // eigene Chance auf Zusatzangriff
+    speed: t.speed,                 // eigenes Angriffstempo (+Anteil, verkürzt das Intervall)
+    interval: CLASSES[def.cls]?.interval || 1, // Sekunden je Angriff nach Klasse (#061)
     heal: 1 + t.heal,               // Faktor auf die eigene Heilung
     regen: 1 - Math.min(0.9, t.regen), // Faktor auf die Verwundungszeit
     bossDmg: 1 - Math.min(0.9, t.boss), // Faktor auf Schaden von Bossen

@@ -1,7 +1,10 @@
 // =====================================================================
-//  Tick-Kampf: jeder Trupp kämpft unabhängig in seiner Riss-Zone.
+//  Kampf: jeder Trupp kämpft unabhängig in seiner Riss-Zone.
 //  Ein Trupp farmt die Schergen einer Stufe. Den Boss der Stufe fordert
 //  der Spieler selbst heraus; ein Sieg schaltet die nächste Stufe frei.
+//  Ein Tick (GAME.TICK_MS, 10×/s) lässt nur Zeit laufen. Jeder Kämpfer hat
+//  einen Angriffs-Timer und greift erst nach seinem Intervall an (#061).
+//  Gegner wählen ihr Ziel nach Angriffsart, Platz 1 ist der Anführer (#051).
 // =====================================================================
 import { GAME, ZONES, COMBAT, ROLES, F, HERO_BY_ID, TENT_SIZE, CYCLE_MS, RATIONS, RATION_DROP, NORMAL_STAGES } from './config.js';
 import {
@@ -15,41 +18,63 @@ export function squadMembers(state, squad) {
   return squad.slots.map(uid => (uid != null ? getHero(state, uid) : null)).filter(Boolean);
 }
 
-export function frontOrder(state, squad, heroes) {
-  return [...heroes].sort((a, b) =>
-    ROLES[HERO_BY_ID[a.heroId].role].order - ROLES[HERO_BY_ID[b.heroId].role].order ||
-    squad.slots.indexOf(a.uid) - squad.slots.indexOf(b.uid));
+// Helden in Zelt-Reihenfolge: Platz 1 = Anführer (fällt er, ist der Nächste vorn)
+export function slotOrder(squad, heroes) {
+  return [...heroes].sort((a, b) => squad.slots.indexOf(a.uid) - squad.slots.indexOf(b.uid));
+}
+export const leaderOf = (squad, heroes) => slotOrder(squad, heroes)[0] || null;
+
+// Erwarteter Anteil jedes Helden an einem Gegner-Treffer (#051), Summe = Gesamtschaden ÷ Treffer:
+//   melee: Anführer COMBAT.LEADER_SHARE, Rest nach ROLES[…].aggro · ranged: nach aggro (live: ein Ziel)
+//   magic: alle gleich, zusammen COMBAT.AREA_TOTAL
+export function hitShares(squad, heroes, attack = 'melee') {
+  const list = slotOrder(squad, heroes);
+  const n = list.length;
+  if (!n) return [];
+  if (attack === 'magic') return list.map(hero => ({ hero, share: COMBAT.AREA_TOTAL / n }));
+  if (n === 1) return [{ hero: list[0], share: 1 }];
+  const w = (h) => ROLES[HERO_BY_ID[h.heroId].role].aggro;
+  if (attack === 'ranged') {
+    const sum = list.reduce((a, h) => a + w(h), 0) || 1;
+    return list.map(hero => ({ hero, share: w(hero) / sum }));
+  }
+  const rest = list.slice(1);
+  const sum = rest.reduce((a, h) => a + w(h), 0) || 1;
+  return [{ hero: list[0], share: COMBAT.LEADER_SHARE },
+    ...rest.map(hero => ({ hero, share: (1 - COMBAT.LEADER_SHARE) * w(hero) / sum }))];
 }
 
-// Anteil jedes Helden am Monsterschaden (Summe 1), nach ROLES[…].aggro
-export function damageShares(heroes) {
-  const w = heroes.map(h => ROLES[HERO_BY_ID[h.heroId].role].aggro);
-  const sum = w.reduce((a, b) => a + b, 0) || 1;
-  return heroes.map((h, k) => ({ hero: h, share: w[k] / sum }));
-}
+const DT = GAME.TICK_MS / 1000; // Sekunden je Tick
 
 export const stageOf = (zoneId, stage) => ZONES[zoneId - 1].stages[stage - 1];
 
-// variant: wechselt zwischen den beiden Schergen-Typen
+// variant: wechselt zwischen den beiden Schergen-Typen.
+// atk = Schaden je Treffer (= Schaden/s × Intervall), dps = Schaden pro Sekunde, aoe = Boss-Flächenangriff je Held
 export function monsterTemplate(zoneId, stage, boss = false, variant = 0) {
   const st = stageOf(zoneId, stage);
   const d = st.d + (boss ? COMBAT.BOSS_DIFF_BONUS : 0);
   const mob = boss ? st.boss : st.minions[variant % st.minions.length];
+  const interval = boss ? COMBAT.BOSS_INTERVAL : COMBAT.MINION_INTERVAL;
+  const dps = F.monsterAtk(d) * (boss ? COMBAT.BOSS_ATK_MULT : 1);
   return {
-    name: mob.name, sprite: mob.sprite, boss, d,
+    name: mob.name, sprite: mob.sprite, boss, d, attack: mob.attack || 'melee', interval,
     maxHp: F.monsterHp(d) * (boss ? COMBAT.BOSS_HP_MULT : 1),
-    atk: F.monsterAtk(d) * (boss ? COMBAT.BOSS_ATK_MULT : 1),
+    dps, atk: dps * interval,
+    aoe: boss ? dps * COMBAT.BOSS_AOE_FACTOR : 0,
   };
 }
 
-export function spawnMonster(state, squad) {
+// t = Angriffs-Timer, aoeT = Timer des Boss-Flächenangriffs, ready = Sekunden, bis der Gegner da ist
+export function spawnMonster(state, squad, delay = COMBAT.SPAWN_DELAY) {
   const seq = state.monsterSeq++;
   const t = monsterTemplate(squad.zone, squad.stage, squad.mode === 'boss', seq);
-  squad.monster = { ...t, id: seq, hp: t.maxHp };
+  squad.monster = { ...t, id: seq, hp: t.maxHp, t: 0, aoeT: 0, ready: delay };
 }
 
 // Erwartungswerte eines Trupps – genutzt vom Offline-Modul und für Anzeigen
-export function teamProfile(state, heroes, squad = null) {
+// attack: Angriffsart des Gegners (für teamDef/dmgFactor). Schaden/s eines Helden = ATK × (Tempo + eigenes Tempo),
+// weil Treffer = ATK × Klassen-Intervall und Intervall ÷ Tempo.
+export function teamProfile(state, heroes, squad = null, attack = 'melee') {
   let might = 0, eile = tempoBonus(state);
   for (const h of heroes) {
     const d = HERO_BY_ID[h.heroId];
@@ -63,15 +88,17 @@ export function teamProfile(state, heroes, squad = null) {
     const a = st.atk * atkMult;
     if (st.def.role === 'healer') {
       heal += a * COMBAT.HEAL_MULT * healMult(state) * st.heal;
-      dps += a * COMBAT.HEALER_ATK_FACTOR * tempo;
+      dps += a * COMBAT.HEALER_ATK_FACTOR;
     } else {
       const f = st.def.role === 'support' ? COMBAT.SUPPORT_ATK_FACTOR : 1;
       dps += a * f * (1 + st.crit * (st.critMult - 1)) * (tempo + st.speed);
     }
   }
-  // DEF des Trupps, gewichtet wie der Monsterschaden verteilt wird
-  const teamDef = damageShares(heroes).reduce((a, o) => a + o.share * heroStats(state, o.hero).defense, 0);
-  return { dps, heal, hpPool, atkMult, tempo, might, eile, teamDef };
+  // DEF des Trupps, gewichtet wie der Gegner trifft; dmgFactor = Gesamtschaden je Treffer (Fläche ≠ 1)
+  const shares = squad ? hitShares(squad, heroes, attack) : heroes.map(hero => ({ hero, share: 1 / heroes.length }));
+  const dmgFactor = shares.reduce((a, o) => a + o.share, 0);
+  const teamDef = dmgFactor ? shares.reduce((a, o) => a + o.share * heroStats(state, o.hero).defense, 0) / dmgFactor : 0;
+  return { dps, heal, hpPool, atkMult, tempo, might, eile, teamDef, dmgFactor };
 }
 
 // Was ein einzelner Held pro Sekunde tut (ohne Trupp-Buffs) – für Anzeigen
@@ -141,7 +168,7 @@ export function applyKillRewards(state, squadIdx, tmpl, heroes, factor = 1, dete
 function endBoss(state, i, failed) {
   const sq = state.squads[i];
   sq.mode = 'farm';
-  sq.bossTicks = 0;
+  sq.bossTime = 0;
   sq.bossReadyAt = state.lastTickMs + COMBAT.BOSS_COOLDOWN * 1000;
   if (failed && sq.autoBoss) {
     sq.autoBoss = false;
@@ -163,7 +190,7 @@ export function recordBossWin(state, squadIdx) {
 export function tick(state) {
   state.lastTickMs += GAME.TICK_MS;
   const now = state.lastTickMs;
-  const ev = { hits: [], levelUps: [], kills: [], bossWins: [], built: null, cycle: null };
+  const ev = { hits: [], struck: [], levelUps: [], kills: [], bossWins: [], built: null, cycle: null };
 
   ev.built = checkConstruction(state, now);
   checkShop(state, now);
@@ -174,7 +201,9 @@ export function tick(state) {
     addLog(state, `💰 Gildenkasse: +${fmt(ev.cycle.gold)}🟡`, null, 'info');
   }
 
-  for (const h of state.heroes) {
+  // Verwundung/Lager-Erholung reicht einmal pro Sekunde
+  const newSecond = Math.floor(now / 1000) !== Math.floor((now - GAME.TICK_MS) / 1000);
+  for (const h of newSecond ? state.heroes : []) {
     const inSquad = squadOf(state, h.uid) !== -1;
     if (h.woundedUntil && now >= h.woundedUntil) {
       h.woundedUntil = 0;
@@ -216,8 +245,8 @@ function tickSquad(state, i, now, ev) {
 
   // Zeitlimit für Boss-Herausforderungen
   if (mon.boss) {
-    sq.bossTicks += 1;
-    if (sq.bossTicks > COMBAT.BOSS_TIME_LIMIT) {
+    sq.bossTime = (sq.bossTime || 0) + DT;
+    if (sq.bossTime > COMBAT.BOSS_TIME_LIMIT) {
       addLog(state, `⌛ ${mon.name} hält stand – Zeit abgelaufen. Zurück zu den Schergen.`, i, 'bad');
       endBoss(state, i, true);
       spawnMonster(state, sq);
@@ -225,33 +254,49 @@ function tickSquad(state, i, now, ev) {
     }
   }
 
-  const prof = teamProfile(state, alive, sq);
+  const timers = sq.heroT || (sq.heroT = {});
+  const prof = teamProfile(state, alive, sq, mon.attack);
+  const order = slotOrder(sq, alive);
+  const stats = new Map(order.map(h => [h.uid, heroStats(state, h)]));
+  // Intervall je Held: Klasse ÷ Tempo (Eile, Forschung, Eigenschaft). Heiler im Takt ihrer Klasse.
+  const interval = (st) => st.def.role === 'healer' ? st.interval : st.interval / (prof.tempo + st.speed);
 
-  // Helden handeln
+  // Gegner taucht gerade auf: Helden laden nur bis zum nächsten Angriff auf
+  if (mon.ready > 0) {
+    mon.ready -= DT;
+    for (const h of order) timers[h.uid] = Math.min(interval(stats.get(h.uid)), (timers[h.uid] || 0) + DT);
+    return;
+  }
+
+  // Helden handeln, sobald ihr Timer abgelaufen ist (Rest bleibt, damit krumme Intervalle stimmen)
   let dmg = 0, crit = false;
-  for (const h of alive) {
-    const st = heroStats(state, h);
-    const a = st.atk * prof.atkMult;
-    if (st.def.role === 'healer') {
-      const target = alive
-        .map(x => ({ x, max: heroStats(state, x).maxHp }))
-        .filter(o => o.x.hp < o.max)
-        .sort((p, q) => p.x.hp / p.max - q.x.hp / q.max)[0];
-      if (target) target.x.hp = Math.min(target.max, target.x.hp + a * COMBAT.HEAL_MULT * healMult(state) * st.heal);
-      dmg += a * COMBAT.HEALER_ATK_FACTOR;
-    } else {
-      const f = st.def.role === 'support' ? COMBAT.SUPPORT_ATK_FACTOR : 1;
-      const extra = prof.tempo - 1 + st.speed;
-      const hits = 1 + Math.floor(extra) + (Math.random() < extra % 1 ? 1 : 0);
-      for (let k = 0; k < hits; k++) {
-        let x = a * f;
+  for (const h of order) {
+    const st = stats.get(h.uid);
+    const iv = interval(st);
+    let t = (timers[h.uid] || 0) + DT;
+    while (t >= iv && mon.hp - dmg > 0) {
+      t -= iv;
+      const a = st.atk * prof.atkMult;
+      if (st.def.role === 'healer') {
+        const target = order
+          .map(x => ({ x, max: stats.get(x.uid).maxHp }))
+          .filter(o => o.x.hp < o.max)
+          .sort((p, q) => p.x.hp / p.max - q.x.hp / q.max)[0];
+        if (target) target.x.hp = Math.min(target.max, target.x.hp + a * COMBAT.HEAL_MULT * healMult(state) * st.heal * st.interval);
+        dmg += a * COMBAT.HEALER_ATK_FACTOR * st.interval;
+      } else {
+        const f = st.def.role === 'support' ? COMBAT.SUPPORT_ATK_FACTOR : 1;
+        let x = a * f * st.interval;
         if (Math.random() < st.crit) { x *= st.critMult; crit = true; }
         dmg += x;
       }
     }
+    timers[h.uid] = Math.min(t, iv);
   }
-  mon.hp -= dmg;
-  ev.hits.push({ squad: i, dmg, crit });
+  if (dmg > 0) {
+    mon.hp -= dmg;
+    ev.hits.push({ squad: i, dmg, crit });
+  }
 
   if (mon.hp <= 0) {
     const r = applyKillRewards(state, i, mon, alive, 1, false);
@@ -283,17 +328,47 @@ function tickSquad(state, i, now, ev) {
     return;
   }
 
-  // Monster trifft alle fitten Helden, aufgeteilt nach Rolle (ROLES[…].aggro)
-  for (const { hero, share } of damageShares(frontOrder(state, sq, alive))) {
-    const hs = heroStats(state, hero);
-    hero.hp -= mon.atk * share * (1 - hs.defense) * (mon.boss ? hs.bossDmg : 1);
-    if (hero.hp <= 0) {
-      hero.hp = 0;
-      hero.woundedUntil = now + Math.round(regenMs(state) * hs.regen);
-      addLog(state, `💢 ${HERO_BY_ID[hero.heroId].name} ist verwundet.`, i, 'bad');
+  // Gegner greift im eigenen Takt an
+  mon.t += DT;
+  while (mon.t >= mon.interval) {
+    mon.t -= mon.interval;
+    monsterAttack(state, sq, i, mon, now, ev);
+  }
+  if (mon.boss) {
+    mon.aoeT += DT;
+    if (mon.aoeT >= COMBAT.BOSS_AOE_EVERY) {
+      mon.aoeT -= COMBAT.BOSS_AOE_EVERY;
+      const targets = members.filter(h => !h.woundedUntil);
+      if (targets.length) addLog(state, `💥 ${mon.name} trifft den ganzen Trupp!`, i, 'bad');
+      for (const h of targets) hurt(state, i, h, mon.aoe, mon, now, ev);
     }
   }
   if (members.every(h => h.woundedUntil)) startRetreat(state, i);
+}
+
+// Ein Gegner-Treffer nach Angriffsart (#051): Nahkampf → Anführer + Streuung, Fernkampf → ein Ziel, Magie → Fläche
+function monsterAttack(state, sq, i, mon, now, ev) {
+  const alive = squadMembers(state, sq).filter(h => !h.woundedUntil);
+  if (!alive.length) return;
+  if (mon.attack === 'ranged' && alive.length > 1) {
+    const shares = hitShares(sq, alive, 'ranged');
+    let r = Math.random();
+    const pick = shares.find(o => (r -= o.share) < 0) || shares[shares.length - 1];
+    hurt(state, i, pick.hero, mon.atk, mon, now, ev);
+    return;
+  }
+  for (const { hero, share } of hitShares(sq, alive, mon.attack)) hurt(state, i, hero, mon.atk * share, mon, now, ev);
+}
+
+function hurt(state, i, hero, amount, mon, now, ev) {
+  const hs = heroStats(state, hero);
+  hero.hp -= amount * (1 - hs.defense) * (mon.boss ? hs.bossDmg : 1);
+  ev.struck?.push({ squad: i, uid: hero.uid });
+  if (hero.hp <= 0) {
+    hero.hp = 0;
+    hero.woundedUntil = now + Math.round(regenMs(state) * hs.regen);
+    addLog(state, `💢 ${HERO_BY_ID[hero.heroId].name} ist verwundet.`, i, 'bad');
+  }
 }
 
 function startRetreat(state, i) {
@@ -302,7 +377,7 @@ function startRetreat(state, i) {
   if (wasBoss) endBoss(state, i, true);
   sq.status = 'retreat';
   sq.mode = 'farm';
-  sq.bossTicks = 0;
+  sq.bossTime = 0;
   sq.monster = null;
   addLog(state, wasBoss
     ? '🏕️ Der Boss war zu stark – Rückzug ins Lager.'
@@ -318,7 +393,7 @@ export function setStage(state, i, zone, stage) {
   sq.zone = zone;
   sq.stage = stage;
   sq.mode = 'farm';
-  sq.bossTicks = 0;
+  sq.bossTime = 0;
   sq.monster = null;
   if (sq.status === 'fighting') spawnMonster(state, sq);
   addLog(state, `Trupp zieht nach ${ZONES[zone - 1].name}, Stufe ${stage}.`, i, 'info');
@@ -353,7 +428,7 @@ export function challengeBoss(state, i) {
   state.gold -= cost;
   const sq = state.squads[i];
   sq.mode = 'boss';
-  sq.bossTicks = 0;
+  sq.bossTime = 0;
   spawnMonster(state, sq);
   addLog(state, `👑 Herausforderung: ${sq.monster.name}!`, i, 'boss');
   return true;

@@ -2,14 +2,14 @@
 //  Offline-Fortschritt – deterministisch, ohne Tick-Simulation.
 //  Offline farmen die Trupps die Schergen ihrer gewählten Stufe
 //  (Boss-Herausforderungen gibt es nur live). Pro Sieg:
-//    Zeit       = Monster-HP ÷ Trupp-DPS
+//    Zeit       = Auftauchen (COMBAT.SPAWN_DELAY) + Monster-HP ÷ Trupp-DPS
 //    Effizienz  = min(1, (HP-Puffer + Heilung × Zeit) ÷ eingehender Schaden)
 //  Effizienz < 1 heißt: Die Stufe ist zu schwer, der Trupp bekommt nur
 //  diesen Anteil der Beute. Offline gibt es keine Helden-Tode.
 //  Außerdem: Gildenkasse je 10-Min.-Zyklus, Bauaufträge werden fertig,
 //  der Laden der Charr-Schmiede füllt sich neu.
 // =====================================================================
-import { ZONES, HERO_BY_ID, CYCLE_MS } from './config.js';
+import { ZONES, HERO_BY_ID, CYCLE_MS, COMBAT } from './config.js';
 import { heroStats, addLog, offlineMaxMs, payCycle, squadTrait } from './state.js';
 import { checkConstruction, checkShop, checkRecruits } from './progress.js';
 import { squadMembers, teamProfile, monsterTemplate, applyKillRewards, spawnMonster, fmt } from './combat.js';
@@ -51,7 +51,7 @@ export function runOffline(state, elapsedMs) {
     if (!heroes.length) continue;
 
     sq.mode = 'farm';
-    sq.bossTicks = 0;
+    sq.bossTime = 0;
     const zone = ZONES[sq.zone - 1];
     const before = new Map(heroes.map(h => [h.uid, h.level]));
     const r = {
@@ -60,18 +60,20 @@ export function runOffline(state, elapsedMs) {
       kills: 0, gold: 0, shards: 0, expPerHero: 0, minEff: 1, levelUps: [],
     };
     let t = seconds, steps = 0;
-    const mon = monsterTemplate(sq.zone, sq.stage, false);
+    // beide Schergen-Typen abwechselnd, jeder mit eigener Angriffsart (#051)
+    const mons = [0, 1].map(v => monsterTemplate(sq.zone, sq.stage, false, v));
     const offBonus = 1 + squadTrait(heroes, 'offline'); // Eigenschaft „Offline“: mehr Ertrag je Sieg
 
     while (t > 0 && steps++ < MAX_STEPS) {
-      const prof = teamProfile(state, heroes, sq);
+      const mon = mons[steps % 2];
+      const prof = teamProfile(state, heroes, sq, mon.attack);
       if (prof.dps <= 0) break;
-      const ticks = Math.max(1, Math.ceil(mon.maxHp / prof.dps));
-      if (ticks > t) break;
-      const incoming = mon.atk * (1 - prof.teamDef) * ticks;
-      const eff = Math.min(1, (prof.hpPool + prof.heal * ticks) / incoming);
+      const secs = COMBAT.SPAWN_DELAY + mon.maxHp / prof.dps;
+      if (secs > t) break;
+      const incoming = mon.dps * prof.dmgFactor * (1 - prof.teamDef) * secs;
+      const eff = Math.min(1, (prof.hpPool + prof.heal * secs) / incoming);
       r.minEff = Math.min(r.minEff, eff);
-      t -= ticks;
+      t -= secs;
 
       const res = applyKillRewards(state, i, mon, heroes, eff * offBonus, true);
       r.kills += eff;

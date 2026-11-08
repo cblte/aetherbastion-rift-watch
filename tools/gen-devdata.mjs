@@ -100,7 +100,7 @@ const note = '> Interne Entwicklungs-Referenz für **Aetherbastion: Rift Watch**
   s += `Der Laden zeigt ${SHOP.offers} zufällige Waffen und füllt sich alle ${SHOP.restockMs / 60_000} Minuten neu. Waffen kosten 🟡 Gold; die besten gibt es alternativ für 📜 Forschungsnotizen. Die **Schmiede-Stufe** bestimmt, ab wann eine Waffe im Laden auftauchen kann; die **Chance** ist ihr Gewicht beim Würfeln des Angebots. Heiler tragen immer einen 🔮 Fokus, alle anderen die Waffe ihrer Klasse.\n\n`;
   s += `## Waffenarten\n\n` + tbl(['Waffe', 'CQHT-Klasse'], Object.entries(WEAPON_TYPES).map(([k, t]) => [`${t.icon} ${t.name}`, { schwert: 'Warrior', hammer: 'Paladin', bogen: 'Archer', gewehr: 'Hunter', stab: 'Wizard', fokus: 'Priest' }[k]])) + '\n\n';
   s += `## Güten\n\n` + tbl(['Güte', 'Name', 'ATK', 'HP', 'Boss-Drop in Kapitel'], Object.entries(WEAPON_GRADES).map(([g, w]) => {
-    const tiers = Object.entries(DROP_GRADES).filter(([k, [lo, hi]]) => +g >= lo && +g <= hi).map(([k]) => k === 'hard' ? 'schwer/legendär' : k);
+    const tiers = Object.entries(DROP_GRADES).filter(([k, [lo, hi]]) => +g >= lo && +g <= hi).map(([k]) => k === 'hard' ? 'schwer' : k === 'legend' ? 'legendär' : k);
     return [`★${g}`, w.name, `+${Math.round(w.atk * 100)} %`, `+${Math.round(w.hp * 100)} %`, tiers.join(', ') || '–'];
   })) + '\n';
   for (const g of Object.keys(WEAPON_GRADES)) {

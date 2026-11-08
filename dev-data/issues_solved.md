@@ -12,6 +12,13 @@ Format:
 
 ---
 
+## v0.35.0
+
+### #051 Schaden: Anführer zuerst statt alle gleichzeitig, dazu Flächenschaden
+- **Quelle:** Spieltest. Seit #032 bekamen jede Sekunde alle Helden Schaden, ohne Bezug zur Aufstellung.
+- Umgesetzt **B + D** zusammen mit dem Tick-Umbau aus #061: Platz 1 im Zelt ist der 🚩 Anführer (Arena markiert ihn). Gegner haben eine Angriffsart (`attack`, per Namensregel in `tools/gen-zones.mjs` → `js/data/stages.js`): Nahkampf = `COMBAT.LEADER_SHARE` (60 %) auf den Anführer, Rest nach `aggro`; Fernkampf = ein Ziel nach `aggro`; Magie = Fläche (`AREA_TOTAL`). Bosse: Flächenangriff alle `BOSS_AOE_EVERY` s mit Ansage (`BOSS_AOE_WARN`). Logik `hitShares()`/`monsterAttack()` in `combat.js`, Offline über `teamProfile(…, attack)` (`teamDef`, `dmgFactor`).
+- Migration v10 → v11: Trupps einmal nach Rolle sortiert (Tank vorn), damit sich bestehende Aufstellungen nicht verschlechtern. Handbuch angepasst.
+
 ## v0.33.0
 
 ### #059 Proviant und Früchte verkaufen

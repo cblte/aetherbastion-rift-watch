@@ -8,7 +8,7 @@ import {
   GAME, CURRENCIES, ROLES, CLASSES, RACES, HEROES, HERO_BY_ID, ZONES, COMBAT, F, BUILDINGS, BUILDING_ORDER,
   TENTS, TENT_SIZE, MYSTIC, MYSTIC_ORDER, ONBOARDING, RETIRE_MIN_LEVEL, LEVEL_CAP_MAX, FEATURES,
   RESEARCH, RESEARCH_ORDER, TIER_LAB, HERO_LEVELS, WEAPON_BY_ID, WEAPON_GRADES, WEAPON_TYPES, RATIONS, NORMAL_STAGES,
-  TRAITS, TRAIT_STATS, TRAIT_SPECS, TOTAL_NORMAL, CYCLE_MS, QUESTS as MAIN_QUESTS, RECRUIT, REROLL_RESET_CLOVER, ARMORY_SLOTS, ARMORY_CLEANUP_DEFAULT, UI, RATION_DROP,
+  TRAITS, TRAIT_STATS, TRAIT_SPECS, TOTAL_NORMAL, ATTACK_TYPES, CYCLE_MS, QUESTS as MAIN_QUESTS, RECRUIT, REROLL_RESET_CLOVER, ARMORY_SLOTS, ARMORY_CLEANUP_DEFAULT, UI, RATION_DROP,
 } from './config.js';
 import { currentQuest, questProgress, questNumber, claimQuest, questDone } from './quests.js';
 import { manualChapters } from './manual.js';
@@ -20,7 +20,7 @@ import {
   traitPct, traitSpec, classBonus,
 } from './state.js';
 import {
-  squadMembers, spawnMonster, setStage, reviveHero, assignHero, teamProfile, heroOutput, fmt, stageOf,
+  squadMembers, spawnMonster, setStage, reviveHero, assignHero, teamProfile, heroOutput, fmt, stageOf, leaderOf,
   challengeBoss, canChallengeBoss, abortBoss, bossCost, bossCooldownLeft, toggleAutoBoss,
 } from './combat.js';
 import {
@@ -277,6 +277,7 @@ function lockedCard(icon, title, text) {
 
 // ---------- Portal ----------------------------------------------------
 let lastHit = { squad: -1, monsterId: -1, t: 0 };
+const lastStruck = new Map(); // uid → Zeit des letzten Gegner-Treffers (Wackeln in der Arena)
 
 function renderPortal() {
   const i = S.selectedSquad;
@@ -296,31 +297,36 @@ function renderPortal() {
     stage = `<div class="stage-msg retreat">🏕️ Rückzug ins Lager<br><small>Rückkehr in ${clock(left)}</small></div>`;
   } else if (sq.monster) {
     const m = sq.monster;
-    const hit = lastHit.squad === i && lastHit.monsterId === m.id && S.lastTickMs - lastHit.t <= 1000;
+    const hit = lastHit.squad === i && lastHit.monsterId === m.id && S.lastTickMs - lastHit.t <= 300;
+    const at = ATTACK_TYPES[m.attack] || ATTACK_TYPES.melee;
+    const aoeIn = m.boss ? COMBAT.BOSS_AOE_EVERY - (m.aoeT || 0) : Infinity;
     stage = `
       <div class="mob ${m.boss ? 'boss' : ''}">
         ${sprite(m.sprite, `mob-sprite ${hit ? 'hit' : ''}`)}
         <div class="mob-info">
           <div class="mob-name">${m.boss ? '👑 ' : ''}${esc(m.name)}</div>
           ${hpBar(m.hp, m.maxHp, 'mob-hp')}
-          <div class="mob-nums">${fmt(Math.max(0, m.hp))} / ${fmt(m.maxHp)} LP · ⚔️ ${fmt(m.atk)}</div>
-          ${m.boss ? `<div class="boss-timer">⌛ noch ${Math.max(0, COMBAT.BOSS_TIME_LIMIT - sq.bossTicks)} s</div>` : ''}
+          <div class="mob-nums">${fmt(Math.max(0, m.hp))} / ${fmt(m.maxHp)} LP · ⚔️ ${fmt(m.atk)} · ${at.icon} ${at.name}</div>
+          ${aoeIn <= COMBAT.BOSS_AOE_WARN ? `<div class="boss-aoe">💥 holt zum Flächenangriff aus …</div>` : ''}
+          ${m.boss ? `<div class="boss-timer">⌛ noch ${Math.max(0, Math.ceil(COMBAT.BOSS_TIME_LIMIT - (sq.bossTime || 0)))} s</div>` : ''}
         </div>
       </div>`;
   } else {
     stage = `<div class="stage-msg">Der Trupp sammelt sich …</div>`;
   }
 
+  const leader = sq.status === 'fighting' ? leaderOf(sq, squadMembers(S, sq).filter(h => !h.woundedUntil)) : null;
   const heroes = locked ? '' : sq.slots.map((uid, slot) => {
     const h = uid != null ? getHero(S, uid) : null;
     if (!h) return `<button class="arena-hero empty" data-action="slot" data-squad="${i}" data-slot="${slot}"><span>＋</span><small>frei</small></button>`;
     const hs = heroStats(S, h);
     const def = hs.def;
     const wounded = !!h.woundedUntil;
+    const struck = S.lastTickMs - (lastStruck.get(h.uid) || -1e9) <= 300;
     return `
-      <button class="arena-hero ${wounded ? 'wounded' : ''}" style="--c:${WEAPON_GRADES[h.rarity].color}" data-action="slot" data-squad="${i}" data-slot="${slot}">
+      <button class="arena-hero ${wounded ? 'wounded' : ''} ${leader === h ? 'leader' : ''} ${struck ? 'struck' : ''}" style="--c:${WEAPON_GRADES[h.rarity].color}" data-action="slot" data-squad="${i}" data-slot="${slot}">
         ${sprite(CLASSES[def.cls].sprite, 'hero-sprite')}
-        <div class="ah-name">${ROLES[def.role].icon} ${esc(def.name)}</div>
+        <div class="ah-name">${leader === h ? '<span class="lead" aria-label="Anführer">🚩</span>' : ''}${ROLES[def.role].icon} ${esc(def.name)}</div>
         <div class="ah-lv">Lv. ${h.level}${h.weapon ? ` · T${WEAPON_BY_ID[h.weapon].grade}` : ''}</div>
         ${hpBar(h.hp, hs.maxHp, 'hero-hp')}
         ${hpBar(h.exp, F.expToNext(h.level), 'exp')}
@@ -343,7 +349,7 @@ function renderPortal() {
     const beaten = stageBeaten(S, sq.zone, sq.stage);
     if (sq.mode === 'boss') {
       bossBar = `<div class="card boss-card active">
-        <div><b>👑 ${esc(st.boss.name)}</b><div class="muted small">Herausforderung läuft – noch ${Math.max(0, COMBAT.BOSS_TIME_LIMIT - sq.bossTicks)} s.${sq.autoBoss ? '<br>🔁 Wird danach automatisch wiederholt.' : ''}</div></div>
+        <div><b>👑 ${esc(st.boss.name)}</b><div class="muted small">Herausforderung läuft – noch ${Math.max(0, Math.ceil(COMBAT.BOSS_TIME_LIMIT - (sq.bossTime || 0)))} s.${sq.autoBoss ? '<br>🔁 Wird danach automatisch wiederholt.' : ''}</div></div>
         <button class="btn" data-action="boss-abort">Abbrechen</button></div>`;
     } else {
       const can = canChallengeBoss(S, i);
@@ -1146,7 +1152,7 @@ function heroDetailHtml(h) {
       ${out.heal ? statRow('💚', 'Heilung', `${fmt(out.heal)} LP pro Sekunde`) : ''}
       ${statRow('🛡️', 'DEF', `−${Math.round(hs.defense * 100)} % Schaden`)}
       ${out.canCrit ? statRow('🎯', 'Krit', `${Math.round(hs.crit * 100)} % · ×${hs.critMult.toFixed(1).replace('.', ',')}`) : ''}
-      ${hs.speed && d.role !== 'healer' ? statRow('⏩', 'Tempo', `+${Math.round(hs.speed * 100)} % Zusatzangriff`) : ''}
+      ${statRow('⏱️', 'Takt', `alle ${(d.role === 'healer' ? hs.interval : hs.interval / (1 + hs.speed)).toFixed(2).replace('.', ',')} s${hs.speed && d.role !== 'healer' ? ` (+${Math.round(hs.speed * 100)} % Tempo)` : ''}`)}
       ${statRow('⚒️', 'Waffe', weaponLabel(h))}
       ${statRow('✨', 'EXP', `${fmt(h.exp)} / ${fmt(F.expToNext(h.level))}`)}
       ${statRow('📍', 'Ort', i === -1 ? 'Reserve' : `Zelt ${i + 1}`)}
@@ -1275,6 +1281,7 @@ export function showTickFx(ev) {
   if (tab !== 'portal' || document.hidden) return;
   const fx = $('#arena-fx');
   if (!fx) return;
+  for (const st of ev.struck || []) if (st.squad === S.selectedSquad) lastStruck.set(st.uid, S.lastTickMs);
   for (const hit of ev.hits) {
     if (hit.squad !== S.selectedSquad) continue;
     const m = S.squads[hit.squad].monster;

@@ -4,7 +4,7 @@
 //  Rückgabe: [{ icon, title, html }] – wird in ui.js als Kapitel gezeigt.
 // =====================================================================
 import {
-  BUILDINGS, ZONES, ROLES, CLASSES, TRAIT_STATS, HEROES, TRAITS, TRAIT_RULES, TENTS, TENT_SIZE, COMBAT, GAME, NORMAL_STAGES, TOTAL_NORMAL, FEATURES,
+  BUILDINGS, ZONES, ROLES, CLASSES, ATTACK_TYPES, TRAIT_STATS, HEROES, TRAITS, TRAIT_RULES, TENTS, TENT_SIZE, COMBAT, GAME, NORMAL_STAGES, TOTAL_NORMAL, FEATURES,
   RETIRE_MIN_LEVEL, LEVEL_CAP_MAX, ARMORY_SLOTS, RATION_SLOTS, RATION_DROP, RETIRE_HOME, CYCLE_MS, WEAPON_TYPES, WEAPON_FOR, WEAPON_GRADES, SHOP, SELL, QUESTS, RECRUIT, REROLL_RESET_CLOVER,
 } from './config.js';
 
@@ -47,12 +47,12 @@ export function manualChapters() {
     { icon: '🛡️', title: 'Helden, Rollen & Zelte', html: `
       <p>${HEROES.length} Helden aus fünf Völkern (Charr, Menschen, Norn, Asura, Sylvari), von jeder Rolle gleich viele. Das Volk ändert keine Werte, wichtig sind Rolle und Klasse.</p>
       ${list([
-        '🛡️ <b>Tank:</b> steht vorn, wird zuerst angegriffen, viele LP.',
+        '🛡️ <b>Tank:</b> viele LP und DEF, gehört auf Platz 1 (Anführer).',
         '⚔️ <b>Schaden:</b> hoher Schaden, oft mit Krit-Chance.',
-        '📯 <b>Unterstützer:</b> etwas Schaden plus Team-Buff (<i>Macht</i> = mehr ATK, <i>Eile</i> = Zusatzangriffe).',
-        '✚ <b>Heiler:</b> heilt jede Sekunde den schwächsten Verbündeten.',
+        '📯 <b>Unterstützer:</b> etwas Schaden plus Team-Buff (<i>Macht</i> = mehr ATK, <i>Eile</i> = schnellere Angriffe).',
+        '✚ <b>Heiler:</b> heilt im eigenen Takt den schwächsten Verbündeten.',
       ])}
-      <p>Monster treffen alle fitten Helden, den Tank am stärksten, den Heiler am wenigsten. Helden steigen bis <b>Lv. ${LEVEL_CAP_MAX}</b>; das Zeltlager bestimmt das Level-Cap (${caps}).</p>
+      <p><b>Platz 1</b> im Zelt ist der <b>🚩 Anführer</b>: Nahkämpfer schlagen vor allem auf ihn ein. Fällt er, rückt der Nächste nach. Helden steigen bis <b>Lv. ${LEVEL_CAP_MAX}</b>; das Zeltlager bestimmt das Level-Cap (${caps}).</p>
       <p>Jedes <b>Zelt</b> ist ein Trupp mit ${TENT_SIZE} Plätzen. Es gibt bis zu ${TENTS.length} Zelte; Zelt 2–${TENTS.length} öffnen ab Gildenhalle ${tentHalls}. Weitere Helden warten in der <b>Reserve</b>. Gute Aufstellung: <b>Tank + Heiler + Schaden</b>.</p>
       <p>Neue Helden wirbst du unter <b>🛡️ Trupps → Rekrutieren</b> an. Dort stehen wechselnde Angebote – mehr und schneller mit besserer Gildenhalle:</p>
       ${table(['Gildenhalle', 'Angebote', 'Neue alle'], RECRUIT.tiers.map(t => [`ab ${t.hall}`, t.slots, `${t.restockMin} Min.`]))}
@@ -65,7 +65,7 @@ export function manualChapters() {
 
     { icon: '👑', title: 'Kampf & Bosse', html: `
       ${list([
-        'Jeder Trupp kämpft unabhängig in einer Riss-Zone, eine Aktion pro Sekunde.',
+        'Jeder Trupp kämpft unabhängig in einer Riss-Zone. Jeder Held und jeder Gegner greift in seinem eigenen Takt an.',
         'Dein Trupp <b>farmt die Schergen</b> der gewählten Stufe: Gold, EXP und ab und zu Ätherscherben.',
         `<b>„Herausfordern“</b> kostet etwas Gold. Dann hat der Trupp <b>${COMBAT.BOSS_TIME_LIMIT} Sekunden</b> für den Boss. Bis dahin lassen sich Zone und Stufe nicht wechseln – aussteigen geht mit <b>„Abbrechen“</b>.`,
         'Jedes Zelt kämpft in seiner eigenen Zone. Ein Wechsel greift sofort, die Kampfbühne leuchtet kurz auf.',
@@ -77,11 +77,17 @@ export function manualChapters() {
         `Fällt ein Held auf 0 LP, ist er <b>verwundet</b> und erholt sich ${COMBAT.WOUND_MS / 1000} Sekunden lang. ⚡ belebt ihn sofort gegen Gold.`,
         'Fallen alle drei, zieht sich der Trupp ins Lager zurück und kehrt zurück, sobald ein Held wieder fit ist (erholt oder belebt).',
       ])}
-      <p><b>Eine Kampfsekunde:</b></p>
+      <p><b>So läuft ein Kampf:</b></p>
       ${list([
+        `Jede Klasse hat einen Takt (⏱️ im Helden-Fenster): ${Object.values(CLASSES).sort((a, b) => a.interval - b.interval).map(c => `${c.name} ${String(c.interval).replace('.', ',')} s`).join(', ')}. Schnelle Klassen treffen öfter, aber schwächer – pro Sekunde machen alle gleich viel. Eile, Forschung und Tempo-Eigenschaften verkürzen den Takt.`,
         `⚔️ Schaden und 🛡️ Tank greifen mit voller ATK an, 📯 Unterstützer mit ${pct(COMBAT.SUPPORT_ATK_FACTOR)}. Krit-Treffer machen ×${COMBAT.CRIT_MULT} Schaden.`,
-        `✚ Heiler heilen den Verbündeten mit den wenigsten LP (Anteil) um ATK × ${String(COMBAT.HEAL_MULT).replace('.', ',')} und greifen mit ${pct(COMBAT.HEALER_ATK_FACTOR)} ATK an, ohne Krit.`,
-        `Danach trifft das Monster alle fitten Helden: 🛡️ Tank ${ROLES.tank.aggro} Teile, ⚔️ Schaden und 📯 Unterstützer je ${ROLES.dps.aggro}, ✚ Heiler ${ROLES.healer.aggro}. Die DEF jedes Helden senkt seinen Anteil.`,
+        `✚ Heiler heilen den Verbündeten mit den wenigsten LP (Anteil) um ATK × ${String(COMBAT.HEAL_MULT).replace('.', ',')} pro Sekunde und greifen mit ${pct(COMBAT.HEALER_ATK_FACTOR)} ATK an, ohne Krit.`,
+        `Schergen greifen alle ${String(COMBAT.MINION_INTERVAL).replace('.', ',')} s an, Bosse alle ${String(COMBAT.BOSS_INTERVAL).replace('.', ',')} s. Wie, steht unter dem Gegner:`,
+        `${ATTACK_TYPES.melee.icon} <b>Nahkampf:</b> ${pct(COMBAT.LEADER_SHARE)} auf den 🚩 Anführer, der Rest verteilt sich (🛡️ Tank ${ROLES.tank.aggro} Teile, ⚔️/📯 je ${ROLES.dps.aggro}, ✚ Heiler ${ROLES.healer.aggro}).`,
+        `${ATTACK_TYPES.ranged.icon} <b>Fernkampf:</b> trifft einen Helden voll, gewürfelt nach denselben Teilen.`,
+        `${ATTACK_TYPES.magic.icon} <b>Magie:</b> trifft alle fitten Helden zu gleichen Teilen.`,
+        `💥 <b>Bosse</b> holen alle ${COMBAT.BOSS_AOE_EVERY} s zu einem Flächenangriff aus, der jeden Helden trifft. ${COMBAT.BOSS_AOE_WARN} s vorher steht die Warnung unter dem Boss.`,
+        'Die DEF jedes Helden senkt seinen Schaden.',
         `Nach jedem Sieg heilt der ganze Trupp ${pct(COMBAT.KILL_HEAL)} seiner LP.`,
         'Die Werte siehst du im Helden-Fenster (💥 Schaden, ✚ Heilung) und für den ganzen Trupp unter jedem Zelt.',
       ])}

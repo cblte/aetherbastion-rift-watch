@@ -63,9 +63,10 @@ function fight(profile, level, zone, stage) {
   const sq = st.squads[0];
   for (let z = 1; z < zone; z++) st.progress[z] = C.ZONES[z - 1].stages.length;
   st.progress[zone] = stage - 1;
-  Object.assign(sq, { zone, stage, mode: 'boss', status: 'fighting', bossTicks: 0 });
+  Object.assign(sq, { zone, stage, mode: 'boss', status: 'fighting', bossTime: 0 });
   K.spawnMonster(st, sq);
-  for (let t = 0; t < C.COMBAT.BOSS_TIME_LIMIT + 5; t++) {
+  const ticks = (C.COMBAT.BOSS_TIME_LIMIT + 5) * 1000 / C.GAME.TICK_MS;
+  for (let t = 0; t < ticks; t++) {
     K.tick(st);
     if ((st.progress[zone] || 0) >= stage) return true;
     if (sq.mode !== 'boss') return false;

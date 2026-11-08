@@ -23,8 +23,8 @@ Der Laden zeigt 3 zufällige Waffen und füllt sich alle 30 Minuten neu. Waffen 
 | ★2 | Fein | +12 % | +5 % | 1, 2 |
 | ★3 | Meisterwerk | +25 % | +10 % | 2, 3 |
 | ★4 | Selten | +45 % | +15 % | 3, 4 |
-| ★5 | Exotisch | +75 % | +25 % | 4, 5, schwer/legendär |
-| ★6 | Aufgestiegen | +120 % | +35 % | 5, schwer/legendär |
+| ★5 | Exotisch | +75 % | +25 % | 4, 5, schwer |
+| ★6 | Aufgestiegen | +120 % | +35 % | schwer, legendär |
 
 ## ★1 Einfach
 

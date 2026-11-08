@@ -296,6 +296,16 @@ a.btn { color: inherit; text-decoration: none; }
 .arena-hero.empty { align-items: center; justify-content: center; color: var(--muted); border-style: dashed; font-size: 20px; }
 .arena-hero.empty small { font-size: 12px; }
 .arena-hero.wounded { opacity: .55; filter: grayscale(.6); }
+.arena-hero.leader { border-color: color-mix(in srgb, var(--c) 70%, white); }
+.arena-hero.struck { animation: struck .3s ease-out; }
+@keyframes struck {
+  0% { transform: translateX(0); background: color-mix(in srgb, var(--bad) 30%, var(--panel-2)); }
+  40% { transform: translateX(-3px); }
+  70% { transform: translateX(2px); }
+  100% { transform: translateX(0); }
+}
+.ah-name .lead { margin-right: 2px; }
+.boss-aoe { font-size: 12px; font-weight: 700; color: var(--bad); animation: goalPulse .6s ease-in-out infinite; }
 .ah-name { color: color-mix(in srgb, var(--c) 75%, white); font-size: 12px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .ah-lv { font-size: 11px; color: var(--muted); }
 .ah-status { font-size: 11px; color: var(--muted); }

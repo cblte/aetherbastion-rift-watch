@@ -42,21 +42,6 @@ _Zurzeit nichts offen._
 
 ## Spielsystem
 
-### #051 Schaden: Anführer zuerst statt alle gleichzeitig, dazu Flächenschaden
-- **Status:** zurückgestellt (wartet auf das Traits-Balancing) · **Quelle:** Spieltest
-- Eindruck: Seit #032 (v0.22.0) bekommen jede Sekunde **alle** Helden Schaden. Das sieht komisch aus und passt nicht zur Aufstellung. Wunsch: Der Zelt-Anführer (der oben/vorne steht) soll zuerst getroffen werden. Nur der Tank allein ist aber auch doof (das war der Stand vor #032: Tank fällt, dann der Nächste, dann Rückzug).
-- Stand im Code: `combat.js` teilt jeden Treffer per `damageShares()` nach `ROLES[…].aggro` auf alle fitten Helden auf (Tank 5, Schaden 3, Unterstützer 3, Heiler 2). `frontOrder()` sortiert nach Rolle, die Platz-Nummer im Zelt entscheidet nur bei gleicher Rolle. Einen „Anführer“ gibt es im Spiel nicht.
-- **Flächenschaden (AoE) gibt es nicht:** Gegner haben nur `atk` (Schergen und Bosse gleich). `dev-data/gegner-pro-zone.jsonl` hat ein Feld `attack` (Nahkampf/Fernkampf/Magie), das das Spiel noch nicht nutzt.
-- Lösungsansätze:
-  - **A Ein Ziel pro Treffer, gewürfelt nach Aggro:** Jede Sekunde trifft das Monster genau einen Helden, die Chance richtet sich nach `aggro`. Im Mittel exakt wie heute, Balancing und Offline bleiben gleich. Sieht aus wie echte Treffer, aber ohne Anführer.
-  - **B Anführer als Hauptziel mit Streuung:** Platz 1 im Zelt ist der Anführer und bekommt den Großteil (z. B. 60–70 %), der Rest verteilt sich nach `aggro`. Spieler entscheidet durch die Aufstellung, wer vorne steht (Taktik). Fällt der Anführer, rückt der Nächste nach.
-  - **C Bedrohung:** Der Anführer bekommt alles, bis er unter X % LP fällt, dann wechselt das Ziel. Klassisch, aber nah am alten Problem vor #032.
-  - **D Angriffsarten der Gegner (ergänzt A–C):** Nahkampf trifft den Anführer, Fernkampf ein zufälliges Ziel, Magie als Fläche (alle bekommen einen kleineren Anteil). Bosse zusätzlich alle N Sekunden ein angekündigter Flächenangriff. Daten aus `attack` der JSONL; passt zu #026 (mehr Schergen) und #042 (Gegner-Mechaniken, Helden dagegen).
-- Empfehlung: **B + D**. Anführer = Platz 1 (in Zelt und Arena markieren), Nahkampf auf ihn, Fernkampf/Magie streuen; Boss-Flächenangriff als erste Mechanik für #042. Zahlen (Anteil Anführer, Fläche, Boss-Takt) in `config.js`.
-- **Entschieden (2026-11-08):** Wir wollen **B + D** umsetzen. Aber erst, wenn der Branch mit dem Balancing aus den Traits (`dev-data/akrw-traits.md`) gemergt ist – der wird sehr wahrscheinlich übernommen und ändert die Grundlage. Danach B + D noch einmal gegen das neue Balancing prüfen und dann umsetzen.
-- Stand v0.30.1: Traits und Klassenboni sind in main. Jetzt B + D gegen das neue Balancing prüfen.
-- Vor dem Umsetzen: Simulation wie bei #032 (Siege/h, Rückzüge, Offline-Effizienz Zonen 1–10), Offline-Rechnung (`teamProfile().teamDef`) an die neue Verteilung anpassen. Handbuch und Rollen-Text nachziehen.
-
 ### #040 Asura-Labor ab Stufe 6 ohne Wirkung
 - Teilweise erledigt (v0.27.0): Labor 6–10 schalten jetzt die Stufen von „Archiv der Veteranen“ frei (#022). Weitere Knoten für Labor 7–10 wären trotzdem gut.
 - **Status:** offen · **Quelle:** Gilde (Spieler mit allem maximal ausgebaut)
@@ -111,13 +96,13 @@ _Zurzeit nichts offen._
   Jeder Scherge in `tools/gen-zones.mjs` bekommt ein Profil. Mehr Schergen pro Stufe (3–5) und Veteran/Elite laufen über #026; beide zusammen umsetzen.
 - Vorschlag Bosse (Champions): **Die Bosse sollen knackig sein**, vor allem der Endboss jeder Zone. Ziel: Den Endboss schafft nur ein Trupp auf Höchstlevel der Zone mit passender Waffe (und Forschung), nicht schon ein Trupp, der gerade das empfohlene Level erreicht hat. Bosse bekommen ebenfalls ein Profil (Tempo 1,5 s aus CQHT, eigene LP/DEF-Faktoren); Endbosse einen eigenen Zuschlag in `config.js`.
 - Später: Boss-Fähigkeiten (Wut-Phase unter X % LP, Schergen rufen, Flächenangriff) → #042, #051 D.
-- Stand v0.34.0: Schwere Stufen haben eine eigene Treppe über der letzten normalen Stufe (`COMBAT.HARD_DIFF` d 56 → 61), legendäre `COMBAT.LEGEND_DIFF` d 61,5 → 62,5 = absichtlich fast unschaffbar (Max-Trupp Tank/Heiler/Schaden auf Lv. 60 mit T6: 43 % → 3 % Siegchance). **Offen:** ein „S-Tier“-Trupp finden (beste Rollen/Klassen/Eigenschaften), der Legendär schafft, und `LEGEND_DIFF` danach herunterregeln. T6 fällt nur noch auf schweren/legendären Stufen, der Laden verkauft T5 ab Portal 4, T6 nach allen normalen Stufen (`SHOP.gradeLock`). Nach #061 alle Werte neu simulieren.
+- Stand v0.35.0: Schwere Stufen haben eine eigene Treppe über der letzten normalen Stufe (`COMBAT.HARD_DIFF` d 54,5 → 59,5), legendäre `COMBAT.LEGEND_DIFF` d 60,8 → 61 = absichtlich fast unschaffbar (Max-Trupp Tank/Heiler/Schaden auf Lv. 60 mit T6: ≈ 45 % → 3 % Siegchance). In v0.35.0 um 1,5 gesenkt, weil Angriffs-Timer, Zielwahl und Boss-Flächenangriff (#051) die Bosse härter machen. Erster Boss-Mechanik-Baustein: Flächenangriff alle `BOSS_AOE_EVERY` s mit Ansage. **Offen:** ein „S-Tier“-Trupp finden (beste Rollen/Klassen/Eigenschaften), der Legendär schafft, und `LEGEND_DIFF` danach herunterregeln. T6 fällt nur noch auf schweren/legendären Stufen, der Laden verkauft T5 ab Portal 4, T6 nach allen normalen Stufen (`SHOP.gradeLock`). Nach #061 alle Werte neu simulieren.
 - Prüfen mit `tools/sim-bosses.mjs`: Endboss mit Max-Level-Trupp + Waffe knapp im 90-s-Limit, mit schwächerem Trupp nicht.
 
 ## Balancing
 
 ### #061 Gegnerwerte nach CQHT: mehr LP, DEF, Angriffstempo, weniger Beute im Spätspiel
-- **Status:** offen · **Quelle:** Entwickler
+- **Status:** in Arbeit (Schritt 1 Tick-Umbau erledigt in v0.35.0, offen: Schritt 2 Gegnerwerte) · **Quelle:** Entwickler
 - Eindruck: Gegner sind viel zu schwach, das Spiel läuft sehr schnell.
 - Befund (Vergleich mit allen CQHT-Schergen in `dev-data/archiv/cqht-monsters.json`, unsere Formeln mit d = Level × 0,8):
 
@@ -140,6 +125,7 @@ _Zurzeit nichts offen._
   - In `config.js` je ein Regler für LP, ATK, DEF und Beute, um die CQHT-Werte an unsere Helden-Grundwerte anzupassen.
   - Monster-DEF wirkt wie Helden-DEF (Schadensreduktion, Kappung wie `DEF_CAP`), Formel in `F`.
   - Angriffstempo als Wert je Monster (Schergen 2,5 s, Bosse 1,5 s), später je Profil (#062).
+- **Erledigt in v0.35.0 (Schritt 1):** 10-Hz-Tick, Angriffs-Timer mit Rest, Klassen-Intervalle (`CLASSES[…].interval`, Schaden je Treffer = ATK × Intervall, also gleicher Schaden/s), Eile/Tempo verkürzen das Intervall, `bossTime` in Sekunden, Gegner kommt nach `COMBAT.SPAWN_DELAY`, Offline mit Erwartungswerten. Gegner-Schaden je Treffer = `F.monsterAtk` × Intervall, also noch die alten Werte pro Sekunde. Farmen live/offline innerhalb weniger Prozent wie vorher. Render bleibt bei `LOOP_MS` 250. **Offen = Schritt 2:** LP/ATK/DEF/Beute nach CQHT (Tabelle, Regler), danach `tools/sim-bosses.mjs` und `HARD_DIFF`/`LEGEND_DIFF` neu.
 - **Tick und Angriffe trennen** (entschieden 2026-11-08, wie in Idle-Spielen üblich: Simulation, Angriffs-Timer und Darstellung getrennt):
   - **Simulation 10×/s** (`GAME.TICK_MS: 100`). Ein Tick lässt nur die Zeit laufen, er ist kein Angriff. Lücken ≤ 30 s in `main.js` = bis zu 300 Ticks, unkritisch.
   - **Angriffs-Timer je Kämpfer:** Monster (Schergen 2,5 s, Bosse 1,5 s) und Helden zählen hoch und greifen erst bei ≥ Intervall an. Rest behalten (`timer -= intervall`), damit krumme Intervalle im Schnitt genau stimmen.
