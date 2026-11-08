@@ -10,6 +10,7 @@ Mobile-First Idle-RPG als PWA für eine Guild-Wars-2-Gilde (nicht-kommerzielles 
 - Alle Zahlen und Formeln gehören in `js/config.js`, nicht in die Logik.
 - Helden-`id`s in `HEROES` nie ändern (Spielstände hängen daran).
 - Nach jeder Änderung an App-Dateien die Version erhöhen: `GAME.VERSION` in `js/config.js` und `CACHE_VERSION` in `sw.js` (immer dieselbe Nummer, z. B. `0.6.1` / `'aetherbastion-0.6.1'`). Patch für Fixes, Minor für neue Funktionen. Neue Dateien in `APP_FILES` eintragen.
+- Jede Version bekommt einen Eintrag in `CHANGELOG.md` (neueste oben, für Spieler geschrieben, mit #-Nummern). Verlinkt aus ⚙️ Einstellungen (`GAME.CHANGELOG_URL`).
 - Änderungen am Save-Format: `GAME.SAVE_VERSION` erhöhen und eine Migration in `MIGRATIONS` (`js/state.js`) ergänzen.
 
 ## Architektur

@@ -517,7 +517,8 @@ function openSettings() {
 
 function settingsHtml() {
   return `${modalHead('⚙️ Einstellungen')}
-    <div class="card"><button class="btn block" data-action="manual">📖 Handbuch</button></div>
+    <div class="card btn-col"><button class="btn block" data-action="manual">📖 Handbuch</button>
+      <a class="btn block" href="${GAME.CHANGELOG_URL}" target="_blank" rel="noopener">📰 Was ist neu? <small>Changelog auf GitHub · v${GAME.VERSION}</small></a></div>
     <div class="card setting">
       <span>📳 Vibration bei Level-Ups</span>
       <button class="toggle ${S.settings.vibrate ? 'on' : ''}" data-action="toggle-vibrate" role="switch" aria-checked="${S.settings.vibrate}"><i></i></button>
