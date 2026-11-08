@@ -111,6 +111,7 @@ _Zurzeit nichts offen._
   Jeder Scherge in `tools/gen-zones.mjs` bekommt ein Profil. Mehr Schergen pro Stufe (3–5) und Veteran/Elite laufen über #026; beide zusammen umsetzen.
 - Vorschlag Bosse (Champions): **Die Bosse sollen knackig sein**, vor allem der Endboss jeder Zone. Ziel: Den Endboss schafft nur ein Trupp auf Höchstlevel der Zone mit passender Waffe (und Forschung), nicht schon ein Trupp, der gerade das empfohlene Level erreicht hat. Bosse bekommen ebenfalls ein Profil (Tempo 1,5 s aus CQHT, eigene LP/DEF-Faktoren); Endbosse einen eigenen Zuschlag in `config.js`.
 - Später: Boss-Fähigkeiten (Wut-Phase unter X % LP, Schergen rufen, Flächenangriff) → #042, #051 D.
+- Stand v0.34.0: Schwere Stufen haben eine eigene Treppe über der letzten normalen Stufe (`COMBAT.HARD_DIFF` d 56 → 61), legendäre `COMBAT.LEGEND_DIFF` d 61,5 → 62,5 = absichtlich fast unschaffbar (Max-Trupp Tank/Heiler/Schaden auf Lv. 60 mit T6: 43 % → 3 % Siegchance). **Offen:** ein „S-Tier“-Trupp finden (beste Rollen/Klassen/Eigenschaften), der Legendär schafft, und `LEGEND_DIFF` danach herunterregeln. T6 fällt nur noch auf schweren/legendären Stufen, der Laden verkauft T5 ab Portal 4, T6 nach allen normalen Stufen (`SHOP.gradeLock`). Nach #061 alle Werte neu simulieren.
 - Prüfen mit `tools/sim-bosses.mjs`: Endboss mit Max-Level-Trupp + Waffe knapp im 90-s-Limit, mit schwächerem Trupp nicht.
 
 ## Balancing

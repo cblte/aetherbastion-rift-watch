@@ -3,6 +3,15 @@
 Was sich im Spiel geändert hat, neueste Version oben. Die Nummern (#…) verweisen auf die Feedback-Liste.
 Die Version steht im Spiel unten unter der Navigation.
 
+## v0.34.0 – 08.11.2026
+- **Waffen-Beute neu gestaffelt:** Aufgestiegene Waffen (T6) fallen nur noch auf **schweren ☠️ Stufen** (T5–T6) und **legendären ⭐ Stufen** (immer T6). Malchors Sprung und Fluchküste geben normal nur noch T5.
+- **Laden der Charr-Schmiede:** T5-Waffen gibt es dort erst ab **Riss-Portal 4**, T6 erst, wenn alle 50 normalen Stufen besiegt sind. Bisher konnte man sich schon ab Gildenhalle 3 eine T5 kaufen.
+- **Schwere Stufen sind schwerer:** Sie beginnen jetzt über der letzten normalen Stufe und werden bis zur Fluchküste immer härter. Die ersten schafft ein gut ausgebauter Trupp mit T5, die letzten nur mit T6 auf Höchstlevel.
+- **Legendäre Stufen** sind vorerst **extrem schwer**, auch für einen voll ausgebauten Trupp. Wir regeln das nach, sobald wir wissen, welcher Trupp sie schaffen kann.
+
+## v0.33.4 – 08.11.2026
+- Etwas mehr Luft: unter dem Auftrags-Fenster und vor der Riss-Portal-Karte unter den schweren Bossen.
+
 ## v0.33.3 – 08.11.2026
 - Kampf-Chronik: Statt ⛺ und Zonenname steht vor jeder Zeile nur noch eine kleine farbige Zelt-Nummer (Zelt 1 blau, 2 grün, 3 orange, 4 lila). Die Chronik ist dadurch deutlich kompakter.
 

@@ -118,7 +118,7 @@ textarea { user-select: text; -webkit-user-select: text; }
 
 /* ---------- Quest-Banner ------------------------------------------ */
 .quest {
-  margin: 8px 10px 0;
+  margin: 8px 10px 3px;   /* etwas Luft zum Inhalt und Scrollbalken darunter */
   padding: 10px 12px 12px;
   border-radius: var(--radius);
   background: linear-gradient(135deg, rgba(143, 123, 255, .22), rgba(95, 208, 230, .12));
@@ -370,6 +370,8 @@ a.btn { color: inherit; text-decoration: none; }
 .zone-tab.sel { border-color: var(--aether-2); background: color-mix(in srgb, var(--aether-2) 12%, var(--panel)); }
 .zone-tab.locked { opacity: .5; }
 .stages { display: flex; flex-direction: column; gap: 6px; }
+/* Riss-Portal-Ausbau unter den Stufen: klar abgesetzt von den schweren Bossen */
+#portal-up:not(:empty) { margin-top: 18px; }
 .stage-row {
   display: flex; align-items: center; gap: 10px;
   min-height: 56px; padding: 8px 12px;

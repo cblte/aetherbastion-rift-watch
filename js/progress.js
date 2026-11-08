@@ -5,11 +5,11 @@
 // =====================================================================
 import {
   BUILDINGS, RESEARCH, TIER_LAB, F, WEAPONS, WEAPON_BY_ID, WEAPON_GRADES, SHOP, DROP_GRADES, RATIONS,
-  HEROES, HERO_BY_ID, RECRUIT, QUESTS, ONBOARDING, REROLL_RESET_CLOVER, SELL,
+  HEROES, HERO_BY_ID, RECRUIT, QUESTS, ONBOARDING, REROLL_RESET_CLOVER, SELL, TOTAL_NORMAL,
 } from './config.js';
 import {
   getHero, heroStats, pay, researchLevel, addLog, buildingCost, buildLock, weaponType, gainExp,
-  isOwned, createHero, armoryFree, heroTotalExp, rollTraits, heroBonus, levelCap,
+  isOwned, createHero, armoryFree, heroTotalExp, rollTraits, heroBonus, levelCap, normalCleared,
 } from './state.js';
 
 // ---------- Bauen ----------------------------------------------------
@@ -49,8 +49,17 @@ function pickWeighted(pool, rnd = Math.random) {
   return pool[pool.length - 1];
 }
 
+// Ist eine Güte im Laden noch gesperrt? (SHOP.gradeLock) → Text mit Bedingung, sonst ''
+export function shopGradeLock(state, grade) {
+  const l = SHOP.gradeLock[grade];
+  if (!l) return '';
+  if (l.portal && state.buildings.portal < l.portal) return `ab Riss-Portal ${l.portal}`;
+  if (l.allNormal && normalCleared(state) < TOTAL_NORMAL) return `nach allen ${TOTAL_NORMAL} normalen Stufen`;
+  return '';
+}
+
 export function restockShop(state, manual = false) {
-  const pool = WEAPONS.filter(w => w.smithy <= state.buildings.forge);
+  const pool = WEAPONS.filter(w => w.smithy <= state.buildings.forge && !shopGradeLock(state, w.grade));
   if (!pool.length) return;
   state.shop.offers = Array.from({ length: SHOP.offers }, () => pickWeighted(pool).id);
   if (!manual) {
@@ -160,10 +169,10 @@ export function unequipWeapon(state, uid) {
   return true;
 }
 
-// Boss-Drop: Güte nach Zonen-tier (schwer/legendär: höchste Güten).
-// Ist die Waffenkammer voll, bleibt der Rest liegen (lost).
-export function dropWeapons(state, tier, hard, count) {
-  const [lo, hi] = hard ? DROP_GRADES.hard : DROP_GRADES[tier];
+// Boss-Drop: Güte nach Zonen-tier, schwer/legendär eigene Güten (DROP_GRADES).
+// kind: 'normal' | 'hard' | 'legend'. Ist die Waffenkammer voll, bleibt der Rest liegen (lost).
+export function dropWeapons(state, tier, kind, count) {
+  const [lo, hi] = kind === 'normal' ? DROP_GRADES[tier] : DROP_GRADES[kind];
   const pool = WEAPONS.filter(w => w.grade >= lo && w.grade <= hi);
   const got = [];
   let lost = 0;

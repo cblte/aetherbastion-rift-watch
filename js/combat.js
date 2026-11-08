@@ -121,7 +121,7 @@ export function applyKillRewards(state, squadIdx, tmpl, heroes, factor = 1, dete
     rp = r.rp[0] + Math.floor(Math.random() * (r.rp[1] - r.rp[0] + 1));
     state.rp += rp;
     const extra = Math.random() < squadTrait(heroes, 'loot') ? 1 : 0; // Eigenschaft „Beute“
-    ({ got: weapons, lost: lostWeapons } = dropWeapons(state, zone.tier, !!st.hard, r.weapons + extra));
+    ({ got: weapons, lost: lostWeapons } = dropWeapons(state, zone.tier, st.legend ? 'legend' : st.hard ? 'hard' : 'normal', r.weapons + extra));
     const g = Math.min(RATIONS.length, st.hard ? 6 : zone.tier + (zone.part === 2 ? 1 : 0)) - 1;
     // erster Sieg: volle Menge; danach nur mit RATION_DROP.chance 1–2 Stück (#045)
     let n = 0;

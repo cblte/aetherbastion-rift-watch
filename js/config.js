@@ -5,7 +5,7 @@
 
 export const GAME = {
   title: 'Aetherbastion: Rift Watch',
-  VERSION: '0.33.3',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
+  VERSION: '0.34.0',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
   CHANGELOG_URL: 'https://github.com/cblte/aetherbastion-rift-watch/blob/main/CHANGELOG.md', // Link in den Einstellungen
   BUILD: 'lokal',                    // ersetzt der Pages-Workflow durch „Nr. · Commit“
   SAVE_KEY: 'aetherbastion_save_v1',
@@ -257,18 +257,29 @@ export const COMBAT = {
   EILE_BONUS: 0.15,        // Eile: +15 % Chance auf Zusatzangriff je Unterstützer
   DEF_CAP: 0.75,           // max. Schadensreduktion
   SHARD_CHANCE: 0.05,
-  ENDGAME_DIFF_SCALE: 1.4, // #047: Zuschlag der Lv.-60-Stufen (schwer, legendär) × 1,4 → d bis ≈ 59 (tools/sim-bosses.mjs)
+  ENDGAME_DIFF_SCALE: 1.4, // #047: Zuschlag der normalen Lv.-60-Stufen (Zonen 8–10) × 1,4 → d bis ≈ 54 (tools/sim-bosses.mjs)
+  // Schwere Stufen beginnen über der letzten normalen Stufe (Fluchküste 5, d ≈ 53,6) und steigen
+  // gleichmäßig von Königintal ☠️6 bis Fluchküste ☠️7. Legendär liegt darüber (Zone 2 → Zone 10).
+  HARD_DIFF:   { from: 56, to: 61 },     // Fluchküste ☠️7: Max-Trupp Lv. 60 mit T6 knapp (tools/sim-bosses.mjs)
+  LEGEND_DIFF: { from: 61.5, to: 62.5 }, // absichtlich knüppelhart: Max-Trupp Lv. 60 ≈ 43 % → 3 % Siegchance; später mit S-Tier-Trupp nachregeln
 };
 
 // Riss-Zonen aus data/stages.js; Schwierigkeit je Stufe berechnen.
-// Bis Lv. 59 zählt das Level, auf Lv.-60-Stufen (Zonen 8–10, schwer, legendär)
-// steigt die Schwierigkeit mit den CQHT-Kosten weiter (× COMBAT.ENDGAME_DIFF_SCALE).
+// Bis Lv. 59 zählt das Level, auf normalen Lv.-60-Stufen (Zonen 8–10) steigt die
+// Schwierigkeit mit den CQHT-Kosten weiter (× COMBAT.ENDGAME_DIFF_SCALE).
+// Schwer und legendär: eigene Treppe (COMBAT.HARD_DIFF / LEGEND_DIFF).
+const lerp = ({ from, to }, k, n) => from + (n > 1 ? (to - from) * k / (n - 1) : 0);
+const HARD_COUNT = ZONE_DATA.reduce((n, z) => n + z.stages.filter(st => st.hard && !st.legend).length, 0);
+const LEGEND_COUNT = ZONE_DATA.reduce((n, z) => n + z.stages.filter(st => st.legend).length, 0);
+let hardRank = 0, legendRank = 0;
 export const ZONES = ZONE_DATA.map(z => ({
   ...z,
   stages: z.stages.map((st, i) => ({
     ...st,
     index: i + 1,
-    d: st.level < 60 ? st.level * COMBAT.LEVEL_DIFF : 60 * COMBAT.LEVEL_DIFF + (st.cost - 1000) / 500 * COMBAT.ENDGAME_DIFF_SCALE,
+    d: st.legend ? lerp(COMBAT.LEGEND_DIFF, legendRank++, LEGEND_COUNT)
+      : st.hard ? lerp(COMBAT.HARD_DIFF, hardRank++, HARD_COUNT)
+      : st.level < 60 ? st.level * COMBAT.LEVEL_DIFF : 60 * COMBAT.LEVEL_DIFF + (st.cost - 1000) / 500 * COMBAT.ENDGAME_DIFF_SCALE,
   })),
 }));
 export const TOTAL_NORMAL = ZONES.length * NORMAL_STAGES;

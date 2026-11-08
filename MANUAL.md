@@ -113,7 +113,7 @@ Jeder Held bringt **Eigenschaften** mit, gewürfelt beim Rekrutieren. Du siehst 
 - Nach jedem Sieg heilt der ganze Trupp 10 % seiner LP.
 - Im Helden-Fenster stehen **💥 Schaden** und **✚ Heilung** pro Sekunde (ohne Trupp-Boni). Unter jedem Zelt stehen Schaden, Heilung und LP des ganzen Trupps.
 
-**Schwere Stufen** öffnen sich, wenn alle 50 normalen Stufen besiegt sind. **Legendäre Stufen** kommen nach allen schweren.
+**Schwere Stufen** öffnen sich, wenn alle 50 normalen Stufen besiegt sind. Sie sind alle schwerer als die letzte normale Stufe und werden von Königintal ☠️ bis Fluchküste ☠️ immer härter: Die ersten schafft ein gut ausgebauter Trupp mit Exotisch-Waffen (T5), die letzten nur mit Aufgestiegen-Waffen (T6) auf Höchstlevel. **Legendäre Stufen** kommen nach allen schweren und sind absichtlich extrem schwer.
 
 ## Riss-Zonen
 
@@ -135,6 +135,8 @@ Die Zonen 1–5 sind die Heimatgebiete der fünf Völker: Königintal (Menschen)
 Jede normale Stufe hat einen eigenen Boss; auf Stufe 5 wartet der **Zonen-Endboss**.
 
 ### Schwere und legendäre Stufen
+
+**Waffen-Beute nach Stufe:** Königintal & Caledon T1–T2 · Wanderer & Metrica T2–T3 · Aschfurt & Anwesen T3–T4 · Klaueninsel & Meerenge T4–T5 · Malchor & Fluchküste T5. **T6 (Aufgestiegen) gibt es nur auf schweren Stufen** (T5–T6), legendäre Stufen geben immer T6.
 
 | Zone | ☠️ Schwer | ⭐ Legendär |
 |---|---|---|
@@ -180,7 +182,7 @@ Mit **📜 Forschungsnotizen** erforschst du dauerhafte Verbesserungen in drei B
 
 ## ⚒️ Charr-Schmiede – Waffen
 
-- Der **Laden** bietet 3 Waffen an und füllt sich alle 30 Minuten neu. „Ware auffrischen“ kostet 100 Gold und verdoppelt sich jedes Mal, bis der Laden sich von selbst erneuert. Mit **2 🍀 Mystischem Klee** setzt du den Preis sofort zurück auf 100.
+- Der **Laden** bietet 3 Waffen an und füllt sich alle 30 Minuten neu. Exotische Waffen (T5) verkauft er erst ab **Riss-Portal 4**, aufgestiegene (T6) erst, wenn **alle 50 normalen Stufen** besiegt sind. „Ware auffrischen“ kostet 100 Gold und verdoppelt sich jedes Mal, bis der Laden sich von selbst erneuert. Mit **2 🍀 Mystischem Klee** setzt du den Preis sofort zurück auf 100.
 - Gekaufte Waffen und Boss-Beute landen in der **Waffenkammer** (Reiter 🎒 Inventar und ⚒️ Schmiede). Boss-Beute kommt auch schon, bevor die Schmiede gebaut ist. Dort rüstest du sie aus oder verkaufst sie (25 % des Preises).
 - Die Waffenkammer zeigt jede Waffe als **Kachel** mit Symbol, Güte (T1–T6) und Anzahl. Antippen öffnet die Details: Ausrüsten, eine verkaufen oder alle gleichen verkaufen. **▲** heißt: besser als die Waffe eines Helden.
 - **Platz:** Die Waffenkammer wächst mit der Gildenhalle: 20 / 25 / 30 / 40 / 50 / 60 / 70 / 85 / 100 Plätze. Ist sie voll, **bleibt Boss-Beute liegen** (Hinweis in der Chronik), der Laden verkauft nichts, und Ablegen geht nicht.

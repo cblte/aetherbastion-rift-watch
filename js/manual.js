@@ -88,7 +88,7 @@ export function manualChapters() {
       <p>Tipp: Fordere den Boss heraus, sobald dein Trupp das empfohlene Level erreicht. Scheitern kostet nur das Herausforderungs-Gold.</p>` },
 
     { icon: '🌀', title: 'Riss-Zonen', html: `
-      <p>${ZONES.length} Zonen mit je <b>${NORMAL_STAGES} normalen Stufen</b> und schweren ☠️ Stufen; jede zweite Zone hat zusätzlich eine legendäre ⭐. Schwere Stufen öffnen sich, wenn alle ${TOTAL_NORMAL} normalen Stufen besiegt sind, legendäre nach allen schweren.</p>
+      <p>${ZONES.length} Zonen mit je <b>${NORMAL_STAGES} normalen Stufen</b> und schweren ☠️ Stufen; jede zweite Zone hat zusätzlich eine legendäre ⭐. Schwere Stufen öffnen sich, wenn alle ${TOTAL_NORMAL} normalen Stufen besiegt sind; sie sind härter als die letzte normale Stufe und steigen bis zur Fluchküste an. Legendäre kommen nach allen schweren und sind extrem schwer.</p>
       ${table(['#', 'Zone', 'Portal', 'Lv.'], ZONES.map(z => {
         const lv = z.stages.slice(0, NORMAL_STAGES).map(s => s.level);
         return [z.id, z.name, z.portal, lv[0] === lv.at(-1) ? lv[0] : `${lv[0]}–${lv.at(-1)}`];
@@ -109,7 +109,8 @@ export function manualChapters() {
 
     { icon: '⚒️', title: 'Waffen & Proviant', html: `
       ${list([
-        `Der <b>Laden</b> der Charr-Schmiede hat ${SHOP.offers} Angebote und füllt sich alle ${min(SHOP.restockMs)} Minuten neu.`,
+        `Der <b>Laden</b> der Charr-Schmiede hat ${SHOP.offers} Angebote und füllt sich alle ${min(SHOP.restockMs)} Minuten neu. T5 gibt es dort erst ab Riss-Portal ${SHOP.gradeLock[5].portal}, T6 erst nach allen ${TOTAL_NORMAL} normalen Stufen.`,
+        'Boss-Beute: Die Güte steigt mit der Zone (Königintal T1–T2 bis Fluchküste T5). <b>T6 fällt nur auf schweren Stufen</b>, legendäre geben immer T6.',
         `„Ware auffrischen“ verdoppelt seinen Preis bis zum nächsten Nachschub – oder bis du ihn mit 🍀 ${REROLL_RESET_CLOVER} Mystischem Klee zurücksetzt.`,
         `Boss-Beute und Käufe landen in der <b>Waffenkammer</b> (Reiter 🎒 Inventar und ⚒️ Schmiede) – Beute auch schon, bevor die Schmiede steht. Dort rüstest du aus oder verkaufst (${pct(SHOP.sellFactor)} des Preises).`,
         'Der Reiter <b>🎒 Inventar</b> zeigt Proviant, Früchte, Waffenkammer und ausgerüstete Waffen an einem Ort. Ausrüsten geht dort oder im Helden-Fenster.',

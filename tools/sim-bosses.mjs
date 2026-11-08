@@ -3,7 +3,7 @@
 //  Boss jeder Stufe im Zeitlimit zu besiegen?
 //
 //  node tools/sim-bosses.mjs [runs] [--team h01,h02,h04] [--hard] [--hard-scale X]
-//  --hard: nur schwere/legendäre Stufen · --hard-scale: Zuschlag testweise × X statt COMBAT.ENDGAME_DIFF_SCALE
+//  --hard: nur schwere/legendäre Stufen · --hard-scale: Zuschlag der normalen Lv.-60-Stufen testweise × X statt COMBAT.ENDGAME_DIFF_SCALE
 //
 //  Nutzt die echte Kampflogik (combat.js / state.js). Ein Trupp aus drei
 //  Helden (Standard: Tank, Heiler, Schaden) kämpft frisch gegen den Boss.
@@ -26,12 +26,14 @@ const WIN_RATE = 0.8;
 const hsArg = args.includes('--hard-scale') ? Number(args[args.indexOf('--hard-scale') + 1]) : null;
 const ONLY_HARD = args.includes('--hard');
 if (hsArg != null) for (const z of C.ZONES) for (const st of z.stages) {
-  if (st.level >= 60) st.d = 60 * C.COMBAT.LEVEL_DIFF + (st.cost - 1000) / 500 * hsArg;
+  if (st.level >= 60 && !st.hard) st.d = 60 * C.COMBAT.LEVEL_DIFF + (st.cost - 1000) / 500 * hsArg;
 }
 
 const PROFILES = {
   einfach: { rarity: 2, weapon: 2, research: 0, mystic: 0 },
   mittel:  { rarity: 4, weapon: 4, research: 0.5, mystic: 2 },
+  maxT4:   { rarity: 6, weapon: 4, research: 1, mystic: 5 }, // alles maximal, aber nur T4-Waffe
+  maxT5:   { rarity: 6, weapon: 5, research: 1, mystic: 5 },
   maximal: { rarity: 6, weapon: 6, research: 1, mystic: 5 },
 };
 
