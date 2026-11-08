@@ -924,10 +924,10 @@ function renderForge() {
     }).join('')}`);
 }
 
-// #057: Jeder Dialog hat oben rechts dasselbe rote ✕. Mit `close` (z. B. 'inventory') führt es
+// #057: Jeder Dialog hat oben rechts dasselbe ❌. Mit `close` (z. B. 'inventory') führt es
 // statt nur zu schließen dorthin zurück, wo der Dialog geöffnet wurde.
 function modalHead(title, close = '') {
-  return `<div class="modal-head"><h3>${title}</h3><button class="close-x" data-action="${close || 'modal-close'}" aria-label="Schließen"><i></i></button></div>`;
+  return `<div class="modal-head"><h3>${title}</h3><button class="close-x" data-action="${close || 'modal-close'}" aria-label="Schließen">❌</button></div>`;
 }
 
 function openEquipPicker(idx, back = '') {
@@ -951,12 +951,12 @@ function renderInventory() {
 function inventoryHtml() {
   const equipped = S.heroes.filter(h => h.weapon).sort((a, b) => b.level - a.level);
   const rations = RATIONS.map((r, g) => S.rations[g] > 0 ? `<div class="card weapon-offer">
-      <div class="w-info"><div>🍞${g + 1} ${esc(r.name)} <b>×${S.rations[g]}</b> <span class="muted small">/ ${rationSlots(S)}</span></div><div class="muted small">+${fmt(r.exp)} EXP pro Stück</div></div>
-      <div class="b-act btn-col tight"><button class="btn primary" data-action="feed-pick" data-g="${g}">Verfüttern</button>
-        <button class="btn" data-action="supply-sell" data-kind="ration" data-g="${g}">Verkaufen<small>🟡 ${fmt(supplyPrice('ration', g))}/Stk.</small></button></div></div>` : '').join('');
+      <div class="w-info"><div>🍞${g + 1} ${esc(r.name)} <b>×${S.rations[g]}</b> <span class="muted small">/ ${rationSlots(S)}</span></div><div class="muted small">+${fmt(r.exp)} EXP · 🟡 ${fmt(supplyPrice('ration', g))}/Stk.</div></div>
+      <div class="b-act duo"><button class="btn compact primary" data-action="feed-pick" data-g="${g}">Verfüttern</button>
+        <button class="btn compact" data-action="supply-sell" data-kind="ration" data-g="${g}">Verkaufen</button></div></div>` : '').join('');
   const fruit = S.fruit > 0 ? `<div class="card weapon-offer">
-      <div class="w-info"><div>🍎 Früchte <b>×${S.fruit}</b></div><div class="muted small">Von Level-Ups. Eigene Funktion folgt.</div></div>
-      <div class="b-act"><button class="btn" data-action="supply-sell" data-kind="fruit">Verkaufen<small>🟡 ${fmt(supplyPrice('fruit'))}/Stk.</small></button></div></div>` : '';
+      <div class="w-info"><div>🍎 Früchte <b>×${S.fruit}</b></div><div class="muted small">Von Level-Ups · 🟡 ${fmt(supplyPrice('fruit'))}/Stk.</div></div>
+      <div class="b-act duo"><button class="btn compact" data-action="supply-sell" data-kind="fruit">Verkaufen</button></div></div>` : '';
   return `
     <h3 class="tree-title">🍞 Proviant</h3>
     ${rations || '<div class="card muted small">Kein Proviant. Den gibt es von Bossen.</div>'}

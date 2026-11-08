@@ -3,6 +3,12 @@
 Was sich im Spiel geändert hat, neueste Version oben. Die Nummern (#…) verweisen auf die Feedback-Liste.
 Die Version steht im Spiel unten unter der Navigation.
 
+## v0.33.2 – 08.11.2026
+- 🎒 Inventar: Die Knöpfe **Verfüttern** und **Verkaufen** sind kleiner und stehen nebeneinander, der Preis steht jetzt in der Beschreibung. Die Proviant-Karten sind nur noch halb so hoch (#059).
+
+## v0.33.1 – 08.11.2026
+- Dialoge schließen jetzt mit einem kleinen ❌ oben rechts (#057).
+
 ## v0.33.0 – 08.11.2026
 - **Proviant und Früchte verkaufen:** Im 🎒 Inventar haben jede Proviant-Sorte und die 🍎 Früchte einen Knopf **Verkaufen** (1×, 10× oder alle). Pro Stück: 🍞1 15 🟡 bis 🍞6 6.000 🟡, 🍎 250 🟡 (#059).
 
