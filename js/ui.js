@@ -26,7 +26,7 @@ import {
 import {
   researchInfo, doResearch, startBuild, refreshShop, refreshCost, buyWeapon, sellWeapon, sellWeapons, sellPrice,
   upgradeIndices, equipWeapon, unequipWeapon, fitsHero, feedRations, rationsToLevel, rationExp,
-  sellSupplies, supplyPrice, supplyCount,
+  sellSupplies, supplyPrice, supplyCount, shopGrades,
   recruitTier, recruitRefreshCost, refreshRecruits, recruitCost, hireRecruit, resetRerollCost, recruitOdds,
 } from './progress.js';
 import { runOffline } from './offline.js';
@@ -442,7 +442,13 @@ function effectText(key, lvl, short = false) {
     case 'camp': return `${short ? '' : 'Level-Cap '}Lv. ${lvl ? L.cap : 10}`;
     case 'kitchen': return `+${Math.round(lvl * BUILDINGS.kitchen.bonusPerLevel * 100)} %${short ? '' : ' EXP'}`;
     case 'lab': return `${short ? '' : 'Forschung bis '}Stufe ${lvl >= TIER_LAB[4] ? 'IV' : lvl >= TIER_LAB[3] ? 'III' : lvl >= TIER_LAB[2] ? 'II' : lvl ? 'I' : '–'}`;
-    case 'forge': return lvl ? `${short ? '' : 'Laden: Waffen bis '}${WEAPON_GRADES[[0, 3, 5, 6][lvl]].name}` : 'Noch nicht gebaut';
+    case 'forge': {
+      const g = lvl ? shopGrades(S, lvl) : null;
+      if (!g) return 'Noch nicht gebaut';
+      const max = WEAPON_GRADES[g.max].name;
+      if (short) return g.lock ? `${WEAPON_GRADES[g.next].name} (${g.lock})` : max;
+      return `Laden: Waffen bis ${g.lock ? WEAPON_GRADES[g.open].name : max}${g.lock ? ` · ${WEAPON_GRADES[g.next].name} ${g.lock}` : ''}`;
+    }
     case 'portal': return lvl ? `${short ? '' : 'Zonen bis '}${ZONES.filter(z => z.portal <= lvl).at(-1).name}` : 'Inaktiv';
     default: return '';
   }

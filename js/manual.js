@@ -115,7 +115,7 @@ export function manualChapters() {
 
     { icon: '⚒️', title: 'Waffen & Proviant', html: `
       ${list([
-        `Der <b>Laden</b> der Charr-Schmiede hat ${SHOP.offers} Angebote und füllt sich alle ${min(SHOP.restockMs)} Minuten neu. T5 gibt es dort erst ab Riss-Portal ${SHOP.gradeLock[5].portal}, T6 erst nach allen ${TOTAL_NORMAL} normalen Stufen.`,
+        `Der <b>Laden</b> der Charr-Schmiede hat ${SHOP.offers} Angebote und füllt sich alle ${min(SHOP.restockMs)} Minuten neu. Schmiede-Stufe 1 verkauft bis T3, Stufe 2 bis T4, Stufe 3 auch T5 (zusätzlich erst ab Riss-Portal ${SHOP.gradeLock[5].portal}) und T6 erst nach allen ${TOTAL_NORMAL} normalen Stufen.`,
         'Boss-Beute: Die Güte steigt mit der Zone (Königintal T1–T2 bis Fluchküste T5). <b>T6 fällt nur auf schweren Stufen</b>, legendäre geben immer T6.',
         `„Ware auffrischen“ verdoppelt seinen Preis bis zum nächsten Nachschub – oder bis du ihn mit 🍀 ${REROLL_RESET_CLOVER} Mystischem Klee zurücksetzt.`,
         `Boss-Beute und Käufe landen in der <b>Waffenkammer</b> (Reiter 🎒 Inventar und ⚒️ Schmiede) – Beute auch schon, bevor die Schmiede steht. Dort rüstest du aus oder verkaufst (${pct(SHOP.sellFactor)} des Preises).`,

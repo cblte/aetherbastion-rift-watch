@@ -3,6 +3,10 @@
 Was sich im Spiel geändert hat, neueste Version oben. Die Nummern (#…) verweisen auf die Feedback-Liste.
 Die Version steht im Spiel unten unter der Navigation.
 
+## v0.35.1 – 08.11.2026
+- **Charr-Schmiede:** Exotische Waffen (T5) gibt es im Laden erst ab **Schmiede-Stufe 3** (Gildenhalle 6), weiterhin zusätzlich ab Riss-Portal 4. Stufe 2 bringt jetzt nur Selten (T4).
+- Die Schmiede-Karte im Lager zeigt jetzt richtig an, was der Laden verkauft und welche Güte noch gesperrt ist. Bisher stand dort schon bei Stufe 2 „bis Exotisch“, obwohl der Laden das noch gar nicht anbot.
+
 ## v0.35.0 – 08.11.2026
 - **Neuer Kampftakt (#061):** Nicht mehr alle schlagen jede Sekunde gleichzeitig zu. Jeder Held greift im **Takt seiner Klasse** an, z. B. Dieb alle 0,7 s, Elementarmagier alle 1,5 s. Schnelle Klassen treffen öfter, aber schwächer. Eile und Tempo machen den Takt kürzer. Schergen schlagen alle 2,5 s zu, Bosse alle 1,5 s. Der Takt steht im Helden-Fenster (⏱️).
 - **Anführer und Angriffsarten (#051):** Platz 1 im Zelt ist der **🚩 Anführer**. Gegner greifen jetzt unterschiedlich an, das steht unter ihrem Namen:

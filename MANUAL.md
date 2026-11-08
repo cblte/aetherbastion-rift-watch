@@ -175,7 +175,7 @@ Gebaut wird immer **nur ein Gebäude gleichzeitig**, und höhere Stufen brauchen
 | 🌀 Riss-Portal | 1–4 | Jede Stufe öffnet ein neues Portal: 1 = Kryta, Caledon & Zittergipfel (Zonen 1–3), 2 = Metrica, Aschfurt & Anwesen (4–6), 3 = Löwenstein & Meerenge (7–8), 4 = Orr (9–10). Kostet Gold + Ätherscherben. |
 | 🍲 Feldküche | 1–10 | +5 % EXP pro Stufe |
 | 🔬 Asura-Labor | 1–10 | Forschung; Stufe 3 und 5 öffnen tiefere Forschung |
-| ⚒️ Charr-Schmiede | 1–3 | Waffenladen und Waffenkammer. Stufe 2 und 3 bringen bessere Ware. Ab Gildenhalle 2. |
+| ⚒️ Charr-Schmiede | 1–3 | Waffenladen und Waffenkammer. Stufe 2 bringt Selten (T4), Stufe 3 Exotisch (T5). Ab Gildenhalle 2. |
 
 Die Karte der Gildenhalle zeigt, was die nächste Stufe freischaltet. Die Mystische Schmiede öffnet sich ab **Gildenhalle 5**.
 
@@ -191,7 +191,7 @@ Mit **📜 Forschungsnotizen** erforschst du dauerhafte Verbesserungen in drei B
 
 ## ⚒️ Charr-Schmiede – Waffen
 
-- Der **Laden** bietet 3 Waffen an und füllt sich alle 30 Minuten neu. Exotische Waffen (T5) verkauft er erst ab **Riss-Portal 4**, aufgestiegene (T6) erst, wenn **alle 50 normalen Stufen** besiegt sind. „Ware auffrischen“ kostet 100 Gold und verdoppelt sich jedes Mal, bis der Laden sich von selbst erneuert. Mit **2 🍀 Mystischem Klee** setzt du den Preis sofort zurück auf 100.
+- Der **Laden** bietet 3 Waffen an und füllt sich alle 30 Minuten neu. Was er führt, hängt von der Stufe ab: Stufe 1 bis Meisterwerk (T3), Stufe 2 bis Selten (T4), Stufe 3 auch Exotisch (T5). Exotische verkauft er zusätzlich erst ab **Riss-Portal 4**, aufgestiegene (T6) erst, wenn **alle 50 normalen Stufen** besiegt sind. „Ware auffrischen“ kostet 100 Gold und verdoppelt sich jedes Mal, bis der Laden sich von selbst erneuert. Mit **2 🍀 Mystischem Klee** setzt du den Preis sofort zurück auf 100.
 - Gekaufte Waffen und Boss-Beute landen in der **Waffenkammer** (Reiter 🎒 Inventar und ⚒️ Schmiede). Boss-Beute kommt auch schon, bevor die Schmiede gebaut ist. Dort rüstest du sie aus oder verkaufst sie (25 % des Preises).
 - Die Waffenkammer zeigt jede Waffe als **Kachel** mit Symbol, Güte (T1–T6) und Anzahl. Antippen öffnet die Details: Ausrüsten, eine verkaufen oder alle gleichen verkaufen. **▲** heißt: besser als die Waffe eines Helden.
 - **Platz:** Die Waffenkammer wächst mit der Gildenhalle: 20 / 25 / 30 / 40 / 50 / 60 / 70 / 85 / 100 Plätze. Ist sie voll, **bleibt Boss-Beute liegen** (Hinweis in der Chronik), der Laden verkauft nichts, und Ablegen geht nicht.

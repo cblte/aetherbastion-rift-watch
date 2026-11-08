@@ -58,6 +58,17 @@ export function shopGradeLock(state, grade) {
   return '';
 }
 
+// Was der Laden mit Schmiede-Stufe lvl verkauft: höchste Güte überhaupt (max), höchste ohne Sperre (open),
+// die nächste gesperrte Güte darüber (next) und ihre Sperre (lock, '' = keine). Für die Gebäude-Anzeige.
+export function shopGrades(state, lvl) {
+  const grades = WEAPONS.filter(w => w.smithy <= lvl).map(w => w.grade);
+  if (!grades.length) return null;
+  const max = Math.max(...grades);
+  const open = Math.max(0, ...grades.filter(g => !shopGradeLock(state, g)));
+  const next = Math.min(...grades.filter(g => g > open), Infinity);
+  return { max, open, next, lock: next === Infinity ? '' : shopGradeLock(state, next) };
+}
+
 export function restockShop(state, manual = false) {
   const pool = WEAPONS.filter(w => w.smithy <= state.buildings.forge && !shopGradeLock(state, w.grade));
   if (!pool.length) return;

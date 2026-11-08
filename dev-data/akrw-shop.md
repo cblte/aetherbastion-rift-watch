@@ -110,24 +110,24 @@ Der Laden zeigt 3 zufällige Waffen und füllt sich alle 30 Minuten neu. Waffen 
 
 | Waffe | Art | 🟡 Gold | 📜 FN | Schmiede | Chance | CQHT |
 | --- | --- | --- | --- | --- | --- | --- |
-| Klinge des Tiefseekönigs | 🗡️ Schwert | 12.000 | 5 | Stufe 2 | 0,2 % | Sea King Sword |
-| Schlächterklinge | 🗡️ Schwert | 12.000 | 5 | Stufe 2 | 0,2 % | Killer Sword |
-| Goldene Klinge | 🗡️ Schwert | 12.000 | 5 | Stufe 2 | 0,2 % | Golden Sword |
-| Eishammer | 🔨 Hammer | 12.000 | 5 | Stufe 2 | 0,2 % | Ice Hammer |
-| Goldene Axt | 🔨 Hammer | 12.000 | 5 | Stufe 2 | 0,2 % | Golden Axe |
-| Wirbelaxt | 🔨 Hammer | 12.000 | 5 | Stufe 2 | 0,2 % | Whirl Axe |
-| Roter Drache (kurz) | 🏹 Bogen | 12.000 | 5 | Stufe 2 | 0,2 % | RedDragon(Shrt) |
-| Roter Drache (lang) | 🏹 Bogen | 12.000 | 5 | Stufe 2 | 0,2 % | RedDragon(Lng) |
-| Katzenkissen | 🏹 Bogen | 12.000 | 5 | Stufe 2 | 0,2 % | Cat Pillow |
-| Donnerbüchse | 🔫 Gewehr | 12.000 | 5 | Stufe 2 | 0,2 % | Blunderbuss |
-| Asura-Prototyp X-14 | 🔫 Gewehr | 12.000 | 5 | Stufe 2 | 0,2 % | CODE-14 |
-| Verfolger | 🔫 Gewehr | 12.000 | 5 | Stufe 2 | 0,2 % | Chaser |
-| Sylvari-Stab | 🪄 Stab | 12.000 | 5 | Stufe 2 | 0,2 % | Elf Staff |
-| Uralter Stab | 🪄 Stab | 12.000 | 5 | Stufe 2 | 0,2 % | Ancient Staff |
-| Stab des Erzmagiers | 🪄 Stab | 12.000 | 5 | Stufe 2 | 0,2 % | Archon Staff |
-| Seltsame Arznei | 🔮 Fokus | 12.000 | 5 | Stufe 2 | 0,2 % | Weird Medicine |
-| Uralte Kugel | 🔮 Fokus | 12.000 | 5 | Stufe 2 | 0,2 % | Ancient Orb |
-| Papierpuppe | 🔮 Fokus | 12.000 | 5 | Stufe 2 | 0,2 % | Paper Doll |
+| Klinge des Tiefseekönigs | 🗡️ Schwert | 12.000 | 5 | Stufe 3 | 0,2 % | Sea King Sword |
+| Schlächterklinge | 🗡️ Schwert | 12.000 | 5 | Stufe 3 | 0,2 % | Killer Sword |
+| Goldene Klinge | 🗡️ Schwert | 12.000 | 5 | Stufe 3 | 0,2 % | Golden Sword |
+| Eishammer | 🔨 Hammer | 12.000 | 5 | Stufe 3 | 0,2 % | Ice Hammer |
+| Goldene Axt | 🔨 Hammer | 12.000 | 5 | Stufe 3 | 0,2 % | Golden Axe |
+| Wirbelaxt | 🔨 Hammer | 12.000 | 5 | Stufe 3 | 0,2 % | Whirl Axe |
+| Roter Drache (kurz) | 🏹 Bogen | 12.000 | 5 | Stufe 3 | 0,2 % | RedDragon(Shrt) |
+| Roter Drache (lang) | 🏹 Bogen | 12.000 | 5 | Stufe 3 | 0,2 % | RedDragon(Lng) |
+| Katzenkissen | 🏹 Bogen | 12.000 | 5 | Stufe 3 | 0,2 % | Cat Pillow |
+| Donnerbüchse | 🔫 Gewehr | 12.000 | 5 | Stufe 3 | 0,2 % | Blunderbuss |
+| Asura-Prototyp X-14 | 🔫 Gewehr | 12.000 | 5 | Stufe 3 | 0,2 % | CODE-14 |
+| Verfolger | 🔫 Gewehr | 12.000 | 5 | Stufe 3 | 0,2 % | Chaser |
+| Sylvari-Stab | 🪄 Stab | 12.000 | 5 | Stufe 3 | 0,2 % | Elf Staff |
+| Uralter Stab | 🪄 Stab | 12.000 | 5 | Stufe 3 | 0,2 % | Ancient Staff |
+| Stab des Erzmagiers | 🪄 Stab | 12.000 | 5 | Stufe 3 | 0,2 % | Archon Staff |
+| Seltsame Arznei | 🔮 Fokus | 12.000 | 5 | Stufe 3 | 0,2 % | Weird Medicine |
+| Uralte Kugel | 🔮 Fokus | 12.000 | 5 | Stufe 3 | 0,2 % | Ancient Orb |
+| Papierpuppe | 🔮 Fokus | 12.000 | 5 | Stufe 3 | 0,2 % | Paper Doll |
 
 ## ★6 Aufgestiegen
 
