@@ -3,6 +3,9 @@
 Was sich im Spiel geändert hat, neueste Version oben. Die Nummern (#…) verweisen auf die Feedback-Liste.
 Die Version steht im Spiel unten unter der Navigation.
 
+## v0.33.3 – 08.11.2026
+- Kampf-Chronik: Statt ⛺ und Zonenname steht vor jeder Zeile nur noch eine kleine farbige Zelt-Nummer (Zelt 1 blau, 2 grün, 3 orange, 4 lila). Die Chronik ist dadurch deutlich kompakter.
+
 ## v0.33.2 – 08.11.2026
 - 🎒 Inventar: Die Knöpfe **Verfüttern** und **Verkaufen** sind kleiner und stehen nebeneinander, der Preis steht jetzt in der Beschreibung. Die Proviant-Karten sind nur noch halb so hoch (#059).
 

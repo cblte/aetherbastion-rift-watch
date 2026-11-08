@@ -424,7 +424,7 @@ function renderPortal() {
   setHTML($('#portal-up'), S.onboarding >= 5 ? buildingCard('portal') : '');
 
   setHTML($('#chronicle'), S.log.length
-    ? S.log.map(l => `<li class="log ${l.kind || ''}">${l.s != null ? `<span class="tag" title="Zelt ${l.s + 1}">⛺${l.s + 1}${l.z ? `<small>${esc(ZONES[l.z - 1].short)}</small>` : ''}</span>` : '<span class="tag">✦</span>'}<span>${esc(l.msg)}</span></li>`).join('')
+    ? S.log.map(l => `<li class="log ${l.kind || ''}">${l.s != null ? `<span class="tag tent-${l.s + 1}" aria-label="Zelt ${l.s + 1}${l.z ? `, ${esc(ZONES[l.z - 1].short)}` : ''}">${l.s + 1}</span>` : '<span class="tag">✦</span>'}<span>${esc(l.msg)}</span></li>`).join('')
     : '<li class="log muted">Noch ist es still an den Rissen …</li>');
 }
 
