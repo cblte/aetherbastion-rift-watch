@@ -996,6 +996,9 @@ export function showUpdateAvailable() {
   toast('Neue Version verfügbar. <button class="btn small-btn" data-action="reload">Neu laden</button>', 15000);
 }
 
+// #039: Werte-Tabelle mit eigener Spalte für das Symbol, damit Text und Zahlen sauber untereinander stehen
+const statRow = (icon, label, value) => `<span class="sg-i" aria-hidden="true">${icon}</span><span class="sg-l">${label}</span><b>${value}</b>`;
+
 function heroDetailHtml(h) {
   const hs = heroStats(S, h);
   const d = hs.def;
@@ -1020,16 +1023,16 @@ function heroDetailHtml(h) {
     </div>
     <div class="traits-box"><div class="hm-sub">${classBonusText(d.cls)}</div>${h.traits?.length ? `<div class="hm-sub">Eigenschaften</div>${traitsHtml(h.traits)}` : ''}</div>
     <div class="stat-grid">
-      <span>❤ LP</span><b>${fmt(h.hp)} / ${fmt(hs.maxHp)}</b>
-      <span>⚔️ ATK</span><b>${fmt(hs.atk)}</b>
-      <span>💥 Schaden</span><b>${fmt(out.hit)} pro Sekunde</b>
-      ${out.heal ? `<span>✚ Heilung</span><b>${fmt(out.heal)} LP pro Sekunde</b>` : ''}
-      <span>🛡️ DEF</span><b>−${Math.round(hs.defense * 100)} % Schaden</b>
-      ${out.canCrit ? `<span>🎯 Krit</span><b>${Math.round(hs.crit * 100)} % · ×${hs.critMult.toFixed(1).replace('.', ',')}</b>` : ''}
-      ${hs.speed && d.role !== 'healer' ? `<span>⏩ Tempo</span><b>+${Math.round(hs.speed * 100)} % Zusatzangriff</b>` : ''}
-      <span>⚒️ Waffe</span><b>${weaponLabel(h)}</b>
-      <span>✨ EXP</span><b>${fmt(h.exp)} / ${fmt(F.expToNext(h.level))}</b>
-      <span>📍 Ort</span><b>${i === -1 ? 'Reserve' : `Zelt ${i + 1}`}</b>
+      ${statRow('❤️', 'LP', `${fmt(h.hp)} / ${fmt(hs.maxHp)}`)}
+      ${statRow('⚔️', 'ATK', fmt(hs.atk))}
+      ${statRow('💥', 'Schaden', `${fmt(out.hit)} pro Sekunde`)}
+      ${out.heal ? statRow('💚', 'Heilung', `${fmt(out.heal)} LP pro Sekunde`) : ''}
+      ${statRow('🛡️', 'DEF', `−${Math.round(hs.defense * 100)} % Schaden`)}
+      ${out.canCrit ? statRow('🎯', 'Krit', `${Math.round(hs.crit * 100)} % · ×${hs.critMult.toFixed(1).replace('.', ',')}`) : ''}
+      ${hs.speed && d.role !== 'healer' ? statRow('⏩', 'Tempo', `+${Math.round(hs.speed * 100)} % Zusatzangriff`) : ''}
+      ${statRow('⚒️', 'Waffe', weaponLabel(h))}
+      ${statRow('✨', 'EXP', `${fmt(h.exp)} / ${fmt(F.expToNext(h.level))}`)}
+      ${statRow('📍', 'Ort', i === -1 ? 'Reserve' : `Zelt ${i + 1}`)}
     </div>
     <div class="muted small">${ROLES[d.role].icon} ${roleHint} Werte ohne Trupp-Boni.</div>
     ${h.woundedUntil ? `<div class="b-note">💢 Verwundet – regeneriert in ${clock(h.woundedUntil - S.lastTickMs)}</div>` : ''}`;

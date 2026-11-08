@@ -12,6 +12,12 @@ Format:
 
 ---
 
+## v0.30.1
+
+### #050 Helden-Detail: Symbole und Text nicht sauber ausgerichtet (UI)
+- **Quelle:** Entwickler. Die Werte-Liste im Helden-Detail hatte Symbol und Beschriftung in einer Zelle; unterschiedlich breite Emojis (❤ als Textzeichen, ⚔️, ✚ …) verschoben den Text.
+- Jetzt ein Raster mit drei Spalten (Symbol · Beschriftung · Wert), Symbol mittig in fester Breite, Werte mit gleich breiten Ziffern. ❤ → ❤️ und ✚ → 💚, damit alle Symbole echte Emojis sind.
+
 ## v0.27.1
 
 ### #047 Schwierigkeit insgesamt anheben (Balancing)

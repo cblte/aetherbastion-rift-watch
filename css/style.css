@@ -617,8 +617,9 @@ textarea {
 @keyframes fade { from { opacity: 0; } }
 @keyframes up { from { transform: translateY(30px); opacity: 0; } }
 .detail { --c: var(--aether); display: flex; gap: 12px; align-items: center; margin: 8px 0 10px; }
-.stat-grid { display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; font-size: 14px; }
-.stat-grid span { color: var(--muted); }
+.stat-grid { display: grid; grid-template-columns: 1.6em auto 1fr; gap: 6px 10px; align-items: baseline; font-size: 14px; }
+.stat-grid .sg-i { text-align: center; font-size: 15px; line-height: 1; }
+.stat-grid .sg-l { color: var(--muted); }
 .stat-grid b { font-variant-numeric: tabular-nums; }
 .pick-list { display: flex; flex-direction: column; }
 .report-total { display: flex; justify-content: space-around; font-weight: 700; font-size: 16px; }

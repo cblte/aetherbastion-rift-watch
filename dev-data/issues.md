@@ -9,7 +9,7 @@ Feedback und Fehler aus dem Spieltest. Erledigte Punkte wandern mit Version nach
 - **Status:** `offen` · `in Arbeit` · `zurückgestellt` (mit Grund)
 - **Quelle:** wer es gemeldet hat (z. B. „Spieltest Frau“, „Gilde“)
 
-Nächste freie Nummer: **#050**
+Nächste freie Nummer: **#052**
 
 ## Eingang
 
@@ -33,6 +33,21 @@ _Zurzeit nichts offen._
 _Zurzeit nichts offen._
 
 ## Spielsystem
+
+### #051 Schaden: Anführer zuerst statt alle gleichzeitig, dazu Flächenschaden
+- **Status:** zurückgestellt (wartet auf das Traits-Balancing) · **Quelle:** Spieltest
+- Eindruck: Seit #032 (v0.22.0) bekommen jede Sekunde **alle** Helden Schaden. Das sieht komisch aus und passt nicht zur Aufstellung. Wunsch: Der Zelt-Anführer (der oben/vorne steht) soll zuerst getroffen werden. Nur der Tank allein ist aber auch doof (das war der Stand vor #032: Tank fällt, dann der Nächste, dann Rückzug).
+- Stand im Code: `combat.js` teilt jeden Treffer per `damageShares()` nach `ROLES[…].aggro` auf alle fitten Helden auf (Tank 5, Schaden 3, Unterstützer 3, Heiler 2). `frontOrder()` sortiert nach Rolle, die Platz-Nummer im Zelt entscheidet nur bei gleicher Rolle. Einen „Anführer“ gibt es im Spiel nicht.
+- **Flächenschaden (AoE) gibt es nicht:** Gegner haben nur `atk` (Schergen und Bosse gleich). `dev-data/gegner-pro-zone.jsonl` hat ein Feld `attack` (Nahkampf/Fernkampf/Magie), das das Spiel noch nicht nutzt.
+- Lösungsansätze:
+  - **A Ein Ziel pro Treffer, gewürfelt nach Aggro:** Jede Sekunde trifft das Monster genau einen Helden, die Chance richtet sich nach `aggro`. Im Mittel exakt wie heute, Balancing und Offline bleiben gleich. Sieht aus wie echte Treffer, aber ohne Anführer.
+  - **B Anführer als Hauptziel mit Streuung:** Platz 1 im Zelt ist der Anführer und bekommt den Großteil (z. B. 60–70 %), der Rest verteilt sich nach `aggro`. Spieler entscheidet durch die Aufstellung, wer vorne steht (Taktik). Fällt der Anführer, rückt der Nächste nach.
+  - **C Bedrohung:** Der Anführer bekommt alles, bis er unter X % LP fällt, dann wechselt das Ziel. Klassisch, aber nah am alten Problem vor #032.
+  - **D Angriffsarten der Gegner (ergänzt A–C):** Nahkampf trifft den Anführer, Fernkampf ein zufälliges Ziel, Magie als Fläche (alle bekommen einen kleineren Anteil). Bosse zusätzlich alle N Sekunden ein angekündigter Flächenangriff. Daten aus `attack` der JSONL; passt zu #026 (mehr Schergen) und #042 (Gegner-Mechaniken, Helden dagegen).
+- Empfehlung: **B + D**. Anführer = Platz 1 (in Zelt und Arena markieren), Nahkampf auf ihn, Fernkampf/Magie streuen; Boss-Flächenangriff als erste Mechanik für #042. Zahlen (Anteil Anführer, Fläche, Boss-Takt) in `config.js`.
+- **Entschieden (2026-11-08):** Wir wollen **B + D** umsetzen. Aber erst, wenn der Branch mit dem Balancing aus den Traits (`dev-data/akrw-traits.md`) gemergt ist – der wird sehr wahrscheinlich übernommen und ändert die Grundlage. Danach B + D noch einmal gegen das neue Balancing prüfen und dann umsetzen.
+- Stand v0.30.1: Traits und Klassenboni sind in main. Jetzt B + D gegen das neue Balancing prüfen.
+- Vor dem Umsetzen: Simulation wie bei #032 (Siege/h, Rückzüge, Offline-Effizienz Zonen 1–10), Offline-Rechnung (`teamProfile().teamDef`) an die neue Verteilung anpassen. Handbuch und Rollen-Text nachziehen.
 
 ### #040 Asura-Labor ab Stufe 6 ohne Wirkung
 - Teilweise erledigt (v0.27.0): Labor 6–10 schalten jetzt die Stufen von „Archiv der Veteranen“ frei (#022). Weitere Knoten für Labor 7–10 wären trotzdem gut.
