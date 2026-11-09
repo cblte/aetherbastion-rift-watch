@@ -7,7 +7,7 @@
 import {
   GAME, CURRENCIES, ROLES, CLASSES, RACES, HEROES, HERO_BY_ID, ZONES, COMBAT, F, BUILDINGS, BUILDING_ORDER,
   TENTS, TENT_SIZE, MYSTIC, MYSTIC_ORDER, ONBOARDING, RETIRE_MIN_LEVEL, LEVEL_CAP_MAX, FEATURES,
-  RESEARCH, RESEARCH_ORDER, TIER_LAB, HERO_LEVELS, WEAPON_BY_ID, WEAPON_GRADES, WEAPON_TYPES, RATIONS, NORMAL_STAGES,
+  RESEARCH, RESEARCH_ORDER, TIER_LAB, RESEARCH_TIME, HERO_LEVELS, WEAPON_BY_ID, WEAPON_GRADES, WEAPON_TYPES, RATIONS, NORMAL_STAGES,
   TRAITS, TRAIT_STATS, TRAIT_SPECS, TOTAL_NORMAL, ATTACK_TYPES, MOB_QUIPS, CYCLE_MS, QUESTS as MAIN_QUESTS, RECRUIT, REROLL_RESET_CLOVER, ARMORY_SLOTS, ARMORY_CLEANUP_DEFAULT, UI, RATION_DROP,
 } from './config.js';
 import { currentQuest, questProgress, questNumber, claimQuest, questDone } from './quests.js';
@@ -16,6 +16,7 @@ import {
   createNewState, exportSave, importSave, replaceState, getHero, heroStats, levelCap,
   activeHeroCount, reserveHeroes, isOwned, rarityBonus, isZoneAvailable, isStageAvailable, stageBeaten,
   stageLock, buildingCost, buildLock, canAfford, pay, createHero, addLog, squadOf, buildingUnlocked,
+  buildTimeMult, bossTimeLimit, rationChance, reviveCost, cycleShards,
   featureUnlocked, normalCleared, hallGold, weaponType, armorySlots, armoryFree, rationSlots, retireSlots, retireIncome, retirePlace, addRetired, heroRetire,
   traitPct, traitSpec, classBonus,
 } from './state.js';
@@ -27,7 +28,7 @@ import {
   researchInfo, doResearch, startBuild, refreshShop, refreshCost, buyWeapon, sellWeapon, sellWeapons, sellPrice,
   upgradeIndices, equipWeapon, unequipWeapon, fitsHero, feedRations, rationsToLevel, rationExp,
   sellSupplies, supplyPrice, supplyCount, shopGrades,
-  recruitTier, shardPrice, recruitRefreshCost, refreshRecruits, recruitCost, hireRecruit, resetRerollCost, recruitOdds,
+  recruitTier, shardPrice, researchSecs, recruitRefreshCost, refreshRecruits, recruitCost, hireRecruit, resetRerollCost, recruitOdds,
 } from './progress.js';
 import { runOffline } from './offline.js';
 
@@ -349,7 +350,7 @@ function renderPortal() {
           ${hpBar(m.hp, m.maxHp, 'mob-hp')}
           <div class="mob-nums">${fmt(Math.max(0, m.hp))} / ${fmt(m.maxHp)} LP · ⚔️ ${fmt(m.atk)} · 🛡️ ${fmt(m.def || 0)} · ${at.icon} ${at.name}</div>
           ${mobQuip(m, aoeIn, sq, i)}`);
-    setHTML(stageEl.querySelector('.mob-t'), m.boss ? `⌛ ${Math.max(0, Math.ceil(COMBAT.BOSS_TIME_LIMIT - (sq.bossTime || 0)))} s` : '');
+    setHTML(stageEl.querySelector('.mob-t'), m.boss ? `⌛ ${Math.max(0, Math.ceil(bossTimeLimit(S) - (sq.bossTime || 0)))} s` : '');
     const hit = lastHit.squad === i && lastHit.monsterId === m.id && S.lastTickMs - lastHit.t <= 300;
     stageEl.querySelector('.mob-sprite')?.classList.toggle('hit', hit);
   } else {
@@ -391,7 +392,7 @@ function renderPortal() {
     const beaten = stageBeaten(S, sq.zone, sq.stage);
     if (sq.mode === 'boss') {
       bossBar = `<div class="card boss-card active">
-        <div><b>👑 ${esc(st.boss.name)}</b><div class="muted small">Herausforderung läuft – noch ${Math.max(0, Math.ceil(COMBAT.BOSS_TIME_LIMIT - (sq.bossTime || 0)))} s.${sq.autoBoss ? '<br>🔁 Wird danach automatisch wiederholt.' : ''}</div></div>
+        <div><b>👑 ${esc(st.boss.name)}</b><div class="muted small">Herausforderung läuft – noch ${Math.max(0, Math.ceil(bossTimeLimit(S) - (sq.bossTime || 0)))} s.${sq.autoBoss ? '<br>🔁 Wird danach automatisch wiederholt.' : ''}</div></div>
         <button class="btn" data-action="boss-abort">Abbrechen</button></div>`;
     } else {
       const can = canChallengeBoss(S, i);
@@ -404,7 +405,7 @@ function renderPortal() {
       bossBar = `<div class="card boss-card ${beaten ? '' : 'fresh'}">
         <div><b>👑 ${esc(st.boss.name)}</b> <span class="lv">Lv. ${st.level}</span>
           <div class="muted small">${beaten ? 'Schon besiegt – lohnt sich erneut.' : nextTxt ? `Sieg öffnet ${nextTxt}.` : 'Letzte Stufe.'}</div>
-          <div class="reward-line">🔮 +${range(r.rp)} · ⚒️ ${r.weapons} Waffe${r.weapons > 1 ? 'n' : ''} · 🍞 ${beaten ? `${Math.round(RATION_DROP.chance * 100)} %: ${RATION_DROP.amount.join('–')}` : r.rations}${r.tickets[1] ? ` · 🎟️ ${range(r.tickets)}` : ''}</div></div>
+          <div class="reward-line">🔮 +${range(r.rp)} · ⚒️ ${r.weapons} Waffe${r.weapons > 1 ? 'n' : ''} · 🍞 ${beaten ? `${Math.round(rationChance(S) * 100)} %: ${RATION_DROP.amount.join('–')}` : r.rations}${r.tickets[1] ? ` · 🎟️ ${range(r.tickets)}` : ''}</div></div>
         <div class="btn-col tight">
           <button class="btn ${beaten ? '' : 'primary'} ${isGoal ? 'goal' : ''}" data-action="boss" ${can && S.gold >= cost ? '' : 'disabled'}>Herausfordern<small>${cd ? `⏳ ${clock(cd)}` : `🟡 ${fmt(cost)}`}</small></button>
           <button class="btn ${sq.autoBoss ? 'primary' : ''}" data-action="boss-auto" aria-pressed="${sq.autoBoss}">🔁 Auto ${sq.autoBoss ? 'an' : 'aus'}</button>
@@ -524,7 +525,7 @@ function buildingCard(key) {
   const building = c && c.key === key;
   let btn = '', note = '';
   if (building) {
-    const total = b.levels[c.to - 1].time * 1000;
+    const total = Math.round(b.levels[c.to - 1].time * buildTimeMult(S)) * 1000;
     btn = `<div class="build-timer">🔨 ${clock(c.doneAt - S.lastTickMs)}${hpBar(total - (c.doneAt - S.lastTickMs), total, 'ok')}</div>`;
   } else if (S.onboarding < 5) {
     // Im Tutorial: nur der aktuelle Schritt hat einen Knopf
@@ -536,7 +537,7 @@ function buildingCard(key) {
     const cost = buildingCost(key, next);
     const lock = buildLock(S, key);
     if (lock && !lock.startsWith('Es wird')) note = lock;
-    const secs = b.levels[next - 1].time;
+    const secs = Math.round(b.levels[next - 1].time * buildTimeMult(S));
     btn = `<button class="btn primary" data-action="build" data-key="${key}" ${lock || !canAfford(S, cost) ? 'disabled' : ''}>
       ${lvl ? `Stufe ${next}` : 'Bauen'}<small>${costText(cost)}</small>${secs ? `<small>⏱ ${fmtTime(secs)}</small>` : ''}</button>`;
   }
@@ -567,7 +568,7 @@ function renderCamp() {
     <span>⚔️ Siege <b>${fmt(S.stats.kills)}</b></span>
     <span>👑 Stufen <b>${normalCleared(S)}/${TOTAL_NORMAL}</b></span>
     <span>🌅 Ruhestand <b>${S.stats.retired}</b></span></div>
-    <div class="card small cycle">💰 Gildenkasse in <b>${clock(next)}</b>: +${fmt(hallGold(S) + retireIncome(S).gold)} 🟡${retireIncome(S).rp ? ` +${fmt(retireIncome(S).rp)} 🔮` : ''}</div>`);
+    <div class="card small cycle">💰 Gildenkasse in <b>${clock(next)}</b>: +${fmt(hallGold(S) + retireIncome(S).gold)} 🟡${cycleShards(S) ? ` +${fmt(cycleShards(S))} 🔮` : ''}</div>`);
   setHTML($('#buildings'), BUILDING_ORDER.map(buildingCard).join(''));
 }
 
@@ -789,7 +790,7 @@ function labRunning() {
   const r = S.researching;
   if (!r) return '<div class="small">Gerade keine Forschung.</div>';
   const n = RESEARCH[r.tree].nodes[r.key];
-  const total = F.researchTime(n, r.to) * 1000, left = r.doneAt - S.lastTickMs;
+  const total = researchSecs(S, n, r.to) * 1000, left = r.doneAt - S.lastTickMs;
   return `<div class="small">🔬 <b>${n.name}</b> Stufe ${r.to} · noch ${clock(left)}</div>${hpBar(total - left, total, 'ok')}`;
 }
 
@@ -805,11 +806,11 @@ function renderLab() {
     <div class="card lab-head">
       <div><b>🔮 ${fmt(S.shards)}</b> Ätherscherben</div>
       ${labRunning()}
-      <div class="muted small">Ebene II ab Labor ${TIER_LAB[2]}, III ab Labor ${TIER_LAB[3]}, IV ab Labor ${TIER_LAB[4]}. Es läuft immer eine Forschung gleichzeitig.</div>
+      <div class="muted small">Ebene II ab Labor ${TIER_LAB[2]}, III ab Labor ${TIER_LAB[3]}, IV ab Labor ${TIER_LAB[4]}, 🌀 Erweiterte Forschung ab Labor ${TIER_LAB[5]}. Es läuft immer eine Forschung gleichzeitig.</div>
     </div>
     ${RESEARCH_ORDER.map(tk => {
       const tree = RESEARCH[tk];
-      return `<h3 class="tree-title">${tree.icon} ${tree.name}</h3>
+      return `<h3 class="tree-title">${tree.icon} ${tree.name}</h3>${tree.advanced ? `<div class="muted small">Typ 2: ab Asura-Labor ${TIER_LAB[5]}, je Stufe ${RESEARCH_TIME[5][0] / 60}–${RESEARCH_TIME[5][1] / 60} Min. Wirkt zusätzlich zu den Knoten oben.</div>` : ''}
       <div class="tree">${Object.keys(tree.nodes).map(nk => {
         const info = researchInfo(S, tk, nk);
         const n = info.node;
@@ -1234,7 +1235,7 @@ function heroDetailHtml(h) {
 function heroActions(h, { inSlot = false } = {}) {
   const btns = [];
   if (h.woundedUntil) {
-    const c = F.reviveCost(h.level);
+    const c = reviveCost(S, h.level);
     btns.push(`<button class="btn primary" data-action="revive" data-uid="${h.uid}" ${S.gold >= c ? '' : 'disabled'}>⚡ Sofort beleben · 🟡 ${fmt(c)}</button>`);
   } else if (inSlot) {
     btns.push(`<button class="btn" data-action="unassign" data-uid="${h.uid}">In die Reserve</button>`);

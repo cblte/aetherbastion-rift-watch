@@ -10,6 +10,7 @@ import {
 import {
   getHero, heroStats, pay, researchLevel, addLog, buildingCost, buildLock, weaponType, gainExp,
   isOwned, createHero, armoryFree, heroTotalExp, rollTraits, heroBonus, levelCap, normalCleared,
+  buildTimeMult, researchTimeMult,
 } from './state.js';
 
 // ---------- Bauen ----------------------------------------------------
@@ -17,7 +18,7 @@ export function startBuild(state, key) {
   if (buildLock(state, key)) return false;
   const to = state.buildings[key] + 1;
   if (!pay(state, buildingCost(key, to))) return false;
-  const secs = BUILDINGS[key].levels[to - 1].time;
+  const secs = Math.round(BUILDINGS[key].levels[to - 1].time * buildTimeMult(state));
   if (!secs) { finishBuild(state, key, to); return 'done'; }
   state.construction = { key, to, doneAt: state.lastTickMs + secs * 1000 };
   addLog(state, `🔨 ${BUILDINGS[key].name} Stufe ${to} wird gebaut.`, null, 'info');
@@ -341,9 +342,12 @@ export function researchInfo(state, treeKey, nodeKey) {
     reason = `${RESEARCH[treeKey].nodes[node.req[0]].name} Stufe ${node.req[1]}`;
   }
   else if (state.researching) reason = 'Es läuft schon eine Forschung';
-  const secs = F.researchTime(node, to);
+  const secs = researchSecs(state, node, to);
   return { node, lvl, to, cost, secs, reason, ok: !reason && state.shards >= cost };
 }
+
+// Dauer einer Forschungsstufe in Sekunden (mit „Chronomantische Beschleunigung“)
+export const researchSecs = (state, node, to) => Math.round(F.researchTime(node, to) * researchTimeMult(state));
 
 // Forschung starten: kostet sofort 🔮, fertig nach F.researchTime (immer nur eine gleichzeitig)
 export function doResearch(state, treeKey, nodeKey) {

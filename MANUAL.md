@@ -185,17 +185,19 @@ Die Karte der Gildenhalle zeigt, was die nächste Stufe freischaltet. Die Mystis
 
 ## 🔬 Asura-Labor – Forschung
 
-Mit **🔮 Ätherscherben** erforschst du dauerhafte Verbesserungen in drei Bäumen. Jeder Knoten hat bis zu 5 Stufen.
+Mit **🔮 Ätherscherben** erforschst du dauerhafte Verbesserungen in drei Bäumen und ab Labor 7 in der **🌀 Erweiterten Forschung** (Typ 2). Jeder Knoten hat bis zu 5 Stufen, in der Erweiterten Forschung bis zu 10.
 
-- Jede Stufe **braucht Zeit**: Ebene I 30 s → 2 Min., II 1 → 5 Min., III 5 → 15 Min., IV (Archiv) 25 → 50 Min. Es läuft immer **eine Forschung** gleichzeitig, auch offline. Die Scherben zahlst du beim Start.
+- Jede Stufe **braucht Zeit**: Ebene I 30 s → 2 Min., II 1 → 5 Min., III 5 → 15 Min., IV (Archiv) 25 → 50 Min., Erweiterte Forschung 30 → 50 Min. Es läuft immer **eine Forschung** gleichzeitig, auch offline. Die Scherben zahlst du beim Start.
 - Die Forschungen stehen in `js/data/research.js` und lassen sich dort erweitern.
- Tiefere Knoten brauchen einen Vorgänger und eine höhere Laborstufe (Stufe II ab Labor 3, Stufe III ab Labor 5, Stufe IV ab Labor 6).
+- Tiefere Knoten brauchen einen Vorgänger und eine höhere Laborstufe (Stufe II ab Labor 3, Stufe III ab Labor 5, Stufe IV ab Labor 6, Erweiterte Forschung Labor 7–10 je nach Stufe).
+- Die Erweiterte Forschung ist teuer (mehrere Tausend 🔮 je Stufe) und wirkt **zusätzlich** zu den gleichen Werten in den drei Bäumen, z. B. ATK aus Kalibrierte Klingen und Ätherfokus-Klingen zusammen.
 
 | Baum | Knoten |
 |---|---|
-| ⚔️ Offensive | Kalibrierte Klingen (+ATK) → Chrono-Beschleuniger (+Angriffstempo), Präzisionsoptik (+Krit-Chance) → Überladungskristall (+Krit-Schaden) |
-| 🛡️ Defensive | Verstärkte Panzerung (+HP) → Schutzfeld-Generator (+DEF), Heilmatrix (+Heilung) → Regenerations-Kapsel (−Regenerationszeit) |
-| 📦 Logistik | Goldwandler (+Gold) → Wissensspeicher (+EXP), Ätherresonator (+Scherben) → Stasis-Feld (+Offline-Zeit) → Archiv der Veteranen (+10 Plätze im Ruhestand je Stufe, Labor 6–10) |
+| ⚔️ Offensive | Kalibrierte Klingen (+ATK) → Chrono-Beschleuniger (+Angriffstempo), Präzisionsoptik (+Krit-Chance) → Überladungskristall (+Krit-Schaden), Phasen-Bohrer (+5 Durchdringung je Stufe) |
+| 🛡️ Defensive | Verstärkte Panzerung (+HP) → Schutzfeld-Generator (+Schutz) → Chrono-Anker (+5 s Boss-Zeitlimit je Stufe), Härtungs-Matrix (+5 DEF je Stufe), Heilmatrix (+Heilung) → Regenerations-Kapsel (−Regenerationszeit) → Notfall-Golem (−10 % Belebungskosten je Stufe) |
+| 📦 Logistik | Goldwandler (+Gold) → Wissensspeicher (+EXP), Ätherresonator (+Scherben) → Stasis-Feld (+Offline-Zeit) → Archiv der Veteranen (+10 Plätze im Ruhestand je Stufe, Labor 6–10), Bau-Golems (−5 % Bauzeit je Stufe), Feldversorgung (+5 % Proviant-Chance beim Boss je Stufe), Kassen-Optimierer (+10 % Gildenkasse je Stufe), Beute-Sonde (+4 % Chance auf eine Extra-Waffe beim Boss je Stufe) |
+| 🌀 Erweiterte Forschung | Ätherfokus-Klingen (+ATK), Ätherpanzerung (+HP), Zielmatrix Omega (+Krit-Chance), Chrono-Kern (+Angriffstempo), Schildfeld-Resonanz (+Schutz), Goldwandler Prime (+Gold), Wissensarchiv Prime (+EXP), Ätherkondensator (+2 🔮 je Gildenkasse je Stufe), Chronomantische Beschleunigung (−5 % Forschungszeit je Stufe) |
 
 ## ⚒️ Charr-Schmiede – Waffen
 

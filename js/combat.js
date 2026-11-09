@@ -9,7 +9,7 @@
 import { GAME, ZONES, COMBAT, ROLES, F, HERO_BY_ID, TENT_SIZE, CYCLE_MS, RATIONS, RATION_DROP, NORMAL_STAGES } from './config.js';
 import {
   getHero, heroStats, regenMs, goldMult, shardMult, kitchenMult, healMult, tempoBonus, gainExp, addLog,
-  isStageAvailable, squadOf, stageBeaten, payCycle, addRations, squadTrait,
+  isStageAvailable, squadOf, stageBeaten, payCycle, addRations, squadTrait, rv, rationChance, bossTimeLimit, reviveCost,
 } from './state.js';
 import { checkConstruction, checkResearch, checkShop, checkRecruits, dropWeapons } from './progress.js';
 import { MONSTER_STATS } from './data/monsterStats.js';
@@ -185,13 +185,13 @@ export function applyKillRewards(state, squadIdx, tmpl, heroes, factor = 1, dete
     const bonus = r.rp[0] + Math.floor(Math.random() * (r.rp[1] - r.rp[0] + 1));
     state.shards += bonus;
     shards += bonus;
-    const extra = Math.random() < squadTrait(heroes, 'loot') ? 1 : 0; // Eigenschaft „Beute“
+    const extra = Math.random() < squadTrait(heroes, 'loot') + rv(state, 'loot') ? 1 : 0; // Eigenschaft „Beute“ + Forschung
     ({ got: weapons, lost: lostWeapons } = dropWeapons(state, zone.tier, st.legend ? 'legend' : st.hard ? 'hard' : 'normal', r.weapons + extra));
     const g = Math.min(RATIONS.length, st.hard ? 6 : zone.tier + (zone.part === 2 ? 1 : 0)) - 1;
     // erster Sieg: volle Menge; danach nur mit RATION_DROP.chance 1–2 Stück (#045)
     let n = 0;
     if (!stageBeaten(state, sq.zone, sq.stage)) n = r.rations;
-    else if (Math.random() < RATION_DROP.chance) {
+    else if (Math.random() < rationChance(state)) {
       const [lo, hi] = RATION_DROP.amount;
       n = lo + Math.floor(Math.random() * (hi - lo + 1));
     }
@@ -285,7 +285,7 @@ function tickSquad(state, i, now, ev) {
   // Zeitlimit für Boss-Herausforderungen
   if (mon.boss) {
     sq.bossTime = (sq.bossTime || 0) + DT;
-    if (sq.bossTime > COMBAT.BOSS_TIME_LIMIT) {
+    if (sq.bossTime > bossTimeLimit(state)) {
       addLog(state, `⌛ ${mon.name} hält stand – Zeit abgelaufen. Zurück zu den Schergen.`, i, 'bad');
       endBoss(state, i, true);
       spawnMonster(state, sq);
@@ -485,7 +485,7 @@ export function abortBoss(state, i) {
 export function reviveHero(state, uid) {
   const h = getHero(state, uid);
   if (!h || !h.woundedUntil) return false;
-  const cost = F.reviveCost(h.level);
+  const cost = reviveCost(state, h.level);
   if (state.gold < cost) return false;
   state.gold -= cost;
   h.woundedUntil = 0;

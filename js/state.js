@@ -5,7 +5,7 @@ import {
   GAME, HERO_BY_ID, BUILDINGS, MYSTIC, F, COMBAT, ZONES, TENTS, TENT_SIZE, LEVEL_CAP_MAX,
   ROLES, RESEARCH, FEATURES, NORMAL_STAGES, TOTAL_NORMAL, HERO_LEVELS, CYCLE_MS, PORTAL_SHARDS,
   WEAPON_BY_ID, WEAPON_GRADES, CLASSES, WEAPON_FOR, RECRUIT, ARMORY_SLOTS, RATION_SLOTS, RETIRE_HOME,
-  TRAITS, TRAIT_STATS, TRAIT_RULES, ONBOARDING,
+  TRAITS, TRAIT_STATS, TRAIT_RULES, ONBOARDING, RATION_DROP,
 } from './config.js';
 import { markFulfilledQuests } from './quests.js';
 
@@ -316,7 +316,13 @@ export function researchNode(key) {
   for (const tree of Object.values(RESEARCH)) if (tree.nodes[key]) return tree.nodes[key];
   return null;
 }
-export const rv = (s, key) => researchLevel(s, key) * (researchNode(key)?.per || 0);
+// Wirkung (stat) → alle Knoten, die darauf wirken (Feld stat, sonst Knoten-Schlüssel)
+const STAT_NODES = {};
+for (const tree of Object.values(RESEARCH)) {
+  for (const [key, n] of Object.entries(tree.nodes)) (STAT_NODES[n.stat || key] ??= []).push([key, n.per]);
+}
+// Summe aller Knoten einer Wirkung (Stufe × per)
+export const rv = (s, stat) => (STAT_NODES[stat] || []).reduce((sum, [key, per]) => sum + researchLevel(s, key) * per, 0);
 
 export const kitchenMult = (s) => (1 + BUILDINGS.kitchen.bonusPerLevel * s.buildings.kitchen) * (1 + rv(s, 'exp'));
 export const prestigeAtk = (s) => 1 + MYSTIC.atk.per * s.mystic.atk;
@@ -327,8 +333,13 @@ export const regenMs     = (s) => Math.round(COMBAT.WOUND_MS * (1 - MYSTIC.regen
 export const offlineMaxMs = (s) => GAME.OFFLINE_MAX_MS + rv(s, 'offline') * 60_000;
 export const healMult    = (s) => 1 + rv(s, 'heal');
 export const tempoBonus  = (s) => rv(s, 'speed');
+export const reviveCost  = (s, level) => Math.round(F.reviveCost(level) * Math.max(0, 1 - rv(s, 'revive')));
+export const bossTimeLimit = (s) => COMBAT.BOSS_TIME_LIMIT + rv(s, 'bosstime');
+export const buildTimeMult = (s) => Math.max(0, 1 - rv(s, 'build'));
+export const researchTimeMult = (s) => Math.max(0, 1 - rv(s, 'labspeed'));
+export const rationChance = (s) => RATION_DROP.chance + rv(s, 'rations');
 export const levelCap    = (s) => s.buildings.camp ? BUILDINGS.camp.levels[s.buildings.camp - 1].cap : 10;
-export const hallGold    = (s) => s.buildings.hall ? BUILDINGS.hall.levels[s.buildings.hall - 1].gold : 0;
+export const hallGold    = (s) => s.buildings.hall ? Math.round(BUILDINGS.hall.levels[s.buildings.hall - 1].gold * (1 + rv(s, 'treasury'))) : 0;
 export const buildingUnlocked = (s, key) => s.buildings.hall >= BUILDINGS[key].unlockHall;
 export const featureUnlocked  = (s, key) => s.buildings.hall >= FEATURES[key].unlockHall;
 // Waffenkammer-Plätze nach Gildenhalle; armoryFree < 1 → voll
@@ -367,8 +378,8 @@ export function heroStats(state, hero) {
     crit: Math.min(1, (def.crit || 0) + rv(state, 'crit') + t.crit),
     critMult: (COMBAT.CRIT_MULT + rv(state, 'critdmg')) * (1 + t.critdmg),
     defense: Math.min(COMBAT.DEF_CAP, ROLES[def.role].def + rv(state, 'def') + t.def), // Schadensreduktion in %
-    armor: heroArmor(hero.level, hero.rarity), // DEF-Punkte nach Level und Seltenheit
-    pen: heroPen(hero.level, hero.rarity) + (w.pen || 0), // Durchdringung (Level + Waffe)
+    armor: heroArmor(hero.level, hero.rarity) + rv(state, 'armor'), // DEF-Punkte nach Level, Seltenheit und Forschung
+    pen: heroPen(hero.level, hero.rarity) + (w.pen || 0) + rv(state, 'pen'), // Durchdringung (Level + Waffe + Forschung)
     speed: t.speed,                 // eigenes Angriffstempo (+Anteil, verkürzt das Intervall)
     interval: CLASSES[def.cls]?.interval || 1, // Sekunden je Angriff nach Klasse (#061)
     heal: 1 + t.heal,               // Faktor auf die eigene Heilung
@@ -561,6 +572,8 @@ export function retireIncome(s) {
   }
   return { gold, rp };
 }
+// 🔮 je Gildenkasse-Zyklus: Ruhestand + Forschung „Ätherkondensator“
+export const cycleShards = (s) => retireIncome(s).rp + rv(s, 'shardgen');
 // Platz im Ruhestand für ein Level: { ok, replace } (replace = Index des schwächsten, der geht)
 export function retirePlace(s, level) {
   const list = s.retired || [];
@@ -583,9 +596,10 @@ export function addRetired(s, hero, level) {
 export function payCycle(state) {
   const gold = hallGold(state);
   const inc = retireIncome(state);
+  const rp = cycleShards(state); // Ruhestand (Feld rp) + Forschung
   state.gold += gold + inc.gold;
-  state.shards += inc.rp; // Ruhestand: Feld rp → 🔮
-  return { gold: gold + inc.gold, rp: inc.rp, retireGold: inc.gold };
+  state.shards += rp;
+  return { gold: gold + inc.gold, rp, retireGold: inc.gold };
 }
 
 export function addLog(state, msg, squad = null, kind = '') {

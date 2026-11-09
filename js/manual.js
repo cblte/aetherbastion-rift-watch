@@ -5,7 +5,7 @@
 // =====================================================================
 import {
   BUILDINGS, ZONES, ROLES, CLASSES, ATTACK_TYPES, TRAIT_STATS, HEROES, TRAITS, TRAIT_RULES, TENTS, TENT_SIZE, COMBAT, GAME, NORMAL_STAGES, TOTAL_NORMAL, FEATURES,
-  RETIRE_MIN_LEVEL, LEVEL_CAP_MAX, ARMORY_SLOTS, RATION_SLOTS, RATION_DROP, RETIRE_HOME, CYCLE_MS, WEAPON_TYPES, WEAPON_FOR, WEAPON_GRADES, SHOP, SELL, QUESTS, RECRUIT, REROLL_RESET_CLOVER, ONBOARDING, RESEARCH_TIME,
+  RETIRE_MIN_LEVEL, LEVEL_CAP_MAX, ARMORY_SLOTS, RATION_SLOTS, RATION_DROP, RETIRE_HOME, CYCLE_MS, WEAPON_TYPES, WEAPON_FOR, WEAPON_GRADES, SHOP, SELL, QUESTS, RECRUIT, REROLL_RESET_CLOVER, ONBOARDING, RESEARCH_TIME, TIER_LAB,
 } from './config.js';
 
 const pct = (x) => `${Math.round(x * 100)} %`;
@@ -133,9 +133,10 @@ export function manualChapters() {
     { icon: '🔬', title: 'Forschung', html: `
       <p>Im <b>Asura-Labor</b> erforschst du mit 🔮 Ätherscherben dauerhafte Verbesserungen in drei Bäumen. Jede Stufe braucht Zeit (${RESEARCH_TIME[1][0]} s bis ${Math.round(RESEARCH_TIME[4][1] / 60)} Min., höhere Ebenen länger), es läuft immer eine Forschung gleichzeitig, auch offline. Die Scherben zahlst du beim Start.</p>
       ${list([
-        '⚔️ <b>Offensive:</b> ATK, Angriffstempo, Krit-Chance und Krit-Schaden.',
-        '🛡️ <b>Defensive:</b> HP, DEF, Heilung und kürzere Regeneration.',
-        '📦 <b>Logistik:</b> mehr Gold, EXP, Scherben und längere Offline-Zeit.',
+        '⚔️ <b>Offensive:</b> ATK, Angriffstempo, Krit-Chance, Krit-Schaden und Durchdringung.',
+        '🛡️ <b>Defensive:</b> HP, Schutz, DEF, Heilung, kürzere Regeneration, billigeres Beleben und mehr Boss-Zeit.',
+        '📦 <b>Logistik:</b> mehr Gold, EXP, Scherben, Gildenkasse, Proviant und Beute, kürzere Bauzeit, längere Offline-Zeit.',
+        `🌀 <b>Erweiterte Forschung</b> (Typ 2, ab Labor ${TIER_LAB[5]}): bis zu 10 Stufen, je ${RESEARCH_TIME[5][0] / 60}–${RESEARCH_TIME[5][1] / 60} Min., teuer. Wirkt zusätzlich zu den gleichen Werten oben, dazu 🔮 je Gildenkasse und kürzere Forschungszeit.`,
       ])}
       <p>Tiefere Knoten brauchen einen Vorgänger und eine höhere Laborstufe.</p>` },
 

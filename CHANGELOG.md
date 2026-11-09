@@ -3,6 +3,13 @@
 Was sich im Spiel geändert hat, neueste Version oben. Die Nummern (#…) verweisen auf die Feedback-Liste.
 Die Version steht im Spiel unten unter der Navigation.
 
+## v0.39.0 – 09.11.2026
+- **Mehr Forschung im Asura-Labor:** neun neue Knoten in den drei Bäumen.
+  - ⚔️ Phasen-Bohrer (+Durchdringung)
+  - 🛡️ Härtungs-Matrix (+DEF), Notfall-Golem (billigeres Beleben), Chrono-Anker (+5 s Boss-Zeitlimit je Stufe)
+  - 📦 Bau-Golems (kürzere Bauzeit), Feldversorgung (mehr Proviant vom Boss), Kassen-Optimierer (+Gildenkasse), Beute-Sonde (Chance auf eine Extra-Waffe vom Boss)
+- 🌀 **Erweiterte Forschung (Typ 2):** ab Asura-Labor 7 ein vierter Baum mit neun Knoten und bis zu 10 Stufen, je Stufe 30–50 Min. und mehrere Tausend 🔮. Er wirkt zusätzlich auf ATK, HP, Krit, Tempo, Schutz, Gold und EXP, dazu kommen 🔮 je Gildenkasse und kürzere Forschungszeiten.
+
 ## v0.38.0 – 09.11.2026
 - **Forschung braucht Zeit:** Jede Forschungsstufe im Asura-Labor dauert jetzt: 30 s bis 2 Min. auf Ebene I, bis 50 Min. für das Archiv der Veteranen. Es läuft immer eine Forschung gleichzeitig, auch offline. Der Laborkopf zeigt, was gerade erforscht wird.
 - **Drei statt vier Währungen:** 📜 Forschungsnotizen gibt es nicht mehr. Geforscht wird mit 🔮 Ätherscherben. Alles, was bisher 📜 gab (Bosse, Level-ups, Ruhestand, Aufträge), gibt jetzt 🔮. Vorhandene 📜 wurden 1:1 zu 🔮.
