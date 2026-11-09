@@ -8,7 +8,7 @@ import {
   GAME, CURRENCIES, ROLES, CLASSES, RACES, HEROES, HERO_BY_ID, ZONES, COMBAT, F, BUILDINGS, BUILDING_ORDER,
   TENTS, TENT_SIZE, MYSTIC, MYSTIC_ORDER, ONBOARDING, RETIRE_MIN_LEVEL, LEVEL_CAP_MAX, FEATURES,
   RESEARCH, RESEARCH_ORDER, TIER_LAB, HERO_LEVELS, WEAPON_BY_ID, WEAPON_GRADES, WEAPON_TYPES, RATIONS, NORMAL_STAGES,
-  TRAITS, TRAIT_STATS, TRAIT_SPECS, TOTAL_NORMAL, ATTACK_TYPES, CYCLE_MS, QUESTS as MAIN_QUESTS, RECRUIT, REROLL_RESET_CLOVER, ARMORY_SLOTS, ARMORY_CLEANUP_DEFAULT, UI, RATION_DROP,
+  TRAITS, TRAIT_STATS, TRAIT_SPECS, TOTAL_NORMAL, ATTACK_TYPES, MOB_QUIPS, CYCLE_MS, QUESTS as MAIN_QUESTS, RECRUIT, REROLL_RESET_CLOVER, ARMORY_SLOTS, ARMORY_CLEANUP_DEFAULT, UI, RATION_DROP,
 } from './config.js';
 import { currentQuest, questProgress, questNumber, claimQuest, questDone } from './quests.js';
 import { manualChapters } from './manual.js';
@@ -278,6 +278,14 @@ function lockedCard(icon, title, text) {
 // ---------- Portal ----------------------------------------------------
 let lastHit = { squad: -1, monsterId: -1, t: 0 };
 
+// Info-Zeile unter dem Gegner: Flächenangriff-Warnung, sonst wechselnde Sprüche (MOB_QUIPS)
+function mobQuip(m, aoeIn) {
+  if (aoeIn <= COMBAT.BOSS_AOE_WARN) return `<div class="mob-say warn">${MOB_QUIPS.aoe}</div>`;
+  const list = m.hp / m.maxHp < MOB_QUIPS.lowHp ? MOB_QUIPS.low : m.boss ? MOB_QUIPS.boss : m.vet ? MOB_QUIPS.vet : MOB_QUIPS.minion;
+  const k = (Math.floor(S.lastTickMs / 1000 / MOB_QUIPS.every) + m.id) % list.length;
+  return `<div class="mob-say">${list[k]}</div>`;
+}
+
 function renderPortal() {
   const i = S.selectedSquad;
   const sq = S.squads[i];
@@ -321,15 +329,15 @@ function renderPortal() {
       <div class="mob ${m.boss ? 'boss' : ''} ${m.vet ? 'vet' : ''}" data-mid="${i}-${m.id}">
         ${sprite(m.sprite, 'mob-sprite')}
         <div class="mob-info">
-          <div class="mob-name">${m.boss ? '👑 ' : m.vet ? '🎖️ ' : ''}${esc(m.name)}</div>
+          <div class="mob-name"><span>${m.boss ? '👑 ' : m.vet ? '🎖️ ' : ''}${esc(m.name)}</span><span class="mob-t"></span></div>
           <div class="mob-d"></div>
         </div>
       </div>`);
     setHTML(stageEl.querySelector('.mob-d'), `
           ${hpBar(m.hp, m.maxHp, 'mob-hp')}
           <div class="mob-nums">${fmt(Math.max(0, m.hp))} / ${fmt(m.maxHp)} LP · ⚔️ ${fmt(m.atk)} · 🛡️ ${fmt(m.def || 0)} · ${at.icon} ${at.name}</div>
-          ${aoeIn <= COMBAT.BOSS_AOE_WARN ? `<div class="boss-aoe">💥 holt zum Flächenangriff aus …</div>` : ''}
-          ${m.boss ? `<div class="boss-timer">⌛ noch ${Math.max(0, Math.ceil(COMBAT.BOSS_TIME_LIMIT - (sq.bossTime || 0)))} s</div>` : ''}`);
+          ${mobQuip(m, aoeIn)}`);
+    setHTML(stageEl.querySelector('.mob-t'), m.boss ? `⌛ ${Math.max(0, Math.ceil(COMBAT.BOSS_TIME_LIMIT - (sq.bossTime || 0)))} s` : '');
     const hit = lastHit.squad === i && lastHit.monsterId === m.id && S.lastTickMs - lastHit.t <= 300;
     stageEl.querySelector('.mob-sprite')?.classList.toggle('hit', hit);
   } else {

@@ -3,6 +3,9 @@
 Was sich im Spiel geändert hat, neueste Version oben. Die Nummern (#…) verweisen auf die Feedback-Liste.
 Die Version steht im Spiel unten unter der Navigation.
 
+## v0.37.1 – 09.11.2026
+- **Ruhigere Arena:** Die blinkende Warnung vor dem Boss-Flächenangriff ist weg. Unter den Gegnerwerten steht jetzt eine feste Info-Zeile mit wechselnden Sprüchen zum Gegner. Kurz vor dem Flächenangriff steht dort die Warnung in Rot. Die Boss-Restzeit ⌛ steht jetzt rechts neben dem Namen, so wird der Kampfbereich nicht höher.
+
 ## v0.37.0 – 09.11.2026
 - **Neuer Start: Helden selbst anwerben.** Die Gildenhalle gibt 100 🟡, das erste Zelt 300 🟡. Damit wirbst du unter „Rekrutieren“ deine ersten drei Helden selbst an: Das erste Angebot sind immer ein Tank, ein Heiler und ein Schadensausteiler. Die kostenlosen Helden aus Tutorial und Aufträgen gibt es nicht mehr, die Aufträge „Verstärkung“ verlangen jetzt einen angeworbenen Heiler bzw. Schadensausteiler.
 - Am Anfang stellt sich Zelt 1 selbst nach Rolle auf (Tank vorn als Anführer), bis es voll ist.

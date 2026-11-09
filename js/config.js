@@ -5,7 +5,7 @@
 
 export const GAME = {
   title: 'Aetherbastion: Rift Watch',
-  VERSION: '0.37.0',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
+  VERSION: '0.37.1',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
   CHANGELOG_URL: 'https://github.com/cblte/aetherbastion-rift-watch/blob/main/CHANGELOG.md', // Link in den Einstellungen
   BUILD: 'lokal',                    // ersetzt der Pages-Workflow durch „Nr. · Commit“
   SAVE_KEY: 'aetherbastion_save_v1',
@@ -305,6 +305,43 @@ export const ATTACK_TYPES = {
   melee:  { icon: '🗡️', name: 'Nahkampf' },
   ranged: { icon: '🏹', name: 'Fernkampf' },
   magic:  { icon: '✨', name: 'Magie' },
+};
+
+// Info-Zeile unter dem Gegner in der Arena (eine Zeile, wechselt alle `every` Sekunden).
+// aoe: Boss holt zum Flächenangriff aus (COMBAT.BOSS_AOE_WARN s vorher) · low: Gegner unter `lowHp` LP
+export const MOB_QUIPS = {
+  every: 5,
+  lowHp: 0.25,
+  aoe: '💥 Holt zum Flächenangriff aus – gleich trifft es alle!',
+  minion: [
+    'Schnaubt verächtlich in Richtung Zelt.',
+    'Hat offenbar nicht mit Gegenwehr gerechnet.',
+    'Riecht nach Riss und schlechter Laune.',
+    'Zählt heimlich die Helden. Und verzählt sich.',
+    'Ruft nach Verstärkung. Niemand antwortet.',
+    'Schwingt die Waffe mehr dramatisch als gezielt.',
+    'Wirkt, als hätte der Riss ihn ungefragt ausgespuckt.',
+    'Sucht den Ausgang. Es gibt keinen.',
+  ],
+  vet: [
+    'Hat schon mehr Gilden kommen und gehen sehen.',
+    'Trägt die Narben früherer Kämpfe mit Stolz.',
+    'Lässt sich nicht so leicht beeindrucken.',
+    'Hat diesmal eine Taktik. Glaubt er zumindest.',
+  ],
+  boss: [
+    'Blickt auf eure Gilde herab.',
+    'Hält eine Rede über Macht. Niemand hört zu.',
+    'Hat diesen Kampf von langer Hand geplant.',
+    'Der Riss pulsiert im Takt seines Zorns.',
+    'Lacht. Das ist selten ein gutes Zeichen.',
+  ],
+  low: [
+    'Wankt bedenklich.',
+    'Überlegt, ob Rückzug nicht auch eine Taktik ist.',
+    'Hält sich nur noch aus Trotz auf den Beinen.',
+    'Bereut seine Lebensentscheidungen.',
+  ],
 };
 
 // Riss-Zonen aus data/stages.js; Schwierigkeit je Stufe berechnen.
