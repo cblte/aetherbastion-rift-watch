@@ -5,7 +5,7 @@
 
 export const GAME = {
   title: 'Aetherbastion: Rift Watch',
-  VERSION: '0.37.1',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
+  VERSION: '0.37.2',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
   CHANGELOG_URL: 'https://github.com/cblte/aetherbastion-rift-watch/blob/main/CHANGELOG.md', // Link in den Einstellungen
   BUILD: 'lokal',                    // ersetzt der Pages-Workflow durch „Nr. · Commit“
   SAVE_KEY: 'aetherbastion_save_v1',
@@ -307,7 +307,8 @@ export const ATTACK_TYPES = {
   magic:  { icon: '✨', name: 'Magie' },
 };
 
-// Info-Zeile unter dem Gegner in der Arena (eine Zeile, wechselt alle `every` Sekunden).
+// Info-Zeile unter dem Gegner in der Arena (bis zu zwei Zeilen, alle `every` Sekunden ein zufälliger Spruch).
+// {held} = zufälliger Held des Trupps, der noch steht · {anfuehrer} = Held auf dem Anführer-Platz
 // aoe: Boss holt zum Flächenangriff aus (COMBAT.BOSS_AOE_WARN s vorher) · low: Gegner unter `lowHp` LP
 export const MOB_QUIPS = {
   every: 5,
@@ -322,12 +323,21 @@ export const MOB_QUIPS = {
     'Schwingt die Waffe mehr dramatisch als gezielt.',
     'Wirkt, als hätte der Riss ihn ungefragt ausgespuckt.',
     'Sucht den Ausgang. Es gibt keinen.',
+    'Unterschätzt {held}. Großer Fehler.',
+    'Versucht, {held} auszuweichen. Vergeblich.',
+    'Hat sichtlich Respekt vor {held}.',
+    '{held} hat ihn fest im Blick.',
+    'Stolpert über die eigenen Füße. {held} grinst.',
+    'Will an {anfuehrer} vorbei. Keine Chance.',
   ],
   vet: [
     'Hat schon mehr Gilden kommen und gehen sehen.',
     'Trägt die Narben früherer Kämpfe mit Stolz.',
     'Lässt sich nicht so leicht beeindrucken.',
     'Hat diesmal eine Taktik. Glaubt er zumindest.',
+    'Hat von {held} schon gehört. Nichts Gutes.',
+    'Fordert {anfuehrer} zum Zweikampf heraus.',
+    '{held} murmelt: „Der hier ist zäher.“',
   ],
   boss: [
     'Blickt auf eure Gilde herab.',
@@ -335,12 +345,20 @@ export const MOB_QUIPS = {
     'Hat diesen Kampf von langer Hand geplant.',
     'Der Riss pulsiert im Takt seines Zorns.',
     'Lacht. Das ist selten ein gutes Zeichen.',
+    'Hat es ganz auf {anfuehrer} abgesehen.',
+    'Lacht über {held}. Noch.',
+    '{held} flüstert: „Den schaffen wir.“',
+    '{anfuehrer} hält stand. Der Boss ist beeindruckt.',
+    '{held} sucht nach einer Schwachstelle.',
   ],
   low: [
     'Wankt bedenklich.',
     'Überlegt, ob Rückzug nicht auch eine Taktik ist.',
     'Hält sich nur noch aus Trotz auf den Beinen.',
     'Bereut seine Lebensentscheidungen.',
+    '{held} holt zum letzten Schlag aus.',
+    'Fleht {held} um Gnade an.',
+    '{held} ruft: „Gleich haben wir ihn!“',
   ],
 };
 

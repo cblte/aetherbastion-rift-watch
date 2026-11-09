@@ -279,11 +279,25 @@ function lockedCard(icon, title, text) {
 let lastHit = { squad: -1, monsterId: -1, t: 0 };
 
 // Info-Zeile unter dem Gegner: Flächenangriff-Warnung, sonst wechselnde Sprüche (MOB_QUIPS)
-function mobQuip(m, aoeIn) {
+// Zufällig, aber fest für jeweils `every` Sekunden (Hash aus Zeitfenster, Gegner und Trupp)
+const quipHash = (a, b, c) => {
+  let x = (a * 374761393 + b * 668265263 + c * 2246822519) >>> 0;
+  x = Math.imul(x ^ (x >>> 13), 1274126177) >>> 0;
+  return (x ^ (x >>> 16)) >>> 0;
+};
+function mobQuip(m, aoeIn, sq, i) {
   if (aoeIn <= COMBAT.BOSS_AOE_WARN) return `<div class="mob-say warn">${MOB_QUIPS.aoe}</div>`;
   const list = m.hp / m.maxHp < MOB_QUIPS.lowHp ? MOB_QUIPS.low : m.boss ? MOB_QUIPS.boss : m.vet ? MOB_QUIPS.vet : MOB_QUIPS.minion;
-  const k = (Math.floor(S.lastTickMs / 1000 / MOB_QUIPS.every) + m.id) % list.length;
-  return `<div class="mob-say">${list[k]}</div>`;
+  const alive = squadMembers(S, sq).filter(h => !h.woundedUntil);
+  const win = Math.floor(S.lastTickMs / 1000 / MOB_QUIPS.every);
+  const r = quipHash(win, m.id, i);
+  // Sprüche mit Heldennamen nur, wenn noch jemand steht
+  const pool = alive.length ? list : list.filter(t => !t.includes('{'));
+  const name = (h) => `<b>${esc(HERO_BY_ID[h.heroId].name)}</b>`;
+  const text = pool[r % pool.length]
+    .replace('{held}', () => name(alive[(r >>> 8) % alive.length]))
+    .replace('{anfuehrer}', () => name(leaderOf(sq, alive)));
+  return `<div class="mob-say">${text}</div>`;
 }
 
 function renderPortal() {
@@ -336,7 +350,7 @@ function renderPortal() {
     setHTML(stageEl.querySelector('.mob-d'), `
           ${hpBar(m.hp, m.maxHp, 'mob-hp')}
           <div class="mob-nums">${fmt(Math.max(0, m.hp))} / ${fmt(m.maxHp)} LP · ⚔️ ${fmt(m.atk)} · 🛡️ ${fmt(m.def || 0)} · ${at.icon} ${at.name}</div>
-          ${mobQuip(m, aoeIn)}`);
+          ${mobQuip(m, aoeIn, sq, i)}`);
     setHTML(stageEl.querySelector('.mob-t'), m.boss ? `⌛ ${Math.max(0, Math.ceil(COMBAT.BOSS_TIME_LIMIT - (sq.bossTime || 0)))} s` : '');
     const hit = lastHit.squad === i && lastHit.monsterId === m.id && S.lastTickMs - lastHit.t <= 300;
     stageEl.querySelector('.mob-sprite')?.classList.toggle('hit', hit);

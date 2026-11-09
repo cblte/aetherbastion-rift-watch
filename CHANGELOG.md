@@ -3,6 +3,9 @@
 Was sich im Spiel geändert hat, neueste Version oben. Die Nummern (#…) verweisen auf die Feedback-Liste.
 Die Version steht im Spiel unten unter der Navigation.
 
+## v0.37.2 – 09.11.2026
+- **Mehr Leben in der Info-Zeile:** Die Gegner-Sprüche kommen jetzt zufällig statt der Reihe nach, und manche erwähnen deine Helden beim Namen („Unterschätzt Lucian. Großer Fehler.“). Die Zeile hat Platz für zwei Zeilen, damit nichts mehr abgeschnitten wird – auch die Warnung vor dem Flächenangriff nicht.
+
 ## v0.37.1 – 09.11.2026
 - **Ruhigere Arena:** Die blinkende Warnung vor dem Boss-Flächenangriff ist weg. Unter den Gegnerwerten steht jetzt eine feste Info-Zeile mit wechselnden Sprüchen zum Gegner. Kurz vor dem Flächenangriff steht dort die Warnung in Rot. Die Boss-Restzeit ⌛ steht jetzt rechts neben dem Namen, so wird der Kampfbereich nicht höher.
 
