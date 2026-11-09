@@ -20,7 +20,7 @@ import {
   traitPct, traitSpec, classBonus,
 } from './state.js';
 import {
-  squadMembers, spawnMonster, setStage, reviveHero, assignHero, teamProfile, heroOutput, fmt, stageOf, leaderOf,
+  squadMembers, spawnMonster, setStage, reviveHero, assignHero, teamProfile, heroOutput, fmt, stageOf, leaderOf, defMult,
   challengeBoss, canChallengeBoss, abortBoss, bossCost, bossCooldownLeft, toggleAutoBoss,
 } from './combat.js';
 import {
@@ -277,14 +277,13 @@ function lockedCard(icon, title, text) {
 
 // ---------- Portal ----------------------------------------------------
 let lastHit = { squad: -1, monsterId: -1, t: 0 };
-const lastStruck = new Map(); // uid → Zeit des letzten Gegner-Treffers (Wackeln in der Arena)
 
 function renderPortal() {
   const i = S.selectedSquad;
   const sq = S.squads[i];
   const locked = i >= S.tentsUnlocked;
   const st = stageOf(sq.zone, sq.stage);
-  let stage;
+  let stage = '';
 
   if (locked) {
     stage = `<div class="stage-msg">🔒 Zelt ${i + 1} ist noch nicht aufgeschlagen.<br><small>Gildenhalle Stufe ${TENTS[i].hall} · ${fmt(TENTS[i].gold)} 🟡</small></div>`;
@@ -295,53 +294,76 @@ function renderPortal() {
   } else if (sq.status === 'retreat') {
     const left = Math.max(0, Math.min(...squadMembers(S, sq).map(h => (h.woundedUntil || 0) - S.lastTickMs)));
     stage = `<div class="stage-msg retreat">🏕️ Rückzug ins Lager<br><small>Rückkehr in ${clock(left)}</small></div>`;
-  } else if (sq.monster) {
-    const m = sq.monster;
-    const hit = lastHit.squad === i && lastHit.monsterId === m.id && S.lastTickMs - lastHit.t <= 300;
+  }
+
+  // Die Arena wird nicht als Ganzes neu geschrieben (das ließ Bilder 4×/s flackern):
+  // feste Gerüste, nur die Teile mit Zahlen und Balken werden ersetzt.
+  const arena = $('#arena');
+  if (!arena.__sk) {
+    arena.innerHTML = `<div class="arena-head"></div><div class="stage"></div><div class="arena-heroes">${
+      Array.from({ length: TENT_SIZE }, () => '<button class="arena-hero"><div class="ah-s"></div><div class="ah-d"></div></button>').join('')}</div>`;
+    arena.__sk = true;
+    arena.__html = null;
+  }
+  setHTML(arena.querySelector('.arena-head'), `
+      <button class="icon-btn" data-action="squad-step" data-dir="-1" aria-label="Vorheriger Trupp">‹</button>
+      <div class="arena-title"><b>⛺ Zelt ${i + 1}</b><small>${locked ? 'gesperrt' : `${esc(stageLabel(sq))}${sq.mode === 'boss' ? ' · 👑 Boss' : ''}`}</small></div>
+      <button class="icon-btn" data-action="squad-step" data-dir="1" aria-label="Nächster Trupp">›</button>`);
+
+  const stageEl = arena.querySelector('.stage');
+  stageEl.className = `stage zone-${ZONES[sq.zone - 1].theme || ZONES[sq.zone - 1].tier}`;
+  const m = !stage && sq.monster;
+  if (m) {
     const at = ATTACK_TYPES[m.attack] || ATTACK_TYPES.melee;
     const aoeIn = m.boss ? COMBAT.BOSS_AOE_EVERY - (m.aoeT || 0) : Infinity;
-    stage = `
-      <div class="mob ${m.boss ? 'boss' : ''}">
-        ${sprite(m.sprite, `mob-sprite ${hit ? 'hit' : ''}`)}
+    // Gerüst je Gegner (Bild und Name bleiben stehen, solange der Gegner lebt)
+    setHTML(stageEl, `
+      <div class="mob ${m.boss ? 'boss' : ''} ${m.vet ? 'vet' : ''}" data-mid="${i}-${m.id}">
+        ${sprite(m.sprite, 'mob-sprite')}
         <div class="mob-info">
-          <div class="mob-name">${m.boss ? '👑 ' : ''}${esc(m.name)}</div>
-          ${hpBar(m.hp, m.maxHp, 'mob-hp')}
-          <div class="mob-nums">${fmt(Math.max(0, m.hp))} / ${fmt(m.maxHp)} LP · ⚔️ ${fmt(m.atk)} · ${at.icon} ${at.name}</div>
-          ${aoeIn <= COMBAT.BOSS_AOE_WARN ? `<div class="boss-aoe">💥 holt zum Flächenangriff aus …</div>` : ''}
-          ${m.boss ? `<div class="boss-timer">⌛ noch ${Math.max(0, Math.ceil(COMBAT.BOSS_TIME_LIMIT - (sq.bossTime || 0)))} s</div>` : ''}
+          <div class="mob-name">${m.boss ? '👑 ' : m.vet ? '🎖️ ' : ''}${esc(m.name)}</div>
+          <div class="mob-d"></div>
         </div>
-      </div>`;
+      </div>`);
+    setHTML(stageEl.querySelector('.mob-d'), `
+          ${hpBar(m.hp, m.maxHp, 'mob-hp')}
+          <div class="mob-nums">${fmt(Math.max(0, m.hp))} / ${fmt(m.maxHp)} LP · ⚔️ ${fmt(m.atk)} · 🛡️ ${fmt(m.def || 0)} · ${at.icon} ${at.name}</div>
+          ${aoeIn <= COMBAT.BOSS_AOE_WARN ? `<div class="boss-aoe">💥 holt zum Flächenangriff aus …</div>` : ''}
+          ${m.boss ? `<div class="boss-timer">⌛ noch ${Math.max(0, Math.ceil(COMBAT.BOSS_TIME_LIMIT - (sq.bossTime || 0)))} s</div>` : ''}`);
+    const hit = lastHit.squad === i && lastHit.monsterId === m.id && S.lastTickMs - lastHit.t <= 300;
+    stageEl.querySelector('.mob-sprite')?.classList.toggle('hit', hit);
   } else {
-    stage = `<div class="stage-msg">Der Trupp sammelt sich …</div>`;
+    setHTML(stageEl, stage || `<div class="stage-msg">Der Trupp sammelt sich …</div>`);
   }
 
   const leader = sq.status === 'fighting' ? leaderOf(sq, squadMembers(S, sq).filter(h => !h.woundedUntil)) : null;
-  const heroes = locked ? '' : sq.slots.map((uid, slot) => {
+  arena.querySelector('.arena-heroes').hidden = locked;
+  arena.querySelectorAll('.arena-hero').forEach((btn, slot) => {
+    const uid = sq.slots[slot];
     const h = uid != null ? getHero(S, uid) : null;
-    if (!h) return `<button class="arena-hero empty" data-action="slot" data-squad="${i}" data-slot="${slot}"><span>＋</span><small>frei</small></button>`;
+    Object.assign(btn.dataset, { action: 'slot', squad: i, slot });
+    const [sEl, dEl] = btn.children;
+    if (!h) {
+      btn.className = 'arena-hero empty';
+      btn.style.removeProperty('--c');
+      setHTML(sEl, '<span>＋</span><small>frei</small>');
+      setHTML(dEl, '');
+      return;
+    }
     const hs = heroStats(S, h);
     const def = hs.def;
     const wounded = !!h.woundedUntil;
-    const struck = S.lastTickMs - (lastStruck.get(h.uid) || -1e9) <= 300;
-    return `
-      <button class="arena-hero ${wounded ? 'wounded' : ''} ${leader === h ? 'leader' : ''} ${struck ? 'struck' : ''}" style="--c:${WEAPON_GRADES[h.rarity].color}" data-action="slot" data-squad="${i}" data-slot="${slot}">
+    btn.className = `arena-hero ${wounded ? 'wounded' : ''} ${leader === h ? 'leader' : ''}`;
+    btn.style.setProperty('--c', WEAPON_GRADES[h.rarity].color);
+    setHTML(sEl, `
         ${sprite(CLASSES[def.cls].sprite, 'hero-sprite')}
         <div class="ah-name">${leader === h ? '<span class="lead" aria-label="Anführer">🚩</span>' : ''}${ROLES[def.role].icon} ${esc(def.name)}</div>
-        <div class="ah-lv">Lv. ${h.level}${h.weapon ? ` · T${WEAPON_BY_ID[h.weapon].grade}` : ''}</div>
+        <div class="ah-lv">Lv. ${h.level}${h.weapon ? ` · T${WEAPON_BY_ID[h.weapon].grade}` : ''}</div>`);
+    setHTML(dEl, `
         ${hpBar(h.hp, hs.maxHp, 'hero-hp')}
         ${hpBar(h.exp, F.expToNext(h.level), 'exp')}
-        <div class="ah-status">${wounded ? `💢 ${clock(h.woundedUntil - S.lastTickMs)}` : sq.status === 'fighting' ? 'Kämpft' : 'Bereit'}</div>
-      </button>`;
-  }).join('');
-
-  setHTML($('#arena'), `
-    <div class="arena-head">
-      <button class="icon-btn" data-action="squad-step" data-dir="-1" aria-label="Vorheriger Trupp">‹</button>
-      <div class="arena-title"><b>⛺ Zelt ${i + 1}</b><small>${locked ? 'gesperrt' : `${esc(stageLabel(sq))}${sq.mode === 'boss' ? ' · 👑 Boss' : ''}`}</small></div>
-      <button class="icon-btn" data-action="squad-step" data-dir="1" aria-label="Nächster Trupp">›</button>
-    </div>
-    <div class="stage zone-${ZONES[sq.zone - 1].theme || ZONES[sq.zone - 1].tier}">${stage}</div>
-    <div class="arena-heroes">${heroes}</div>`);
+        <div class="ah-status">${wounded ? `💢 ${clock(h.woundedUntil - S.lastTickMs)}` : sq.status === 'fighting' ? 'Kämpft' : 'Bereit'}</div>`);
+  });
 
   // Boss-Leiste
   let bossBar = '';
@@ -1128,6 +1150,17 @@ export function showUpdateAvailable() {
 // #039: Werte-Tabelle mit eigener Spalte für das Symbol, damit Text und Zahlen sauber untereinander stehen
 const statRow = (icon, label, value) => `<span class="sg-i" aria-hidden="true">${icon}</span><span class="sg-l">${label}</span><b>${value}</b>`;
 
+// DEF (Rüstung, CQHT-Formel) und Schutz (Schadensreduktion aus Rolle, Forschung, Eigenschaften)
+// einzeln und zusammen, damit niemand selbst rechnen muss
+function defRows(hs) {
+  const armorCut = 1 - defMult(hs.armor);
+  const total = 1 - (1 - armorCut) * (1 - hs.defense);
+  const pc = (x) => `−${Math.round(x * 100)} %`;
+  return statRow('🛡️', 'DEF', `${fmt(hs.armor)} · ${pc(armorCut)} Schaden`)
+    + statRow('🔰', 'Schutz', `${pc(hs.defense)} Schaden`)
+    + statRow('🧱', 'Zusammen', `${pc(total)} Schaden${hs.bossDmg < 1 ? ` · Bosse ${pc(1 - (1 - total) * hs.bossDmg)}` : ''}`);
+}
+
 function heroDetailHtml(h) {
   const hs = heroStats(S, h);
   const d = hs.def;
@@ -1156,7 +1189,8 @@ function heroDetailHtml(h) {
       ${statRow('⚔️', 'ATK', fmt(hs.atk))}
       ${statRow('💥', 'Schaden', `${fmt(out.hit)} pro Sekunde`)}
       ${out.heal ? statRow('💚', 'Heilung', `${fmt(out.heal)} LP pro Sekunde`) : ''}
-      ${statRow('🛡️', 'DEF', `−${Math.round(hs.defense * 100)} % Schaden`)}
+      ${defRows(hs)}
+      ${statRow('🗡️', 'Durchdringung', fmt(hs.pen))}
       ${out.canCrit ? statRow('🎯', 'Krit', `${Math.round(hs.crit * 100)} % · ×${hs.critMult.toFixed(1).replace('.', ',')}`) : ''}
       ${statRow('⏱️', 'Takt', `alle ${(d.role === 'healer' ? hs.interval : hs.interval / (1 + hs.speed)).toFixed(2).replace('.', ',')} s${hs.speed && d.role !== 'healer' ? ` (+${Math.round(hs.speed * 100)} % Tempo)` : ''}`)}
       ${statRow('⚒️', 'Waffe', weaponLabel(h))}
@@ -1287,7 +1321,6 @@ export function showTickFx(ev) {
   if (tab !== 'portal' || document.hidden) return;
   const fx = $('#arena-fx');
   if (!fx) return;
-  for (const st of ev.struck || []) if (st.squad === S.selectedSquad) lastStruck.set(st.uid, S.lastTickMs);
   for (const hit of ev.hits) {
     if (hit.squad !== S.selectedSquad) continue;
     const m = S.squads[hit.squad].monster;

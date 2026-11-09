@@ -42,7 +42,7 @@ Danach geht es im selben **Auftrags-Banner** nahtlos weiter (Auftrag 5 bis 27). 
 
 Im Spiel gibt es 60 Helden, je zwölf Charr, Menschen, Norn, Asura und Sylvari, und von jeder Rolle gleich viele (15). Das Volk ist nur Hintergrund und ändert keine Werte. Jeder Held hat eine Klasse aus Guild Wars 2 und eine **Rolle**. Die Rolle bestimmt das Kampfverhalten:
 
-- 🛡️ **Tank:** Viele Lebenspunkte, 25 % DEF. Gehört auf Platz 1, den Anführer-Platz.
+- 🛡️ **Tank:** Viele Lebenspunkte, 25 % Schadensreduktion. Gehört auf Platz 1, den Anführer-Platz.
 - ⚔️ **Schadensausteiler:** Hoher Schaden, oft mit Krit-Chance (doppelter Schaden).
 - 📯 **Unterstützer:** Etwas Schaden plus Team-Buff: *Macht* (+12 % ATK) oder *Eile* (+15 % Angriffstempo).
 - ✚ **Heiler:** Heilt im eigenen Takt den schwächsten Verbündeten und greift leicht an.
@@ -79,7 +79,7 @@ Jeder Held bringt **Eigenschaften** mit, gewürfelt beim Rekrutieren. Du siehst 
 - **Güte:** Jede Eigenschaft hat eine Güte (Farbe wie bei Waffen), höchstens die Seltenheit des Helden, oft eine oder zwei Stufen darunter. Höhere Güte = größerer Bonus.
 - **Arten:** Einzel-Eigenschaften geben einen großen Bonus auf einen Wert, Doppel- einen mittleren auf zwei, Dreifach- (nur Exotisch und Aufgestiegen) einen kleinen auf drei.
 - **Spezialisierung:** ⚔️ Angriff, 🛡️ Verteidigung, 🧭 Lager oder ⚖️ Ausgeglichen, nach der besten Eigenschaft. Tanks und Heiler bekommen öfter Verteidigung, Schadensausteiler öfter Angriff.
-- **Werte:** ATK, Krit-Chance, Krit-Schaden, Angriffstempo (kürzerer Takt), LP, DEF, Heilung, kürzere Verwundung, weniger Schaden von Bossen, EXP aus Proviant.
+- **Werte:** ATK, Krit-Chance, Krit-Schaden, Angriffstempo (kürzerer Takt), LP, Schadensreduktion, Heilung, kürzere Verwundung, weniger Schaden von Bossen, EXP aus Proviant.
 - **Lager-Werte (Trupp):** Gold, EXP, Ätherscherben, Beute (Chance auf eine Waffe mehr beim Boss) und Offline-Ertrag wirken für den ganzen Trupp im Zelt, aber nicht aus der Reserve.
 - Wer in den Ruhestand geht und neu rekrutiert wird, würfelt neue Eigenschaften.
 
@@ -110,15 +110,21 @@ Jeder Held bringt **Eigenschaften** mit, gewürfelt beim Rekrutieren. Du siehst 
 ### So läuft ein Kampf
 
 - Jeder Held greift im **Takt seiner Klasse** an (⏱️ im Helden-Fenster, Tabelle oben). Eile, Forschung und Tempo-Eigenschaften verkürzen den Takt.
-- ⚔️ Schadensausteiler und 🛡️ Tanks greifen mit voller ATK an, 📯 Unterstützer mit 70 %. Krit-Treffer machen doppelten Schaden.
-- ✚ Heiler heilen den Verbündeten mit den wenigsten LP (Anteil) um **ATK × 1,8 pro Sekunde** und greifen mit **40 % ATK** an, ohne Krit.
+- ⚔️ Schadensausteiler und 🛡️ Tanks greifen mit voller ATK an, 📯 Unterstützer mit 70 %. Krit-Treffer machen ×1,5 Schaden. Jeder Treffer streut um ±5 %.
+- ✚ Heiler heilen den Verbündeten mit den wenigsten LP (Anteil) um **ATK × 0,6 pro Sekunde** und greifen mit **40 % ATK** an, ohne Krit.
 - Ein neuer Gegner braucht einen halben Moment (0,5 s), bis er da ist.
-- **Schergen** greifen alle **2,5 s** an, **Bosse** alle **1,5 s**. Unter dem Gegner steht, wie er angreift:
+- **Gegnerwerte wie in Crusaders Quest:** LP, Schaden, DEF und Takt jedes Gegners stammen aus CQHT (`js/data/monsterStats.js`). Schergen greifen meist alle **2,5 s** an, Bosse alle **1,5 s**. Ab Lv. 30 sind die LP gedämpft, weil unsere Helden keine Skills haben. Bosse haben 60 % der CQHT-LP, in den Zonen 9–10 noch weniger.
+- **DEF und Durchdringung** (Formel aus CQHT): Schaden × 100 / (100 + DEF − Durchdringung). 100 DEF halbieren den Schaden.
+  - Helden bekommen DEF und Durchdringung mit dem Level: 2,5 je Level, dazu ein Grundwert nach Seltenheit (Fein 0 bis Aufgestiegen 20).
+  - Waffen geben zusätzlich Durchdringung: T2 10, T3 25, T4 45, T5 70, T6 100.
+  - Liegt die Durchdringung über der DEF des Gegners, gibt es bis **×1,5** Bonus-Schaden. Wer unter dem Stufen-Level kämpft, durchdringt weniger und macht spürbar weniger Schaden.
+- 🎖️ **Veteranen:** Jeder Scherge kommt mit 10 % Chance als **Veteran** aus dem Riss: doppelte LP, ×1,5 Schaden, doppelte Beute. Offline zählen sie als Durchschnitt mit.
+- Unter dem Gegner steht, wie er angreift:
   - 🗡️ **Nahkampf:** 60 % auf den 🚩 Anführer (Platz 1), der Rest verteilt sich auf die anderen: 🛡️ Tank 5 Teile, ⚔️ Schaden und 📯 Unterstützer je 3, ✚ Heiler 2.
   - 🏹 **Fernkampf:** trifft einen Helden mit voller Wucht, gewürfelt nach denselben Teilen.
   - ✨ **Magie:** trifft alle fitten Helden zu gleichen Teilen.
 - 💥 **Bosse** holen alle **12 s** zu einem **Flächenangriff** aus, der jeden Helden trifft. 3 s vorher steht die Warnung unter dem Boss.
-- Die DEF jedes Helden senkt seinen Schaden. Wer auf 0 LP fällt, ist verwundet. Erst wenn alle verwundet sind, zieht sich der Trupp zurück.
+- Die DEF jedes Helden senkt seinen Schaden, dazu der **Schutz** (Schadensreduktion aus Rolle, Forschung und Eigenschaften, höchstens 50 %). Im Helden-Fenster stehen DEF, Schutz und beides zusammen als „−x % Schaden“, bei Boss-Härte auch der Wert gegen Bosse. Wer auf 0 LP fällt, ist verwundet. Erst wenn alle verwundet sind, zieht sich der Trupp zurück.
 - Nach jedem Sieg heilt der ganze Trupp 10 % seiner LP.
 - Im Helden-Fenster stehen **💥 Schaden** und **✚ Heilung** pro Sekunde (ohne Trupp-Boni). Unter jedem Zelt stehen Schaden, Heilung und LP des ganzen Trupps.
 

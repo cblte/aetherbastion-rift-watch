@@ -12,6 +12,7 @@ import {
   isStageAvailable, squadOf, stageBeaten, payCycle, addRations, squadTrait,
 } from './state.js';
 import { checkConstruction, checkShop, checkRecruits, dropWeapons } from './progress.js';
+import { MONSTER_STATS } from './data/monsterStats.js';
 
 // ---------- Hilfen ---------------------------------------------------
 export function squadMembers(state, squad) {
@@ -48,33 +49,59 @@ const DT = GAME.TICK_MS / 1000; // Sekunden je Tick
 
 export const stageOf = (zoneId, stage) => ZONES[zoneId - 1].stages[stage - 1];
 
-// variant: wechselt zwischen den beiden Schergen-Typen.
-// atk = Schaden je Treffer (= Schaden/s × Intervall), dps = Schaden pro Sekunde, aoe = Boss-Flächenangriff je Held
+// ---------- Schadens-Formeln (CQHT, dev-data/combat-overview.md) ------
+// Faktor auf den Schaden: 100 / (100 + DEF − Durchdringung). Liegt die Durchdringung über der DEF,
+// gibt der Überschuss einen Bonus × (1 + 0,5 × Über / (Über + 100)), höchstens ×1,5.
+export function defMult(def, pen = 0) {
+  const e = def - pen;
+  return e >= 0 ? 100 / (100 + e) : 1 + 0.5 * -e / (-e + 100);
+}
+const variance = () => 1 + (Math.random() * 2 - 1) * COMBAT.VARIANCE;
+
+// Gegnerwerte 1:1 aus CQHT (data/monsterStats.js), Regler in COMBAT (Bosse, schwer, legendär).
+// variant: welcher Schergen-Typ. d bleibt für die Beute (F.goldPerKill/expPerKill).
+// atk = Schaden je Treffer, interval = Sekunden je Angriff, dps = atk ÷ interval, def = DEF, aoe = Boss-Flächenangriff je Held
 export function monsterTemplate(zoneId, stage, boss = false, variant = 0) {
   const st = stageOf(zoneId, stage);
   const d = st.d + (boss ? COMBAT.BOSS_DIFF_BONUS : 0);
   const mob = boss ? st.boss : st.minions[variant % st.minions.length];
-  const interval = boss ? COMBAT.BOSS_INTERVAL : COMBAT.MINION_INTERVAL;
-  const dps = F.monsterAtk(d) * (boss ? COMBAT.BOSS_ATK_MULT : 1);
+  const ms = MONSTER_STATS[zoneId][stage - 1];
+  const base = boss ? ms.boss : ms.minions[variant % ms.minions.length];
+  const sc = st.legend ? COMBAT.LEGEND_SCALE : st.hard ? COMBAT.HARD_SCALE : { atk: 1, def: 1 };
+  const bs = boss ? COMBAT.BOSS_SCALE : { hp: 1, atk: 1 };
+  const atk = base.atk * sc.atk * bs.atk;
+  const lvl = st.d / COMBAT.LEVEL_DIFF; // Stufen-Level (Zonen 9–10: über 60)
+  const H = COMBAT.HARD_HP;
+  const maxHp = st.hard
+    ? H.base * Math.pow(H.growth, d) * H.scale * (boss ? H.boss : 1)
+    : base.hp * F.curve(COMBAT.HP_CURVE, lvl) * (boss ? bs.hp * F.curve(COMBAT.BOSS_HP_CURVE, lvl) : 1);
   return {
-    name: mob.name, sprite: mob.sprite, boss, d, attack: mob.attack || 'melee', interval,
-    maxHp: F.monsterHp(d) * (boss ? COMBAT.BOSS_HP_MULT : 1),
-    dps, atk: dps * interval,
-    aoe: boss ? dps * COMBAT.BOSS_AOE_FACTOR : 0,
+    name: mob.name, sprite: mob.sprite, boss, d, attack: mob.attack || 'melee', interval: base.spd,
+    maxHp, atk, dps: atk / base.spd, def: base.def * sc.def,
+    aoe: boss ? atk * COMBAT.BOSS_AOE_FACTOR : 0,
   };
+}
+
+// Veteran (#026): stärkerer Scherge mit mehr Beute (COMBAT.VETERAN)
+export function veteranOf(t) {
+  const v = COMBAT.VETERAN;
+  return { ...t, vet: true, name: `Veteran ${t.name}`, maxHp: t.maxHp * v.hp, atk: t.atk * v.atk, dps: t.dps * v.atk };
 }
 
 // t = Angriffs-Timer, aoeT = Timer des Boss-Flächenangriffs, ready = Sekunden, bis der Gegner da ist
 export function spawnMonster(state, squad, delay = COMBAT.SPAWN_DELAY) {
   const seq = state.monsterSeq++;
-  const t = monsterTemplate(squad.zone, squad.stage, squad.mode === 'boss', seq);
+  let t = monsterTemplate(squad.zone, squad.stage, squad.mode === 'boss', seq);
+  if (!t.boss && Math.random() < COMBAT.VETERAN.chance) t = veteranOf(t);
   squad.monster = { ...t, id: seq, hp: t.maxHp, t: 0, aoeT: 0, ready: delay };
 }
 
 // Erwartungswerte eines Trupps – genutzt vom Offline-Modul und für Anzeigen
-// attack: Angriffsart des Gegners (für teamDef/dmgFactor). Schaden/s eines Helden = ATK × (Tempo + eigenes Tempo),
-// weil Treffer = ATK × Klassen-Intervall und Intervall ÷ Tempo.
-export function teamProfile(state, heroes, squad = null, attack = 'melee') {
+// mon: Gegner (Angriffsart, DEF, Boss) – ohne Gegner zählt DEF 0. Schaden/s eines Helden = ATK × (Tempo + eigenes Tempo),
+// weil Treffer = ATK × Klassen-Intervall und Intervall ÷ Tempo; dazu Krit-Mittel und DEF/Durchdringung.
+// takenMult = Anteil des Gegner-Schadens, der nach Rüstung und Schadensreduktion ankommt (gewichtet wie der Gegner trifft).
+export function teamProfile(state, heroes, squad = null, mon = null) {
+  const attack = mon?.attack || 'melee', mdef = mon?.def || 0;
   let might = 0, eile = tempoBonus(state);
   for (const h of heroes) {
     const d = HERO_BY_ID[h.heroId];
@@ -88,18 +115,21 @@ export function teamProfile(state, heroes, squad = null, attack = 'melee') {
     const a = st.atk * atkMult;
     if (st.def.role === 'healer') {
       heal += a * COMBAT.HEAL_MULT * healMult(state) * st.heal;
-      dps += a * COMBAT.HEALER_ATK_FACTOR;
+      dps += a * COMBAT.HEALER_ATK_FACTOR * defMult(mdef, st.pen);
     } else {
       const f = st.def.role === 'support' ? COMBAT.SUPPORT_ATK_FACTOR : 1;
-      dps += a * f * (1 + st.crit * (st.critMult - 1)) * (tempo + st.speed);
+      dps += a * f * (1 + st.crit * (st.critMult - 1)) * (tempo + st.speed) * defMult(mdef, st.pen);
     }
   }
-  // DEF des Trupps, gewichtet wie der Gegner trifft; dmgFactor = Gesamtschaden je Treffer (Fläche ≠ 1)
+  // dmgFactor = Gesamtschaden je Treffer (Fläche ≠ 1)
   const shares = squad ? hitShares(squad, heroes, attack) : heroes.map(hero => ({ hero, share: 1 / heroes.length }));
   const dmgFactor = shares.reduce((a, o) => a + o.share, 0);
-  const teamDef = dmgFactor ? shares.reduce((a, o) => a + o.share * heroStats(state, o.hero).defense, 0) / dmgFactor : 0;
-  return { dps, heal, hpPool, atkMult, tempo, might, eile, teamDef, dmgFactor };
+  const takenMult = dmgFactor ? shares.reduce((a, o) => a + o.share * takenBy(heroStats(state, o.hero), mon), 0) / dmgFactor : 1;
+  return { dps, heal, hpPool, atkMult, tempo, might, eile, takenMult, dmgFactor };
 }
+
+// Anteil eines Gegner-Treffers, der beim Helden ankommt: Rüstung (CQHT-Formel) × Schadensreduktion × Boss-Eigenschaft
+export const takenBy = (hs, mon) => defMult(hs.armor) * (1 - hs.defense) * (mon?.boss ? hs.bossDmg : 1);
 
 // Was ein einzelner Held pro Sekunde tut (ohne Trupp-Buffs) – für Anzeigen
 // hit = Schaden pro Angriff · heal = Heilung pro Sekunde · canCrit = Krit möglich
@@ -117,6 +147,7 @@ export function heroOutput(state, hero) {
 // factor: Anteil der Belohnung (Offline-Effizienz). deterministic: Scherben als Erwartungswert.
 export function applyKillRewards(state, squadIdx, tmpl, heroes, factor = 1, deterministic = false) {
   const sq = state.squads[squadIdx];
+  if (tmpl.vet) factor *= COMBAT.VETERAN.loot;
   // Lager-Eigenschaften des Trupps (TRAIT_STATS squad: true)
   const gold = F.goldPerKill(tmpl.d) * (tmpl.boss ? COMBAT.BOSS_GOLD_MULT : 1) * goldMult(state) * (1 + squadTrait(heroes, 'gold')) * factor;
   const exp = F.expPerKill(tmpl.d) * (tmpl.boss ? COMBAT.BOSS_EXP_MULT : 1) * kitchenMult(state) * (1 + squadTrait(heroes, 'exp')) * factor;
@@ -255,7 +286,7 @@ function tickSquad(state, i, now, ev) {
   }
 
   const timers = sq.heroT || (sq.heroT = {});
-  const prof = teamProfile(state, alive, sq, mon.attack);
+  const prof = teamProfile(state, alive, sq, mon);
   const order = slotOrder(sq, alive);
   const stats = new Map(order.map(h => [h.uid, heroStats(state, h)]));
   // Intervall je Held: Klasse ÷ Tempo (Eile, Forschung, Eigenschaft). Heiler im Takt ihrer Klasse.
@@ -283,10 +314,10 @@ function tickSquad(state, i, now, ev) {
           .filter(o => o.x.hp < o.max)
           .sort((p, q) => p.x.hp / p.max - q.x.hp / q.max)[0];
         if (target) target.x.hp = Math.min(target.max, target.x.hp + a * COMBAT.HEAL_MULT * healMult(state) * st.heal * st.interval);
-        dmg += a * COMBAT.HEALER_ATK_FACTOR * st.interval;
+        dmg += a * COMBAT.HEALER_ATK_FACTOR * st.interval * variance() * defMult(mon.def || 0, st.pen);
       } else {
         const f = st.def.role === 'support' ? COMBAT.SUPPORT_ATK_FACTOR : 1;
-        let x = a * f * st.interval;
+        let x = a * f * st.interval * variance() * defMult(mon.def || 0, st.pen);
         if (Math.random() < st.crit) { x *= st.critMult; crit = true; }
         dmg += x;
       }
@@ -362,7 +393,7 @@ function monsterAttack(state, sq, i, mon, now, ev) {
 
 function hurt(state, i, hero, amount, mon, now, ev) {
   const hs = heroStats(state, hero);
-  hero.hp -= amount * (1 - hs.defense) * (mon.boss ? hs.bossDmg : 1);
+  hero.hp -= amount * variance() * takenBy(hs, mon);
   ev.struck?.push({ squad: i, uid: hero.uid });
   if (hero.hp <= 0) {
     hero.hp = 0;

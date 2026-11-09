@@ -3,7 +3,7 @@
 //  Boss jeder Stufe im Zeitlimit zu besiegen?
 //
 //  node tools/sim-bosses.mjs [runs] [--team h01,h02,h04] [--hard] [--hard-scale X]
-//  --hard: nur schwere/legendäre Stufen · --hard-scale: Zuschlag der normalen Lv.-60-Stufen testweise × X statt COMBAT.ENDGAME_DIFF_SCALE
+//  --hard: nur schwere/legendäre Stufen · --normal: nur normale · --hard-scale: Zuschlag der normalen Lv.-60-Stufen testweise × X statt COMBAT.ENDGAME_DIFF_SCALE
 //
 //  Nutzt die echte Kampflogik (combat.js / state.js). Ein Trupp aus drei
 //  Helden (Standard: Tank, Heiler, Schaden) kämpft frisch gegen den Boss.
@@ -25,6 +25,7 @@ const WIN_RATE = 0.8;
 // --hard-scale X: ersetzt COMBAT.ENDGAME_DIFF_SCALE testweise (Zuschlag der Lv.-60-Stufen)
 const hsArg = args.includes('--hard-scale') ? Number(args[args.indexOf('--hard-scale') + 1]) : null;
 const ONLY_HARD = args.includes('--hard');
+const ONLY_NORMAL = args.includes('--normal');
 if (hsArg != null) for (const z of C.ZONES) for (const st of z.stages) {
   if (st.level >= 60 && !st.hard) st.d = 60 * C.COMBAT.LEVEL_DIFF + (st.cost - 1000) / 500 * hsArg;
 }
@@ -91,6 +92,7 @@ console.log(['Zone', 'Stufe', 'Art', 'Lv.', 'd', ...names.map(n => `min. ${n}`)]
 for (const z of C.ZONES) {
   for (const s of z.stages) {
     if (ONLY_HARD && !s.hard) continue;
+    if (ONLY_NORMAL && s.hard) continue;
     const kind = s.legend ? 'legendär' : s.hard ? 'schwer' : 'normal';
     const res = names.map(n => minLevel(PROFILES[n], z.id, s.index) ?? '>60');
     console.log([z.id, s.index, kind, s.level, s.d.toFixed(1), ...res].join('\t'));

@@ -26,13 +26,14 @@ export const WEAPON_FOR = {
 };
 
 // Güte → Seltenheit (GW2-Farben) und Werte-Bonus
+// pen = Durchdringung, die die Waffe dem Helden gibt (gegen Gegner-DEF, #061)
 export const WEAPON_GRADES = {
-  1: { name: 'Einfach',      color: '#c8c8c8', atk: 0.05, hp: 0.02 },
-  2: { name: 'Fein',         color: '#62a4da', atk: 0.12, hp: 0.05 },
-  3: { name: 'Meisterwerk',  color: '#1a9306', atk: 0.25, hp: 0.10 },
-  4: { name: 'Selten',       color: '#fcd00b', atk: 0.45, hp: 0.15 },
-  5: { name: 'Exotisch',     color: '#ffa405', atk: 0.75, hp: 0.25 },
-  6: { name: 'Aufgestiegen', color: '#fb3e8d', atk: 1.20, hp: 0.35 },
+  1: { name: 'Einfach',      color: '#c8c8c8', atk: 0.05, hp: 0.02, pen: 0 },
+  2: { name: 'Fein',         color: '#62a4da', atk: 0.12, hp: 0.05, pen: 10 },
+  3: { name: 'Meisterwerk',  color: '#1a9306', atk: 0.25, hp: 0.10, pen: 25 },
+  4: { name: 'Selten',       color: '#fcd00b', atk: 0.45, hp: 0.15, pen: 45 },
+  5: { name: 'Exotisch',     color: '#ffa405', atk: 0.75, hp: 0.25, pen: 70 },
+  6: { name: 'Aufgestiegen', color: '#fb3e8d', atk: 1.20, hp: 0.35, pen: 100 },
 };
 
 export const WEAPONS = [

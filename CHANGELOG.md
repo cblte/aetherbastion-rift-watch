@@ -3,6 +3,16 @@
 Was sich im Spiel geändert hat, neueste Version oben. Die Nummern (#…) verweisen auf die Feedback-Liste.
 Die Version steht im Spiel unten unter der Navigation.
 
+## v0.36.0 – 09.11.2026
+- **Gegner wie in Crusaders Quest (#061):** Jeder Scherge und Boss hat jetzt die LP, den Schaden, die DEF und den Takt seiner CQHT-Vorlage. Schergen halten deutlich länger durch (auf passendem Level etwa 5–15 s statt 2–4 s). Ab Lv. 30 sind die LP etwas gedämpft, weil unsere Helden noch keine Skills haben.
+- **DEF und Durchdringung nach CQHT-Formel:** Helden bekommen mit jedem Level DEF und Durchdringung, Waffen zusätzlich Durchdringung (T2 10 bis T6 100). Wer unter dem Stufen-Level kämpft, kommt schlechter durch die Gegner-DEF und macht weniger Schaden. Im Helden-Fenster stehen beide Werte. Dort steht jetzt auch ausgerechnet, wie viel weniger Schaden ein Held nimmt: durch DEF, durch Schutz (Rolle, Forschung, Eigenschaften) und beides zusammen.
+- **Krit** macht jetzt ×1,5 statt ×2 Schaden, jeder Treffer streut um ±5 %.
+- **Heiler** heilen deutlich weniger (ATK × 0,6 statt × 1,8 pro Sekunde). Bosse können den Trupp jetzt wirklich zu Fall bringen.
+- **Bosse sind knackiger:** Ein Zonen-Endboss braucht einen gut ausgebauten Trupp etwa auf Stufen-Level. Die Fluchküste schafft nur ein starker Trupp auf Höchstlevel. Schwere Stufen bleiben härter als der letzte normale Boss, legendäre sind weiter fast unschaffbar.
+- 🎖️ **Veteranen (#026):** Jeder Scherge kommt mit 10 % Chance als Veteran aus dem Riss, mit doppelten LP, ×1,5 Schaden und doppelter Beute.
+- **EXP und Gold pro Stunde sinken** in den ersten Zonen deutlich, weil die Kämpfe länger dauern (Zonen 1–3 etwa ein Viertel bis ein Drittel). Offline läuft dafür weiter. Wir passen nach, falls es zu lange dauert.
+- Die Arena flackert nicht mehr: Helden-Bilder und Gegner werden nicht mehr bei jeder Aktualisierung neu gezeichnet, nur noch Zahlen und Balken. Das Wackeln getroffener Helden ist weg.
+
 ## v0.35.1 – 08.11.2026
 - **Charr-Schmiede:** Exotische Waffen (T5) gibt es im Laden erst ab **Schmiede-Stufe 3** (Gildenhalle 6), weiterhin zusätzlich ab Riss-Portal 4. Stufe 2 bringt jetzt nur Selten (T4).
 - Die Schmiede-Karte im Lager zeigt jetzt richtig an, was der Laden verkauft und welche Güte noch gesperrt ist. Bisher stand dort schon bei Stufe 2 „bis Exotisch“, obwohl der Laden das noch gar nicht anbot.

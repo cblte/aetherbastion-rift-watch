@@ -5,7 +5,7 @@
 
 export const GAME = {
   title: 'Aetherbastion: Rift Watch',
-  VERSION: '0.35.1',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
+  VERSION: '0.36.0',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
   CHANGELOG_URL: 'https://github.com/cblte/aetherbastion-rift-watch/blob/main/CHANGELOG.md', // Link in den Einstellungen
   BUILD: 'lokal',                    // ersetzt der Pages-Workflow durch „Nr. · Commit“
   SAVE_KEY: 'aetherbastion_save_v1',
@@ -240,9 +240,7 @@ export const QUESTS = [
 // ---------------------------------------------------------------------
 export const COMBAT = {
   LEVEL_DIFF: 0.8,         // Schwierigkeit d = Stufen-Level × 0,8 (CQHT „Lv.“)
-  BOSS_DIFF_BONUS: 1,      // Boss rechnet mit Schwierigkeit + 1 …
-  BOSS_HP_MULT: 4,         // … und hat zusätzlich ×4 LP
-  BOSS_ATK_MULT: 1.3,
+  BOSS_DIFF_BONUS: 1,      // Boss-Beute rechnet mit Schwierigkeit + 1 (Werte kommen aus data/monsterStats.js)
   BOSS_TIME_LIMIT: 90,     // Sekunden; danach gilt die Herausforderung als gescheitert
   BOSS_COOLDOWN: 90,       // Sekunden Pause nach jeder Herausforderung (Sieg, Niederlage, Abbruch)
   BOSS_GOLD_MULT: 10,
@@ -250,18 +248,36 @@ export const COMBAT = {
   BOSS_SHARDS_PER_ZONE: 1, // Boss droppt garantiert Zone × diesen Wert (×3 auf schweren Stufen)
   WOUND_MS: 90_000,        // Regeneration nach 0 LP
   KILL_HEAL: 0.10,         // Heilung nach jedem Sieg (Anteil max. LP)
-  CRIT_MULT: 2,
-  HEAL_MULT: 1.8,          // Heilung = ATK × HEAL_MULT
+  CRIT_MULT: 1.5,          // CQHT: Krit-Kraft +50 % (dev-data/combat-overview.md)
+  HEAL_MULT: 0.6,          // Heilung/s = ATK × HEAL_MULT (v0.36: 1,8 → 0,6, CQHT kennt keine Dauerheilung)
   HEALER_ATK_FACTOR: 0.4,  // Heiler greifen nebenbei schwach an
   SUPPORT_ATK_FACTOR: 0.7,
   MIGHT_BONUS: 0.12,       // Macht: +12 % Team-ATK je Unterstützer
   EILE_BONUS: 0.15,        // Eile: +15 % Angriffstempo je Unterstützer (Intervall ÷ 1,15)
-  DEF_CAP: 0.75,           // max. Schadensreduktion
+  DEF_CAP: 0.5,            // max. Schadensreduktion in % (Rolle, Forschung, Eigenschaften), CQHT-Kappung 50 %
   SHARD_CHANCE: 0.05,
-  // Angriffs-Timer (#061): Sekunden zwischen zwei Monster-Angriffen (CQHT: Schergen 2,5 s, Bosse 1,5 s).
-  // Schaden je Treffer = F.monsterAtk × Intervall, also gleich viel Schaden pro Sekunde wie vorher.
-  MINION_INTERVAL: 2.5,
-  BOSS_INTERVAL: 1.5,
+  // ---- Gegnerwerte 1:1 aus CQHT (#061 Schritt 2, data/monsterStats.js) und Formeln nach dev-data/combat-overview.md
+  // Schaden × 100 / (100 + DEF − Durchdringung); Durchdringung über DEF: × (1 + 0,5 × Über / (Über + 100)), max. ×1,5
+  VARIANCE: 0.05,          // ±5 % Streuung je Treffer
+  // Rüstung (DEF-Punkte) und Durchdringung der Helden nach Level und Seltenheit, wie CQHT-Helden (Leon 4★: 15 + 2,5 je Level)
+  HERO_ARMOR: { base: { 2: 0, 3: 5, 4: 10, 5: 15, 6: 20 }, perLevel: 2.5 },
+  HERO_PEN:   { base: { 2: 0, 3: 5, 4: 10, 5: 15, 6: 20 }, perLevel: 2.5 },
+  // Regler auf die CQHT-Werte. Kurven: [Stufen-Level, Faktor], linear dazwischen; „Level“ = d ÷ LEVEL_DIFF
+  // (normale Lv.-60-Stufen der Zonen 9–10 zählen dadurch bis ≈ 67).
+  // HP_CURVE (alle Gegner normaler Stufen): CQHT-LP steigen ab Lv. 30 viel steiler als unsere Helden
+  // (CQHT gleicht das mit Skills aus). Bis Lv. 30 1:1, darüber gedämpft (Ziel: Scherge auf passendem Level ≈ 12 s, Profil mittel).
+  HP_CURVE: [[30, 1], [35, 0.8], [41, 0.45], [50, 0.4], [55, 0.3], [60, 0.25]],
+  // Bosse zusätzlich: BOSS_SCALE und BOSS_HP_CURVE (glättet die CQHT-Sprünge der Zonen 7–10, v. a. Zonen 9–10 bis ×5)
+  BOSS_SCALE:   { hp: 0.6, atk: 1 },
+  BOSS_HP_CURVE: [[50, 1], [51, 0.78], [55, 0.85], [58, 1], [60, 1], [61, 0.65], [63, 0.38], [67, 0.22]],
+  // Schwere/legendäre Stufen: CQHT steigt dort ×12 von Stufe zu Stufe, unsere Treppe (HARD_DIFF/LEGEND_DIFF) viel flacher.
+  // LP deshalb aus der Treppe: base × growth^d (Boss: d + BOSS_DIFF_BONUS, × boss); ATK/DEF/Takt bleiben CQHT × atk/def.
+  HARD_HP:      { base: 60, growth: 1.10, boss: 4, scale: 1.8 },
+  HARD_SCALE:   { atk: 1, def: 0.6 },
+  LEGEND_SCALE: { atk: 0.5, def: 0.6 }, // CQHT-Legendär-Bosse schlagen alle 0,5 s zu
+  // Veteranen (#026): Schergen kommen manchmal als Veteran aus dem Riss
+  VETERAN: { chance: 0.1, hp: 2, atk: 1.5, loot: 2 },
+  // Angriffs-Timer (#061): Takt der Gegner kommt aus data/monsterStats.js (CQHT: Schergen 2,5 s, Bosse meist 1,5 s).
   SPAWN_DELAY: 0.5,        // Sekunden, bis der nächste Gegner da ist (live und offline)
   // Zielwahl (#051 B + D): Platz 1 im Zelt ist der Anführer (fällt er, rückt der Nächste nach).
   //   melee  (Nahkampf): Anführer bekommt LEADER_SHARE, der Rest verteilt sich nach ROLES[…].aggro
@@ -271,15 +287,15 @@ export const COMBAT = {
   LEADER_SHARE: 0.6,
   AREA_TOTAL: 1.0,
   // Bosse holen alle BOSS_AOE_EVERY Sekunden zu einem Flächenangriff aus (Ansage BOSS_AOE_WARN s vorher):
-  // jeder fitte Held bekommt F.monsterAtk × BOSS_AOE_FACTOR.
+  // jeder fitte Held bekommt einen Boss-Treffer × BOSS_AOE_FACTOR.
   BOSS_AOE_EVERY: 12,
   BOSS_AOE_WARN: 3,
   BOSS_AOE_FACTOR: 0.5,
   ENDGAME_DIFF_SCALE: 1.4, // #047: Zuschlag der normalen Lv.-60-Stufen (Zonen 8–10) × 1,4 → d bis ≈ 54 (tools/sim-bosses.mjs)
   // Schwere Stufen beginnen über der letzten normalen Stufe (Fluchküste 5, d ≈ 53,6) und steigen
   // gleichmäßig von Königintal ☠️6 bis Fluchküste ☠️7. Legendär liegt darüber (Zone 2 → Zone 10).
-  HARD_DIFF:   { from: 54.5, to: 59.5 }, // v0.35.0 −1,5 (Angriffs-Timer + Boss-Fläche machen Bosse härter). Fluchküste ☠️7: Max-Trupp Lv. 60 mit T6 knapp
-  LEGEND_DIFF: { from: 60.8, to: 61 },   // absichtlich knüppelhart: Max-Trupp Lv. 60 ≈ 45 % (Caledon) → 3 % (Fluchküste); später mit S-Tier-Trupp nachregeln
+  HARD_DIFF:   { from: 57, to: 57.5 },   // v0.36.0: flach, weil DEF/ATK der CQHT-Gegner selbst ansteigen. Max-Trupp: Königintal ☠️6 ab Lv. ≈ 43, Fluchküste ☠️7 Lv. 60
+  LEGEND_DIFF: { from: 58.4, to: 58 },   // absichtlich knüppelhart (Max-Trupp Lv. 60: Caledon ≈ 45 %, Fluchküste ≈ 3 %). Fällt, weil die CQHT-Bosse selbst härter werden
 };
 
 // Angriffsarten der Gegner (#051), Anzeige in der Arena
@@ -313,12 +329,19 @@ export const TOTAL_NORMAL = ZONES.length * NORMAL_STAGES;
 //  FORMELN
 // ---------------------------------------------------------------------
 export const F = {
+  // Wert einer Kurve [[x, y], …] an der Stelle x (linear zwischen den Stützstellen, außen konstant)
+  curve: (c, level) => {
+    if (level <= c[0][0]) return c[0][1];
+    for (let k = 1; k < c.length; k++) {
+      const [l1, v1] = c[k - 1], [l2, v2] = c[k];
+      if (level <= l2) return v1 + (v2 - v1) * (level - l1) / (l2 - l1);
+    }
+    return c.at(-1)[1];
+  },
   heroAtk: (baseAtk, level, gearMult = 1, bonusMult = 1) =>
     baseAtk * (1 + 0.08 * (level - 1)) * gearMult * bonusMult,
   heroHp: (baseHp, level, bonusMult = 1) =>
     baseHp * (1 + 0.10 * (level - 1)) * bonusMult,
-  monsterHp: (d) => 60 * Math.pow(1.10, d),
-  monsterAtk: (d) => 6 * Math.pow(1.085, d),
   goldPerKill: (d) => 5 * Math.pow(1.12, d),
   expPerKill: (d) => 8 * Math.pow(1.13, d),
   // EXP-Kurve aus data/heroLevels.js (CQHT „Total XP“)

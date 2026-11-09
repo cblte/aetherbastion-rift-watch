@@ -319,11 +319,15 @@ export const weaponType  = (hero) => {
 };
 export { LEVEL_CAP_MAX };
 
+const lvlStat = (o, level, rarity) => (o.base[rarity] ?? o.base[RECRUIT.freeRarity] ?? 0) + o.perLevel * (level - 1);
+export const heroArmor = (level, rarity) => lvlStat(COMBAT.HERO_ARMOR, level, rarity);
+export const heroPen = (level, rarity) => lvlStat(COMBAT.HERO_PEN, level, rarity);
+
 export const rarityBonus = (r) => (RECRUIT.rarities[r] || RECRUIT.rarities[RECRUIT.freeRarity]).bonus;
 
 export function heroStats(state, hero) {
   const def = heroDef(hero);
-  const w = hero.weapon ? WEAPON_GRADES[WEAPON_BY_ID[hero.weapon].grade] : { atk: 0, hp: 0 };
+  const w = hero.weapon ? WEAPON_GRADES[WEAPON_BY_ID[hero.weapon].grade] : { atk: 0, hp: 0, pen: 0 };
   const rar = 1 + rarityBonus(hero.rarity);
   const t = heroBonus(hero);
   return {
@@ -332,7 +336,9 @@ export function heroStats(state, hero) {
     maxHp: F.heroHp(def.baseHp, hero.level, rar * (1 + w.hp) * prestigeHp(state) * (1 + rv(state, 'hp')) * (1 + t.hp)),
     crit: Math.min(1, (def.crit || 0) + rv(state, 'crit') + t.crit),
     critMult: (COMBAT.CRIT_MULT + rv(state, 'critdmg')) * (1 + t.critdmg),
-    defense: Math.min(COMBAT.DEF_CAP, ROLES[def.role].def + rv(state, 'def') + t.def),
+    defense: Math.min(COMBAT.DEF_CAP, ROLES[def.role].def + rv(state, 'def') + t.def), // Schadensreduktion in %
+    armor: heroArmor(hero.level, hero.rarity), // DEF-Punkte nach CQHT-Formel
+    pen: heroPen(hero.level, hero.rarity) + (w.pen || 0), // Durchdringung (Level + Waffe)
     speed: t.speed,                 // eigenes Angriffstempo (+Anteil, verkürzt das Intervall)
     interval: CLASSES[def.cls]?.interval || 1, // Sekunden je Angriff nach Klasse (#061)
     heal: 1 + t.heal,               // Faktor auf die eigene Heilung

@@ -80,14 +80,17 @@ export function manualChapters() {
       <p><b>So läuft ein Kampf:</b></p>
       ${list([
         `Jede Klasse hat einen Takt (⏱️ im Helden-Fenster): ${Object.values(CLASSES).sort((a, b) => a.interval - b.interval).map(c => `${c.name} ${String(c.interval).replace('.', ',')} s`).join(', ')}. Schnelle Klassen treffen öfter, aber schwächer – pro Sekunde machen alle gleich viel. Eile, Forschung und Tempo-Eigenschaften verkürzen den Takt.`,
-        `⚔️ Schaden und 🛡️ Tank greifen mit voller ATK an, 📯 Unterstützer mit ${pct(COMBAT.SUPPORT_ATK_FACTOR)}. Krit-Treffer machen ×${COMBAT.CRIT_MULT} Schaden.`,
+        `⚔️ Schaden und 🛡️ Tank greifen mit voller ATK an, 📯 Unterstützer mit ${pct(COMBAT.SUPPORT_ATK_FACTOR)}. Krit-Treffer machen ×${String(COMBAT.CRIT_MULT).replace('.', ',')} Schaden, jeder Treffer streut um ±${pct(COMBAT.VARIANCE)}.`,
         `✚ Heiler heilen den Verbündeten mit den wenigsten LP (Anteil) um ATK × ${String(COMBAT.HEAL_MULT).replace('.', ',')} pro Sekunde und greifen mit ${pct(COMBAT.HEALER_ATK_FACTOR)} ATK an, ohne Krit.`,
-        `Schergen greifen alle ${String(COMBAT.MINION_INTERVAL).replace('.', ',')} s an, Bosse alle ${String(COMBAT.BOSS_INTERVAL).replace('.', ',')} s. Wie, steht unter dem Gegner:`,
+        '<b>Gegnerwerte wie in Crusaders Quest:</b> LP, Schaden, DEF und Takt jedes Gegners stammen aus CQHT. Schergen greifen meist alle 2,5 s an, Bosse alle 1,5 s. Ab Lv. 30 sind die LP etwas gedämpft, weil unsere Helden keine Skills haben.',
+        `<b>DEF und Durchdringung:</b> Schaden × 100 / (100 + DEF − Durchdringung). 100 DEF halbieren den Schaden. Helden bekommen DEF und Durchdringung mit dem Level (${COMBAT.HERO_ARMOR.perLevel.toLocaleString('de-DE')} je Level, mehr bei höherer Seltenheit), Waffen geben zusätzlich Durchdringung (bis ${WEAPON_GRADES[6].pen} bei T6). Liegt die Durchdringung über der DEF des Gegners, gibt es bis ×1,5 Bonus-Schaden. Wer unter dem Stufen-Level kämpft, durchdringt also weniger.`,
+        `🎖️ <b>Veteranen:</b> Jeder Scherge kommt mit ${pct(COMBAT.VETERAN.chance)} Chance als Veteran: ×${COMBAT.VETERAN.hp} LP, ×${String(COMBAT.VETERAN.atk).replace('.', ',')} Schaden, ×${COMBAT.VETERAN.loot} Beute.`,
+        'Wie ein Gegner angreift, steht unter ihm:',
         `${ATTACK_TYPES.melee.icon} <b>Nahkampf:</b> ${pct(COMBAT.LEADER_SHARE)} auf den 🚩 Anführer, der Rest verteilt sich (🛡️ Tank ${ROLES.tank.aggro} Teile, ⚔️/📯 je ${ROLES.dps.aggro}, ✚ Heiler ${ROLES.healer.aggro}).`,
         `${ATTACK_TYPES.ranged.icon} <b>Fernkampf:</b> trifft einen Helden voll, gewürfelt nach denselben Teilen.`,
         `${ATTACK_TYPES.magic.icon} <b>Magie:</b> trifft alle fitten Helden zu gleichen Teilen.`,
         `💥 <b>Bosse</b> holen alle ${COMBAT.BOSS_AOE_EVERY} s zu einem Flächenangriff aus, der jeden Helden trifft. ${COMBAT.BOSS_AOE_WARN} s vorher steht die Warnung unter dem Boss.`,
-        'Die DEF jedes Helden senkt seinen Schaden.',
+        `Die DEF jedes Helden senkt seinen Schaden, dazu der Schutz (Schadensreduktion aus Rolle, Forschung und Eigenschaften, höchstens ${pct(COMBAT.DEF_CAP)}). Im Helden-Fenster stehen DEF, Schutz und beides zusammen.`,
         `Nach jedem Sieg heilt der ganze Trupp ${pct(COMBAT.KILL_HEAL)} seiner LP.`,
         'Die Werte siehst du im Helden-Fenster (💥 Schaden, ✚ Heilung) und für den ganzen Trupp unter jedem Zelt.',
       ])}

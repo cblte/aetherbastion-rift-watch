@@ -12,7 +12,7 @@
 import { ZONES, HERO_BY_ID, CYCLE_MS, COMBAT } from './config.js';
 import { heroStats, addLog, offlineMaxMs, payCycle, squadTrait } from './state.js';
 import { checkConstruction, checkShop, checkRecruits } from './progress.js';
-import { squadMembers, teamProfile, monsterTemplate, applyKillRewards, spawnMonster, fmt } from './combat.js';
+import { squadMembers, teamProfile, monsterTemplate, veteranOf, applyKillRewards, spawnMonster, fmt } from './combat.js';
 
 const MAX_STEPS = 200_000; // Sicherheitsnetz
 
@@ -61,21 +61,28 @@ export function runOffline(state, elapsedMs) {
     };
     let t = seconds, steps = 0;
     // beide Schergen-Typen abwechselnd, jeder mit eigener Angriffsart (#051)
-    const mons = [0, 1].map(v => monsterTemplate(sq.zone, sq.stage, false, v));
+    // Veteranen als Erwartungswert: jeder Sieg zählt als Mischung aus normal und Veteran (Zeit, Schaden, Beute)
+    const V = COMBAT.VETERAN;
+    const mix = (a, b) => a * (1 - V.chance) + b * V.chance;
+    const mons = ZONES[sq.zone - 1].stages[sq.stage - 1].minions.map((_, v) => {
+      const m = monsterTemplate(sq.zone, sq.stage, false, v), vm = veteranOf(m);
+      return { ...m, maxHp: mix(m.maxHp, vm.maxHp), dps: mix(m.dps, vm.dps) };
+    });
+    const vetLoot = mix(1, V.loot);
     const offBonus = 1 + squadTrait(heroes, 'offline'); // Eigenschaft „Offline“: mehr Ertrag je Sieg
 
     while (t > 0 && steps++ < MAX_STEPS) {
-      const mon = mons[steps % 2];
-      const prof = teamProfile(state, heroes, sq, mon.attack);
+      const mon = mons[steps % mons.length];
+      const prof = teamProfile(state, heroes, sq, mon);
       if (prof.dps <= 0) break;
       const secs = COMBAT.SPAWN_DELAY + mon.maxHp / prof.dps;
       if (secs > t) break;
-      const incoming = mon.dps * prof.dmgFactor * (1 - prof.teamDef) * secs;
+      const incoming = mon.dps * prof.dmgFactor * prof.takenMult * secs;
       const eff = Math.min(1, (prof.hpPool + prof.heal * secs) / incoming);
       r.minEff = Math.min(r.minEff, eff);
       t -= secs;
 
-      const res = applyKillRewards(state, i, mon, heroes, eff * offBonus, true);
+      const res = applyKillRewards(state, i, mon, heroes, eff * offBonus * vetLoot, true);
       r.kills += eff;
       r.gold += res.gold;
       r.shards += res.shards;
