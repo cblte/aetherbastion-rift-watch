@@ -35,7 +35,7 @@ Danach geht es im selben **Auftrags-Banner** nahtlos weiter (Auftrag 5 bis 27). 
 | 🍎 | Früchte | Level-Ups | Verkaufen (eigene Funktion folgt) |
 | 🎟️ | Arena-Tickets | Bosse | Funktion folgt |
 
-**Gildenkasse:** Alle 10 Minuten zahlt die Gildenhalle Gold aus (100 bis 1.000 🟡 je nach Stufe). Helden haben kein passives Einkommen, sie verdienen nur im Kampf.
+**Gildenkasse:** Alle 10 Minuten zahlt die Gildenhalle Gold aus (100 bis 1.000 🟡 je nach Stufe). Helden im Ruhestand zahlen mit der Gildenkasse dazu, aktive Helden verdienen nur im Kampf. Gold-Boni (Goldwandler, Glücksbringer, Eigenschaft Gold) wirken nur auf **Gold aus Siegen**; die Gildenkasse steigert allein der **Kassen-Optimierer** (Halle + Ruhestand).
 
 ## Helden & Rollen
 
@@ -197,8 +197,8 @@ Mit **🔮 Ätherscherben** erforschst du dauerhafte Verbesserungen in drei Bäu
 |---|---|
 | ⚔️ Offensive | Kalibrierte Klingen (+ATK) → Chrono-Beschleuniger (+Angriffstempo), Präzisionsoptik (+Krit-Chance) → Überladungskristall (+Krit-Schaden), Phasen-Bohrer (+5 Durchdringung je Stufe) |
 | 🛡️ Defensive | Verstärkte Panzerung (+HP) → Schutzfeld-Generator (+Schutz) → Chrono-Anker (+5 s Boss-Zeitlimit je Stufe), Härtungs-Matrix (+5 DEF je Stufe), Heilmatrix (+Heilung) → Regenerations-Kapsel (−Regenerationszeit) → Notfall-Golem (−10 % Belebungskosten je Stufe) |
-| 📦 Logistik | Goldwandler (+Gold) → Wissensspeicher (+EXP), Ätherresonator (+Scherben) → Stasis-Feld (+Offline-Zeit) → Archiv der Veteranen (+10 Plätze im Ruhestand je Stufe, Labor 6–10), Bau-Golems (−5 % Bauzeit je Stufe), Feldversorgung (+5 % Proviant-Chance beim Boss je Stufe), Kassen-Optimierer (+10 % Gildenkasse je Stufe), Beute-Sonde (+4 % Chance auf eine Extra-Waffe beim Boss je Stufe) |
-| 🌀 Erweiterte Forschung | Ätherfokus-Klingen (+ATK), Ätherpanzerung (+HP), Zielmatrix Omega (+Krit-Chance), Chrono-Kern (+Angriffstempo), Schildfeld-Resonanz (+Schutz), Goldwandler Prime (+Gold), Wissensarchiv Prime (+EXP), Ätherkondensator (+2 🔮 je Gildenkasse je Stufe), Chronomantische Beschleunigung (−5 % Forschungszeit je Stufe) |
+| 📦 Logistik | Goldwandler (+Gold aus Siegen) → Wissensspeicher (+EXP), Ätherresonator (+Scherben) → Stasis-Feld (+Offline-Zeit) → Archiv der Veteranen (+10 Plätze im Ruhestand je Stufe, Labor 6–10), Bau-Golems (−5 % Bauzeit je Stufe), Feldversorgung (+5 % Proviant-Chance beim Boss je Stufe), Kassen-Optimierer (+10 % Gildenkasse je Stufe, Halle + Ruhestand), Beute-Sonde (+4 % Chance auf eine Extra-Waffe beim Boss je Stufe) |
+| 🌀 Erweiterte Forschung | Ätherfokus-Klingen (+ATK), Ätherpanzerung (+HP), Zielmatrix Omega (+Krit-Chance), Chrono-Kern (+Angriffstempo), Schildfeld-Resonanz (+Schutz), Goldwandler Prime (+Gold aus Siegen), Wissensarchiv Prime (+EXP), Ätherkondensator (+2 🔮 je Gildenkasse je Stufe), Chronomantische Beschleunigung (−5 % Forschungszeit je Stufe) |
 
 ## ⚒️ Charr-Schmiede – Waffen
 
@@ -277,7 +277,7 @@ Wie oft welche Seltenheit kommt, hängt von der **Gildenhalle** ab. Die aktuelle
 - Ein Held im Ruhestand kann später erneut rekrutiert werden und beginnt wieder bei Lv. 1. Derselbe Held darf mehrmals im Ruhestand sein.
 - **🏡 Ruhestand:** Helden im Ruhestand zahlen mit der Gildenkasse alle 10 Min. 🟡 Gold und 🔮 Ätherscherben nach ihrem Kampf-Level (Lv. 20 = 17 🟡 / 1 🔮, Lv. 40 = 46 🟡 / 2 🔮, Lv. 60 = 75 🟡 / 3 🔮), auch offline.
 - Es gibt **10 Plätze**. Die Forschung **Archiv der Veteranen** (Logistik, Stufe IV, Asura-Labor 6–10) bringt +10 je Stufe, bis 100. Sind alle Plätze voll, geht der schwächste Held; ist keiner schwächer als der neue, gibt es nur den Klee.
-- In der **✨ Mystischen Schmiede** gibt es dauerhafte Boni mit je 5 Stufen: mehr Trupp-ATK, mehr HP, kürzere Regeneration, mehr Gold und Scherben.
+- In der **✨ Mystischen Schmiede** gibt es dauerhafte Boni mit je 5 Stufen: mehr Trupp-ATK, mehr HP, kürzere Regeneration, mehr Gold und Scherben aus Siegen.
 
 ## Offline-Fortschritt
 

@@ -17,7 +17,7 @@ import {
   activeHeroCount, reserveHeroes, isOwned, rarityBonus, isZoneAvailable, isStageAvailable, stageBeaten,
   stageLock, buildingCost, buildLock, canAfford, pay, createHero, addLog, squadOf, buildingUnlocked,
   buildTimeMult, bossTimeLimit, rationChance, reviveCost, cycleShards,
-  featureUnlocked, normalCleared, hallGold, weaponType, armorySlots, armoryFree, rationSlots, retireSlots, retireIncome, retirePlace, addRetired, heroRetire,
+  featureUnlocked, normalCleared, hallGold, treasuryMult, weaponType, armorySlots, armoryFree, rationSlots, retireSlots, retireIncome, retirePlace, addRetired, heroRetire,
   traitPct, traitSpec, classBonus,
 } from './state.js';
 import {
@@ -1686,7 +1686,7 @@ function retireConfirmText(h) {
   const p = retirePlace(S, lv);
   if (!p.ok) return `<br>Alle ${retireSlots(S)} Plätze im Ruhestand sind mit stärkeren Helden belegt: <b>kein passives Einkommen</b>.`;
   const gone = p.replace >= 0 ? S.retired[p.replace] : null;
-  return `<br>Im Ruhestand zahlt er alle 10 Min. <b>+${L.goldCycle} 🟡 +${L.rpCycle} 🔮</b> (Lv. ${lv}).${gone ? ` Dafür geht ${esc(HERO_BY_ID[gone.heroId]?.name || 'ein Veteran')} (Lv. ${gone.level}).` : ''}`;
+  return `<br>Im Ruhestand zahlt er alle 10 Min. <b>+${fmt(Math.round(L.goldCycle * treasuryMult(S)))} 🟡 +${L.rpCycle} 🔮</b> (Lv. ${lv}).${gone ? ` Dafür geht ${esc(HERO_BY_ID[gone.heroId]?.name || 'ein Veteran')} (Lv. ${gone.level}).` : ''}`;
 }
 
 function retireHomeCard() {

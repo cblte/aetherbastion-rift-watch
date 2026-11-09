@@ -159,7 +159,7 @@ _Zurzeit nichts offen._
 - **Status:** zurückgestellt (lange Bank, noch nicht nötig) · **Quelle:** Entwickler
 - Befund aus dem Gold-Vergleich mit CQHT: Gold gibt es aus Siegen, der Gildenkasse (Halle und Ruhestand), Waffen-/Vorratsverkauf und Aufträgen. Die Aufträge (`QUESTS` in `config.js`) enden aber mit Zone 6 (zusammen 34.650 🟡). Danach bringen Aufträge kein Gold mehr.
 - Idee für später: tägliche oder wiederholbare Aufträge (z. B. „Besiege 50 Schergen“, „Gewinne 3 Boss-Kämpfe“), oder die Questreihe für Zonen 7–10 fortsetzen.
-- Nebenbefund: Goldwandler, Glücksbringer und Gold-Eigenschaften wirken nur auf das Gold aus Siegen, nicht auf die Gildenkasse. Beim Angehen mitprüfen, ob das so bleiben soll.
+- Nebenbefund erledigt in v0.39.2 (siehe `issues_solved.md`): Gold-Boni bleiben bei Gold aus Siegen, der Kassen-Optimierer wirkt auf Halle + Ruhestand.
 
 ### #058 Farben und Look: weniger technisch, mehr GW2
 - **Status:** zurückgestellt (für das UI-Redesign) · **Quelle:** Gilde

@@ -5,7 +5,7 @@
 
 export const GAME = {
   title: 'Aetherbastion: Rift Watch',
-  VERSION: '0.39.1',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
+  VERSION: '0.39.2',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
   CHANGELOG_URL: 'https://github.com/cblte/aetherbastion-rift-watch/blob/main/CHANGELOG.md', // Link in den Einstellungen
   BUILD: 'lokal',                    // ersetzt der Pages-Workflow durch „Nr. · Commit“
   SAVE_KEY: 'aetherbastion_save_v1',
@@ -476,7 +476,7 @@ export const TRAIT_STATS = {
   heal:    { name: 'Heilung',       mode: 'mult', f: 1 },
   regen:   { name: 'Regeneration',  mode: 'less', f: 1, show: 'Verwundungszeit' },
   boss:    { name: 'Boss-Härte',    mode: 'less', f: 1, show: 'Schaden von Bossen' },
-  gold:    { name: 'Gold',          mode: 'mult', f: 1, squad: true },
+  gold:    { name: 'Gold',          mode: 'mult', f: 1, squad: true, show: 'Gold aus Siegen' },
   exp:     { name: 'EXP',           mode: 'mult', f: 1, squad: true },
   shards:  { name: 'Ätherscherben', mode: 'mult', f: 1, squad: true },
   loot:    { name: 'Beute',         mode: 'add',  f: 1, squad: true, show: 'Chance auf Boss-Waffe' },
@@ -628,7 +628,7 @@ export const MYSTIC = {
   atk:   { name: 'Geschärfte Klingen', icon: '⚔️', per: 0.08, unit: '% Trupp-ATK', sign: '+', costs: [4, 10, 22, 45, 90] },
   hp:    { name: 'Gehärtete Rüstung',  icon: '🛡️', per: 0.08, unit: '% HP',        sign: '+', costs: [4, 10, 22, 45, 90] },
   regen: { name: 'Lebensquell',        icon: '💧', per: 0.12, unit: '% Regenerationszeit', sign: '−', costs: [3, 8, 18, 36, 72] },
-  loot:  { name: 'Glücksbringer',      icon: '🍀', per: 0.10, unit: '% Gold & Scherben', sign: '+', costs: [5, 12, 26, 52, 100] },
+  loot:  { name: 'Glücksbringer',      icon: '🍀', per: 0.10, unit: '% Gold & Scherben aus Siegen', sign: '+', costs: [5, 12, 26, 52, 100] },
 };
 export const MYSTIC_ORDER = ['atk', 'hp', 'regen', 'loot'];
 

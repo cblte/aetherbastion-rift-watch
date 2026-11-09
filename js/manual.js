@@ -41,7 +41,7 @@ export function manualChapters() {
         ['🍀 Mystischer Klee', 'Ruhestand', 'Mystische Schmiede, Würfel-Preis zurücksetzen'],
         ['🍞 Proviant', 'Bosse, Level-Ups', 'EXP für einen Helden'],
       ])}
-      <p><b>Gildenkasse:</b> Alle ${min(CYCLE_MS)} Minuten zahlt die Gildenhalle Gold aus. Helden selbst verdienen nur im Kampf.</p>` },
+      <p><b>Gildenkasse:</b> Alle ${min(CYCLE_MS)} Minuten zahlt die Gildenhalle Gold aus, dazu die Helden im Ruhestand. Aktive Helden verdienen nur im Kampf. Gold-Boni (Goldwandler, Glücksbringer, Eigenschaft Gold) wirken nur auf Gold aus Siegen, die Gildenkasse steigert allein der Kassen-Optimierer.</p>` },
 
     { icon: '🛡️', title: 'Helden, Rollen & Zelte', html: `
       <p>${HEROES.length} Helden aus fünf Völkern (Charr, Menschen, Norn, Asura, Sylvari), von jeder Rolle gleich viele. Das Volk ändert keine Werte, wichtig sind Rolle und Klasse.</p>

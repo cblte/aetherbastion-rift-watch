@@ -3,6 +3,9 @@
 Was sich im Spiel geändert hat, neueste Version oben. Die Nummern (#…) verweisen auf die Feedback-Liste.
 Die Version steht im Spiel unten unter der Navigation.
 
+## v0.39.2 – 09.11.2026
+- **Gold-Boni klarer (#060):** Goldwandler, Goldwandler Prime, 🍀 Glücksbringer und die Eigenschaft Gold wirken nur auf **Gold aus Siegen**, und so steht es jetzt auch überall dran. Die Gildenkasse steigert allein der **Kassen-Optimierer**. Neu: Er wirkt jetzt auch auf das Gold der Helden im 🏡 Ruhestand, nicht nur auf das der Gildenhalle.
+
 ## v0.39.1 – 09.11.2026
 - **Ruhigere Info-Zeile:** Schergen, die dein Trupp in weniger als 5 s besiegt, sagen nichts mehr. Bei schnellen Siegen wechselte der Spruch bisher mehrmals pro Gegner und war kaum zu lesen. Bosse und zähere Gegner haben ihre Sprüche weiterhin.
 

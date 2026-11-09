@@ -12,6 +12,12 @@ Format:
 
 ---
 
+## v0.39.2
+
+### #060 (Teil) Gold-Boni und Gildenkasse
+- **Quelle:** Entwickler (Nebenbefund aus dem Gold-Vergleich mit CQHT). Das Issue selbst (tägliche/wiederholbare Aufträge) bleibt zurückgestellt in `issues.md`.
+- Entscheidung (2026-11-09, Variante A): Jeder Bonus hat eine Aufgabe. Goldwandler, Goldwandler Prime, Glücksbringer (`MYSTIC.loot`) und die Eigenschaft Gold wirken weiter nur auf Gold aus Siegen; Texte sagen das jetzt („% Gold aus Siegen“, `TRAIT_STATS.gold.show`). Die Gildenkasse steigert allein der Kassen-Optimierer, jetzt auch beim Ruhestands-Gold (`treasuryMult` in `state.js`, genutzt von `hallGold` und `retireIncome`). Handbuch angepasst.
+
 ## v0.39.0
 
 ### #040 Asura-Labor ab Stufe 6 ohne Wirkung

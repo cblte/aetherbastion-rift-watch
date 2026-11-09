@@ -339,7 +339,8 @@ export const buildTimeMult = (s) => Math.max(0, 1 - rv(s, 'build'));
 export const researchTimeMult = (s) => Math.max(0, 1 - rv(s, 'labspeed'));
 export const rationChance = (s) => RATION_DROP.chance + rv(s, 'rations');
 export const levelCap    = (s) => s.buildings.camp ? BUILDINGS.camp.levels[s.buildings.camp - 1].cap : 10;
-export const hallGold    = (s) => s.buildings.hall ? Math.round(BUILDINGS.hall.levels[s.buildings.hall - 1].gold * (1 + rv(s, 'treasury'))) : 0;
+export const treasuryMult = (s) => 1 + rv(s, 'treasury'); // Kassen-Optimierer: Halle + Ruhestand (Gold-Boni aus Siegen wirken hier nicht, #060)
+export const hallGold    = (s) => s.buildings.hall ? Math.round(BUILDINGS.hall.levels[s.buildings.hall - 1].gold * treasuryMult(s)) : 0;
 export const buildingUnlocked = (s, key) => s.buildings.hall >= BUILDINGS[key].unlockHall;
 export const featureUnlocked  = (s, key) => s.buildings.hall >= FEATURES[key].unlockHall;
 // Waffenkammer-Plätze nach Gildenhalle; armoryFree < 1 → voll
@@ -560,9 +561,8 @@ export function gainExp(state, hero, amount) {
   return gained;
 }
 
-// Gildenkasse für einen 10-Min.-Zyklus: nur das Gold der Gildenhalle.
-// Helden haben kein passives Einkommen (goldCycle/rpCycle in heroLevels.js bleiben ungenutzt, siehe #022).
-// Ruhestand (#022)
+// Gildenkasse für einen 10-Min.-Zyklus: Gold der Gildenhalle + Ruhestand (#022), beides × treasuryMult.
+// Aktive Helden haben kein passives Einkommen, nur Helden im Ruhestand (goldCycle/rpCycle aus heroLevels.js).
 export const retireSlots = (s) => RETIRE_HOME.baseSlots + rv(s, 'archive');
 export function retireIncome(s) {
   let gold = 0, rp = 0;
@@ -570,7 +570,7 @@ export function retireIncome(s) {
     const L = HERO_LEVELS[Math.max(1, Math.min(HERO_LEVELS.length, r.level)) - 1];
     gold += L.goldCycle; rp += L.rpCycle;
   }
-  return { gold, rp };
+  return { gold: Math.round(gold * treasuryMult(s)), rp };
 }
 // 🔮 je Gildenkasse-Zyklus: Ruhestand + Forschung „Ätherkondensator“
 export const cycleShards = (s) => retireIncome(s).rp + rv(s, 'shardgen');
