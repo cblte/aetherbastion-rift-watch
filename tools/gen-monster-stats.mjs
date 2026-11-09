@@ -23,18 +23,18 @@ const lines = zones.map(z => {
     const b = pick(s.boss, `Zone ${z.id} Stufe ${s.nr}`);
     const mins = s.minions.map(m => pick(m, `Zone ${z.id} Stufe ${s.nr}`));
     const f = (o) => `{ hp: ${o.hp}, atk: ${o.atk}, def: ${o.def}, spd: ${o.spd} }`;
-    return `    // ${s.nr} ${s.kind} · ${s.boss.name} (${b.src})\n    { boss: ${f(b)}, minions: [${mins.map(f).join(', ')}] },`;
+    return `    // ${s.nr} ${s.kind} · ${s.boss.name}\n    { boss: ${f(b)}, minions: [${mins.map(f).join(', ')}] },`;
   });
   return `  ${z.id}: [ // ${z.zone}\n${stages.join('\n')}\n  ],`;
 });
 
 const txt = `// =====================================================================
-//  Kampfwerte der Gegner – 1:1 aus CQHT (#061)
+//  Kampfwerte der Gegner (#061), Herkunft: dev-data/DATA.md
 //  ⚠️ Erzeugt mit \`node tools/gen-monster-stats.mjs .\` aus dev-data/gw2-monsters.json,
 //  nicht von Hand bearbeiten.
 //  Je Zone eine Liste der Stufen (Reihenfolge wie in stages.js):
-//    hp/atk = LP und Schaden je Treffer (CQHT hp1/atk1), def = DEF (= RES),
-//    spd = Sekunden zwischen zwei Angriffen (CQHT attackSpeed).
+//    hp/atk = LP und Schaden je Treffer, def = DEF,
+//    spd = Sekunden zwischen zwei Angriffen.
 //  Regler (Bosse, schwere/legendäre Stufen, Veteranen) stehen in COMBAT (config.js).
 // =====================================================================
 export const MONSTER_STATS = {

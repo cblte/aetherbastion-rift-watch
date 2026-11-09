@@ -11,7 +11,7 @@
 // =====================================================================
 import { ZONES, HERO_BY_ID, CYCLE_MS, COMBAT } from './config.js';
 import { heroStats, addLog, offlineMaxMs, payCycle, squadTrait } from './state.js';
-import { checkConstruction, checkShop, checkRecruits } from './progress.js';
+import { checkConstruction, checkResearch, checkShop, checkRecruits } from './progress.js';
 import { squadMembers, teamProfile, monsterTemplate, veteranOf, veteranChance, applyKillRewards, spawnMonster, fmt } from './combat.js';
 
 const MAX_STEPS = 200_000; // Sicherheitsnetz
@@ -25,13 +25,14 @@ export function runOffline(state, elapsedMs) {
     squads: [], rp: 0, built: null, cycles: 0, cycleGold: 0, cycleRp: 0, totals: { gold: 0, shards: 0, kills: 0, levelUps: 0 },
   };
 
-  const rpBefore = state.rp;
+  const rpBefore = state.shards;
   // Alle Verwundeten regenerieren
   for (const h of state.heroes) { h.woundedUntil = 0; h.hp = heroStats(state, h).maxHp; }
 
   // Bau, Laden, Gildenkasse (echte Zeit für den Bau, Kasse bis zur Offline-Grenze)
   const start = state.lastTickMs;
   report.built = checkConstruction(state, start + elapsedMs);
+  report.researched = checkResearch(state, start + elapsedMs);
   checkShop(state, start + elapsedMs);
   checkRecruits(state, start + elapsedMs);
   report.cycles = 0; report.cycleGold = 0; report.cycleRp = 0;
@@ -105,9 +106,9 @@ export function runOffline(state, elapsedMs) {
   }
 
   report.totals.gold += report.cycleGold;
-  report.rp = state.rp - rpBefore; // Kasse + Level-Ups
+  report.rp = state.shards - rpBefore - report.totals.shards; // 🔮 aus Kasse (Ruhestand) + Level-Ups
   if (report.squads.length || report.cycles) {
-    addLog(state, `🌙 Offline: +${fmt(report.totals.gold)}🟡 +${report.totals.shards}🔮${report.rp >= 1 ? ` +${fmt(report.rp)}📜` : ''}`, null, 'info');
+    addLog(state, `🌙 Offline: +${fmt(report.totals.gold)}🟡 +${report.totals.shards}🔮${report.rp >= 1 ? ` (+${fmt(report.rp)}🔮 Level-Ups/Ruhestand)` : ''}`, null, 'info');
   }
   return report;
 }

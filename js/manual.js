@@ -5,7 +5,7 @@
 // =====================================================================
 import {
   BUILDINGS, ZONES, ROLES, CLASSES, ATTACK_TYPES, TRAIT_STATS, HEROES, TRAITS, TRAIT_RULES, TENTS, TENT_SIZE, COMBAT, GAME, NORMAL_STAGES, TOTAL_NORMAL, FEATURES,
-  RETIRE_MIN_LEVEL, LEVEL_CAP_MAX, ARMORY_SLOTS, RATION_SLOTS, RATION_DROP, RETIRE_HOME, CYCLE_MS, WEAPON_TYPES, WEAPON_FOR, WEAPON_GRADES, SHOP, SELL, QUESTS, RECRUIT, REROLL_RESET_CLOVER, ONBOARDING,
+  RETIRE_MIN_LEVEL, LEVEL_CAP_MAX, ARMORY_SLOTS, RATION_SLOTS, RATION_DROP, RETIRE_HOME, CYCLE_MS, WEAPON_TYPES, WEAPON_FOR, WEAPON_GRADES, SHOP, SELL, QUESTS, RECRUIT, REROLL_RESET_CLOVER, ONBOARDING, RESEARCH_TIME,
 } from './config.js';
 
 const pct = (x) => `${Math.round(x * 100)} %`;
@@ -37,8 +37,7 @@ export function manualChapters() {
     { icon: '🟡', title: 'Währungen & Vorräte', html: `
       ${table(['', 'Woher', 'Wofür'], [
         ['🟡 Gold', 'Siege, Gildenkasse', 'Gebäude, Rekruten, Zelte, Bosse, Waffen, Beleben'],
-        ['🔮 Ätherscherben', `Siege (${pct(COMBAT.SHARD_CHANCE)}), jeder Boss`, 'Riss-Portal'],
-        ['📜 Forschungsnotizen', 'Bosse, Level-Ups', 'Asura-Labor, seltene Waffen'],
+        ['🔮 Ätherscherben', `Siege (${pct(COMBAT.SHARD_CHANCE)}), jeder Boss, Level-Ups, Ruhestand`, 'Forschung, Riss-Portal, seltene Waffen'],
         ['🍀 Mystischer Klee', 'Ruhestand', 'Mystische Schmiede, Würfel-Preis zurücksetzen'],
         ['🍞 Proviant', 'Bosse, Level-Ups', 'EXP für einen Helden'],
       ])}
@@ -65,14 +64,12 @@ export function manualChapters() {
 
     { icon: '👑', title: 'Kampf & Bosse', html: `
       ${list([
-        'Jeder Trupp kämpft unabhängig in einer Riss-Zone. Jeder Held und jeder Gegner greift in seinem eigenen Takt an.',
+        'Jedes Zelt kämpft als eigener Trupp unabhängig in seiner eigenen Zone und Stufe. Ein Wechsel greift sofort, die Kampfbühne leuchtet kurz auf. In der Chronik steht das Zelt (⛺1 …) mit der Zone darunter.',
         'Dein Trupp <b>farmt die Schergen</b> der gewählten Stufe: Gold, EXP und ab und zu Ätherscherben.',
         `<b>„Herausfordern“</b> kostet etwas Gold. Dann hat der Trupp <b>${COMBAT.BOSS_TIME_LIMIT} Sekunden</b> für den Boss. Bis dahin lassen sich Zone und Stufe nicht wechseln – aussteigen geht mit <b>„Abbrechen“</b>.`,
-        'Jedes Zelt kämpft in seiner eigenen Zone. Ein Wechsel greift sofort, die Kampfbühne leuchtet kurz auf.',
-        'In der Chronik steht das Zelt (⛺1 …) mit der Zone darunter.',
         `Nach jeder Herausforderung – Sieg, Niederlage oder Abbruch – verschnauft der Trupp <b>${COMBAT.BOSS_COOLDOWN} Sekunden</b> und kämpft solange gegen die Schergen der Stufe.`,
         '<b>🔁 Auto</b> wiederholt die Herausforderung nach jeder Pause von selbst (wenn das Gold reicht) – gut, um Boss-Beute zu sammeln. Nach einer Niederlage schaltet sich Auto aus. Offline kämpfen Trupps nur gegen Schergen.',
-        '<b>Sieg:</b> Forschungsnotizen, Waffen, Proviant, Scherben – beim ersten Sieg öffnet sich die nächste Stufe.',
+        '<b>Sieg:</b> Ätherscherben, Waffen, Proviant – beim ersten Sieg öffnet sich die nächste Stufe.',
         '<b>Niederlage:</b> Der Trupp kehrt zu den Schergen zurück. Versuch es später erneut.',
         `Fällt ein Held auf 0 LP, ist er <b>verwundet</b> und erholt sich ${COMBAT.WOUND_MS / 1000} Sekunden lang. ⚡ belebt ihn sofort gegen Gold.`,
         'Fallen alle drei, zieht sich der Trupp ins Lager zurück und kehrt zurück, sobald ein Held wieder fit ist (erholt oder belebt).',
@@ -82,14 +79,14 @@ export function manualChapters() {
         `Jede Klasse hat einen Takt (⏱️ im Helden-Fenster): ${Object.values(CLASSES).sort((a, b) => a.interval - b.interval).map(c => `${c.name} ${String(c.interval).replace('.', ',')} s`).join(', ')}. Schnelle Klassen treffen öfter, aber schwächer – pro Sekunde machen alle gleich viel. Eile, Forschung und Tempo-Eigenschaften verkürzen den Takt.`,
         `⚔️ Schaden und 🛡️ Tank greifen mit voller ATK an, 📯 Unterstützer mit ${pct(COMBAT.SUPPORT_ATK_FACTOR)}. Krit-Treffer machen ×${String(COMBAT.CRIT_MULT).replace('.', ',')} Schaden, jeder Treffer streut um ±${pct(COMBAT.VARIANCE)}.`,
         `✚ Heiler heilen den Verbündeten mit den wenigsten LP (Anteil) um ATK × ${String(COMBAT.HEAL_MULT).replace('.', ',')} pro Sekunde und greifen mit ${pct(COMBAT.HEALER_ATK_FACTOR)} ATK an, ohne Krit.`,
-        '<b>Gegnerwerte wie in Crusaders Quest:</b> LP, Schaden, DEF und Takt jedes Gegners stammen aus CQHT. Schergen greifen meist alle 2,5 s an, Bosse alle 1,5 s. Ab Lv. 30 sind die LP etwas gedämpft, weil unsere Helden keine Skills haben.',
+        '<b>Gegnerwerte:</b> Jeder Gegner hat eigene LP, eigenen Schaden, eigene DEF und einen eigenen Takt. Schergen greifen meist alle 2,5 s an, Bosse alle 1,5 s. Ab Lv. 30 sind die LP etwas gedämpft, weil unsere Helden keine Skills haben.',
         `<b>DEF und Durchdringung:</b> Schaden × 100 / (100 + DEF − Durchdringung). 100 DEF halbieren den Schaden. Helden bekommen DEF und Durchdringung mit dem Level (${COMBAT.HERO_ARMOR.perLevel.toLocaleString('de-DE')} je Level, mehr bei höherer Seltenheit), Waffen geben zusätzlich Durchdringung (bis ${WEAPON_GRADES[6].pen} bei T6). Liegt die Durchdringung über der DEF des Gegners, gibt es bis ×1,5 Bonus-Schaden. Wer unter dem Stufen-Level kämpft, durchdringt also weniger.`,
         `🎖️ <b>Veteranen:</b> Jeder Scherge kommt mit ${pct(COMBAT.VETERAN.chance)} Chance als Veteran: ×${COMBAT.VETERAN.hp} LP, ×${String(COMBAT.VETERAN.atk).replace('.', ',')} Schaden, ×${COMBAT.VETERAN.loot} Beute. Erst nach dem Sieg über die Banditen-Anführerin (Königintal, Stufe 1).`,
         'Wie ein Gegner angreift, steht unter ihm:',
         `${ATTACK_TYPES.melee.icon} <b>Nahkampf:</b> ${pct(COMBAT.LEADER_SHARE)} auf den 🚩 Anführer, der Rest verteilt sich (🛡️ Tank ${ROLES.tank.aggro} Teile, ⚔️/📯 je ${ROLES.dps.aggro}, ✚ Heiler ${ROLES.healer.aggro}).`,
         `${ATTACK_TYPES.ranged.icon} <b>Fernkampf:</b> trifft einen Helden voll, gewürfelt nach denselben Teilen.`,
         `${ATTACK_TYPES.magic.icon} <b>Magie:</b> trifft alle fitten Helden zu gleichen Teilen.`,
-        `💥 <b>Bosse</b> holen alle ${COMBAT.BOSS_AOE_EVERY} s zu einem Flächenangriff aus, der jeden Helden trifft. ${COMBAT.BOSS_AOE_WARN} s vorher steht die Warnung unter dem Boss.`,
+        `💥 <b>Bosse</b> holen alle ${COMBAT.BOSS_AOE_EVERY} s zu einem Flächenangriff aus, der jeden Helden trifft. ${COMBAT.BOSS_AOE_WARN} s vorher steht die Warnung in der Info-Zeile unter dem Boss.`,
         `Die DEF jedes Helden senkt seinen Schaden, dazu der Schutz (Schadensreduktion aus Rolle, Forschung und Eigenschaften, höchstens ${pct(COMBAT.DEF_CAP)}). Im Helden-Fenster stehen DEF, Schutz und beides zusammen.`,
         `Nach jedem Sieg heilt der ganze Trupp ${pct(COMBAT.KILL_HEAL)} seiner LP.`,
         'Die Werte siehst du im Helden-Fenster (💥 Schaden, ✚ Heilung) und für den ganzen Trupp unter jedem Zelt.',
@@ -134,7 +131,7 @@ export function manualChapters() {
       <p>Beim <b>ersten Sieg</b> über einen Boss gibt es die volle Menge, danach nur mit ${pct(RATION_DROP.chance)} Chance ${RATION_DROP.amount.join('–')} Stück. Das Lager fasst je Güte ${RATION_SLOTS[0]} bis ${RATION_SLOTS.at(-1)} Stück (wächst mit der Gildenhalle); was darüber geht, verfällt.</p>` },
 
     { icon: '🔬', title: 'Forschung', html: `
-      <p>Im <b>Asura-Labor</b> erforschst du mit 📜 Forschungsnotizen dauerhafte Verbesserungen in drei Bäumen:</p>
+      <p>Im <b>Asura-Labor</b> erforschst du mit 🔮 Ätherscherben dauerhafte Verbesserungen in drei Bäumen. Jede Stufe braucht Zeit (${RESEARCH_TIME[1][0]} s bis ${Math.round(RESEARCH_TIME[4][1] / 60)} Min., höhere Ebenen länger), es läuft immer eine Forschung gleichzeitig, auch offline. Die Scherben zahlst du beim Start.</p>
       ${list([
         '⚔️ <b>Offensive:</b> ATK, Angriffstempo, Krit-Chance und Krit-Schaden.',
         '🛡️ <b>Defensive:</b> HP, DEF, Heilung und kürzere Regeneration.',
@@ -149,7 +146,7 @@ export function manualChapters() {
         'Klee gibt es nur für EXP aus dem <b>Kampf</b>: Er richtet sich nach dem Level, das der Held ohne 🍞 Proviant hätte.',
         'In der <b>Mystischen Schmiede</b> kaufst du damit dauerhafte Boni für alle Trupps.',
         'Ein Held im Ruhestand kann später neu rekrutiert werden und beginnt wieder bei Lv. 1 – auch mehrfach im Ruhestand.',
-        `Im <b>🏡 Ruhestand</b> zahlen sie mit der Gildenkasse alle ${min(CYCLE_MS)} Min. 🟡 Gold und 📜 Forschungsnotizen, je nach (Kampf-)Level – auch offline.`,
+        `Im <b>🏡 Ruhestand</b> zahlen sie mit der Gildenkasse alle ${min(CYCLE_MS)} Min. 🟡 Gold und 🔮 Ätherscherben, je nach (Kampf-)Level – auch offline.`,
         `Es gibt ${RETIRE_HOME.baseSlots} Plätze, mit der Forschung „Archiv der Veteranen“ bis ${RETIRE_HOME.baseSlots + 90}. Sind alle voll, geht der Schwächste; ist keiner schwächer, gibt es nur den Klee.`,
       ])}` },
 

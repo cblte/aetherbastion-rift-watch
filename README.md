@@ -28,7 +28,7 @@ manifest.json         PWA-Manifest
 sw.js                 Service Worker (Cache-first, versioniert)
 icon.svg              App-Icon (+ icon-192.png / icon-512.png für Android/iOS)
 MANUAL.md             Spielanleitung
-DATA.md               Wie die Hero-Town-Daten auf Aetherbastion übertragen wurden
+dev-data/             Entwicklungs-Referenzen (Herkunft der Zahlen: dev-data/DATA.md)
 ```
 
 ## Lokal testen
@@ -73,7 +73,7 @@ Die Startaufstellung im Onboarding steht in `ONBOARDING` (Tank, Heiler, Schadens
 
 ### Spieldaten
 
-Die Tabellen in `js/data/` stammen aus Crusaders Quest: Hero Town und sind auf Guild Wars 2 umgemünzt. Was woher kommt, steht in `DATA.md`. Werte dort ändern, Logik bleibt unverändert.
+Alle Zahlen stehen als Tabellen in `js/data/`. Woher sie kommen, steht in `dev-data/DATA.md`. Werte dort ändern, die Logik bleibt unverändert.
 
 - **Neue Stufen/Bosse:** in `js/data/stages.js` bei der Zone eintragen (`level`, `cost`, `boss`, `minions`, `rewards`).
 - **Gebäude:** je Stufe eine Zeile in `js/data/buildings.js` (`cost`, `time` in Sekunden, `hall`).
@@ -81,7 +81,7 @@ Die Tabellen in `js/data/` stammen aus Crusaders Quest: Hero Town und sind auf G
 
 ### Balancing
 
-Formeln stehen im Objekt `F` in `js/config.js`, Kampfkonstanten in `COMBAT`. Die Schwierigkeit einer Stufe ist `level × COMBAT.LEVEL_DIFF` (auf Lv.-60-Stufen steigt sie mit den Kosten weiter). Monster wachsen mit `F.monsterHp`/`F.monsterAtk`. Königintal und Caledon-Wald (= Kapitel 1 in Hero Town) sind schnell durch (etwa 20 Minuten). Das Spätspiel (Zonen 9–10, schwer) ist noch nicht durchbalanciert.
+Formeln stehen im Objekt `F` in `js/config.js`, Kampfkonstanten in `COMBAT`. Die Schwierigkeit einer Stufe ist `level × COMBAT.LEVEL_DIFF` (auf Lv.-60-Stufen steigt sie mit den Kosten weiter). Monster wachsen mit `F.monsterHp`/`F.monsterAtk`. Königintal und Caledon-Wald (Kapitel 1) sind schnell durch (etwa 20 Minuten). Das Spätspiel (Zonen 9–10, schwer) ist noch nicht durchbalanciert.
 
 ### Pixel-Art einsetzen
 

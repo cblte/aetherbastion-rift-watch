@@ -3,6 +3,13 @@
 Was sich im Spiel geändert hat, neueste Version oben. Die Nummern (#…) verweisen auf die Feedback-Liste.
 Die Version steht im Spiel unten unter der Navigation.
 
+## v0.38.0 – 09.11.2026
+- **Forschung braucht Zeit:** Jede Forschungsstufe im Asura-Labor dauert jetzt: 30 s bis 2 Min. auf Ebene I, bis 50 Min. für das Archiv der Veteranen. Es läuft immer eine Forschung gleichzeitig, auch offline. Der Laborkopf zeigt, was gerade erforscht wird.
+- **Drei statt vier Währungen:** 📜 Forschungsnotizen gibt es nicht mehr. Geforscht wird mit 🔮 Ätherscherben. Alles, was bisher 📜 gab (Bosse, Level-ups, Ruhestand, Aufträge), gibt jetzt 🔮. Vorhandene 📜 wurden 1:1 zu 🔮.
+- Weil 🔮 jetzt viel öfter fallen, kostet das Riss-Portal mehr (Stufe 2: 100, 3: 400, 4: 1.500 🔮), und seltene Waffen im Laden kosten in 🔮 das 20-Fache des alten 📜-Preises.
+- 📖 Handbuch, Kapitel „Kampf & Bosse“: Doppelte Stellen zu Zelt, Trupp und Zone sowie zum Verwunden zusammengefasst.
+- Handbuch und Spieldaten nennen keine fremden Spiele mehr als Vorlage.
+
 ## v0.37.2 – 09.11.2026
 - **Mehr Leben in der Info-Zeile:** Die Gegner-Sprüche kommen jetzt zufällig statt der Reihe nach, und manche erwähnen deine Helden beim Namen („Unterschätzt Lucian. Großer Fehler.“). Die Zeile hat Platz für zwei Zeilen, damit nichts mehr abgeschnitten wird – auch die Warnung vor dem Flächenangriff nicht.
 
@@ -18,8 +25,8 @@ Die Version steht im Spiel unten unter der Navigation.
 - 🎖️ **Keine Veteranen im Tutorial:** Veteranen kommen erst, wenn die Banditen-Anführerin (Königintal, Stufe 1) besiegt ist. Vorher stand man mit einem einzigen Helden schon doppelt so starken Schergen gegenüber.
 
 ## v0.36.0 – 09.11.2026
-- **Gegner wie in Crusaders Quest (#061):** Jeder Scherge und Boss hat jetzt die LP, den Schaden, die DEF und den Takt seiner CQHT-Vorlage. Schergen halten deutlich länger durch (auf passendem Level etwa 5–15 s statt 2–4 s). Ab Lv. 30 sind die LP etwas gedämpft, weil unsere Helden noch keine Skills haben.
-- **DEF und Durchdringung nach CQHT-Formel:** Helden bekommen mit jedem Level DEF und Durchdringung, Waffen zusätzlich Durchdringung (T2 10 bis T6 100). Wer unter dem Stufen-Level kämpft, kommt schlechter durch die Gegner-DEF und macht weniger Schaden. Im Helden-Fenster stehen beide Werte. Dort steht jetzt auch ausgerechnet, wie viel weniger Schaden ein Held nimmt: durch DEF, durch Schutz (Rolle, Forschung, Eigenschaften) und beides zusammen.
+- **Eigene Werte für jeden Gegner (#061):** Jeder Scherge und Boss hat jetzt eigene LP, eigenen Schaden, eigene DEF und einen eigenen Takt. Schergen halten deutlich länger durch (auf passendem Level etwa 5–15 s statt 2–4 s). Ab Lv. 30 sind die LP etwas gedämpft, weil unsere Helden noch keine Skills haben.
+- **DEF und Durchdringung:** Helden bekommen mit jedem Level DEF und Durchdringung, Waffen zusätzlich Durchdringung (T2 10 bis T6 100). Wer unter dem Stufen-Level kämpft, kommt schlechter durch die Gegner-DEF und macht weniger Schaden. Im Helden-Fenster stehen beide Werte. Dort steht jetzt auch ausgerechnet, wie viel weniger Schaden ein Held nimmt: durch DEF, durch Schutz (Rolle, Forschung, Eigenschaften) und beides zusammen.
 - **Krit** macht jetzt ×1,5 statt ×2 Schaden, jeder Treffer streut um ±5 %.
 - **Heiler** heilen deutlich weniger (ATK × 0,6 statt × 1,8 pro Sekunde). Bosse können den Trupp jetzt wirklich zu Fall bringen.
 - **Bosse sind knackiger:** Ein Zonen-Endboss braucht einen gut ausgebauten Trupp etwa auf Stufen-Level. Die Fluchküste schafft nur ein starker Trupp auf Höchstlevel. Schwere Stufen bleiben härter als der letzte normale Boss, legendäre sind weiter fast unschaffbar.

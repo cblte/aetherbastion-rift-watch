@@ -6,7 +6,7 @@ Gebaut wird immer **nur ein Gebäude gleichzeitig**. Kosten in 🟡 Gold.
 
 ## Übersicht: alle Ausbaukosten
 
-Alles, was mit der jeweiligen Gildenhallen-Stufe baubar wird (Halle selbst, Gebäudestufen, neue Zelte), mit Summe und laufender Gesamtsumme. Das Riss-Portal kostet zusätzlich 🔮 Ätherscherben (15 / 40 / 100 für Stufe 2–4).
+Alles, was mit der jeweiligen Gildenhallen-Stufe baubar wird (Halle selbst, Gebäudestufen, neue Zelte), mit Summe und laufender Gesamtsumme. Das Riss-Portal kostet zusätzlich 🔮 Ätherscherben (100 / 400 / 1.500 für Stufe 2–4).
 
 | Gildenhalle | Neu baubar (Kosten) | Summe | Gesamt |
 | --- | --- | --- | --- |
@@ -117,7 +117,7 @@ Stufe bestimmt die verfügbaren Riss-Zonen.
 
 *CQHT: Skill Lab · max. Stufe 10 · ab Gildenhalle 1*
 
-Forschung mit 📜 Forschungsnotizen. Höhere Stufen öffnen tiefere Forschung.
+Forschung mit 🔮 Ätherscherben. Höhere Stufen öffnen tiefere Forschung.
 
 > Asura-Know-how für alle: Golemtechnik, Ätherkunde und Nebelphysik – egal woher das Wissen stammt, hier gehört es der ganzen Gilde.
 
@@ -134,7 +134,7 @@ Forschung mit 📜 Forschungsnotizen. Höhere Stufen öffnen tiefere Forschung.
 | 9 | 500.000 | 30 Min. | 8 |
 | 10 | 1.000.000 | 35 Min. | 9 |
 
-**So funktioniert es:** Forschung mit 📜 Forschungsnotizen in drei Bäumen (Offensive, Defensive, Logistik). Stufe 3 öffnet Forschungsstufe II, Stufe 5 Stufe III.
+**So funktioniert es:** Forschung mit 🔮 Ätherscherben in drei Bäumen (Offensive, Defensive, Logistik). Stufe 3 öffnet Forschungsstufe II, Stufe 5 Stufe III.
 
 ## ⚒️ Charr-Schmiede
 

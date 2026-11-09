@@ -2,7 +2,7 @@
 
 > Interne Entwicklungs-Referenz für **Aetherbastion: Rift Watch**. Erzeugt aus den Spieldaten in `js/data/`; maßgeblich ist immer der Code. Die Spalte *CQHT* nennt das Vorbild aus Crusaders Quest: Hero Town.
 
-Der Laden zeigt 3 zufällige Waffen und füllt sich alle 30 Minuten neu. Waffen kosten 🟡 Gold; die besten gibt es alternativ für 📜 Forschungsnotizen. Die **Schmiede-Stufe** bestimmt, ab wann eine Waffe im Laden auftauchen kann; die **Chance** ist ihr Gewicht beim Würfeln des Angebots. Heiler tragen immer einen 🔮 Fokus, alle anderen die Waffe ihrer Klasse.
+Der Laden zeigt 3 zufällige Waffen und füllt sich alle 30 Minuten neu. Waffen kosten 🟡 Gold; die besten gibt es alternativ für 🔮 Ätherscherben. Die **Schmiede-Stufe** bestimmt, ab wann eine Waffe im Laden auftauchen kann; die **Chance** ist ihr Gewicht beim Würfeln des Angebots. Heiler tragen immer einen 🔮 Fokus, alle anderen die Waffe ihrer Klasse.
 
 ## Waffenarten
 

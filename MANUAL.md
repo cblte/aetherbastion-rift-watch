@@ -20,7 +20,7 @@ Danach geht es im selben **Auftrags-Banner** nahtlos weiter (Auftrag 5 bis 27). 
 
 - Der Balken zeigt den Fortschritt, **„Hingehen“** springt zum passenden Reiter.
 - Bei Boss-Aufträgen zeigt 🎯 die Zielstufe, in der Stufenliste und am Knopf **„Herausfordern“**.
-- Ist ein Auftrag erfüllt, holst du die **Belohnung** (Gold, Ätherscherben oder Forschungsnotizen) mit einem Tipp ab. Erst dann kommt der nächste.
+- Ist ein Auftrag erfüllt, holst du die **Belohnung** (Gold oder Ätherscherben) mit einem Tipp ab. Erst dann kommt der nächste.
 - Hast du ein Ziel schon früher erreicht, ist der Auftrag sofort erfüllt.
 - Scrollst du nach unten, klappt das Banner ein (nur Titel und Balken), damit die Kampfbühne Platz hat. Ein Tipp auf die Kopfzeile klappt es wieder auf, ein neuer Auftrag öffnet es von selbst.
 
@@ -29,8 +29,7 @@ Danach geht es im selben **Auftrags-Banner** nahtlos weiter (Auftrag 5 bis 27). 
 | | Was | Woher | Wofür |
 |---|---|---|---|
 | 🟡 | Gold | Siege, Gildenkasse, Aufträge, Verkauf (Waffen, Proviant, Früchte) | Gebäude, Rekruten, Zelte, Boss-Herausforderungen, Waffen, Belebung |
-| 🔮 | Ätherscherben | Siege (5 %), jeder Boss | Riss-Portal |
-| 📜 | Forschungsnotizen | Boss-Siege, Level-Ups | Forschung im Asura-Labor, seltene Waffen |
+| 🔮 | Ätherscherben | Siege (5 %), jeder Boss, Level-Ups, Ruhestand | Forschung im Asura-Labor, Riss-Portal (100 / 400 / 1.500), seltene Waffen |
 | 🍀 | Mystischer Klee | Ruhestand | Mystische Schmiede, Würfel-Preis zurücksetzen |
 | 🍞 | Proviant (Güte 1–6) | Boss-Siege, Level-Ups | EXP für einen Helden, oder verkaufen |
 | 🍎 | Früchte | Level-Ups | Verkaufen (eigene Funktion folgt) |
@@ -49,7 +48,7 @@ Im Spiel gibt es 60 Helden, je zwölf Charr, Menschen, Norn, Asura und Sylvari, 
 
 **Platz 1** im Zelt ist der **🚩 Anführer**. Nahkämpfer schlagen vor allem auf ihn ein, fällt er, rückt der Nächste nach (Details unter „So läuft ein Kampf“).
 
-Helden steigen bis **Lv. 60** auf. Jede neue Stufe bringt eine Belohnung: Forschungsnotizen, Proviant und manchmal Früchte.
+Helden steigen bis **Lv. 60** auf. Jede neue Stufe bringt eine Belohnung: Ätherscherben, Proviant und manchmal Früchte.
 
 ### Klassen
 
@@ -93,15 +92,14 @@ Jeder Held bringt **Eigenschaften** mit, gewürfelt beim Rekrutieren. Du siehst 
 
 ## Kampf: Stufen, Schergen und Bosse
 
-- Jeder Trupp kämpft **unabhängig** in einer Riss-Zone. Jeder Held und jeder Gegner greift in seinem eigenen Takt an.
+- Jedes Zelt kämpft als eigener Trupp **unabhängig** in seiner eigenen Zone und Stufe. Wählst du eine andere, zieht das Zelt sofort um: Ein Hinweis bestätigt den Wechsel, die Seite springt zur Kampfbühne, und sie leuchtet kurz auf.
+- In der **Chronik** steht vor jedem Eintrag das Zelt (⛺1, ⛺2 …) und darunter kurz die Zone, in der es gerade kämpft.
 - Jede Zone hat **5 normale Stufen** und **2 schwere** ☠️, jede zweite Zone zusätzlich **1 legendäre** ⭐. Jede Stufe hat einen **Boss** 👑, zwei Arten von **Schergen** und ein empfohlenes **Heldenlevel**.
 - Dein Trupp **farmt die Schergen** der gewählten Stufe. Das bringt Gold, EXP und ab und zu Ätherscherben.
 - Wenn du meinst, dass dein Trupp stark genug ist, tippst du auf **„Herausfordern“**. Das kostet etwas Gold. Dann hat der Trupp **90 Sekunden**, um den Boss zu besiegen. Solange der Bosskampf läuft, lassen sich Zone und Stufe nicht wechseln; wer aussteigen will, tippt auf **„Abbrechen“**.
-- Wählst du eine andere Zone oder Stufe, zieht das Zelt sofort um: Ein Hinweis bestätigt den Wechsel, die Seite springt zur Kampfbühne, und sie leuchtet kurz auf. Jedes Zelt kämpft in seiner eigenen Zone.
-- In der **Chronik** steht vor jedem Eintrag das Zelt (⛺1, ⛺2 …) und darunter kurz die Zone, in der es gerade kämpft.
 - Nach jeder Herausforderung (Sieg, Niederlage oder Abbruch) verschnauft der Trupp **90 Sekunden**. In der Pause kämpft er gegen die Schergen der Stufe weiter.
 - **🔁 Auto** wiederholt die Herausforderung nach jeder Pause von selbst, solange das Gold reicht. So sammelst du Boss-Beute nebenbei. Nach einer Niederlage oder einem Abbruch schaltet sich Auto aus. Offline kämpfen die Trupps nur gegen Schergen.
-  - **Sieg:** Forschungsnotizen, Waffen, Proviant, Ätherscherben. Beim ersten Sieg wird die nächste Stufe frei.
+  - **Sieg:** Ätherscherben, Waffen, Proviant. Beim ersten Sieg wird die nächste Stufe frei.
   - **Zeit abgelaufen oder alle gefallen:** Der Trupp kehrt zu den Schergen zurück. Versuch es später erneut.
 - Bereits besiegte Bosse kannst du jederzeit erneut herausfordern, zum Beispiel für Waffen.
 - Fällt ein Held auf 0 LP, ist er **verwundet** und erholt sich **90 Sekunden** lang. Für Gold kannst du ihn sofort beleben (⚡).
@@ -113,8 +111,8 @@ Jeder Held bringt **Eigenschaften** mit, gewürfelt beim Rekrutieren. Du siehst 
 - ⚔️ Schadensausteiler und 🛡️ Tanks greifen mit voller ATK an, 📯 Unterstützer mit 70 %. Krit-Treffer machen ×1,5 Schaden. Jeder Treffer streut um ±5 %.
 - ✚ Heiler heilen den Verbündeten mit den wenigsten LP (Anteil) um **ATK × 0,6 pro Sekunde** und greifen mit **40 % ATK** an, ohne Krit.
 - Ein neuer Gegner braucht einen halben Moment (0,5 s), bis er da ist.
-- **Gegnerwerte wie in Crusaders Quest:** LP, Schaden, DEF und Takt jedes Gegners stammen aus CQHT (`js/data/monsterStats.js`). Schergen greifen meist alle **2,5 s** an, Bosse alle **1,5 s**. Ab Lv. 30 sind die LP gedämpft, weil unsere Helden keine Skills haben. Bosse haben 60 % der CQHT-LP, in den Zonen 9–10 noch weniger.
-- **DEF und Durchdringung** (Formel aus CQHT): Schaden × 100 / (100 + DEF − Durchdringung). 100 DEF halbieren den Schaden.
+- **Gegnerwerte:** Jeder Gegner hat eigene LP, eigenen Schaden, eigene DEF und einen eigenen Takt. Schergen greifen meist alle **2,5 s** an, Bosse alle **1,5 s**. Ab Lv. 30 sind die LP gedämpft, weil unsere Helden keine Skills haben. Bosse haben dafür weniger LP, in den Zonen 9–10 noch einmal weniger.
+- **DEF und Durchdringung:** Schaden × 100 / (100 + DEF − Durchdringung). 100 DEF halbieren den Schaden.
   - Helden bekommen DEF und Durchdringung mit dem Level: 2,5 je Level, dazu ein Grundwert nach Seltenheit (Fein 0 bis Aufgestiegen 20).
   - Waffen geben zusätzlich Durchdringung: T2 10, T3 25, T4 45, T5 70, T6 100.
   - Liegt die Durchdringung über der DEF des Gegners, gibt es bis **×1,5** Bonus-Schaden. Wer unter dem Stufen-Level kämpft, durchdringt weniger und macht spürbar weniger Schaden.
@@ -123,8 +121,8 @@ Jeder Held bringt **Eigenschaften** mit, gewürfelt beim Rekrutieren. Du siehst 
   - 🗡️ **Nahkampf:** 60 % auf den 🚩 Anführer (Platz 1), der Rest verteilt sich auf die anderen: 🛡️ Tank 5 Teile, ⚔️ Schaden und 📯 Unterstützer je 3, ✚ Heiler 2.
   - 🏹 **Fernkampf:** trifft einen Helden mit voller Wucht, gewürfelt nach denselben Teilen.
   - ✨ **Magie:** trifft alle fitten Helden zu gleichen Teilen.
-- 💥 **Bosse** holen alle **12 s** zu einem **Flächenangriff** aus, der jeden Helden trifft. 3 s vorher steht die Warnung unter dem Boss.
-- Die DEF jedes Helden senkt seinen Schaden, dazu der **Schutz** (Schadensreduktion aus Rolle, Forschung und Eigenschaften, höchstens 50 %). Im Helden-Fenster stehen DEF, Schutz und beides zusammen als „−x % Schaden“, bei Boss-Härte auch der Wert gegen Bosse. Wer auf 0 LP fällt, ist verwundet. Erst wenn alle verwundet sind, zieht sich der Trupp zurück.
+- 💥 **Bosse** holen alle **12 s** zu einem **Flächenangriff** aus, der jeden Helden trifft. 3 s vorher steht die Warnung in der Info-Zeile unter dem Boss.
+- Die DEF jedes Helden senkt seinen Schaden, dazu der **Schutz** (Schadensreduktion aus Rolle, Forschung und Eigenschaften, höchstens 50 %). Im Helden-Fenster stehen DEF, Schutz und beides zusammen als „−x % Schaden“, bei Boss-Härte auch der Wert gegen Bosse.
 - Nach jedem Sieg heilt der ganze Trupp 10 % seiner LP.
 - Im Helden-Fenster stehen **💥 Schaden** und **✚ Heilung** pro Sekunde (ohne Trupp-Boni). Unter jedem Zelt stehen Schaden, Heilung und LP des ganzen Trupps.
 
@@ -187,7 +185,11 @@ Die Karte der Gildenhalle zeigt, was die nächste Stufe freischaltet. Die Mystis
 
 ## 🔬 Asura-Labor – Forschung
 
-Mit **📜 Forschungsnotizen** erforschst du dauerhafte Verbesserungen in drei Bäumen. Jeder Knoten hat bis zu 5 Stufen. Tiefere Knoten brauchen einen Vorgänger und eine höhere Laborstufe (Stufe II ab Labor 3, Stufe III ab Labor 5, Stufe IV ab Labor 6).
+Mit **🔮 Ätherscherben** erforschst du dauerhafte Verbesserungen in drei Bäumen. Jeder Knoten hat bis zu 5 Stufen.
+
+- Jede Stufe **braucht Zeit**: Ebene I 30 s → 2 Min., II 1 → 5 Min., III 5 → 15 Min., IV (Archiv) 25 → 50 Min. Es läuft immer **eine Forschung** gleichzeitig, auch offline. Die Scherben zahlst du beim Start.
+- Die Forschungen stehen in `js/data/research.js` und lassen sich dort erweitern.
+ Tiefere Knoten brauchen einen Vorgänger und eine höhere Laborstufe (Stufe II ab Labor 3, Stufe III ab Labor 5, Stufe IV ab Labor 6).
 
 | Baum | Knoten |
 |---|---|
@@ -270,7 +272,7 @@ Wie oft welche Seltenheit kommt, hängt von der **Gildenhalle** ab. Die aktuelle
 - Helden ab **Lv. 20** können in den **Ruhestand** gehen. Sie verlassen das Lager und hinterlassen **🍀 Mystischen Klee** = Level² ÷ 100 (Lv. 20 = 4, Lv. 60 = 36). Ihre Waffe kommt zurück in die Waffenkammer.
 - Klee gibt es nur für EXP aus dem **Kampf**. EXP aus 🍞 Proviant zählt nicht: Der Klee richtet sich nach dem **Kampf-Level**, also dem Level, das der Held nur mit Kampf-EXP hätte. Ein Held, der nur mit Proviant gelevelt wurde, bringt 0 🍀; Füttern nimmt aber auch keinen Klee weg.
 - Ein Held im Ruhestand kann später erneut rekrutiert werden und beginnt wieder bei Lv. 1. Derselbe Held darf mehrmals im Ruhestand sein.
-- **🏡 Ruhestand:** Helden im Ruhestand zahlen mit der Gildenkasse alle 10 Min. 🟡 Gold und 📜 Forschungsnotizen nach ihrem Kampf-Level (Lv. 20 = 17 🟡 / 1 📜, Lv. 40 = 46 🟡 / 2 📜, Lv. 60 = 75 🟡 / 3 📜), auch offline.
+- **🏡 Ruhestand:** Helden im Ruhestand zahlen mit der Gildenkasse alle 10 Min. 🟡 Gold und 🔮 Ätherscherben nach ihrem Kampf-Level (Lv. 20 = 17 🟡 / 1 🔮, Lv. 40 = 46 🟡 / 2 🔮, Lv. 60 = 75 🟡 / 3 🔮), auch offline.
 - Es gibt **10 Plätze**. Die Forschung **Archiv der Veteranen** (Logistik, Stufe IV, Asura-Labor 6–10) bringt +10 je Stufe, bis 100. Sind alle Plätze voll, geht der schwächste Held; ist keiner schwächer als der neue, gibt es nur den Klee.
 - In der **✨ Mystischen Schmiede** gibt es dauerhafte Boni mit je 5 Stufen: mehr Trupp-ATK, mehr HP, kürzere Regeneration, mehr Gold und Scherben.
 

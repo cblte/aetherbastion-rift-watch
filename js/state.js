@@ -19,14 +19,14 @@ export function createNewState(now = Date.now()) {
     shards: 0,
     shardFrac: 0,          // Bruchteile für deterministische Offline-Scherben
     clover: 0,             // 🍀 Mystischer Klee (Ruhestand → Mystische Schmiede, Würfel-Preis)
-    rp: 0,                 // 📜 Forschungsnotizen (CQHT: Honor)
-    rations: [0, 0, 0, 0, 0, 0], // Proviant Güte 1–6 (CQHT: Bread)
-    fruit: 0,              // CQHT-Früchte (noch ohne Funktion)
+    rations: [0, 0, 0, 0, 0, 0], // Proviant Güte 1–6
+    fruit: 0,              // Früchte (noch ohne Funktion)
     tickets: 0,            // Arena-Tickets (noch ohne Funktion)
     onboarding: 0,         // 0..4 = Quest-Schritte, 5 = fertig
     questsDone: [],        // ids abgeholter Aufträge (QUESTS in config.js)
     buildings: { hall: 0, camp: 0, portal: 0, kitchen: 0, lab: 0, forge: 0 },
     construction: null,    // { key, to, doneAt } – es wird immer nur eines gebaut
+    researching: null,     // { tree, key, to, doneAt } – Forschung im Asura-Labor, immer nur eine
     tentsUnlocked: 1,
     heroes: [],            // { uid, heroId, level, exp, hp, woundedUntil, weapon (Waffen-ID|null) }
     nextUid: 1,
@@ -57,7 +57,7 @@ function createSquad() {
 //  Migration: für jede alte Version eine Funktion version → version+1
 // ---------------------------------------------------------------------
 const MIGRATIONS = {
-  // v1 → v2: Wellen werden zu Stufen; neue Gebäude, Waffen, Forschung, CQHT-Daten
+  // v1 → v2: Wellen werden zu Stufen; neue Gebäude, Waffen, Forschung, neue Daten
   1: (s) => {
     s.progress = {};
     // Bezieht sich noch auf die 5 alten Zonen mit je 10 normalen Stufen (v2 → v3 teilt sie auf)
@@ -157,6 +157,14 @@ const MIGRATIONS = {
       filled.sort((a, b) => order(a) - order(b));
       sq.slots = [...filled, ...Array(TENT_SIZE - filled.length).fill(null)];
     }
+    return s;
+  },
+  // v12 → v13: 📜 Forschungsnotizen fallen weg, Forschung kostet 🔮 und braucht Zeit (`researching`).
+  // Vorhandene 📜 werden 1:1 zu 🔮.
+  12: (s) => {
+    s.shards = (s.shards || 0) + (s.rp || 0);
+    delete s.rp;
+    s.researching = null;
     return s;
   },
   // v11 → v12: Tutorial ohne kostenlose Helden. Gildenhalle und erstes Zelt geben Gold (ONBOARDING.gold),
@@ -359,7 +367,7 @@ export function heroStats(state, hero) {
     crit: Math.min(1, (def.crit || 0) + rv(state, 'crit') + t.crit),
     critMult: (COMBAT.CRIT_MULT + rv(state, 'critdmg')) * (1 + t.critdmg),
     defense: Math.min(COMBAT.DEF_CAP, ROLES[def.role].def + rv(state, 'def') + t.def), // Schadensreduktion in %
-    armor: heroArmor(hero.level, hero.rarity), // DEF-Punkte nach CQHT-Formel
+    armor: heroArmor(hero.level, hero.rarity), // DEF-Punkte nach Level und Seltenheit
     pen: heroPen(hero.level, hero.rarity) + (w.pen || 0), // Durchdringung (Level + Waffe)
     speed: t.speed,                 // eigenes Angriffstempo (+Anteil, verkürzt das Intervall)
     interval: CLASSES[def.cls]?.interval || 1, // Sekunden je Angriff nach Klasse (#061)
@@ -507,7 +515,7 @@ export function createHero(state, heroId, rarity = RECRUIT.freeRarity, traits = 
   return hero;
 }
 
-// Gesamt-EXP eines Helden seit Lv. 1 (CQHT „Total XP“ + angesammelte EXP)
+// Gesamt-EXP eines Helden seit Lv. 1 (Gesamt-EXP + angesammelte EXP)
 export const heroTotalExp = (hero) => HERO_LEVELS[hero.level - 1].totalExp + hero.exp;
 
 // #046: Klee beim Ruhestand nach dem Kampf-Level: dem Level, das der Held nur mit
@@ -520,7 +528,7 @@ export function heroRetire(hero) {
 }
 
 // Gibt die Anzahl gewonnener Stufen zurück. Jede neue Stufe bringt die
-// CQHT-„Return Reward“: 📜, Proviant und Früchte.
+// Level-Up-Belohnung: 🔮 (Feld rp), Proviant und Früchte.
 export function gainExp(state, hero, amount) {
   const cap = levelCap(state);
   if (hero.level >= cap) { hero.exp = 0; return 0; }
@@ -532,7 +540,7 @@ export function gainExp(state, hero, amount) {
     hero.level += 1;
     gained += 1;
     const r = HERO_LEVELS[hero.level - 1].reward;
-    state.rp += r.rp;
+    state.shards += r.rp; // Feld rp → 🔮
     r.rations.forEach((n, g) => { addRations(state, g, n); });
     state.fruit += r.fruit;
     if (!hero.woundedUntil) hero.hp += heroStats(state, hero).maxHp - oldMax;
@@ -576,7 +584,7 @@ export function payCycle(state) {
   const gold = hallGold(state);
   const inc = retireIncome(state);
   state.gold += gold + inc.gold;
-  state.rp += inc.rp;
+  state.shards += inc.rp; // Ruhestand: Feld rp → 🔮
   return { gold: gold + inc.gold, rp: inc.rp, retireGold: inc.gold };
 }
 

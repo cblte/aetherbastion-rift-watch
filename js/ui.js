@@ -27,7 +27,7 @@ import {
   researchInfo, doResearch, startBuild, refreshShop, refreshCost, buyWeapon, sellWeapon, sellWeapons, sellPrice,
   upgradeIndices, equipWeapon, unequipWeapon, fitsHero, feedRations, rationsToLevel, rationExp,
   sellSupplies, supplyPrice, supplyCount, shopGrades,
-  recruitTier, recruitRefreshCost, refreshRecruits, recruitCost, hireRecruit, resetRerollCost, recruitOdds,
+  recruitTier, shardPrice, recruitRefreshCost, refreshRecruits, recruitCost, hireRecruit, resetRerollCost, recruitOdds,
 } from './progress.js';
 import { runOffline } from './offline.js';
 
@@ -116,8 +116,6 @@ function renderHud() {
   $('#hud-gold').textContent = fmt(S.gold);
   $('#hud-shards').textContent = fmt(S.shards);
   $('#hud-clover').textContent = fmt(S.clover);
-  $('#hud-rp').textContent = fmt(S.rp);
-  $('#hud-rp-chip').hidden = S.buildings.lab < 1 && S.rp < 1;
   $('#hud-cap').textContent = `${levelCap(S)}/${LEVEL_CAP_MAX}`;
   $('#hud-heroes').textContent = `${activeHeroCount(S)}/${TENTS.length * TENT_SIZE}`;
 }
@@ -406,7 +404,7 @@ function renderPortal() {
       bossBar = `<div class="card boss-card ${beaten ? '' : 'fresh'}">
         <div><b>👑 ${esc(st.boss.name)}</b> <span class="lv">Lv. ${st.level}</span>
           <div class="muted small">${beaten ? 'Schon besiegt – lohnt sich erneut.' : nextTxt ? `Sieg öffnet ${nextTxt}.` : 'Letzte Stufe.'}</div>
-          <div class="reward-line">📜 ${range(r.rp)} · ⚒️ ${r.weapons} Waffe${r.weapons > 1 ? 'n' : ''} · 🍞 ${beaten ? `${Math.round(RATION_DROP.chance * 100)} %: ${RATION_DROP.amount.join('–')}` : r.rations}${r.tickets[1] ? ` · 🎟️ ${range(r.tickets)}` : ''}</div></div>
+          <div class="reward-line">🔮 +${range(r.rp)} · ⚒️ ${r.weapons} Waffe${r.weapons > 1 ? 'n' : ''} · 🍞 ${beaten ? `${Math.round(RATION_DROP.chance * 100)} %: ${RATION_DROP.amount.join('–')}` : r.rations}${r.tickets[1] ? ` · 🎟️ ${range(r.tickets)}` : ''}</div></div>
         <div class="btn-col tight">
           <button class="btn ${beaten ? '' : 'primary'} ${isGoal ? 'goal' : ''}" data-action="boss" ${can && S.gold >= cost ? '' : 'disabled'}>Herausfordern<small>${cd ? `⏳ ${clock(cd)}` : `🟡 ${fmt(cost)}`}</small></button>
           <button class="btn ${sq.autoBoss ? 'primary' : ''}" data-action="boss-auto" aria-pressed="${sq.autoBoss}">🔁 Auto ${sq.autoBoss ? 'an' : 'aus'}</button>
@@ -569,7 +567,7 @@ function renderCamp() {
     <span>⚔️ Siege <b>${fmt(S.stats.kills)}</b></span>
     <span>👑 Stufen <b>${normalCleared(S)}/${TOTAL_NORMAL}</b></span>
     <span>🌅 Ruhestand <b>${S.stats.retired}</b></span></div>
-    <div class="card small cycle">💰 Gildenkasse in <b>${clock(next)}</b>: +${fmt(hallGold(S) + retireIncome(S).gold)} 🟡${retireIncome(S).rp ? ` +${fmt(retireIncome(S).rp)} 📜` : ''}</div>`);
+    <div class="card small cycle">💰 Gildenkasse in <b>${clock(next)}</b>: +${fmt(hallGold(S) + retireIncome(S).gold)} 🟡${retireIncome(S).rp ? ` +${fmt(retireIncome(S).rp)} 🔮` : ''}</div>`);
   setHTML($('#buildings'), BUILDING_ORDER.map(buildingCard).join(''));
 }
 
@@ -786,18 +784,28 @@ function researchEffect(node, lvl) {
   return `${node.sign || '+'}${v}${node.unit}`;
 }
 
+// Laufende Forschung im Kopf des Labors (mit Balken)
+function labRunning() {
+  const r = S.researching;
+  if (!r) return '<div class="small">Gerade keine Forschung.</div>';
+  const n = RESEARCH[r.tree].nodes[r.key];
+  const total = F.researchTime(n, r.to) * 1000, left = r.doneAt - S.lastTickMs;
+  return `<div class="small">🔬 <b>${n.name}</b> Stufe ${r.to} · noch ${clock(left)}</div>${hpBar(total - left, total, 'ok')}`;
+}
+
 function renderLab() {
   if (S.buildings.lab < 1) {
     setHTML($('#lab'), lockedCard('🔬', 'Asura-Labor noch nicht gebaut',
       buildingUnlocked(S, 'lab')
-        ? 'Baue das Asura-Labor im Gildenlager. Dort setzt du 📜 Forschungsnotizen aus Boss-Siegen und Level-Ups ein.'
+        ? 'Baue das Asura-Labor im Gildenlager. Dort forschst du mit 🔮 Ätherscherben aus Kämpfen und Level-Ups.'
         : `Verfügbar ab Gildenhalle Stufe ${BUILDINGS.lab.unlockHall}. Hier erforschst du später mehr ATK, DEF, HP, Angriffstempo und kürzere Regeneration.`));
     return;
   }
   setHTML($('#lab'), `
     <div class="card lab-head">
-      <div><b>📜 ${fmt(S.rp)}</b> Forschungsnotizen</div>
-      <div class="muted small">Stufe II ab Labor ${TIER_LAB[2]}, III ab Labor ${TIER_LAB[3]}, IV ab Labor ${TIER_LAB[4]}.</div>
+      <div><b>🔮 ${fmt(S.shards)}</b> Ätherscherben</div>
+      ${labRunning()}
+      <div class="muted small">Ebene II ab Labor ${TIER_LAB[2]}, III ab Labor ${TIER_LAB[3]}, IV ab Labor ${TIER_LAB[4]}. Es läuft immer eine Forschung gleichzeitig.</div>
     </div>
     ${RESEARCH_ORDER.map(tk => {
       const tree = RESEARCH[tk];
@@ -811,10 +819,11 @@ function renderLab() {
             <div class="b-title"><b>${n.name}</b><span class="lv">${['', 'I', 'II', 'III', 'IV', 'V'][n.tier]}</span></div>
             ${pips(info.lvl, n.max)}
             <div class="b-eff">${researchEffect(n, info.lvl)}${maxed ? '' : ` <span class="arrow">→</span> ${researchEffect(n, info.to)}`}</div>
-            ${info.reason && !maxed ? `<div class="b-note">🔒 ${info.reason}</div>` : ''}
+            ${info.reason && !maxed && !S.researching ? `<div class="b-note">🔒 ${info.reason}</div>` : ''}
           </div>
           <div class="b-act">${maxed ? '<button class="btn" disabled>Maximal</button>'
-            : `<button class="btn primary" data-action="research" data-tree="${tk}" data-node="${nk}" ${info.ok ? '' : 'disabled'}>Erforschen<small>📜 ${fmt(info.cost)}</small></button>`}</div>
+            : S.researching?.key === nk ? `<div class="build-timer">🔬 ${clock(S.researching.doneAt - S.lastTickMs)}</div>`
+            : `<button class="btn primary" data-action="research" data-tree="${tk}" data-node="${nk}" ${info.ok ? '' : 'disabled'}>Erforschen<small>🔮 ${fmt(info.cost)}</small><small>⏱ ${fmtTime(info.secs)}</small></button>`}</div>
         </div>`;
       }).join('')}</div>`;
     }).join('')}`);
@@ -944,7 +953,7 @@ function renderForge() {
         <div class="w-info"><div>${weaponName(wid)}</div><div class="muted small">${WEAPON_TYPES[w.type].name} · ${weaponBonus(wid)}</div></div>
         <div class="b-act btn-col tight">
           <button class="btn primary" data-action="buy" data-slot="${k}" data-cur="gold" ${S.gold >= w.gold && armoryFree(S) > 0 ? '' : 'disabled'}>Kaufen<small>🟡 ${fmt(w.gold)}</small></button>
-          ${w.rp != null ? `<button class="btn" data-action="buy" data-slot="${k}" data-cur="rp" ${S.rp >= w.rp && armoryFree(S) > 0 ? '' : 'disabled'}><small>oder 📜 ${w.rp}</small></button>` : ''}
+          ${w.rp != null ? `<button class="btn" data-action="buy" data-slot="${k}" data-cur="shards" ${S.shards >= shardPrice(w) && armoryFree(S) > 0 ? '' : 'disabled'}><small>oder 🔮 ${fmt(shardPrice(w))}</small></button>` : ''}
         </div></div>`;
     }).join('') || '<div class="card muted small">Ausverkauft. Neue Ware kommt bald.</div>';
     setHTML($('#weapons'), `
@@ -1171,7 +1180,7 @@ export function showUpdateAvailable() {
 // #039: Werte-Tabelle mit eigener Spalte für das Symbol, damit Text und Zahlen sauber untereinander stehen
 const statRow = (icon, label, value) => `<span class="sg-i" aria-hidden="true">${icon}</span><span class="sg-l">${label}</span><b>${value}</b>`;
 
-// DEF (Rüstung, CQHT-Formel) und Schutz (Schadensreduktion aus Rolle, Forschung, Eigenschaften)
+// DEF (Rüstung) und Schutz (Schadensreduktion aus Rolle, Forschung, Eigenschaften)
 // einzeln und zusammen, damit niemand selbst rechnen muss
 function defRows(hs) {
   const armorCut = 1 - defMult(hs.armor);
@@ -1325,9 +1334,10 @@ export function showOfflineReport(report, { debug = false } = {}) {
   openModal(`
     <h3>🌙 Offline-Rissbericht</h3>
     <p class="muted small">${debug ? 'Simuliert: ' : 'Abwesend: '}${fmtDuration(report.elapsedMs)}${report.capped ? ` · gewertet max. ${fmtDuration(report.maxMs)}` : ''}</p>
-    <div class="card report-total"><span>🟡 +${fmt(t.gold)}</span><span>🔮 +${t.shards}</span>${report.rp >= 1 ? `<span>📜 +${fmt(report.rp)}</span>` : ''}<span>⬆️ ${t.levelUps}</span></div>
-    ${report.cycles ? `<p class="small">💰 Gildenkasse: ${report.cycles}× ausgezahlt, +${fmt(report.cycleGold)} 🟡${report.cycleRp ? ` +${fmt(report.cycleRp)} 📜 (Ruhestand)` : ''}</p>` : ''}
+    <div class="card report-total"><span>🟡 +${fmt(t.gold)}</span><span>🔮 +${t.shards}</span>${report.rp >= 1 ? `<span>🔮 +${fmt(report.rp)} Level-Ups/Ruhestand</span>` : ''}<span>⬆️ ${t.levelUps}</span></div>
+    ${report.cycles ? `<p class="small">💰 Gildenkasse: ${report.cycles}× ausgezahlt, +${fmt(report.cycleGold)} 🟡${report.cycleRp ? ` +${fmt(report.cycleRp)} 🔮 (Ruhestand)` : ''}</p>` : ''}
     ${report.built ? `<p class="small">🔨 ${BUILDINGS[report.built.key].name} Stufe ${report.built.to} ist fertig.</p>` : ''}
+    ${report.researched ? `<p class="small">🔬 ${RESEARCH[report.researched.tree].nodes[report.researched.key].name} Stufe ${report.researched.to} ist erforscht.</p>` : ''}
     ${squads || '<p class="muted">Keine Trupps im Einsatz.</p>'}
     <p class="muted small">Offline farmen die Trupps nur Schergen. Bosse forderst du live heraus.</p>
     <button class="btn primary block" data-action="modal-close">Weiter kämpfen</button>`);
@@ -1336,6 +1346,7 @@ export function showOfflineReport(report, { debug = false } = {}) {
 // Effekte für den aktuell sichtbaren Trupp (Schadenszahlen)
 export function showTickFx(ev) {
   if (ev.built) toast(`🔨 ${BUILDINGS[ev.built.key].name} Stufe ${ev.built.to} ist fertig!`, 3000);
+  if (ev.researched) toast(`🔬 ${RESEARCH[ev.researched.tree].nodes[ev.researched.key].name} Stufe ${ev.researched.to} ist erforscht!`, 3000);
   for (const b of ev.bossWins || []) {
     if (b.first) toast(`👑 Boss besiegt! ${b.stage < ZONES[b.zone - 1].stages.length ? `Stufe ${b.stage + 1} freigeschaltet.` : 'Zone befreit!'}`, 3000);
   }
@@ -1552,8 +1563,8 @@ function onClick(e) {
       }
       break;
     case 'research':
-      if (doResearch(S, d.tree, d.node)) changed('🔬 Forschung abgeschlossen!');
-      else toast('Nicht genug Forschungsnotizen.');
+      if (doResearch(S, d.tree, d.node)) changed('🔬 Forschung gestartet!');
+      else toast(S.researching ? 'Es läuft schon eine Forschung.' : 'Nicht genug Ätherscherben.');
       break;
     case 'mystic': {
       const m = MYSTIC[d.key];
@@ -1660,7 +1671,7 @@ function retireConfirmText(h) {
   const p = retirePlace(S, lv);
   if (!p.ok) return `<br>Alle ${retireSlots(S)} Plätze im Ruhestand sind mit stärkeren Helden belegt: <b>kein passives Einkommen</b>.`;
   const gone = p.replace >= 0 ? S.retired[p.replace] : null;
-  return `<br>Im Ruhestand zahlt er alle 10 Min. <b>+${L.goldCycle} 🟡 +${L.rpCycle} 📜</b> (Lv. ${lv}).${gone ? ` Dafür geht ${esc(HERO_BY_ID[gone.heroId]?.name || 'ein Veteran')} (Lv. ${gone.level}).` : ''}`;
+  return `<br>Im Ruhestand zahlt er alle 10 Min. <b>+${L.goldCycle} 🟡 +${L.rpCycle} 🔮</b> (Lv. ${lv}).${gone ? ` Dafür geht ${esc(HERO_BY_ID[gone.heroId]?.name || 'ein Veteran')} (Lv. ${gone.level}).` : ''}`;
 }
 
 function retireHomeCard() {
@@ -1668,7 +1679,7 @@ function retireHomeCard() {
   const list = [...S.retired].sort((a, b) => b.level - a.level);
   return `<div class="card">
     <div class="b-title"><b>🏡 Ruhestand</b><span class="lv">${S.retired.length}/${retireSlots(S)}</span></div>
-    <div class="small">Alle 10 Min.: <b>+${fmt(inc.gold)} 🟡 +${fmt(inc.rp)} 📜</b></div>
+    <div class="small">Alle 10 Min.: <b>+${fmt(inc.gold)} 🟡 +${fmt(inc.rp)} 🔮</b></div>
     <div class="muted small">Je höher das Level, desto mehr. Sind alle Plätze voll, geht der Schwächste. Mehr Plätze: Forschung „${RESEARCH.logistics.nodes.archive.name}“.</div>
     ${list.length ? `<div class="muted small">${list.map(r => `${esc(HERO_BY_ID[r.heroId]?.name || '?')} Lv. ${r.level}`).join(' · ')}</div>` : ''}
   </div>`;

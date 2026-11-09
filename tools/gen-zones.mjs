@@ -1,7 +1,7 @@
 // =====================================================================
 //  Erzeugt js/data/stages.js neu: Zonen-Namen, Lore, Portal, Bosse und
-//  Schergen kommen aus ZONES unten; level/cost/rewards/src bleiben aus der
-//  bestehenden Datei (CQHT-Werte). Aufruf:  node tools/gen-zones.mjs .
+//  Schergen kommen aus ZONES unten; level/cost/rewards bleiben aus der
+//  bestehenden Datei (CQHT-Werte; englische Vorlagen-Namen in dev-data/cqht-vorlagen.json). Aufruf:  node tools/gen-zones.mjs .
 //
 //  Boss-Zuordnung je Zone (bosses = 5 Bosse + Zonen-Endboss):
 //    Stufe 1–4  → bosses[0..3]
@@ -188,7 +188,7 @@ const stageLine = (st) => {
   const r = st.rewards;
   return `      { ${flags}level: ${st.level}, cost: ${st.cost}, boss: ${j(st.boss)},\n` +
     `        minions: ${j(st.minions)},\n` +
-    `        rewards: { rp: ${j(r.rp)}, weapons: ${r.weapons}, rations: ${r.rations}, tickets: ${j(r.tickets)} }, info: ${j(st.info)}, src: ${j(st.src)} },`;
+    `        rewards: { rp: ${j(r.rp)}, weapons: ${r.weapons}, rations: ${r.rations}, tickets: ${j(r.tickets)} }, info: ${j(st.info)} },`;
 };
 
 let txt = `// =====================================================================
@@ -196,12 +196,9 @@ let txt = `// ==================================================================
 //  ⚠️ Erzeugt mit \`node tools/gen-zones.mjs .\` – Namen, Bosse, Schergen und
 //  Portal dort ändern, nicht hier.
 //
-//  Die Zahlen stammen aus CQHT „Progression → Stages“: Jedes CQHT-Kapitel ist
-//  auf zwei Zonen aufgeteilt (tier = Kapitel 1–5, part = 1. oder 2. Hälfte).
+//  Je zwei Zonen bilden ein Kapitel (tier = Kapitel 1–5, part = 1. oder 2. Hälfte).
 //  Pro Zone: 5 normale Stufen, danach schwere (☠️) und in Teil 2 eine
-//  legendäre (⭐) Stufe:
-//    Teil 1: CQHT X-1..5  + Hard X-1..2
-//    Teil 2: CQHT X-6..10 + Hard X-3..4 + L-X
+//  legendäre (⭐) Stufe. Herkunft der Zahlen: dev-data/DATA.md.
 //  Zonen 1–5 sind die Heimatgebiete der fünf Völker: Mensch (Königintal),
 //  Sylvari (Caledon), Norn (Wanderer-Hügel), Asura (Metrica), Charr (Aschfurt).
 //  Zone 6 Caudecus’ Anwesen ist das Finale der Auftragsreihe. Portale:
@@ -209,15 +206,14 @@ let txt = `// ==================================================================
 //  3 Löwenstein & Meerenge · 4 Orr.
 //  Zonen 7–10 folgen der persönlichen Geschichte: Klaueninsel, dann über die
 //  Meerenge der Verwüstung und Malchors Sprung bis zur Fluchküste vor Arah.
-//    tier    – CQHT-Kapitel; steuert Boss-Scherben, Waffen- und Proviant-Güte
+//    tier    – Kapitel; steuert Boss-Scherben, Waffen- und Proviant-Güte
 //    portal  – nötige Riss-Portal-Stufe
 //    theme   – Farbstimmung der Kampfbühne (CSS .stage.zone-1..5)
-//    level   – empfohlenes Heldenlevel / Monsterstufe (CQHT „Lv.“)
-//    cost    – Gold für eine Boss-Herausforderung (CQHT „cost“)
-//    rewards – Boss-Belohnung: rp = 📜 Forschungsnotizen (CQHT Honor),
-//              weapons = Waffen-Drops, rations = Proviant (CQHT Bread),
+//    level   – empfohlenes Heldenlevel / Monsterstufe
+//    cost    – Gold für eine Boss-Herausforderung
+//    rewards – Boss-Belohnung: rp = zusätzliche 🔮 Ätherscherben,
+//              weapons = Waffen-Drops, rations = Proviant,
 //              tickets = Arena-Tickets (noch ohne Funktion)
-//    src     – Name des CQHT-Originals (nur zur Orientierung)
 //  Schwierigkeit \`d\` wird in config.js aus level/cost berechnet.
 //  👉 Zonen-IDs und Stufen-Reihenfolge nicht ändern ohne Save-Migration.
 // =====================================================================

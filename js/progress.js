@@ -94,17 +94,20 @@ export function refreshShop(state) {
   return true;
 }
 
-// slot: Index im Angebot; currency: 'gold' oder 'rp'
+// slot: Index im Angebot; currency: 'gold' oder 'shards' (Preis in 🔮 = Feld rp × SHOP.shardMult)
 export function buyWeapon(state, slot, currency = 'gold') {
   const wid = state.shop.offers[slot];
   const w = WEAPON_BY_ID[wid];
-  if (!w || w[currency] == null || armoryFree(state) < 1) return false;
-  if (!pay(state, { [currency]: w[currency] })) return false;
+  const price = currency === 'shards' ? shardPrice(w) : w?.[currency];
+  if (!w || price == null || armoryFree(state) < 1) return false;
+  if (!pay(state, { [currency]: price })) return false;
   state.shop.offers.splice(slot, 1);
   state.armory.push(wid);
   addLog(state, `⚒️ ${w.name} (${WEAPON_GRADES[w.grade].name}) gekauft.`, null, 'info');
   return true;
 }
+
+export const shardPrice = (w) => (w?.rp == null ? null : w.rp * SHOP.shardMult);
 
 export const sellPrice = (wid) => Math.round((WEAPON_BY_ID[wid].gold || 0) * SHOP.sellFactor);
 
@@ -292,7 +295,7 @@ export function resetRerollCost(state, which) {
   return true;
 }
 
-// ---------- Proviant (CQHT Bread) --------------------------------------
+// ---------- Proviant -------------------------------------------------
 // EXP pro Stück für diesen Helden (mit Eigenschaft „Proviant“)
 export const rationExp = (hero, g) => RATIONS[g].exp * (1 + heroBonus(hero).ration);
 
@@ -337,14 +340,27 @@ export function researchInfo(state, treeKey, nodeKey) {
   else if (node.req && researchLevel(state, node.req[0]) < node.req[1]) {
     reason = `${RESEARCH[treeKey].nodes[node.req[0]].name} Stufe ${node.req[1]}`;
   }
-  return { node, lvl, to, cost, reason, ok: !reason && state.rp >= cost };
+  else if (state.researching) reason = 'Es läuft schon eine Forschung';
+  const secs = F.researchTime(node, to);
+  return { node, lvl, to, cost, secs, reason, ok: !reason && state.shards >= cost };
 }
 
+// Forschung starten: kostet sofort 🔮, fertig nach F.researchTime (immer nur eine gleichzeitig)
 export function doResearch(state, treeKey, nodeKey) {
   const info = researchInfo(state, treeKey, nodeKey);
   if (!info.ok) return false;
-  state.rp -= info.cost;
-  state.research[nodeKey] = info.to;
-  addLog(state, `🔬 Forschung: ${info.node.name} Stufe ${info.to}.`, null, 'info');
+  state.shards -= info.cost;
+  state.researching = { tree: treeKey, key: nodeKey, to: info.to, doneAt: state.lastTickMs + info.secs * 1000 };
+  addLog(state, `🔬 Forschung gestartet: ${info.node.name} Stufe ${info.to}.`, null, 'info');
   return true;
+}
+
+// Prüft, ob die Forschung fertig ist (now = Spielzeit). Gibt den Auftrag zurück.
+export function checkResearch(state, now) {
+  const r = state.researching;
+  if (!r || now < r.doneAt) return null;
+  state.researching = null;
+  state.research[r.key] = Math.max(state.research[r.key] || 0, r.to);
+  addLog(state, `🔬 Forschung fertig: ${RESEARCH[r.tree].nodes[r.key].name} Stufe ${r.to}.`, null, 'info');
+  return r;
 }

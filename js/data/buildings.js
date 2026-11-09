@@ -1,18 +1,18 @@
 // =====================================================================
-//  Gebäude – aus CQHT „Buildings“ übertragen
+//  Gebäude (Herkunft der Zahlen: dev-data/DATA.md)
 //  Je Stufe:  cost = Gold für den Bau dieser Stufe (Stufe 1 = Neubau)
 //             time = Bauzeit in Sekunden (0 = sofort)
 //             hall = benötigte Gildenhallen-Stufe
-//  Gildenhalle (CQHT Town Hall): stage = benötigte besiegte Normal-Stufen
+//  Gildenhalle: stage = benötigte besiegte Normal-Stufen
 //  insgesamt, gold = Gildenkasse je Zyklus (10 Min.).
-//  Feldküche ist eine eigene Ergänzung (die CQHT-Bäckerei-Daten fehlen).
+//  Feldküche ist eine eigene Ergänzung.
 // =====================================================================
 const m = (min, sec = 0) => min * 60 + sec;
 
 export const BUILDING_DATA = {
-  // CQHT Town Hall (TOWNHALL), max. 9
+  // Gildenhalle, max. 9
   hall: {
-    name: 'Gildenhalle', icon: '🏛️', unlockHall: 0, src: 'Town Hall',
+    name: 'Gildenhalle', icon: '🏛️', unlockHall: 0,
     desc: 'Herz des Lagers. Gildenkasse alle 10 Min., schaltet neue Gebäude frei.',
     levels: [
       { cost: 0,         time: 0,        stage: 0,  gold: 100 },
@@ -23,13 +23,13 @@ export const BUILDING_DATA = {
       { cost: 20_000,    time: m(10),    stage: 31, gold: 750 },
       { cost: 200_000,   time: m(25),    stage: 40, gold: 800 },
       { cost: 800_000,   time: m(30),    stage: 50, gold: 1_000 },
-      { cost: 1_500_000, time: m(35),    stage: 50, gold: 1_000 }, // CQHT: „-“, hier wie Stufe 8
+      { cost: 1_500_000, time: m(35),    stage: 50, gold: 1_000 }, // wie Stufe 8
     ],
   },
-  // CQHT Tent (BARRACK), max. 7 – hier global: bestimmt das Level-Cap aller Helden.
-  // cap ist eine eigene Annahme (CQHT: „bis Lv. 60“).
+  // Zeltlager, max. 7 – global: bestimmt das Level-Cap aller Helden.
+  // cap ist eine eigene Annahme (bis Lv. 60).
   camp: {
-    name: 'Zeltlager', icon: '⛺', unlockHall: 1, src: 'Tent',
+    name: 'Zeltlager', icon: '⛺', unlockHall: 1,
     desc: 'Bestimmt das Level-Cap aller Helden.',
     levels: [
       { cost: 500,    time: 0,       hall: 1, cap: 10 },
@@ -41,12 +41,12 @@ export const BUILDING_DATA = {
       { cost: 20_000, time: m(8),    hall: 6, cap: 60 },
     ],
   },
-  // CQHT Portal (PORTAL), max. 5 – Stufe = höchste offene Riss-Zone
+  // Riss-Portal – Stufe = höchste offene Riss-Zone
   portal: {
-    name: 'Riss-Portal', icon: '🌀', unlockHall: 1, src: 'Portal',
+    name: 'Riss-Portal', icon: '🌀', unlockHall: 1,
     desc: 'Stufe bestimmt die verfügbaren Riss-Zonen.',
     // 4 Stufen = 4 Portale (Kryta, Caledon & Zittergipfel · Metrica, Aschfurt & Anwesen · Löwenstein & Meerenge · Orr).
-    // CQHT hat 5; deren Stufe 2 (400 Gold, 30 s) entfällt. Weitere Stufen kommen mit neuen Zonen.
+    // Weitere Stufen kommen mit neuen Zonen.
     levels: [
       { cost: 600,    time: 0,    hall: 1 },
       { cost: 1_500,  time: m(1), hall: 2 },
@@ -54,9 +54,9 @@ export const BUILDING_DATA = {
       { cost: 25_000, time: m(5), hall: 4 },
     ],
   },
-  // Eigene Ergänzung (CQHT-Bäckerei-Daten fehlen noch)
+  // Eigene Ergänzung
   kitchen: {
-    name: 'Feldküche', icon: '🍲', unlockHall: 2, src: '(eigen)', bonusPerLevel: 0.05,
+    name: 'Feldküche', icon: '🍲', unlockHall: 2, bonusPerLevel: 0.05,
     desc: '+5 % EXP pro Stufe.',
     levels: [
       { cost: 140,   time: 30,    hall: 2 },
@@ -71,10 +71,10 @@ export const BUILDING_DATA = {
       { cost: 900_000, time: m(30), hall: 9 },
     ],
   },
-  // CQHT Skill Lab (INSTITUTE), max. 10 – Stufe öffnet Forschungsstufen
+  // Asura-Labor, max. 10 – Stufe öffnet Forschungsstufen
   lab: {
-    name: 'Asura-Labor', icon: '🔬', unlockHall: 1, src: 'Skill Lab',
-    desc: 'Forschung mit 📜 Forschungsnotizen. Höhere Stufen öffnen tiefere Forschung.',
+    name: 'Asura-Labor', icon: '🔬', unlockHall: 1,
+    desc: 'Forschung mit 🔮 Ätherscherben. Höhere Stufen öffnen tiefere Forschung.',
     levels: [
       { cost: 250,       time: 0,     hall: 1 },
       { cost: 500,       time: 30,    hall: 2 },
@@ -88,10 +88,10 @@ export const BUILDING_DATA = {
       { cost: 1_000_000, time: m(35), hall: 9 },
     ],
   },
-  // CQHT Smithy (SMITHY), max. 3 – Stufe öffnet bessere Waffen im Laden.
-  // Stufe 1 hier erst ab Gildenhalle 2 (CQHT: sofort).
+  // Charr-Schmiede, max. 3 – Stufe öffnet bessere Waffen im Laden.
+  // Stufe 1 erst ab Gildenhalle 2.
   forge: {
-    name: 'Charr-Schmiede', icon: '⚒️', unlockHall: 2, src: 'Smithy',
+    name: 'Charr-Schmiede', icon: '⚒️', unlockHall: 2,
     desc: 'Waffenladen (3 Angebote, alle 30 Min. neu) und Waffenkammer. Stufe öffnet bessere Waffen.',
     levels: [
       { cost: 200,    time: 0,    hall: 2 },
@@ -101,4 +101,4 @@ export const BUILDING_DATA = {
   },
 };
 export const BUILDING_ORDER = ['hall', 'camp', 'portal', 'kitchen', 'lab', 'forge'];
-export const CYCLE_MS = 10 * 60 * 1000; // Gildenkasse & Helden-Einkommen (CQHT „/cycle“)
+export const CYCLE_MS = 10 * 60 * 1000; // Gildenkasse & Helden-Einkommen (je Zyklus)

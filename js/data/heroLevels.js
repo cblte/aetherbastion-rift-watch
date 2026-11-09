@@ -1,11 +1,11 @@
 // =====================================================================
-//  Helden-Stufen – aus CQHT „Hero leveling“ übertragen (Lv. 1–60)
+//  Helden-Stufen (Lv. 1–60, Herkunft der Zahlen: dev-data/DATA.md)
 //    totalExp  – benötigte Gesamt-EXP für diese Stufe
 //    goldCycle – Gold je Kassen-Zyklus (10 Min.) pro Held, ab Lv. 10
-//    rpCycle   – 📜 Forschungsnotizen je Zyklus (CQHT Honor), ab Lv. 20
-//    fatigue   – CQHT-Erschöpfungsgrenze (noch ohne Funktion)
+//    rpCycle   – 🔮 Ätherscherben je Zyklus (früher 📜), ab Lv. 20
+//    fatigue   – Erschöpfungsgrenze (noch ohne Funktion)
 //    reward    – Belohnung beim Erreichen der Stufe:
-//                rp = 📜, rations = Proviant Güte 1–6, fruit = Früchte
+//                rp = 🔮, rations = Proviant Güte 1–6, fruit = Früchte
 // =====================================================================
 export const HERO_LEVELS = [
   { lv: 1, totalExp: 0, goldCycle: 0, rpCycle: 0, fatigue: 100, reward: { rp: 0, rations: [0, 0, 0, 0, 0, 0], fruit: 0 } },

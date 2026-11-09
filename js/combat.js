@@ -11,7 +11,7 @@ import {
   getHero, heroStats, regenMs, goldMult, shardMult, kitchenMult, healMult, tempoBonus, gainExp, addLog,
   isStageAvailable, squadOf, stageBeaten, payCycle, addRations, squadTrait,
 } from './state.js';
-import { checkConstruction, checkShop, checkRecruits, dropWeapons } from './progress.js';
+import { checkConstruction, checkResearch, checkShop, checkRecruits, dropWeapons } from './progress.js';
 import { MONSTER_STATS } from './data/monsterStats.js';
 
 // ---------- Hilfen ---------------------------------------------------
@@ -49,7 +49,7 @@ const DT = GAME.TICK_MS / 1000; // Sekunden je Tick
 
 export const stageOf = (zoneId, stage) => ZONES[zoneId - 1].stages[stage - 1];
 
-// ---------- Schadens-Formeln (CQHT, dev-data/combat-overview.md) ------
+// ---------- Schadens-Formeln (dev-data/combat-overview.md) -------------
 // Faktor auf den Schaden: 100 / (100 + DEF − Durchdringung). Liegt die Durchdringung über der DEF,
 // gibt der Überschuss einen Bonus × (1 + 0,5 × Über / (Über + 100)), höchstens ×1,5.
 export function defMult(def, pen = 0) {
@@ -58,7 +58,7 @@ export function defMult(def, pen = 0) {
 }
 const variance = () => 1 + (Math.random() * 2 - 1) * COMBAT.VARIANCE;
 
-// Gegnerwerte 1:1 aus CQHT (data/monsterStats.js), Regler in COMBAT (Bosse, schwer, legendär).
+// Gegnerwerte aus data/monsterStats.js, Regler in COMBAT (Bosse, schwer, legendär).
 // variant: welcher Schergen-Typ. d bleibt für die Beute (F.goldPerKill/expPerKill).
 // atk = Schaden je Treffer, interval = Sekunden je Angriff, dps = atk ÷ interval, def = DEF, aoe = Boss-Flächenangriff je Held
 export function monsterTemplate(zoneId, stage, boss = false, variant = 0) {
@@ -134,7 +134,7 @@ export function teamProfile(state, heroes, squad = null, mon = null) {
   return { dps, heal, hpPool, atkMult, tempo, might, eile, takenMult, dmgFactor };
 }
 
-// Anteil eines Gegner-Treffers, der beim Helden ankommt: Rüstung (CQHT-Formel) × Schadensreduktion × Boss-Eigenschaft
+// Anteil eines Gegner-Treffers, der beim Helden ankommt: Rüstung × Schadensreduktion × Boss-Eigenschaft
 export const takenBy = (hs, mon) => defMult(hs.armor) * (1 - hs.defense) * (mon?.boss ? hs.bossDmg : 1);
 
 // Was ein einzelner Held pro Sekunde tut (ohne Trupp-Buffs) – für Anzeigen
@@ -178,12 +178,13 @@ export function applyKillRewards(state, squadIdx, tmpl, heroes, factor = 1, dete
     const from = h.level;
     if (gainExp(state, h, exp) > 0) levelUps.push({ uid: h.uid, from, to: h.level });
   }
-  // Stufen-Belohnung des Bosses (aus den CQHT-Daten)
-  let rp = 0, weapons = [], lostWeapons = 0, rations = 0;
+  // Stufen-Belohnung des Bosses (rewards.rp = zusätzliche 🔮)
+  let weapons = [], lostWeapons = 0, rations = 0;
   if (tmpl.boss) {
     const r = st.rewards;
-    rp = r.rp[0] + Math.floor(Math.random() * (r.rp[1] - r.rp[0] + 1));
-    state.rp += rp;
+    const bonus = r.rp[0] + Math.floor(Math.random() * (r.rp[1] - r.rp[0] + 1));
+    state.shards += bonus;
+    shards += bonus;
     const extra = Math.random() < squadTrait(heroes, 'loot') ? 1 : 0; // Eigenschaft „Beute“
     ({ got: weapons, lost: lostWeapons } = dropWeapons(state, zone.tier, st.legend ? 'legend' : st.hard ? 'hard' : 'normal', r.weapons + extra));
     const g = Math.min(RATIONS.length, st.hard ? 6 : zone.tier + (zone.part === 2 ? 1 : 0)) - 1;
@@ -197,7 +198,7 @@ export function applyKillRewards(state, squadIdx, tmpl, heroes, factor = 1, dete
     rations = addRations(state, g, n);
     state.tickets += r.tickets[0] + Math.floor(Math.random() * (r.tickets[1] - r.tickets[0] + 1));
   }
-  return { gold, exp, shards, levelUps, rp, weapons, lostWeapons, rations };
+  return { gold, exp, shards, levelUps, weapons, lostWeapons, rations };
 }
 
 // Herausforderung beendet (Sieg, Zeit abgelaufen, Rückzug, Abbruch) → zurück zu den Schergen, Abklingzeit startet.
@@ -230,6 +231,7 @@ export function tick(state) {
   const ev = { hits: [], struck: [], levelUps: [], kills: [], bossWins: [], built: null, cycle: null };
 
   ev.built = checkConstruction(state, now);
+  ev.researched = checkResearch(state, now);
   checkShop(state, now);
   checkRecruits(state, now);
   if (now >= state.nextCycleMs) {
@@ -341,7 +343,7 @@ function tickSquad(state, i, now, ev) {
     if (mon.boss) {
       const first = recordBossWin(state, i);
       ev.bossWins.push({ squad: i, first, zone: sq.zone, stage: sq.stage });
-      addLog(state, `👑 ${mon.name} besiegt! +${fmt(r.gold)}🟡 +${r.shards}🔮 +${r.rp}📜${r.weapons.length ? ` · ⚒️ ${r.weapons.map(w => w.name).join(', ')}` : ''}`, i, 'boss');
+      addLog(state, `👑 ${mon.name} besiegt! +${fmt(r.gold)}🟡 +${r.shards}🔮${r.weapons.length ? ` · ⚒️ ${r.weapons.map(w => w.name).join(', ')}` : ''}`, i, 'boss');
       if (r.lostWeapons) addLog(state, `🗄️ Waffenkammer voll – ${r.lostWeapons === 1 ? 'eine Waffe bleibt' : `${r.lostWeapons} Waffen bleiben`} liegen. Räum im 🎒 Inventar auf.`, i, 'bad');
       if (first) {
         const zone = ZONES[sq.zone - 1];
@@ -457,7 +459,7 @@ export function toggleAutoBoss(state, i) {
   return true;
 }
 
-// Kostet Gold (CQHT „cost“)
+// Kostet Gold (Stufen-Feld cost)
 export function challengeBoss(state, i) {
   if (!canChallengeBoss(state, i)) return false;
   const cost = bossCost(state, i);

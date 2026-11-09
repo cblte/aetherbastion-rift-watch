@@ -23,6 +23,9 @@ const refresh = args.includes('--wiki');
 const imp = (p) => import(pathToFileURL(`${root}/${p}`).href);
 const { ZONE_DATA } = await imp('js/data/stages.js');
 const { CQHT_OVERRIDES, WIKI_HINTS } = await imp('tools/data/gw2-hints.mjs');
+// Englische Boss-Vorlage je Stufe (steht nicht im Spiel, sondern in dev-data/cqht-vorlagen.json)
+const VORLAGEN = JSON.parse(readFileSync(`${root}/dev-data/cqht-vorlagen.json`, 'utf8')).stages;
+for (const z of ZONE_DATA) z.stages.forEach((s, i) => { s.src = VORLAGEN[z.id]?.[i]; });
 
 // Erweiterungs-Zonen (Entwurf) aus tools/data/zones-expansion.json
 const X = JSON.parse(readFileSync(`${root}/tools/data/zones-expansion.json`, 'utf8'));
