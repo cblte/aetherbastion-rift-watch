@@ -83,6 +83,12 @@ export function monsterTemplate(zoneId, stage, boss = false, variant = 0) {
 }
 
 // Veteran (#026): stärkerer Scherge mit mehr Beute (COMBAT.VETERAN)
+// Chance auf Veteranen: 0, bis der Boss aus VETERAN.after besiegt ist (Tutorial ohne Veteranen)
+export function veteranChance(state) {
+  const a = COMBAT.VETERAN.after;
+  return (state.progress?.[a.zone] || 0) >= a.stage ? COMBAT.VETERAN.chance : 0;
+}
+
 export function veteranOf(t) {
   const v = COMBAT.VETERAN;
   return { ...t, vet: true, name: `Veteran ${t.name}`, maxHp: t.maxHp * v.hp, atk: t.atk * v.atk, dps: t.dps * v.atk };
@@ -92,7 +98,7 @@ export function veteranOf(t) {
 export function spawnMonster(state, squad, delay = COMBAT.SPAWN_DELAY) {
   const seq = state.monsterSeq++;
   let t = monsterTemplate(squad.zone, squad.stage, squad.mode === 'boss', seq);
-  if (!t.boss && Math.random() < COMBAT.VETERAN.chance) t = veteranOf(t);
+  if (!t.boss && Math.random() < veteranChance(state)) t = veteranOf(t);
   squad.monster = { ...t, id: seq, hp: t.maxHp, t: 0, aoeT: 0, ready: delay };
 }
 

@@ -5,7 +5,7 @@ import {
   GAME, HERO_BY_ID, BUILDINGS, MYSTIC, F, COMBAT, ZONES, TENTS, TENT_SIZE, LEVEL_CAP_MAX,
   ROLES, RESEARCH, FEATURES, NORMAL_STAGES, TOTAL_NORMAL, HERO_LEVELS, CYCLE_MS, PORTAL_SHARDS,
   WEAPON_BY_ID, WEAPON_GRADES, CLASSES, WEAPON_FOR, RECRUIT, ARMORY_SLOTS, RATION_SLOTS, RETIRE_HOME,
-  TRAITS, TRAIT_STATS, TRAIT_RULES,
+  TRAITS, TRAIT_STATS, TRAIT_RULES, ONBOARDING,
 } from './config.js';
 import { markFulfilledQuests } from './quests.js';
 
@@ -32,7 +32,7 @@ export function createNewState(now = Date.now()) {
     nextUid: 1,
     armory: [],            // Waffen-IDs in der Waffenkammer (nicht ausgerüstet)
     shop: { offers: [], nextRestockMs: 0, refreshes: 0 },
-    recruits: { offers: [], nextRestockMs: 0, refreshes: 0, slots: 0 }, // offers: [{ heroId, rarity }]
+    recruits: { offers: [], nextRestockMs: 0, refreshes: 0, slots: 0, starter: false }, // offers: [{ heroId, rarity }], starter: Startangebot schon gezeigt
     squads: [0, 1, 2, 3].map(createSquad),
     progress: {},          // Zone → höchste besiegte Stufe (Boss)
     research: {},          // Forschungsknoten → Stufe
@@ -156,6 +156,28 @@ const MIGRATIONS = {
       const filled = (sq.slots || []).filter(u => u != null);
       filled.sort((a, b) => order(a) - order(b));
       sq.slots = [...filled, ...Array(TENT_SIZE - filled.length).fill(null)];
+    }
+    return s;
+  },
+  // v11 → v12: Tutorial ohne kostenlose Helden. Gildenhalle und erstes Zelt geben Gold (ONBOARDING.gold),
+  // Tank, Heiler und Schaden werden angeworben (erstes Angebot = diese drei, `recruits.starter`).
+  // Laufende Spielstände bekommen das Gold, das ihnen dadurch fehlt.
+  11: (s) => {
+    const heroes = s.heroes || [];
+    s.recruits = s.recruits || { offers: [], nextRestockMs: 0, refreshes: 0, slots: 0 };
+    const ob = s.onboarding || 0;
+    if (ob <= 3 && !heroes.length) {
+      s.recruits.starter = false;
+      s.recruits.nextRestockMs = 0; // Startangebot sofort
+      if (ob >= 2) s.gold = (s.gold || 0) + ONBOARDING.gold.hall;
+      if (ob >= 3) s.gold = (s.gold || 0) + ONBOARDING.gold.camp;
+    } else {
+      s.recruits.starter = true;
+      const done = new Set(s.questsDone || []);
+      const has = (role) => heroes.some(h => HERO_BY_ID[h.heroId]?.role === role);
+      for (const role of ['healer', 'dps']) {
+        if (!done.has(role) && !has(role)) s.gold = (s.gold || 0) + RECRUIT.rarities[RECRUIT.freeRarity].cost;
+      }
     }
     return s;
   },

@@ -3,7 +3,7 @@
 //  Kein DOM, keine Imports aus state.js – auch in Node und in der
 //  Save-Migration nutzbar.
 // =====================================================================
-import { QUESTS, TENT_SIZE } from './config.js';
+import { QUESTS, TENT_SIZE, HERO_BY_ID } from './config.js';
 
 // Fortschritt eines Auftrags: { have, need }
 export function questProgress(state, q) {
@@ -13,6 +13,7 @@ export function questProgress(state, q) {
       case 'stage': return state.progress?.[g.zone] || 0;
       case 'heroLevel': return Math.max(0, ...(state.heroes || []).map(h => h.level));
       case 'building': return state.buildings?.[g.key] || 0;
+      case 'role': return (state.heroes || []).some(h => HERO_BY_ID[h.heroId]?.role === g.role) ? 1 : 0;
       case 'freeHero': return (state.heroes || []).some(h => h.heroId === g.hero) ? 1 : 0;
       case 'weapon': return (state.heroes || []).some(h => h.weapon) ? 1 : 0;
       case 'research': return Object.values(state.research || {}).reduce((n, v) => n + v, 0);

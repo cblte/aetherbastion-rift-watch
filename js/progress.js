@@ -204,14 +204,10 @@ export function recruitTier(state) {
   return t;
 }
 
-// Helden, die (noch) nicht angeboten werden: schon im Lager, schon in der Liste,
-// oder als kostenloser Rekrut fürs Onboarding bzw. einen offenen Auftrag vorgesehen.
+// Helden, die (noch) nicht angeboten werden: schon im Lager oder schon in der Liste
 function recruitPool(state) {
-  const done = new Set(state.questsDone || []);
-  const reserved = new Set([ONBOARDING.tank,
-    ...QUESTS.filter(q => q.goal.type === 'freeHero' && !done.has(q.id)).map(q => q.goal.hero)]);
   const offered = new Set(state.recruits.offers.map(o => o.heroId));
-  return HEROES.filter(d => !isOwned(state, d.id) && !offered.has(d.id) && !reserved.has(d.id));
+  return HEROES.filter(d => !isOwned(state, d.id) && !offered.has(d.id));
 }
 
 // Würfel-Gewichte der Seltenheiten für die aktuelle Gildenhallen-Stufe ({ Seltenheit: % })
@@ -240,7 +236,13 @@ export function restockRecruits(state, now, manual = false) {
   const t = recruitTier(state);
   if (!t) return;
   state.recruits.offers = [];
-  addRecruitOffers(state, t.slots);
+  if (!state.recruits.starter) {
+    // Erstes Angebot im Tutorial: Tank, Heiler und Schaden aus ONBOARDING, alle „Fein“
+    state.recruits.starter = true;
+    for (const id of [ONBOARDING.tank, ONBOARDING.healer, ONBOARDING.dps]) {
+      if (!isOwned(state, id)) state.recruits.offers.push({ heroId: id, rarity: RECRUIT.freeRarity, traits: rollTraits(id, RECRUIT.freeRarity) });
+    }
+  } else addRecruitOffers(state, t.slots);
   state.recruits.slots = t.slots;
   if (!manual) {
     state.recruits.refreshes = 0;

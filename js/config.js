@@ -5,11 +5,11 @@
 
 export const GAME = {
   title: 'Aetherbastion: Rift Watch',
-  VERSION: '0.36.0',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
+  VERSION: '0.37.0',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
   CHANGELOG_URL: 'https://github.com/cblte/aetherbastion-rift-watch/blob/main/CHANGELOG.md', // Link in den Einstellungen
   BUILD: 'lokal',                    // ersetzt der Pages-Workflow durch „Nr. · Commit“
   SAVE_KEY: 'aetherbastion_save_v1',
-  SAVE_VERSION: 11,
+  SAVE_VERSION: 12,
   TICK_MS: 100,                      // Simulationsschritt (10×/s). Ein Tick lässt nur Zeit laufen, Angriffe kommen über Timer (#061)
   LOOP_MS: 250,                      // wie oft die Spielschleife nachsieht
   AUTOSAVE_MS: 10_000,
@@ -150,29 +150,31 @@ export const HEROES = [
 ];
 export const HERO_BY_ID = Object.fromEntries(HEROES.map(h => [h.id, h]));
 
-// Onboarding-Startaufstellung für Zelt 1: Tank, Heiler, Schadensausteiler
-export const ONBOARDING = { tank: 'h01', healer: 'h07', dps: 'h13' };
+// Onboarding: Die ersten Rekruten-Angebote der Gildenhalle sind genau diese drei (Tank, Heiler, Schaden, „Fein“).
+// gold: Belohnung für Gildenhalle und erstes Zelt, reicht für alle drei.
+export const ONBOARDING = { tank: 'h01', healer: 'h07', dps: 'h13', gold: { hall: 100, camp: 300 } };
 
 // ---------------------------------------------------------------------
 //  AUFTRÄGE nach dem Onboarding (Reihenfolge nach dem CQHT-Tutorial,
 //  eigene Texte). Der Spielstand merkt sich erledigte `id`s:
 //  👉 ids nie ändern; neue Aufträge dürfen überall eingefügt werden.
 //  goal.type: stage (zone, stage) · heroLevel (level) · building (key, level)
-//             freeHero (hero) – Held wird über den Auftrag kostenlos aufgenommen
+//             freeHero (hero) – Held wird über den Auftrag kostenlos aufgenommen (nicht mehr benutzt)
+//             role (role) – ein Held dieser Rolle ist im Lager (angeworben)
 //             weapon · research (n Stufen gesamt) · ration (n gefüttert)
 //             tents (n Zelte) · squadFull (squad = Zelt-Index 0–3)
 //  tab: Reiter, zu dem „Hingehen“ führt
 // ---------------------------------------------------------------------
 export const QUESTS = [
   { id: 'healer', icon: '✚', title: 'Verstärkung: Heilung', tab: 'squads',
-    text: 'Jemand mit Heilkräften meldet sich. Nimm die Verstärkung in Zelt 1 auf.',
-    goal: { type: 'freeHero', hero: ONBOARDING.healer }, reward: {} },
+    text: 'Wirb unter „Rekrutieren“ einen Heiler an. Er kommt in Zelt 1.',
+    goal: { type: 'role', role: 'healer' }, reward: {} },
   { id: 'boss1', icon: '👑', title: 'Die Banditen-Anführerin', tab: 'portal',
     text: 'Sie hält den Riss an der Alten Mühle offen. Fordere sie heraus.',
     goal: { type: 'stage', zone: 1, stage: 1 }, reward: { gold: 100 } },
   { id: 'dps', icon: '⚔️', title: 'Verstärkung: Schaden', tab: 'squads',
-    text: 'Jemand mit Feuerkraft will mit. Damit ist Zelt 1 voll.',
-    goal: { type: 'freeHero', hero: ONBOARDING.dps }, reward: {} },
+    text: 'Wirb einen Schadensausteiler an. Damit ist Zelt 1 voll.',
+    goal: { type: 'role', role: 'dps' }, reward: {} },
   { id: 'lv5', icon: '⬆️', title: 'Erste Erfahrung', tab: 'squads',
     text: 'Bring einen Helden auf Lv. 5.',
     goal: { type: 'heroLevel', level: 5 }, reward: { gold: 150 } },
@@ -276,7 +278,7 @@ export const COMBAT = {
   HARD_SCALE:   { atk: 1, def: 0.6 },
   LEGEND_SCALE: { atk: 0.5, def: 0.6 }, // CQHT-Legendär-Bosse schlagen alle 0,5 s zu
   // Veteranen (#026): Schergen kommen manchmal als Veteran aus dem Riss
-  VETERAN: { chance: 0.1, hp: 2, atk: 1.5, loot: 2 },
+  VETERAN: { chance: 0.1, hp: 2, atk: 1.5, loot: 2, after: { zone: 1, stage: 1 } }, // after: erst nach diesem Boss-Sieg (Tutorial)
   // Angriffs-Timer (#061): Takt der Gegner kommt aus data/monsterStats.js (CQHT: Schergen 2,5 s, Bosse meist 1,5 s).
   SPAWN_DELAY: 0.5,        // Sekunden, bis der nächste Gegner da ist (live und offline)
   // Zielwahl (#051 B + D): Platz 1 im Zelt ist der Anführer (fällt er, rückt der Nächste nach).

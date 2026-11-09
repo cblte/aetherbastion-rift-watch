@@ -3,6 +3,14 @@
 Was sich im Spiel geändert hat, neueste Version oben. Die Nummern (#…) verweisen auf die Feedback-Liste.
 Die Version steht im Spiel unten unter der Navigation.
 
+## v0.37.0 – 09.11.2026
+- **Neuer Start: Helden selbst anwerben.** Die Gildenhalle gibt 100 🟡, das erste Zelt 300 🟡. Damit wirbst du unter „Rekrutieren“ deine ersten drei Helden selbst an: Das erste Angebot sind immer ein Tank, ein Heiler und ein Schadensausteiler. Die kostenlosen Helden aus Tutorial und Aufträgen gibt es nicht mehr, die Aufträge „Verstärkung“ verlangen jetzt einen angeworbenen Heiler bzw. Schadensausteiler.
+- Am Anfang stellt sich Zelt 1 selbst nach Rolle auf (Tank vorn als Anführer), bis es voll ist.
+- Laufende Spielstände: Wer mitten im Tutorial steckt oder Heiler/Schaden noch nicht hat, bekommt das fehlende Gold gutgeschrieben.
+
+## v0.36.1 – 09.11.2026
+- 🎖️ **Keine Veteranen im Tutorial:** Veteranen kommen erst, wenn die Banditen-Anführerin (Königintal, Stufe 1) besiegt ist. Vorher stand man mit einem einzigen Helden schon doppelt so starken Schergen gegenüber.
+
 ## v0.36.0 – 09.11.2026
 - **Gegner wie in Crusaders Quest (#061):** Jeder Scherge und Boss hat jetzt die LP, den Schaden, die DEF und den Takt seiner CQHT-Vorlage. Schergen halten deutlich länger durch (auf passendem Level etwa 5–15 s statt 2–4 s). Ab Lv. 30 sind die LP etwas gedämpft, weil unsere Helden noch keine Skills haben.
 - **DEF und Durchdringung nach CQHT-Formel:** Helden bekommen mit jedem Level DEF und Durchdringung, Waffen zusätzlich Durchdringung (T2 10 bis T6 100). Wer unter dem Stufen-Level kämpft, kommt schlechter durch die Gegner-DEF und macht weniger Schaden. Im Helden-Fenster stehen beide Werte. Dort steht jetzt auch ausgerechnet, wie viel weniger Schaden ein Held nimmt: durch DEF, durch Schutz (Rolle, Forschung, Eigenschaften) und beides zusammen.

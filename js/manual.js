@@ -5,7 +5,7 @@
 // =====================================================================
 import {
   BUILDINGS, ZONES, ROLES, CLASSES, ATTACK_TYPES, TRAIT_STATS, HEROES, TRAITS, TRAIT_RULES, TENTS, TENT_SIZE, COMBAT, GAME, NORMAL_STAGES, TOTAL_NORMAL, FEATURES,
-  RETIRE_MIN_LEVEL, LEVEL_CAP_MAX, ARMORY_SLOTS, RATION_SLOTS, RATION_DROP, RETIRE_HOME, CYCLE_MS, WEAPON_TYPES, WEAPON_FOR, WEAPON_GRADES, SHOP, SELL, QUESTS, RECRUIT, REROLL_RESET_CLOVER,
+  RETIRE_MIN_LEVEL, LEVEL_CAP_MAX, ARMORY_SLOTS, RATION_SLOTS, RATION_DROP, RETIRE_HOME, CYCLE_MS, WEAPON_TYPES, WEAPON_FOR, WEAPON_GRADES, SHOP, SELL, QUESTS, RECRUIT, REROLL_RESET_CLOVER, ONBOARDING,
 } from './config.js';
 
 const pct = (x) => `${Math.round(x * 100)} %`;
@@ -25,7 +25,7 @@ export function manualChapters() {
   return [
     { icon: '🧭', title: 'Erste Schritte', html: `
       <p>Aus den Nebeln reißen Kryptis-Risse auf. Eure Gilde schlägt ein Lager an ihrem Rand auf und hält Wacht. Deine Helden kämpfen in Trupps automatisch – auch wenn die App geschlossen ist.</p>
-      <p>Das <b>Auftrags-Banner</b> oben führt dich durch das Spiel (${questTotal} Aufträge): Gildenhalle, erstes Zelt, erster Held, Riss-Portal, dann Bosse, Gebäude, Waffen, Forschung und weitere Trupps.</p>
+      <p>Das <b>Auftrags-Banner</b> oben führt dich durch das Spiel (${questTotal} Aufträge): Gildenhalle und erstes Zelt (zusammen 🟡 ${ONBOARDING.gold.hall + ONBOARDING.gold.camp}), drei Helden anwerben, Riss-Portal, dann Bosse, Gebäude, Waffen, Forschung und weitere Trupps.</p>
       ${list([
         'Der Balken zeigt den Fortschritt, <b>„Hingehen“</b> springt zum passenden Reiter.',
         'Der nächste Schritt leuchtet: ein Punkt am Reiter, ein leuchtender Knopf, bei Bossen 🎯 an der Zielstufe.',
@@ -57,7 +57,7 @@ export function manualChapters() {
       <p>Neue Helden wirbst du unter <b>🛡️ Trupps → Rekrutieren</b> an. Dort stehen wechselnde Angebote – mehr und schneller mit besserer Gildenhalle:</p>
       ${table(['Gildenhalle', 'Angebote', 'Neue alle'], RECRUIT.tiers.map(t => [`ab ${t.hall}`, t.slots, `${t.restockMin} Min.`]))}
       <p>„Liste erneuern“ kostet ${RECRUIT.refreshBase} 🟡 und verdoppelt sich mit jedem Versuch; kommt der Nachschub von selbst, fängt der Preis wieder bei ${RECRUIT.refreshBase} an. Mit 🍀 ${REROLL_RESET_CLOVER} Mystischem Klee setzt du ihn sofort zurück.</p>
-      <p>Jeder Rekrut hat eine <b>Seltenheit</b>. Sie bestimmt Preis und Bonus auf LP und ATK. Kostenlose Helden aus den Aufträgen sind „Fein“. Je höher die <b>Gildenhalle</b>, desto öfter kommen seltene Rekruten (Chancen stehen unter „Rekrutieren“).</p>
+      <p>Jeder Rekrut hat eine <b>Seltenheit</b>. Sie bestimmt Preis und Bonus auf LP und ATK. Das erste Angebot im Tutorial sind ein Tank, ein Heiler und ein Schadensausteiler in „Fein“. Je höher die <b>Gildenhalle</b>, desto öfter kommen seltene Rekruten (Chancen stehen unter „Rekrutieren“).</p>
       ${table(['Seltenheit', 'Preis', 'Bonus', 'Eigenschaften'], Object.entries(RECRUIT.rarities).map(([r, x]) => [`<span style="color:${WEAPON_GRADES[r].color}">◆ ${WEAPON_GRADES[r].name}</span>`, `🟡 ${x.cost.toLocaleString('de-DE')}`, x.bonus ? `+${pct(x.bonus)}` : '–', TRAIT_RULES.count[r]]))}
       <p><b>Klassen:</b> Die Rolle bestimmt, was ein Held im Kampf macht, die Klasse die Waffenart und einen kleinen festen Klassenbonus. Ein Wächter kann Tank, Heiler oder Schaden sein und hat immer den Wächter-Bonus. Heiler tragen immer einen Fokus.</p>
       ${table(['Klasse', 'Bonus', 'Waffe'], Object.entries(CLASSES).map(([k, c]) => { const ts = TRAIT_STATS[c.bonus[0]]; const v = c.bonus[1] * ts.f; return [c.name, `${ts.mode === 'less' ? '−' : '+'}${v.toLocaleString('de-DE')} % ${ts.show || ts.name}${ts.squad ? ' (Trupp)' : ''}`, WEAPON_TYPES[WEAPON_FOR[k]].name]; }))}
@@ -84,7 +84,7 @@ export function manualChapters() {
         `✚ Heiler heilen den Verbündeten mit den wenigsten LP (Anteil) um ATK × ${String(COMBAT.HEAL_MULT).replace('.', ',')} pro Sekunde und greifen mit ${pct(COMBAT.HEALER_ATK_FACTOR)} ATK an, ohne Krit.`,
         '<b>Gegnerwerte wie in Crusaders Quest:</b> LP, Schaden, DEF und Takt jedes Gegners stammen aus CQHT. Schergen greifen meist alle 2,5 s an, Bosse alle 1,5 s. Ab Lv. 30 sind die LP etwas gedämpft, weil unsere Helden keine Skills haben.',
         `<b>DEF und Durchdringung:</b> Schaden × 100 / (100 + DEF − Durchdringung). 100 DEF halbieren den Schaden. Helden bekommen DEF und Durchdringung mit dem Level (${COMBAT.HERO_ARMOR.perLevel.toLocaleString('de-DE')} je Level, mehr bei höherer Seltenheit), Waffen geben zusätzlich Durchdringung (bis ${WEAPON_GRADES[6].pen} bei T6). Liegt die Durchdringung über der DEF des Gegners, gibt es bis ×1,5 Bonus-Schaden. Wer unter dem Stufen-Level kämpft, durchdringt also weniger.`,
-        `🎖️ <b>Veteranen:</b> Jeder Scherge kommt mit ${pct(COMBAT.VETERAN.chance)} Chance als Veteran: ×${COMBAT.VETERAN.hp} LP, ×${String(COMBAT.VETERAN.atk).replace('.', ',')} Schaden, ×${COMBAT.VETERAN.loot} Beute.`,
+        `🎖️ <b>Veteranen:</b> Jeder Scherge kommt mit ${pct(COMBAT.VETERAN.chance)} Chance als Veteran: ×${COMBAT.VETERAN.hp} LP, ×${String(COMBAT.VETERAN.atk).replace('.', ',')} Schaden, ×${COMBAT.VETERAN.loot} Beute. Erst nach dem Sieg über die Banditen-Anführerin (Königintal, Stufe 1).`,
         'Wie ein Gegner angreift, steht unter ihm:',
         `${ATTACK_TYPES.melee.icon} <b>Nahkampf:</b> ${pct(COMBAT.LEADER_SHARE)} auf den 🚩 Anführer, der Rest verteilt sich (🛡️ Tank ${ROLES.tank.aggro} Teile, ⚔️/📯 je ${ROLES.dps.aggro}, ✚ Heiler ${ROLES.healer.aggro}).`,
         `${ATTACK_TYPES.ranged.icon} <b>Fernkampf:</b> trifft einen Helden voll, gewürfelt nach denselben Teilen.`,

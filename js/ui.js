@@ -127,9 +127,9 @@ function renderHud() {
 // tab = Reiter des Schritts · key = Gebäudekarte im Lager, die den Schritt auslöst (btn = ihr Knopf)
 const QUESTS = [
   null,
-  { icon: '🏛️', tab: 'camp', key: 'hall', text: 'Errichte die <b>Gildenhalle</b>.', btn: 'Errichten', action: 'ob-hall' },
-  { icon: '⛺', tab: 'camp', key: 'camp', text: 'Schlage dein <b>erstes Zelt</b> auf. Hier wohnen deine Helden.', btn: 'Aufschlagen', action: 'ob-camp' },
-  { icon: '🛡️', tab: 'squads', text: () => `Nimm <b>${esc(HERO_BY_ID[ONBOARDING.tank].name)}</b> als ersten Helden in Zelt 1 auf. Als Tank steht dieser Held vorn.`, action: 'ob-recruit' },
+  { icon: '🏛️', tab: 'camp', key: 'hall', text: () => `Errichte die <b>Gildenhalle</b>. Belohnung: 🟡 ${fmt(ONBOARDING.gold.hall)}.`, btn: 'Errichten', action: 'ob-hall' },
+  { icon: '⛺', tab: 'camp', key: 'camp', text: () => `Schlage dein <b>erstes Zelt</b> auf. Hier wohnen deine Helden. Belohnung: 🟡 ${fmt(ONBOARDING.gold.camp)}.`, btn: 'Aufschlagen', action: 'ob-camp' },
+  { icon: '🛡️', tab: 'squads', text: () => `Wirb unten unter <b>Rekrutieren</b> deinen ersten Helden an. Am besten den <b>Tank</b> (${esc(HERO_BY_ID[ONBOARDING.tank].name)}): Wer auf Platz 1 steht, führt den Trupp an und wird am meisten angegriffen.` },
   { icon: '🌀', tab: 'camp', key: 'portal', text: 'Aktiviere das <b>Riss-Portal</b> im Lager. Dann beginnt der erste Kampf.', btn: 'Aktivieren', action: 'ob-finish' },
 ];
 
@@ -227,7 +227,7 @@ const SKELETONS = {
   camp: `<h2 class="sec">Gildenlager</h2><section id="camp-stats"></section><section id="buildings"></section>`,
   inv: `<h2 class="sec">🎒 Inventar</h2><section id="inventory"></section>`,
   squads: `<h2 class="sec">Zelte</h2><section id="tents"></section>
-    <div id="squads-more"><h2 class="sec">Reserve</h2><section id="reserve"></section>
+    <div id="squads-more"><div id="reserve-box"><h2 class="sec">Reserve</h2><section id="reserve"></section></div>
     <h2 class="sec">Rekrutieren</h2><section id="recruit"></section></div>`,
   lab: `<h2 class="sec">🔬 Asura-Labor</h2><section id="lab"></section>`,
   forge: `<h2 class="sec">⚒️ Charr-Schmiede</h2><section id="weapons"></section>
@@ -650,7 +650,8 @@ function questFreeHero() {
 
 function renderSquads() {
   const tutorial = S.onboarding < 5;
-  $('#squads-more').hidden = tutorial;
+  $('#squads-more').hidden = S.onboarding < 3; // Rekrutieren ab Tutorial-Schritt 3
+  $('#reserve-box').hidden = tutorial;
   const free = questFreeHero();
   const freeSlot = free ? S.squads[0].slots.indexOf(null) : -1; // quest-hero setzt in Zelt 1, sonst Reserve
   setHTML($('#tents'), S.squads.map((sq, i) => {
@@ -671,9 +672,6 @@ function renderSquads() {
       <div class="tent-head"><b>⛺ Zelt ${i + 1}</b><small>${esc(stageLabel(sq))}</small></div>
       <div class="slots">${sq.slots.map((uid, slot) => {
         const h = uid != null ? getHero(S, uid) : null;
-        if (!h && S.onboarding === 3 && i === 0 && slot === 0) {
-          return `<button class="slot goal" data-action="ob-recruit"><span class="slot-empty">＋ ${esc(HERO_BY_ID[ONBOARDING.tank].name)} aufnehmen</span></button>`;
-        }
         if (!h && free && i === 0 && slot === freeSlot) {
           return `<button class="slot goal" data-action="quest-hero"><span class="slot-empty">＋ ${esc(free.name)} aufnehmen</span></button>`;
         }
@@ -721,7 +719,8 @@ const rarityTag = (r) => `<span class="rar" style="color:${WEAPON_GRADES[r].colo
 function recruitHtml() {
   const t = recruitTier(S);
   if (!t) return '<div class="card muted small">Die Gildenhalle wird noch errichtet.</div>';
-  const blocked = S.onboarding < 5;
+  const tutorial = S.onboarding < 5;
+  const blocked = S.onboarding < 3;
   const next = RECRUIT.tiers.find(x => x.hall > S.buildings.hall);
   const offers = S.recruits.offers.map((o, k) => {
     const d = HERO_BY_ID[o.heroId];
@@ -747,10 +746,10 @@ function recruitHtml() {
   const nextOdds = RECRUIT.odds.find(x => x.hall > S.buildings.hall);
   const better = Math.min(next?.hall ?? Infinity, nextOdds?.hall ?? Infinity);
   return `
-    <div class="card small">Neue Rekruten in <b>${clock(S.recruits.nextRestockMs - S.lastTickMs)}</b>${blocked ? '<br>Zuerst die Quest abschließen.' : ''}
-      <div class="odds">${odds}${better < Infinity ? `<br><span class="muted">Mehr und seltenere ab Gildenhalle ${better}.</span>` : ''}</div></div>
+    ${tutorial ? `<div class="card small">Dein Gold reicht für alle drei. Tank, Heiler und Schaden bilden zusammen einen Trupp.</div>` : `<div class="card small">Neue Rekruten in <b>${clock(S.recruits.nextRestockMs - S.lastTickMs)}</b>
+      <div class="odds">${odds}${better < Infinity ? `<br><span class="muted">Mehr und seltenere ab Gildenhalle ${better}.</span>` : ''}</div></div>`}
     ${offers}
-    ${rerollRow(`<button class="btn" data-action="recruit-refresh" ${S.gold >= rc ? '' : 'disabled'}>Liste erneuern<small>🟡 ${fmt(rc)}</small></button>`, 'recruits', S.recruits.refreshes)}`;
+    ${tutorial ? '' : rerollRow(`<button class="btn" data-action="recruit-refresh" ${S.gold >= rc ? '' : 'disabled'}>Liste erneuern<small>🟡 ${fmt(rc)}</small></button>`, 'recruits', S.recruits.refreshes)}`;
 }
 
 // Erneuern-Knopf; nach dem ersten Erneuern daneben „Preis zurücksetzen“ für 🍀
@@ -1371,18 +1370,12 @@ function onClick(e) {
     case 'ob-start': S.onboarding = 1; changed(); break;
     case 'ob-hall':
       if (S.onboarding !== 1) break;
-      S.buildings.hall = 1; S.onboarding = 2; tab = 'camp';
-      addLog(S, '🏛️ Die Gildenhalle steht.', null, 'info'); changed('Gildenhalle errichtet!'); break;
+      S.buildings.hall = 1; S.onboarding = 2; tab = 'camp'; S.gold += ONBOARDING.gold.hall;
+      addLog(S, `🏛️ Die Gildenhalle steht. +${fmt(ONBOARDING.gold.hall)} 🟡`, null, 'info'); changed(`Gildenhalle errichtet! +${fmt(ONBOARDING.gold.hall)} 🟡`); break;
     case 'ob-camp':
       if (S.onboarding !== 2) break;
-      S.buildings.camp = 1; S.onboarding = 3; tab = 'squads';
-      changed('Erstes Zelt steht – neu: Trupps.'); break;
-    case 'ob-recruit': {
-      if (S.onboarding !== 3) break;
-      const h = createHero(S, ONBOARDING.tank);
-      S.squads[0].slots[0] = h.uid; S.onboarding = 4; tab = 'squads';
-      changed(`${esc(HERO_BY_ID[h.heroId].name)} tritt der Wacht bei!`); break;
-    }
+      S.buildings.camp = 1; S.onboarding = 3; tab = 'squads'; S.gold += ONBOARDING.gold.camp;
+      changed(`Erstes Zelt steht – neu: Trupps. +${fmt(ONBOARDING.gold.camp)} 🟡`); break;
     case 'ob-finish': {
       if (S.onboarding !== 4) break;
       S.buildings.portal = 1; S.onboarding = 5; S.selectedSquad = 0; viewZone = 1; tab = 'portal';
@@ -1618,7 +1611,7 @@ function build(key) {
 }
 
 function recruit(slot) {
-  if (S.onboarding < 5) return;
+  if (S.onboarding < 3) return;
   const h = hireRecruit(S, slot);
   if (!h) { toast('Nicht genug Gold.'); return; }
   const heroId = h.heroId;
@@ -1628,6 +1621,12 @@ function recruit(slot) {
       if (S.squads[i].slots[slot] == null) { S.squads[i].slots[slot] = h.uid; placed = ` → Zelt ${i + 1}`; break outer; }
     }
   }
+  // Anfangs (bis Zelt 1 voll ist) stellt sich Zelt 1 nach Rolle auf: Tank vorn als Anführer
+  if (!S.questsDone.includes('dps')) {
+    const sq = S.squads[0], ord = (u) => u == null ? 99 : ROLES[HERO_BY_ID[getHero(S, u).heroId].role].order;
+    sq.slots.sort((a, b) => ord(a) - ord(b));
+  }
+  if (S.onboarding === 3) S.onboarding = 4;
   addLog(S, `🛡️ ${HERO_BY_ID[heroId].name} wurde angeworben${placed}.`, null, 'info');
   changed(`${esc(HERO_BY_ID[heroId].name)} angeworben${placed || ' (Reserve)'}!`);
 }

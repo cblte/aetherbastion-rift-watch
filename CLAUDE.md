@@ -11,12 +11,12 @@ Mobile-First Idle-RPG als PWA für eine Guild-Wars-2-Gilde (nicht-kommerzielles 
 - Helden-`id`s in `HEROES` nie ändern (Spielstände hängen daran).
 - Nach jeder Änderung an App-Dateien die Version erhöhen: `GAME.VERSION` in `js/config.js` und `CACHE_VERSION` in `sw.js` (immer dieselbe Nummer, z. B. `0.6.1` / `'aetherbastion-0.6.1'`). Patch für Fixes, Minor für neue Funktionen. Neue Dateien in `APP_FILES` eintragen.
 - Jede Version bekommt einen Eintrag in `CHANGELOG.md` (neueste oben, für Spieler geschrieben, mit #-Nummern). Verlinkt aus ⚙️ Einstellungen (`GAME.CHANGELOG_URL`).
-- Änderungen am Save-Format: `GAME.SAVE_VERSION` erhöhen und eine Migration in `MIGRATIONS` (`js/state.js`) ergänzen.
+- Änderungen am Save-Format: `GAME.SAVE_VERSION` erhöhen und eine Migration in `MIGRATIONS` (`js/state.js`) ergänzen. **Bis ca. v0.40 ausgesetzt:** Dann werden alle Spielstände zurückgesetzt. Bis dahin keine Migrationen für Spielablauf-Änderungen schreiben, nur absichern, falls alte Spielstände sonst abstürzen.
 
 ## Architektur
 - `js/data/*.js`: reine Datentabellen aus Crusaders Quest: Hero Town, auf GW2 umgemünzt (siehe `DATA.md`). Zahlen dort ändern, nicht in der Logik. Ausnahmen: `stages.js` wird von `tools/gen-zones.mjs` erzeugt, `monsterStats.js` (Kampfwerte jedes Gegners 1:1 aus CQHT) von `tools/gen-monster-stats.mjs` aus `dev-data/gw2-monsters.json`.
 - `config.js`: Konstanten, Formeln (`F`), Helden (60, je 15 pro Rolle – beim Ergänzen gleich halten, `race` nur Anzeige), Völker (`RACES`), Klassen (`CLASSES`: Waffenart, Klassenbonus, passende Rollen `roles` – neue Helden nur in passenden Kombinationen), Eigenschaften (`TRAITS`, `TRAIT_STATS`, `TRAIT_RULES`), Rollen, Forschung, Mystische Schmiede; baut `ZONES` (mit Schwierigkeit `d`) und `BUILDINGS` aus `js/data/`
-- `state.js`: Spielstand, Save/Load/Migration (`localStorage['aetherbastion_save_v1']`, aktuell Save-Version 11), abgeleitete Werte (`heroStats` inkl. Waffe/Forschung/DEF/Eigenschaften, `levelCap`, `isStageAvailable` …)
+- `state.js`: Spielstand, Save/Load/Migration (`localStorage['aetherbastion_save_v1']`, aktuell Save-Version 12), abgeleitete Werte (`heroStats` inkl. Waffe/Forschung/DEF/Eigenschaften, `levelCap`, `isStageAvailable` …)
 - `combat.js`: Tick 10×/s (`GAME.TICK_MS`), Angriffe über Timer je Kämpfer (Helden: `CLASSES[…].interval` ÷ Tempo, Gegner: `COMBAT.MINION_INTERVAL`/`BOSS_INTERVAL`), Zeiten in Sekunden (`bossTime`). Platz 1 im Zelt = Anführer, Zielwahl nach Angriffsart des Gegners (`hitShares`, `attack` aus `tools/gen-zones.mjs`), Boss-Flächenangriff (`BOSS_AOE_*`). Squad-`mode` ist `'farm'` (Schergen der Stufe) oder `'boss'` (Herausforderung, 90 s Zeitlimit, danach 90 s Pause `bossReadyAt`; `autoBoss` wiederholt nach der Pause, aus nach Niederlage). Ein Boss-Sieg setzt `state.progress[zone]`. Dazu Belohnungen (`applyKillRewards`), Tauschen und Beleben.
 - `progress.js`: Bauen mit Bauzeit (`state.construction`, immer nur ein Auftrag), Rekrutierung (`state.recruits`: Angebote mit Seltenheit, Timer und Erneuern; Werte in `RECRUIT`), Charr-Schmiede (Laden `state.shop`, Waffenkammer `state.armory`, `hero.weapon` = Waffen-ID), Proviant, Asura-Labor (`state.research`)
 - `quests.js`: Aufträge nach dem Onboarding (Daten: `QUESTS` in `config.js`). Erledigte `id`s in `state.questsDone`; ohne Import aus `state.js` (wird von der Migration genutzt)
@@ -60,7 +60,7 @@ Der Spielstand ist ein einziges Objekt. Bei Import/Reset wird es per `replaceSta
 
 ## Geplant (bereits entschieden)
 - Rekrutierung mit Angeboten und Seltenheiten ist drin. Offen: Darf ein Mitglied in einer besseren Seltenheit die alte Version ersetzen (oder doppelt im Lager sein)? Erst nach den nächsten Systemen entscheiden.
-- Questreihe: 23 Aufträge bis Zone 6 (Caudecus’ Anwesen) sind drin (inkl. Heiler und Schaden als kostenlose Rekruten). Später ergänzen: Ruhestand (Mystische Schmiede), Skills, Beförderungen.
+- Questreihe: 23 Aufträge bis Zone 6 (Caudecus’ Anwesen) sind drin (Tutorial: Halle/Zelt geben Gold, erstes Rekruten-Angebot = Tank/Heiler/Schaden aus `ONBOARDING`, Aufträge „Verstärkung“ verlangen die Rolle). Später ergänzen: Ruhestand (Mystische Schmiede), Skills, Beförderungen.
 - Skill-System für Helden (kommt später).
 - Beförderungen / Sterne-Stufen für Helden (kommt später). Ganz oben: 7★ / Legendär für voll ausgelevelte Helden und Waffen, leicht OP und sehr schwer zu bekommen (#049, Weg noch offen).
 - Dekorationen: nicht geplant.

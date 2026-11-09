@@ -7,10 +7,10 @@ Aus den Nebeln reißen Kryptis-Risse auf. Eure Gilde schlägt ein Lager an ihrem
 Quest-Banner führen dich durch den Start. **„Hingehen“** bringt dich zur richtigen Seite, den Schritt selbst machst du dort mit dem leuchtenden Knopf. Die Reiter unten erscheinen erst, wenn du sie brauchst:
 
 1. **Gildenlager gründen**
-2. **Gildenhalle errichten** (kostenlos). Danach ist nur das **Lager** sichtbar.
-3. **Erstes Zelt aufschlagen** (kostenlos, baut das Zeltlager, Level-Cap Lv. 10). Danach erscheint **Trupps**.
-4. **Ersten Helden aufnehmen**, einen Wächter als Tank: im leeren Platz von Zelt 1 (kostenlos)
-5. **Riss-Portal aktivieren** im Lager. Jetzt erscheinen **Portal** und **Inventar**; **Labor** und **Schmiede** kommen dazu, sobald du sie gebaut hast. Der Wächter kämpft zunächst allein, Heiler und Schadensausteiler folgen über die ersten Aufträge: Du nimmst sie bei **Trupps** im leuchtenden Platz von Zelt 1 auf.
+2. **Gildenhalle errichten** (kostenlos, **+100 🟡**). Danach ist nur das **Lager** sichtbar.
+3. **Erstes Zelt aufschlagen** (kostenlos, **+300 🟡**, baut das Zeltlager, Level-Cap Lv. 10). Danach erscheint **Trupps**.
+4. **Ersten Helden anwerben:** Bei **Trupps** unter **Rekrutieren** bietet die Gildenhalle beim ersten Mal genau einen Tank, einen Heiler und einen Schadensausteiler an (je „Fein“, 100 🟡). Das Gold reicht für alle drei. Am besten zuerst den Tank: Zelt 1 stellt sich am Anfang selbst nach Rolle auf, der Tank steht vorn.
+5. **Riss-Portal aktivieren** im Lager. Jetzt erscheinen **Portal** und **Inventar**; **Labor** und **Schmiede** kommen dazu, sobald du sie gebaut hast. Wer noch keinen Heiler und Schadensausteiler hat, holt sie über die ersten Aufträge nach.
 
 Der nächste Schritt leuchtet: ein Punkt am passenden Reiter und ein leuchtender Knopf.
 
@@ -118,7 +118,7 @@ Jeder Held bringt **Eigenschaften** mit, gewürfelt beim Rekrutieren. Du siehst 
   - Helden bekommen DEF und Durchdringung mit dem Level: 2,5 je Level, dazu ein Grundwert nach Seltenheit (Fein 0 bis Aufgestiegen 20).
   - Waffen geben zusätzlich Durchdringung: T2 10, T3 25, T4 45, T5 70, T6 100.
   - Liegt die Durchdringung über der DEF des Gegners, gibt es bis **×1,5** Bonus-Schaden. Wer unter dem Stufen-Level kämpft, durchdringt weniger und macht spürbar weniger Schaden.
-- 🎖️ **Veteranen:** Jeder Scherge kommt mit 10 % Chance als **Veteran** aus dem Riss: doppelte LP, ×1,5 Schaden, doppelte Beute. Offline zählen sie als Durchschnitt mit.
+- 🎖️ **Veteranen:** Jeder Scherge kommt mit 10 % Chance als **Veteran** aus dem Riss: doppelte LP, ×1,5 Schaden, doppelte Beute. Offline zählen sie als Durchschnitt mit. Veteranen gibt es erst, wenn die Banditen-Anführerin (Königintal, Stufe 1) besiegt ist.
 - Unter dem Gegner steht, wie er angreift:
   - 🗡️ **Nahkampf:** 60 % auf den 🚩 Anführer (Platz 1), der Rest verteilt sich auf die anderen: 🛡️ Tank 5 Teile, ⚔️ Schaden und 📯 Unterstützer je 3, ✚ Heiler 2.
   - 🏹 **Fernkampf:** trifft einen Helden mit voller Wucht, gewürfelt nach denselben Teilen.
@@ -261,7 +261,7 @@ Wie oft welche Seltenheit kommt, hängt von der **Gildenhalle** ab. Die aktuelle
 | ab Stufe 9 | 10 % | 25 % | 30 % | 22 % | 13 % |
 
 - Jedes Gildenmitglied kann nur einmal gleichzeitig im Lager sein; Mitglieder im Lager tauchen nicht im Angebot auf.
-- Die kostenlosen Helden aus Onboarding und Aufträgen (Tank, Heiler, Schaden) sind „Fein“ und kommen nicht ins Angebot.
+- Das allererste Angebot (Tutorial) sind immer Tank, Heiler und Schaden in „Fein“. Danach ist das Angebot zufällig.
 - Neue Helden landen automatisch im ersten freien Zeltplatz, sonst in der Reserve.
 
 ## Ruhestand & Mystische Schmiede (Prestige)

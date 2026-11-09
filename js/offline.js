@@ -12,7 +12,7 @@
 import { ZONES, HERO_BY_ID, CYCLE_MS, COMBAT } from './config.js';
 import { heroStats, addLog, offlineMaxMs, payCycle, squadTrait } from './state.js';
 import { checkConstruction, checkShop, checkRecruits } from './progress.js';
-import { squadMembers, teamProfile, monsterTemplate, veteranOf, applyKillRewards, spawnMonster, fmt } from './combat.js';
+import { squadMembers, teamProfile, monsterTemplate, veteranOf, veteranChance, applyKillRewards, spawnMonster, fmt } from './combat.js';
 
 const MAX_STEPS = 200_000; // Sicherheitsnetz
 
@@ -63,7 +63,8 @@ export function runOffline(state, elapsedMs) {
     // beide Schergen-Typen abwechselnd, jeder mit eigener Angriffsart (#051)
     // Veteranen als Erwartungswert: jeder Sieg zählt als Mischung aus normal und Veteran (Zeit, Schaden, Beute)
     const V = COMBAT.VETERAN;
-    const mix = (a, b) => a * (1 - V.chance) + b * V.chance;
+    const vc = veteranChance(state);
+    const mix = (a, b) => a * (1 - vc) + b * vc;
     const mons = ZONES[sq.zone - 1].stages[sq.stage - 1].minions.map((_, v) => {
       const m = monsterTemplate(sq.zone, sq.stage, false, v), vm = veteranOf(m);
       return { ...m, maxHp: mix(m.maxHp, vm.maxHp), dps: mix(m.dps, vm.dps) };
