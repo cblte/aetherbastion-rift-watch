@@ -284,10 +284,24 @@ const quipHash = (a, b, c) => {
   x = Math.imul(x ^ (x >>> 13), 1274126177) >>> 0;
   return (x ^ (x >>> 16)) >>> 0;
 };
+// Schwache Schergen (Trupp braucht voraussichtlich < MOB_QUIPS.minFight s) bekommen keinen Spruch.
+// Einmal je Gegner entschieden, damit die Zeile während des Kampfs nicht an- und ausgeht.
+const quipWeak = new Map();
+function isWeakMob(m, sq, i, alive) {
+  if (m.boss) return false;
+  const key = `${i}-${m.id}`;
+  if (!quipWeak.has(key)) {
+    if (quipWeak.size > 20) quipWeak.clear();
+    const dps = alive.length ? teamProfile(S, alive, sq, m).dps : 0;
+    quipWeak.set(key, dps > 0 && m.maxHp / dps < MOB_QUIPS.minFight);
+  }
+  return quipWeak.get(key);
+}
 function mobQuip(m, aoeIn, sq, i) {
   if (aoeIn <= COMBAT.BOSS_AOE_WARN) return `<div class="mob-say warn">${MOB_QUIPS.aoe}</div>`;
-  const list = m.hp / m.maxHp < MOB_QUIPS.lowHp ? MOB_QUIPS.low : m.boss ? MOB_QUIPS.boss : m.vet ? MOB_QUIPS.vet : MOB_QUIPS.minion;
   const alive = squadMembers(S, sq).filter(h => !h.woundedUntil);
+  if (isWeakMob(m, sq, i, alive)) return `<div class="mob-say"></div>`;
+  const list = m.hp / m.maxHp < MOB_QUIPS.lowHp ? MOB_QUIPS.low : m.boss ? MOB_QUIPS.boss : m.vet ? MOB_QUIPS.vet : MOB_QUIPS.minion;
   const win = Math.floor(S.lastTickMs / 1000 / MOB_QUIPS.every);
   const r = quipHash(win, m.id, i);
   // Sprüche mit Heldennamen nur, wenn noch jemand steht

@@ -12,6 +12,13 @@ Format:
 
 ---
 
+## v0.39.0
+
+### #040 Asura-Labor ab Stufe 6 ohne Wirkung
+- **Quelle:** Gilde (Spieler mit allem maximal ausgebaut). Ab Labor 5 war alles offen, Labor 6–10 kosteten 1,9 Mio. 🟡 und schalteten nur das „Archiv der Veteranen“ frei (v0.27.0, #022).
+- v0.38.0: Forschung braucht Zeit, immer nur eine gleichzeitig. Daten in `js/data/research.js`.
+- v0.39.0: neun neue Knoten in den drei Bäumen, dazu der vierte Baum „Erweiterte Forschung“ (Typ 2, `tier: 5`, `TIER_LAB` 7) mit neun Knoten und bis zu 10 Stufen. Die einzelnen Stufen brauchen Labor 7–10 (`labSteps`). Damit hat jede Labor-Stufe bis 10 eine Wirkung.
+
 ## v0.35.0
 
 ### #051 Schaden: Anführer zuerst statt alle gleichzeitig, dazu Flächenschaden

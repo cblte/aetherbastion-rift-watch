@@ -4,7 +4,7 @@
 //  Rückgabe: [{ icon, title, html }] – wird in ui.js als Kapitel gezeigt.
 // =====================================================================
 import {
-  BUILDINGS, ZONES, ROLES, CLASSES, ATTACK_TYPES, TRAIT_STATS, HEROES, TRAITS, TRAIT_RULES, TENTS, TENT_SIZE, COMBAT, GAME, NORMAL_STAGES, TOTAL_NORMAL, FEATURES,
+  BUILDINGS, ZONES, ROLES, CLASSES, ATTACK_TYPES, MOB_QUIPS, TRAIT_STATS, HEROES, TRAITS, TRAIT_RULES, TENTS, TENT_SIZE, COMBAT, GAME, NORMAL_STAGES, TOTAL_NORMAL, FEATURES,
   RETIRE_MIN_LEVEL, LEVEL_CAP_MAX, ARMORY_SLOTS, RATION_SLOTS, RATION_DROP, RETIRE_HOME, CYCLE_MS, WEAPON_TYPES, WEAPON_FOR, WEAPON_GRADES, SHOP, SELL, QUESTS, RECRUIT, REROLL_RESET_CLOVER, ONBOARDING, RESEARCH_TIME, TIER_LAB,
 } from './config.js';
 
@@ -87,6 +87,7 @@ export function manualChapters() {
         `${ATTACK_TYPES.ranged.icon} <b>Fernkampf:</b> trifft einen Helden voll, gewürfelt nach denselben Teilen.`,
         `${ATTACK_TYPES.magic.icon} <b>Magie:</b> trifft alle fitten Helden zu gleichen Teilen.`,
         `💥 <b>Bosse</b> holen alle ${COMBAT.BOSS_AOE_EVERY} s zu einem Flächenangriff aus, der jeden Helden trifft. ${COMBAT.BOSS_AOE_WARN} s vorher steht die Warnung in der Info-Zeile unter dem Boss.`,
+        `Sonst stehen in der Info-Zeile wechselnde Sprüche zum Gegner. Schergen, die dein Trupp in weniger als ${MOB_QUIPS.minFight} s besiegt, bleiben stumm.`,
         `Die DEF jedes Helden senkt seinen Schaden, dazu der Schutz (Schadensreduktion aus Rolle, Forschung und Eigenschaften, höchstens ${pct(COMBAT.DEF_CAP)}). Im Helden-Fenster stehen DEF, Schutz und beides zusammen.`,
         `Nach jedem Sieg heilt der ganze Trupp ${pct(COMBAT.KILL_HEAL)} seiner LP.`,
         'Die Werte siehst du im Helden-Fenster (💥 Schaden, ✚ Heilung) und für den ganzen Trupp unter jedem Zelt.',

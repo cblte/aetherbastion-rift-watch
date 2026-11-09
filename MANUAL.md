@@ -122,6 +122,7 @@ Jeder Held bringt **Eigenschaften** mit, gewürfelt beim Rekrutieren. Du siehst 
   - 🏹 **Fernkampf:** trifft einen Helden mit voller Wucht, gewürfelt nach denselben Teilen.
   - ✨ **Magie:** trifft alle fitten Helden zu gleichen Teilen.
 - 💥 **Bosse** holen alle **12 s** zu einem **Flächenangriff** aus, der jeden Helden trifft. 3 s vorher steht die Warnung in der Info-Zeile unter dem Boss.
+- Sonst stehen in der **Info-Zeile** wechselnde Sprüche zum Gegner. Schergen, die dein Trupp in weniger als **5 s** besiegt, bleiben stumm.
 - Die DEF jedes Helden senkt seinen Schaden, dazu der **Schutz** (Schadensreduktion aus Rolle, Forschung und Eigenschaften, höchstens 50 %). Im Helden-Fenster stehen DEF, Schutz und beides zusammen als „−x % Schaden“, bei Boss-Härte auch der Wert gegen Bosse.
 - Nach jedem Sieg heilt der ganze Trupp 10 % seiner LP.
 - Im Helden-Fenster stehen **💥 Schaden** und **✚ Heilung** pro Sekunde (ohne Trupp-Boni). Unter jedem Zelt stehen Schaden, Heilung und LP des ganzen Trupps.

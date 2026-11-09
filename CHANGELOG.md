@@ -3,6 +3,9 @@
 Was sich im Spiel geändert hat, neueste Version oben. Die Nummern (#…) verweisen auf die Feedback-Liste.
 Die Version steht im Spiel unten unter der Navigation.
 
+## v0.39.1 – 09.11.2026
+- **Ruhigere Info-Zeile:** Schergen, die dein Trupp in weniger als 5 s besiegt, sagen nichts mehr. Bei schnellen Siegen wechselte der Spruch bisher mehrmals pro Gegner und war kaum zu lesen. Bosse und zähere Gegner haben ihre Sprüche weiterhin.
+
 ## v0.39.0 – 09.11.2026
 - **Mehr Forschung im Asura-Labor:** neun neue Knoten in den drei Bäumen.
   - ⚔️ Phasen-Bohrer (+Durchdringung)

@@ -5,7 +5,7 @@
 
 export const GAME = {
   title: 'Aetherbastion: Rift Watch',
-  VERSION: '0.39.0',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
+  VERSION: '0.39.1',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
   CHANGELOG_URL: 'https://github.com/cblte/aetherbastion-rift-watch/blob/main/CHANGELOG.md', // Link in den Einstellungen
   BUILD: 'lokal',                    // ersetzt der Pages-Workflow durch „Nr. · Commit“
   SAVE_KEY: 'aetherbastion_save_v1',
@@ -310,9 +310,11 @@ export const ATTACK_TYPES = {
 // Info-Zeile unter dem Gegner in der Arena (bis zu zwei Zeilen, alle `every` Sekunden ein zufälliger Spruch).
 // {held} = zufälliger Held des Trupps, der noch steht · {anfuehrer} = Held auf dem Anführer-Platz
 // aoe: Boss holt zum Flächenangriff aus (COMBAT.BOSS_AOE_WARN s vorher) · low: Gegner unter `lowHp` LP
+// minFight: Schergen, die der Trupp voraussichtlich schneller besiegt (LP ÷ Trupp-Schaden/s), bekommen keinen Spruch
 export const MOB_QUIPS = {
   every: 5,
   lowHp: 0.25,
+  minFight: 5,
   aoe: '💥 Holt zum Flächenangriff aus – gleich trifft es alle!',
   minion: [
     'Schnaubt verächtlich in Richtung Zelt.',

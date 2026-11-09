@@ -9,7 +9,7 @@ Feedback und Fehler aus dem Spieltest. Erledigte Punkte wandern mit Version nach
 - **Status:** `offen` · `in Arbeit` · `zurückgestellt` (mit Grund)
 - **Quelle:** wer es gemeldet hat (z. B. „Spieltest Frau“, „Gilde“)
 
-Nächste freie Nummer: **#063**
+Nächste freie Nummer: **#064**
 
 ## Eingang
 
@@ -42,13 +42,6 @@ _Zurzeit nichts offen._
 
 ## Spielsystem
 
-### #040 Asura-Labor ab Stufe 6 ohne Wirkung
-- Teilweise erledigt (v0.27.0): Labor 6–10 schalten jetzt die Stufen von „Archiv der Veteranen“ frei (#022). Weitere Knoten für Labor 7–10 wären trotzdem gut.
-- **Status:** offen · **Quelle:** Gilde (Spieler mit allem maximal ausgebaut)
-- Rückmeldung: Das Labor hochzuleveln „macht noch keinen Sinn“.
-- Befund: `TIER_LAB = { 1: 1, 2: 3, 3: 5 }` – ab Labor-Stufe 5 sind alle Forschungen offen. Die Stufen 6–10 kosten zusammen 1,9 Mio. 🟡 und schalten nichts frei.
-- Vorschlag: Stufe 4 im Baum (Labor 7) und Stufe 5 (Labor 9), oder höhere `max` je Knoten an die Labor-Stufe koppeln. Ideen für neue Knoten in `dev-data/archiv/cqht-skills.json` (436 CQHT-Forschungen). Gut für die Gegner-Mechaniken aus #042 (z. B. Forschung gegen Schilde).
-
 ### #042 Endgame: Gegner-Mechaniken und Helden, die dagegen helfen
 - **Status:** offen · **Quelle:** Entwickler
 - In CQHT hängt man vor Stufe 50, weil Forschung fehlt und man keinen Helden hat, der ständig Gegner-Schilde entfernt. Solche Mechaniken fehlen im Spiel ganz: Bosse unterscheiden sich nur in den Zahlen.
@@ -66,7 +59,7 @@ _Zurzeit nichts offen._
 - Vorschlag: Jede Währung bekommt genau eine Aufgabe, oder sie fällt weg.
   - 🟡 Gold = alles Alltägliche.
   - 📜 Forschungsnotizen = Fortschritt (Labor, Beförderung #033).
-  - 🔮 Scherben: entschieden (2026-11-07), sie werden Orichalcum, siehe #048. Das Portal kostet dann nur Gold und Boss-Fortschritt.
+  - 🔮 Scherben: bleiben (2026-11-09), seit v0.38.0 Fortschritts-Währung (Forschung, Portal) statt 📜. Orichalcum kommt als Material dazu, siehe #048.
   - 🍀 Klee bleibt nur, wenn der Ruhestand bleibt; sonst Mystische Schmiede auf 📜 umstellen.
 - Save-Migration: Bestände umrechnen (z. B. 1 🔮 = X 🟡), nichts ersatzlos löschen. Entscheiden zusammen mit #033 und #022.
 
@@ -179,9 +172,9 @@ _Zurzeit nichts offen._
 - Legendäre Helden dürfen ein klein wenig zu stark (OP) sein, müssen dafür aber sehr schwer zu bekommen sein.
 - Offen: Weg dorthin (Mystische Schmiede? seltenes Material? langer Auftrag?), Kosten, was sich ändert (Werte-Bonus, eigene Fähigkeit, Rahmenfarbe wie `WEAPON_GRADES` 7). Hängt an #033 (Beförderung) und #039 (bessere Seltenheit ersetzt die alte).
 
-### #048 Ätherscherben werden Orichalcum (nur aus Waffenverkauf, Aufwerten in der Zwergen-Schmiede)
+### #048 Orichalcum aus Waffenverkauf, Aufwerten in der Zwergen-Schmiede
 - **Status:** offen · **Quelle:** Entwickler
-- Entscheidung: 🔮 Ätherscherben fallen als Währung weg und verschwinden aus dem Kopfbereich. An ihre Stelle tritt **Orichalcum** als Material.
+- Entschieden (2026-11-09, ersetzt den Plan vom 2026-11-07): **🔮 Ätherscherben bleiben** die Fortschritts-Währung (Forschung, Riss-Portal, seltene Waffen, seit v0.38.0). **Orichalcum kommt als Material dazu**, nicht im Kopfbereich, sondern im 🎒 Inventar.
   - Man bekommt es **nur beim Verkaufen von Waffen** (Staffelung nach Güte aus #035: T3 1, T4 3, T5 8, T6 20 als Startwert).
   - Verwendung: **Waffen verbessern** in der **Zwergen-Schmiede**. Die wird eine neue **Stufe 4 der Charr-Schmiede** (heute endet sie bei Stufe 3, Gildenhalle 6) und bringt diese Funktion als Neuerung. Kosten und Bauzeit für Stufe 4 in `js/data/buildings.js` ergänzen, Gildenhallen-Voraussetzung z. B. 8.
   - Ziel des Verbesserns: Eine Waffe wird Stufe für Stufe mit Orichalcum aufgewertet, bis sie **seelengebunden** ist.
@@ -191,14 +184,21 @@ _Zurzeit nichts offen._
     - Alles prüfen, was über die Güten läuft (`WEAPON_GRADES`/`DROP_GRADES` in `config.js`, `progress.js`, `state.js`, `ui.js`, `manual.js`): Laden und Beute dürfen ★7 nicht würfeln, Anzeige und Sortierung müssen ★7 kennen.
     - Hinweis: In GW2 heißt die Stufe über Aufgestiegen „Legendär“; „seelengebunden“ ist dort eine Bindung. Als Name im Spiel trotzdem „Seelengebunden“ – passt zur Story mit Aurenes Speeren.
   - Vorbild aus der Story: die mit Aurenes Energie aufgeladenen Speere im Kampf gegen Kralkatorrik. Genaue Story-Stelle und Namen (Zwergen-Schmiede, Speer) gegen die DE-Wiki prüfen.
-- Was heute an den Scherben hängt (alles umstellen):
-  - Beute: Schergen-Chance und Boss-Scherben in `combat.js` (`shardFrac`, `bossShards`), Offline-Summen in `offline.js`, Kampf-Log und Offline-Bericht in `ui.js`.
-  - Kosten: Riss-Portal (`PORTAL_SHARDS` in `buildingCost`, `state.js`) → nur noch Gold.
-  - Belohnungen: fünf Aufträge in `QUESTS` geben 🔮 → auf 🟡 oder 📜 umstellen.
-  - Forschung `shards` (Ätherresonator, Logistik) und `shardMult` mit Mystischer Schmiede `loot` → durch eine neue Forschung ersetzen (z. B. „+% Orichalcum beim Verkauf“).
-  - Kopfbereich `#hud-shards`, `CURRENCIES.shards`, Handbuch (`MANUAL.md`, `manual.js`).
-- Save: `state.shards` umrechnen (Vorschlag: 1 🔮 = X 🟡, oder 1:1 in Orichalcum als Startbestand), `shardFrac` löschen, Forschungsstufen von `shards` auf den neuen Knoten übertragen oder 📜 erstatten. `GAME.SAVE_VERSION` + Migration.
-- Ersetzt #035 und den Scherben-Punkt aus #034. Spielt mit #030 (Waffen aufräumen) zusammen, das Verkaufen bekommt so einen Zweck über Gold hinaus.
+- Vorlage CQHT (Wiki „Soulbound“, Beispiel Krieger): Seelengebundene Waffen haben die Güten 7–9, sind an einen Helden gebunden und ändern dessen Passive. Hergestellt und aufgewertet werden sie in der Schmiede aus Eisen (aus dem Waffenverkauf, bei uns Orichalcum), Seelenkristallen (Raid Fortress of Souls, bei uns `specials.js` Kryptis-Seelenfeste) sowie Edelsteinen (10/25/50) und Gold.
+
+  | Güte | Waffe | Schaden | Wirkung |
+  |---|---|---|---|
+  | 6 | Red Falchion (normal) | 200 | – |
+  | 7 | Sword of the Successor | 250 | nach 3 Block-Skills Trupp-Heilung 110 % ATK |
+  | 8 | Heir of the Kingdom | 300 | nach 2 Block-Skills 130 % ATK |
+  | 9 | Fallen Throne | 350 | nach 2 Block-Skills 145 % ATK, dazu 5 × 1860 % ATK Magie-Schaden in 2 s |
+
+  Alle Waffen (Wiki „Weapons“, gleich für alle 6 Klassen): ★1 20 · ★2 60/40/32 · ★3 120/80/64 · ★4 180/120/96 · ★5 240/160/128 · ★6 200 · ★7 250 · ★8 300 · ★9 350. ★2–5 gibt es in drei Varianten (die beste ★5 liegt über ★6), ★6 nur eine je Klasse, ★7–9 neun je Klasse (eine je Held). Unsere Kurve ist unten steiler (★5 = 62 % von ★6, CQHT Mitte 80 %), oben passt sie.
+  Herstellung ★6 → ★7 (Screenshot, Heilerin Nightingale, „Sacred Treasure of Salvation“): Grundlage ist eine ★6-Waffe, Angriffskraft +200 → +250. Kosten **200 Eisen** (graues Material, vermutlich aus dem Waffenverkauf), **100 Seelenkristalle** (grünes Material), **10 Edelsteine**, **5.000 Gold**. Angriffstempo −0,4 und Krit-Schaden +20 % sind keine Werte der Waffe, sondern Waffen-Eigenschaften, die man in CQHT mit **Früchten** aufträgt (bei uns 🍎 Früchte noch ohne Funktion, eigenes Thema, siehe „Waffen-Modifikation“ in `CLAUDE.md`). Wirkung: Grundangriff heilt den Trupp zusätzlich um 33 % ATK und gibt 3 s lang +8 % ATK. Diese Wirkung geht auch ohne Skill-System (wirkt auf jeden Angriff).
+  → Je Güte +50 Schaden = +25 % des ★6-Werts. Auf unsere Prozent-Boni übertragen (★6 `atk` 1,20): ★7 1,50 · ★8 1,80 · ★9 2,10. Vorschlag `hp` 0,40/0,45/0,50, `pen` 120/140/160. Die Passive braucht das Skill-System, bis dahin nur Werte (oder eine einfache Wirkung wie „alle N Angriffe Trupp-Heilung“).
+- Vorschläge für die offenen Fragen: erst nur ★6 → ★7, 200 Orichalcum je Schritt wie CQHT (= zehn verkaufte T6; ersetzt den alten Vorschlag 100), dazu Gold und 🔮, Seelenkristalle erst mit der Kryptis-Seelenfeste, ★7 nicht verkaufbar.
+- Umsetzen: `state.orichalcum` (neues Feld, beim Laden mit 0 absichern, keine Migration bis v0.40), Waffenverkauf in `progress.js` zahlt Orichalcum, Anzeige im Inventar und im Verkaufs-Dialog, Handbuch (`MANUAL.md`, `manual.js`). An 🔮 (Beute, Portal, Aufträge, Forschung) ändert sich nichts.
+- Ersetzt #035. Spielt mit #030 (Waffen aufräumen) zusammen, das Verkaufen bekommt so einen Zweck über Gold hinaus.
 
 ### #044 Erweiterungen: Tyria als Grundspiel, danach die GW2-Story weiterspielen
 - **Status:** offen · **Quelle:** Entwickler
@@ -214,3 +214,11 @@ _Zurzeit nichts offen._
 - **Status:** zurückgestellt (spätere Phase) · **Quelle:** Entwickler
 - Idee: 🍞 Proviant (Güte 1–6) bekommt GW2-typische Namen.
 - Vorschlag: Je Güte ein echtes GW2-Gericht aus der Koch-Disziplin, Namen gegen die DE-Wiki prüfen (wie bei den Gegnern). Daten in `RATIONS` (`js/data/specials.js`), Texte im Handbuch nachziehen.
+
+### #063 Früchte geben Waffen-Eigenschaften (Waffen-Modifikation)
+- **Status:** offen · **Quelle:** Entwickler
+- Befund: 🍎 Früchte fallen als Beute, haben aber außer Verkaufen (`SELL.fruit`) keine Funktion. In CQHT bringt man mit Früchten **Eigenschaften auf Waffen** (z. B. Angriffstempo −0,4 s, Krit-Schaden +20 %), siehe Screenshot zu #048. Steht in `CLAUDE.md` als „Waffen-Modifikation“.
+- Vorschlag: Eine Frucht auf eine Waffe anwenden würfelt (oder setzt) eine Waffen-Eigenschaft, Werte in `config.js` (Liste wie `TRAITS`, z. B. ATK, Krit, Krit-Schaden, Tempo, HP, Durchdringung). Wirkung in `heroStats` über die getragene Waffe.
+- Zuerst die CQHT-Regeln nachsehen: Wie viele Eigenschaften je Waffe, je Güte? Zufall oder Wahl, Neu-Würfeln, Kosten, Fruchtsorten?
+- Save: Waffen in `state.armory` bekommen ein Feld für Eigenschaften (beim Laden absichern, keine Migration bis v0.40).
+- Hängt mit #048 zusammen (★7 behält die Eigenschaften der ★6-Waffe?).
