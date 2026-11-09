@@ -137,15 +137,6 @@ _Zurzeit nichts offen._
 - Ziel festlegen, bevor man Zahlen dreht: Wie lange dauert ein Schergen-Kampf auf passendem Level (z. B. 5–8 s)? Dann mit `tools/sim-bosses.mjs` Siege/h, Rückzüge und Zeit pro Zone prüfen, Offline-Effizienz mit.
 - Hängt zusammen mit #043 (Endgame-Balancing, `COMBAT.LEVEL_DIFF`), #051 (Schadensverteilung) und #062.
 
-### #039 Zu viele Schadens-Helden, Heiler nur in „Fein“
-- **Status:** offen · **Quelle:** Gilde (Spieler hat alle Bosse inkl. legendär besiegt), vom Entwickler bestätigt
-- Rückmeldung: Überangebot an Schaden, einige Unterstützer, sehr wenige Tanks, nur drei Heiler, alle drei in der Seltenheit Fein.
-- Befund: `HEROES` hat 10 Schaden, 4 Unterstützer, 3 Tanks, 3 Heiler. Jeder Held existiert nur einmal. Kostenlose Helden aus den Aufträgen kommen als `RECRUIT.freeRarity` (2 = Fein) und werden danach nie wieder angeboten (`recruitPool` filtert Besessene). Bekommt man die Heiler per Auftrag, kann man sie also nie in besserer Seltenheit haben.
-- Seit v0.28.0: 60 Helden, je 15 pro Rolle (Teil 1 erledigt). Offen bleibt der zweite Punkt.
-- Vorschlag:
-  - ~~Mehr Heiler und Tanks in `HEROES`~~ (v0.28.0) (neue `id`s, bestehende nie ändern), damit die Rollen ungefähr gleich groß sind.
-  - Die offene Frage aus „Geplant“ jetzt klären: Besessene Helden wieder anbieten, und eine bessere Seltenheit ersetzt die alte (Level bleibt). Alternative: Beförderung #033 hebt die Seltenheit.
-
 ### #043 Endgame-Schwierigkeit: Formel oder Handarbeit?
 - Seit v0.27.1 (#047): schwere/legendäre Stufen deutlich härter (`COMBAT.ENDGAME_DIFF_SCALE`). Offen bleibt: Was kommt nach dem letzten legendären Boss?
 - **Status:** offen · **Quelle:** Entwickler, Gilde

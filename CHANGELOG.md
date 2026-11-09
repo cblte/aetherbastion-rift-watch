@@ -3,6 +3,9 @@
 Was sich im Spiel geändert hat, neueste Version oben. Die Nummern (#…) verweisen auf die Feedback-Liste.
 Die Version steht im Spiel unten unter der Navigation.
 
+## v0.40.0 – 09.11.2026
+- ⬆️ **Helden aufwerten (#039):** Helden, die du schon hast, tauchen wieder unter „Rekrutieren“ auf, aber nur in einer **besseren Seltenheit**. Die Karte ist als „⬆️ Aufwertung“ markiert. „Aufwerten“ kostet den normalen Preis. Dein Held behält Level, EXP, Waffe und seinen Platz im Zelt und bekommt die neue Seltenheit mit mehr LP und ATK. Seine Eigenschaften werden durch die aus dem Angebot ersetzt, die bisherigen stehen zum Vergleich auf der Karte. So bekommst du z. B. deinen Heiler aus „Fein“ später auch als „Selten“.
+
 ## v0.39.2 – 09.11.2026
 - **Gold-Boni klarer (#060):** Goldwandler, Goldwandler Prime, 🍀 Glücksbringer und die Eigenschaft Gold wirken nur auf **Gold aus Siegen**, und so steht es jetzt auch überall dran. Die Gildenkasse steigert allein der **Kassen-Optimierer**. Neu: Er wirkt jetzt auch auf das Gold der Helden im 🏡 Ruhestand, nicht nur auf das der Gildenhalle.
 

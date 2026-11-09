@@ -12,6 +12,12 @@ Format:
 
 ---
 
+## v0.40.0
+
+### #039 Zu viele Schadens-Helden, Heiler nur in „Fein“
+- **Quelle:** Gilde (Spieler hat alle Bosse inkl. legendär besiegt), vom Entwickler bestätigt. Teil 1 (60 Helden, je 15 pro Rolle) in v0.28.0.
+- Teil 2: Besessene Helden kommen wieder ins Angebot, aber nur in einer besseren Seltenheit als der eigenen (`recruitPool(state, rarity)` würfelt erst die Seltenheit, dann den Helden; Seltenheits-Chancen unverändert). Anwerben wertet den vorhandenen Helden auf (`hireRecruit`, `recruitUpgradeOf` in `progress.js`): neue Seltenheit und Eigenschaften aus dem Angebot, Level/EXP/Waffe/Zeltplatz bleiben, LP behalten ihren Anteil. Preis = normaler Rekrutierungspreis. Karte zeigt „⬆️ Aufwertung“, die bisherige Seltenheit und Eigenschaften, Knopf „Aufwerten“. Nie doppelt im Lager. Klärt die offene Frage aus „Geplant“ in `CLAUDE.md`. Beförderung (#033) bleibt als weiterer Weg offen.
+
 ## v0.39.2
 
 ### #060 (Teil) Gold-Boni und Gildenkasse
