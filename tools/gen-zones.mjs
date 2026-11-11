@@ -10,7 +10,7 @@
 //    ☠️ schwer 2 → hard2 (falls angegeben) sonst „Verderbt: <Endboss>“
 //    ⭐ legendär → „Schatten: <Endboss>“ (nur in Zonen mit legendärer Stufe)
 // =====================================================================
-import { writeFileSync } from 'node:fs';
+import { writeFileSync, readFileSync } from 'node:fs';
 import { pathToFileURL } from 'node:url';
 
 const root = process.argv[2] || '.';
@@ -152,7 +152,36 @@ const ATTACK_OVERRIDE = { 'Ascalonischer Geist': 'magic', 'Verderbter Baumgeist'
 export const attackOf = (name) => ATTACK_OVERRIDE[name.replace(/^(Champion|Verderbt:|Schatten:|Veteran) /, '')]
   || (RANGED.test(name) ? 'ranged' : MAGIC.test(name) ? 'magic' : 'melee');
 const boss = (name) => ({ name, sprite: `BOSS_${tag(name)}`, attack: attackOf(name) });
-const mob = (name) => ({ name, sprite: `MOB_${tag(name)}`, attack: attackOf(name) });
+
+// Profile der Schergen (#062): verschieben nur die Werte, die Gesamtstärke bleibt (Faktoren: MOB_PROFILES in js/config.js).
+//   rohling = langsam und zäh · flink = schnell, wenig LP · schuetze = hoher Schaden, wenig DEF · sonst standard.
+// Fern- und Magie-Angreifer sind Schützen; Nahkämpfer nach Namen. PROFILE_OVERRIDE setzt einzelne Gegner fest.
+const ROHLING = /troll|ettin|oger|jotun|minotaur|golem|grobian|abscheulich|dolyak|arctodus|behemoth|schaufler|wächter|wache|eber|wildschwein|schleim|berserker|zerstörer|eisbrecher|leibeigener|skal|elementar|wurm|ranke/i;
+const FLINK = /spinne|raptor|wolf|warg|leopard|jaguar|skritt|moskito|katze|dieb|beutelschneider|pirscher|raupe|junges|brut|wachhund|moa|drake|duellant|klingenstürmer|plünderer/i;
+const PROFILE_OVERRIDE = {};
+export const profileOf = (name, attack) => PROFILE_OVERRIDE[name]
+  || (attack !== 'melee' ? 'schuetze' : ROHLING.test(name) ? 'rohling' : FLINK.test(name) ? 'flink' : 'standard');
+const ATTACK_DE = { Nahkampf: 'melee', Fernkampf: 'ranged', Magie: 'magic' };
+const mob = (name, extra = {}) => {
+  const attack = extra.attack || attackOf(name);
+  return { name, sprite: `MOB_${tag(name)}`, attack, profile: profileOf(name, attack),
+    ...(extra.flavor ? { flavor: extra.flavor } : {}), ...(extra.rift ? { rift: extra.rift } : {}) };
+};
+
+// Mehr Schergen je Stufe (#026): dev-data/gegner-pro-zone.jsonl (zone, name, stages 1–5, attack, flavor, rift).
+// Normale Stufen: die festen Schergen aus ZONES vorn, dazu JSONL-Gegner der Stufe, bis MAX_MINIONS erreicht sind.
+const MAX_MINIONS = 5;
+const EXTRA = readFileSync(`${root}/dev-data/gegner-pro-zone.jsonl`, 'utf8').trim().split(/\r?\n/).map(l => JSON.parse(l));
+const extraFor = (zoneName, stageNr) => EXTRA.filter(r => r.zone === zoneName && r.stages.includes(stageNr));
+const riftText = (r) => (r.rift?.ability ? r.rift.ability : '');
+function normalMinions(z, names, stageNr) {
+  const rows = extraFor(z.name, stageNr);
+  const byName = Object.fromEntries(rows.map(r => [r.name, r]));
+  const fixed = names.map(n => mob(n, byName[n] ? { attack: ATTACK_DE[byName[n].attack], flavor: byName[n].flavor, rift: riftText(byName[n]) } : {}));
+  const more = rows.filter(r => !names.includes(r.name))
+    .map(r => mob(r.name, { attack: ATTACK_DE[r.attack], flavor: r.flavor, rift: riftText(r) }));
+  return [...fixed, ...more].slice(0, MAX_MINIONS);
+}
 
 const out = [];
 OLD.forEach((oz, zi) => {
@@ -165,19 +194,19 @@ OLD.forEach((oz, zi) => {
   normal.forEach((s, k) => {
     const b = k < 4 ? z.bosses[k] : z.bosses[5];
     const m = k < 4 ? z.minions[k] : z.minions[5];
-    stages.push({ ...s, boss: boss(b[0]), minions: m.map(mob), info: b[1] ? (b[1] === 'Zonen-Endboss' ? 'Zonen-Endboss' : b[1]) : '' });
+    stages.push({ ...s, boss: boss(b[0]), minions: normalMinions(z, m, k + 1), info: b[1] ? (b[1] === 'Zonen-Endboss' ? 'Zonen-Endboss' : b[1]) : '' });
   });
   hard.forEach((s, k) => {
     if (k === 0) {
       const b = z.bosses[4];
-      stages.push({ ...s, boss: boss(b[0]), minions: (z.hardMinions ? z.hardMinions : z.minions[4]).map(mob), info: `Schwer${b[1] ? ` · ${b[1]}` : ''}` });
+      stages.push({ ...s, boss: boss(b[0]), minions: (z.hardMinions ? z.hardMinions : z.minions[4]).map(n => mob(n)), info: `Schwer${b[1] ? ` · ${b[1]}` : ''}` });
     } else {
       const name = z.hard2 ? z.hard2[0] : `Verderbt: ${end}`;
-      stages.push({ ...s, boss: boss(name), minions: [z.minions[5][0], HARD2_MINION].map(mob), info: z.hard2 ? `Schwer · ${z.hard2[1]}` : 'Schwer · vom Riss verderbt' });
+      stages.push({ ...s, boss: boss(name), minions: [z.minions[5][0], HARD2_MINION].map(n => mob(n)), info: z.hard2 ? `Schwer · ${z.hard2[1]}` : 'Schwer · vom Riss verderbt' });
     }
   });
   legend.forEach((s) => {
-    stages.push({ ...s, boss: boss(`Schatten: ${end}`), minions: LEGEND_MINIONS.map(mob), info: 'Legendär · Schattenform des Endbosses' });
+    stages.push({ ...s, boss: boss(`Schatten: ${end}`), minions: LEGEND_MINIONS.map(n => mob(n)), info: 'Legendär · Schattenform des Endbosses' });
   });
   out.push({ id: oz.id, name: z.name, short: z.short, tier: oz.tier, part: oz.part, portal: z.portal, theme: z.theme, lore: z.lore, stages });
 });

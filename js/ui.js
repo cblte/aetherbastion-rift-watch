@@ -301,7 +301,10 @@ function mobQuip(m, aoeIn, sq, i) {
   if (aoeIn <= COMBAT.BOSS_AOE_WARN) return `<div class="mob-say warn">${MOB_QUIPS.aoe}</div>`;
   const alive = squadMembers(S, sq).filter(h => !h.woundedUntil);
   if (isWeakMob(m, sq, i, alive)) return `<div class="mob-say"></div>`;
-  const list = m.hp / m.maxHp < MOB_QUIPS.lowHp ? MOB_QUIPS.low : m.boss ? MOB_QUIPS.boss : m.elite ? MOB_QUIPS.elite : m.vet ? MOB_QUIPS.vet : MOB_QUIPS.minion;
+  let list = m.hp / m.maxHp < MOB_QUIPS.lowHp ? MOB_QUIPS.low : m.boss ? MOB_QUIPS.boss : m.elite ? MOB_QUIPS.elite : m.vet ? MOB_QUIPS.vet : MOB_QUIPS.minion;
+  // Eigene Texte des Gegners: Elite → Riss-Fähigkeit, sonst Beschreibung (#026)
+  const own = m.hp / m.maxHp < MOB_QUIPS.lowHp || m.boss ? '' : m.elite ? m.rift : m.flavor;
+  if (own) list = [...list, ...Array(MOB_QUIPS.ownWeight).fill(esc(own))];
   const win = Math.floor(S.lastTickMs / 1000 / MOB_QUIPS.every);
   const r = quipHash(win, m.id, i);
   // Sprüche mit Heldennamen nur, wenn noch jemand steht
@@ -362,7 +365,7 @@ function renderPortal() {
       </div>`);
     setHTML(stageEl.querySelector('.mob-d'), `
           ${hpBar(m.hp, m.maxHp, 'mob-hp')}
-          <div class="mob-nums">${fmt(Math.max(0, m.hp))} / ${fmt(m.maxHp)} LP · ⚔️ ${fmt(m.atk)} · 🛡️ ${fmt(m.def || 0)} · ${at.icon} ${at.name}</div>
+          <div class="mob-nums">${fmt(Math.max(0, m.hp))} / ${fmt(m.maxHp)} LP · ⚔️ ${fmt(m.atk)} · 🛡️ ${fmt(m.def || 0)} · ${at.icon} ${at.name}${m.profile && m.profile !== 'standard' ? ` · ${COMBAT.MOB_PROFILES[m.profile].name}` : ''}</div>
           ${mobQuip(m, aoeIn, sq, i)}`);
     setHTML(stageEl.querySelector('.mob-t'), m.boss ? `⌛ ${Math.max(0, Math.ceil(bossTimeLimit(S) - (sq.bossTime || 0)))} s` : '');
     const hit = lastHit.squad === i && lastHit.monsterId === m.id && S.lastTickMs - lastHit.t <= 300;
@@ -475,7 +478,7 @@ function renderPortal() {
         <span class="zone-num">${n > NORMAL_STAGES ? tag : n}</span>
         <span class="zone-txt">
           <b>${avail || beaten ? `👑 ${esc(stg.boss.name)}` : '🔒 Unbekannter Boss'} <span class="lv">Lv. ${stg.level}</span></b>
-          <small>${avail ? `Schergen: ${stg.minions.map(m => esc(m.name)).join(', ')}` : esc(lock)}</small>
+          <small>${avail ? `Schergen: ${stg.minions.slice(0, 2).map(m => esc(m.name)).join(', ')}${stg.minions.length > 2 ? ` +${stg.minions.length - 2}` : ''}` : esc(lock)}</small>
           ${avail && stg.info ? `<small class="info">${esc(stg.info)}</small>` : ''}
         </span>
         <span class="zone-flag">${beaten ? '✓' : goal ? '🎯' : cur ? '⚔️' : ''}</span>

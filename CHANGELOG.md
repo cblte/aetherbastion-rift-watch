@@ -3,6 +3,11 @@
 Was sich im Spiel geändert hat, neueste Version oben. Die Nummern (#…) verweisen auf die Feedback-Liste.
 Die Version steht im Spiel unten unter der Navigation.
 
+## v0.42.0 – 11.11.2026
+- **Mehr Gegner je Stufe (#026):** In den Zonen 1–6 hat jede normale Stufe jetzt bis zu fünf verschiedene Schergen statt zwei, zum Beispiel Tamini, Skritt, Ettins und Flachlandwürmer im Königintal. Viele bringen eigene Sprüche mit, Elite-Gegner verraten ihre Riss-Fähigkeit.
+- **Gegner-Profile (#062):** Jeder Scherge ist ein Rohling (zäh, langsam), Flink (schnell, wenig LP), Schütze (hoher Schaden, wenig DEF) oder Standard. Das Profil steht in der Arena unter seinem Namen. Insgesamt sind die Stufen etwa gleich schwer wie vorher, die Kämpfe fühlen sich nur unterschiedlicher an.
+- In der Stufenliste stehen die ersten zwei Schergen und „+N“ für die übrigen.
+
 ## v0.41.0 – 11.11.2026
 - ⚜️ **Elite-Gegner (#026):** Ab Zone 2 kommt ein Scherge mit 2 % Chance als **Elite** aus dem Riss: viermal so viele LP, doppelter Schaden, fünffaches Gold und EXP und dazu 1 🔮. Elite-Gegner sind orange markiert und haben eigene Sprüche. Veteranen gibt es weiterhin, ein Gegner ist aber nie beides.
 

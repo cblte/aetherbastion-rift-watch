@@ -35,7 +35,10 @@
           "boss_sprite": "BOSS_BANDITEN_ANFUEHRERIN",
           "minions": [
             "Banditen-Beutelschneider",
-            "Banditen-Schläger"
+            "Banditen-Schläger",
+            "Banditen-Schütze",
+            "Flachlandwurm-Junges",
+            "Brackwasser-Skal"
           ],
           "level": 3,
           "cost": 50,
@@ -62,7 +65,10 @@
           "boss_sprite": "BOSS_CHAMPION_BANDITEN_SABOTEUR",
           "minions": [
             "Banditen-Bomber",
-            "Banditen-Brandstifter"
+            "Banditen-Brandstifter",
+            "Banditen-Schläger",
+            "Banditen-Schütze",
+            "Brackwasser-Skal"
           ],
           "level": 5,
           "cost": 60,
@@ -88,7 +94,10 @@
           "boss_sprite": "BOSS_CHAMPION_EICHENHERZ",
           "minions": [
             "Waldspinne",
-            "Wildschwein"
+            "Wildschwein",
+            "Tamini-Krieger",
+            "Tamini-Bogenschütze",
+            "Skritt-Flaschenwerferin"
           ],
           "level": 6,
           "cost": 70,
@@ -114,7 +123,10 @@
           "boss_sprite": "BOSS_CHAMPION_KRAIT_HEXE",
           "minions": [
             "Krait-Sklaventreiber",
-            "Krait-Speerträger"
+            "Krait-Speerträger",
+            "Ettin",
+            "Banditen-Saboteur",
+            "Schleim"
           ],
           "level": 8,
           "cost": 80,
@@ -140,7 +152,10 @@
           "boss_sprite": "BOSS_SCHATTEN_BEHEMOTH",
           "minions": [
             "Schattenbrut",
-            "Verzerrter Geist"
+            "Verzerrter Geist",
+            "Banditen-Heckenschütze",
+            "Höhlentroll",
+            "Sumpfschrecken"
           ],
           "level": 10,
           "cost": 90,
@@ -232,7 +247,10 @@
           "boss_sprite": "BOSS_CHAMPION_HYLEK_KRIEGSHAEUPTLING",
           "minions": [
             "Hylek-Krieger",
-            "Hylek-Blasrohrschütze"
+            "Hylek-Blasrohrschütze",
+            "Auferstandener Leibeigener",
+            "Dschungelraupe",
+            "Dschungelspinnen-Junges"
           ],
           "level": 12,
           "cost": 100,
@@ -258,7 +276,10 @@
           "boss_sprite": "BOSS_CHAMPION_SKRITT_SCHATZMEISTER",
           "minions": [
             "Skritt-Plünderer",
-            "Skritt-Dieb"
+            "Skritt-Dieb",
+            "Auferstandener Leibeigener",
+            "Dschungelspinnen-Junges",
+            "Albtraumhof-Dornenwolf"
           ],
           "level": 14,
           "cost": 110,
@@ -284,7 +305,10 @@
           "boss_sprite": "BOSS_CHAMPION_ALBTRAUMHOF_RITTER",
           "minions": [
             "Albtraumhof-Höfling",
-            "Albtraumhof-Wächter"
+            "Albtraumhof-Wächter",
+            "Albtraumhof-Dornenwolf",
+            "Albtraum-Duellant",
+            "Auferstandene Abscheulichkeit"
           ],
           "level": 16,
           "cost": 120,
@@ -310,7 +334,10 @@
           "boss_sprite": "BOSS_CHAMPION_KRAIT_ORAKEL",
           "minions": [
             "Krait-Mystiker",
-            "Sumpfdrake"
+            "Sumpfdrake",
+            "Albtraumhöfling",
+            "Erd-Elementar",
+            "Krait-Damoss"
           ],
           "level": 18,
           "cost": 130,
@@ -336,7 +363,10 @@
           "boss_sprite": "BOSS_ALBTRAUMHOF_GRAEFIN",
           "minions": [
             "Albtraum-Ranke",
-            "Verzerrter Sylvari"
+            "Verzerrter Sylvari",
+            "Krait-Damoss",
+            "Krait-Nimross",
+            "Auferstandener Grobian"
           ],
           "level": 20,
           "cost": 150,
@@ -455,7 +485,10 @@
           "boss_sprite": "BOSS_CHAMPION_MINOTAUREN_BULLE",
           "minions": [
             "Minotaurus",
-            "Schneeleopard"
+            "Schneeleopard",
+            "Wolf",
+            "Eiswurm-Junges",
+            "Dolyak"
           ],
           "level": 22,
           "cost": 100,
@@ -481,7 +514,10 @@
           "boss_sprite": "BOSS_CHAMPION_GRAWL_HAEUPTLING",
           "minions": [
             "Grawl-Krieger",
-            "Grawl-Schamane"
+            "Grawl-Schamane",
+            "Wolf",
+            "Dolyak",
+            "Schaufler"
           ],
           "level": 24,
           "cost": 120,
@@ -507,7 +543,10 @@
           "boss_sprite": "BOSS_CHAMPION_EISBRUT_WOLF",
           "minions": [
             "Eisbrut-Wolf",
-            "Eisbrut-Elementar"
+            "Eisbrut-Elementar",
+            "Schaufler",
+            "Svanir-Jäger",
+            "Arctodus"
           ],
           "level": 25,
           "cost": 140,
@@ -533,7 +572,10 @@
           "boss_sprite": "BOSS_SCHAMANEN_VORBOTE_DES_JORMAG",
           "minions": [
             "Sohn des Svanir",
-            "Svanir-Eisbrecher"
+            "Svanir-Eisbrecher",
+            "Sohn Svanirs",
+            "Jotun",
+            "Schneeleopard"
           ],
           "level": 27,
           "cost": 160,
@@ -559,7 +601,10 @@
           "boss_sprite": "BOSS_SVANIR_SCHAMANE",
           "minions": [
             "Svanir-Schamanin",
-            "Eisgeist"
+            "Eisgeist",
+            "Minotaurus",
+            "Grawl-Berserker",
+            "Eis-Elementar"
           ],
           "level": 29,
           "cost": 180,
@@ -651,7 +696,9 @@
           "boss_sprite": "BOSS_CHAMPION_INQUESTUR_GOLEM",
           "minions": [
             "Inquestur-Assistent",
-            "Inquestur-Golem"
+            "Inquestur-Golem",
+            "Moskito",
+            "Sumpflindwurm"
           ],
           "level": 31,
           "cost": 200,
@@ -677,7 +724,10 @@
           "boss_sprite": "BOSS_CHAMPION_SKRITT_ANFUEHRER",
           "minions": [
             "Skritt-Bastler",
-            "Skritt-Späher"
+            "Skritt-Späher",
+            "Sumpflindwurm",
+            "Inquestur-Assistent",
+            "Inquestur-Agent"
           ],
           "level": 33,
           "cost": 220,
@@ -703,7 +753,10 @@
           "boss_sprite": "BOSS_CHAMPION_RIESEN_MOA",
           "minions": [
             "Moa",
-            "Hylek-Krieger"
+            "Hylek-Krieger",
+            "Inquestur-Agent",
+            "Hylek",
+            "Inquestur-Forscher"
           ],
           "level": 35,
           "cost": 240,
@@ -729,7 +782,10 @@
           "boss_sprite": "BOSS_INQUESTUR_VERSUCHSLEITERIN",
           "minions": [
             "Inquestur-Techniker",
-            "Mark-I-Golem"
+            "Mark-I-Golem",
+            "Dschungel-Raptor",
+            "Warg",
+            "Hylek-Krieger"
           ],
           "level": 37,
           "cost": 260,
@@ -755,7 +811,10 @@
           "boss_sprite": "BOSS_KOLOSSALER_INQUESTUR_GOLEM",
           "minions": [
             "Inquestur-Wächter",
-            "Mark-III-Golem"
+            "Mark-III-Golem",
+            "Hylek-Krieger",
+            "Dschungel-Troll",
+            "Inquestur-Grenadier"
           ],
           "level": 40,
           "cost": 300,
@@ -874,7 +933,10 @@
           "boss_sprite": "BOSS_CHAMPION_VERSCHLINGER_KOENIGIN",
           "minions": [
             "Verschlinger",
-            "Verschlinger-Brut"
+            "Verschlinger-Brut",
+            "Geißelschwanz-Verschlinger",
+            "Flammen-Legion-Pirscher",
+            "Flammen-Legion-Axtunhold"
           ],
           "level": 41,
           "cost": 200,
@@ -900,7 +962,10 @@
           "boss_sprite": "BOSS_CHAMPION_SKAL_ALPHA",
           "minions": [
             "Skal",
-            "Wildkatze"
+            "Wildkatze",
+            "Geißelschwanz-Verschlinger",
+            "Flammen-Legion-Pirscher",
+            "Flammen-Legion-Axtunhold"
           ],
           "level": 42,
           "cost": 240,
@@ -926,7 +991,10 @@
           "boss_sprite": "BOSS_SEPARATISTEN_ANFUEHRERIN",
           "minions": [
             "Separatisten-Kämpfer",
-            "Separatisten-Brandstifter"
+            "Separatisten-Brandstifter",
+            "Ascalon-Bauer",
+            "Ascalon-Bogenschütze",
+            "Flammen-Legion-Klingenstürmer"
           ],
           "level": 43,
           "cost": 280,
@@ -952,7 +1020,10 @@
           "boss_sprite": "BOSS_CHAMPION_ASCALONISCHER_GEISTERHAUPTMANN",
           "minions": [
             "Ascalonischer Geist",
-            "Geister-Bogenschütze"
+            "Geister-Bogenschütze",
+            "Ascalon-Kämpfer",
+            "Ascalon-Magierin",
+            "Minotaurus"
           ],
           "level": 44,
           "cost": 320,
@@ -978,7 +1049,10 @@
           "boss_sprite": "BOSS_FLAMMENLEGION_KRIEGSHERR",
           "minions": [
             "Flammenlegion-Kultist",
-            "Flammenlegion-Zerstörer"
+            "Flammenlegion-Zerstörer",
+            "Oger-Späher",
+            "Oger-Grobian",
+            "Oger-Jäger"
           ],
           "level": 45,
           "cost": 360,
@@ -1070,7 +1144,10 @@
           "boss_sprite": "BOSS_SEPARATISTEN_BELAGERER",
           "minions": [
             "Separatisten-Kämpfer",
-            "Separatisten-Bomber"
+            "Separatisten-Bomber",
+            "Banditen-Schütze",
+            "Banditen-Schläger",
+            "Abgerichteter Wachhund"
           ],
           "level": 46,
           "cost": 400,
@@ -1097,7 +1174,10 @@
           "boss_sprite": "BOSS_KOENIGLICHER_LEIBWAECHTER_PETE",
           "minions": [
             "Königlicher Wächter",
-            "Separatisten-Feldwebel"
+            "Separatisten-Feldwebel",
+            "Banditen-Schütze",
+            "Abgerichteter Wachhund",
+            "Diener des Hauses"
           ],
           "level": 47,
           "cost": 440,
@@ -1124,7 +1204,10 @@
           "boss_sprite": "BOSS_BUTLER_MICHIELS",
           "minions": [
             "Diener des Hauses",
-            "Abgerichteter Wachhund"
+            "Abgerichteter Wachhund",
+            "Banditen-Heckenschütze",
+            "Banditen-Saboteur",
+            "Inquestur-Spion"
           ],
           "level": 48,
           "cost": 480,
@@ -1151,7 +1234,10 @@
           "boss_sprite": "BOSS_GEPFEFFERTE_BRIDGETTE",
           "minions": [
             "Seraphen-Deserteur",
-            "Banditen-Kanonier"
+            "Banditen-Kanonier",
+            "Banditen-Saboteur",
+            "Inquestur-Spion",
+            "Separatist"
           ],
           "level": 49,
           "cost": 520,
@@ -1178,7 +1264,10 @@
           "boss_sprite": "BOSS_SEPARATISTEN_HAUPTMANN_DELANA",
           "minions": [
             "Separatisten-Scharfschütze",
-            "Separatisten-Leutnant"
+            "Separatisten-Leutnant",
+            "Separatist",
+            "Klerikerin des Weißen Mantels",
+            "Kleriker des Weißen Mantels"
           ],
           "level": 50,
           "cost": 600,

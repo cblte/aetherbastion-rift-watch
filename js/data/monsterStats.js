@@ -10,15 +10,15 @@
 export const MONSTER_STATS = {
   1: [ // Königintal
     // 1 normal · Banditen-Anführerin
-    { boss: { hp: 1280, atk: 14, def: 5, spd: 1.5 }, minions: [{ hp: 240, atk: 9, def: 8, spd: 2.5 }, { hp: 400, atk: 14, def: 16.5, spd: 2.5 }] },
+    { boss: { hp: 1280, atk: 14, def: 5, spd: 1.5 }, minions: [{ hp: 240, atk: 9, def: 8, spd: 2.5 }, { hp: 400, atk: 14, def: 16.5, spd: 2.5 }, { hp: 240, atk: 9, def: 8, spd: 2.5 }, { hp: 400, atk: 14, def: 16.5, spd: 2.5 }, { hp: 240, atk: 9, def: 8, spd: 2.5 }] },
     // 2 normal · Champion Banditen-Saboteur
-    { boss: { hp: 1920, atk: 21, def: 12, spd: 1.5 }, minions: [{ hp: 400, atk: 14, def: 16.5, spd: 2.5 }, { hp: 470, atk: 16, def: 22.5, spd: 2.5 }] },
+    { boss: { hp: 1920, atk: 21, def: 12, spd: 1.5 }, minions: [{ hp: 400, atk: 14, def: 16.5, spd: 2.5 }, { hp: 470, atk: 16, def: 22.5, spd: 2.5 }, { hp: 400, atk: 14, def: 16.5, spd: 2.5 }, { hp: 470, atk: 16, def: 22.5, spd: 2.5 }, { hp: 400, atk: 14, def: 16.5, spd: 2.5 }] },
     // 3 normal · Champion Eichenherz
-    { boss: { hp: 2270, atk: 25, def: 16.5, spd: 1.5 }, minions: [{ hp: 400, atk: 14, def: 16.5, spd: 2.5 }, { hp: 470, atk: 16, def: 22.5, spd: 2.5 }] },
+    { boss: { hp: 2270, atk: 25, def: 16.5, spd: 1.5 }, minions: [{ hp: 400, atk: 14, def: 16.5, spd: 2.5 }, { hp: 470, atk: 16, def: 22.5, spd: 2.5 }, { hp: 400, atk: 14, def: 16.5, spd: 2.5 }, { hp: 470, atk: 16, def: 22.5, spd: 2.5 }, { hp: 400, atk: 14, def: 16.5, spd: 2.5 }] },
     // 4 normal · Champion Krait-Hexe
-    { boss: { hp: 3130, atk: 37, def: 23.5, spd: 1.5 }, minions: [{ hp: 470, atk: 16, def: 22.5, spd: 2.5 }, { hp: 630, atk: 20, def: 28.5, spd: 2.5 }] },
+    { boss: { hp: 3130, atk: 37, def: 23.5, spd: 1.5 }, minions: [{ hp: 470, atk: 16, def: 22.5, spd: 2.5 }, { hp: 630, atk: 20, def: 28.5, spd: 2.5 }, { hp: 470, atk: 16, def: 22.5, spd: 2.5 }, { hp: 630, atk: 20, def: 28.5, spd: 2.5 }, { hp: 470, atk: 16, def: 22.5, spd: 2.5 }] },
     // 5 normal · Schatten-Behemoth
-    { boss: { hp: 4220, atk: 43, def: 30.5, spd: 1.5 }, minions: [{ hp: 630, atk: 20, def: 28.5, spd: 2.5 }, { hp: 1260, atk: 31, def: 44.5, spd: 2.5 }] },
+    { boss: { hp: 4220, atk: 43, def: 30.5, spd: 1.5 }, minions: [{ hp: 630, atk: 20, def: 28.5, spd: 2.5 }, { hp: 1260, atk: 31, def: 44.5, spd: 2.5 }, { hp: 630, atk: 20, def: 28.5, spd: 2.5 }, { hp: 1260, atk: 31, def: 44.5, spd: 2.5 }, { hp: 630, atk: 20, def: 28.5, spd: 2.5 }] },
     // 6 schwer · Champion Höhlentroll
     { boss: { hp: 982681, atk: 1009, def: 233, spd: 2.5 }, minions: [{ hp: 90323, atk: 240, def: 230, spd: 2.5 }, { hp: 90323, atk: 240, def: 230, spd: 2.5 }] },
     // 7 schwer · Verderbt: Schatten-Behemoth
@@ -26,15 +26,15 @@ export const MONSTER_STATS = {
   ],
   2: [ // Caledon-Wald
     // 1 normal · Champion Hylek-Kriegshäuptling
-    { boss: { hp: 9460, atk: 84, def: 41.5, spd: 1.5 }, minions: [{ hp: 630, atk: 20, def: 28.5, spd: 2.5 }, { hp: 1260, atk: 31, def: 44.5, spd: 2.5 }] },
+    { boss: { hp: 9460, atk: 84, def: 41.5, spd: 1.5 }, minions: [{ hp: 630, atk: 20, def: 28.5, spd: 2.5 }, { hp: 1260, atk: 31, def: 44.5, spd: 2.5 }, { hp: 630, atk: 20, def: 28.5, spd: 2.5 }, { hp: 1260, atk: 31, def: 44.5, spd: 2.5 }, { hp: 630, atk: 20, def: 28.5, spd: 2.5 }] },
     // 2 normal · Champion Skritt-Schatzmeister
-    { boss: { hp: 10460, atk: 94, def: 47.5, spd: 1.5 }, minions: [{ hp: 1260, atk: 31, def: 44.5, spd: 2.5 }, { hp: 1260, atk: 31, def: 44.5, spd: 2.5 }] },
+    { boss: { hp: 10460, atk: 94, def: 47.5, spd: 1.5 }, minions: [{ hp: 1260, atk: 31, def: 44.5, spd: 2.5 }, { hp: 1260, atk: 31, def: 44.5, spd: 2.5 }, { hp: 1260, atk: 31, def: 44.5, spd: 2.5 }, { hp: 1260, atk: 31, def: 44.5, spd: 2.5 }, { hp: 1260, atk: 31, def: 44.5, spd: 2.5 }] },
     // 3 normal · Champion Albtraumhof-Ritter
-    { boss: { hp: 12190, atk: 104, def: 54.5, spd: 1.5 }, minions: [{ hp: 1260, atk: 31, def: 44.5, spd: 2.5 }, { hp: 1260, atk: 31, def: 44.5, spd: 2.5 }] },
+    { boss: { hp: 12190, atk: 104, def: 54.5, spd: 1.5 }, minions: [{ hp: 1260, atk: 31, def: 44.5, spd: 2.5 }, { hp: 1260, atk: 31, def: 44.5, spd: 2.5 }, { hp: 1260, atk: 31, def: 44.5, spd: 2.5 }, { hp: 1260, atk: 31, def: 44.5, spd: 2.5 }, { hp: 1260, atk: 31, def: 44.5, spd: 2.5 }] },
     // 4 normal · Champion Krait-Orakel
-    { boss: { hp: 14080, atk: 114, def: 59.5, spd: 1.5 }, minions: [{ hp: 1260, atk: 31, def: 44.5, spd: 2.5 }, { hp: 1260, atk: 31, def: 44.5, spd: 2.5 }] },
+    { boss: { hp: 14080, atk: 114, def: 59.5, spd: 1.5 }, minions: [{ hp: 1260, atk: 31, def: 44.5, spd: 2.5 }, { hp: 1260, atk: 31, def: 44.5, spd: 2.5 }, { hp: 1260, atk: 31, def: 44.5, spd: 2.5 }, { hp: 1260, atk: 31, def: 44.5, spd: 2.5 }, { hp: 1260, atk: 31, def: 44.5, spd: 2.5 }] },
     // 5 normal · Albtraumhof-Gräfin
-    { boss: { hp: 17250, atk: 123, def: 72.5, spd: 1.5 }, minions: [{ hp: 1260, atk: 31, def: 44.5, spd: 2.5 }, { hp: 1260, atk: 31, def: 44.5, spd: 2.5 }] },
+    { boss: { hp: 17250, atk: 123, def: 72.5, spd: 1.5 }, minions: [{ hp: 1260, atk: 31, def: 44.5, spd: 2.5 }, { hp: 1260, atk: 31, def: 44.5, spd: 2.5 }, { hp: 1260, atk: 31, def: 44.5, spd: 2.5 }, { hp: 1260, atk: 31, def: 44.5, spd: 2.5 }, { hp: 1260, atk: 31, def: 44.5, spd: 2.5 }] },
     // 6 schwer · Verderbter Baumgeist
     { boss: { hp: 2177802, atk: 1036, def: 253, spd: 2.5 }, minions: [{ hp: 144444, atk: 249, def: 243, spd: 2.5 }, { hp: 144444, atk: 249, def: 243, spd: 2.5 }] },
     // 7 schwer · Verderbt: Albtraumhof-Gräfin
@@ -44,15 +44,15 @@ export const MONSTER_STATS = {
   ],
   3: [ // Wanderer-Hügel
     // 1 normal · Champion Minotauren-Bulle
-    { boss: { hp: 15560, atk: 113, def: 77.5, spd: 1.5 }, minions: [{ hp: 1840, atk: 40, def: 71.5, spd: 2.5 }, { hp: 2080, atk: 45, def: 80, spd: 2.5 }] },
+    { boss: { hp: 15560, atk: 113, def: 77.5, spd: 1.5 }, minions: [{ hp: 1840, atk: 40, def: 71.5, spd: 2.5 }, { hp: 2080, atk: 45, def: 80, spd: 2.5 }, { hp: 1840, atk: 40, def: 71.5, spd: 2.5 }, { hp: 2080, atk: 45, def: 80, spd: 2.5 }, { hp: 1840, atk: 40, def: 71.5, spd: 2.5 }] },
     // 2 normal · Champion Grawl-Häuptling
-    { boss: { hp: 17110, atk: 128, def: 82.5, spd: 1.5 }, minions: [{ hp: 2080, atk: 45, def: 80, spd: 2.5 }, { hp: 2190, atk: 47, def: 85, spd: 2.5 }] },
+    { boss: { hp: 17110, atk: 128, def: 82.5, spd: 1.5 }, minions: [{ hp: 2080, atk: 45, def: 80, spd: 2.5 }, { hp: 2190, atk: 47, def: 85, spd: 2.5 }, { hp: 2080, atk: 45, def: 80, spd: 2.5 }, { hp: 2190, atk: 47, def: 85, spd: 2.5 }, { hp: 2080, atk: 45, def: 80, spd: 2.5 }] },
     // 3 normal · Champion Eisbrut-Wolf
-    { boss: { hp: 17320, atk: 151, def: 85, spd: 1.5 }, minions: [{ hp: 2080, atk: 45, def: 80, spd: 2.5 }, { hp: 2190, atk: 47, def: 85, spd: 2.5 }] },
+    { boss: { hp: 17320, atk: 151, def: 85, spd: 1.5 }, minions: [{ hp: 2080, atk: 45, def: 80, spd: 2.5 }, { hp: 2190, atk: 47, def: 85, spd: 2.5 }, { hp: 2080, atk: 45, def: 80, spd: 2.5 }, { hp: 2190, atk: 47, def: 85, spd: 2.5 }, { hp: 2080, atk: 45, def: 80, spd: 2.5 }] },
     // 4 normal · Schamanen-Vorbote des Jormag
-    { boss: { hp: 18400, atk: 193, def: 90, spd: 1.5 }, minions: [{ hp: 2190, atk: 47, def: 85, spd: 2.5 }, { hp: 2510, atk: 55, def: 90, spd: 2.5 }] },
+    { boss: { hp: 18400, atk: 193, def: 90, spd: 1.5 }, minions: [{ hp: 2190, atk: 47, def: 85, spd: 2.5 }, { hp: 2510, atk: 55, def: 90, spd: 2.5 }, { hp: 2190, atk: 47, def: 85, spd: 2.5 }, { hp: 2510, atk: 55, def: 90, spd: 2.5 }, { hp: 2190, atk: 47, def: 85, spd: 2.5 }] },
     // 5 normal · Svanir-Schamane
-    { boss: { hp: 22250, atk: 226, def: 95, spd: 1.5 }, minions: [{ hp: 2510, atk: 55, def: 90, spd: 2.5 }, { hp: 3590, atk: 83, def: 100, spd: 2.5 }] },
+    { boss: { hp: 22250, atk: 226, def: 95, spd: 1.5 }, minions: [{ hp: 2510, atk: 55, def: 90, spd: 2.5 }, { hp: 3590, atk: 83, def: 100, spd: 2.5 }, { hp: 2510, atk: 55, def: 90, spd: 2.5 }, { hp: 3590, atk: 83, def: 100, spd: 2.5 }, { hp: 2510, atk: 55, def: 90, spd: 2.5 }] },
     // 6 schwer · Eisbrut-Goliath
     { boss: { hp: 3372924, atk: 1063, def: 273, spd: 2.5 }, minions: [{ hp: 198565, atk: 257, def: 256, spd: 2.5 }, { hp: 198565, atk: 257, def: 256, spd: 2.5 }] },
     // 7 schwer · Verderbt: Svanir-Schamane
@@ -60,15 +60,15 @@ export const MONSTER_STATS = {
   ],
   4: [ // Provinz Metrica
     // 1 normal · Champion Inquestur-Golem
-    { boss: { hp: 29100, atk: 269, def: 105, spd: 1.5 }, minions: [{ hp: 3590, atk: 83, def: 100, spd: 2.5 }, { hp: 3590, atk: 83, def: 100, spd: 2.5 }] },
+    { boss: { hp: 29100, atk: 269, def: 105, spd: 1.5 }, minions: [{ hp: 3590, atk: 83, def: 100, spd: 2.5 }, { hp: 3590, atk: 83, def: 100, spd: 2.5 }, { hp: 3590, atk: 83, def: 100, spd: 2.5 }, { hp: 3590, atk: 83, def: 100, spd: 2.5 }] },
     // 2 normal · Champion Skritt-Anführer
-    { boss: { hp: 34100, atk: 276, def: 110, spd: 1.5 }, minions: [{ hp: 3590, atk: 83, def: 100, spd: 2.5 }, { hp: 3590, atk: 83, def: 100, spd: 2.5 }] },
+    { boss: { hp: 34100, atk: 276, def: 110, spd: 1.5 }, minions: [{ hp: 3590, atk: 83, def: 100, spd: 2.5 }, { hp: 3590, atk: 83, def: 100, spd: 2.5 }, { hp: 3590, atk: 83, def: 100, spd: 2.5 }, { hp: 3590, atk: 83, def: 100, spd: 2.5 }, { hp: 3590, atk: 83, def: 100, spd: 2.5 }] },
     // 3 normal · Champion Riesen-Moa
-    { boss: { hp: 36410, atk: 289, def: 115, spd: 1.5 }, minions: [{ hp: 3590, atk: 83, def: 100, spd: 2.5 }, { hp: 3590, atk: 83, def: 100, spd: 2.5 }] },
+    { boss: { hp: 36410, atk: 289, def: 115, spd: 1.5 }, minions: [{ hp: 3590, atk: 83, def: 100, spd: 2.5 }, { hp: 3590, atk: 83, def: 100, spd: 2.5 }, { hp: 3590, atk: 83, def: 100, spd: 2.5 }, { hp: 3590, atk: 83, def: 100, spd: 2.5 }, { hp: 3590, atk: 83, def: 100, spd: 2.5 }] },
     // 4 normal · Inquestur-Versuchsleiterin
-    { boss: { hp: 36920, atk: 301, def: 120, spd: 1.5 }, minions: [{ hp: 3590, atk: 83, def: 100, spd: 2.5 }, { hp: 3590, atk: 83, def: 100, spd: 2.5 }] },
+    { boss: { hp: 36920, atk: 301, def: 120, spd: 1.5 }, minions: [{ hp: 3590, atk: 83, def: 100, spd: 2.5 }, { hp: 3590, atk: 83, def: 100, spd: 2.5 }, { hp: 3590, atk: 83, def: 100, spd: 2.5 }, { hp: 3590, atk: 83, def: 100, spd: 2.5 }, { hp: 3590, atk: 83, def: 100, spd: 2.5 }] },
     // 5 normal · Kolossaler Inquestur-Golem
-    { boss: { hp: 51570, atk: 543, def: 142.5, spd: 1.5 }, minions: [{ hp: 3590, atk: 83, def: 100, spd: 2.5 }, { hp: 3590, atk: 83, def: 100, spd: 2.5 }] },
+    { boss: { hp: 51570, atk: 543, def: 142.5, spd: 1.5 }, minions: [{ hp: 3590, atk: 83, def: 100, spd: 2.5 }, { hp: 3590, atk: 83, def: 100, spd: 2.5 }, { hp: 3590, atk: 83, def: 100, spd: 2.5 }, { hp: 3590, atk: 83, def: 100, spd: 2.5 }, { hp: 3590, atk: 83, def: 100, spd: 2.5 }] },
     // 6 schwer · Entfesseltes Experiment
     { boss: { hp: 4568046, atk: 1090, def: 293, spd: 2.5 }, minions: [{ hp: 252685, atk: 265, def: 269, spd: 2.5 }, { hp: 252685, atk: 265, def: 269, spd: 2.5 }] },
     // 7 schwer · Verderbt: Kolossaler Inquestur-Golem
@@ -78,15 +78,15 @@ export const MONSTER_STATS = {
   ],
   5: [ // Ebenen von Aschfurt
     // 1 normal · Champion Verschlinger-Königin
-    { boss: { hp: 45860, atk: 254, def: 140, spd: 1.5 }, minions: [{ hp: 8010, atk: 105, def: 132, spd: 2.5 }, { hp: 8420, atk: 123, def: 138, spd: 2.5 }] },
+    { boss: { hp: 45860, atk: 254, def: 140, spd: 1.5 }, minions: [{ hp: 8010, atk: 105, def: 132, spd: 2.5 }, { hp: 8420, atk: 123, def: 138, spd: 2.5 }, { hp: 8010, atk: 105, def: 132, spd: 2.5 }, { hp: 8420, atk: 123, def: 138, spd: 2.5 }, { hp: 8010, atk: 105, def: 132, spd: 2.5 }] },
     // 2 normal · Champion Skal-Alpha
-    { boss: { hp: 46610, atk: 297, def: 142.5, spd: 1.5 }, minions: [{ hp: 8010, atk: 105, def: 132, spd: 2.5 }, { hp: 8420, atk: 123, def: 138, spd: 2.5 }] },
+    { boss: { hp: 46610, atk: 297, def: 142.5, spd: 1.5 }, minions: [{ hp: 8010, atk: 105, def: 132, spd: 2.5 }, { hp: 8420, atk: 123, def: 138, spd: 2.5 }, { hp: 8010, atk: 105, def: 132, spd: 2.5 }, { hp: 8420, atk: 123, def: 138, spd: 2.5 }, { hp: 8010, atk: 105, def: 132, spd: 2.5 }] },
     // 3 normal · Separatisten-Anführerin
-    { boss: { hp: 71520, atk: 303, def: 145, spd: 1.5 }, minions: [{ hp: 8420, atk: 123, def: 138, spd: 2.5 }, { hp: 9870, atk: 135, def: 144, spd: 2.5 }] },
+    { boss: { hp: 71520, atk: 303, def: 145, spd: 1.5 }, minions: [{ hp: 8420, atk: 123, def: 138, spd: 2.5 }, { hp: 9870, atk: 135, def: 144, spd: 2.5 }, { hp: 8420, atk: 123, def: 138, spd: 2.5 }, { hp: 9870, atk: 135, def: 144, spd: 2.5 }, { hp: 8420, atk: 123, def: 138, spd: 2.5 }] },
     // 4 normal · Champion Ascalonischer Geisterhauptmann
-    { boss: { hp: 78320, atk: 353, def: 147.5, spd: 1.5 }, minions: [{ hp: 8420, atk: 123, def: 138, spd: 2.5 }, { hp: 9870, atk: 135, def: 144, spd: 2.5 }] },
+    { boss: { hp: 78320, atk: 353, def: 147.5, spd: 1.5 }, minions: [{ hp: 8420, atk: 123, def: 138, spd: 2.5 }, { hp: 9870, atk: 135, def: 144, spd: 2.5 }, { hp: 8420, atk: 123, def: 138, spd: 2.5 }, { hp: 9870, atk: 135, def: 144, spd: 2.5 }, { hp: 8420, atk: 123, def: 138, spd: 2.5 }] },
     // 5 normal · Flammenlegion-Kriegsherr
-    { boss: { hp: 86080, atk: 418, def: 150, spd: 1.5 }, minions: [{ hp: 9870, atk: 135, def: 144, spd: 2.5 }, { hp: 9870, atk: 135, def: 144, spd: 2.5 }] },
+    { boss: { hp: 86080, atk: 418, def: 150, spd: 1.5 }, minions: [{ hp: 9870, atk: 135, def: 144, spd: 2.5 }, { hp: 9870, atk: 135, def: 144, spd: 2.5 }, { hp: 9870, atk: 135, def: 144, spd: 2.5 }, { hp: 9870, atk: 135, def: 144, spd: 2.5 }, { hp: 9870, atk: 135, def: 144, spd: 2.5 }] },
     // 6 schwer · Flammenlegion-Schamane
     { boss: { hp: 5763167, atk: 1117, def: 313, spd: 2.5 }, minions: [{ hp: 306806, atk: 274, def: 282, spd: 2.5 }, { hp: 306806, atk: 274, def: 282, spd: 2.5 }] },
     // 7 schwer · Verderbt: Flammenlegion-Kriegsherr
@@ -94,15 +94,15 @@ export const MONSTER_STATS = {
   ],
   6: [ // Caudecus’ Anwesen
     // 1 normal · Separatisten-Belagerer
-    { boss: { hp: 96810, atk: 478, def: 152.5, spd: 1.5 }, minions: [{ hp: 9870, atk: 135, def: 144, spd: 2.5 }, { hp: 9870, atk: 135, def: 144, spd: 2.5 }] },
+    { boss: { hp: 96810, atk: 478, def: 152.5, spd: 1.5 }, minions: [{ hp: 9870, atk: 135, def: 144, spd: 2.5 }, { hp: 9870, atk: 135, def: 144, spd: 2.5 }, { hp: 9870, atk: 135, def: 144, spd: 2.5 }, { hp: 9870, atk: 135, def: 144, spd: 2.5 }, { hp: 9870, atk: 135, def: 144, spd: 2.5 }] },
     // 2 normal · Königlicher Leibwächter Pete
-    { boss: { hp: 98990, atk: 547, def: 155, spd: 1.5 }, minions: [{ hp: 9870, atk: 135, def: 144, spd: 2.5 }, { hp: 9870, atk: 135, def: 144, spd: 2.5 }] },
+    { boss: { hp: 98990, atk: 547, def: 155, spd: 1.5 }, minions: [{ hp: 9870, atk: 135, def: 144, spd: 2.5 }, { hp: 9870, atk: 135, def: 144, spd: 2.5 }, { hp: 9870, atk: 135, def: 144, spd: 2.5 }, { hp: 9870, atk: 135, def: 144, spd: 2.5 }, { hp: 9870, atk: 135, def: 144, spd: 2.5 }] },
     // 3 normal · Butler Michiels
-    { boss: { hp: 101180, atk: 553, def: 157.5, spd: 1.5 }, minions: [{ hp: 9870, atk: 135, def: 144, spd: 2.5 }, { hp: 9870, atk: 135, def: 144, spd: 2.5 }] },
+    { boss: { hp: 101180, atk: 553, def: 157.5, spd: 1.5 }, minions: [{ hp: 9870, atk: 135, def: 144, spd: 2.5 }, { hp: 9870, atk: 135, def: 144, spd: 2.5 }, { hp: 9870, atk: 135, def: 144, spd: 2.5 }, { hp: 9870, atk: 135, def: 144, spd: 2.5 }, { hp: 9870, atk: 135, def: 144, spd: 2.5 }] },
     // 4 normal · Gepfefferte Bridgette
-    { boss: { hp: 101770, atk: 640, def: 160, spd: 1.5 }, minions: [{ hp: 9870, atk: 135, def: 144, spd: 2.5 }, { hp: 9870, atk: 135, def: 144, spd: 2.5 }] },
+    { boss: { hp: 101770, atk: 640, def: 160, spd: 1.5 }, minions: [{ hp: 9870, atk: 135, def: 144, spd: 2.5 }, { hp: 9870, atk: 135, def: 144, spd: 2.5 }, { hp: 9870, atk: 135, def: 144, spd: 2.5 }, { hp: 9870, atk: 135, def: 144, spd: 2.5 }, { hp: 9870, atk: 135, def: 144, spd: 2.5 }] },
     // 5 normal · Separatisten-Hauptmann DeLana
-    { boss: { hp: 117770, atk: 701, def: 162.5, spd: 1.5 }, minions: [{ hp: 9870, atk: 135, def: 144, spd: 2.5 }, { hp: 9870, atk: 135, def: 144, spd: 2.5 }] },
+    { boss: { hp: 117770, atk: 701, def: 162.5, spd: 1.5 }, minions: [{ hp: 9870, atk: 135, def: 144, spd: 2.5 }, { hp: 9870, atk: 135, def: 144, spd: 2.5 }, { hp: 9870, atk: 135, def: 144, spd: 2.5 }, { hp: 9870, atk: 135, def: 144, spd: 2.5 }, { hp: 9870, atk: 135, def: 144, spd: 2.5 }] },
     // 6 schwer · Turmaine
     { boss: { hp: 6958289, atk: 1143, def: 333, spd: 2.5 }, minions: [{ hp: 360927, atk: 282, def: 295, spd: 2.5 }, { hp: 360927, atk: 282, def: 295, spd: 2.5 }] },
     // 7 schwer · Frost

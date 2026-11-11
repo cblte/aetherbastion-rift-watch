@@ -23,11 +23,11 @@
 
 | Stufe | Boss | Schergen | Lv. | Kosten | 📜 | ⚒️ | 🍞 | 🎟️ | CQHT |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | Banditen-Anführerin | Banditen-Beutelschneider, Banditen-Schläger | 3 | 50 | 1 | 1 | 1 | 0 | 1-1 · Emperor Slime |
-| 2 | Champion Banditen-Saboteur | Banditen-Bomber, Banditen-Brandstifter | 5 | 60 | 1 | 1 | 1 | 0 | 1-2 · Emperor Slime |
-| 3 | Champion Eichenherz | Waldspinne, Wildschwein | 6 | 70 | 1 | 1 | 1 | 0 | 1-3 · Emperor Slime |
-| 4 | Champion Krait-Hexe | Krait-Sklaventreiber, Krait-Speerträger | 8 | 80 | 1 | 1 | 2 | 0 | 1-4 · Elite Goblin W. |
-| 5 | Schatten-Behemoth | Schattenbrut, Verzerrter Geist | 10 | 90 | 1 | 1 | 2 | 0 | 1-5 · Elite Goblin W. |
+| 1 | Banditen-Anführerin | Banditen-Beutelschneider, Banditen-Schläger, Banditen-Schütze, Flachlandwurm-Junges, Brackwasser-Skal | 3 | 50 | 1 | 1 | 1 | 0 | 1-1 · Emperor Slime |
+| 2 | Champion Banditen-Saboteur | Banditen-Bomber, Banditen-Brandstifter, Banditen-Schläger, Banditen-Schütze, Brackwasser-Skal | 5 | 60 | 1 | 1 | 1 | 0 | 1-2 · Emperor Slime |
+| 3 | Champion Eichenherz | Waldspinne, Wildschwein, Tamini-Krieger, Tamini-Bogenschütze, Skritt-Flaschenwerferin | 6 | 70 | 1 | 1 | 1 | 0 | 1-3 · Emperor Slime |
+| 4 | Champion Krait-Hexe | Krait-Sklaventreiber, Krait-Speerträger, Ettin, Banditen-Saboteur, Schleim | 8 | 80 | 1 | 1 | 2 | 0 | 1-4 · Elite Goblin W. |
+| 5 | Schatten-Behemoth | Schattenbrut, Verzerrter Geist, Banditen-Heckenschütze, Höhlentroll, Sumpfschrecken | 10 | 90 | 1 | 1 | 2 | 0 | 1-5 · Elite Goblin W. |
 | ☠️ 6 | Champion Höhlentroll | Höhlenspinne, Junger Troll | 60 | 1.200 | 10–20 | 1 | 5 | 1 | Hard 1-1 · Cursed Emperor Slime |
 | ☠️ 7 | Verderbt: Schatten-Behemoth | Schattenbrut, Kryptis-Splitter | 60 | 1.400 | 11–21 | 1 | 5 | 1 | Hard 1-2 · Cursed Elite Goblin Warrior |
 
@@ -37,11 +37,11 @@
 
 | Stufe | Boss | Schergen | Lv. | Kosten | 📜 | ⚒️ | 🍞 | 🎟️ | CQHT |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | Champion Hylek-Kriegshäuptling | Hylek-Krieger, Hylek-Blasrohrschütze | 12 | 100 | 1–2 | 1 | 2 | 0 | 1-6 · Ogre |
-| 2 | Champion Skritt-Schatzmeister | Skritt-Plünderer, Skritt-Dieb | 14 | 110 | 1–2 | 1 | 2 | 0 | 1-7 · Ogre |
-| 3 | Champion Albtraumhof-Ritter | Albtraumhof-Höfling, Albtraumhof-Wächter | 16 | 120 | 1–2 | 1 | 3 | 0 | 1-8 · Raging Ogre |
-| 4 | Champion Krait-Orakel | Krait-Mystiker, Sumpfdrake | 18 | 130 | 1–2 | 1 | 3 | 0 | 1-9 · Raging Ogre |
-| 5 | Albtraumhof-Gräfin | Albtraum-Ranke, Verzerrter Sylvari | 20 | 150 | 1–2 | 1 | 3 | 0 | 1-10 · Golem |
+| 1 | Champion Hylek-Kriegshäuptling | Hylek-Krieger, Hylek-Blasrohrschütze, Auferstandener Leibeigener, Dschungelraupe, Dschungelspinnen-Junges | 12 | 100 | 1–2 | 1 | 2 | 0 | 1-6 · Ogre |
+| 2 | Champion Skritt-Schatzmeister | Skritt-Plünderer, Skritt-Dieb, Auferstandener Leibeigener, Dschungelspinnen-Junges, Albtraumhof-Dornenwolf | 14 | 110 | 1–2 | 1 | 2 | 0 | 1-7 · Ogre |
+| 3 | Champion Albtraumhof-Ritter | Albtraumhof-Höfling, Albtraumhof-Wächter, Albtraumhof-Dornenwolf, Albtraum-Duellant, Auferstandene Abscheulichkeit | 16 | 120 | 1–2 | 1 | 3 | 0 | 1-8 · Raging Ogre |
+| 4 | Champion Krait-Orakel | Krait-Mystiker, Sumpfdrake, Albtraumhöfling, Erd-Elementar, Krait-Damoss | 18 | 130 | 1–2 | 1 | 3 | 0 | 1-9 · Raging Ogre |
+| 5 | Albtraumhof-Gräfin | Albtraum-Ranke, Verzerrter Sylvari, Krait-Damoss, Krait-Nimross, Auferstandener Grobian | 20 | 150 | 1–2 | 1 | 3 | 0 | 1-10 · Golem |
 | ☠️ 6 | Verderbter Baumgeist | Waldspinne, Rankenwüter | 60 | 1.600 | 12–22 | 2 | 6 | 1–2 | Hard 1-3 · Mighty Ogre |
 | ☠️ 7 | Verderbt: Albtraumhof-Gräfin | Albtraum-Ranke, Kryptis-Splitter | 60 | 1.800 | 13–23 | 2 | 6 | 1–2 | Hard 1-4 · Ogre Elite Fighter |
 | ⭐ 8 | Schatten: Albtraumhof-Gräfin | Kryptis-Plünderer, Kryptis-Peiniger | 60 | 5.000 | 50–62 | 3 | 10 | 1–4 | L-1 · Dark Golem |
@@ -52,11 +52,11 @@
 
 | Stufe | Boss | Schergen | Lv. | Kosten | 📜 | ⚒️ | 🍞 | 🎟️ | CQHT |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | Champion Minotauren-Bulle | Minotaurus, Schneeleopard | 22 | 100 | 1–2 | 1 | 1 | 1 | 2-1 · Hard Mudman |
-| 2 | Champion Grawl-Häuptling | Grawl-Krieger, Grawl-Schamane | 24 | 120 | 1–2 | 1 | 1 | 1 | 2-2 · Hard Mudman |
-| 3 | Champion Eisbrut-Wolf | Eisbrut-Wolf, Eisbrut-Elementar | 25 | 140 | 1–2 | 1 | 1 | 1 | 2-3 · Hard Mudman |
-| 4 | Schamanen-Vorbote des Jormag | Sohn des Svanir, Svanir-Eisbrecher | 27 | 160 | 1–3 | 1 | 2 | 1 | 2-4 · Pharaoh Mummy |
-| 5 | Svanir-Schamane | Svanir-Schamanin, Eisgeist | 29 | 180 | 1–3 | 1 | 2 | 1 | 2-5 · Pharaoh Mummy |
+| 1 | Champion Minotauren-Bulle | Minotaurus, Schneeleopard, Wolf, Eiswurm-Junges, Dolyak | 22 | 100 | 1–2 | 1 | 1 | 1 | 2-1 · Hard Mudman |
+| 2 | Champion Grawl-Häuptling | Grawl-Krieger, Grawl-Schamane, Wolf, Dolyak, Schaufler | 24 | 120 | 1–2 | 1 | 1 | 1 | 2-2 · Hard Mudman |
+| 3 | Champion Eisbrut-Wolf | Eisbrut-Wolf, Eisbrut-Elementar, Schaufler, Svanir-Jäger, Arctodus | 25 | 140 | 1–2 | 1 | 1 | 1 | 2-3 · Hard Mudman |
+| 4 | Schamanen-Vorbote des Jormag | Sohn des Svanir, Svanir-Eisbrecher, Sohn Svanirs, Jotun, Schneeleopard | 27 | 160 | 1–3 | 1 | 2 | 1 | 2-4 · Pharaoh Mummy |
+| 5 | Svanir-Schamane | Svanir-Schamanin, Eisgeist, Minotaurus, Grawl-Berserker, Eis-Elementar | 29 | 180 | 1–3 | 1 | 2 | 1 | 2-5 · Pharaoh Mummy |
 | ☠️ 6 | Eisbrut-Goliath | Eisbrut-Bär, Eisbrut-Wyvern | 60 | 2.000 | 14–24 | 2 | 6 | 1–2 | Hard 2-1 · Emperor Mudman |
 | ☠️ 7 | Verderbt: Svanir-Schamane | Svanir-Schamanin, Kryptis-Splitter | 60 | 2.200 | 15–25 | 2 | 6 | 1–2 | Hard 2-2 · Ancient Pharaoh Mummy |
 
@@ -66,11 +66,11 @@
 
 | Stufe | Boss | Schergen | Lv. | Kosten | 📜 | ⚒️ | 🍞 | 🎟️ | CQHT |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | Champion Inquestur-Golem | Inquestur-Assistent, Inquestur-Golem | 31 | 200 | 1–3 | 1 | 2 | 1 | 2-6 · Basilisk |
-| 2 | Champion Skritt-Anführer | Skritt-Bastler, Skritt-Späher | 33 | 220 | 1–3 | 1 | 2 | 1 | 2-7 · Basilisk |
-| 3 | Champion Riesen-Moa | Moa, Hylek-Krieger | 35 | 240 | 1–3 | 1 | 3 | 1 | 2-8 · Huge Basilisk |
-| 4 | Inquestur-Versuchsleiterin | Inquestur-Techniker, Mark-I-Golem | 37 | 260 | 1–3 | 1 | 3 | 1 | 2-9 · Huge Basilisk |
-| 5 | Kolossaler Inquestur-Golem | Inquestur-Wächter, Mark-III-Golem | 40 | 300 | 1–3 | 1 | 3 | 1 | 2-10 · Sandworm |
+| 1 | Champion Inquestur-Golem | Inquestur-Assistent, Inquestur-Golem, Moskito, Sumpflindwurm | 31 | 200 | 1–3 | 1 | 2 | 1 | 2-6 · Basilisk |
+| 2 | Champion Skritt-Anführer | Skritt-Bastler, Skritt-Späher, Sumpflindwurm, Inquestur-Assistent, Inquestur-Agent | 33 | 220 | 1–3 | 1 | 2 | 1 | 2-7 · Basilisk |
+| 3 | Champion Riesen-Moa | Moa, Hylek-Krieger, Inquestur-Agent, Hylek, Inquestur-Forscher | 35 | 240 | 1–3 | 1 | 3 | 1 | 2-8 · Huge Basilisk |
+| 4 | Inquestur-Versuchsleiterin | Inquestur-Techniker, Mark-I-Golem, Dschungel-Raptor, Warg, Hylek-Krieger | 37 | 260 | 1–3 | 1 | 3 | 1 | 2-9 · Huge Basilisk |
+| 5 | Kolossaler Inquestur-Golem | Inquestur-Wächter, Mark-III-Golem, Hylek-Krieger, Dschungel-Troll, Inquestur-Grenadier | 40 | 300 | 1–3 | 1 | 3 | 1 | 2-10 · Sandworm |
 | ☠️ 6 | Entfesseltes Experiment | Riss-Funke, Instabiles Experiment | 60 | 2.400 | 16–27 | 2 | 7 | 1–2 | Hard 2-3 · Red Basilisk |
 | ☠️ 7 | Verderbt: Kolossaler Inquestur-Golem | Inquestur-Wächter, Kryptis-Splitter | 60 | 2.600 | 17–28 | 2 | 7 | 1–2 | Hard 2-4 · Cataclysm Basilisk |
 | ⭐ 8 | Schatten: Kolossaler Inquestur-Golem | Kryptis-Plünderer, Kryptis-Peiniger | 60 | 5.000 | 55–67 | 4 | 11 | 1–4 | L-2 · Dark Sandworm |
@@ -81,11 +81,11 @@
 
 | Stufe | Boss | Schergen | Lv. | Kosten | 📜 | ⚒️ | 🍞 | 🎟️ | CQHT |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | Champion Verschlinger-Königin | Verschlinger, Verschlinger-Brut | 41 | 200 | 1–3 | 1 | 1 | 1 | 3-1 · Monster Anglerfish |
-| 2 | Champion Skal-Alpha | Skal, Wildkatze | 42 | 240 | 1–3 | 1 | 1 | 1 | 3-2 · Monster Anglerfish |
-| 3 | Separatisten-Anführerin | Separatisten-Kämpfer, Separatisten-Brandstifter | 43 | 280 | 1–3 | 1 | 1 | 1 | 3-3 · Monster Anglerfish |
-| 4 | Champion Ascalonischer Geisterhauptmann | Ascalonischer Geist, Geister-Bogenschütze | 44 | 320 | 1–3 | 1 | 2 | 1 | 3-4 · Black Starfish |
-| 5 | Flammenlegion-Kriegsherr | Flammenlegion-Kultist, Flammenlegion-Zerstörer | 45 | 360 | 1–3 | 1 | 2 | 1 | 3-5 · Black Starfish |
+| 1 | Champion Verschlinger-Königin | Verschlinger, Verschlinger-Brut, Geißelschwanz-Verschlinger, Flammen-Legion-Pirscher, Flammen-Legion-Axtunhold | 41 | 200 | 1–3 | 1 | 1 | 1 | 3-1 · Monster Anglerfish |
+| 2 | Champion Skal-Alpha | Skal, Wildkatze, Geißelschwanz-Verschlinger, Flammen-Legion-Pirscher, Flammen-Legion-Axtunhold | 42 | 240 | 1–3 | 1 | 1 | 1 | 3-2 · Monster Anglerfish |
+| 3 | Separatisten-Anführerin | Separatisten-Kämpfer, Separatisten-Brandstifter, Ascalon-Bauer, Ascalon-Bogenschütze, Flammen-Legion-Klingenstürmer | 43 | 280 | 1–3 | 1 | 1 | 1 | 3-3 · Monster Anglerfish |
+| 4 | Champion Ascalonischer Geisterhauptmann | Ascalonischer Geist, Geister-Bogenschütze, Ascalon-Kämpfer, Ascalon-Magierin, Minotaurus | 44 | 320 | 1–3 | 1 | 2 | 1 | 3-4 · Black Starfish |
+| 5 | Flammenlegion-Kriegsherr | Flammenlegion-Kultist, Flammenlegion-Zerstörer, Oger-Späher, Oger-Grobian, Oger-Jäger | 45 | 360 | 1–3 | 1 | 2 | 1 | 3-5 · Black Starfish |
 | ☠️ 6 | Flammenlegion-Schamane | Flammenlegion-Krieger, Feuerelementar | 60 | 2.800 | 18–28 | 2 | 7 | 1–2 | Hard 3-1 · Cursed Monster Angler |
 | ☠️ 7 | Verderbt: Flammenlegion-Kriegsherr | Flammenlegion-Kultist, Kryptis-Splitter | 60 | 3.000 | 19–30 | 2 | 7 | 1–2 | Hard 3-2 · Cursed Blackstar |
 
@@ -95,11 +95,11 @@
 
 | Stufe | Boss | Schergen | Lv. | Kosten | 📜 | ⚒️ | 🍞 | 🎟️ | CQHT |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | Separatisten-Belagerer | Separatisten-Kämpfer, Separatisten-Bomber | 46 | 400 | 1–3 | 1 | 2 | 1 | 3-6 · Shark Warrior |
-| 2 | Königlicher Leibwächter Pete | Königlicher Wächter, Separatisten-Feldwebel | 47 | 440 | 2–3 | 1 | 2 | 1 | 3-7 · Shark Warrior |
-| 3 | Butler Michiels | Diener des Hauses, Abgerichteter Wachhund | 48 | 480 | 2–3 | 1 | 3 | 1 | 3-8 · EliteShark W. |
-| 4 | Gepfefferte Bridgette | Seraphen-Deserteur, Banditen-Kanonier | 49 | 520 | 2–3 | 1 | 3 | 1 | 3-9 · EliteShark W. |
-| 5 | Separatisten-Hauptmann DeLana | Separatisten-Scharfschütze, Separatisten-Leutnant | 50 | 600 | 2–3 | 1 | 3 | 1 | 3-10 · Kraken |
+| 1 | Separatisten-Belagerer | Separatisten-Kämpfer, Separatisten-Bomber, Banditen-Schütze, Banditen-Schläger, Abgerichteter Wachhund | 46 | 400 | 1–3 | 1 | 2 | 1 | 3-6 · Shark Warrior |
+| 2 | Königlicher Leibwächter Pete | Königlicher Wächter, Separatisten-Feldwebel, Banditen-Schütze, Abgerichteter Wachhund, Diener des Hauses | 47 | 440 | 2–3 | 1 | 2 | 1 | 3-7 · Shark Warrior |
+| 3 | Butler Michiels | Diener des Hauses, Abgerichteter Wachhund, Banditen-Heckenschütze, Banditen-Saboteur, Inquestur-Spion | 48 | 480 | 2–3 | 1 | 3 | 1 | 3-8 · EliteShark W. |
+| 4 | Gepfefferte Bridgette | Seraphen-Deserteur, Banditen-Kanonier, Banditen-Saboteur, Inquestur-Spion, Separatist | 49 | 520 | 2–3 | 1 | 3 | 1 | 3-9 · EliteShark W. |
+| 5 | Separatisten-Hauptmann DeLana | Separatisten-Scharfschütze, Separatisten-Leutnant, Separatist, Klerikerin des Weißen Mantels, Kleriker des Weißen Mantels | 50 | 600 | 2–3 | 1 | 3 | 1 | 3-10 · Kraken |
 | ☠️ 6 | Turmaine | Asura-Wachgolem, Banditen-Raketengeschütz | 60 | 3.200 | 20–31 | 2 | 8 | 1–3 | Hard 3-3 · Mighty Shark Warrior |
 | ☠️ 7 | Frost | Separatisten-Scharfschütze, Kryptis-Splitter | 60 | 3.400 | 21–33 | 2 | 8 | 1–3 | Hard 3-4 · Mighty Elite Shark Warrior |
 | ⭐ 8 | Schatten: Separatisten-Hauptmann DeLana | Kryptis-Plünderer, Kryptis-Peiniger | 60 | 5.000 | 60–71 | 4 | 11 | 1–5 | L-3 · Dark Kraken |

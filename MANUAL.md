@@ -116,6 +116,7 @@ Jeder Held bringt **Eigenschaften** mit, gewürfelt beim Rekrutieren. Du siehst 
   - Helden bekommen DEF und Durchdringung mit dem Level: 2,5 je Level, dazu ein Grundwert nach Seltenheit (Fein 0 bis Aufgestiegen 20).
   - Waffen geben zusätzlich Durchdringung: T2 10, T3 25, T4 45, T5 70, T6 100.
   - Liegt die Durchdringung über der DEF des Gegners, gibt es bis **×1,5** Bonus-Schaden. Wer unter dem Stufen-Level kämpft, durchdringt weniger und macht spürbar weniger Schaden.
+- **Schergen und Profile:** In den Zonen 1–6 hat jede normale Stufe bis zu **5 verschiedene Schergen**, die sich abwechseln. Jeder Scherge hat ein **Profil**, das unter seinem Namen steht: **Rohling** (zäh, viel DEF, schlägt langsam), **Flink** (wenig LP, schlägt schnell), **Schütze** (hoher Schaden, wenig DEF) oder Standard. Gefährlicher ist dadurch keiner: Ein Rohling dauert länger, trifft aber seltener, ein Flinker ist schnell vorbei. Die Stufenliste zeigt die ersten zwei Namen und „+N“ für die übrigen.
 - 🎖️ **Veteranen:** Jeder Scherge kommt mit 10 % Chance als **Veteran** aus dem Riss: doppelte LP, ×1,5 Schaden, doppelte Beute. Offline zählen sie als Durchschnitt mit. Veteranen gibt es erst, wenn die Banditen-Anführerin (Königintal, Stufe 1) besiegt ist.
 - ⚜️ **Elite:** Ab Zone 2 kommt ein Scherge mit 2 % Chance als **Elite** aus dem Riss: ×4 LP, ×2 Schaden, ×5 Gold und EXP und zusätzlich 1 🔮. Ein Elite-Gegner ist nie gleichzeitig Veteran. Offline zählen Elite-Gegner wie Veteranen als Durchschnitt mit.
 - Unter dem Gegner steht, wie er angreift:

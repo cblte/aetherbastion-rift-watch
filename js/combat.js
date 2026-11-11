@@ -69,15 +69,18 @@ export function monsterTemplate(zoneId, stage, boss = false, variant = 0) {
   const base = boss ? ms.boss : ms.minions[variant % ms.minions.length];
   const sc = st.legend ? COMBAT.LEGEND_SCALE : st.hard ? COMBAT.HARD_SCALE : { atk: 1, def: 1 };
   const bs = boss ? COMBAT.BOSS_SCALE : { hp: 1, atk: 1 };
-  const atk = base.atk * sc.atk * bs.atk;
+  const pf = (!boss && COMBAT.MOB_PROFILES[mob.profile]) || COMBAT.MOB_PROFILES.standard; // Profil (#062)
+  const atk = base.atk * sc.atk * bs.atk * pf.atk;
   const lvl = st.d / COMBAT.LEVEL_DIFF; // Stufen-Level (Zonen 9–10: über 60)
   const H = COMBAT.HARD_HP;
   const maxHp = st.hard
     ? H.base * Math.pow(H.growth, d) * H.scale * (boss ? H.boss : 1)
     : base.hp * F.curve(COMBAT.HP_CURVE, lvl) * (boss ? bs.hp * F.curve(COMBAT.BOSS_HP_CURVE, lvl) : 1);
+  const interval = base.spd * pf.spd;
   return {
-    name: mob.name, sprite: mob.sprite, boss, d, attack: mob.attack || 'melee', interval: base.spd,
-    maxHp, atk, dps: atk / base.spd, def: base.def * sc.def,
+    name: mob.name, sprite: mob.sprite, boss, d, attack: mob.attack || 'melee', interval,
+    profile: boss ? null : (mob.profile || 'standard'), flavor: mob.flavor || '', rift: mob.rift || '',
+    maxHp: maxHp * pf.hp, atk, dps: atk / interval, def: base.def * sc.def * pf.def,
     aoe: boss ? atk * COMBAT.BOSS_AOE_FACTOR : 0,
   };
 }

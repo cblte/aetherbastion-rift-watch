@@ -8,7 +8,7 @@
 //
 // Zonen 1–10 (im Spiel, js/data/stages.js) – Zuordnung exakt über die Stufe:
 //   Boss     → CQHT-Boss mit dem Namen aus `src` (gleiche Namen der Reihe nach: Emperor Slime Lv. 1, 2, 3 …)
-//   Schergen → normale Stufe: CQHT-Monster desselben Kapitels mit dem nächsten Level (2. Scherge eins höher)
+//   Schergen → normale Stufe: CQHT-Monster desselben Kapitels mit dem nächsten Level (jeder 2. Scherge eins höher)
 //              schwere Stufe: MON_H_<Kapitel>_<Nr.> passend zu BOSS_H_<Kapitel>_<Nr.>
 //              legendäre Stufe: MON_SOUL_<Kapitel>_3/4
 // Zonen 11–20 (Entwurf, tools/data/zones-expansion.json) – Zuordnung nach Rang:
@@ -66,7 +66,9 @@ for (const z of ZONE_DATA) {
     if (kind === 'normal') {
       const pool = sortBy(cqht.filter(m => m.id.startsWith(`MON_${ch[1]}_`)), lv);
       const near = pool.reduce((bi, m, j) => (Math.abs(m.level - s.level) < Math.abs(pool[bi].level - s.level) ? j : bi), 0);
-      minions = s.minions.map((_, k) => pool[Math.min(near + k, pool.length - 1)]);
+      // Mehr Schergen je Stufe (#026): abwechselnd die beiden nächsten Vorlagen, damit die Stufe gleich stark bleibt;
+      // Unterschiede kommen aus dem Profil (#062, MOB_PROFILES in js/config.js)
+      minions = s.minions.map((_, k) => pool[Math.min(near + (k % 2), pool.length - 1)]);
     } else if (kind === 'schwer') {
       minions = s.minions.map(() => need(`MON_H_${ch[1]}_${ch[2]}`, ctx));
     } else {

@@ -64,7 +64,7 @@ _Zurzeit nichts offen._
 - Save-Migration: Bestände umrechnen (z. B. 1 🔮 = X 🟡), nichts ersatzlos löschen. Entscheiden zusammen mit #033 und #022.
 
 ### #026 Mehr Schergen pro Zone, dazu Veteranen und Elite aus dem Riss
-- **Status:** in Arbeit (Veteranen in v0.36.0, Elite in v0.41.0, offen: mehr Schergen pro Stufe; Wellen verworfen 2026-11-10: immer ein Gegner zur Zeit) · **Quelle:** Entwickler
+- **Status:** in Arbeit (Veteranen in v0.36.0, Elite in v0.41.0, Zonen 1–6 mit bis zu 5 Schergen in v0.42.0; offen: Zonen 7–10; Wellen verworfen 2026-11-10: immer ein Gegner zur Zeit) · **Quelle:** Entwickler
 - Stand v0.36.0: **Veteran** ist drin (`COMBAT.VETERAN`: 10 %, ×2 LP, ×1,5 Schaden, ×2 Beute, Name „Veteran …“, 🎖️ in der Arena, offline als Erwartungswert). Kampf und Offline können beliebig viele Schergen je Stufe (`minions`-Liste). Werte neuer Schergen müssen über `tools/build-gw2-monsters.mjs` eine CQHT-Vorlage bekommen (`js/data/monsterStats.js`).
 - Wunsch: Mehr echte GW2-Gegner pro Zone statt 2 Schergen pro Stufe, etwa 5 Schergen pro Stufe. Jeder hat einen Basiswert, und manchmal kommt ein Scherge als **Veteran** oder **Elite** aus einem Riss und ist entsprechend stärker.
 - Daten: `dev-data/gegner-pro-zone.jsonl` (von Gemini, bereinigt). Felder: `zone`, `name`, `faction`, `stages` (1–5), `attack` (Nahkampf/Fernkampf/Magie), `area`, `flavor`, `rift` {`name`, `ability`}, `wiki`. Keine Zahlenwerte, die Stärke bleibt bei den Formeln in `config.js`.
@@ -72,6 +72,7 @@ _Zurzeit nichts offen._
 - Zonen 7–10 fehlen: Seit v0.21.0 (#025) sind das Löwenstein & Klaueninsel, Meerenge der Verwüstung, Malchors Sprung und Fluchküste. Die alten Gemini-Zeilen der früheren Zonen 7–10 liegen in `dev-data/archiv/gegner-alte-zonen-7-10.jsonl`. Für die Orr-Zonen gibt es in der DE-Wiki viele echte Gegner (Kategorie „Auferstandener“), die Schergen in `tools/gen-zones.mjs` sind ein Anfang.
 - Riss-Formen: Etwa die Hälfte der Namen beginnt mit „Riss-…“ (eintönig), Fähigkeiten nennen teils Dinge, die das Spiel nicht kennt (Mana, Ausweichen) – als Kampf-Log-Text nutzbar, nicht als Regel. Evtl. von Gemini abwechslungsreicher neu schreiben lassen. Bosse sind nicht drin (eigene Datei geplant).
 - Entschieden (2026-11-07): Erst nur **Veteran**, Elite kommt später. Startwerte: 10 % Chance, ×2 LP, ×1,5 Angriff, ×2 Beute.
+- **Mehr Schergen in v0.42.0:** `tools/gen-zones.mjs` liest `dev-data/gegner-pro-zone.jsonl`. Normale Stufen der Zonen 1–6: die festen Schergen aus `ZONES` vorn, dazu JSONL-Gegner der Stufe bis `MAX_MINIONS` 5. Angriffsart aus der JSONL, `flavor` und `rift.ability` kommen nach `stages.js` und werden Sprüche (`MOB_QUIPS.ownWeight`). Vorlagen: abwechselnd die beiden bisherigen (`build-gw2-monsters.mjs`, `near + k % 2`), damit die Stufe gleich stark bleibt. Wiki: alle neuen Namen ✅; die alten ❌ (Zonen 1–6, z. B. Banditen-Beutelschneider, Krait-Sklaventreiber) sind unverändert.
 - **Elite in v0.41.0** (entschieden 2026-11-11): `COMBAT.ELITE` 2 % ab Zone 2 (`minZone`), ×4 LP, ×2 Schaden, ×5 Gold/EXP, +1 🔮 je Sieg, schließt Veteran aus (erst Elite würfeln). ⚜️ und Orange in der Arena, eigene Sprüche `MOB_QUIPS.elite`, offline als Erwartungswert (`eliteShards`). Die Fähigkeit aus `rift` als Spruch kommt mit den neuen Schergen-Daten.
 - Zum Umsetzen:
   - Regeln für Veteran (später Elite) in `config.js` (Chance, ×LP, ×Angriff, Beute), Namen und Fähigkeit aus `rift`.
@@ -80,7 +81,7 @@ _Zurzeit nichts offen._
   - Handbuch (`MANUAL.md`, `manual.js`) ergänzen.
 
 ### #062 Gegner-Vielfalt: Profile für Schergen, knackige Bosse
-- **Status:** offen (nach #061) · **Quelle:** Entwickler
+- **Status:** in Arbeit (Profile in v0.42.0; offen: S-Tier-Trupp für Legendär, Boss-Profile) · Entscheidung 2026-11-11: Profile „gleich stark, anders“ · **Quelle:** Entwickler
 - Befund: Jede Stufe hat 2 Schergen-Typen, die sich nur im Namen unterscheiden (`monsterTemplate()` in `combat.js` gibt beiden dieselben Werte). Bosse unterscheiden sich ebenfalls nur in den Zahlen. Spielerisch kämpft man immer gegen denselben Gegner.
 - Vorschlag Schergen: **Profile** mit Faktoren auf die Grundwerte der Stufe (aus #061), Werte in `config.js`, z. B.:
   - *Rohling*: viel LP und DEF, langsam (3,0 s)
@@ -90,6 +91,7 @@ _Zurzeit nichts offen._
 
   Jeder Scherge in `tools/gen-zones.mjs` bekommt ein Profil. Mehr Schergen pro Stufe (3–5) und Veteran/Elite laufen über #026; beide zusammen umsetzen.
 - Vorschlag Bosse (Champions): **Die Bosse sollen knackig sein**, vor allem der Endboss jeder Zone. Ziel: Den Endboss schafft nur ein Trupp auf Höchstlevel der Zone mit passender Waffe (und Forschung), nicht schon ein Trupp, der gerade das empfohlene Level erreicht hat. Bosse bekommen ebenfalls ein Profil (Tempo 1,5 s aus CQHT, eigene LP/DEF-Faktoren); Endbosse einen eigenen Zuschlag in `config.js`.
+- **Profile in v0.42.0:** `COMBAT.MOB_PROFILES` (Faktoren auf hp/def/atk/Intervall), Zuordnung per Namensregel in `tools/gen-zones.mjs` (`profileOf`, Fern/Magie = Schütze). Abgestimmt auf gleichen Schaden je Sieg (Node, Max-Trupp T/H/S Seltenheit Selten auf Stufen-Level): Flink Zeit ×0,77 / Schaden ×1,00, Schütze ×0,90 / ×1,01, Rohling ×1,30 / ×0,99. Je Stufe Zonen 1–6 gegenüber vorher: Schaden je Sieg −11 … +6 %, Kampfdauer −15 … +19 % (die meisten ±5 %; kürzer v. a. Zonen 5–6, weil 3 von 5 Schergen die schwächere Vorlage haben).
 - Später: Boss-Fähigkeiten (Wut-Phase unter X % LP, Schergen rufen, Flächenangriff) → #042, #051 D.
 - Stand v0.36.0 (Gegnerwerte nach CQHT, #061): Bosse haben `BOSS_SCALE.hp` 0,6 der CQHT-LP (× `HP_CURVE`, Zonen 7–10 × `BOSS_HP_CURVE`). Min.-Level (≥ 80 % Siege) Max-Trupp Tank/Heiler/Schaden: Zonen-Endbosse Lv. 3 (Zone 3) … 19 (Zone 6) … 46 (Fluchküste 5); Profil mittel (Selten, T4) etwa auf Stufen-Level bis Zone 7. Schwere Stufen: LP aus `HARD_HP` (Treppe `HARD_DIFF` d 57 → 57,5), DEF der CQHT-Vorlage × 0,6 → Max-Trupp ab Lv. 44 (Königintal ☠️6) bis 59 (Fluchküste ☠️7). Legendär (`LEGEND_DIFF` d 58,4 → 58, CQHT-Angriff × 0,5): Max-Trupp Lv. 60 ≈ 50–80 % (Caledon) → ≈ 3 % (Fluchküste). Erster Boss-Mechanik-Baustein: Flächenangriff alle `BOSS_AOE_EVERY` s mit Ansage. **Offen:** ein „S-Tier“-Trupp finden (beste Rollen/Klassen/Eigenschaften), der Legendär schafft, und `LEGEND_DIFF` danach herunterregeln. T6 fällt nur noch auf schweren/legendären Stufen, der Laden verkauft T5 ab Schmiede 3 und Portal 4 (v0.35.1), T6 nach allen normalen Stufen (`SHOP.gradeLock`). Nach #061 alle Werte neu simulieren.
 - Prüfen mit `tools/sim-bosses.mjs`: Endboss mit Max-Level-Trupp + Waffe knapp im 90-s-Limit, mit schwächerem Trupp nicht.

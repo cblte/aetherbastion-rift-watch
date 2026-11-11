@@ -10,6 +10,13 @@
     "via": "Admiral Feiste Bakkir",
     "url": "https://wiki-de.guildwars2.com/wiki/Admiral_Feiste_Bakkir"
   },
+  "Albtraum-Duellant": {
+    "status": "ok",
+    "title": "Albtraum-Duellant",
+    "en": "Nightmare Duelist",
+    "via": "Albtraum-Duellant",
+    "url": "https://wiki-de.guildwars2.com/wiki/Albtraum-Duellant"
+  },
   "Albtraum-Ranke": {
     "status": "fehlt",
     "suggestions": [
@@ -17,6 +24,13 @@
       "Kampf-Objekt",
       "Karston-Kammern"
     ]
+  },
+  "Albtraumhof-Dornenwolf": {
+    "status": "ok",
+    "title": "Albtraumhof-Dornenwolf",
+    "en": "Nightmare Court Thorn Wolf",
+    "via": "Albtraumhof-Dornenwolf",
+    "url": "https://wiki-de.guildwars2.com/wiki/Albtraumhof-Dornenwolf"
   },
   "Albtraumhof-Gräfin": {
     "status": "fehlt",
@@ -41,6 +55,48 @@
       "Chronik/Meine Geschichte/Die Lehren des Ventari",
       "Arias' Garten"
     ]
+  },
+  "Albtraumhöfling": {
+    "status": "ok",
+    "title": "Albtraumhöfling",
+    "en": "Nightmare Courtier",
+    "via": "Albtraumhöfling",
+    "url": "https://wiki-de.guildwars2.com/wiki/Albtraumh%C3%B6fling"
+  },
+  "Arctodus": {
+    "status": "ok",
+    "title": "Arctodus",
+    "en": "Arctodus",
+    "via": "Arctodus",
+    "url": "https://wiki-de.guildwars2.com/wiki/Arctodus"
+  },
+  "Ascalon-Bauer": {
+    "status": "ok",
+    "title": "Ascalon-Bauer",
+    "en": "Ascalonian Peasant",
+    "via": "Ascalon-Bauer",
+    "url": "https://wiki-de.guildwars2.com/wiki/Ascalon-Bauer"
+  },
+  "Ascalon-Bogenschütze": {
+    "status": "ok",
+    "title": "Ascalon-Bogenschütze",
+    "en": "Ascalonian Archer",
+    "via": "Ascalon-Bogenschütze",
+    "url": "https://wiki-de.guildwars2.com/wiki/Ascalon-Bogensch%C3%BCtze"
+  },
+  "Ascalon-Kämpfer": {
+    "status": "ok",
+    "title": "Ascalon-Kämpfer",
+    "en": "Ascalonian Fighter",
+    "via": "Ascalon-Kämpfer",
+    "url": "https://wiki-de.guildwars2.com/wiki/Ascalon-K%C3%A4mpfer"
+  },
+  "Ascalon-Magierin": {
+    "status": "ok",
+    "title": "Ascalon-Magierin",
+    "en": "Ascalonian Mage",
+    "via": "Ascalon-Magierin",
+    "url": "https://wiki-de.guildwars2.com/wiki/Ascalon-Magierin"
   },
   "Ascalonischer Geist": {
     "status": "ok",
@@ -399,6 +455,13 @@
     "via": "Banditen-Brandstifter",
     "url": "https://wiki-de.guildwars2.com/wiki/Banditen-Brandstifter"
   },
+  "Banditen-Heckenschütze": {
+    "status": "ok",
+    "title": "Banditen-Heckenschütze",
+    "en": "Bandit Sniper",
+    "via": "Banditen-Heckenschütze",
+    "url": "https://wiki-de.guildwars2.com/wiki/Banditen-Heckensch%C3%BCtze"
+  },
   "Banditen-Kanonier": {
     "status": "ok",
     "title": "Banditen-Kanonier",
@@ -410,12 +473,26 @@
     "status": "fehlt",
     "suggestions": []
   },
+  "Banditen-Saboteur": {
+    "status": "ok",
+    "title": "Banditen-Saboteur",
+    "en": "Bandit Saboteur",
+    "via": "Banditen-Saboteur",
+    "url": "https://wiki-de.guildwars2.com/wiki/Banditen-Saboteur"
+  },
   "Banditen-Schläger": {
     "status": "ok",
     "title": "Banditen-Schläger",
     "en": "Bandit Bruiser",
     "via": "Banditen-Schläger",
     "url": "https://wiki-de.guildwars2.com/wiki/Banditen-Schl%C3%A4ger"
+  },
+  "Banditen-Schütze": {
+    "status": "ok",
+    "title": "Banditen-Schütze",
+    "en": "Bandit Gunner",
+    "via": "Banditen-Schütze",
+    "url": "https://wiki-de.guildwars2.com/wiki/Banditen-Sch%C3%BCtze"
   },
   "Befallenes Riss-Monstrum": {
     "status": "fehlt",
@@ -424,6 +501,13 @@
   "Blasenwerfender Mordrem-Wolf": {
     "status": "fehlt",
     "suggestions": []
+  },
+  "Brackwasser-Skal": {
+    "status": "ok",
+    "title": "Brackwasser-Skal",
+    "en": "Brackish Skale",
+    "via": "Brackwasser-Skal",
+    "url": "https://wiki-de.guildwars2.com/wiki/Brackwasser-Skal"
   },
   "Butler Michiels": {
     "status": "fehlt",
@@ -673,6 +757,13 @@
       "Alarmstufe Rot"
     ]
   },
+  "Dolyak": {
+    "status": "ok",
+    "title": "Dolyak",
+    "en": "Dolyak",
+    "via": "Dolyak",
+    "url": "https://wiki-de.guildwars2.com/wiki/Dolyak"
+  },
   "Doppelgänger": {
     "status": "fehlt",
     "suggestions": [
@@ -696,12 +787,47 @@
     "status": "fehlt",
     "suggestions": []
   },
+  "Dschungel-Raptor": {
+    "status": "ok",
+    "title": "Dschungel-Raptor",
+    "en": "Jungle Raptor",
+    "via": "Dschungel-Raptor",
+    "url": "https://wiki-de.guildwars2.com/wiki/Dschungel-Raptor"
+  },
+  "Dschungel-Troll": {
+    "status": "ok",
+    "title": "Dschungel-Troll",
+    "en": "Jungle Troll",
+    "via": "Dschungel-Troll",
+    "url": "https://wiki-de.guildwars2.com/wiki/Dschungel-Troll"
+  },
+  "Dschungelraupe": {
+    "status": "ok",
+    "title": "Dschungelraupe",
+    "en": "Jungle Grub",
+    "via": "Dschungelraupe",
+    "url": "https://wiki-de.guildwars2.com/wiki/Dschungelraupe"
+  },
+  "Dschungelspinnen-Junges": {
+    "status": "ok",
+    "title": "Dschungelspinnen-Junges",
+    "en": "Jungle Spider Hatchling",
+    "via": "Dschungelspinnen-Junges",
+    "url": "https://wiki-de.guildwars2.com/wiki/Dschungelspinnen-Junges"
+  },
   "Ebenen von Aschfurt": {
     "status": "ok",
     "title": "Ebenen von Aschfurt",
     "en": "Plains of Ashford",
     "via": "Ebenen von Aschfurt",
     "url": "https://wiki-de.guildwars2.com/wiki/Ebenen_von_Aschfurt"
+  },
+  "Eis-Elementar": {
+    "status": "ok",
+    "title": "Eis-Elementar",
+    "en": "Ice Elemental",
+    "via": "Eis-Elementar",
+    "url": "https://wiki-de.guildwars2.com/wiki/Eis-Elementar"
   },
   "Eisbrut": {
     "status": "ok",
@@ -770,6 +896,13 @@
     "via": "Eisklamm-Sund",
     "url": "https://wiki-de.guildwars2.com/wiki/Eisklamm-Sund"
   },
+  "Eiswurm-Junges": {
+    "status": "ok",
+    "title": "Eiswurm-Junges",
+    "en": "Ice Wurm Hatchling",
+    "via": "Eiswurm-Junges",
+    "url": "https://wiki-de.guildwars2.com/wiki/Eiswurm-Junges"
+  },
   "Entfesseltes Experiment": {
     "status": "fehlt",
     "suggestions": [
@@ -778,12 +911,26 @@
       "Waffengalerie/Kriegshorn"
     ]
   },
+  "Erd-Elementar": {
+    "status": "ok",
+    "title": "Erd-Elementar",
+    "en": "Earth Elemental",
+    "via": "Erd-Elementar",
+    "url": "https://wiki-de.guildwars2.com/wiki/Erd-Elementar"
+  },
   "Erweckte": {
     "status": "ok",
     "title": "Erweckter",
     "en": "Awakened",
     "via": "Erweckte",
     "url": "https://wiki-de.guildwars2.com/wiki/Erweckter"
+  },
+  "Ettin": {
+    "status": "ok",
+    "title": "Ettin",
+    "en": "Ettin",
+    "via": "Ettin",
+    "url": "https://wiki-de.guildwars2.com/wiki/Ettin"
   },
   "Evolvierter Flammen-Schamane": {
     "status": "fehlt",
@@ -811,6 +958,34 @@
       "Besiegt den monströsen Teer-Elementar",
       "Goldfelder"
     ]
+  },
+  "Flachlandwurm-Junges": {
+    "status": "ok",
+    "title": "Flachlandwurm-Junges",
+    "en": "Plains Wurm Hatchling",
+    "via": "Flachlandwurm-Junges",
+    "url": "https://wiki-de.guildwars2.com/wiki/Flachlandwurm-Junges"
+  },
+  "Flammen-Legion-Axtunhold": {
+    "status": "ok",
+    "title": "Flammen-Legion-Axtunhold",
+    "en": "Flame Legion Axe Fiend",
+    "via": "Flammen-Legion-Axtunhold",
+    "url": "https://wiki-de.guildwars2.com/wiki/Flammen-Legion-Axtunhold"
+  },
+  "Flammen-Legion-Klingenstürmer": {
+    "status": "ok",
+    "title": "Flammen-Legion-Klingenstürmer",
+    "en": "Flame Legion Bladestorm",
+    "via": "Flammen-Legion-Klingenstürmer",
+    "url": "https://wiki-de.guildwars2.com/wiki/Flammen-Legion-Klingenst%C3%BCrmer"
+  },
+  "Flammen-Legion-Pirscher": {
+    "status": "ok",
+    "title": "Flammen-Legion-Pirscher",
+    "en": "Flame Legion Stalker",
+    "via": "Flammen-Legion-Pirscher",
+    "url": "https://wiki-de.guildwars2.com/wiki/Flammen-Legion-Pirscher"
   },
   "Flammenlegion": {
     "status": "erwähnt",
@@ -948,6 +1123,13 @@
       "Aphorismen Jokos, des Ewigen Monarchen aller Dinge"
     ]
   },
+  "Geißelschwanz-Verschlinger": {
+    "status": "ok",
+    "title": "Geißelschwanz-Verschlinger",
+    "en": "Lashtail Devourer",
+    "via": "Geißelschwanz-Verschlinger",
+    "url": "https://wiki-de.guildwars2.com/wiki/Gei%C3%9Felschwanz-Verschlinger"
+  },
   "General Molotov": {
     "status": "fehlt",
     "suggestions": []
@@ -997,6 +1179,13 @@
     "via": "Grasgrüne Schwelle",
     "url": "https://wiki-de.guildwars2.com/wiki/Grasgr%C3%BCne_Schwelle"
   },
+  "Grawl-Berserker": {
+    "status": "ok",
+    "title": "Grawl-Berserker",
+    "en": "Grawl Berserker",
+    "via": "Grawl-Berserker",
+    "url": "https://wiki-de.guildwars2.com/wiki/Grawl-Berserker"
+  },
   "Grawl-Krieger": {
     "status": "fehlt",
     "suggestions": [
@@ -1035,6 +1224,13 @@
     "via": "Hoheitliches Auge des Zhaitan",
     "url": "https://wiki-de.guildwars2.com/wiki/Hoheitliches_Auge_des_Zhaitan"
   },
+  "Hylek": {
+    "status": "ok",
+    "title": "Hylek",
+    "en": "Hylek",
+    "via": "Hylek",
+    "url": "https://wiki-de.guildwars2.com/wiki/Hylek"
+  },
   "Hylek-Blasrohrschütze": {
     "status": "fehlt",
     "suggestions": []
@@ -1053,12 +1249,26 @@
     "via": "Höhlenspinne",
     "url": "https://wiki-de.guildwars2.com/wiki/H%C3%B6hlenspinne"
   },
+  "Höhlentroll": {
+    "status": "ok",
+    "title": "Höhlentroll",
+    "en": "Cave Troll",
+    "via": "Höhlentroll",
+    "url": "https://wiki-de.guildwars2.com/wiki/H%C3%B6hlentroll"
+  },
   "Inquestur": {
     "status": "ok",
     "title": "Inquestur",
     "en": "Inquest",
     "via": "Inquestur",
     "url": "https://wiki-de.guildwars2.com/wiki/Inquestur"
+  },
+  "Inquestur-Agent": {
+    "status": "ok",
+    "title": "Inquestur-Agent",
+    "en": "Inquest Agent",
+    "via": "Inquestur-Agent",
+    "url": "https://wiki-de.guildwars2.com/wiki/Inquestur-Agent"
   },
   "Inquestur-Assistent": {
     "status": "ok",
@@ -1071,6 +1281,13 @@
     "status": "fehlt",
     "suggestions": []
   },
+  "Inquestur-Forscher": {
+    "status": "ok",
+    "title": "Inquestur-Forscher",
+    "en": "Inquest Researcher",
+    "via": "Inquestur-Forscher",
+    "url": "https://wiki-de.guildwars2.com/wiki/Inquestur-Forscher"
+  },
   "Inquestur-Golem": {
     "status": "teilweise",
     "title": "Golem",
@@ -1078,11 +1295,24 @@
     "via": "Golem",
     "url": "https://wiki-de.guildwars2.com/wiki/Golem"
   },
+  "Inquestur-Grenadier": {
+    "status": "ok",
+    "title": "Inquestur-Grenadier",
+    "en": "Inquest Grenadier",
+    "via": "Inquestur-Grenadier",
+    "url": "https://wiki-de.guildwars2.com/wiki/Inquestur-Grenadier"
+  },
   "Inquestur-Ornithologin": {
     "status": "erwähnt",
     "title": "Champion Inquestur-Ornithologin",
     "via": "Inquestur-Ornithologin",
     "url": "https://wiki-de.guildwars2.com/wiki/Champion_Inquestur-Ornithologin"
+  },
+  "Inquestur-Spion": {
+    "status": "ok",
+    "title": "Inquestur-Spion",
+    "via": "Inquestur-Spion",
+    "url": "https://wiki-de.guildwars2.com/wiki/Inquestur-Spion"
   },
   "Inquestur-Techniker": {
     "status": "ok",
@@ -1111,6 +1341,13 @@
       "Chronik/Meine Geschichte/Interessierte Gruppen"
     ]
   },
+  "Jotun": {
+    "status": "ok",
+    "title": "Jotun",
+    "en": "Jotun",
+    "via": "Jotun",
+    "url": "https://wiki-de.guildwars2.com/wiki/Jotun"
+  },
   "Junger Troll": {
     "status": "fehlt",
     "suggestions": [
@@ -1137,6 +1374,20 @@
     "via": "Klaue von Jormag",
     "url": "https://wiki-de.guildwars2.com/wiki/Klaue_von_Jormag"
   },
+  "Kleriker des Weißen Mantels": {
+    "status": "ok",
+    "title": "Kleriker des Weißen Mantels",
+    "en": "White Mantle Cleric",
+    "via": "Kleriker des Weißen Mantels",
+    "url": "https://wiki-de.guildwars2.com/wiki/Kleriker_des_Wei%C3%9Fen_Mantels"
+  },
+  "Klerikerin des Weißen Mantels": {
+    "status": "ok",
+    "title": "Klerikerin des Weißen Mantels",
+    "en": "White Mantle Cleric",
+    "via": "Klerikerin des Weißen Mantels",
+    "url": "https://wiki-de.guildwars2.com/wiki/Klerikerin_des_Wei%C3%9Fen_Mantels"
+  },
   "Knochenmonstrum": {
     "status": "fehlt",
     "suggestions": []
@@ -1149,6 +1400,13 @@
       "Chronik/Staffel 4 der Lebendigen Welt"
     ]
   },
+  "Krait-Damoss": {
+    "status": "ok",
+    "title": "Krait-Damoss",
+    "en": "Krait Damoss",
+    "via": "Krait-Damoss",
+    "url": "https://wiki-de.guildwars2.com/wiki/Krait-Damoss"
+  },
   "Krait-Mystiker": {
     "status": "fehlt",
     "suggestions": [
@@ -1156,6 +1414,13 @@
       "Die Bewegung der Welt",
       "Spielupdate/20131029"
     ]
+  },
+  "Krait-Nimross": {
+    "status": "ok",
+    "title": "Krait-Nimross",
+    "en": "Krait Nimross",
+    "via": "Krait-Nimross",
+    "url": "https://wiki-de.guildwars2.com/wiki/Krait-Nimross"
   },
   "Krait-Sklaventreiber": {
     "status": "fehlt",
@@ -1376,6 +1641,13 @@
     "via": "Morgus Lethe",
     "url": "https://wiki-de.guildwars2.com/wiki/Morgus_Lethe"
   },
+  "Moskito": {
+    "status": "ok",
+    "title": "Moskito",
+    "en": "Mosquito",
+    "via": "Moskito",
+    "url": "https://wiki-de.guildwars2.com/wiki/Moskito"
+  },
   "Mund des Zhaitan": {
     "status": "ok",
     "title": "Mund des Zhaitan",
@@ -1389,6 +1661,27 @@
     "en": "Ogre",
     "via": "Oger",
     "url": "https://wiki-de.guildwars2.com/wiki/Oger"
+  },
+  "Oger-Grobian": {
+    "status": "ok",
+    "title": "Oger-Grobian",
+    "en": "Ogre Brute",
+    "via": "Oger-Grobian",
+    "url": "https://wiki-de.guildwars2.com/wiki/Oger-Grobian"
+  },
+  "Oger-Jäger": {
+    "status": "ok",
+    "title": "Oger-Jäger",
+    "en": "Ogre Hunter",
+    "via": "Oger-Jäger",
+    "url": "https://wiki-de.guildwars2.com/wiki/Oger-J%C3%A4ger"
+  },
+  "Oger-Späher": {
+    "status": "ok",
+    "title": "Oger-Späher",
+    "en": "Ogre Scout",
+    "via": "Oger-Späher",
+    "url": "https://wiki-de.guildwars2.com/wiki/Oger-Sp%C3%A4her"
   },
   "Orrianische Spektralwache": {
     "status": "ok",
@@ -1549,6 +1842,13 @@
     "via": "Schaufler",
     "url": "https://wiki-de.guildwars2.com/wiki/Schaufler"
   },
+  "Schleim": {
+    "status": "ok",
+    "title": "Schleim",
+    "en": "Ooze",
+    "via": "Schleim",
+    "url": "https://wiki-de.guildwars2.com/wiki/Schleim"
+  },
   "Schmiedemeister": {
     "status": "erwähnt",
     "title": "Wütende Schmiedemeister-Insignie",
@@ -1561,6 +1861,13 @@
     "en": "Snow Leopard",
     "via": "Schneeleopard",
     "url": "https://wiki-de.guildwars2.com/wiki/Schneeleopard"
+  },
+  "Separatist": {
+    "status": "ok",
+    "title": "Separatisten",
+    "en": "Separatists",
+    "via": "Separatist",
+    "url": "https://wiki-de.guildwars2.com/wiki/Separatisten"
   },
   "Separatisten-Anführer": {
     "status": "fehlt",
@@ -1682,6 +1989,13 @@
     "via": "Skritt-Dieb",
     "url": "https://wiki-de.guildwars2.com/wiki/Skritt-Dieb"
   },
+  "Skritt-Flaschenwerferin": {
+    "status": "ok",
+    "title": "Skritt-Flaschenwerferin",
+    "en": "Skritt Bottle Lobber",
+    "via": "Skritt-Flaschenwerferin",
+    "url": "https://wiki-de.guildwars2.com/wiki/Skritt-Flaschenwerferin"
+  },
   "Skritt-Plünderer": {
     "status": "fehlt",
     "suggestions": [
@@ -1698,6 +2012,13 @@
       "Hanto-Handelsposten"
     ]
   },
+  "Sohn Svanirs": {
+    "status": "ok",
+    "title": "Sohn Svanirs",
+    "en": "Son of Svanir",
+    "via": "Sohn Svanirs",
+    "url": "https://wiki-de.guildwars2.com/wiki/Sohn_Svanirs"
+  },
   "Sohn des Svanir": {
     "status": "fehlt",
     "suggestions": [
@@ -1710,11 +2031,29 @@
     "status": "fehlt",
     "suggestions": []
   },
+  "Sumpflindwurm": {
+    "status": "ok",
+    "title": "Sumpflindwurm",
+    "en": "Marsh Drake",
+    "via": "Sumpflindwurm",
+    "url": "https://wiki-de.guildwars2.com/wiki/Sumpflindwurm"
+  },
+  "Sumpfschrecken": {
+    "status": "fehlt",
+    "suggestions": []
+  },
   "Svanir-Eisbrecher": {
     "status": "erwähnt",
     "title": "Mini Svanir-Eisbrecher",
     "via": "Svanir-Eisbrecher",
     "url": "https://wiki-de.guildwars2.com/wiki/Mini_Svanir-Eisbrecher"
+  },
+  "Svanir-Jäger": {
+    "status": "ok",
+    "title": "Svanir-Jäger",
+    "en": "Svanir Hunter",
+    "via": "Svanir-Jäger",
+    "url": "https://wiki-de.guildwars2.com/wiki/Svanir-J%C3%A4ger"
   },
   "Svanir-Schamane": {
     "status": "fehlt",
@@ -1745,6 +2084,20 @@
     "en": "Vale Guardian",
     "via": "Tal-Wächter",
     "url": "https://wiki-de.guildwars2.com/wiki/Tal-W%C3%A4chter"
+  },
+  "Tamini-Bogenschütze": {
+    "status": "ok",
+    "title": "Tamini-Bogenschütze",
+    "en": "Tamini Archer",
+    "via": "Tamini-Bogenschütze",
+    "url": "https://wiki-de.guildwars2.com/wiki/Tamini-Bogensch%C3%BCtze"
+  },
+  "Tamini-Krieger": {
+    "status": "ok",
+    "title": "Tamini-Krieger",
+    "en": "Tamini Warrior",
+    "via": "Tamini-Krieger",
+    "url": "https://wiki-de.guildwars2.com/wiki/Tamini-Krieger"
   },
   "Targa der Peiniger": {
     "status": "fehlt",
@@ -1931,6 +2284,13 @@
     "via": "Wanderer-Hügel",
     "url": "https://wiki-de.guildwars2.com/wiki/Wanderer-H%C3%BCgel"
   },
+  "Warg": {
+    "status": "ok",
+    "title": "Warg",
+    "en": "Warg",
+    "via": "Warg",
+    "url": "https://wiki-de.guildwars2.com/wiki/Warg"
+  },
   "Wildkatze": {
     "status": "fehlt",
     "suggestions": [
@@ -1946,6 +2306,13 @@
       "Zähmling",
       "Banditenwinkel-Höhle"
     ]
+  },
+  "Wolf": {
+    "status": "ok",
+    "title": "Wolf",
+    "en": "Wolf",
+    "via": "Wolf",
+    "url": "https://wiki-de.guildwars2.com/wiki/Wolf"
   },
   "Wyvern": {
     "status": "ok",

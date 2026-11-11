@@ -5,7 +5,7 @@
 
 export const GAME = {
   title: 'Aetherbastion: Rift Watch',
-  VERSION: '0.41.0',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
+  VERSION: '0.42.0',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
   CHANGELOG_URL: 'https://github.com/cblte/aetherbastion-rift-watch/blob/main/CHANGELOG.md', // Link in den Einstellungen
   BUILD: 'lokal',                    // ersetzt der Pages-Workflow durch „Nr. · Commit“
   SAVE_KEY: 'aetherbastion_save_v1',
@@ -279,6 +279,15 @@ export const COMBAT = {
   LEGEND_SCALE: { atk: 0.5, def: 0.6 }, // legendäre Bosse schlagen alle 0,5 s zu
   // Veteranen (#026): Schergen kommen manchmal als Veteran aus dem Riss
   VETERAN: { chance: 0.1, hp: 2, atk: 1.5, loot: 2, after: { zone: 1, stage: 1 } }, // after: erst nach diesem Boss-Sieg (Tutorial)
+  // Profile der Schergen (#062): verschieben die Werte der Vorlage, die Gesamtstärke bleibt etwa gleich
+  // (Schaden je Sieg ≈ LP × DEF-Wirkung × Schaden/s des Gegners). spd = Faktor auf das Angriffsintervall.
+  // Zuordnung je Scherge in tools/gen-zones.mjs (Feld profile in data/stages.js).
+  MOB_PROFILES: {
+    standard: { name: 'Standard', hp: 1,    def: 1,    atk: 1,   spd: 1 },
+    rohling:  { name: 'Rohling',  hp: 1.15, def: 1.2,  atk: 0.92, spd: 1.2 }, // langsam und zäh
+    flink:    { name: 'Flink',    hp: 0.85, def: 0.85, atk: 0.78, spd: 0.6 }, // schnell, wenig LP
+    schuetze: { name: 'Schütze',  hp: 1,    def: 0.85, atk: 1.12, spd: 1 },   // hoher Schaden, wenig DEF
+  },
   // Elite (#026): selten, deutlich stärker als ein Veteran; erst ab Zone minZone. Schließt Veteran aus.
   // loot = Faktor auf Gold/EXP, shards = 🔮 zusätzlich je Elite-Sieg
   ELITE:   { chance: 0.02, hp: 4, atk: 2, loot: 5, shards: 1, minZone: 2 },
@@ -318,6 +327,8 @@ export const MOB_QUIPS = {
   every: 5,
   lowHp: 0.25,
   minFight: 5,
+  // Eigene Texte des Gegners (data/stages.js: flavor bei Schergen, rift bei Elite) zählen so oft wie n Sprüche aus der Liste
+  ownWeight: 3,
   aoe: '💥 Holt zum Flächenangriff aus – gleich trifft es alle!',
   minion: [
     'Schnaubt verächtlich in Richtung Zelt.',
