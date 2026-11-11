@@ -1386,7 +1386,10 @@
           "boss_sprite": "BOSS_AUFERSTANDENE_ABSCHEULICHKEIT",
           "minions": [
             "Auferstandener Leibeigener",
-            "Auferstandener Pirat"
+            "Auferstandener Pirat",
+            "Untoter Prügler",
+            "Auferstandener Flüchtling",
+            "Untoter Späher"
           ],
           "level": 51,
           "cost": 400,
@@ -1413,7 +1416,10 @@
           "boss_sprite": "BOSS_VETERAN_AUFERSTANDENER_GROBIAN",
           "minions": [
             "Auferstandener Grobian",
-            "Auferstandener Seuchenträger"
+            "Auferstandener Seuchenträger",
+            "Auferstandener Plünderer",
+            "Verdorbene Krabbe",
+            "Fäulemaul-Spucker"
           ],
           "level": 52,
           "cost": 450,
@@ -1440,7 +1446,10 @@
           "boss_sprite": "BOSS_ADMIRAL_FEISTE_BAKKIR",
           "minions": [
             "Auferstandener Knappe",
-            "Auferstandener Ritter"
+            "Auferstandener Ritter",
+            "Auferstandener Verteidiger",
+            "Auferstandener Kurier",
+            "Leichenrufer"
           ],
           "level": 53,
           "cost": 500,
@@ -1467,7 +1476,10 @@
           "boss_sprite": "BOSS_MORGUS_LETHE",
           "minions": [
             "Auferstandener Hai",
-            "Untoter Riesenhai"
+            "Untoter Riesenhai",
+            "Untoter Hai",
+            "Auferstandene Seeschildkröte",
+            "Auferstandener Tiefseeskorpion"
           ],
           "level": 54,
           "cost": 550,
@@ -1494,7 +1506,10 @@
           "boss_sprite": "BOSS_FAULSCHRECK_DER_SEUCHENBRINGER",
           "minions": [
             "Auferstandener Verderber",
-            "Auferstandene Seuchenträgerin"
+            "Auferstandene Seuchenträgerin",
+            "Fäulemaul-Sauger",
+            "Auferstandenes Fäulemaul",
+            "Zhaitan-Experiment"
           ],
           "level": 55,
           "cost": 600,
@@ -1586,7 +1601,10 @@
           "boss_sprite": "BOSS_CHAMPION_AUFERSTANDENER_KRAIT_NIMROSS",
           "minions": [
             "Auferstandener Krait-Damoss",
-            "Auferstandener Krait-Hypnoss"
+            "Auferstandener Krait-Hypnoss",
+            "Auferstandener Krill",
+            "Auferstandener Quaggan",
+            "Auferstandener Fisch"
           ],
           "level": 56,
           "cost": 650,
@@ -1612,7 +1630,10 @@
           "boss_sprite": "BOSS_CHAMPION_AUFERSTANDENER_MEGALODON",
           "minions": [
             "Auferstandener Bullenhai",
-            "Auferstandener Krebs"
+            "Auferstandener Krebs",
+            "Auferstandener Hai",
+            "Orrianischer Krebs",
+            "Auferstandener Fischer"
           ],
           "level": 57,
           "cost": 700,
@@ -1639,7 +1660,10 @@
           "boss_sprite": "BOSS_AUFERSTANDENER_ZAUBERER",
           "minions": [
             "Auferstandener Akolyth",
-            "Auferstandene Zauberin"
+            "Auferstandene Zauberin",
+            "Orrianischer Spektralgötze",
+            "Auferstandene Dienerin",
+            "Auferstandener Replikator"
           ],
           "level": 58,
           "cost": 750,
@@ -1666,7 +1690,10 @@
           "boss_sprite": "BOSS_CHAMPION_AUFERSTANDENER_KAPITAEN",
           "minions": [
             "Auferstandener Pirat",
-            "Auferstandener Kommandeur"
+            "Auferstandener Kommandeur",
+            "Auferstandene Verteidigerin",
+            "Orrianischer Wachposten",
+            "Auferstandene Grobianin"
           ],
           "level": 59,
           "cost": 800,
@@ -1693,7 +1720,10 @@
           "boss_sprite": "BOSS_AUFERSTANDENER_PRIESTER_DES_BALTHASAR",
           "minions": [
             "Auferstandener Verwüster",
-            "Auferstandener Bewahrer"
+            "Auferstandener Bewahrer",
+            "Orrianischer Spektralscharmützler",
+            "Auferstandener Troll",
+            "Zupackende Hand"
           ],
           "level": 60,
           "cost": 1000,
@@ -1812,7 +1842,10 @@
           "boss_sprite": "BOSS_AUFERSTANDENE_BRUTMUTTER",
           "minions": [
             "Auferstandenes Lindwurm-Junges",
-            "Auferstandener Lindwurm"
+            "Auferstandener Lindwurm",
+            "Grabraupe",
+            "Auferstandener Raptor",
+            "Auferstandene Made"
           ],
           "level": 60,
           "cost": 1200,
@@ -1839,7 +1872,10 @@
           "boss_sprite": "BOSS_INQUESTUR_ORNITHOLOGIN",
           "minions": [
             "Auferstandenes Huhn",
-            "Auferstandener Bauer"
+            "Auferstandener Bauer",
+            "Auferstandener Bulle",
+            "Auferstandener Adler",
+            "Auferstandene Dorfbewohnerin"
           ],
           "level": 60,
           "cost": 1400,
@@ -1866,7 +1902,10 @@
           "boss_sprite": "BOSS_GOLEM_TYP_II_YF_GOLD",
           "minions": [
             "Pyrit-Elementar",
-            "Inquestur-Golem"
+            "Inquestur-Golem",
+            "Inquestur-Agent",
+            "Inquestur-Forscher",
+            "Auferstandener Mensch"
           ],
           "level": 60,
           "cost": 1600,
@@ -1893,7 +1932,10 @@
           "boss_sprite": "BOSS_CHAMPION_AUFERSTANDENER_LEUTNANT",
           "minions": [
             "Auferstandener Edelmann",
-            "Auferstandener Hofnarr"
+            "Auferstandener Hofnarr",
+            "Auferstandene Edelfrau",
+            "Auferstandener Diener",
+            "Auferstandener Ritter"
           ],
           "level": 60,
           "cost": 1800,
@@ -1920,7 +1962,10 @@
           "boss_sprite": "BOSS_VERDORBENE_HOHEPRIESTERIN",
           "minions": [
             "Auferstandenes Gespenst",
-            "Auferstandener Hylek"
+            "Auferstandener Hylek",
+            "Auferstandene Akolythin",
+            "Leichenrufer",
+            "Auferstandene Hand"
           ],
           "level": 60,
           "cost": 2000,
@@ -2012,7 +2057,10 @@
           "boss_sprite": "BOSS_KAPITAEN_GAMMELBART",
           "minions": [
             "Auferstandener Pirat",
-            "Auferstandener Fischer"
+            "Auferstandener Fischer",
+            "Auferstandene Piratin",
+            "Verdorbene Krabbe",
+            "Auferstandener Krebs"
           ],
           "level": 60,
           "cost": 2200,
@@ -2039,7 +2087,10 @@
           "boss_sprite": "BOSS_CHAMPION_AUFERSTANDENER_GLADIATOR",
           "minions": [
             "Auferstandener Gorilla",
-            "Orrianischer Gorilla"
+            "Orrianischer Gorilla",
+            "Auferstandener Troll",
+            "Orrianischer Adler",
+            "Untote Abscheulichkeit"
           ],
           "level": 60,
           "cost": 2400,
@@ -2066,7 +2117,10 @@
           "boss_sprite": "BOSS_CHAMPION_AUFERSTANDENE_ABSCHEULICHKEIT",
           "minions": [
             "Orrianischer Grobian",
-            "Orrianischer Schlurfer"
+            "Orrianischer Schlurfer",
+            "Orrianische Leibeigene",
+            "Orrianische Leiche",
+            "Auferstandener Verseuchter"
           ],
           "level": 60,
           "cost": 2600,
@@ -2093,7 +2147,10 @@
           "boss_sprite": "BOSS_CHAMPION_AUFERSTANDENER_HOFWART",
           "minions": [
             "Auferstandene Spinne",
-            "Auferstandene Spinnenbrut"
+            "Auferstandene Spinnenbrut",
+            "Untote Raupe",
+            "Fäulemaul",
+            "Auferstandene Kreatur"
           ],
           "level": 60,
           "cost": 2800,
@@ -2120,7 +2177,10 @@
           "boss_sprite": "BOSS_AUFERSTANDENER_PRIESTER_DES_GRENTH",
           "minions": [
             "Orrianische Spektralwache",
-            "Auferstandener Verweser"
+            "Auferstandener Verweser",
+            "Orrianischer Spektralscharmützler",
+            "Orrianischer Spektralgötze",
+            "Leichenrufer"
           ],
           "level": 60,
           "cost": 3000,

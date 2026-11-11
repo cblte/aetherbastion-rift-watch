@@ -112,15 +112,15 @@ export const MONSTER_STATS = {
   ],
   7: [ // Löwenstein & Klaueninsel
     // 1 normal · Auferstandene Abscheulichkeit
-    { boss: { hp: 178230, atk: 578, def: 190, spd: 1.5 }, minions: [{ hp: 10380, atk: 146, def: 166, spd: 2.5 }, { hp: 13910, atk: 149, def: 172, spd: 2.5 }] },
+    { boss: { hp: 178230, atk: 578, def: 190, spd: 1.5 }, minions: [{ hp: 10380, atk: 146, def: 166, spd: 2.5 }, { hp: 13910, atk: 149, def: 172, spd: 2.5 }, { hp: 10380, atk: 146, def: 166, spd: 2.5 }, { hp: 13910, atk: 149, def: 172, spd: 2.5 }, { hp: 10380, atk: 146, def: 166, spd: 2.5 }] },
     // 2 normal · Veteran Auferstandener Grobian
-    { boss: { hp: 201560, atk: 587, def: 177.5, spd: 1.5 }, minions: [{ hp: 10380, atk: 146, def: 166, spd: 2.5 }, { hp: 13910, atk: 149, def: 172, spd: 2.5 }] },
+    { boss: { hp: 201560, atk: 587, def: 177.5, spd: 1.5 }, minions: [{ hp: 10380, atk: 146, def: 166, spd: 2.5 }, { hp: 13910, atk: 149, def: 172, spd: 2.5 }, { hp: 10380, atk: 146, def: 166, spd: 2.5 }, { hp: 13910, atk: 149, def: 172, spd: 2.5 }, { hp: 10380, atk: 146, def: 166, spd: 2.5 }] },
     // 3 normal · Admiral Feiste Bakkir
-    { boss: { hp: 223940, atk: 596, def: 180, spd: 1.5 }, minions: [{ hp: 13910, atk: 149, def: 172, spd: 2.5 }, { hp: 14010, atk: 147, def: 175.5, spd: 2.5 }] },
+    { boss: { hp: 223940, atk: 596, def: 180, spd: 1.5 }, minions: [{ hp: 13910, atk: 149, def: 172, spd: 2.5 }, { hp: 14010, atk: 147, def: 175.5, spd: 2.5 }, { hp: 13910, atk: 149, def: 172, spd: 2.5 }, { hp: 14010, atk: 147, def: 175.5, spd: 2.5 }, { hp: 13910, atk: 149, def: 172, spd: 2.5 }] },
     // 4 normal · Morgus Lethe
-    { boss: { hp: 259600, atk: 633, def: 182.5, spd: 1.5 }, minions: [{ hp: 14010, atk: 147, def: 175.5, spd: 2.5 }, { hp: 16630, atk: 158, def: 179, spd: 2.5 }] },
+    { boss: { hp: 259600, atk: 633, def: 182.5, spd: 1.5 }, minions: [{ hp: 14010, atk: 147, def: 175.5, spd: 2.5 }, { hp: 16630, atk: 158, def: 179, spd: 2.5 }, { hp: 14010, atk: 147, def: 175.5, spd: 2.5 }, { hp: 16630, atk: 158, def: 179, spd: 2.5 }, { hp: 14010, atk: 147, def: 175.5, spd: 2.5 }] },
     // 5 normal · Faulschreck der Seuchenbringer
-    { boss: { hp: 259300, atk: 642, def: 185, spd: 1.5 }, minions: [{ hp: 16630, atk: 158, def: 179, spd: 2.5 }, { hp: 18150, atk: 219, def: 182.5, spd: 2.5 }] },
+    { boss: { hp: 259300, atk: 642, def: 185, spd: 1.5 }, minions: [{ hp: 16630, atk: 158, def: 179, spd: 2.5 }, { hp: 18150, atk: 219, def: 182.5, spd: 2.5 }, { hp: 16630, atk: 158, def: 179, spd: 2.5 }, { hp: 18150, atk: 219, def: 182.5, spd: 2.5 }, { hp: 16630, atk: 158, def: 179, spd: 2.5 }] },
     // 6 schwer · Monströse Auferstandene Abscheulichkeit
     { boss: { hp: 8153410, atk: 1170, def: 353, spd: 2.5 }, minions: [{ hp: 415048, atk: 291, def: 308, spd: 2.5 }, { hp: 415048, atk: 291, def: 308, spd: 2.5 }] },
     // 7 schwer · Verderbt: Faulschreck der Seuchenbringer
@@ -128,15 +128,15 @@ export const MONSTER_STATS = {
   ],
   8: [ // Meerenge der Verwüstung
     // 1 normal · Champion Auferstandener Krait-Nimross
-    { boss: { hp: 276260, atk: 736, def: 187.5, spd: 1.5 }, minions: [{ hp: 18150, atk: 219, def: 182.5, spd: 2.5 }, { hp: 18150, atk: 219, def: 182.5, spd: 2.5 }] },
+    { boss: { hp: 276260, atk: 736, def: 187.5, spd: 1.5 }, minions: [{ hp: 18150, atk: 219, def: 182.5, spd: 2.5 }, { hp: 18150, atk: 219, def: 182.5, spd: 2.5 }, { hp: 18150, atk: 219, def: 182.5, spd: 2.5 }, { hp: 18150, atk: 219, def: 182.5, spd: 2.5 }, { hp: 18150, atk: 219, def: 182.5, spd: 2.5 }] },
     // 2 normal · Champion Auferstandener Megalodon
-    { boss: { hp: 310810, atk: 747, def: 190, spd: 1.5 }, minions: [{ hp: 18150, atk: 219, def: 182.5, spd: 2.5 }, { hp: 18150, atk: 219, def: 182.5, spd: 2.5 }] },
+    { boss: { hp: 310810, atk: 747, def: 190, spd: 1.5 }, minions: [{ hp: 18150, atk: 219, def: 182.5, spd: 2.5 }, { hp: 18150, atk: 219, def: 182.5, spd: 2.5 }, { hp: 18150, atk: 219, def: 182.5, spd: 2.5 }, { hp: 18150, atk: 219, def: 182.5, spd: 2.5 }, { hp: 18150, atk: 219, def: 182.5, spd: 2.5 }] },
     // 3 normal · Auferstandener Zauberer
-    { boss: { hp: 316100, atk: 758, def: 192.5, spd: 1.5 }, minions: [{ hp: 18150, atk: 219, def: 182.5, spd: 2.5 }, { hp: 18150, atk: 219, def: 182.5, spd: 2.5 }] },
+    { boss: { hp: 316100, atk: 758, def: 192.5, spd: 1.5 }, minions: [{ hp: 18150, atk: 219, def: 182.5, spd: 2.5 }, { hp: 18150, atk: 219, def: 182.5, spd: 2.5 }, { hp: 18150, atk: 219, def: 182.5, spd: 2.5 }, { hp: 18150, atk: 219, def: 182.5, spd: 2.5 }, { hp: 18150, atk: 219, def: 182.5, spd: 2.5 }] },
     // 4 normal · Champion Auferstandener Kapitän
-    { boss: { hp: 333080, atk: 768, def: 195, spd: 1.5 }, minions: [{ hp: 18150, atk: 219, def: 182.5, spd: 2.5 }, { hp: 18150, atk: 219, def: 182.5, spd: 2.5 }] },
+    { boss: { hp: 333080, atk: 768, def: 195, spd: 1.5 }, minions: [{ hp: 18150, atk: 219, def: 182.5, spd: 2.5 }, { hp: 18150, atk: 219, def: 182.5, spd: 2.5 }, { hp: 18150, atk: 219, def: 182.5, spd: 2.5 }, { hp: 18150, atk: 219, def: 182.5, spd: 2.5 }, { hp: 18150, atk: 219, def: 182.5, spd: 2.5 }] },
     // 5 normal · Auferstandener Priester des Balthasar
-    { boss: { hp: 385120, atk: 996, def: 222.5, spd: 1.5 }, minions: [{ hp: 18150, atk: 219, def: 182.5, spd: 2.5 }, { hp: 18150, atk: 219, def: 182.5, spd: 2.5 }] },
+    { boss: { hp: 385120, atk: 996, def: 222.5, spd: 1.5 }, minions: [{ hp: 18150, atk: 219, def: 182.5, spd: 2.5 }, { hp: 18150, atk: 219, def: 182.5, spd: 2.5 }, { hp: 18150, atk: 219, def: 182.5, spd: 2.5 }, { hp: 18150, atk: 219, def: 182.5, spd: 2.5 }, { hp: 18150, atk: 219, def: 182.5, spd: 2.5 }] },
     // 6 schwer · Champion Auferstandener Riese
     { boss: { hp: 9348532, atk: 1197, def: 373, spd: 2.5 }, minions: [{ hp: 469168, atk: 299, def: 320, spd: 2.5 }, { hp: 469168, atk: 299, def: 320, spd: 2.5 }] },
     // 7 schwer · Verderbt: Auferstandener Priester des Balthasar
@@ -146,15 +146,15 @@ export const MONSTER_STATS = {
   ],
   9: [ // Malchors Sprung
     // 1 normal · Auferstandene Brutmutter
-    { boss: { hp: 543378, atk: 1002, def: 227.5, spd: 2.5 }, minions: [{ hp: 25669, atk: 222, def: 189, spd: 2.5 }, { hp: 33188, atk: 225, def: 196, spd: 2.5 }] },
+    { boss: { hp: 543378, atk: 1002, def: 227.5, spd: 2.5 }, minions: [{ hp: 25669, atk: 222, def: 189, spd: 2.5 }, { hp: 33188, atk: 225, def: 196, spd: 2.5 }, { hp: 25669, atk: 222, def: 189, spd: 2.5 }, { hp: 33188, atk: 225, def: 196, spd: 2.5 }, { hp: 25669, atk: 222, def: 189, spd: 2.5 }] },
     // 2 normal · Inquestur-Ornithologin
-    { boss: { hp: 701637, atk: 1008, def: 232.5, spd: 2.5 }, minions: [{ hp: 25669, atk: 222, def: 189, spd: 2.5 }, { hp: 33188, atk: 225, def: 196, spd: 2.5 }] },
+    { boss: { hp: 701637, atk: 1008, def: 232.5, spd: 2.5 }, minions: [{ hp: 25669, atk: 222, def: 189, spd: 2.5 }, { hp: 33188, atk: 225, def: 196, spd: 2.5 }, { hp: 25669, atk: 222, def: 189, spd: 2.5 }, { hp: 33188, atk: 225, def: 196, spd: 2.5 }, { hp: 25669, atk: 222, def: 189, spd: 2.5 }] },
     // 3 normal · Golem Typ II YF-Gold
-    { boss: { hp: 859895, atk: 1014, def: 237.5, spd: 2.5 }, minions: [{ hp: 25669, atk: 222, def: 189, spd: 2.5 }, { hp: 33188, atk: 225, def: 196, spd: 2.5 }] },
+    { boss: { hp: 859895, atk: 1014, def: 237.5, spd: 2.5 }, minions: [{ hp: 25669, atk: 222, def: 189, spd: 2.5 }, { hp: 33188, atk: 225, def: 196, spd: 2.5 }, { hp: 25669, atk: 222, def: 189, spd: 2.5 }, { hp: 33188, atk: 225, def: 196, spd: 2.5 }, { hp: 25669, atk: 222, def: 189, spd: 2.5 }] },
     // 4 normal · Champion Auferstandener Leutnant
-    { boss: { hp: 1018153, atk: 1020, def: 242.5, spd: 1 }, minions: [{ hp: 25669, atk: 222, def: 189, spd: 2.5 }, { hp: 33188, atk: 225, def: 196, spd: 2.5 }] },
+    { boss: { hp: 1018153, atk: 1020, def: 242.5, spd: 1 }, minions: [{ hp: 25669, atk: 222, def: 189, spd: 2.5 }, { hp: 33188, atk: 225, def: 196, spd: 2.5 }, { hp: 25669, atk: 222, def: 189, spd: 2.5 }, { hp: 33188, atk: 225, def: 196, spd: 2.5 }, { hp: 25669, atk: 222, def: 189, spd: 2.5 }] },
     // 5 normal · Verdorbene Hohepriesterin
-    { boss: { hp: 1176411, atk: 1026, def: 247.5, spd: 2.5 }, minions: [{ hp: 25669, atk: 222, def: 189, spd: 2.5 }, { hp: 33188, atk: 225, def: 196, spd: 2.5 }] },
+    { boss: { hp: 1176411, atk: 1026, def: 247.5, spd: 2.5 }, minions: [{ hp: 25669, atk: 222, def: 189, spd: 2.5 }, { hp: 33188, atk: 225, def: 196, spd: 2.5 }, { hp: 25669, atk: 222, def: 189, spd: 2.5 }, { hp: 33188, atk: 225, def: 196, spd: 2.5 }, { hp: 25669, atk: 222, def: 189, spd: 2.5 }] },
     // 6 schwer · Auferstandene Priesterin der Dwayna
     { boss: { hp: 10543654, atk: 1224, def: 393, spd: 2.5 }, minions: [{ hp: 523289, atk: 307, def: 333, spd: 2.5 }, { hp: 523289, atk: 307, def: 333, spd: 2.5 }] },
     // 7 schwer · Auge des Zhaitan
@@ -162,15 +162,15 @@ export const MONSTER_STATS = {
   ],
   10: [ // Fluchküste
     // 1 normal · Kapitän Gammelbart
-    { boss: { hp: 1334670, atk: 1032, def: 252.5, spd: 2.5 }, minions: [{ hp: 25669, atk: 222, def: 189, spd: 2.5 }, { hp: 33188, atk: 225, def: 196, spd: 2.5 }] },
+    { boss: { hp: 1334670, atk: 1032, def: 252.5, spd: 2.5 }, minions: [{ hp: 25669, atk: 222, def: 189, spd: 2.5 }, { hp: 33188, atk: 225, def: 196, spd: 2.5 }, { hp: 25669, atk: 222, def: 189, spd: 2.5 }, { hp: 33188, atk: 225, def: 196, spd: 2.5 }, { hp: 25669, atk: 222, def: 189, spd: 2.5 }] },
     // 2 normal · Champion Auferstandener Gladiator
-    { boss: { hp: 1492928, atk: 1038, def: 257.5, spd: 2.5 }, minions: [{ hp: 25669, atk: 222, def: 189, spd: 2.5 }, { hp: 33188, atk: 225, def: 196, spd: 2.5 }] },
+    { boss: { hp: 1492928, atk: 1038, def: 257.5, spd: 2.5 }, minions: [{ hp: 25669, atk: 222, def: 189, spd: 2.5 }, { hp: 33188, atk: 225, def: 196, spd: 2.5 }, { hp: 25669, atk: 222, def: 189, spd: 2.5 }, { hp: 33188, atk: 225, def: 196, spd: 2.5 }, { hp: 25669, atk: 222, def: 189, spd: 2.5 }] },
     // 3 normal · Champion Auferstandene Abscheulichkeit
-    { boss: { hp: 1651186, atk: 1044, def: 262.5, spd: 1 }, minions: [{ hp: 25669, atk: 222, def: 189, spd: 2.5 }, { hp: 33188, atk: 225, def: 196, spd: 2.5 }] },
+    { boss: { hp: 1651186, atk: 1044, def: 262.5, spd: 1 }, minions: [{ hp: 25669, atk: 222, def: 189, spd: 2.5 }, { hp: 33188, atk: 225, def: 196, spd: 2.5 }, { hp: 25669, atk: 222, def: 189, spd: 2.5 }, { hp: 33188, atk: 225, def: 196, spd: 2.5 }, { hp: 25669, atk: 222, def: 189, spd: 2.5 }] },
     // 4 normal · Champion Auferstandener Hofwart
-    { boss: { hp: 1809445, atk: 1050, def: 267.5, spd: 2.5 }, minions: [{ hp: 25669, atk: 222, def: 189, spd: 2.5 }, { hp: 33188, atk: 225, def: 196, spd: 2.5 }] },
+    { boss: { hp: 1809445, atk: 1050, def: 267.5, spd: 2.5 }, minions: [{ hp: 25669, atk: 222, def: 189, spd: 2.5 }, { hp: 33188, atk: 225, def: 196, spd: 2.5 }, { hp: 25669, atk: 222, def: 189, spd: 2.5 }, { hp: 33188, atk: 225, def: 196, spd: 2.5 }, { hp: 25669, atk: 222, def: 189, spd: 2.5 }] },
     // 5 normal · Auferstandener Priester des Grenth
-    { boss: { hp: 1967703, atk: 1055, def: 272.5, spd: 2.5 }, minions: [{ hp: 25669, atk: 222, def: 189, spd: 2.5 }, { hp: 33188, atk: 225, def: 196, spd: 2.5 }] },
+    { boss: { hp: 1967703, atk: 1055, def: 272.5, spd: 2.5 }, minions: [{ hp: 25669, atk: 222, def: 189, spd: 2.5 }, { hp: 33188, atk: 225, def: 196, spd: 2.5 }, { hp: 25669, atk: 222, def: 189, spd: 2.5 }, { hp: 33188, atk: 225, def: 196, spd: 2.5 }, { hp: 25669, atk: 222, def: 189, spd: 2.5 }] },
     // 6 schwer · Auferstandener Priester der Melandru
     { boss: { hp: 11738775, atk: 1251, def: 413, spd: 2.5 }, minions: [{ hp: 577410, atk: 316, def: 346, spd: 2.5 }, { hp: 577410, atk: 316, def: 346, spd: 2.5 }] },
     // 7 schwer · Verderbt: Auferstandener Priester des Grenth

@@ -169,7 +169,7 @@ const mob = (name, extra = {}) => {
 };
 
 // Mehr Schergen je Stufe (#026): dev-data/gegner-pro-zone.jsonl (zone, name, stages 1–5, attack, flavor, rift).
-// Normale Stufen: die festen Schergen aus ZONES vorn, dazu JSONL-Gegner der Stufe, bis MAX_MINIONS erreicht sind.
+// Normale Stufen aller Zonen (1–6 aus Gemini, bereinigt; 7–10 aus der DE-Wiki, v0.43.0): die festen Schergen aus ZONES vorn, dazu JSONL-Gegner der Stufe, bis MAX_MINIONS erreicht sind.
 const MAX_MINIONS = 5;
 const EXTRA = readFileSync(`${root}/dev-data/gegner-pro-zone.jsonl`, 'utf8').trim().split(/\r?\n/).map(l => JSON.parse(l));
 const extraFor = (zoneName, stageNr) => EXTRA.filter(r => r.zone === zoneName && r.stages.includes(stageNr));

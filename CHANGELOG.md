@@ -3,6 +3,9 @@
 Was sich im Spiel geändert hat, neueste Version oben. Die Nummern (#…) verweisen auf die Feedback-Liste.
 Die Version steht im Spiel unten unter der Navigation.
 
+## v0.43.0 – 11.11.2026
+- **Mehr Gegner in Orr (#026):** Auch die Zonen 7–10 haben jetzt bis zu fünf Schergen je Stufe, alle echte Gegner aus Orr und von der Klaueninsel: untote Haie und Krebse in der Meerenge, Raupen und Raptoren in Malchors Sprung, Spektralgötzen und Leichenrufer vor Arah. Jeder bringt eigene Sprüche und eine Riss-Fähigkeit für seine Elite-Form mit.
+
 ## v0.42.0 – 11.11.2026
 - **Mehr Gegner je Stufe (#026):** In den Zonen 1–6 hat jede normale Stufe jetzt bis zu fünf verschiedene Schergen statt zwei, zum Beispiel Tamini, Skritt, Ettins und Flachlandwürmer im Königintal. Viele bringen eigene Sprüche mit, Elite-Gegner verraten ihre Riss-Fähigkeit.
 - **Gegner-Profile (#062):** Jeder Scherge ist ein Rohling (zäh, langsam), Flink (schnell, wenig LP), Schütze (hoher Schaden, wenig DEF) oder Standard. Das Profil steht in der Arena unter seinem Namen. Insgesamt sind die Stufen etwa gleich schwer wie vorher, die Kämpfe fühlen sich nur unterschiedlicher an.

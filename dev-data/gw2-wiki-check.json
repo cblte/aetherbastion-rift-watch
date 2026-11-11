@@ -129,11 +129,74 @@
     "via": "Auferstandene Brutmutter",
     "url": "https://wiki-de.guildwars2.com/wiki/T%C3%B6tet_die_auferstandene_Brutmutter_(Malchors_Sprung)"
   },
+  "Auferstandene Dienerin": {
+    "status": "ok",
+    "title": "Auferstandene Dienerin",
+    "en": "Risen Servant",
+    "via": "Auferstandene Dienerin",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandene_Dienerin"
+  },
+  "Auferstandene Dorfbewohnerin": {
+    "status": "ok",
+    "title": "Auferstandene Dorfbewohnerin",
+    "en": "Risen Villager",
+    "via": "Auferstandene Dorfbewohnerin",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandene_Dorfbewohnerin"
+  },
+  "Auferstandene Edelfrau": {
+    "status": "ok",
+    "title": "Auferstandene Edelfrau",
+    "en": "Risen Noble",
+    "via": "Auferstandene Edelfrau",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandene_Edelfrau"
+  },
+  "Auferstandene Grobianin": {
+    "status": "ok",
+    "title": "Auferstandene Grobianin",
+    "en": "Risen Brute",
+    "via": "Auferstandene Grobianin",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandene_Grobianin"
+  },
+  "Auferstandene Hand": {
+    "status": "ok",
+    "title": "Auferstandene Hand",
+    "en": "Risen Hand",
+    "via": "Auferstandene Hand",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandene_Hand"
+  },
+  "Auferstandene Kreatur": {
+    "status": "ok",
+    "title": "Auferstandene Kreatur",
+    "en": "Risen Creature",
+    "via": "Auferstandene Kreatur",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandene_Kreatur"
+  },
+  "Auferstandene Made": {
+    "status": "ok",
+    "title": "Auferstandene Made",
+    "en": "Risen Maggot",
+    "via": "Auferstandene Made",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandene_Made"
+  },
+  "Auferstandene Piratin": {
+    "status": "ok",
+    "title": "Auferstandene Piratin",
+    "en": "Risen Pirate",
+    "via": "Auferstandene Piratin",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandene_Piratin"
+  },
   "Auferstandene Priesterin der Dwayna": {
     "status": "erwähnt",
     "title": "Besiegt die auferstandene Priesterin der Dwayna",
     "via": "Auferstandene Priesterin der Dwayna",
     "url": "https://wiki-de.guildwars2.com/wiki/Besiegt_die_auferstandene_Priesterin_der_Dwayna"
+  },
+  "Auferstandene Seeschildkröte": {
+    "status": "ok",
+    "title": "Auferstandene Seeschildkröte",
+    "en": "Risen Sea Turtle",
+    "via": "Auferstandene Seeschildkröte",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandene_Seeschildkr%C3%B6te"
   },
   "Auferstandene Seuchenträgerin": {
     "status": "ok",
@@ -156,6 +219,13 @@
     "via": "Auferstandene Spinnenbrut",
     "url": "https://wiki-de.guildwars2.com/wiki/Auferstandene_Spinnenbrut"
   },
+  "Auferstandene Verteidigerin": {
+    "status": "ok",
+    "title": "Auferstandene Verteidigerin",
+    "en": "Risen Defender",
+    "via": "Auferstandene Verteidigerin",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandene_Verteidigerin"
+  },
   "Auferstandene Zauberin": {
     "status": "ok",
     "title": "Auferstandene Zauberin",
@@ -177,6 +247,13 @@
     "via": "Auferstandenen-Luftabwehrgeschütz",
     "url": "https://wiki-de.guildwars2.com/wiki/Auferstandenen-Luftabwehrgesch%C3%BCtz"
   },
+  "Auferstandener Adler": {
+    "status": "ok",
+    "title": "Auferstandener Adler",
+    "en": "Risen Eagle",
+    "via": "Auferstandener Adler",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Adler"
+  },
   "Auferstandener Akolyth": {
     "status": "ok",
     "title": "Auferstandener Akolyth",
@@ -197,12 +274,25 @@
     "via": "Auferstandener Bewahrer",
     "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Bewahrer"
   },
+  "Auferstandener Bulle": {
+    "status": "ok",
+    "title": "Auferstandener Bulle",
+    "via": "Auferstandener Bulle",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Bulle"
+  },
   "Auferstandener Bullenhai": {
     "status": "ok",
     "title": "Auferstandener Bullenhai",
     "en": "Risen Bull Shark",
     "via": "Auferstandener Bullenhai",
     "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Bullenhai"
+  },
+  "Auferstandener Diener": {
+    "status": "ok",
+    "title": "Auferstandener Diener",
+    "en": "Risen Servant",
+    "via": "Auferstandener Diener",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Diener"
   },
   "Auferstandener Edelmann": {
     "status": "ok",
@@ -211,12 +301,25 @@
     "via": "Auferstandener Edelmann",
     "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Edelmann"
   },
+  "Auferstandener Fisch": {
+    "status": "ok",
+    "title": "Auferstandener Fisch",
+    "en": "Risen Fish",
+    "via": "Auferstandener Fisch",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Fisch"
+  },
   "Auferstandener Fischer": {
     "status": "ok",
     "title": "Auferstandener Fischer",
     "en": "Risen Fisher",
     "via": "Auferstandener Fischer",
     "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Fischer"
+  },
+  "Auferstandener Flüchtling": {
+    "status": "ok",
+    "title": "Auferstandener Flüchtling",
+    "via": "Auferstandener Flüchtling",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Fl%C3%BCchtling"
   },
   "Auferstandener Gorilla": {
     "status": "ok",
@@ -287,6 +390,20 @@
     "via": "Auferstandener Krebs",
     "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Krebs"
   },
+  "Auferstandener Krill": {
+    "status": "ok",
+    "title": "Auferstandener Krill",
+    "en": "Risen Krill",
+    "via": "Auferstandener Krill",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Krill"
+  },
+  "Auferstandener Kurier": {
+    "status": "ok",
+    "title": "Auferstandener Kurier",
+    "en": "Risen Courier",
+    "via": "Auferstandener Kurier",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Kurier"
+  },
   "Auferstandener Leibeigener": {
     "status": "ok",
     "title": "Auferstandener Leibeigener",
@@ -301,6 +418,13 @@
     "via": "Auferstandener Lindwurm",
     "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Lindwurm"
   },
+  "Auferstandener Mensch": {
+    "status": "ok",
+    "title": "Auferstandener Mensch",
+    "en": "Risen Human",
+    "via": "Auferstandener Mensch",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Mensch"
+  },
   "Auferstandener Oberster Zauberer": {
     "status": "ok",
     "title": "Auferstandener Oberster Zauberer",
@@ -314,6 +438,13 @@
     "en": "Risen Pirate",
     "via": "Auferstandener Pirat",
     "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Pirat"
+  },
+  "Auferstandener Plünderer": {
+    "status": "ok",
+    "title": "Auferstandener Plünderer",
+    "en": "Risen Despoiler",
+    "via": "Auferstandener Plünderer",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Pl%C3%BCnderer"
   },
   "Auferstandener Priester der Melandru": {
     "status": "teilweise",
@@ -336,6 +467,25 @@
     "via": "Hindert den Auferstandenen Priester des Grenth daran, die Kathedrale der Stille wieder einzunehmen",
     "url": "https://wiki-de.guildwars2.com/wiki/Hindert_den_Auferstandenen_Priester_des_Grenth_daran%2C_die_Kathedrale_der_Stille_wieder_einzunehmen"
   },
+  "Auferstandener Quaggan": {
+    "status": "ok",
+    "title": "Auferstandener Quaggan",
+    "en": "Risen Quaggan",
+    "via": "Auferstandener Quaggan",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Quaggan"
+  },
+  "Auferstandener Raptor": {
+    "status": "ok",
+    "title": "Auferstandener Raptor",
+    "via": "Auferstandener Raptor",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Raptor"
+  },
+  "Auferstandener Replikator": {
+    "status": "ok",
+    "title": "Auferstandener Replikator",
+    "via": "Auferstandener Replikator",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Replikator"
+  },
   "Auferstandener Ritter": {
     "status": "ok",
     "title": "Auferstandener Ritter",
@@ -349,6 +499,19 @@
     "en": "Risen Plague Carrier",
     "via": "Auferstandener Seuchenträger",
     "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Seuchentr%C3%A4ger"
+  },
+  "Auferstandener Tiefseeskorpion": {
+    "status": "ok",
+    "title": "Auferstandener Tiefseeskorpion",
+    "via": "Auferstandener Tiefseeskorpion",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Tiefseeskorpion"
+  },
+  "Auferstandener Troll": {
+    "status": "ok",
+    "title": "Auferstandener Troll",
+    "en": "Risen Troll",
+    "via": "Auferstandener Troll",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Troll"
   },
   "Auferstandener Unterwerfer": {
     "status": "ok",
@@ -370,6 +533,13 @@
     "via": "Auferstandener Verseuchter",
     "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Verseuchter"
   },
+  "Auferstandener Verteidiger": {
+    "status": "ok",
+    "title": "Auferstandener Verteidiger",
+    "en": "Risen Defender",
+    "via": "Auferstandener Verteidiger",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Verteidiger"
+  },
   "Auferstandener Verweser": {
     "status": "ok",
     "title": "Auferstandener Verweser",
@@ -389,6 +559,13 @@
     "en": "Risen Wizard",
     "via": "Auferstandener Zauberer",
     "url": "https://wiki-de.guildwars2.com/wiki/Auferstandener_Zauberer"
+  },
+  "Auferstandenes Fäulemaul": {
+    "status": "ok",
+    "title": "Auferstandenes Fäulemaul",
+    "en": "Risen Rotmouth",
+    "via": "Auferstandenes Fäulemaul",
+    "url": "https://wiki-de.guildwars2.com/wiki/Auferstandenes_F%C3%A4ulemaul"
   },
   "Auferstandenes Gespenst": {
     "status": "ok",
@@ -1042,6 +1219,27 @@
     "via": "Frost",
     "url": "https://wiki.guildwars2.com/wiki/Frost"
   },
+  "Fäulemaul": {
+    "status": "ok",
+    "title": "Fäulemaul",
+    "en": "Rotmouth",
+    "via": "Fäulemaul",
+    "url": "https://wiki-de.guildwars2.com/wiki/F%C3%A4ulemaul"
+  },
+  "Fäulemaul-Sauger": {
+    "status": "ok",
+    "title": "Fäulemaul-Sauger",
+    "en": "Rotmouth Sucker",
+    "via": "Fäulemaul-Sauger",
+    "url": "https://wiki-de.guildwars2.com/wiki/F%C3%A4ulemaul-Sauger"
+  },
+  "Fäulemaul-Spucker": {
+    "status": "ok",
+    "title": "Fäulemaul-Spucker",
+    "en": "Rotmouth Spitter",
+    "via": "Fäulemaul-Spucker",
+    "url": "https://wiki-de.guildwars2.com/wiki/F%C3%A4ulemaul-Spucker"
+  },
   "Gaheron Baelfire": {
     "status": "teilweise",
     "title": "Gaheron Baelfeuer",
@@ -1171,6 +1369,13 @@
     "en": "Gorseval the Multifarious",
     "via": "Gorseval der Facettenreiche",
     "url": "https://wiki-de.guildwars2.com/wiki/Gorseval_der_Facettenreiche"
+  },
+  "Grabraupe": {
+    "status": "ok",
+    "title": "Grabraupe",
+    "en": "Gravespawn Grub",
+    "via": "Grabraupe",
+    "url": "https://wiki-de.guildwars2.com/wiki/Grabraupe"
   },
   "Grasgrüne Schwelle": {
     "status": "ok",
@@ -1502,6 +1707,13 @@
       "Lorbeer-Kaufmann"
     ]
   },
+  "Leichenrufer": {
+    "status": "ok",
+    "title": "Leichenrufer",
+    "en": "Corpse Caller",
+    "via": "Leichenrufer",
+    "url": "https://wiki-de.guildwars2.com/wiki/Leichenrufer"
+  },
   "Ley-infundierter Zorn": {
     "status": "fehlt",
     "suggestions": [
@@ -1683,12 +1895,33 @@
     "via": "Oger-Späher",
     "url": "https://wiki-de.guildwars2.com/wiki/Oger-Sp%C3%A4her"
   },
+  "Orrianische Leibeigene": {
+    "status": "ok",
+    "title": "Orrianische Leibeigene",
+    "en": "Orrian Thrall (Fighting the Nightmare)",
+    "via": "Orrianische Leibeigene",
+    "url": "https://wiki-de.guildwars2.com/wiki/Orrianische_Leibeigene"
+  },
+  "Orrianische Leiche": {
+    "status": "ok",
+    "title": "Orrianische Leiche",
+    "en": "Orrian Corpse",
+    "via": "Orrianische Leiche",
+    "url": "https://wiki-de.guildwars2.com/wiki/Orrianische_Leiche"
+  },
   "Orrianische Spektralwache": {
     "status": "ok",
     "title": "Orrianische Spektralwache",
     "en": "Orrian Spectral Guard",
     "via": "Orrianische Spektralwache",
     "url": "https://wiki-de.guildwars2.com/wiki/Orrianische_Spektralwache"
+  },
+  "Orrianischer Adler": {
+    "status": "ok",
+    "title": "Orrianischer Adler",
+    "en": "Orrian Eagle",
+    "via": "Orrianischer Adler",
+    "url": "https://wiki-de.guildwars2.com/wiki/Orrianischer_Adler"
   },
   "Orrianischer Gorilla": {
     "status": "ok",
@@ -1704,6 +1937,13 @@
     "via": "Orrianischer Grobian",
     "url": "https://wiki-de.guildwars2.com/wiki/Orrianischer_Grobian"
   },
+  "Orrianischer Krebs": {
+    "status": "ok",
+    "title": "Orrianischer Krebs",
+    "en": "Orrian Crab",
+    "via": "Orrianischer Krebs",
+    "url": "https://wiki-de.guildwars2.com/wiki/Orrianischer_Krebs"
+  },
   "Orrianischer Schlurfer": {
     "status": "ok",
     "title": "Orrianischer Schlurfer",
@@ -1711,12 +1951,32 @@
     "via": "Orrianischer Schlurfer",
     "url": "https://wiki-de.guildwars2.com/wiki/Orrianischer_Schlurfer"
   },
+  "Orrianischer Spektralgötze": {
+    "status": "ok",
+    "title": "Orrianischer Spektralgötze",
+    "en": "Orrian Spectral Juggernaut",
+    "via": "Orrianischer Spektralgötze",
+    "url": "https://wiki-de.guildwars2.com/wiki/Orrianischer_Spektralg%C3%B6tze"
+  },
   "Orrianischer Spektralhammer": {
     "status": "ok",
     "title": "Orrianischer Spektralhammer",
     "en": "Orrian Spectral Hammer",
     "via": "Orrianischer Spektralhammer",
     "url": "https://wiki-de.guildwars2.com/wiki/Orrianischer_Spektralhammer"
+  },
+  "Orrianischer Spektralscharmützler": {
+    "status": "ok",
+    "title": "Orrianischer Spektralscharmützler",
+    "via": "Orrianischer Spektralscharmützler",
+    "url": "https://wiki-de.guildwars2.com/wiki/Orrianischer_Spektralscharm%C3%BCtzler"
+  },
+  "Orrianischer Wachposten": {
+    "status": "ok",
+    "title": "Orrianischer Wachposten",
+    "en": "Orrian Sentry",
+    "via": "Orrianischer Wachposten",
+    "url": "https://wiki-de.guildwars2.com/wiki/Orrianischer_Wachposten"
   },
   "Patriarch der Wyvern": {
     "status": "fehlt",
@@ -2131,6 +2391,20 @@
     "status": "fehlt",
     "suggestions": []
   },
+  "Untote Abscheulichkeit": {
+    "status": "ok",
+    "title": "Untote Abscheulichkeit",
+    "en": "Undead Abomination",
+    "via": "Untote Abscheulichkeit",
+    "url": "https://wiki-de.guildwars2.com/wiki/Untote_Abscheulichkeit"
+  },
+  "Untote Raupe": {
+    "status": "ok",
+    "title": "Untote Raupe",
+    "en": "Undead Grub",
+    "via": "Untote Raupe",
+    "url": "https://wiki-de.guildwars2.com/wiki/Untote_Raupe"
+  },
   "Untote": {
     "status": "ok",
     "title": "Untoter",
@@ -2138,12 +2412,33 @@
     "via": "Untote",
     "url": "https://wiki-de.guildwars2.com/wiki/Untoter"
   },
+  "Untoter Hai": {
+    "status": "ok",
+    "title": "Untoter Hai",
+    "en": "Undead Shark",
+    "via": "Untoter Hai",
+    "url": "https://wiki-de.guildwars2.com/wiki/Untoter_Hai"
+  },
+  "Untoter Prügler": {
+    "status": "ok",
+    "title": "Untoter Prügler",
+    "en": "Undead Bruiser",
+    "via": "Untoter Prügler",
+    "url": "https://wiki-de.guildwars2.com/wiki/Untoter_Pr%C3%BCgler"
+  },
   "Untoter Riesenhai": {
     "status": "ok",
     "title": "Untoter Riesenhai",
     "en": "Giant Undead Shark",
     "via": "Untoter Riesenhai",
     "url": "https://wiki-de.guildwars2.com/wiki/Untoter_Riesenhai"
+  },
+  "Untoter Späher": {
+    "status": "ok",
+    "title": "Untoter Späher",
+    "en": "Undead Scout",
+    "via": "Untoter Späher",
+    "url": "https://wiki-de.guildwars2.com/wiki/Untoter_Sp%C3%A4her"
   },
   "Verderbt: Albtraumhof-Gräfin": {
     "status": "fehlt",
@@ -2215,6 +2510,13 @@
     "title": "Tötet die Verdorbene Hohepriesterin",
     "via": "Verdorbene Hohepriesterin",
     "url": "https://wiki-de.guildwars2.com/wiki/T%C3%B6tet_die_Verdorbene_Hohepriesterin"
+  },
+  "Verdorbene Krabbe": {
+    "status": "ok",
+    "title": "Verdorbene Krabbe",
+    "en": "Corrupted Crab",
+    "via": "Verdorbene Krabbe",
+    "url": "https://wiki-de.guildwars2.com/wiki/Verdorbene_Krabbe"
   },
   "Verschlinger": {
     "status": "ok",
@@ -2328,6 +2630,13 @@
     "via": "Zhaitan",
     "url": "https://wiki-de.guildwars2.com/wiki/Zhaitan"
   },
+  "Zhaitan-Experiment": {
+    "status": "ok",
+    "title": "Zhaitan-Experiment",
+    "en": "Zhaitan Experiment",
+    "via": "Zhaitan-Experiment",
+    "url": "https://wiki-de.guildwars2.com/wiki/Zhaitan-Experiment"
+  },
   "Zitadelle der Flamme": {
     "status": "fehlt",
     "suggestions": [
@@ -2343,5 +2652,12 @@
       "Seraphen-Soldatin Dianna",
       "Spielupdate/20121215"
     ]
+  },
+  "Zupackende Hand": {
+    "status": "ok",
+    "title": "Zupackende Hand",
+    "en": "Grasping Hand",
+    "via": "Zupackende Hand",
+    "url": "https://wiki-de.guildwars2.com/wiki/Zupackende_Hand"
   }
 }

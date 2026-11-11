@@ -110,11 +110,11 @@
 
 | Stufe | Boss | Schergen | Lv. | Kosten | 📜 | ⚒️ | 🍞 | 🎟️ | CQHT |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | Auferstandene Abscheulichkeit | Auferstandener Leibeigener, Auferstandener Pirat | 51 | 400 | 2–4 | 1 | 1 | 1 | 4-1 · Hell Squishy |
-| 2 | Veteran Auferstandener Grobian | Auferstandener Grobian, Auferstandener Seuchenträger | 52 | 450 | 2–4 | 1 | 1 | 1 | 4-2 · Hell Squishy |
-| 3 | Admiral Feiste Bakkir | Auferstandener Knappe, Auferstandener Ritter | 53 | 500 | 2–4 | 1 | 1 | 1 | 4-3 · Hell Squishy |
-| 4 | Morgus Lethe | Auferstandener Hai, Untoter Riesenhai | 54 | 550 | 2–4 | 1 | 2 | 1 | 4-4 · Hellfire Spirit |
-| 5 | Faulschreck der Seuchenbringer | Auferstandener Verderber, Auferstandene Seuchenträgerin | 55 | 600 | 2–4 | 1 | 2 | 1 | 4-5 · Hellfire Spirit |
+| 1 | Auferstandene Abscheulichkeit | Auferstandener Leibeigener, Auferstandener Pirat, Untoter Prügler, Auferstandener Flüchtling, Untoter Späher | 51 | 400 | 2–4 | 1 | 1 | 1 | 4-1 · Hell Squishy |
+| 2 | Veteran Auferstandener Grobian | Auferstandener Grobian, Auferstandener Seuchenträger, Auferstandener Plünderer, Verdorbene Krabbe, Fäulemaul-Spucker | 52 | 450 | 2–4 | 1 | 1 | 1 | 4-2 · Hell Squishy |
+| 3 | Admiral Feiste Bakkir | Auferstandener Knappe, Auferstandener Ritter, Auferstandener Verteidiger, Auferstandener Kurier, Leichenrufer | 53 | 500 | 2–4 | 1 | 1 | 1 | 4-3 · Hell Squishy |
+| 4 | Morgus Lethe | Auferstandener Hai, Untoter Riesenhai, Untoter Hai, Auferstandene Seeschildkröte, Auferstandener Tiefseeskorpion | 54 | 550 | 2–4 | 1 | 2 | 1 | 4-4 · Hellfire Spirit |
+| 5 | Faulschreck der Seuchenbringer | Auferstandener Verderber, Auferstandene Seuchenträgerin, Fäulemaul-Sauger, Auferstandenes Fäulemaul, Zhaitan-Experiment | 55 | 600 | 2–4 | 1 | 2 | 1 | 4-5 · Hellfire Spirit |
 | ☠️ 6 | Monströse Auferstandene Abscheulichkeit | Auferstandene Abscheulichkeit, Auferstandener Verseuchter | 60 | 3.600 | 22–33 | 2 | 8 | 1–3 | Hard 4-1 · Volcano Sludge |
 | ☠️ 7 | Verderbt: Faulschreck der Seuchenbringer | Auferstandener Verderber, Kryptis-Splitter | 60 | 3.800 | 23–35 | 2 | 8 | 1–3 | Hard 4-2 · Cursed Hellfire Spirit |
 
@@ -124,11 +124,11 @@
 
 | Stufe | Boss | Schergen | Lv. | Kosten | 📜 | ⚒️ | 🍞 | 🎟️ | CQHT |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | Champion Auferstandener Krait-Nimross | Auferstandener Krait-Damoss, Auferstandener Krait-Hypnoss | 56 | 650 | 2–4 | 1 | 2 | 1 | 4-6 · Stone Giant |
-| 2 | Champion Auferstandener Megalodon | Auferstandener Bullenhai, Auferstandener Krebs | 57 | 700 | 2–4 | 1 | 2 | 1 | 4-7 · Stone Giant |
-| 3 | Auferstandener Zauberer | Auferstandener Akolyth, Auferstandene Zauberin | 58 | 750 | 3–4 | 1 | 3 | 1 | 4-8 · Darkfire Giant |
-| 4 | Champion Auferstandener Kapitän | Auferstandener Pirat, Auferstandener Kommandeur | 59 | 800 | 3–4 | 1 | 3 | 1 | 4-9 · Darkfire Giant |
-| 5 | Auferstandener Priester des Balthasar | Auferstandener Verwüster, Auferstandener Bewahrer | 60 | 1.000 | 3–4 | 1 | 3 | 1 | 4-10 · Dragon |
+| 1 | Champion Auferstandener Krait-Nimross | Auferstandener Krait-Damoss, Auferstandener Krait-Hypnoss, Auferstandener Krill, Auferstandener Quaggan, Auferstandener Fisch | 56 | 650 | 2–4 | 1 | 2 | 1 | 4-6 · Stone Giant |
+| 2 | Champion Auferstandener Megalodon | Auferstandener Bullenhai, Auferstandener Krebs, Auferstandener Hai, Orrianischer Krebs, Auferstandener Fischer | 57 | 700 | 2–4 | 1 | 2 | 1 | 4-7 · Stone Giant |
+| 3 | Auferstandener Zauberer | Auferstandener Akolyth, Auferstandene Zauberin, Orrianischer Spektralgötze, Auferstandene Dienerin, Auferstandener Replikator | 58 | 750 | 3–4 | 1 | 3 | 1 | 4-8 · Darkfire Giant |
+| 4 | Champion Auferstandener Kapitän | Auferstandener Pirat, Auferstandener Kommandeur, Auferstandene Verteidigerin, Orrianischer Wachposten, Auferstandene Grobianin | 59 | 800 | 3–4 | 1 | 3 | 1 | 4-9 · Darkfire Giant |
+| 5 | Auferstandener Priester des Balthasar | Auferstandener Verwüster, Auferstandener Bewahrer, Orrianischer Spektralscharmützler, Auferstandener Troll, Zupackende Hand | 60 | 1.000 | 3–4 | 1 | 3 | 1 | 4-10 · Dragon |
 | ☠️ 6 | Champion Auferstandener Riese | Auferstandener Unterwerfer, Auferstandenen-Luftabwehrgeschütz | 60 | 4.000 | 25–38 | 3 | 9 | 1–3 | Hard 4-3 · Corrupted Rock Giant |
 | ☠️ 7 | Verderbt: Auferstandener Priester des Balthasar | Auferstandener Verwüster, Kryptis-Splitter | 60 | 4.200 | 26–40 | 3 | 9 | 1–3 | Hard 4-4 · Cursed Darkflame Giant |
 | ⭐ 8 | Schatten: Auferstandener Priester des Balthasar | Kryptis-Plünderer, Kryptis-Peiniger | 60 | 5.000 | 65–76 | 5 | 12 | 1–5 | L-4 · Dark Dragon |
@@ -139,11 +139,11 @@
 
 | Stufe | Boss | Schergen | Lv. | Kosten | 📜 | ⚒️ | 🍞 | 🎟️ | CQHT |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | Auferstandene Brutmutter | Auferstandenes Lindwurm-Junges, Auferstandener Lindwurm | 60 | 1.200 | 4–5 | 1 | 4 | 1 | 5-1 · Pyro Droid DX |
-| 2 | Inquestur-Ornithologin | Auferstandenes Huhn, Auferstandener Bauer | 60 | 1.400 | 4–5 | 1 | 4 | 1 | 5-2 · Pyro Droid DX |
-| 3 | Golem Typ II YF-Gold | Pyrit-Elementar, Inquestur-Golem | 60 | 1.600 | 5–6 | 1 | 4 | 1 | 5-3 · Pyro Droid DX |
-| 4 | Champion Auferstandener Leutnant | Auferstandener Edelmann, Auferstandener Hofnarr | 60 | 1.800 | 5–6 | 1 | 4 | 1 | 5-4 · Gatling Droid DX |
-| 5 | Verdorbene Hohepriesterin | Auferstandenes Gespenst, Auferstandener Hylek | 60 | 2.000 | 5–7 | 1 | 4 | 1 | 5-5 · Gatling Droid DX |
+| 1 | Auferstandene Brutmutter | Auferstandenes Lindwurm-Junges, Auferstandener Lindwurm, Grabraupe, Auferstandener Raptor, Auferstandene Made | 60 | 1.200 | 4–5 | 1 | 4 | 1 | 5-1 · Pyro Droid DX |
+| 2 | Inquestur-Ornithologin | Auferstandenes Huhn, Auferstandener Bauer, Auferstandener Bulle, Auferstandener Adler, Auferstandene Dorfbewohnerin | 60 | 1.400 | 4–5 | 1 | 4 | 1 | 5-2 · Pyro Droid DX |
+| 3 | Golem Typ II YF-Gold | Pyrit-Elementar, Inquestur-Golem, Inquestur-Agent, Inquestur-Forscher, Auferstandener Mensch | 60 | 1.600 | 5–6 | 1 | 4 | 1 | 5-3 · Pyro Droid DX |
+| 4 | Champion Auferstandener Leutnant | Auferstandener Edelmann, Auferstandener Hofnarr, Auferstandene Edelfrau, Auferstandener Diener, Auferstandener Ritter | 60 | 1.800 | 5–6 | 1 | 4 | 1 | 5-4 · Gatling Droid DX |
+| 5 | Verdorbene Hohepriesterin | Auferstandenes Gespenst, Auferstandener Hylek, Auferstandene Akolythin, Leichenrufer, Auferstandene Hand | 60 | 2.000 | 5–7 | 1 | 4 | 1 | 5-5 · Gatling Droid DX |
 | ☠️ 6 | Auferstandene Priesterin der Dwayna | Auferstandene Akolythin, Auferstandener Verweser | 60 | 4.400 | 30–42 | 3 | 9 | 1–3 | Hard 5-1 · Cursed Pyro Droid DX |
 | ☠️ 7 | Auge des Zhaitan | Auferstandenes Gespenst, Kryptis-Splitter | 60 | 4.600 | 35–46 | 3 | 9 | 1–4 | Hard 5-2 · Cursed Gatling Droid DX |
 
@@ -153,11 +153,11 @@
 
 | Stufe | Boss | Schergen | Lv. | Kosten | 📜 | ⚒️ | 🍞 | 🎟️ | CQHT |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | Kapitän Gammelbart | Auferstandener Pirat, Auferstandener Fischer | 60 | 2.200 | 6–7 | 1 | 5 | 1 | 5-6 · Titan Rocket |
-| 2 | Champion Auferstandener Gladiator | Auferstandener Gorilla, Orrianischer Gorilla | 60 | 2.400 | 6–8 | 1 | 5 | 1 | 5-7 · Titan Rocket |
-| 3 | Champion Auferstandene Abscheulichkeit | Orrianischer Grobian, Orrianischer Schlurfer | 60 | 2.600 | 6–8 | 1 | 5 | 1 | 5-8 · Titan Shield |
-| 4 | Champion Auferstandener Hofwart | Auferstandene Spinne, Auferstandene Spinnenbrut | 60 | 2.800 | 7–9 | 1 | 5 | 1 | 5-9 · Titan Shield |
-| 5 | Auferstandener Priester des Grenth | Orrianische Spektralwache, Auferstandener Verweser | 60 | 3.000 | 7–9 | 1 | 5 | 1 | 5-10 · DioNemesis |
+| 1 | Kapitän Gammelbart | Auferstandener Pirat, Auferstandener Fischer, Auferstandene Piratin, Verdorbene Krabbe, Auferstandener Krebs | 60 | 2.200 | 6–7 | 1 | 5 | 1 | 5-6 · Titan Rocket |
+| 2 | Champion Auferstandener Gladiator | Auferstandener Gorilla, Orrianischer Gorilla, Auferstandener Troll, Orrianischer Adler, Untote Abscheulichkeit | 60 | 2.400 | 6–8 | 1 | 5 | 1 | 5-7 · Titan Rocket |
+| 3 | Champion Auferstandene Abscheulichkeit | Orrianischer Grobian, Orrianischer Schlurfer, Orrianische Leibeigene, Orrianische Leiche, Auferstandener Verseuchter | 60 | 2.600 | 6–8 | 1 | 5 | 1 | 5-8 · Titan Shield |
+| 4 | Champion Auferstandener Hofwart | Auferstandene Spinne, Auferstandene Spinnenbrut, Untote Raupe, Fäulemaul, Auferstandene Kreatur | 60 | 2.800 | 7–9 | 1 | 5 | 1 | 5-9 · Titan Shield |
+| 5 | Auferstandener Priester des Grenth | Orrianische Spektralwache, Auferstandener Verweser, Orrianischer Spektralscharmützler, Orrianischer Spektralgötze, Leichenrufer | 60 | 3.000 | 7–9 | 1 | 5 | 1 | 5-10 · DioNemesis |
 | ☠️ 6 | Auferstandener Priester der Melandru | Teer-Elementar, Orrianischer Spektralhammer | 60 | 4.800 | 40–51 | 3 | 10 | 1–4 | Hard 5-3 · Cursed Titan Rocket |
 | ☠️ 7 | Verderbt: Auferstandener Priester des Grenth | Orrianische Spektralwache, Kryptis-Splitter | 60 | 5.000 | 45–55 | 3 | 10 | 1–5 | Hard 5-4 · Cursed Titan Shield |
 | ⭐ 8 | Schatten: Auferstandener Priester des Grenth | Kryptis-Plünderer, Kryptis-Peiniger | 60 | 5.000 | 70–80 | 5 | 12 | 1–5 | L-5 · DioNemesis DX |
