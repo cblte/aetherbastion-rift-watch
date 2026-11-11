@@ -301,6 +301,8 @@ a.btn { color: inherit; text-decoration: none; }
 .ah-s, .ah-d, .mob-d { display: contents; } /* Gerüst-Hüllen der Arena (kein eigenes Layout) */
 .mob.vet .mob-sprite { --c: #c9a0ff; }
 .mob.vet .mob-name { color: #d9b8ff; }
+.mob.elite .mob-sprite { --c: #ffb347; } /* #026 Elite: warmes Orange, hebt sich von Veteran (Violett) und Boss ab */
+.mob.elite .mob-name { color: #ffc977; }
 .mob-say { font-size: 12px; line-height: 15px; height: 30px; margin-top: 3px; color: #a99fd9; overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; } /* immer Platz für zwei Zeilen, damit nichts springt */
 .mob-say b { color: #d9d2ff; }
 .mob-say.warn { color: var(--bad); font-weight: 700; }

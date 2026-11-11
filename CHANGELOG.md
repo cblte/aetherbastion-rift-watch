@@ -3,6 +3,9 @@
 Was sich im Spiel geändert hat, neueste Version oben. Die Nummern (#…) verweisen auf die Feedback-Liste.
 Die Version steht im Spiel unten unter der Navigation.
 
+## v0.41.0 – 11.11.2026
+- ⚜️ **Elite-Gegner (#026):** Ab Zone 2 kommt ein Scherge mit 2 % Chance als **Elite** aus dem Riss: viermal so viele LP, doppelter Schaden, fünffaches Gold und EXP und dazu 1 🔮. Elite-Gegner sind orange markiert und haben eigene Sprüche. Veteranen gibt es weiterhin, ein Gegner ist aber nie beides.
+
 ## v0.40.0 – 09.11.2026
 - **Helden mehrfach anwerben (#039):** Unter „Rekrutieren“ kommt jetzt jeder der 60 Helden gleich oft, auch wenn du ihn schon hast. Du kannst denselben Helden mehrmals anwerben, jede Kopie ist ein eigener Held mit eigenem Level, eigener Seltenheit und eigenen Eigenschaften. So bekommst du z. B. deinen Heiler aus „Fein“ später auch als „Selten“. Ist ein Held schon im Lager, steht das auf der Karte.
 

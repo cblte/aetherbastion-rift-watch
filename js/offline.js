@@ -12,7 +12,7 @@
 import { ZONES, HERO_BY_ID, CYCLE_MS, COMBAT } from './config.js';
 import { heroStats, addLog, offlineMaxMs, payCycle, squadTrait } from './state.js';
 import { checkConstruction, checkResearch, checkShop, checkRecruits } from './progress.js';
-import { squadMembers, teamProfile, monsterTemplate, veteranOf, veteranChance, applyKillRewards, spawnMonster, fmt } from './combat.js';
+import { squadMembers, teamProfile, monsterTemplate, veteranOf, veteranChance, eliteOf, eliteChance, applyKillRewards, spawnMonster, fmt } from './combat.js';
 
 const MAX_STEPS = 200_000; // Sicherheitsnetz
 
@@ -62,15 +62,16 @@ export function runOffline(state, elapsedMs) {
     };
     let t = seconds, steps = 0;
     // beide Schergen-Typen abwechselnd, jeder mit eigener Angriffsart (#051)
-    // Veteranen als Erwartungswert: jeder Sieg zählt als Mischung aus normal und Veteran (Zeit, Schaden, Beute)
-    const V = COMBAT.VETERAN;
-    const vc = veteranChance(state);
-    const mix = (a, b) => a * (1 - vc) + b * vc;
+    // Veteranen und Elite als Erwartungswert: jeder Sieg zählt als Mischung aus normal, Veteran und Elite
+    // (Zeit, Schaden, Beute; Elite-🔮 über eliteShards)
+    const V = COMBAT.VETERAN, E = COMBAT.ELITE;
+    const ec = eliteChance(state, sq.zone), pv = Math.min(veteranChance(state), 1 - ec), pn = 1 - ec - pv; // wie spawnMonster
+    const mix = (a, b, c) => a * pn + b * pv + c * ec;
     const mons = ZONES[sq.zone - 1].stages[sq.stage - 1].minions.map((_, v) => {
-      const m = monsterTemplate(sq.zone, sq.stage, false, v), vm = veteranOf(m);
-      return { ...m, maxHp: mix(m.maxHp, vm.maxHp), dps: mix(m.dps, vm.dps) };
+      const m = monsterTemplate(sq.zone, sq.stage, false, v), vm = veteranOf(m), em = eliteOf(m);
+      return { ...m, maxHp: mix(m.maxHp, vm.maxHp, em.maxHp), dps: mix(m.dps, vm.dps, em.dps), eliteShards: ec * E.shards };
     });
-    const vetLoot = mix(1, V.loot);
+    const vetLoot = mix(1, V.loot, E.loot);
     const offBonus = 1 + squadTrait(heroes, 'offline'); // Eigenschaft „Offline“: mehr Ertrag je Sieg
 
     while (t > 0 && steps++ < MAX_STEPS) {
@@ -84,7 +85,7 @@ export function runOffline(state, elapsedMs) {
       r.minEff = Math.min(r.minEff, eff);
       t -= secs;
 
-      const res = applyKillRewards(state, i, mon, heroes, eff * offBonus * vetLoot, true);
+      const res = applyKillRewards(state, i, { ...mon, eliteShards: mon.eliteShards * eff }, heroes, eff * offBonus * vetLoot, true);
       r.kills += eff;
       r.gold += res.gold;
       r.shards += res.shards;

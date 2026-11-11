@@ -64,7 +64,7 @@ _Zurzeit nichts offen._
 - Save-Migration: Bestände umrechnen (z. B. 1 🔮 = X 🟡), nichts ersatzlos löschen. Entscheiden zusammen mit #033 und #022.
 
 ### #026 Mehr Schergen pro Zone, dazu Veteranen und Elite aus dem Riss
-- **Status:** in Arbeit (Veteranen in v0.36.0, offen: mehr Schergen pro Stufe, Elite; Wellen verworfen 2026-11-10: immer ein Gegner zur Zeit) · **Quelle:** Entwickler
+- **Status:** in Arbeit (Veteranen in v0.36.0, Elite in v0.41.0, offen: mehr Schergen pro Stufe; Wellen verworfen 2026-11-10: immer ein Gegner zur Zeit) · **Quelle:** Entwickler
 - Stand v0.36.0: **Veteran** ist drin (`COMBAT.VETERAN`: 10 %, ×2 LP, ×1,5 Schaden, ×2 Beute, Name „Veteran …“, 🎖️ in der Arena, offline als Erwartungswert). Kampf und Offline können beliebig viele Schergen je Stufe (`minions`-Liste). Werte neuer Schergen müssen über `tools/build-gw2-monsters.mjs` eine CQHT-Vorlage bekommen (`js/data/monsterStats.js`).
 - Wunsch: Mehr echte GW2-Gegner pro Zone statt 2 Schergen pro Stufe, etwa 5 Schergen pro Stufe. Jeder hat einen Basiswert, und manchmal kommt ein Scherge als **Veteran** oder **Elite** aus einem Riss und ist entsprechend stärker.
 - Daten: `dev-data/gegner-pro-zone.jsonl` (von Gemini, bereinigt). Felder: `zone`, `name`, `faction`, `stages` (1–5), `attack` (Nahkampf/Fernkampf/Magie), `area`, `flavor`, `rift` {`name`, `ability`}, `wiki`. Keine Zahlenwerte, die Stärke bleibt bei den Formeln in `config.js`.
@@ -72,6 +72,7 @@ _Zurzeit nichts offen._
 - Zonen 7–10 fehlen: Seit v0.21.0 (#025) sind das Löwenstein & Klaueninsel, Meerenge der Verwüstung, Malchors Sprung und Fluchküste. Die alten Gemini-Zeilen der früheren Zonen 7–10 liegen in `dev-data/archiv/gegner-alte-zonen-7-10.jsonl`. Für die Orr-Zonen gibt es in der DE-Wiki viele echte Gegner (Kategorie „Auferstandener“), die Schergen in `tools/gen-zones.mjs` sind ein Anfang.
 - Riss-Formen: Etwa die Hälfte der Namen beginnt mit „Riss-…“ (eintönig), Fähigkeiten nennen teils Dinge, die das Spiel nicht kennt (Mana, Ausweichen) – als Kampf-Log-Text nutzbar, nicht als Regel. Evtl. von Gemini abwechslungsreicher neu schreiben lassen. Bosse sind nicht drin (eigene Datei geplant).
 - Entschieden (2026-11-07): Erst nur **Veteran**, Elite kommt später. Startwerte: 10 % Chance, ×2 LP, ×1,5 Angriff, ×2 Beute.
+- **Elite in v0.41.0** (entschieden 2026-11-11): `COMBAT.ELITE` 2 % ab Zone 2 (`minZone`), ×4 LP, ×2 Schaden, ×5 Gold/EXP, +1 🔮 je Sieg, schließt Veteran aus (erst Elite würfeln). ⚜️ und Orange in der Arena, eigene Sprüche `MOB_QUIPS.elite`, offline als Erwartungswert (`eliteShards`). Die Fähigkeit aus `rift` als Spruch kommt mit den neuen Schergen-Daten.
 - Zum Umsetzen:
   - Regeln für Veteran (später Elite) in `config.js` (Chance, ×LP, ×Angriff, Beute), Namen und Fähigkeit aus `rift`.
   - Kampf und Offline-Berechnung müssen mehr als 2 Schergen pro Stufe auswürfeln können.

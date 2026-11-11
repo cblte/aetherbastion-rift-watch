@@ -94,11 +94,23 @@ export function veteranOf(t) {
   return { ...t, vet: true, name: `Veteran ${t.name}`, maxHp: t.maxHp * v.hp, atk: t.atk * v.atk, dps: t.dps * v.atk };
 }
 
+// Elite (#026): selten, viel stärker, viel mehr Beute (COMBAT.ELITE), erst ab Zone ELITE.minZone
+export const eliteChance = (state, zoneId) => (zoneId >= COMBAT.ELITE.minZone ? COMBAT.ELITE.chance : 0);
+export function eliteOf(t) {
+  const e = COMBAT.ELITE;
+  return { ...t, elite: true, name: `Elite ${t.name}`, maxHp: t.maxHp * e.hp, atk: t.atk * e.atk, dps: t.dps * e.atk };
+}
+
 // t = Angriffs-Timer, aoeT = Timer des Boss-Flächenangriffs, ready = Sekunden, bis der Gegner da ist
 export function spawnMonster(state, squad, delay = COMBAT.SPAWN_DELAY) {
   const seq = state.monsterSeq++;
   let t = monsterTemplate(squad.zone, squad.stage, squad.mode === 'boss', seq);
-  if (!t.boss && Math.random() < veteranChance(state)) t = veteranOf(t);
+  if (!t.boss) {
+    // Elite schließt Veteran aus: erst Elite würfeln, sonst Veteran
+    const r = Math.random(), ec = eliteChance(state, squad.zone);
+    if (r < ec) t = eliteOf(t);
+    else if (r < ec + veteranChance(state)) t = veteranOf(t);
+  }
   squad.monster = { ...t, id: seq, hp: t.maxHp, t: 0, aoeT: 0, ready: delay };
 }
 
@@ -154,6 +166,7 @@ export function heroOutput(state, hero) {
 export function applyKillRewards(state, squadIdx, tmpl, heroes, factor = 1, deterministic = false) {
   const sq = state.squads[squadIdx];
   if (tmpl.vet) factor *= COMBAT.VETERAN.loot;
+  if (tmpl.elite) factor *= COMBAT.ELITE.loot;
   // Lager-Eigenschaften des Trupps (TRAIT_STATS squad: true)
   const gold = F.goldPerKill(tmpl.d) * (tmpl.boss ? COMBAT.BOSS_GOLD_MULT : 1) * goldMult(state) * (1 + squadTrait(heroes, 'gold')) * factor;
   const exp = F.expPerKill(tmpl.d) * (tmpl.boss ? COMBAT.BOSS_EXP_MULT : 1) * kitchenMult(state) * (1 + squadTrait(heroes, 'exp')) * factor;
@@ -161,14 +174,16 @@ export function applyKillRewards(state, squadIdx, tmpl, heroes, factor = 1, dete
   const st = stageOf(sq.zone, sq.stage);
   const zone = ZONES[sq.zone - 1];
   const bossShards = tmpl.boss ? zone.tier * COMBAT.BOSS_SHARDS_PER_ZONE * (st.hard ? 3 : 1) : 0;
+  // Elite: feste 🔮 je Sieg (offline über tmpl.eliteShards als Erwartungswert)
+  const eliteShards = tmpl.elite ? COMBAT.ELITE.shards : (tmpl.eliteShards || 0);
   let shards = 0;
   if (deterministic) {
-    state.shardFrac += (chance + bossShards) * factor;
+    state.shardFrac += (chance + bossShards) * factor + eliteShards;
     shards = Math.floor(state.shardFrac);
     state.shardFrac -= shards;
   } else {
     if (Math.random() < chance) shards += 1;
-    shards += bossShards;
+    shards += bossShards + eliteShards;
   }
   state.gold += gold;
   state.shards += shards;
@@ -352,7 +367,7 @@ function tickSquad(state, i, now, ev) {
           : sq.stage < zone.stages.length ? `🔓 ${zone.name} Stufe ${sq.stage + 1} ist freigeschaltet.` : `🏆 ${zone.name}: alle Stufen gemeistert!`, i, 'boss');
       }
     } else {
-      addLog(state, `${mon.name} besiegt · +${fmt(r.gold)}🟡${r.shards ? ` +${r.shards}🔮` : ''}`, i);
+      addLog(state, `${mon.elite ? "⚜️ " : ""}${mon.name} besiegt · +${fmt(r.gold)}🟡${r.shards ? ` +${r.shards}🔮` : ''}`, i);
     }
     for (const lu of r.levelUps) {
       const h = getHero(state, lu.uid);

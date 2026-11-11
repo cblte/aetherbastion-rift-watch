@@ -5,7 +5,7 @@
 
 export const GAME = {
   title: 'Aetherbastion: Rift Watch',
-  VERSION: '0.40.0',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
+  VERSION: '0.41.0',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
   CHANGELOG_URL: 'https://github.com/cblte/aetherbastion-rift-watch/blob/main/CHANGELOG.md', // Link in den Einstellungen
   BUILD: 'lokal',                    // ersetzt der Pages-Workflow durch „Nr. · Commit“
   SAVE_KEY: 'aetherbastion_save_v1',
@@ -279,6 +279,9 @@ export const COMBAT = {
   LEGEND_SCALE: { atk: 0.5, def: 0.6 }, // legendäre Bosse schlagen alle 0,5 s zu
   // Veteranen (#026): Schergen kommen manchmal als Veteran aus dem Riss
   VETERAN: { chance: 0.1, hp: 2, atk: 1.5, loot: 2, after: { zone: 1, stage: 1 } }, // after: erst nach diesem Boss-Sieg (Tutorial)
+  // Elite (#026): selten, deutlich stärker als ein Veteran; erst ab Zone minZone. Schließt Veteran aus.
+  // loot = Faktor auf Gold/EXP, shards = 🔮 zusätzlich je Elite-Sieg
+  ELITE:   { chance: 0.02, hp: 4, atk: 2, loot: 5, shards: 1, minZone: 2 },
   // Angriffs-Timer (#061): Takt der Gegner kommt aus data/monsterStats.js (Schergen 2,5 s, Bosse meist 1,5 s).
   SPAWN_DELAY: 0.5,        // Sekunden, bis der nächste Gegner da ist (live und offline)
   // Zielwahl (#051 B + D): Platz 1 im Zelt ist der Anführer (fällt er, rückt der Nächste nach).
@@ -340,6 +343,16 @@ export const MOB_QUIPS = {
     'Hat von {held} schon gehört. Nichts Gutes.',
     'Fordert {anfuehrer} zum Zweikampf heraus.',
     '{held} murmelt: „Der hier ist zäher.“',
+  ],
+  elite: [
+    'Der Riss hat ihn mit roher Energie vollgepumpt.',
+    'Knistert vor Ätherenergie. Nicht anfassen.',
+    'Hat sich durch drei Rissschichten nach oben gekämpft.',
+    'Lässt die Erde bei jedem Schritt beben.',
+    'Ein Elite-Gegner. Hier zählt jeder Schlag.',
+    'Hat es auf {anfuehrer} abgesehen.',
+    '{held} ruft: „Zusammenbleiben!“',
+    '{held} weicht keinen Schritt zurück.',
   ],
   boss: [
     'Blickt auf eure Gilde herab.',

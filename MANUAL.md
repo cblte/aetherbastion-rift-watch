@@ -117,6 +117,7 @@ Jeder Held bringt **Eigenschaften** mit, gewürfelt beim Rekrutieren. Du siehst 
   - Waffen geben zusätzlich Durchdringung: T2 10, T3 25, T4 45, T5 70, T6 100.
   - Liegt die Durchdringung über der DEF des Gegners, gibt es bis **×1,5** Bonus-Schaden. Wer unter dem Stufen-Level kämpft, durchdringt weniger und macht spürbar weniger Schaden.
 - 🎖️ **Veteranen:** Jeder Scherge kommt mit 10 % Chance als **Veteran** aus dem Riss: doppelte LP, ×1,5 Schaden, doppelte Beute. Offline zählen sie als Durchschnitt mit. Veteranen gibt es erst, wenn die Banditen-Anführerin (Königintal, Stufe 1) besiegt ist.
+- ⚜️ **Elite:** Ab Zone 2 kommt ein Scherge mit 2 % Chance als **Elite** aus dem Riss: ×4 LP, ×2 Schaden, ×5 Gold und EXP und zusätzlich 1 🔮. Ein Elite-Gegner ist nie gleichzeitig Veteran. Offline zählen Elite-Gegner wie Veteranen als Durchschnitt mit.
 - Unter dem Gegner steht, wie er angreift:
   - 🗡️ **Nahkampf:** 60 % auf den 🚩 Anführer (Platz 1), der Rest verteilt sich auf die anderen: 🛡️ Tank 5 Teile, ⚔️ Schaden und 📯 Unterstützer je 3, ✚ Heiler 2.
   - 🏹 **Fernkampf:** trifft einen Helden mit voller Wucht, gewürfelt nach denselben Teilen.

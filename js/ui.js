@@ -301,7 +301,7 @@ function mobQuip(m, aoeIn, sq, i) {
   if (aoeIn <= COMBAT.BOSS_AOE_WARN) return `<div class="mob-say warn">${MOB_QUIPS.aoe}</div>`;
   const alive = squadMembers(S, sq).filter(h => !h.woundedUntil);
   if (isWeakMob(m, sq, i, alive)) return `<div class="mob-say"></div>`;
-  const list = m.hp / m.maxHp < MOB_QUIPS.lowHp ? MOB_QUIPS.low : m.boss ? MOB_QUIPS.boss : m.vet ? MOB_QUIPS.vet : MOB_QUIPS.minion;
+  const list = m.hp / m.maxHp < MOB_QUIPS.lowHp ? MOB_QUIPS.low : m.boss ? MOB_QUIPS.boss : m.elite ? MOB_QUIPS.elite : m.vet ? MOB_QUIPS.vet : MOB_QUIPS.minion;
   const win = Math.floor(S.lastTickMs / 1000 / MOB_QUIPS.every);
   const r = quipHash(win, m.id, i);
   // Sprüche mit Heldennamen nur, wenn noch jemand steht
@@ -353,10 +353,10 @@ function renderPortal() {
     const aoeIn = m.boss ? COMBAT.BOSS_AOE_EVERY - (m.aoeT || 0) : Infinity;
     // Gerüst je Gegner (Bild und Name bleiben stehen, solange der Gegner lebt)
     setHTML(stageEl, `
-      <div class="mob ${m.boss ? 'boss' : ''} ${m.vet ? 'vet' : ''}" data-mid="${i}-${m.id}">
+      <div class="mob ${m.boss ? 'boss' : ''} ${m.vet ? 'vet' : ''} ${m.elite ? 'elite' : ''}" data-mid="${i}-${m.id}">
         ${sprite(m.sprite, 'mob-sprite')}
         <div class="mob-info">
-          <div class="mob-name"><span>${m.boss ? '👑 ' : m.vet ? '🎖️ ' : ''}${esc(m.name)}</span><span class="mob-t"></span></div>
+          <div class="mob-name"><span>${m.boss ? '👑 ' : m.elite ? '⚜️ ' : m.vet ? '🎖️ ' : ''}${esc(m.name)}</span><span class="mob-t"></span></div>
           <div class="mob-d"></div>
         </div>
       </div>`);
