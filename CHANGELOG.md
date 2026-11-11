@@ -3,6 +3,11 @@
 Was sich im Spiel geändert hat, neueste Version oben. Die Nummern (#…) verweisen auf die Feedback-Liste.
 Die Version steht im Spiel unten unter der Navigation.
 
+## v0.45.0 – 11.11.2026
+- 🎨 **Neue Farben (#058):** Das Spiel sieht jetzt mehr nach Guild Wars 2 aus: Anthrazit statt Nachtblau, cremefarbene Schrift, Hauptknöpfe in Dunkelrot. Gold steht nur noch für Gold, Ätherviolett nur noch für den Riss.
+- **Farbschema wählen:** Unter ⚙️ Einstellungen → 🎨 Farbschema gibt es **Tyria** (neuer Standard), **Lagerfeuer** (warmes Dunkelbraun mit Bronze-Knöpfen) und **Nebel** (die bisherigen Farben).
+- Der aktive Reiter unten ist jetzt deutlicher hervorgehoben.
+
 ## v0.44.0 – 11.11.2026
 - **Neue Beute je Sieg (#061):** EXP und Gold hängen jetzt am einzelnen Gegner statt an einer Formel. In den ersten Zonen gibt es etwas mehr EXP, später deutlich weniger: Ab Zone 5 dauert das Leveln spürbar länger, und Gold gibt es in den Zonen 7–10 nur noch etwa ein Zehntel. Bis Lv. 60 braucht ein Trupp jetzt etwa 3 bis 12 Stunden Kampfzeit, je nach Ausbau.
 - Bosse geben weiterhin das 6-Fache an EXP und das 10-Fache an Gold eines Schergen ihrer Stufe. Auf schweren Stufen gibt es dadurch deutlich weniger Gold als bisher.

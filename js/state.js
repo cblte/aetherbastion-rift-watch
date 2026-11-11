@@ -38,7 +38,7 @@ export function createNewState(now = Date.now()) {
     research: {},          // Forschungsknoten → Stufe
     mystic: { atk: 0, hp: 0, regen: 0, loot: 0 },
     retired: [],           // #022: Helden im Ruhestand { heroId, level, rarity } → passives Einkommen
-    settings: { vibrate: true },
+    settings: { vibrate: true, theme: 'tyria' },
     selectedSquad: 0,
     log: [],
     monsterSeq: 1,

@@ -14,33 +14,54 @@
   src: url("fonts/atkinson-hyperlegible-latin-700-normal.woff2") format("woff2");
   font-weight: 700; font-style: normal; font-display: swap;
 }
+/* Farbschemata (#058): ⚙️ Einstellungen → 🎨 Farbschema, #app[data-theme].
+   Tyria = Standard (an die GW2-Oberfläche angelehnt), Lagerfeuer = warmes Dunkelbraun,
+   Nebel = das alte Nachtblau mit eigener Farbe je Reiter. */
 :root {
-  --bg: #0c0e16;
-  --bg-2: #121522;
-  --panel: #171b2b;
-  --panel-2: #1e2337;
-  --line: #2a3150;
-  --text: #e6e8f2;
-  --muted: #8b91ad;
-  --aether: #8f7bff;
-  --aether-2: #5fd0e6;
-  --gold: #f2c14e;
-  --good: #59d68c;
-  --bad: #ff6b6b;
-  --warn: #ffb347;
   --radius: 14px;
   --tap: 44px;
   --sans: "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --serif: var(--sans); /* früher eigene Serifenschrift; jetzt einheitlich */
   --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-  /* Akzentfarbe je Reiter (#app[data-tab]) */
-  --tab-portal: #9d8bff;
-  --tab-camp: #f2c14e;
-  --tab-squads: #59d68c;
-  --tab-lab: #5fd0e6;
-  --tab-forge: #ff8a4c;
-  --tab-inv: #e889c0;
-  --accent: var(--aether);
+  /* Tyria: Anthrazit, Creme-Schrift, Dunkelrot für Hauptknöpfe und Auswahl, Gold nur für Währung */
+  --bg: #121212;
+  --bg-2: #1a1a1b;
+  --panel: #1e1e20;
+  --panel-2: #2a2a2d;
+  --line: #3a3836;
+  --text: #e8e2d4;
+  --muted: #a39d90;
+  --aether: #8f7bff;
+  --aether-2: #5fd0e6;
+  --gold: #e3c26a;
+  --good: #59d68c;
+  --bad: #e0574a;
+  --warn: #ffb347;
+  --sel: #c23a2a;                         /* Auswahl-Kante, aktiver Reiter */
+  --btn-1: #a82020; --btn-2: #7a1414; --btn-edge: #c23a2a; --btn-text: #fbefd8;
+  --tab-bg: linear-gradient(#3a1616, #221010); --tab-edge: #7a2020; --tab-text: #fbefd8;
+  --nav-bg: rgba(18, 18, 18, .96);
+  /* Akzentfarbe je Reiter (#app[data-tab]); nur „Nebel“ färbt sie unterschiedlich */
+  --tab-portal: var(--sel); --tab-camp: var(--sel); --tab-squads: var(--sel);
+  --tab-lab: var(--sel); --tab-forge: var(--sel); --tab-inv: var(--sel);
+  --accent: var(--sel);
+}
+#app[data-theme="lagerfeuer"] {
+  --bg: #17120d; --bg-2: #1f1811; --panel: #2a2017; --panel-2: #352819; --line: #4a3a28;
+  --text: #f1e6d2; --muted: #b09c80; --gold: #e8b64c;
+  --sel: #e8b64c;
+  --btn-1: #8a5a22; --btn-2: #6b4217; --btn-edge: #e8b64c; --btn-text: #fff4dc;
+  --tab-bg: linear-gradient(color-mix(in srgb, #e8b64c 16%, #352819), #2a2017); --tab-edge: #8a6a34; --tab-text: #e8b64c;
+  --nav-bg: rgba(23, 18, 13, .96);
+}
+#app[data-theme="nebel"] {
+  --bg: #0c0e16; --bg-2: #121522; --panel: #171b2b; --panel-2: #1e2337; --line: #2a3150;
+  --text: #e6e8f2; --muted: #8b91ad; --gold: #f2c14e; --bad: #ff6b6b;
+  --sel: var(--aether);
+  --btn-1: #8f7bff; --btn-2: #6b58e0; --btn-edge: #a597ff; --btn-text: #fff;
+  --nav-bg: rgba(12, 14, 22, .96);
+  --tab-portal: #9d8bff; --tab-camp: #f2c14e; --tab-squads: #59d68c;
+  --tab-lab: #5fd0e6; --tab-forge: #ff8a4c; --tab-inv: #e889c0;
 }
 #app[data-tab="portal"] { --accent: var(--tab-portal); }
 #app[data-tab="camp"]   { --accent: var(--tab-camp); }
@@ -73,7 +94,7 @@ textarea { user-select: text; -webkit-user-select: text; }
   background:
     radial-gradient(120% 50% at 50% -10%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 60%),
     linear-gradient(var(--bg), var(--bg-2));
-  border-inline: 1px solid #161a28;
+  border-inline: 1px solid var(--line);
   overflow: hidden;
 }
 
@@ -120,11 +141,11 @@ textarea { user-select: text; -webkit-user-select: text; }
   margin: 8px 10px 3px;   /* etwas Luft zum Inhalt und Scrollbalken darunter */
   padding: 10px 12px 12px;
   border-radius: var(--radius);
-  background: linear-gradient(135deg, rgba(143, 123, 255, .22), rgba(95, 208, 230, .12));
-  border: 1px solid rgba(143, 123, 255, .5);
-  box-shadow: 0 0 24px rgba(143, 123, 255, .15);
+  background: linear-gradient(135deg, color-mix(in srgb, var(--gold) 14%, var(--panel)), var(--panel));
+  border: 1px solid color-mix(in srgb, var(--gold) 45%, var(--line));
+  box-shadow: 0 0 24px rgba(0, 0, 0, .35);
 }
-.quest-step { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--aether-2); }
+.quest-step { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); }
 .quest-body { display: flex; gap: 10px; align-items: flex-start; margin: 4px 0 10px; }
 .quest-body p { margin: 0; }
 .quest-icon { font-size: 26px; line-height: 1; }
@@ -132,7 +153,7 @@ textarea { user-select: text; -webkit-user-select: text; }
   position: relative; height: 18px; margin: 0 0 10px;
   border-radius: 9px; background: rgba(0, 0, 0, .3); overflow: hidden;
 }
-.quest-progress span { position: absolute; inset: 0 auto 0 0; background: linear-gradient(90deg, var(--aether), var(--aether-2)); opacity: .55; }
+.quest-progress span { position: absolute; inset: 0 auto 0 0; background: linear-gradient(90deg, var(--gold), color-mix(in srgb, var(--gold) 60%, var(--sel))); opacity: .55; }
 .quest-progress small { position: relative; display: block; text-align: center; font-size: 11px; line-height: 18px; }
 .quest .quest-progress:last-child { margin-bottom: 0; }
 
@@ -183,7 +204,7 @@ h4 { margin: 16px 0 8px; font-size: 14px; color: var(--muted); }
 }
 .btn small { font-weight: 400; font-size: 12px; opacity: .85; margin-top: 2px; white-space: nowrap; }
 .btn:active:not(:disabled) { transform: scale(.97); }
-.btn.primary { background: linear-gradient(180deg, #8f7bff, #6b58e0); border-color: #a597ff; color: #fff; }
+.btn.primary { background: linear-gradient(180deg, var(--btn-1), var(--btn-2)); border-color: var(--btn-edge); color: var(--btn-text); }
 .btn.danger { background: #3a1d26; border-color: #6e2e3d; color: #ffb3b3; }
 .btn:disabled { opacity: .4; cursor: default; filter: grayscale(.4); }
 .btn.block { display: flex; width: 100%; }
@@ -336,7 +357,7 @@ a.btn { color: inherit; text-decoration: none; }
   cursor: pointer;
 }
 .sq-card small { font-size: 11px; color: var(--muted); white-space: nowrap; }
-.sq-card.sel { border-color: var(--aether); box-shadow: 0 0 0 1px var(--aether) inset, 0 0 14px rgba(143, 123, 255, .25); }
+.sq-card.sel { border-color: var(--sel); box-shadow: 0 0 0 1px var(--sel) inset, 0 0 14px color-mix(in srgb, var(--sel) 25%, transparent); }
 .sq-card.locked { opacity: .45; filter: grayscale(1); }
 
 /* ---------- Zonen -------------------------------------------------- */
@@ -545,7 +566,7 @@ a.btn { color: inherit; text-decoration: none; }
 .toggle i::after {
   content: ""; position: absolute; top: 3px; left: 3px; width: 24px; height: 24px; border-radius: 50%; background: #fff; transition: transform .2s;
 }
-.toggle.on i { background: var(--aether); }
+.toggle.on i { background: var(--sel); }
 .toggle.on i::after { transform: translateX(22px); }
 textarea {
   width: 100%; min-height: 120px; margin-top: 8px;
@@ -578,7 +599,7 @@ textarea {
 #tabs {
   display: grid; grid-template-columns: repeat(var(--n, 5), 1fr);
   border-top: 1px solid var(--line);
-  background: rgba(12, 14, 22, .96);
+  background: var(--nav-bg);
   padding: 4px max(4px, env(safe-area-inset-right)) calc(4px + env(safe-area-inset-bottom)) max(4px, env(safe-area-inset-left));
 }
 #tabs button {
@@ -597,13 +618,21 @@ textarea {
 #tabs [data-tab="lab"]    { --c: var(--tab-lab); }
 #tabs [data-tab="forge"]  { --c: var(--tab-forge); }
 #tabs [data-tab="inv"]    { --c: var(--tab-inv); }
+/* Aktiver Reiter: eingelassene Fläche mit Kante oben und feinen Rändern links/rechts */
+#tabs button { border-inline: 1px solid transparent; }
 #tabs button.active {
-  color: var(--c);
-  background: color-mix(in srgb, var(--c) 16%, var(--panel));
-  box-shadow: inset 0 3px 0 var(--c);
+  color: var(--tab-text);
+  background: var(--tab-bg);
+  border-inline: 1px solid var(--tab-edge);
+  box-shadow: inset 0 3px 0 var(--c), inset 0 6px 10px -6px rgba(0, 0, 0, .6), inset 1px 0 0 rgba(255, 255, 255, .06), inset -1px 0 0 rgba(255, 255, 255, .06);
 }
+#app[data-theme="nebel"] #tabs button.active { color: var(--c); background: color-mix(in srgb, var(--c) 16%, var(--panel)); border-inline-color: transparent; }
 #tabs button.active span { filter: none; }
 #tabs button:not(.active) { color: color-mix(in srgb, var(--c) 30%, var(--muted)); }
+#app:not([data-theme="nebel"]) #tabs button:not(.active) { color: var(--muted); }
+/* Theme-Auswahl in den Einstellungen */
+.theme-pick { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-top: 8px; }
+.theme-pick .btn[aria-pressed="true"] { border-color: var(--sel); box-shadow: 0 0 0 1px var(--sel) inset; }
 #tabs button[hidden] { display: none; }
 #tabs button { position: relative; }
 #tabs button.goal::after {

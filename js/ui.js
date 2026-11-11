@@ -8,7 +8,7 @@ import {
   GAME, CURRENCIES, ROLES, CLASSES, RACES, HEROES, HERO_BY_ID, ZONES, COMBAT, F, BUILDINGS, BUILDING_ORDER,
   TENTS, TENT_SIZE, MYSTIC, MYSTIC_ORDER, ONBOARDING, RETIRE_MIN_LEVEL, LEVEL_CAP_MAX, FEATURES,
   RESEARCH, RESEARCH_ORDER, TIER_LAB, RESEARCH_TIME, HERO_LEVELS, WEAPON_BY_ID, WEAPON_GRADES, WEAPON_TYPES, RATIONS, NORMAL_STAGES,
-  TRAITS, TRAIT_STATS, TRAIT_SPECS, TOTAL_NORMAL, ATTACK_TYPES, MOB_QUIPS, CYCLE_MS, QUESTS as MAIN_QUESTS, RECRUIT, REROLL_RESET_CLOVER, ARMORY_SLOTS, ARMORY_CLEANUP_DEFAULT, UI, RATION_DROP,
+  TRAITS, TRAIT_STATS, TRAIT_SPECS, TOTAL_NORMAL, ATTACK_TYPES, MOB_QUIPS, CYCLE_MS, QUESTS as MAIN_QUESTS, RECRUIT, REROLL_RESET_CLOVER, ARMORY_SLOTS, ARMORY_CLEANUP_DEFAULT, UI, RATION_DROP, THEMES,
 } from './config.js';
 import { currentQuest, questProgress, questNumber, claimQuest, questDone } from './quests.js';
 import { manualChapters } from './manual.js';
@@ -97,6 +97,7 @@ export function render() {
   renderView();
   if (modalRefresh) modalRefresh(); // offenes Helden-/Zelt-Modal live aktualisieren
   $('#app').dataset.tab = tab; // Akzentfarbe je Reiter (CSS)
+  applyTheme();
   const goal = goalTab();
   let shown = 0;
   for (const b of document.querySelectorAll('#tabs [data-tab]')) {
@@ -589,6 +590,16 @@ function renderCamp() {
   setHTML($('#buildings'), BUILDING_ORDER.map(buildingCard).join(''));
 }
 
+// #058: Farbschema an #app setzen (unbekannt/fehlend → Standard = erstes in THEMES)
+const themeId = () => (THEMES[S.settings.theme] ? S.settings.theme : Object.keys(THEMES)[0]);
+function applyTheme() {
+  const id = themeId();
+  const app = $('#app');
+  if (app.dataset.theme === id) return;
+  app.dataset.theme = id;
+  document.querySelector('meta[name="theme-color"]')?.setAttribute('content', THEMES[id].color);
+}
+
 // ⚙️ Einstellungen als Dialog (Zahnrad oben rechts)
 function openSettings() {
   const refresh = () => openModal(settingsHtml(), refresh);
@@ -599,6 +610,10 @@ function settingsHtml() {
   return `${modalHead('⚙️ Einstellungen')}
     <div class="card btn-col"><button class="btn block" data-action="manual">📖 Handbuch</button>
       <a class="btn block" href="${GAME.CHANGELOG_URL}" target="_blank" rel="noopener">📰 Was ist neu? <small>Changelog auf GitHub · v${GAME.VERSION}</small></a></div>
+    <div class="card">
+      <div class="b-title"><b>🎨 Farbschema</b></div>
+      <div class="theme-pick">${Object.entries(THEMES).map(([id, t]) => `<button class="btn" data-action="theme" data-theme="${id}" aria-pressed="${themeId() === id}">${t.name}<small>${t.desc}</small></button>`).join('')}</div>
+    </div>
     <div class="card setting">
       <span>📳 Vibration bei Level-Ups</span>
       <button class="toggle ${S.settings.vibrate ? 'on' : ''}" data-action="toggle-vibrate" role="switch" aria-checked="${S.settings.vibrate}"><i></i></button>
@@ -1597,6 +1612,7 @@ function onClick(e) {
 
     // Einstellungen
     case 'manual': openManual(); break;
+    case 'theme': if (THEMES[d.theme]) { S.settings.theme = d.theme; changed(); } break;
     case 'toggle-vibrate': S.settings.vibrate = !S.settings.vibrate; changed(); break;
     case 'export':
       openModal(`<h3>💾 Export</h3><p class="small muted">Diesen Code sicher aufbewahren. Er enthält den kompletten Spielstand.</p>
