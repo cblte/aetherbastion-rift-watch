@@ -5,7 +5,7 @@
 
 export const GAME = {
   title: 'Aetherbastion: Rift Watch',
-  VERSION: '0.43.0',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
+  VERSION: '0.44.0',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
   CHANGELOG_URL: 'https://github.com/cblte/aetherbastion-rift-watch/blob/main/CHANGELOG.md', // Link in den Einstellungen
   BUILD: 'lokal',                    // ersetzt der Pages-Workflow durch „Nr. · Commit“
   SAVE_KEY: 'aetherbastion_save_v1',
@@ -242,10 +242,14 @@ export const QUESTS = [
 // ---------------------------------------------------------------------
 export const COMBAT = {
   LEVEL_DIFF: 0.8,         // Schwierigkeit d = Stufen-Level × 0,8
-  BOSS_DIFF_BONUS: 1,      // Boss-Beute rechnet mit Schwierigkeit + 1 (Werte kommen aus data/monsterStats.js)
+  BOSS_DIFF_BONUS: 1,      // Bosse rechnen auf schweren Stufen mit Schwierigkeit + 1 (LP-Treppe HARD_HP)
   BOSS_TIME_LIMIT: 90,     // Sekunden; danach gilt die Herausforderung als gescheitert
   BOSS_COOLDOWN: 90,       // Sekunden Pause nach jeder Herausforderung (Sieg, Niederlage, Abbruch)
-  BOSS_GOLD_MULT: 10,
+  // Beute je Sieg (#061): EXP und Gold kommen aus der Vorlage jedes Schergen (data/monsterStats.js), hier die Regler.
+  // EXP 1:1; Gold × Kurve nach Stufen-Level: früh wie bisher (× 1,5), ab Lv. 40 × 4, damit Gebäude
+  // und Waffen bezahlbar bleiben (Vorlage spät nur ≈ 48 Gold je Sieg).
+  LOOT: { exp: 1, gold: [[10, 1.5], [40, 4]] },
+  BOSS_GOLD_MULT: 10,       // Boss = Schnitt der Schergen der Stufe × diesen Wert
   BOSS_EXP_MULT: 6,
   BOSS_SHARDS_PER_ZONE: 1, // Boss droppt garantiert Zone × diesen Wert (×3 auf schweren Stufen)
   WOUND_MS: 90_000,        // Regeneration nach 0 LP
@@ -425,8 +429,7 @@ export const F = {
     baseAtk * (1 + 0.08 * (level - 1)) * gearMult * bonusMult,
   heroHp: (baseHp, level, bonusMult = 1) =>
     baseHp * (1 + 0.10 * (level - 1)) * bonusMult,
-  goldPerKill: (d) => 5 * Math.pow(1.12, d),
-  expPerKill: (d) => 8 * Math.pow(1.13, d),
+  // Beute je Sieg: seit v0.44.0 aus der Vorlage jedes Gegners (data/monsterStats.js, Regler COMBAT.LOOT)
   // EXP-Kurve aus data/heroLevels.js (Gesamt-EXP)
   expToNext: (level) => level >= MAX_HERO_LEVEL ? Infinity
     : HERO_LEVELS[level].totalExp - HERO_LEVELS[level - 1].totalExp,

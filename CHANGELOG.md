@@ -3,6 +3,10 @@
 Was sich im Spiel geändert hat, neueste Version oben. Die Nummern (#…) verweisen auf die Feedback-Liste.
 Die Version steht im Spiel unten unter der Navigation.
 
+## v0.44.0 – 11.11.2026
+- **Neue Beute je Sieg (#061):** EXP und Gold hängen jetzt am einzelnen Gegner statt an einer Formel. In den ersten Zonen gibt es etwas mehr EXP, später deutlich weniger: Ab Zone 5 dauert das Leveln spürbar länger, und Gold gibt es in den Zonen 7–10 nur noch etwa ein Zehntel. Bis Lv. 60 braucht ein Trupp jetzt etwa 3 bis 12 Stunden Kampfzeit, je nach Ausbau.
+- Bosse geben weiterhin das 6-Fache an EXP und das 10-Fache an Gold eines Schergen ihrer Stufe. Auf schweren Stufen gibt es dadurch deutlich weniger Gold als bisher.
+
 ## v0.43.0 – 11.11.2026
 - **Mehr Gegner in Orr (#026):** Auch die Zonen 7–10 haben jetzt bis zu fünf Schergen je Stufe, alle echte Gegner aus Orr und von der Klaueninsel: untote Haie und Krebse in der Meerenge, Raupen und Raptoren in Malchors Sprung, Spektralgötzen und Leichenrufer vor Arah. Jeder bringt eigene Sprüche und eine Riss-Fähigkeit für seine Elite-Form mit.
 

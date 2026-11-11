@@ -16,13 +16,24 @@ const pick = (m, where) => {
   if (!s) throw new Error(`Keine CQHT-Werte: ${where} ${m.name}`);
   return { hp: s.hp1, atk: s.atk1, def: s.defense, spd: s.attackSpeed, src: m.cqht?.id || '' };
 };
+// Beute je Sieg (#061): EXP und Gold aus den Drops der Vorlage. Bosse haben keine; ihre Beute
+// rechnet combat.js aus dem Schnitt der Schergen der Stufe × COMBAT.BOSS_EXP_MULT/BOSS_GOLD_MULT.
+const drop = (m, kind) => m.drops?.find(d => d.dropId?.endsWith('_' + kind))?.amount ?? null;
+// Vorlagen ohne Drops (Schergen der legendären Stufen): höchster Wert aller anderen Schergen (Lv.-60-Niveau)
+const allMinions = src.zones.filter(z => z.source === 'js/data/stages.js').flatMap(z => z.stages.flatMap(s => s.minions));
+const maxDrop = (kind) => Math.max(...allMinions.map(m => drop(m, kind) ?? 0));
+const FALLBACK = { exp: maxDrop('EXP'), gold: maxDrop('GOLD') };
+const loot = (m) => {
+  const exp = drop(m, 'EXP'), gold = drop(m, 'GOLD');
+  return exp == null || gold == null ? { ...FALLBACK } : { exp, gold };
+};
 
 const zones = src.zones.filter(z => z.source === 'js/data/stages.js');
 const lines = zones.map(z => {
   const stages = z.stages.map(s => {
     const b = pick(s.boss, `Zone ${z.id} Stufe ${s.nr}`);
-    const mins = s.minions.map(m => pick(m, `Zone ${z.id} Stufe ${s.nr}`));
-    const f = (o) => `{ hp: ${o.hp}, atk: ${o.atk}, def: ${o.def}, spd: ${o.spd} }`;
+    const mins = s.minions.map(m => ({ ...pick(m, `Zone ${z.id} Stufe ${s.nr}`), ...loot(m, `Zone ${z.id} Stufe ${s.nr}`) }));
+    const f = (o) => `{ hp: ${o.hp}, atk: ${o.atk}, def: ${o.def}, spd: ${o.spd}${o.exp != null ? `, exp: ${o.exp}, gold: ${o.gold}` : ''} }`;
     return `    // ${s.nr} ${s.kind} · ${s.boss.name}\n    { boss: ${f(b)}, minions: [${mins.map(f).join(', ')}] },`;
   });
   return `  ${z.id}: [ // ${z.zone}\n${stages.join('\n')}\n  ],`;
@@ -34,7 +45,8 @@ const txt = `// ================================================================
 //  nicht von Hand bearbeiten.
 //  Je Zone eine Liste der Stufen (Reihenfolge wie in stages.js):
 //    hp/atk = LP und Schaden je Treffer, def = DEF,
-//    spd = Sekunden zwischen zwei Angriffen.
+//    spd = Sekunden zwischen zwei Angriffen,
+//    exp/gold = Beute je Sieg (nur Schergen; Regler COMBAT.LOOT, Bosse × BOSS_*_MULT).
 //  Regler (Bosse, schwere/legendäre Stufen, Veteranen) stehen in COMBAT (config.js).
 // =====================================================================
 export const MONSTER_STATS = {

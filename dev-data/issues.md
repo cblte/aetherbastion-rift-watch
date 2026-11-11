@@ -82,7 +82,7 @@ _Zurzeit nichts offen._
   - Handbuch (`MANUAL.md`, `manual.js`) ergänzen.
 
 ### #062 Gegner-Vielfalt: Profile für Schergen, knackige Bosse
-- **Status:** in Arbeit (Profile in v0.42.0; offen: S-Tier-Trupp für Legendär, Boss-Profile) · Entscheidung 2026-11-11: Profile „gleich stark, anders“ · **Quelle:** Entwickler
+- **Status:** in Arbeit (Profile in v0.42.0; offen: Endspiel nachregeln (zurückgestellt, Befund unten), S-Tier-Trupp für Legendär, Boss-Profile) · Entscheidung 2026-11-11: Profile „gleich stark, anders“ · **Quelle:** Entwickler
 - Befund: Jede Stufe hat 2 Schergen-Typen, die sich nur im Namen unterscheiden (`monsterTemplate()` in `combat.js` gibt beiden dieselben Werte). Bosse unterscheiden sich ebenfalls nur in den Zahlen. Spielerisch kämpft man immer gegen denselben Gegner.
 - Vorschlag Schergen: **Profile** mit Faktoren auf die Grundwerte der Stufe (aus #061), Werte in `config.js`, z. B.:
   - *Rohling*: viel LP und DEF, langsam (3,0 s)
@@ -96,11 +96,12 @@ _Zurzeit nichts offen._
 - Später: Boss-Fähigkeiten (Wut-Phase unter X % LP, Schergen rufen, Flächenangriff) → #042, #051 D.
 - Stand v0.36.0 (Gegnerwerte nach CQHT, #061): Bosse haben `BOSS_SCALE.hp` 0,6 der CQHT-LP (× `HP_CURVE`, Zonen 7–10 × `BOSS_HP_CURVE`). Min.-Level (≥ 80 % Siege) Max-Trupp Tank/Heiler/Schaden: Zonen-Endbosse Lv. 3 (Zone 3) … 19 (Zone 6) … 46 (Fluchküste 5); Profil mittel (Selten, T4) etwa auf Stufen-Level bis Zone 7. Schwere Stufen: LP aus `HARD_HP` (Treppe `HARD_DIFF` d 57 → 57,5), DEF der CQHT-Vorlage × 0,6 → Max-Trupp ab Lv. 44 (Königintal ☠️6) bis 59 (Fluchküste ☠️7). Legendär (`LEGEND_DIFF` d 58,4 → 58, CQHT-Angriff × 0,5): Max-Trupp Lv. 60 ≈ 50–80 % (Caledon) → ≈ 3 % (Fluchküste). Erster Boss-Mechanik-Baustein: Flächenangriff alle `BOSS_AOE_EVERY` s mit Ansage. **Offen:** ein „S-Tier“-Trupp finden (beste Rollen/Klassen/Eigenschaften), der Legendär schafft, und `LEGEND_DIFF` danach herunterregeln. T6 fällt nur noch auf schweren/legendären Stufen, der Laden verkauft T5 ab Schmiede 3 und Portal 4 (v0.35.1), T6 nach allen normalen Stufen (`SHOP.gradeLock`). Nach #061 alle Werte neu simulieren.
 - Prüfen mit `tools/sim-bosses.mjs`: Endboss mit Max-Level-Trupp + Waffe knapp im 90-s-Limit, mit schwächerem Trupp nicht.
+- **Befund 2026-11-11 (`node tools/sim-bosses.mjs 10 --hard`, Trupp h01/h02/h04):** Seit der Erweiterten Forschung (v0.39.0) ist das Endspiel für einen voll ausgebauten Trupp zu leicht. Mindest-Level (≥ 80 % Siege) Profil „maximal“: schwer Lv. 23–41, legendär Lv. 42–46; „maxT5“: schwer 33–51, legendär 55–60; „maxT4“: schwer 42–>60, legendär >60. Ziel bleibt (entschieden 2026-11-11, „altes Ziel wiederherstellen“): Max-Trupp schwer erst ab Lv. 44–59, legendär auf Lv. 60 kaum. Stellschrauben `HARD_HP`, `HARD_SCALE`, `LEGEND_DIFF`/`LEGEND_SCALE`; danach neu simulieren. **Zurückgestellt** (Entwickler 2026-11-11: Balancing erst einmal durch).
 
 ## Balancing
 
 ### #061 Gegnerwerte nach CQHT: mehr LP, DEF, Angriffstempo, weniger Beute im Spätspiel
-- **Status:** in Arbeit (Schritt 1 Tick-Umbau v0.35.0, Schritt 2 Version A v0.36.0; Version B Wellen verworfen 2026-11-10, siehe #064; offen: Beute pro Sieg beobachten) · **Quelle:** Entwickler
+- **Status:** in Arbeit (Schritt 1 Tick-Umbau v0.35.0, Schritt 2 Version A v0.36.0; Version B Wellen verworfen 2026-11-10, siehe #064; Beute aus den Vorlagen in v0.44.0) · **Quelle:** Entwickler
 - Eindruck: Gegner sind viel zu schwach, das Spiel läuft sehr schnell.
 - Befund (Vergleich mit allen CQHT-Schergen in `dev-data/archiv/cqht-monsters.json`, unsere Formeln mit d = Level × 0,8):
 
@@ -139,6 +140,9 @@ _Zurzeit nichts offen._
   - Version B (zusammen mit #026): mehrere Schergen gleichzeitig (Welle 2–3), mehr Schergen pro Stufe, Veteranen.
   - Getrennt entscheiden: Verwundung wie CQHT (4 % LP/s statt 90 s).
 - Ziel festlegen, bevor man Zahlen dreht: Wie lange dauert ein Schergen-Kampf auf passendem Level (z. B. 5–8 s)? Dann mit `tools/sim-bosses.mjs` Siege/h, Rückzüge und Zeit pro Zone prüfen, Offline-Effizienz mit.
+- **Beute in v0.44.0** (Entscheidung 2026-11-11: „EXP 1:1, Gold × Regler“): EXP und Gold je Sieg aus den Drops der Vorlage (`tools/gen-monster-stats.mjs` → `exp`/`gold` in `monsterStats.js`; legendäre Schergen ohne Drops bekommen das Lv.-60-Niveau). `F.goldPerKill`/`expPerKill` entfernt. Regler `COMBAT.LOOT`: EXP × 1, Gold × Kurve `[[10, 1.5], [40, 4]]` nach Stufen-Level. Bosse = Schnitt der Schergen × `BOSS_EXP_MULT` 6 / `BOSS_GOLD_MULT` 10.
+  - Vorher gegen Vorlage je Sieg: EXP früh 0,5–0,9×, ab Zone 7 2–6×; Gold ab Zone 4 4–45×.
+  - Gemessen (offline, Trupp T/H/S Selten auf Stufen-Level, Waffe Kapitel + 2, halbe Forschung): Gold/h Zone 1 ≈ 12.900 (vorher 12.500), Zone 4–6 ≈ 27.000–82.000 (vorher 30.000–264.000), Zone 7–10 ≈ 82.000–110.000 (vorher 320.000–950.000). Lv. 1 → 60: nackt ≈ 11,7 h (vorher 9,8), ausgebaut ≈ 3,1 h (vorher 2,8) Kampfzeit eines Trupps.
 - Hängt zusammen mit #043 (Endgame-Balancing, `COMBAT.LEVEL_DIFF`), #051 (Schadensverteilung) und #062.
 
 ### #043 Endgame-Schwierigkeit: Formel oder Handarbeit?

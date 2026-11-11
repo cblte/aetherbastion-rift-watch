@@ -59,7 +59,8 @@ export function defMult(def, pen = 0) {
 const variance = () => 1 + (Math.random() * 2 - 1) * COMBAT.VARIANCE;
 
 // Gegnerwerte aus data/monsterStats.js, Regler in COMBAT (Bosse, schwer, legendär).
-// variant: welcher Schergen-Typ. d bleibt für die Beute (F.goldPerKill/expPerKill).
+// variant: welcher Schergen-Typ. exp/gold = Beute je Sieg aus der Vorlage (Bosse: Schnitt der Schergen der Stufe,
+// × BOSS_*_MULT erst in applyKillRewards). d = Schwierigkeit (Anzeige, schwere LP-Treppe).
 // atk = Schaden je Treffer, interval = Sekunden je Angriff, dps = atk ÷ interval, def = DEF, aoe = Boss-Flächenangriff je Held
 export function monsterTemplate(zoneId, stage, boss = false, variant = 0) {
   const st = stageOf(zoneId, stage);
@@ -77,9 +78,11 @@ export function monsterTemplate(zoneId, stage, boss = false, variant = 0) {
     ? H.base * Math.pow(H.growth, d) * H.scale * (boss ? H.boss : 1)
     : base.hp * F.curve(COMBAT.HP_CURVE, lvl) * (boss ? bs.hp * F.curve(COMBAT.BOSS_HP_CURVE, lvl) : 1);
   const interval = base.spd * pf.spd;
+  const avg = (k) => ms.minions.reduce((a, m) => a + (m[k] || 0), 0) / ms.minions.length;
+  const exp = boss ? avg('exp') : (base.exp || 0), gold = boss ? avg('gold') : (base.gold || 0);
   return {
     name: mob.name, sprite: mob.sprite, boss, d, attack: mob.attack || 'melee', interval,
-    profile: boss ? null : (mob.profile || 'standard'), flavor: mob.flavor || '', rift: mob.rift || '',
+    profile: boss ? null : (mob.profile || 'standard'), exp, gold, flavor: mob.flavor || '', rift: mob.rift || '',
     maxHp: maxHp * pf.hp, atk, dps: atk / interval, def: base.def * sc.def * pf.def,
     aoe: boss ? atk * COMBAT.BOSS_AOE_FACTOR : 0,
   };
@@ -171,8 +174,9 @@ export function applyKillRewards(state, squadIdx, tmpl, heroes, factor = 1, dete
   if (tmpl.vet) factor *= COMBAT.VETERAN.loot;
   if (tmpl.elite) factor *= COMBAT.ELITE.loot;
   // Lager-Eigenschaften des Trupps (TRAIT_STATS squad: true)
-  const gold = F.goldPerKill(tmpl.d) * (tmpl.boss ? COMBAT.BOSS_GOLD_MULT : 1) * goldMult(state) * (1 + squadTrait(heroes, 'gold')) * factor;
-  const exp = F.expPerKill(tmpl.d) * (tmpl.boss ? COMBAT.BOSS_EXP_MULT : 1) * kitchenMult(state) * (1 + squadTrait(heroes, 'exp')) * factor;
+  // Beute je Sieg aus der Vorlage (#061) × Regler COMBAT.LOOT
+  const gold = tmpl.gold * F.curve(COMBAT.LOOT.gold, tmpl.d / COMBAT.LEVEL_DIFF) * (tmpl.boss ? COMBAT.BOSS_GOLD_MULT : 1) * goldMult(state) * (1 + squadTrait(heroes, 'gold')) * factor;
+  const exp = tmpl.exp * COMBAT.LOOT.exp * (tmpl.boss ? COMBAT.BOSS_EXP_MULT : 1) * kitchenMult(state) * (1 + squadTrait(heroes, 'exp')) * factor;
   const chance = COMBAT.SHARD_CHANCE * shardMult(state) * (1 + squadTrait(heroes, 'shards'));
   const st = stageOf(sq.zone, sq.stage);
   const zone = ZONES[sq.zone - 1];
