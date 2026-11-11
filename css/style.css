@@ -46,7 +46,7 @@
   --tab-lab: var(--sel); --tab-forge: var(--sel); --tab-inv: var(--sel);
   --accent: var(--sel);
 }
-#app[data-theme="lagerfeuer"] {
+:root[data-theme="lagerfeuer"], #app[data-theme="lagerfeuer"] { /* :root auch, damit der Seitenhintergrund mitwechselt */
   --bg: #17120d; --bg-2: #1f1811; --panel: #2a2017; --panel-2: #352819; --line: #4a3a28;
   --text: #f1e6d2; --muted: #b09c80; --gold: #e8b64c;
   --sel: #e8b64c;
@@ -54,7 +54,7 @@
   --tab-bg: linear-gradient(color-mix(in srgb, #e8b64c 16%, #352819), #2a2017); --tab-edge: #8a6a34; --tab-text: #e8b64c;
   --nav-bg: rgba(23, 18, 13, .96);
 }
-#app[data-theme="nebel"] {
+:root[data-theme="nebel"], #app[data-theme="nebel"] {
   --bg: #0c0e16; --bg-2: #121522; --panel: #171b2b; --panel-2: #1e2337; --line: #2a3150;
   --text: #e6e8f2; --muted: #8b91ad; --gold: #f2c14e; --bad: #ff6b6b;
   --sel: var(--aether);

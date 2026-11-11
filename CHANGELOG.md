@@ -3,6 +3,9 @@
 Was sich im Spiel geändert hat, neueste Version oben. Die Nummern (#…) verweisen auf die Feedback-Liste.
 Die Version steht im Spiel unten unter der Navigation.
 
+## v0.45.1 – 11.11.2026
+- Farbschema: Auch der Seitenhintergrund neben dem Spiel wechselt jetzt mit (Lagerfeuer, Nebel).
+
 ## v0.45.0 – 11.11.2026
 - 🎨 **Neue Farben (#058):** Das Spiel sieht jetzt mehr nach Guild Wars 2 aus: Anthrazit statt Nachtblau, cremefarbene Schrift, Hauptknöpfe in Dunkelrot. Gold steht nur noch für Gold, Ätherviolett nur noch für den Riss.
 - **Farbschema wählen:** Unter ⚙️ Einstellungen → 🎨 Farbschema gibt es **Tyria** (neuer Standard), **Lagerfeuer** (warmes Dunkelbraun mit Bronze-Knöpfen) und **Nebel** (die bisherigen Farben).

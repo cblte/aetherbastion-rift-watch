@@ -597,6 +597,7 @@ function applyTheme() {
   const app = $('#app');
   if (app.dataset.theme === id) return;
   app.dataset.theme = id;
+  document.documentElement.dataset.theme = id; // Seitenhintergrund (body) wechselt mit
   document.querySelector('meta[name="theme-color"]')?.setAttribute('content', THEMES[id].color);
 }
 
