@@ -288,6 +288,7 @@ Schließt du die App, farmen deine Trupps die Schergen ihrer Stufe weiter, **bis
 ## Einstellungen (⚙️ Zahnrad oben rechts)
 
 - **📖 Handbuch:** Kurzfassung dieser Anleitung im Spiel
+- **🎨 Farbschema:** Tyria (Standard, Anthrazit und Rot), Lagerfeuer (Dunkelbraun und Gold) oder Nebel (das alte Nachtblau)
 - **Vibration** bei Level-Ups an/aus
 - **Spielstand exportieren/importieren** als Code, z. B. für einen Gerätewechsel
 - **Zurücksetzen** (mit Bestätigung, vorher exportieren!)

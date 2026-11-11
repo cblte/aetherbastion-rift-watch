@@ -5,7 +5,7 @@
 
 export const GAME = {
   title: 'Aetherbastion: Rift Watch',
-  VERSION: '0.42.0',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
+  VERSION: '0.43.0',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
   CHANGELOG_URL: 'https://github.com/cblte/aetherbastion-rift-watch/blob/main/CHANGELOG.md', // Link in den Einstellungen
   BUILD: 'lokal',                    // ersetzt der Pages-Workflow durch „Nr. · Commit“
   SAVE_KEY: 'aetherbastion_save_v1',
@@ -18,6 +18,14 @@ export const GAME = {
   OFFLINE_REPORT_MIN_MS: 60_000,     // ab hier erscheint der Offline-Rissbericht
   DEBUG_OFFLINE_MS: 15 * 60 * 1000,
   LOG_SIZE: 20,
+};
+
+// Farbschemata (#058), Auswahl unter ⚙️ Einstellungen. Das erste ist der Standard.
+// `color` = Browser-Leiste (meta theme-color); die Farben selbst stehen in css/style.css.
+export const THEMES = {
+  tyria:      { name: 'Tyria',      desc: 'Anthrazit · Rot', color: '#121212' },
+  lagerfeuer: { name: 'Lagerfeuer', desc: 'Dunkelbraun · Gold', color: '#17120d' },
+  nebel:      { name: 'Nebel',      desc: 'Nachtblau · Äther', color: '#0c0e16' },
 };
 
 import { ZONE_DATA, NORMAL_STAGES } from './data/stages.js';

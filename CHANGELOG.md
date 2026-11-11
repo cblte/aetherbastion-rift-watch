@@ -3,6 +3,11 @@
 Was sich im Spiel geändert hat, neueste Version oben. Die Nummern (#…) verweisen auf die Feedback-Liste.
 Die Version steht im Spiel unten unter der Navigation.
 
+## v0.43.0 – 11.11.2026
+- 🎨 **Neue Farben (#058):** Das Spiel sieht jetzt mehr nach Guild Wars 2 aus: Anthrazit statt Nachtblau, cremefarbene Schrift, Hauptknöpfe in Dunkelrot. Gold steht nur noch für Gold, Ätherviolett nur noch für den Riss.
+- **Farbschema wählen:** Unter ⚙️ Einstellungen → 🎨 Farbschema gibt es **Tyria** (neuer Standard), **Lagerfeuer** (warmes Dunkelbraun mit Bronze-Knöpfen) und **Nebel** (die bisherigen Farben).
+- Der aktive Reiter unten ist jetzt deutlicher hervorgehoben.
+
 ## v0.42.0 – 11.11.2026
 - **Mehr Gegner je Stufe (#026):** In den Zonen 1–6 hat jede normale Stufe jetzt bis zu fünf verschiedene Schergen statt zwei, zum Beispiel Tamini, Skritt, Ettins und Flachlandwürmer im Königintal. Viele bringen eigene Sprüche mit, Elite-Gegner verraten ihre Riss-Fähigkeit.
 - **Gegner-Profile (#062):** Jeder Scherge ist ein Rohling (zäh, langsam), Flink (schnell, wenig LP), Schütze (hoher Schaden, wenig DEF) oder Standard. Das Profil steht in der Arena unter seinem Namen. Insgesamt sind die Stufen etwa gleich schwer wie vorher, die Kämpfe fühlen sich nur unterschiedlicher an.

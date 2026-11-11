@@ -157,6 +157,7 @@ export function manualChapters() {
 
     { icon: '🌙', title: 'Offline & Spielstand', html: `
       <p>Schließt du die App, farmen deine Trupps weiter – bis zu <b>${offlineH} Stunden</b> (mit Forschung länger). Die Gildenkasse zahlt, Bauaufträge werden fertig. Bosse gibt es nur live. Der <b>Offline-Rissbericht</b> zeigt alles bei der Rückkehr; liegt die Effizienz eines Trupps unter 100 %, ist seine Stufe zu schwer.</p>
-      <p>Unter <b>⚙️ Einstellungen</b> (Zahnrad oben rechts) kannst du den Spielstand als Code <b>exportieren</b> und auf einem anderen Gerät <b>importieren</b>. Vor dem Zurücksetzen unbedingt exportieren!</p>` },
+      <p>Unter <b>⚙️ Einstellungen</b> (Zahnrad oben rechts) kannst du den Spielstand als Code <b>exportieren</b> und auf einem anderen Gerät <b>importieren</b>. Vor dem Zurücksetzen unbedingt exportieren!</p>
+      <p>Dort wählst du auch das <b>🎨 Farbschema</b>: Tyria (Standard), Lagerfeuer oder Nebel.</p>` },
   ];
 }

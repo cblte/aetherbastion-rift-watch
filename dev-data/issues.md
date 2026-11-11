@@ -162,7 +162,7 @@ _Zurzeit nichts offen._
 - Nebenbefund erledigt in v0.39.2 (siehe `issues_solved.md`): Gold-Boni bleiben bei Gold aus Siegen, der Kassen-Optimierer wirkt auf Halle + Ruhestand.
 
 ### #058 Farben und Look: weniger technisch, mehr GW2
-- **Status:** zurückgestellt (für das UI-Redesign) · **Quelle:** Gilde
+- **Status:** teilweise erledigt in v0.43.0 (Farbschemata Tyria/Lagerfeuer/Nebel, Entwurf in `ui-redesign.md`); offen: Pixel-Art, Rollenfarben · **Quelle:** Gilde
 - Eindruck: sehr textlastig, Farben nach „dunkle Asura-Technik“. GW2 ist bunter. Holz muss nicht sein, aber wärmere, mittelalterliche Töne.
 - Idee: Warme Grundfarben (Pergament oder Dunkelbraun), Gold als Akzent, Ätherviolett nur für Riss/Portal, kräftigere Rollen-Farben. Über die CSS-Variablen machbar, am besten zusammen mit der Pixel-Art. Das rote ✕ aus #057 ist ein erstes Element.
 
