@@ -42,7 +42,7 @@ Der Spielstand ist ein einziges Objekt. Bei Import/Reset wird es per `replaceSta
 ## Testen
 - `python3 -m http.server 8080` → http://localhost:8080 (über `file://` geht es nicht)
 - Spiellogik lässt sich ohne Browser in Node testen (`import` aus `js/state.js`, `combat.js`, `offline.js`, die brauchen kein DOM)
-- Im Spiel: ✨ Schmiede → „15 Min. Offline simulieren“
+- Im Spiel: ⚙️ Einstellungen → 🛠️ Debug → „15 Min. Offline simulieren“ (nur im lokalen Build, `GAME.BUILD === 'lokal'`; auf der Website ausgeblendet)
 - Bei DevTools-Tests: Service Worker „Update on reload“ aktivieren, sonst kommen alte Dateien aus dem Cache
 
 ## Deploy

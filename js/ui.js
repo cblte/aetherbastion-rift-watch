@@ -601,6 +601,9 @@ function applyTheme() {
   document.querySelector('meta[name="theme-color"]')?.setAttribute('content', THEMES[id].color);
 }
 
+// Debug-Werkzeuge nur im lokalen Build: der Pages-Workflow ersetzt GAME.BUILD 'lokal' beim Deploy
+const DEBUG = GAME.BUILD === 'lokal';
+
 // ⚙️ Einstellungen als Dialog (Zahnrad oben rechts)
 function openSettings() {
   const refresh = () => openModal(settingsHtml(), refresh);
@@ -626,10 +629,10 @@ function settingsHtml() {
         <button class="btn" data-action="import">Importieren</button>
       </div>
     </div>
-    <div class="card">
-      <div class="b-title"><b>🛠️ Debug</b></div>
+    ${DEBUG ? `<div class="card">
+      <div class="b-title"><b>🛠️ Debug</b> <small class="muted">nur lokal</small></div>
       <button class="btn block" data-action="debug-offline">15 Min. Offline simulieren</button>
-    </div>
+    </div>` : ''}
     <div class="card">
       <button class="btn danger block" data-action="reset">Spielstand zurücksetzen</button>
     </div>
@@ -1651,6 +1654,7 @@ function onClick(e) {
       viewZone = 1;
       closeModal(); tab = 'portal'; changed('Neues Gildenlager.'); break;
     case 'debug-offline': {
+      if (!DEBUG) break; // auf der Website gibt es kein Debug
       const rep = runOffline(S, GAME.DEBUG_OFFLINE_MS);
       hooks.save?.();
       render();

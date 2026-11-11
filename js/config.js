@@ -5,7 +5,7 @@
 
 export const GAME = {
   title: 'Aetherbastion: Rift Watch',
-  VERSION: '0.45.1',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
+  VERSION: '0.45.2',                  // bei JEDER Änderung erhöhen (Patch, bei neuen Funktionen Minor) – gleich wie CACHE_VERSION in sw.js
   CHANGELOG_URL: 'https://github.com/cblte/aetherbastion-rift-watch/blob/main/CHANGELOG.md', // Link in den Einstellungen
   BUILD: 'lokal',                    // ersetzt der Pages-Workflow durch „Nr. · Commit“
   SAVE_KEY: 'aetherbastion_save_v1',

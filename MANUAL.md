@@ -293,7 +293,6 @@ Schließt du die App, farmen deine Trupps die Schergen ihrer Stufe weiter, **bis
 - **Vibration** bei Level-Ups an/aus
 - **Spielstand exportieren/importieren** als Code, z. B. für einen Gerätewechsel
 - **Zurücksetzen** (mit Bestätigung, vorher exportieren!)
-- **Debug:** 15 Minuten Offline-Zeit simulieren
 
 ## Tipps
 

@@ -3,6 +3,9 @@
 Was sich im Spiel geändert hat, neueste Version oben. Die Nummern (#…) verweisen auf die Feedback-Liste.
 Die Version steht im Spiel unten unter der Navigation.
 
+## v0.45.2 – 12.11.2026
+- Der Debug-Bereich in den Einstellungen („15 Min. Offline simulieren“) ist im veröffentlichten Spiel nicht mehr zu sehen. Er war nur zum Testen gedacht.
+
 ## v0.45.1 – 11.11.2026
 - Farbschema: Auch der Seitenhintergrund neben dem Spiel wechselt jetzt mit (Lagerfeuer, Nebel).
 
