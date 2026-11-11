@@ -28,7 +28,7 @@ import {
   researchInfo, doResearch, startBuild, refreshShop, refreshCost, buyWeapon, sellWeapon, sellWeapons, sellPrice,
   upgradeIndices, equipWeapon, unequipWeapon, fitsHero, feedRations, rationsToLevel, rationExp,
   sellSupplies, supplyPrice, supplyCount, shopGrades,
-  recruitTier, shardPrice, researchSecs, recruitRefreshCost, refreshRecruits, recruitCost, recruitUpgradeOf, hireRecruit, resetRerollCost, recruitOdds,
+  recruitTier, shardPrice, researchSecs, recruitRefreshCost, refreshRecruits, recruitCost, ownedCopies, hireRecruit, resetRerollCost, recruitOdds,
 } from './progress.js';
 import { runOffline } from './offline.js';
 
@@ -761,12 +761,12 @@ function recruitHtml() {
     const d = HERO_BY_ID[o.heroId];
     const cost = recruitCost(o.rarity);
     const m = 1 + rarityBonus(o.rarity);
-    const up = recruitUpgradeOf(S, o);
+    const copies = ownedCopies(S, o.heroId);
     return `<div class="card recruit" style="--c:${WEAPON_GRADES[o.rarity].color};--r:${WEAPON_GRADES[o.rarity].color}">
         ${sprite(CLASSES[d.cls].sprite, 'mini-sprite')}
         <div class="hm-body">
-          <div class="hm-name"><b>${esc(d.name)}</b>${up ? ' <span class="upg">⬆️ Aufwertung</span>' : ''}</div>
-          ${up ? `<div class="hm-sub upg-note">Im Lager als ${rarityTag(up.rarity)} Lv. ${up.level}. Level, Waffe und Platz bleiben, die Eigenschaften werden durch diese ersetzt${up.traits?.length ? ` (bisher: ${up.traits.map(x => `<span style="color:${WEAPON_GRADES[x.g].color}">${TRAITS[x.id].name}</span>`).join(', ')})` : ''}.</div>` : ''}
+          <div class="hm-name"><b>${esc(d.name)}</b></div>
+          ${copies.length ? `<div class="hm-sub owned-note">Schon im Lager: ${copies.length > 3 ? `${copies.length}×, höchstes Lv. ${Math.max(...copies.map(h => h.level))}` : copies.map(h => `${rarityTag(h.rarity)} Lv. ${h.level}`).join(' · ')}</div>` : ''}
           <div class="hm-sub">${rarityTag(o.rarity)}${specTag(o.traits) ? ` · ${specTag(o.traits)}` : ''}</div>
           <div class="hm-title">„${esc(d.title)}“ · ${RACES[d.race].name}</div>
           <div class="hm-sub">${ROLES[d.role].icon} ${ROLES[d.role].name} · ${CLASSES[d.cls].name}${d.buff ? ` · ${d.buff === 'macht' ? 'Macht' : 'Eile'}` : ''}</div>
@@ -774,7 +774,7 @@ function recruitHtml() {
           <div class="hm-sub">${classBonusText(d.cls)}</div>
           ${traitsHtml(o.traits)}
         </div>
-        <button class="btn primary" data-action="recruit" data-slot="${k}" ${blocked || S.gold < cost ? 'disabled' : ''}>${up ? 'Aufwerten' : 'Anwerben'}<small>🟡 ${fmt(cost)}</small></button>
+        <button class="btn primary" data-action="recruit" data-slot="${k}" ${blocked || S.gold < cost ? 'disabled' : ''}>Anwerben<small>🟡 ${fmt(cost)}</small></button>
       </div>`;
   }).join('') || '<div class="card muted small">Keine Angebote mehr. Neue Rekruten kommen bald.</div>';
   const rc = recruitRefreshCost(S);
@@ -1662,17 +1662,9 @@ function build(key) {
 
 function recruit(slot) {
   if (S.onboarding < 3) return;
-  const offer = S.recruits.offers[slot];
-  const from = offer && recruitUpgradeOf(S, offer)?.rarity;
   const h = hireRecruit(S, slot);
   if (!h) { toast('Nicht genug Gold.'); return; }
   const heroId = h.heroId;
-  if (from) {
-    const txt = `${HERO_BY_ID[heroId].name} ist jetzt ${WEAPON_GRADES[h.rarity].name} (vorher ${WEAPON_GRADES[from].name}).`;
-    addLog(S, `⬆️ ${txt}`, null, 'info');
-    changed(`⬆️ ${esc(txt)}`);
-    return;
-  }
   let placed = '';
   outer: for (let i = 0; i < S.tentsUnlocked; i++) {
     for (let slot = 0; slot < TENT_SIZE; slot++) {

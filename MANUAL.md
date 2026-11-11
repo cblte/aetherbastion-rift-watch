@@ -265,7 +265,7 @@ Wie oft welche Seltenheit kommt, hängt von der **Gildenhalle** ab. Die aktuelle
 | ab Stufe 7 | 20 % | 30 % | 25 % | 17 % | 8 % |
 | ab Stufe 9 | 10 % | 25 % | 30 % | 22 % | 13 % |
 
-- Jedes Gildenmitglied kann nur einmal gleichzeitig im Lager sein. Mitglieder im Lager tauchen nur noch in einer **besseren Seltenheit** im Angebot auf, als **⬆️ Aufwertung**: „Aufwerten“ kostet den normalen Preis der neuen Seltenheit. Der Held behält Level, EXP, Waffe und Zeltplatz und bekommt die neue Seltenheit samt LP-/ATK-Bonus. Seine Eigenschaften werden durch die aus dem Angebot ersetzt (die Karte zeigt die bisherigen).
+- Jeder der 60 Helden kommt **gleich oft** ins Angebot, egal ob du ihn schon hast. Du kannst denselben Helden **mehrmals** anwerben: Jede Kopie ist ein eigener Held mit eigenem Level, eigener Seltenheit, eigenen Eigenschaften und eigener Waffe. Ist ein Held schon im Lager, steht das auf der Karte („Schon im Lager: …“).
 - Das allererste Angebot (Tutorial) sind immer Tank, Heiler und Schaden in „Fein“. Danach ist das Angebot zufällig.
 - Neue Helden landen automatisch im ersten freien Zeltplatz, sonst in der Reserve.
 

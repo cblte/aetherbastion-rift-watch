@@ -9,7 +9,7 @@ Feedback und Fehler aus dem Spieltest. Erledigte Punkte wandern mit Version nach
 - **Status:** `offen` · `in Arbeit` · `zurückgestellt` (mit Grund)
 - **Quelle:** wer es gemeldet hat (z. B. „Spieltest Frau“, „Gilde“)
 
-Nächste freie Nummer: **#064**
+Nächste freie Nummer: **#065**
 
 ## Eingang
 
@@ -64,7 +64,7 @@ _Zurzeit nichts offen._
 - Save-Migration: Bestände umrechnen (z. B. 1 🔮 = X 🟡), nichts ersatzlos löschen. Entscheiden zusammen mit #033 und #022.
 
 ### #026 Mehr Schergen pro Zone, dazu Veteranen und Elite aus dem Riss
-- **Status:** in Arbeit (Veteranen in v0.36.0, offen: mehr Schergen pro Stufe, Wellen, Elite) · **Quelle:** Entwickler
+- **Status:** in Arbeit (Veteranen in v0.36.0, offen: mehr Schergen pro Stufe, Elite; Wellen verworfen 2026-11-10: immer ein Gegner zur Zeit) · **Quelle:** Entwickler
 - Stand v0.36.0: **Veteran** ist drin (`COMBAT.VETERAN`: 10 %, ×2 LP, ×1,5 Schaden, ×2 Beute, Name „Veteran …“, 🎖️ in der Arena, offline als Erwartungswert). Kampf und Offline können beliebig viele Schergen je Stufe (`minions`-Liste). Werte neuer Schergen müssen über `tools/build-gw2-monsters.mjs` eine CQHT-Vorlage bekommen (`js/data/monsterStats.js`).
 - Wunsch: Mehr echte GW2-Gegner pro Zone statt 2 Schergen pro Stufe, etwa 5 Schergen pro Stufe. Jeder hat einen Basiswert, und manchmal kommt ein Scherge als **Veteran** oder **Elite** aus einem Riss und ist entsprechend stärker.
 - Daten: `dev-data/gegner-pro-zone.jsonl` (von Gemini, bereinigt). Felder: `zone`, `name`, `faction`, `stages` (1–5), `attack` (Nahkampf/Fernkampf/Magie), `area`, `flavor`, `rift` {`name`, `ability`}, `wiki`. Keine Zahlenwerte, die Stärke bleibt bei den Formeln in `config.js`.
@@ -96,7 +96,7 @@ _Zurzeit nichts offen._
 ## Balancing
 
 ### #061 Gegnerwerte nach CQHT: mehr LP, DEF, Angriffstempo, weniger Beute im Spätspiel
-- **Status:** in Arbeit (Schritt 1 Tick-Umbau v0.35.0, Schritt 2 Version A v0.36.0; offen: Version B Wellen mit #026, Beute pro Sieg beobachten) · **Quelle:** Entwickler
+- **Status:** in Arbeit (Schritt 1 Tick-Umbau v0.35.0, Schritt 2 Version A v0.36.0; Version B Wellen verworfen 2026-11-10, siehe #064; offen: Beute pro Sieg beobachten) · **Quelle:** Entwickler
 - Eindruck: Gegner sind viel zu schwach, das Spiel läuft sehr schnell.
 - Befund (Vergleich mit allen CQHT-Schergen in `dev-data/archiv/cqht-monsters.json`, unsere Formeln mit d = Level × 0,8):
 
@@ -145,6 +145,12 @@ _Zurzeit nichts offen._
 - Vorschlag: Keine endlose Formel als Hauptinhalt. Lieber feste Inhalte mit Mechaniken (#042) und Erweiterungen (#044). Eine Formel höchstens als optionaler „endloser Riss“ mit Bestenliste in der Gilde. Dazu den offenen Balancing-Punkt aus `CLAUDE.md` angehen (Zonen 9–10, `F.monsterHp`, `F.monsterAtk`, `COMBAT.LEVEL_DIFF`): den Spieler fragen, wie lange er für schwer/legendär gebraucht hat.
 
 ## Idee
+
+### #064 Raid: der ganze Kader (12 Helden) gegen einen Mega-Boss
+- **Status:** offen (Simulation läuft, Sitzung „prototyp-d-sim“, Bericht `dev-data/sim-army-bericht.md`) · **Quelle:** Entwickler
+- Entschieden (2026-11-10): Im Alltag bleibt alles, wie es ist. Jedes Zelt (3 Helden) kämpft in seiner eigenen Zone gegen **einen** Gegner zur Zeit, manchmal einen Veteranen, später selten einen Elite-Gegner (#026). **Keine Wellen**, kein CQHT-Modell mit 4 Portalen × 3 Gegnern und keine gemeinsame Arena für alle Helden (Analyse: `H:\share\aetherbastion-analyse-zelte-portale.md`, Varianten C und D verworfen).
+- Spätspiel: ein Raid, in dem **alle 4 Zelte mit 12 Helden gemeinsam** gegen einen Mega-Boss mit Phasen kämpfen. Vorbild ist der CQHT-Raid Fortress of Souls / Soltar (drei Phasen), bei uns vorbereitet als Kryptis-Seelenfeste in `js/data/specials.js`. Dort müssen **Heilung und Trupp-Zusammensetzung passen**: Ohne genug Heiler und Tanks soll der Kader klar scheitern.
+- Offen: Regeln (Heilung und Anführer je Zelt oder für alle?), Phasen, Versuche pro Tag, Belohnung (Seelenkristalle für ★7 Seelengebunden, #048), Skalierung mit 1–4 Zelten. Passt zu #042 (Boss-Mechaniken) und #043 (was nach dem letzten legendären Boss kommt).
 
 ### #060 Aufträge mit Gold nach der Questreihe (tägliche oder wiederholbare Aufträge)
 - **Status:** zurückgestellt (lange Bank, noch nicht nötig) · **Quelle:** Entwickler

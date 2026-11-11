@@ -208,18 +208,14 @@ export function recruitTier(state) {
   return t;
 }
 
-// Helden, die in dieser Seltenheit angeboten werden dürfen: nicht schon in der Liste und
-// nicht im Lager – außer als Aufwertung, wenn die eigene Version eine schlechtere Seltenheit hat (#039)
-const ownedHero = (state, heroId) => state.heroes.find(h => h.heroId === heroId) || null;
-function recruitPool(state, rarity) {
+// Helden für das Angebot: jeder gleich wahrscheinlich, egal ob schon im Lager (#039: Kopien erlaubt).
+// Nur nicht zweimal in derselben Liste.
+function recruitPool(state) {
   const offered = new Set(state.recruits.offers.map(o => o.heroId));
-  return HEROES.filter(d => !offered.has(d.id) && (ownedHero(state, d.id)?.rarity ?? 0) < rarity);
+  return HEROES.filter(d => !offered.has(d.id));
 }
-// Angebot ist eine Aufwertung eines vorhandenen Helden → dieser Held, sonst null
-export const recruitUpgradeOf = (state, offer) => {
-  const h = ownedHero(state, offer.heroId);
-  return h && h.rarity < offer.rarity ? h : null;
-};
+// Wie oft ein Held schon im Lager ist (Anzeige im Angebot)
+export const ownedCopies = (state, heroId) => state.heroes.filter(h => h.heroId === heroId);
 
 // Würfel-Gewichte der Seltenheiten für die aktuelle Gildenhallen-Stufe ({ Seltenheit: % })
 export function recruitOdds(state) {
@@ -235,10 +231,10 @@ function rollRarity(state, rnd = Math.random) {
 
 function addRecruitOffers(state, n) {
   for (let i = 0; i < n; i++) {
-    const rarity = rollRarity(state);
-    const pool = recruitPool(state, rarity);
-    if (!pool.length) continue;
+    const pool = recruitPool(state);
+    if (!pool.length) return;
     const d = pool[Math.floor(Math.random() * pool.length)];
+    const rarity = rollRarity(state);
     state.recruits.offers.push({ heroId: d.id, rarity, traits: rollTraits(d.id, rarity) });
   }
 }
@@ -286,21 +282,13 @@ export function refreshRecruits(state) {
 export const recruitCost = (rarity) => RECRUIT.rarities[rarity].cost;
 
 // Angebot anwerben → neuer Held (oder null). Das Angebot verschwindet aus der Liste.
-// Aufwertung (#039): Ist der Held schon im Lager, bekommt er die bessere Seltenheit und die Eigenschaften
-// des Angebots. Level, EXP, Waffe und Zeltplatz bleiben, die LP behalten ihren Anteil.
+// Ist der Held schon im Lager, kommt eine eigenständige Kopie dazu (#039).
 export function hireRecruit(state, slot) {
   const o = state.recruits.offers[slot];
   if (!o || !HERO_BY_ID[o.heroId]) return null;
-  const up = recruitUpgradeOf(state, o);
-  if (!up && isOwned(state, o.heroId)) return null;
   if (!pay(state, { gold: recruitCost(o.rarity) })) return null;
   state.recruits.offers.splice(slot, 1);
-  if (!up) return createHero(state, o.heroId, o.rarity, o.traits);
-  const share = up.hp / heroStats(state, up).maxHp;
-  up.rarity = o.rarity;
-  up.traits = structuredClone(o.traits);
-  up.hp = heroStats(state, up).maxHp * Math.min(1, Math.max(0, share));
-  return up;
+  return createHero(state, o.heroId, o.rarity, o.traits);
 }
 
 // ---------- Würfel-Preis zurücksetzen (🍀) ------------------------------

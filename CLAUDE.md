@@ -59,7 +59,7 @@ Der Spielstand ist ein einziges Objekt. Bei Import/Reset wird es per `replaceSta
 - Pixel-Art fehlt noch (Sprite-Tags sind vorbereitet).
 
 ## Geplant (bereits entschieden)
-- Rekrutierung mit Angeboten und Seltenheiten ist drin. Seit v0.40.0 (#039): Besessene Helden kommen nur in besserer Seltenheit wieder ins Angebot und werden beim Anwerben aufgewertet (Level/EXP/Waffe/Platz bleiben, Eigenschaften aus dem Angebot), nie doppelt im Lager.
+- Rekrutierung mit Angeboten und Seltenheiten ist drin. Seit v0.40.0 (#039): Jeder Held kommt gleich wahrscheinlich ins Angebot, egal ob schon im Lager; Kopien sind erlaubt (wie CQHT), jede eigenständig. Code darf nie annehmen, dass eine `heroId` nur einmal in `state.heroes` vorkommt (immer über `uid`).
 - Questreihe: 23 Aufträge bis Zone 6 (Caudecus’ Anwesen) sind drin (Tutorial: Halle/Zelt geben Gold, erstes Rekruten-Angebot = Tank/Heiler/Schaden aus `ONBOARDING`, Aufträge „Verstärkung“ verlangen die Rolle). Später ergänzen: Ruhestand (Mystische Schmiede), Skills, Beförderungen.
 - Skill-System für Helden (kommt später).
 - Beförderungen / Sterne-Stufen für Helden (kommt später). Ganz oben: 7★ / Legendär für voll ausgelevelte Helden und Waffen, leicht OP und sehr schwer zu bekommen (#049, Weg noch offen).
